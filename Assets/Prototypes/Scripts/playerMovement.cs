@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class playerMovement : MonoBehaviour
 {
-    public float moveSpeed = 10.0F;
-    public float jumpSpeed = 5.0F;
+    public float moveSpeed = 20.0F;
+    public float jumpSpeed = 8.0F;
     public float gravity = 25.0F;
     private Vector3 moveDirection = Vector3.zero;
     private float turnCamera;
@@ -38,9 +38,9 @@ public class playerMovement : MonoBehaviour
 
             //Sprinting
             if (Input.GetKey(KeyCode.LeftShift))
-                moveSpeed = 10f;
+                moveSpeed = 30f;
             else
-                moveSpeed = 5f;
+                moveSpeed = 20f;
         }
 
         //Mouse-Camera movement for 1st person movement (found online)
