@@ -8,8 +8,6 @@ public class Health : MonoBehaviour
 
     private void Start()
     {
-        Cards card;
 
-        card.
     }
 }
