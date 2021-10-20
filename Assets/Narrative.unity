@@ -565,6 +565,7 @@ GameObject:
   - component: {fileID: 1231231503}
   - component: {fileID: 1231231506}
   - component: {fileID: 1231231505}
+  - component: {fileID: 1231231517}
   m_Layer: 0
   m_Name: Flowchart
   m_TagString: Untagged
@@ -597,8 +598,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 1231231502}
-  selectedCommands: []
+  - {fileID: 1231231506}
+  selectedCommands:
+  - {fileID: 1231231517}
   variables: []
   description: 
   stepPause: 0
@@ -775,7 +777,8 @@ MonoBehaviour:
   blockName: Im a newb
   description: 
   eventHandler: {fileID: 0}
-  commandList: []
+  commandList:
+  - {fileID: 1231231517}
   suppressAllAutoSelections: 0
 --- !u!114 &1231231507
 MonoBehaviour:
@@ -1022,6 +1025,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1231231517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1231231499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 18
+  indentLevel: 0
+  storyText: "It\u2019s recruitment day for the {colour=red} Arcana Knights {/colour}
+    today! You\u2019ve been training for years for this very moment! {wc}And I swear
+    you will make the cut, or my name isn\u2019t Mamma Rheinfeld! I make sure all
+    my students make it to the Arcana Knights!{wc} Now, time to go over the basics!"
+  description: 
+  character: {fileID: 1672618227}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
 --- !u!1 &1405647294
 GameObject:
   m_ObjectHideFlags: 0
