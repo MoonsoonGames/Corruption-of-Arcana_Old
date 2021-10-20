@@ -563,6 +563,8 @@ GameObject:
   - component: {fileID: 1231231513}
   - component: {fileID: 1231231504}
   - component: {fileID: 1231231503}
+  - component: {fileID: 1231231506}
+  - component: {fileID: 1231231505}
   m_Layer: 0
   m_Name: Flowchart
   m_TagString: Untagged
@@ -596,10 +598,8 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 1231231502}
-  selectedCommands:
-  - {fileID: 1231231504}
-  variables:
-  - {fileID: 0}
+  selectedCommands: []
+  variables: []
   description: 
   stepPause: 0
   colorCommands: 1
@@ -691,7 +691,7 @@ MonoBehaviour:
   indentLevel: 0
   text: No
   description: 
-  targetBlock: {fileID: 1231231502}
+  targetBlock: {fileID: 1231231505}
   hideIfVisited: 0
   interactable:
     booleanRef: {fileID: 0}
@@ -716,7 +716,7 @@ MonoBehaviour:
   indentLevel: 0
   text: Yes
   description: 
-  targetBlock: {fileID: 1231231502}
+  targetBlock: {fileID: 1231231506}
   hideIfVisited: 0
   interactable:
     booleanRef: {fileID: 0}
@@ -725,6 +725,58 @@ MonoBehaviour:
   hideThisOption:
     booleanRef: {fileID: 0}
     booleanVal: 0
+--- !u!114 &1231231505
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1231231499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodeRect:
+    serializedVersion: 2
+    x: 76.4
+    y: 31.899994
+    width: 114
+    height: 40
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  useCustomTint: 0
+  itemId: 17
+  blockName: not a newb
+  description: 
+  eventHandler: {fileID: 0}
+  commandList: []
+  suppressAllAutoSelections: 0
+--- !u!114 &1231231506
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1231231499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodeRect:
+    serializedVersion: 2
+    x: -70.6
+    y: 28.899994
+    width: 109.2
+    height: 40
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  useCustomTint: 0
+  itemId: 16
+  blockName: Im a newb
+  description: 
+  eventHandler: {fileID: 0}
+  commandList: []
+  suppressAllAutoSelections: 0
 --- !u!114 &1231231507
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -1438,7 +1490,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2012471508
 MonoBehaviour:
   m_ObjectHideFlags: 0
