@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CombatBreakdown : MonoBehaviour
 {
@@ -10,65 +12,78 @@ public class CombatBreakdown : MonoBehaviour
     */
     // Start is called before the first frame update
     void Start()
-    {   
-        /*  
-        playerAttackDeck = []
-        playerSpellDeck = []
-        playerClassDeck = []
+    {
+        //Player Decks
+        string[] playerAttackDeck;
+        string[] playerSpellDeck;
+        string[] playerClassDeck;
 
-        enemyCommonDeck = []
-        enemyBossDeck = []
-        */
+        //Enemy Decks
+        string[] enemyCommonDeck;
+        string[] enemyBossDeck;
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*
-        on battle start
-            playerAttackDeck.randomise
-            playerSpellDeck.randomise
-            playerClassDeck.randomise
+/*
+        if (battleStart == true)
+        {
+            playerAttackDeck[].randomise;
+            playerSpellDeck[].randomise;
+            playerClassDeck[].randomise;
+        }
 
-        on player turn
-            on deck 1 click
-                deck.0 = active card
-                move to last position in array
+        else()
+        {
+            return;
+        }
+   
+        if (turnCounter%2 == 0) //player turn
+            if (playerAttackDeck.IsClicked == true)
+                activeCard.UI.SetActive = true
+                activeCard.SetUI = playerAttackDeck.0
                 run card stats (dmg)
                 enemyHealth = enemyHealth - cardDmgStat
+                remove card from array
+                add card to last position in array
 
-            on deck 2 click
-                deck.0 = active card
-                move to last position in array
+            if (playerSpellDeck.IsClicked == true)
+                activeCard.UI.SetActive = true
+                activeCard.SetUI = playerSpellDeck.0
                 run card stats (magic dmg)
                 arcanaMagic = arcanaMagic - cardMagicStat
                 enemyHealth = enemyHealth - cardDmgStat
+                remove card from array
+                add card to last position in array
 
-            on deck 3 click
-                deck.0 = active card
-                move to last position in array
+            if (playerDefenceDeck.IsClicked == true)
+                activeCard.UI.SetActive = true
+                activeCard.SetUI = playerClassDeck.0
                 run card stats (class effect)
                 arcanaMagic = arcanaMagic - cardMagicStat
                 enemyHealth = enemyHealth - cardDmgStat
-        
-            active card = none
+                remove card from array
+                add card to last position in array
 
-        on enemy turn
-            if enemy tag = common
+            activeCard.UI.SetActive = false
+
+        else if (turnCounter%2 != 0) //enemy turn
+            if (enemy.GetTag = "common")
                 enemyDeck.0 = active card
                 playerHealth = playerHealth - cardDmgStat
 
-            if enemy tag = boss
+            else if (enemy.GetTag = "boss")
                 enemyDeck.0 = active card
                 playerHealth = playerHealth - cardDmgStat
-            
-            active card = none
+
+            activeCard.UI.SetActive = false
 
         if enemyHealth <= 0
             UI.load Battle Victory
         else if playerHealth <=0
             UI.load Battle Defeat
-            
-        */
+
+*/
     }
 }
