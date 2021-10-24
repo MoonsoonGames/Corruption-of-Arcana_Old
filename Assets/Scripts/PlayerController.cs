@@ -1,5 +1,7 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,11 +14,28 @@ public class PlayerController : MonoBehaviour
     private float turnCamera;
     public float sensitivity = 5;
 
+    public int maxHealth = 50;
+    public int health;
+    public int maxArcana = 35;
+    public int arcana;
+    public Slider healthBar;
+    public Slider arcanaBar;
+
     private Vector3 moveDirection = Vector3.zero;
+
+    public static PlayerController instance;
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        if (health < maxHealth)
+        {
+            health = maxHealth;
+        }
+        if (arcana < maxArcana)
+        {
+            arcana = maxArcana;
+        }
     }
 
     void Update()
@@ -59,6 +78,34 @@ public class PlayerController : MonoBehaviour
         {
             //Code for action on mouse moving horizontally
             transform.eulerAngles += new Vector3(0, turnCamera, 0);
+        }
+
+        if (health <= 0)
+        {
+            //Set active game over screen
+            //load mama reinfeld trailer scene
+            //transform position to mama reinfeld
+            //Load mama reinfeld dialogue for respawn
+        }
+
+        //Sets the values of the healthbars to their specific values
+        healthBar.value = health;
+        arcanaBar.value = arcana;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("commonEnemy"))
+        {
+            CombatHandler.instance.difficultyCommon.SetActive(true);
+            CombatHandler.instance.difficultyBoss.SetActive(false);
+            SceneManager.LoadScene("Battle Scene");
+        }
+        else if (other.gameObject.CompareTag("bossEnemy"))
+        {
+            CombatHandler.instance.difficultyBoss.SetActive(true);
+            CombatHandler.instance.difficultyCommon.SetActive(false);
+            SceneManager.LoadScene("Battle Scene");
         }
     }
 }

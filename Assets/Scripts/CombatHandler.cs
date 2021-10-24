@@ -4,37 +4,41 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class CombatBreakdown : MonoBehaviour
+public class CombatHandler : MonoBehaviour
 {
     /* 
     activeCard;
     */
+    public static CombatHandler instance;
+
     public GameObject difficultyCommon;
     public GameObject difficultyBoss;
-    public GameObject attackDeck;
-    public GameObject spellDeck;
-    public GameObject classDeck;
+    public Button attackDeck;
+    public Button spellDeck;
+    public Button classDeck;
     public GameObject VictoryScreen;
     public GameObject DefeatScreen;
 
+    public PlayerController enemyDifficulty;
+
     public int turnCounter = 1;
 
+    private void Start()
+    {
+
+    }
     void update()
     {
-        //if (battleStart == true)
-        //{ 
-              string[] attackDeck = GameObject.Find("playerAttackDeck").GetComponent<deckHandler>().playerAttackDeck;
-              string[] spellDeck = GameObject.Find("playerSpellDeck").GetComponent<deckHandler>().playerSpellDeck;
-              string[] classDeck = GameObject.Find("playerClassDeck").GetComponent<deckHandler>().playerClassDeck;
-
-        //    if (enemyHealth <= 0)
+        //while (battleStart == true)
+        //{
+        //    if (EnemyController.instance.health <= 0)
         //    {
-        //        //battleStart == false;
-        //        //VictoryScreen.SetActive = true;
-        //        //SceneManagemt.LoadLastScene; //Needs to load last scene and position
+        //        battleStart == false;
+        //        VictoryScreen.SetActive(true);
+        //        SceneManager.LoadScene("Thoth");//Needs to load last scene and position
         //    }
 
-        //    else if (playerHealth <= 0)
+        //    else if (PlayerController.instance.health <= 0)
         //    {
         //        //battleStart == false;
         //        //DefeatScreen.SetActive = true;
