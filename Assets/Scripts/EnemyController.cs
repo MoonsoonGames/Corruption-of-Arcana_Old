@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyController : MonoBehaviour
 {
@@ -12,9 +13,23 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (health < maxHealth)
+        if (this.tag == "commonEnemy")
         {
-            health = maxHealth;
+            maxHealth = 40;
+
+            if (health < maxHealth)
+            {
+                health = maxHealth;
+            }
+        }
+
+        else if (this.tag == "bossEnemy")
+        {
+            maxHealth = 100;
+            if (health < maxHealth)
+            {
+                health = maxHealth;
+            }
         }
     }
 

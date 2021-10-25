@@ -93,18 +93,20 @@ public class PlayerController : MonoBehaviour
         arcanaBar.value = arcana;
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("commonEnemy"))
         {
-            CombatHandler.instance.difficultyCommon.SetActive(true);
-            CombatHandler.instance.difficultyBoss.SetActive(false);
+            CombatHandler.instance.difficultyCommon.enabled = true;
+            CombatHandler.instance.difficultyBoss.enabled = false;
+            CombatHandler.instance.battleActive = true;
             SceneManager.LoadScene("Battle Scene");
         }
         else if (other.gameObject.CompareTag("bossEnemy"))
         {
-            CombatHandler.instance.difficultyBoss.SetActive(true);
-            CombatHandler.instance.difficultyCommon.SetActive(false);
+            CombatHandler.instance.difficultyBoss.enabled = true;
+            CombatHandler.instance.difficultyCommon.enabled = false;
+            CombatHandler.instance.battleActive = true;
             SceneManager.LoadScene("Battle Scene");
         }
     }
