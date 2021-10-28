@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "NewCard", menuName = "Cards/Destiny", order = 1)]
 public class Destiny : Card
 {
     public int number;
@@ -9,9 +10,9 @@ public class Destiny : Card
     public E_Suits suit;
     private string suitDisplay;
 
-    public override void Start()
+    public override void Setup()
     {
-        base.Start();
+        base.Setup();
         
         if (number == 1)
         {
@@ -24,10 +25,11 @@ public class Destiny : Card
 
         suitDisplay = suit.ToString();
 
+        cardName = numberDisplay + " of " + suitDisplay;
     }
 
     public override void OnDraw()
     {
-        Debug.Log(numberDisplay + " of " + suitDisplay);
+        Debug.Log(cardName);
     }
 }

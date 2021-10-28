@@ -33,6 +33,8 @@ public enum E_Decks
     //Owned by Player
     [InspectorName("Player Character")]
     PlayerCharacter,
+    [InspectorName("Player Hand")]
+    PlayerHand,
     [InspectorName("Player Actions")]
     PlayerActions,
     [InspectorName("Player Effects")]

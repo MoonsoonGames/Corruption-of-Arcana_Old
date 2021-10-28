@@ -2,27 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Card : MonoBehaviour
+public class Card : ScriptableObject
 {
     #region Setup
 
-    private string cardName;
+    public string cardName;
     private Deck currentDeck;
 
     // Start is called before the first frame update
-    public virtual void Start()
+    public virtual void Setup()
     {
         
-    }
-
-    public string GetName()
-    {
-        return cardName;
-    }
-
-    public void SetName(string newCardName)
-    {
-        cardName = newCardName;
     }
 
     public Deck GetDeck()
@@ -41,11 +31,11 @@ public class Card : MonoBehaviour
 
     public virtual void DrawToDeck(Deck newDeck)
     {
-        currentDeck.RemoveCard(this, false);
+        currentDeck.GetManager().RemoveCard(this, false);
 
-        newDeck.AddCard(this);
+        newDeck.GetManager().AddCard(this);
 
-        currentDeck = newDeck;
+        SetDeck(newDeck);
 
         OnDraw();
     }
