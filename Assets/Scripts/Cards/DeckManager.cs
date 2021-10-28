@@ -5,56 +5,54 @@ using UnityEngine;
 public class DeckManager : MonoBehaviour
 {
     #region Setup
+
     public Deck deck;
 
-    public Deck hand;
-
-    private void Awake()
+    public void Setup()
     {
         deck.Setup(this);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (deck.deckName == "Dealer")
-        {
-            if (Input.GetKeyDown(KeyCode.Space) && hand != null)
-            {
-                DrawCards(1, hand, null);
-            }
-
-            if (Input.GetKeyDown(KeyCode.Backspace) && hand != null)
-            {
-                Shuffle(10);
-            }
-        }
-        else
-        {
-            if (Input.GetKeyDown(KeyCode.KeypadEnter) && hand != null)
-            {
-                TransferDeck(hand, null);
-            }
-        }
-    }
     #endregion
 
     #region Deck Actions
 
-    public void DrawCards(int number, Deck location, Card cardType)
+    public void DrawCards(int number, Deck location, System.Type cardType)
     {
-        //for loop to go through the first n elements in deck and move them to another deck
-        for (int i = 0; i < number && i < deck.cards.Count; i++)
+        //Debug.Log("Initial Card Tpye: " + cardType);
+
+        if (cardType == null)
         {
-            //Debug.Log((i+1) + " out of " + number);
-            if (deck.cards[i] != null)
-                deck.cards[i].DrawToDeck(location);
+            //for loop to go through the first n elements in deck and move them to another deck
+            for (int i = 0; i < number && i < deck.cards.Count; i++)
+            {
+                //Debug.Log((i+1) + " out of " + number);
+                if (deck.cards[i] != null)
+                    deck.cards[i].DrawToDeck(location);
+            }
+        }
+        else
+        {
+            //for loop to go through the first n elements in deck and move them to another deck
+            for (int i = 0; i < number && i < deck.cards.Count;)
+            {
+                //Debug.Log((i+1) + " out of " + number);
+                if (deck.cards[i] != null)
+                {
+                    //Debug.Log("Checked Card Tpye: " + deck.cards[i].GetType());
+                    if (deck.cards[i].GetType() == cardType)
+                    {
+                        deck.cards[i].DrawToDeck(location);
+                        i++;
+                    }
+                }   
+            }
         }
     }
 
-    public void TransferDeck(Deck location, Card cardType)
+    public void TransferDeck(Deck location, System.Type cardType)
     {
-        Debug.Log("Deck: " + deck.deckName + " has : " + deck.cards.Count + " cards in it.");
+        //Debug.Log("Deck: " + deck.deckName + " has : " + deck.cards.Count + " cards in it.");
 
         List<Card> tempCards = new List<Card>();
 
@@ -65,15 +63,23 @@ public class DeckManager : MonoBehaviour
 
         foreach (var card in tempCards)
         {
-            Debug.Log(card.cardName);
+            //Debug.Log(card.cardName);
             card.DrawToDeck(location);
         }
     }
 
     public void Shuffle(int shuffleIntensity)
     {
+        //Find a better way to shuffle cards  https://www.youtube.com/watch?v=AxJubaijQbI
+
         for (int i = 0; i < shuffleIntensity; i++)
-            deck.cards.Sort((a, b) => 1 - (2 * Random.Range(0, 2)));  //https://answers.unity.com/questions/486626/how-can-i-shuffle-alist.html
+            StartCoroutine(IShuffle(i * 0.000001f));
+    }
+
+    IEnumerator IShuffle(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        deck.cards.Sort((a, b) => 1 - (2 * Random.Range(0, 2)));  //https://answers.unity.com/questions/486626/how-can-i-shuffle-alist.html
     }
 
     public int GetNumberOfCards()
@@ -129,7 +135,7 @@ public class DeckManager : MonoBehaviour
         return cardInDeck;
     }
 
-    public bool DrawSpecificCards(Card cardToRemove, Deck location, Card cardType, bool drawAll)
+    public bool DrawSpecificCards(Card cardToRemove, Deck location, System.Type cardType, bool drawAll)
     {
         bool cardInDeck = false;
 

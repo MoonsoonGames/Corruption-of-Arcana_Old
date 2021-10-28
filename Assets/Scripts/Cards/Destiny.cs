@@ -30,6 +30,12 @@ public class Destiny : Card
 
     public override void OnDraw()
     {
-        Debug.Log(cardName);
+        base.OnDraw();
+        //Debug.Log(cardName);
+    }
+
+    public string GetSuitType()
+    {
+        return suitDisplay;
     }
 }

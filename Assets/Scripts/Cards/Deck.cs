@@ -15,8 +15,17 @@ public class Deck : ScriptableObject
 
     private DeckManager manager;
 
+    #region Delegate Functions
+
+    public delegate void DrawDelegate();
+    public DrawDelegate onDrawDelegate;
+
+    #endregion
+
     public void Setup(DeckManager newManager)
     {
+        onDrawDelegate += OnDraw;
+
         deckTypeDisplay = deckType.ToString();
 
         manager = newManager;
@@ -33,5 +42,16 @@ public class Deck : ScriptableObject
     public DeckManager GetManager()
     {
         return manager;
+    }
+
+    public string GetDeckType()
+    {
+        return deckTypeDisplay;
+    }
+
+    public virtual void OnDraw()
+    {
+        //Debug.Log("drawn");
+        //Universal Draw Code Here
     }
 }

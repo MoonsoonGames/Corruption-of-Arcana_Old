@@ -51,7 +51,9 @@ public class Card : ScriptableObject
 
     public virtual void OnDraw()
     {
-        Debug.Log(currentDeck);
+        //Debug.Log("Current Deck");
+        //Debug.Log(currentDeck);
+        currentDeck.onDrawDelegate();
     }
 
     public virtual void CardRevealed(bool isRevealed)
