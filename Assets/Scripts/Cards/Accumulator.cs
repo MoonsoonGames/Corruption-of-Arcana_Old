@@ -28,6 +28,7 @@ public class Accumulator : MonoBehaviour
 
     public void CountCards()
     {
+        Debug.Log(deckManager.deck.cards.Count);
         List<Destiny> cards = new List<Destiny>();
 
         foreach (var item in deckManager.deck.cards)
