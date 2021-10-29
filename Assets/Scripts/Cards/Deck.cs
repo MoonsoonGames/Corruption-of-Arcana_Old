@@ -20,11 +20,15 @@ public class Deck : ScriptableObject
     public delegate void DrawDelegate();
     public DrawDelegate onDrawDelegate;
 
+    public delegate void TakeDelegate();
+    public TakeDelegate onTakeDelegate;
+
     #endregion
 
     public void Setup(DeckManager newManager)
     {
         onDrawDelegate += OnDraw;
+        onTakeDelegate += OnTaken;
 
         deckTypeDisplay = deckType.ToString();
 
@@ -53,5 +57,11 @@ public class Deck : ScriptableObject
     {
         //Debug.Log("drawn");
         //Universal Draw Code Here
+    }
+
+    public virtual void OnTaken()
+    {
+        Debug.Log("taken");
+        //Universal Take Code Here
     }
 }

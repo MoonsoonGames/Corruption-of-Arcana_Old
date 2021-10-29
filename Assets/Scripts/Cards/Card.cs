@@ -31,6 +31,8 @@ public class Card : ScriptableObject
 
     public virtual void DrawToDeck(Deck newDeck)
     {
+        OnTake();
+
         currentDeck.GetManager().RemoveCard(this, false);
 
         newDeck.GetManager().AddCard(this);
@@ -54,6 +56,13 @@ public class Card : ScriptableObject
         //Debug.Log("Current Deck");
         //Debug.Log(currentDeck);
         currentDeck.onDrawDelegate();
+    }
+
+    public virtual void OnTake()
+    {
+        //Debug.Log("Current Deck");
+        //Debug.Log(currentDeck);
+        currentDeck.onTakeDelegate();
     }
 
     public virtual void CardRevealed(bool isRevealed)

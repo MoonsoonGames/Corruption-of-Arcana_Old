@@ -8,6 +8,7 @@ public class Accumulator : MonoBehaviour
     public E_Suits misfortuneSuit;
 
     private DeckManager deckManager;
+    private AccumulatorDisplay accumulatorDisplay;
     private int destinyValue = 0;
     private int fortuneCount = 0;
     private int misfortuneCount = 0;
@@ -17,7 +18,12 @@ public class Accumulator : MonoBehaviour
     {
         deckManager = GetComponent<DeckManager>();
 
+        accumulatorDisplay = GameObject.Find("AccumulatorDisplay").GetComponent<AccumulatorDisplay>();
+
         deckManager.deck.onDrawDelegate += CountCards;
+        deckManager.deck.onTakeDelegate += CountCards;
+
+        CountCards();
     }
 
     public void CountCards()
@@ -51,14 +57,12 @@ public class Accumulator : MonoBehaviour
         }
 
         Debug.Log("total value: " + destinyValue + " | fortune value: " + fortuneCount + " | misfortune value: " + misfortuneCount);
+
+        CardsDisplay(cards);
     }
 
-    Dictionary<bool, int> Accumulate()
+    void CardsDisplay(List<Destiny> cards)
     {
-        Dictionary<bool, int> result = new Dictionary<bool, int>();
-
-
-
-        return result;
+        accumulatorDisplay.UpdateCards(cards);
     }
 }
