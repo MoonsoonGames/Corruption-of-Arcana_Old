@@ -73,14 +73,7 @@ public class DeckManager : MonoBehaviour
     {
         //Find a better way to shuffle cards  https://www.youtube.com/watch?v=AxJubaijQbI
         
-        //Faro shuffle, split the deck into 2 lists, and make a shuffle list.
-        //Take one from each deck, until the decks are empty
-        //Around 8 times makes this random enough
-        //This is a cheat shuffle
-
-        //Riffle shuffle, split the deck into 2 lists, and make a shuffle list.
-        //Take random (1-3) cards from each deck, until the decks are empty
-        //Around 8 times makes this random enough
+        
         /*
         for (int i = 0; i < shuffleIntensity; i++)
             StartCoroutine(IShuffle(i * 0.000001f));
@@ -128,9 +121,9 @@ public class DeckManager : MonoBehaviour
 
         for (int i = 0; i < deck.cards.Count/2; i ++)
         {
-            Debug.Log(deck.cards[i] + " is the first card");
+            //Debug.Log(deck.cards[i] + " is the first card");
             shuffleDeck1.Add(deck.cards[i]);
-            Debug.Log(deck.cards[i + (deck.cards.Count / 2)] + " is the second card");
+            //Debug.Log(deck.cards[i + (deck.cards.Count / 2)] + " is the second card");
             shuffleDeck2.Add(deck.cards[i + (deck.cards.Count / 2)]);
         }
 
@@ -141,6 +134,48 @@ public class DeckManager : MonoBehaviour
         {
             shuffleDeck.Add(shuffleDeck1[i]);
             shuffleDeck.Add(shuffleDeck2[i]);
+        }
+
+        deck.cards = shuffleDeck;
+    }
+
+    public void RiffleShuffle(int shuffleIntensity)
+    {
+        //Riffle shuffle
+        //Similar to Faro shuffle, but this is a professional shuffle, shuffling 8 times will get the deck random enough
+        
+        //Like the Faro shuffle, split the deck into 2 lists, and make a shuffle list
+        List<Card> shuffleDeck1 = new List<Card>();
+        List<Card> shuffleDeck2 = new List<Card>();
+
+        for (int i = 0; i < deck.cards.Count / 2; i++)
+        {
+            //Debug.Log(deck.cards[i] + " is the first card");
+            shuffleDeck1.Add(deck.cards[i]);
+            //Debug.Log(deck.cards[i + (deck.cards.Count / 2)] + " is the second card");
+            shuffleDeck2.Add(deck.cards[i + (deck.cards.Count / 2)]);
+        }
+
+        List<Card> shuffleDeck = new List<Card>();
+
+        //Unlike the Faro shuffle, take random (1-3) cards from each deck, until the decks are empty
+        //not working yet
+        for (int i = 0; i < deck.cards.Count / 2; i++)
+        {
+            shuffleDeck.Add(shuffleDeck1[i]);
+            int take1 = Random.Range(0, 2);
+
+            for (int n = 0; n < take1; n++)
+            {
+                shuffleDeck.Add(shuffleDeck1[i + n]);
+            }
+
+            for (int n = 0; n < take1; n++)
+            {
+                shuffleDeck.Add(shuffleDeck2[i + n]);
+            }
+
+            i += take1;
         }
 
         deck.cards = shuffleDeck;
