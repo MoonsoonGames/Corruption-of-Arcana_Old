@@ -73,9 +73,6 @@ public class DeckManager : MonoBehaviour
     {
         //Find a better way to shuffle cards  https://www.youtube.com/watch?v=AxJubaijQbI
         
-        PokeShuffle(shuffleIntensity);
-
-
         //Faro shuffle, split the deck into 2 lists, and make a shuffle list.
         //Take one from each deck, until the decks are empty
         //Around 8 times makes this random enough
@@ -93,17 +90,17 @@ public class DeckManager : MonoBehaviour
     public void PokeShuffle(int shuffleIntensity)
     {
         //Poke shuffle https://www.youtube.com/watch?v=AxJubaijQbI
-        //Store the last card
-        //for loop: get first card, check if it is last card and place it in a random place in the deck
-        //if the first card is the last card, place it in a random place and end the loop
         //Requires a high shuffle intensity
 
+        //Store the last card
         List<Card> shuffleDeck = deck.cards;
 
         Card lastCard = shuffleDeck[shuffleDeck.Count - 1];
 
         Debug.Log(lastCard.cardName);
 
+        //for loop: get first card, check if it is last card and place it in a random place in the deck
+        //if the first card is the last card, place it in a random place and end the loop
         for (int i = 0; i < shuffleIntensity; i++)
         {
             Card firstCard = shuffleDeck[0];
@@ -112,9 +109,41 @@ public class DeckManager : MonoBehaviour
 
             shuffleDeck.Insert(Random.Range(0, shuffleDeck.Count + 1), firstCard);
 
+            //Breaks early if the top card is the same as the card that was originally the last card, this would be shuffled enough
             if (firstCard == lastCard)
                 break;
         }
+
+        deck.cards = shuffleDeck;
+    }
+
+    public void FaroShuffle(int shuffleIntensity)
+    {
+        //Faro shuffle
+        //This is a cheat shuffle, shuffling 8 times will get the deck back to its original order
+
+        //Split the deck into 2 lists, and make a shuffle list
+        List<Card> shuffleDeck1 = new List<Card>();
+        List<Card> shuffleDeck2 = new List<Card>();
+
+        for (int i = 0; i < deck.cards.Count/2; i ++)
+        {
+            Debug.Log(deck.cards[i] + " is the first card");
+            shuffleDeck1.Add(deck.cards[i]);
+            Debug.Log(deck.cards[i + (deck.cards.Count / 2)] + " is the second card");
+            shuffleDeck2.Add(deck.cards[i + (deck.cards.Count / 2)]);
+        }
+
+        List<Card> shuffleDeck = new List<Card>();
+
+        //Take one from each deck, until the decks are empty
+        for (int i = 0; i < shuffleDeck1.Count; i++)
+        {
+            shuffleDeck.Add(shuffleDeck1[i]);
+            shuffleDeck.Add(shuffleDeck2[i]);
+        }
+
+        deck.cards = shuffleDeck;
     }
 
     #endregion

@@ -81,7 +81,7 @@ public class CardsSystemManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Backspace) && dealerDeck != null && accumulator != null)
         {
-            dealerDeck.PokeShuffle(200);
+            dealerDeck.FaroShuffle(1);
         }
 
         if (Input.GetKeyDown(KeyCode.KeypadEnter) && dealerDeck != null && accumulator != null)
