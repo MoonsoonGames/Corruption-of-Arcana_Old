@@ -434,7 +434,7 @@ GameObject:
   - component: {fileID: 1684915918}
   - component: {fileID: 1684915919}
   m_Layer: 5
-  m_Name: Accumulator
+  m_Name: AccumulatorDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -456,7 +456,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -229.14, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1684915919
@@ -475,6 +475,7 @@ MonoBehaviour:
   destinyCards: []
   destinyCardObject: {fileID: 1055776276310424592, guid: 24dd4f3a89988da4198255e47b3163b5,
     type: 3}
+  interval: 80
 --- !u!1 &1754445361
 GameObject:
   m_ObjectHideFlags: 0
@@ -893,11 +894,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2768103931877601945, guid: b6369afe2bcb75842a4c751c09e7c775,
-        type: 3}
-      propertyPath: misfortuneSuit
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 8667458885946461848, guid: b6369afe2bcb75842a4c751c09e7c775,
         type: 3}
       propertyPath: m_RootOrder

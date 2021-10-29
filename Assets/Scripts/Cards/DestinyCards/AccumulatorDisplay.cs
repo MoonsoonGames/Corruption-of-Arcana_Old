@@ -15,6 +15,14 @@ public class AccumulatorDisplay : MonoBehaviour
         RemoveCards();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            RemoveCards();
+        }
+    }
+
     public void RemoveCards()
     {
         //clear list of cards
@@ -30,24 +38,25 @@ public class AccumulatorDisplay : MonoBehaviour
         //clear list of cards
         RemoveCards();
 
-        //make a new list of cards and instantiate objects based on the card
-        for (int i = 0; i < cards.Count; i++)
+        if (cards.Count != 0)
         {
-            Vector3 newPosition = gameObject.transform.position;
+            //make a new list of cards and instantiate objects based on the card
+            for (int i = 0; i < cards.Count; i++)
+            {
+                Vector3 newPosition = gameObject.transform.position;
 
-            newPosition.x += i * interval;
+                newPosition.x += i * interval;
 
-            destinyCards.Insert(i, Instantiate(destinyCardObject, gameObject.transform) as GameObject);
+                destinyCards.Insert(i, Instantiate(destinyCardObject, gameObject.transform) as GameObject);
 
-            destinyCards[i].transform.position = newPosition;
+                destinyCards[i].transform.position = newPosition;
 
-            DestinyCardDisplay display = destinyCards[i].GetComponent<DestinyCardDisplay>();
+                DestinyCardDisplay display = destinyCards[i].GetComponent<DestinyCardDisplay>();
 
-            display.destinyCard = cards[i];
+                display.destinyCard = cards[i];
 
-            display.Setup();
+                display.Setup();
+            }
         }
-
-        //Add card values to the instantiated card
     }
 }

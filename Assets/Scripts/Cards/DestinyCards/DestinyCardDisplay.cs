@@ -34,7 +34,8 @@ public class DestinyCardDisplay : MonoBehaviour
         }
         else
         {
-            Debug.Log("There is no destiny card");
+            //Debug.Log("There is no destiny card");
+            //Destroy(gameObject);
         }
     }
 }

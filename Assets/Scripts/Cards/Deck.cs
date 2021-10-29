@@ -61,7 +61,7 @@ public class Deck : ScriptableObject
 
     public virtual void OnTaken()
     {
-        Debug.Log("taken");
+        //Debug.Log("taken");
         //Universal Take Code Here
     }
 }
