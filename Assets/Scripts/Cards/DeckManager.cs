@@ -68,13 +68,56 @@ public class DeckManager : MonoBehaviour
         }
     }
 
+    #region Shuffle
     public void Shuffle(int shuffleIntensity)
     {
         //Find a better way to shuffle cards  https://www.youtube.com/watch?v=AxJubaijQbI
+        
+        PokeShuffle(shuffleIntensity);
 
+
+        //Faro shuffle, split the deck into 2 lists, and make a shuffle list.
+        //Take one from each deck, until the decks are empty
+        //Around 8 times makes this random enough
+        //This is a cheat shuffle
+
+        //Riffle shuffle, split the deck into 2 lists, and make a shuffle list.
+        //Take random (1-3) cards from each deck, until the decks are empty
+        //Around 8 times makes this random enough
+        /*
         for (int i = 0; i < shuffleIntensity; i++)
             StartCoroutine(IShuffle(i * 0.000001f));
+        */
     }
+
+    public void PokeShuffle(int shuffleIntensity)
+    {
+        //Poke shuffle https://www.youtube.com/watch?v=AxJubaijQbI
+        //Store the last card
+        //for loop: get first card, check if it is last card and place it in a random place in the deck
+        //if the first card is the last card, place it in a random place and end the loop
+        //Requires a high shuffle intensity
+
+        List<Card> shuffleDeck = deck.cards;
+
+        Card lastCard = shuffleDeck[shuffleDeck.Count - 1];
+
+        Debug.Log(lastCard.cardName);
+
+        for (int i = 0; i < shuffleIntensity; i++)
+        {
+            Card firstCard = shuffleDeck[0];
+
+            shuffleDeck.Remove(firstCard);
+
+            shuffleDeck.Insert(Random.Range(0, shuffleDeck.Count + 1), firstCard);
+
+            if (firstCard == lastCard)
+                break;
+        }
+    }
+
+    #endregion
 
     IEnumerator IShuffle(float delay)
     {
