@@ -85,3 +85,8 @@ public enum E_Decks
     [InspectorName("Banes")]
     Banes
 }
+
+public enum E_CombatCards
+{
+    Slash, Cleave, Flurry, ChillTouch, Firebolt, ChainLightning, CureWounds
+}

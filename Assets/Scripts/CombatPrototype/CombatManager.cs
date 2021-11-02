@@ -30,6 +30,8 @@ public class CombatManager : MonoBehaviour
     public AbilityManager abilityManager;
     public EnemyManager enemyManager;
 
+    public CardSetter[] cardSetters;
+
     public void Start()
     {
         if (enemyStats != null)
@@ -53,6 +55,11 @@ public class CombatManager : MonoBehaviour
         {
             Debug.Log("Regenerate Mana");
             playerStats.ChangeMana(0.15f, false);
+
+            foreach (var item in cardSetters)
+            {
+                item.DrawCards();
+            }
         }
         else
         {

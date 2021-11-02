@@ -762,6 +762,7 @@ GameObject:
   - component: {fileID: 944373732}
   - component: {fileID: 944373731}
   - component: {fileID: 944373733}
+  - component: {fileID: 944373734}
   m_Layer: 5
   m_Name: Class Deck Button
   m_TagString: Untagged
@@ -809,7 +810,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c7bf45f0ef95bed4491c5809fc6bf484, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5915cdc174101e540b3349e21ee2cd74, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -871,10 +872,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 947729006}
-        m_TargetAssemblyTypeName: AbilityManager, Assembly-CSharp
-        m_MethodName: SetAbility
-        m_Mode: 5
+      - m_Target: {fileID: 944373734}
+        m_TargetAssemblyTypeName: CardSetter, Assembly-CSharp
+        m_MethodName: ButtonPressed
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -883,6 +884,20 @@ MonoBehaviour:
           m_StringArgument: Cleave
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &944373734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 944373729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f94c122215b60c14e8a8a0152e0021d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  combatCards: 010000000200000003000000040000000500000006000000
+  abilityManager: {fileID: 947729006}
 --- !u!1 &947729004 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7551587578028801530, guid: d73e8b11f8c16a54ba36322b12638999,
@@ -976,6 +991,7 @@ GameObject:
   - component: {fileID: 1058294339}
   - component: {fileID: 1058294338}
   - component: {fileID: 1058294340}
+  - component: {fileID: 1058294341}
   m_Layer: 5
   m_Name: Spell Deck Button
   m_TagString: Untagged
@@ -1085,10 +1101,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 947729006}
-        m_TargetAssemblyTypeName: AbilityManager, Assembly-CSharp
-        m_MethodName: SetAbility
-        m_Mode: 5
+      - m_Target: {fileID: 1058294341}
+        m_TargetAssemblyTypeName: CardSetter, Assembly-CSharp
+        m_MethodName: ButtonPressed
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1097,6 +1113,20 @@ MonoBehaviour:
           m_StringArgument: CureWounds
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1058294341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058294336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f94c122215b60c14e8a8a0152e0021d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  combatCards: 010000000200000003000000040000000500000006000000
+  abilityManager: {fileID: 947729006}
 --- !u!1 &1132079543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1167,9 +1197,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Class
-
-    skills'
+  m_Text: Spells
 --- !u!222 &1132079546
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1301,6 +1329,10 @@ MonoBehaviour:
   battleActive: 0
   abilityManager: {fileID: 947729006}
   enemyManager: {fileID: 1545539925}
+  cardSetters:
+  - {fileID: 2097494805}
+  - {fileID: 1058294341}
+  - {fileID: 944373734}
 --- !u!4 &1294213171
 Transform:
   m_ObjectHideFlags: 0
@@ -2519,6 +2551,7 @@ GameObject:
   - component: {fileID: 2097494803}
   - component: {fileID: 2097494802}
   - component: {fileID: 2097494804}
+  - component: {fileID: 2097494805}
   m_Layer: 5
   m_Name: Offensive Deck Button
   m_TagString: Untagged
@@ -2628,10 +2661,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 947729006}
-        m_TargetAssemblyTypeName: AbilityManager, Assembly-CSharp
-        m_MethodName: SetAbility
-        m_Mode: 5
+      - m_Target: {fileID: 2097494805}
+        m_TargetAssemblyTypeName: CardSetter, Assembly-CSharp
+        m_MethodName: ButtonPressed
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2640,6 +2673,20 @@ MonoBehaviour:
           m_StringArgument: Slash
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2097494805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2097494800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f94c122215b60c14e8a8a0152e0021d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  combatCards: 00000000
+  abilityManager: {fileID: 947729006}
 --- !u!1 &2098381532
 GameObject:
   m_ObjectHideFlags: 0
@@ -2942,7 +2989,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224255975138209742}
   m_Layer: 5
-  m_Name: 'Class Deck '
+  m_Name: 'Spell Deck '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4193,7 +4240,7 @@ PrefabInstance:
     - target: {fileID: 3500759466730473180, guid: 1bc0d109ad153ae459d919c448349867,
         type: 3}
       propertyPath: maxHealth
-      value: 1.3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3500759466730473180, guid: 1bc0d109ad153ae459d919c448349867,
         type: 3}
@@ -4248,7 +4295,7 @@ PrefabInstance:
     - target: {fileID: 3838214602819380905, guid: 1bc0d109ad153ae459d919c448349867,
         type: 3}
       propertyPath: maxHealth
-      value: 0.5
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 3838214602819380905, guid: 1bc0d109ad153ae459d919c448349867,
         type: 3}
