@@ -21,10 +21,6 @@ public class CombatManager : MonoBehaviour
     public string playingCard;
     public Text enemyName;
 
-    public Slider enemyHealth;
-    public Slider playerHealth;
-    public Slider playerArcana;
-
     public PlayerStats playerStats;
     public EnemyStats enemyStats;
 
@@ -36,17 +32,9 @@ public class CombatManager : MonoBehaviour
 
     public void Start()
     {
-        if (playerStats != null)
-        {
-            playerHealth.value = playerStats.GetHealth();
-            playerArcana.value = playerStats.GetMana();
-        }
-
         if (enemyStats != null)
         {
             enemyStats.gameObject.name = enemyName.text;
-
-            enemyHealth.value = enemyStats.GetHealth();
         }
 
         DefeatScreen.SetActive(false);
@@ -63,7 +51,8 @@ public class CombatManager : MonoBehaviour
 
         if (player)
         {
-
+            Debug.Log("Regenerate Mana");
+            playerStats.ChangeMana(0.15f, false);
         }
         else
         {
@@ -85,23 +74,6 @@ public class CombatManager : MonoBehaviour
         StartTurn(!player);
 
         turnCounter++;
-    }
-
-    void Update()
-    {
-        if (battleActive)
-        {
-            if (playerStats != null)
-            {
-                playerHealth.value = playerStats.GetHealth();
-                playerArcana.value = playerStats.GetMana();
-            }
-
-            if (enemyStats != null)
-            {
-                enemyHealth.value = enemyStats.GetHealth();
-            }
-        }
     }
 
     public void ShowEndScreen(bool victory)

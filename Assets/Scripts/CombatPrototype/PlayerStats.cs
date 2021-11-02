@@ -9,12 +9,21 @@ public class PlayerStats : MonoBehaviour
     public float maxMana = 1f;
     float mana = 1f;
 
+    public SliderValue healthSliderValue;
+    public SliderValue manaSliderValue;
+
     public CombatManager combatManager;
 
     private void Start()
     {
         health = maxHealth;
         mana = maxMana;
+
+        if (healthSliderValue != null)
+        {
+            healthSliderValue.slider.maxValue = maxHealth;
+            healthSliderValue.slider.value = health;
+        }
     }
 
     public float GetHealth()
@@ -36,6 +45,11 @@ public class PlayerStats : MonoBehaviour
         else
         {
             health = Mathf.Clamp(health + value, 0, maxHealth);
+        }
+
+        if (healthSliderValue != null)
+        {
+            healthSliderValue.slider.value = health;
         }
     }
 
@@ -59,5 +73,15 @@ public class PlayerStats : MonoBehaviour
         {
             mana = Mathf.Clamp(mana + value, 0, maxMana);
         }
+
+        if (manaSliderValue != null)
+        {
+            manaSliderValue.slider.value = mana;
+        }
+    }
+
+    public bool CheckMana(float value)
+    {
+        return mana > value;
     }
 }

@@ -8,6 +8,8 @@ public class EnemyManager : MonoBehaviour
 
     public CombatManager combatManager;
 
+    int enemiesKilled = 0;
+
     private void Start()
     {
         Enemy[] enemiesArray = GameObject.FindObjectsOfType<Enemy>();
@@ -15,21 +17,39 @@ public class EnemyManager : MonoBehaviour
         foreach (var item in enemiesArray)
         {
             enemies.Add(item);
+
+            item.GetComponent<EnemyStats>().enemyManager = this;
         }
     }
 
     public void StartEnemyTurn()
     {
-        int interval = 2;
+        float interval = 0.75f;
 
         for (int i = 0; i < enemies.Count; i++)
         {
-            enemies[i].Invoke("TakeTurn", (0.25f + i) * interval);
+            if (enemies[i] != null)
+                enemies[i].Invoke("TakeTurn", (0.25f + i) * interval);
         }
 
-        if (combatManager!= null)
+        Invoke("EndEnemyTurn", interval * (0.25f + enemies.Count));
+    }
+
+    private void EndEnemyTurn()
+    {
+        if (combatManager != null)
         {
             combatManager.EndTurn(false);
+        }
+    }
+
+    public void EnemyKilled()
+    {
+        enemiesKilled++;
+
+        if (enemiesKilled >= enemies.Count)
+        {
+            combatManager.ShowEndScreen(true);
         }
     }
 }

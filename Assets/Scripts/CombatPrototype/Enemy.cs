@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public float damage = 0.1f;
+    public float damage = 0.2f;
 
     public GameObject player;
 
