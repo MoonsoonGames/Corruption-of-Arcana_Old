@@ -19,6 +19,8 @@ public class EnemyStats : MonoBehaviour
 
     public GameObject[] objectsToDisable;
 
+    public Object hitFX;
+
     private void Start()
     {
         health = maxHealth;
@@ -46,6 +48,9 @@ public class EnemyStats : MonoBehaviour
             {
                 Die();
             }
+
+            if (hitFX != null)
+                Instantiate(hitFX, this.transform);
         }
         else
         {
