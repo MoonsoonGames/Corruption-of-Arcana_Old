@@ -50,7 +50,16 @@ public class EnemyStats : MonoBehaviour
             }
 
             if (hitFX != null)
-                Instantiate(hitFX, this.transform);
+            {
+                Vector3 spawnPos = new Vector3(0, 0, 0);
+                Quaternion spawnRot = new Quaternion(0, 0, 0, 0);
+
+                spawnPos.x = transform.position.x;
+                spawnPos.y = transform.position.y;
+                spawnPos.z = transform.position.z;
+
+                Instantiate(hitFX, spawnPos, spawnRot);
+            }
         }
         else
         {

@@ -26,6 +26,7 @@ public class CombatManager : MonoBehaviour
 
     public int turnCounter = 1;
     public bool battleActive = false;
+    public Text turnCountText;
 
     public AbilityManager abilityManager;
     public EnemyManager enemyManager;
@@ -81,6 +82,9 @@ public class CombatManager : MonoBehaviour
         StartTurn(!player);
 
         turnCounter++;
+
+        if (turnCountText != null)
+            turnCountText.text = turnCounter.ToString();
     }
 
     public void ShowEndScreen(bool victory)

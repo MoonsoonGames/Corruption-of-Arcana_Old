@@ -29,10 +29,10 @@ public class EnemyManager : MonoBehaviour
         for (int i = 0; i < enemies.Count; i++)
         {
             if (enemies[i] != null)
-                enemies[i].Invoke("TakeTurn", (0.25f + i) * interval);
+                enemies[i].Invoke("TakeTurn", (0.6f + i) * interval);
         }
 
-        Invoke("EndEnemyTurn", interval * (0.25f + enemies.Count));
+        Invoke("EndEnemyTurn", interval * (0.4f + enemies.Count));
     }
 
     private void EndEnemyTurn()
