@@ -27,6 +27,7 @@ public class CombatManager : MonoBehaviour
     public int turnCounter = 1;
     public bool battleActive = false;
     public Text turnCountText;
+    public Text currentTurnText;
 
     public AbilityManager abilityManager;
     public EnemyManager enemyManager;
@@ -54,6 +55,8 @@ public class CombatManager : MonoBehaviour
 
         if (player)
         {
+            currentTurnText.text = "Player";
+
             Debug.Log("Regenerate Mana");
             playerStats.ChangeMana(0.15f, false);
 
@@ -64,6 +67,8 @@ public class CombatManager : MonoBehaviour
         }
         else
         {
+            currentTurnText.text = "Enemy";
+
             if (enemyManager != null)
             {
                 enemyManager.StartEnemyTurn();

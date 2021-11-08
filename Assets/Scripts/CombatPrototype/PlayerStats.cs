@@ -14,6 +14,9 @@ public class PlayerStats : MonoBehaviour
 
     public CombatManager combatManager;
 
+    public Object hitFX;
+    public Object healFX;
+
     private void Start()
     {
         health = maxHealth;
@@ -37,6 +40,18 @@ public class PlayerStats : MonoBehaviour
         {
             health = Mathf.Clamp(health - value, 0, maxHealth);
 
+            if (hitFX != null)
+            {
+                Vector3 spawnPos = new Vector3(0, 0, 0);
+                Quaternion spawnRot = new Quaternion(0, 0, 0, 0);
+
+                spawnPos.x = transform.position.x;
+                spawnPos.y = transform.position.y;
+                spawnPos.z = transform.position.z - 5f;
+
+                Instantiate(hitFX, spawnPos, spawnRot);
+            }
+
             if (health <= 0)
             {
                 Die();
@@ -45,6 +60,18 @@ public class PlayerStats : MonoBehaviour
         else
         {
             health = Mathf.Clamp(health + value, 0, maxHealth);
+
+            if (healFX != null)
+            {
+                Vector3 spawnPos = new Vector3(0, 0, 0);
+                Quaternion spawnRot = new Quaternion(0, 0, 0, 0);
+
+                spawnPos.x = transform.position.x;
+                spawnPos.y = transform.position.y;
+                spawnPos.z = transform.position.z - 5f;
+
+                Instantiate(healFX, spawnPos, spawnRot);
+            }
         }
 
         if (healthSliderValue != null)

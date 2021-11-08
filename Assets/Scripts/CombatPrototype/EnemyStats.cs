@@ -20,6 +20,7 @@ public class EnemyStats : MonoBehaviour
     public GameObject[] objectsToDisable;
 
     public Object hitFX;
+    public Object healFX;
 
     private void Start()
     {
@@ -44,11 +45,6 @@ public class EnemyStats : MonoBehaviour
         {
             health = Mathf.Clamp(health - value, 0, maxHealth);
 
-            if (health <= 0)
-            {
-                Die();
-            }
-
             if (hitFX != null)
             {
                 Vector3 spawnPos = new Vector3(0, 0, 0);
@@ -56,14 +52,31 @@ public class EnemyStats : MonoBehaviour
 
                 spawnPos.x = transform.position.x;
                 spawnPos.y = transform.position.y;
-                spawnPos.z = transform.position.z;
+                spawnPos.z = transform.position.z - 5f;
 
                 Instantiate(hitFX, spawnPos, spawnRot);
+            }
+
+            if (health <= 0)
+            {
+                Die();
             }
         }
         else
         {
             health = Mathf.Clamp(health + value, 0, maxHealth);
+
+            if (healFX != null)
+            {
+                Vector3 spawnPos = new Vector3(0, 0, 0);
+                Quaternion spawnRot = new Quaternion(0, 0, 0, 0);
+
+                spawnPos.x = transform.position.x;
+                spawnPos.y = transform.position.y;
+                spawnPos.z = transform.position.z - 5f;
+
+                Instantiate(healFX, spawnPos, spawnRot);
+            }
         }
 
         if (healthSliderValue != null)
@@ -81,5 +94,32 @@ public class EnemyStats : MonoBehaviour
             Destroy(item);
         }
         //disable targetting, health and taking turns
+    }
+
+    public float GetMana()
+    {
+        return mana;
+    }
+
+    public void ChangeMana(float value, bool spend)
+    {
+        if (spend)
+        {
+            mana = Mathf.Clamp(mana - value, 0, maxMana);
+        }
+        else
+        {
+            mana = Mathf.Clamp(mana + value, 0, maxMana);
+        }
+
+        if (manaSliderValue != null)
+        {
+            manaSliderValue.slider.value = mana;
+        }
+    }
+
+    public bool CheckMana(float value)
+    {
+        return mana > value;
     }
 }
