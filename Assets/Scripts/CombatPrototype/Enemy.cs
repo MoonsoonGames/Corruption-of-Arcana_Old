@@ -10,26 +10,11 @@ public class Enemy : MonoBehaviour
 
     private PlayerStats playerStats;
 
-    private EnemyStats enemyStats;
-
     public string attackName = "Slash";
-
-    LoadSettings loadSettings;
 
     private void Start()
     {
         playerStats = player.GetComponent<PlayerStats>();
-        enemyStats = GetComponent<EnemyStats>();
-
-        loadSettings = GameObject.Find("LoadSettings").GetComponent<LoadSettings>();
-
-        if (this.tag == "bossEnemy")
-        {
-            if (loadSettings != null && !(loadSettings.fightingBoss))
-            {
-                enemyStats.ChangeHeath(10000000000, true);
-            }
-        }
     }
 
     public void TakeTurn()
