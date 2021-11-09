@@ -19,7 +19,6 @@ public class PlayerController : MonoBehaviour
     public int maxArcana = 35;
     public int arcana;
     public Slider healthBar;
-    public Slider arcanaBar;
 
     private Vector3 moveDirection = Vector3.zero;
 
@@ -90,7 +89,6 @@ public class PlayerController : MonoBehaviour
 
         //Sets the values of the healthbars to their specific values
         healthBar.value = health;
-        arcanaBar.value = arcana;
     }
 
     public void OnTriggerEnter(Collider other)
