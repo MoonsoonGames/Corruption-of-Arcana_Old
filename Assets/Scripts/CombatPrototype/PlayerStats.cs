@@ -17,21 +17,9 @@ public class PlayerStats : MonoBehaviour
     public Object hitFX;
     public Object healFX;
 
-    private LoadSettings loadSettings;
-
     private void Start()
     {
-        loadSettings = GameObject.Find("LoadSettings").GetComponent<LoadSettings>();
-
-        if (loadSettings != null)
-        {
-            health = loadSettings.health;
-        }
-        else
-        {
-            health = maxHealth;
-        }
-
+        health = maxHealth;
         mana = maxMana;
 
         if (healthSliderValue != null)

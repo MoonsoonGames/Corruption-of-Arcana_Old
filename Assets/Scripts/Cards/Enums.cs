@@ -11,16 +11,6 @@ all references that go after the list!!!
 DO NOT ADD ANY ENUMS AT THE START OF THE LIST!!!
 */
 
-public enum E_Levels
-{
-    [InspectorName("Main Menu")]
-    SplashScreen,
-    [InspectorName("Thoth")]
-    ThothCrit,
-    [InspectorName("Combat")]
-    CombatPrototype
-}
-
 public enum E_Suits
 {
     [InspectorName("Fortune")]
