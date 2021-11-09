@@ -10,9 +10,13 @@ public class EnemyController : MonoBehaviour
     public int maxHealth;
     public int health;
 
+    private LoadSettings loadSettings;
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        loadSettings = GameObject.Find("LoadSettings").GetComponent<LoadSettings>();
+
         if (this.tag == "commonEnemy")
         {
             maxHealth = 40;
@@ -21,6 +25,12 @@ public class EnemyController : MonoBehaviour
             {
                 health = maxHealth;
             }
+
+            if (loadSettings != null && loadSettings.enemyKilled)
+            {
+                Destroy(this.gameObject);
+            }
+
         }
 
         else if (this.tag == "bossEnemy")
@@ -29,6 +39,11 @@ public class EnemyController : MonoBehaviour
             if (health < maxHealth)
             {
                 health = maxHealth;
+            }
+
+            if (loadSettings != null && loadSettings.bossKilled)
+            {
+                Destroy(this.gameObject);
             }
         }
     }

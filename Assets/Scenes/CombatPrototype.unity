@@ -3358,6 +3358,7 @@ GameObject:
   - component: {fileID: 1512671158}
   - component: {fileID: 1512671157}
   - component: {fileID: 1512671156}
+  - component: {fileID: 1512671159}
   m_Layer: 5
   m_Name: Continue button
   m_TagString: Untagged
@@ -3429,9 +3430,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1294213169}
-        m_TargetAssemblyTypeName: PostCombatHandler, Assembly-CSharp
-        m_MethodName: victoryContinue
+      - m_Target: {fileID: 1512671159}
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+        m_MethodName: LoadScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3479,81 +3480,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1512671154}
   m_CullTransparentMesh: 1
---- !u!1 &1530753597
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1530753598}
-  - component: {fileID: 1530753600}
-  - component: {fileID: 1530753599}
-  m_Layer: 5
-  m_Name: Background
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1530753598
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1530753597}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 21655302}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 7, y: 7}
-  m_SizeDelta: {x: 1920, y: 1080}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1530753599
+--- !u!114 &1512671159
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1530753597}
+  m_GameObject: {fileID: 1512671154}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Script: {fileID: 11500000, guid: 02efb632ea380cd4bb2bdc15d8f4e029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.7882353}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1530753600
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1530753597}
-  m_CullTransparentMesh: 1
+  sceneToLoad: 1
+=======
 --- !u!1 &1532432235
 GameObject:
   m_ObjectHideFlags: 0
@@ -3908,6 +3848,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Minion (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555124280383455489, guid: 40f117277cb47964a898eb69dc323c01,
+        type: 3}
+      propertyPath: m_TagString
+      value: commonEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 3555124280383455490, guid: 40f117277cb47964a898eb69dc323c01,
         type: 3}
@@ -6331,6 +6276,11 @@ PrefabInstance:
       propertyPath: attackName
       value: Stab
       objectReference: {fileID: 0}
+    - target: {fileID: 3500759466730473182, guid: 1bc0d109ad153ae459d919c448349867,
+        type: 3}
+      propertyPath: m_TagString
+      value: bossEnemy
+      objectReference: {fileID: 0}
     - target: {fileID: 3500759466730473183, guid: 1bc0d109ad153ae459d919c448349867,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6390,6 +6340,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 263
+      objectReference: {fileID: 0}
+    - target: {fileID: 3838214602819380907, guid: 1bc0d109ad153ae459d919c448349867,
+        type: 3}
+      propertyPath: m_TagString
+      value: commonEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 3916720816344625838, guid: 1bc0d109ad153ae459d919c448349867,
         type: 3}

@@ -9,9 +9,18 @@ public class MainMenu : MonoBehaviour
     public GameObject mainMenu;
     public GameObject creditsScreen;
 
+    public E_Levels sceneToLoad;
+    string sceneString;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        sceneString = sceneToLoad.ToString();
+    }
+
     public void playGame()
     {
-        SceneManager.LoadScene("Thoth");
+        SceneManager.LoadScene(sceneString);
     }
     public void credits()
     {
