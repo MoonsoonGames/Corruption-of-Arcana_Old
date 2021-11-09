@@ -19,7 +19,6 @@ public class PlayerController : MonoBehaviour
     public float maxArcana = 35;
     public float arcana;
     public Slider healthBar;
-    public Slider arcanaBar;
 
     private Vector3 moveDirection = Vector3.zero;
 
