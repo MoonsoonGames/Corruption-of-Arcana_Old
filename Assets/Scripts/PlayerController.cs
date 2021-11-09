@@ -14,10 +14,10 @@ public class PlayerController : MonoBehaviour
     private float turnCamera;
     public float sensitivity = 5;
 
-    public int maxHealth = 50;
-    public int health;
-    public int maxArcana = 35;
-    public int arcana;
+    public float maxHealth = 50;
+    public float health;
+    public float maxArcana = 35;
+    public float arcana;
     public Slider healthBar;
     public Slider arcanaBar;
 
@@ -25,9 +25,19 @@ public class PlayerController : MonoBehaviour
 
     public static PlayerController instance;
 
+    private SceneLoader sceneLoader;
+
+    private LoadSettings loadSettings;
+
     void Start()
     {
+        //Load position
+
         characterController = GetComponent<CharacterController>();
+
+        sceneLoader = GameObject.Find("SceneLoader").GetComponent<SceneLoader>();
+        loadSettings = GameObject.Find("LoadSettings").GetComponent<LoadSettings>();
+
         if (health < maxHealth)
         {
             health = maxHealth;
@@ -36,6 +46,15 @@ public class PlayerController : MonoBehaviour
         {
             arcana = maxArcana;
         }
+
+        if (loadSettings != null)
+        {
+            Debug.Log("Loading position");
+            transform.position = loadSettings.playerPos;
+
+            health = loadSettings.health;
+        }
+            
     }
 
     void Update()
@@ -89,25 +108,45 @@ public class PlayerController : MonoBehaviour
         }
 
         //Sets the values of the healthbars to their specific values
-        healthBar.value = health;
-        arcanaBar.value = arcana;
+        if (healthBar != null)
+            healthBar.value = health;
+        if (arcanaBar != null)
+            arcanaBar.value = arcana;
     }
 
     public void OnTriggerEnter(Collider other)
     {
+        //Save current position
+        if (loadSettings != null)
+            loadSettings.playerPos = transform.position;
+
         if (other.gameObject.CompareTag("commonEnemy"))
         {
+            /*
             CombatHandler.instance.difficultyCommon.enabled = true;
             CombatHandler.instance.difficultyBoss.enabled = false;
             CombatHandler.instance.battleActive = true;
-            SceneManager.LoadScene("Battle Scene");
+            */
+
+            if (loadSettings != null)
+                loadSettings.fightingBoss = false;
+
+            if (sceneLoader != null)
+                sceneLoader.LoadScene();
         }
         else if (other.gameObject.CompareTag("bossEnemy"))
         {
+            /*
             CombatHandler.instance.difficultyBoss.enabled = true;
             CombatHandler.instance.difficultyCommon.enabled = false;
             CombatHandler.instance.battleActive = true;
-            SceneManager.LoadScene("Battle Scene");
+            */
+
+            if (loadSettings != null)
+                loadSettings.fightingBoss = true;
+
+            if (sceneLoader != null)
+                sceneLoader.LoadScene();
         }
     }
 }

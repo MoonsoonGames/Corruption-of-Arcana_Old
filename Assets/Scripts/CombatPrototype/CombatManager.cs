@@ -34,6 +34,10 @@ public class CombatManager : MonoBehaviour
 
     public CardSetter[] cardSetters;
 
+    private LoadSettings loadSettings;
+
+    bool boss = false;
+
     public void Start()
     {
         if (enemyStats != null)
@@ -43,6 +47,13 @@ public class CombatManager : MonoBehaviour
 
         DefeatScreen.SetActive(false);
         VictoryScreen.SetActive(false);
+
+        loadSettings = GameObject.Find("LoadSettings").GetComponent<LoadSettings>();
+
+        if (loadSettings != null)
+        {
+            boss = loadSettings.fightingBoss;
+        }
 
         battleActive = true;
 
@@ -98,11 +109,32 @@ public class CombatManager : MonoBehaviour
 
         if (victory)
         {
+            if (loadSettings != null)
+            {
+                loadSettings.health = playerStats.GetHealth();
+
+                if (boss)
+                {
+                    loadSettings.bossKilled = true;
+                }
+                else
+                {
+                    loadSettings.enemyKilled = true;
+                }
+            }
+
+
             VictoryScreen.SetActive(true);
             //SceneManager.LoadLast;//Needs to load last scene and position
         }
         else
         {
+            if (loadSettings != null)
+            {
+                loadSettings.bossKilled = false;
+                loadSettings.enemyKilled = false;
+            }
+
             DefeatScreen.SetActive(true);
             //SceneManagement.LoadScene("Thoth");
             //Transform.position(Mama reinfeld);
