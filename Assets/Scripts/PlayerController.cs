@@ -49,12 +49,18 @@ public class PlayerController : MonoBehaviour
 
         if (loadSettings != null)
         {
-            Debug.Log("Loading position");
-            transform.position = loadSettings.playerPos;
+            Vector3 targetPos = loadSettings.playerPos;
 
+            targetPos.x = loadSettings.playerPos.x;
+            targetPos.y = loadSettings.playerPos.y;
+            targetPos.z = loadSettings.playerPos.z;
+
+            Debug.Log("Loading position | " + loadSettings.playerPos + " || " + targetPos);
+
+            transform.position = targetPos;
+            Debug.Log(transform.position);
             health = loadSettings.health;
         }
-            
     }
 
     void Update()

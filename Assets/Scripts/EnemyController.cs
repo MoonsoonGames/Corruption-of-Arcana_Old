@@ -13,7 +13,7 @@ public class EnemyController : MonoBehaviour
     private LoadSettings loadSettings;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         loadSettings = GameObject.Find("LoadSettings").GetComponent<LoadSettings>();
 
