@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -14,12 +15,19 @@ public class Enemy : MonoBehaviour
 
     public string attackName = "Slash";
 
+    private bool canAttack = true;
+
     LoadSettings loadSettings;
+
+    public Image sprite;
+
+    public Sprite replaceSprite;
 
     private void Start()
     {
         playerStats = player.GetComponent<PlayerStats>();
         enemyStats = GetComponent<EnemyStats>();
+        sprite = GetComponentInChildren<Image>();
 
         loadSettings = GameObject.Find("LoadSettings").GetComponent<LoadSettings>();
 
@@ -27,15 +35,20 @@ public class Enemy : MonoBehaviour
         {
             if (loadSettings != null && !(loadSettings.fightingBoss))
             {
-                enemyStats.ChangeHeath(10000000000, true);
+                canAttack = false;
+
+                sprite.sprite = replaceSprite;
             }
         }
     }
 
     public void TakeTurn()
     {
-        playerStats.ChangeHeath(damage, true);
+        if (canAttack)
+        {
+            playerStats.ChangeHeath(damage, true);
 
-        Debug.Log(gameObject.name + " cast " + attackName + " for " + damage + " damage. It's really effective!");
+            Debug.Log(gameObject.name + " cast " + attackName + " for " + damage + " damage. It's really effective!");
+        }
     }
 }
