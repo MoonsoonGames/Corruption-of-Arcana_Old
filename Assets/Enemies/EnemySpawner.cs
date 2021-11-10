@@ -17,9 +17,12 @@ public class EnemySpawner : MonoBehaviour
 
         if (loadSettings != null)
         {
-            if ((boss &! loadSettings.bossKilled) || (!boss &! loadSettings.enemyKilled))
+            if (loadSettings.dialogueComplete)
             {
-                Instantiate(enemy);
+                if ((boss & !loadSettings.bossKilled) || (!boss & !loadSettings.enemyKilled))
+                {
+                    Instantiate(enemy);
+                }
             }
         }
 

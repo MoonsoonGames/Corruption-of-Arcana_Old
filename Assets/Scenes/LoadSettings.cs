@@ -6,6 +6,8 @@ public class LoadSettings : MonoBehaviour
 {
     public float health = 1.2f;
 
+    public bool dialogueComplete = false;
+
     public bool enemyKilled = false;
     public bool bossKilled = false;
 
