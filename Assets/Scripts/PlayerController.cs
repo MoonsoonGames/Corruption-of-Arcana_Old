@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour
 
     private LoadSettings loadSettings;
 
+    private Vector3 targetPos;
+
     void Start()
     {
         //Load position
@@ -53,7 +55,7 @@ public class PlayerController : MonoBehaviour
             {
                 loadSettings.died = false;
 
-                Vector3 targetPos = loadSettings.mamaPos;
+                targetPos = loadSettings.mamaPos;
 
                 targetPos.x = loadSettings.mamaPos.x;
                 targetPos.y = loadSettings.mamaPos.y;
@@ -69,7 +71,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                Vector3 targetPos = loadSettings.playerPos;
+                targetPos = loadSettings.playerPos;
 
                 targetPos.x = loadSettings.playerPos.x;
                 targetPos.y = loadSettings.playerPos.y;
@@ -86,9 +88,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void SetupTransform(Vector3 targetPos)
+    void SetupTransform(Vector3 targetPosition)
     {
-        transform.position = targetPos;
+        transform.position = targetPosition;
     }
 
     void Update()
