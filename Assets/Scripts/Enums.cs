@@ -18,7 +18,9 @@ public enum E_Levels
     [InspectorName("Thoth")]
     ThothCrit,
     [InspectorName("Combat")]
-    CombatPrototype
+    CombatPrototype,
+
+    Narrative, Ending, Fortune, Death
 }
 
 public enum E_Suits

@@ -14,6 +14,9 @@ public class LoadSettings : MonoBehaviour
     public bool fightingBoss = false;
 
     public Vector3 playerPos;
+    public Vector3 mamaPos;
+
+    public bool died;
 
     // Start is called before the first frame update
     void Start()

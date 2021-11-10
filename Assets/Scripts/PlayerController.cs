@@ -49,18 +49,46 @@ public class PlayerController : MonoBehaviour
 
         if (loadSettings != null)
         {
-            Vector3 targetPos = loadSettings.playerPos;
+            if (loadSettings.died)
+            {
+                loadSettings.died = false;
 
-            targetPos.x = loadSettings.playerPos.x;
-            targetPos.y = loadSettings.playerPos.y;
-            targetPos.z = loadSettings.playerPos.z;
+                Vector3 targetPos = loadSettings.mamaPos;
 
-            Debug.Log("Loading position | " + loadSettings.playerPos + " || " + targetPos);
+                targetPos.x = loadSettings.mamaPos.x;
+                targetPos.y = loadSettings.mamaPos.y;
+                targetPos.z = loadSettings.mamaPos.z;
 
-            transform.position = targetPos;
-            Debug.Log(transform.position);
-            health = loadSettings.health;
+                Debug.Log("Loading respawn position | " + loadSettings.playerPos + " || " + targetPos);
+
+                transform.position = targetPos;
+                Debug.Log(transform.position);
+                health = loadSettings.health;
+
+                SetupTransform(targetPos);
+            }
+            else
+            {
+                Vector3 targetPos = loadSettings.playerPos;
+
+                targetPos.x = loadSettings.playerPos.x;
+                targetPos.y = loadSettings.playerPos.y;
+                targetPos.z = loadSettings.playerPos.z;
+
+                Debug.Log("Loading position | " + loadSettings.playerPos + " || " + targetPos);
+
+                transform.position = targetPos;
+                Debug.Log(transform.position);
+                health = loadSettings.health;
+
+                SetupTransform(targetPos);
+            }
         }
+    }
+
+    void SetupTransform(Vector3 targetPos)
+    {
+        transform.position = targetPos;
     }
 
     void Update()
@@ -138,7 +166,7 @@ public class PlayerController : MonoBehaviour
                 loadSettings.fightingBoss = false;
 
             if (sceneLoader != null)
-                sceneLoader.LoadScene();
+                sceneLoader.LoadDefaultScene();
         }
         else if (other.gameObject.CompareTag("bossEnemy"))
         {
@@ -152,7 +180,11 @@ public class PlayerController : MonoBehaviour
                 loadSettings.fightingBoss = true;
 
             if (sceneLoader != null)
-                sceneLoader.LoadScene();
+                sceneLoader.LoadDefaultScene();
+        }
+        else if (other.gameObject.CompareTag("NPC"))
+        {
+            other.gameObject.GetComponent<Dialogue>().LoadScene();
         }
     }
 }
