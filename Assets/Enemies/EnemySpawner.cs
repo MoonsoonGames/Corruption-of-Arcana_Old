@@ -21,7 +21,10 @@ public class EnemySpawner : MonoBehaviour
             {
                 if ((boss & !loadSettings.bossKilled) || (!boss & !loadSettings.enemyKilled))
                 {
-                    Instantiate(enemy);
+                    Vector3 pos = this.transform.position;
+                    Quaternion rot = this.transform.rotation;
+
+                    Instantiate(enemy, pos, rot);
                 }
             }
         }
