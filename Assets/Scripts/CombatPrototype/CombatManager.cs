@@ -133,6 +133,8 @@ public class CombatManager : MonoBehaviour
             {
                 loadSettings.bossKilled = false;
                 loadSettings.enemyKilled = false;
+                loadSettings.died = true;
+                loadSettings.health = 1.2f;
             }
 
             DefeatScreen.SetActive(true);
