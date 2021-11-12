@@ -9,7 +9,7 @@ public class CombatManager : MonoBehaviour
     /* 
     activeCard;
     */
-    public static CombatHandler instance;
+    public static CombatManager instance;
 
     public Image difficultyCommon;
     public Image difficultyBoss;
@@ -19,6 +19,7 @@ public class CombatManager : MonoBehaviour
     public GameObject VictoryScreen;
     public GameObject DefeatScreen;
     public GameObject PlayableDecks;
+    public GameObject noMana;
     public string playingCard;
     public Text enemyName;
 
@@ -48,6 +49,7 @@ public class CombatManager : MonoBehaviour
 
         DefeatScreen.SetActive(false);
         VictoryScreen.SetActive(false);
+        noMana.SetActive(false);
 
         loadSettings = GameObject.Find("LoadSettings").GetComponent<LoadSettings>();
 
@@ -82,6 +84,7 @@ public class CombatManager : MonoBehaviour
         {
             currentTurnText.text = "Enemy";
             PlayableDecks.SetActive(false);
+            noMana.SetActive(false);
 
             if (enemyManager != null)
             {

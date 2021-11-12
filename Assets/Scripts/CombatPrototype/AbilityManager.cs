@@ -12,6 +12,8 @@ public class AbilityManager : MonoBehaviour
     private string readyAbility;
     public Text cardText;
 
+    public float popupDuration = 5f;
+
     public void CastAbility(GameObject target)
     {
         if (playerTurn)
@@ -123,7 +125,9 @@ public class AbilityManager : MonoBehaviour
             }
             else
             {
+                combatManager.noMana.SetActive(true);
                 Debug.Log("Insufficient Mana");
+                StartCoroutine(IRemovePopup(popupDuration));
             }
         }
         else
@@ -157,7 +161,9 @@ public class AbilityManager : MonoBehaviour
             }
             else
             {
+                combatManager.noMana.SetActive(true);
                 Debug.Log("Insufficient Mana");
+                StartCoroutine(IRemovePopup(popupDuration));
             }
         }
         else
@@ -198,7 +204,9 @@ public class AbilityManager : MonoBehaviour
             }
             else
             {
+                combatManager.noMana.SetActive(true);
                 Debug.Log("Insufficient Mana");
+                StartCoroutine(IRemovePopup(popupDuration));
             }
         }
         else
@@ -230,7 +238,9 @@ public class AbilityManager : MonoBehaviour
             }
             else
             {
+                combatManager.noMana.SetActive(true);
                 Debug.Log("Insufficient Mana");
+                StartCoroutine(IRemovePopup(popupDuration));
             }
         }
         else
@@ -272,7 +282,9 @@ public class AbilityManager : MonoBehaviour
             }
             else
             {
+                combatManager.noMana.SetActive(true);
                 Debug.Log("Insufficient Mana");
+                StartCoroutine(IRemovePopup(popupDuration));
             }
         }
         else
@@ -304,7 +316,9 @@ public class AbilityManager : MonoBehaviour
             }
             else
             {
+                combatManager.noMana.SetActive(true);
                 Debug.Log("Insufficient Mana");
+                StartCoroutine(IRemovePopup(popupDuration));
             }
         }
         else
@@ -321,5 +335,12 @@ public class AbilityManager : MonoBehaviour
         {
             combatManager.EndTurn(true);
         }
+    }
+
+    private IEnumerator IRemovePopup(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        combatManager.noMana.SetActive(false);
     }
 }
