@@ -22,6 +22,8 @@ public class CombatManager : MonoBehaviour
     public GameObject noMana;
     public string playingCard;
     public Text enemyName;
+    public Text ArcanaPointsValue;
+    public Text HealthPointsValue;
 
     public PlayerStats playerStats;
     public EnemyStats enemyStats;
