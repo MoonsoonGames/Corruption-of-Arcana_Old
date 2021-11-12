@@ -18,6 +18,7 @@ public class CombatManager : MonoBehaviour
     public Button classDeck;
     public GameObject VictoryScreen;
     public GameObject DefeatScreen;
+    public GameObject PlayableDecks;
     public string playingCard;
     public Text enemyName;
 
@@ -67,6 +68,7 @@ public class CombatManager : MonoBehaviour
         if (player)
         {
             currentTurnText.text = "Player";
+            PlayableDecks.SetActive(true);
 
             Debug.Log("Regenerate Mana");
             playerStats.ChangeMana(0.15f, false);
@@ -79,6 +81,7 @@ public class CombatManager : MonoBehaviour
         else
         {
             currentTurnText.text = "Enemy";
+            PlayableDecks.SetActive(false);
 
             if (enemyManager != null)
             {
