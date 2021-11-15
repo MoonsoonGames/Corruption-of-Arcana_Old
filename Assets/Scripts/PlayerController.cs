@@ -158,32 +158,22 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.CompareTag("commonEnemy"))
         {
-            /*
-            CombatHandler.instance.difficultyCommon.enabled = true;
-            CombatHandler.instance.difficultyBoss.enabled = false;
-            CombatHandler.instance.battleActive = true;
-            */
-
             if (loadSettings != null)
                 loadSettings.fightingBoss = false;
 
             if (sceneLoader != null)
                 sceneLoader.LoadDefaultScene();
         }
+
         else if (other.gameObject.CompareTag("bossEnemy"))
         {
-            /*
-            CombatHandler.instance.difficultyBoss.enabled = true;
-            CombatHandler.instance.difficultyCommon.enabled = false;
-            CombatHandler.instance.battleActive = true;
-            */
-
             if (loadSettings != null)
                 loadSettings.fightingBoss = true;
 
             if (sceneLoader != null)
                 sceneLoader.LoadDefaultScene();
         }
+
         else if (other.gameObject.CompareTag("NPC"))
         {
             other.gameObject.GetComponent<Dialogue>().LoadScene();
