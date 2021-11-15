@@ -37,7 +37,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 179.64996, y: 82.71499}
+  m_AnchoredPosition: {x: 179.6, y: 82.71499}
   m_SizeDelta: {x: 92.6, y: 11.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3553910335000907915
@@ -92,7 +92,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Highlighted
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 3623350128645117188}
   m_HandleRect: {fileID: 0}
@@ -398,7 +398,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 115.6, y: -99.13}
-  m_SizeDelta: {x: 318.4, y: 224.2}
+  m_SizeDelta: {x: 200, y: 175}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3555124278669708753
 CanvasRenderer:
@@ -529,7 +529,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 121, y: -103}
-  m_SizeDelta: {x: 300, y: 225}
+  m_SizeDelta: {x: 200, y: 175}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3555124278701396922
 CanvasRenderer:
@@ -593,7 +593,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3555124278825360685}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -76, y: -399, z: 0}
+  m_LocalPosition: {x: -115.9, y: -429.3, z: 0}
   m_LocalScale: {x: 4.494672, y: 4.494672, z: 4.494672}
   m_Children:
   - {fileID: 3555124280068035572}
@@ -628,14 +628,14 @@ RectTransform:
   m_GameObject: {fileID: 3555124280068035573}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 1}
   m_Children: []
   m_Father: {fileID: 3555124278825360684}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 55.3, y: 103.9}
+  m_AnchoredPosition: {x: 48.55575, y: 100.8}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3555124280068035574
@@ -658,7 +658,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 585188cdc4600544eb408bee749e4b3a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -667,19 +667,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 652f7165b7c30ab46af6c4aad90a639b, type: 2}
-    m_FontSize: 8
+    m_Font: {fileID: 12800000, guid: 585188cdc4600544eb408bee749e4b3a, type: 3}
+    m_FontSize: 200
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 8
-    m_MaxSize: 40
+    m_MinSize: 0
+    m_MaxSize: 300
     m_Alignment: 4
     m_AlignByGeometry: 0
-    m_RichText: 1
+    m_RichText: 0
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Enemy Name
+  m_Text: Minion
 --- !u!1 &3555124280263677710
 GameObject:
   m_ObjectHideFlags: 0
@@ -704,7 +704,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3555124280263677710}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.9, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3624004368070102908}
@@ -724,7 +724,7 @@ GameObject:
   - component: {fileID: 3555124280383455490}
   m_Layer: 0
   m_Name: Minion
-  m_TagString: Untagged
+  m_TagString: commonEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -758,13 +758,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 632bfbb8077bdce44900a4e6e918afc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1
+  maxHealth: 0.15
   maxMana: 1
   healthSliderValue: {fileID: 3553910335000907915}
   manaSliderValue: {fileID: 0}
   combatManager: {fileID: 0}
   enemyManager: {fileID: 0}
-  objectsToDisable: []
+  objectsToDisable:
+  - {fileID: 3555124278669708757}
+  - {fileID: 3555124278825360685}
+  - {fileID: 3555124278701396921}
+  - {fileID: 3555124280383455489}
   hitFX: {fileID: 6727453174112786923, guid: 420809e2f798084488e3873f43ce61a8, type: 3}
   healFX: {fileID: 6727453174112786923, guid: 5117cb09524d9f6479bf5f9776bb954d, type: 3}
 --- !u!114 &3555124280383455490
@@ -779,9 +783,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3e441b438a11f24b94e0f2c52d9396a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0.1
+  damage: 0.055
   player: {fileID: 0}
   attackName: Slash
+  sprite: {fileID: 0}
+  replaceSprite: {fileID: 0}
 --- !u!1 &3555124280425745447
 GameObject:
   m_ObjectHideFlags: 0

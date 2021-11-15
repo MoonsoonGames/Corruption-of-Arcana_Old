@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     public float maxHealth = 1f;
-    float health = 1f;
+    public float health = 1f;
     public float maxMana = 1f;
     float mana = 1f;
 

@@ -24,7 +24,7 @@ public class EnemyManager : MonoBehaviour
 
     public void StartEnemyTurn()
     {
-        float interval = 0.75f;
+        float interval = .75f;
 
         for (int i = 0; i < enemies.Count; i++)
         {
