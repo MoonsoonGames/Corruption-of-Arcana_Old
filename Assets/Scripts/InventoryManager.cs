@@ -13,6 +13,8 @@ public class InventoryManager : MonoBehaviour
     public GameObject UIHelpScreen;
     public GameObject GameMechHelpScreen;
     public GameObject LoreHelpScreen;
+    public GameObject NavigationHelp1;
+    public GameObject NavigationHelp2;
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +48,8 @@ public class InventoryManager : MonoBehaviour
     {
         Inventory.SetActive(false);
         CombatHelpScreen.SetActive(true);
+        NavigationHelp1.SetActive(true);
+        NavigationHelp2.SetActive(false);
     }
     public void UIHelp()
     {
@@ -69,5 +73,15 @@ public class InventoryManager : MonoBehaviour
         UIHelpScreen.SetActive(false);
         GameMechHelpScreen.SetActive(false);
         LoreHelpScreen.SetActive(false);
+    }
+    public void nextPage()
+    {
+        NavigationHelp1.SetActive(false);
+        NavigationHelp2.SetActive(true);
+    }
+    public void backPage()
+    {
+        NavigationHelp1.SetActive(true);
+        NavigationHelp2.SetActive(false);
     }
 }
