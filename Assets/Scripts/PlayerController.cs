@@ -7,7 +7,10 @@ public class PlayerController : MonoBehaviour
 {
     CharacterController characterController;
 
-    public float moveSpeed = 20.0f;
+    public float baseMoveSpeed = 50f;
+    public float baseSprintSpeed = 80f;
+    float moveSpeed;
+
     public float jumpSpeed = 8.0f;
     public float gravity = 20.0f;
 
@@ -34,7 +37,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         //Load position
-
+        moveSpeed = baseMoveSpeed;
         characterController = GetComponent<CharacterController>();
 
         sceneLoader = GameObject.Find("SceneLoader").GetComponent<SceneLoader>();
@@ -111,12 +114,12 @@ public class PlayerController : MonoBehaviour
 
             else if (Input.GetKey(KeyCode.LeftShift))
             {
-                moveSpeed = 30f;
+                moveSpeed = baseSprintSpeed;
             }
 
             else
             {
-                moveSpeed = 20f;
+                moveSpeed = baseMoveSpeed;
             }
         }
 
