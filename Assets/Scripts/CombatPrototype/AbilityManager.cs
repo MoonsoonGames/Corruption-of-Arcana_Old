@@ -357,6 +357,40 @@ public class AbilityManager : MonoBehaviour
         }
     }
 
+    public void HealingPotion(GameObject target)
+    {
+        PlayerStats targetHealth = target.GetComponent<PlayerStats>();
+
+        if (targetHealth != null)
+        {
+            int cost = 1;
+            if (playerStats.CheckPotions(cost))
+            {
+                float heal = Random.Range(0.23f, 0.27f);
+
+                Debug.Log("Cast CureWounds on " + target.name);
+
+                targetHealth.ChangeHeath(heal, false);
+                combatManager.Healing.SetActive(true);
+                combatManager.HealingValue.text = heal.ToString();
+
+                playerStats.ChangePotions(cost, true);
+
+                ResetAbility();
+
+                StartCoroutine(IEndTurn(0.2f));
+            }
+            else
+            {
+                Debug.Log("Insufficient Potions");
+            }
+        }
+        else
+        {
+            Debug.Log("You cannot target that character with this spell");
+        }
+    }
+
     private IEnumerator IEndTurn(float delay)
     {
         yield return new WaitForSeconds(delay);

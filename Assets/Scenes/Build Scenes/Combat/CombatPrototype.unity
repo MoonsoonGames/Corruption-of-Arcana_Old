@@ -5321,7 +5321,6 @@ MonoBehaviour:
   playerStats: {fileID: 947729007}
   enemyStats: {fileID: 0}
   turnCounter: 1
-  HealingPotions: 5
   battleActive: 0
   turnCountText: {fileID: 1354097282}
   currentTurnText: {fileID: 1356345684}
@@ -8008,6 +8007,7 @@ GameObject:
   - component: {fileID: 1897592146}
   - component: {fileID: 1897592145}
   - component: {fileID: 1897592144}
+  - component: {fileID: 1897592147}
   m_Layer: 5
   m_Name: Potion Button
   m_TagString: Untagged
@@ -8080,9 +8080,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1294213170}
-        m_TargetAssemblyTypeName: CombatManager, Assembly-CSharp
-        m_MethodName: HealingButton
+      - m_Target: {fileID: 1897592147}
+        m_TargetAssemblyTypeName: CardSetter, Assembly-CSharp
+        m_MethodName: ButtonPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8130,6 +8130,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1897592142}
   m_CullTransparentMesh: 1
+--- !u!114 &1897592147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1897592142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f94c122215b60c14e8a8a0152e0021d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  combatCards: 08000000
+  cardText: {fileID: 16354994}
+  abilityManager: {fileID: 947729006}
 --- !u!1 &1933458243
 GameObject:
   m_ObjectHideFlags: 0
@@ -10697,6 +10712,11 @@ PrefabInstance:
         type: 3}
       propertyPath: maxHealth
       value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7551587578028801529, guid: d73e8b11f8c16a54ba36322b12638999,
+        type: 3}
+      propertyPath: maxPotions
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7551587578028801529, guid: d73e8b11f8c16a54ba36322b12638999,
         type: 3}

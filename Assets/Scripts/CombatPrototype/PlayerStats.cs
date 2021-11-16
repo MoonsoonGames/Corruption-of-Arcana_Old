@@ -9,6 +9,9 @@ public class PlayerStats : MonoBehaviour
     public float maxMana = 1f;
     float mana = 1f;
 
+    public int maxPotions = 5;
+    int potionCount = 3;
+
     public SliderValue healthSliderValue;
     public SliderValue manaSliderValue;
 
@@ -27,6 +30,8 @@ public class PlayerStats : MonoBehaviour
         {
             health = loadSettings.health;
             combatManager.HealthPointsValue.text = health.ToString();
+
+            potionCount = loadSettings.potionCount;
         }
         else
         {
@@ -41,6 +46,13 @@ public class PlayerStats : MonoBehaviour
         {
             healthSliderValue.slider.maxValue = maxHealth;
             healthSliderValue.slider.value = health;
+        }
+
+        combatManager.HealingLeft.text = potionCount.ToString();
+
+        if (potionCount == 0)
+        {
+            combatManager.HealingItem.SetActive(false);
         }
     }
 
@@ -128,6 +140,40 @@ public class PlayerStats : MonoBehaviour
 
     public bool CheckMana(float value)
     {
-        return mana > value;
+        return mana >= value;
+    }
+
+    public int GetPotions()
+    {
+        return potionCount;
+    }
+
+    public bool CheckPotions(int value)
+    {
+        return potionCount >= value;
+    }
+
+    public void ChangePotions(int value, bool spend)
+    {
+        if (spend)
+        {
+            potionCount = Mathf.Clamp(potionCount - value, 0, maxPotions);
+        }
+        else
+        {
+            potionCount = Mathf.Clamp(potionCount + value, 0, maxPotions);
+        }
+
+        if (potionCount == 0)
+        {
+            combatManager.HealingItem.SetActive(false);
+        }
+
+        combatManager.HealingLeft.text = potionCount.ToString();
+
+        if (loadSettings != null)
+        {
+            loadSettings.potionCount = potionCount;
+        }
     }
 }

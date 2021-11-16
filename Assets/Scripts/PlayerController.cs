@@ -34,14 +34,31 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 targetPos;
 
+    public int maxPotions = 5;
+    int potionCount = 3;
+
     void Start()
     {
         //Load position
         moveSpeed = baseMoveSpeed;
         characterController = GetComponent<CharacterController>();
 
-        sceneLoader = GameObject.Find("SceneLoader").GetComponent<SceneLoader>();
-        loadSettings = GameObject.Find("LoadSettings").GetComponent<LoadSettings>();
+        sceneLoader = GameObject.FindObjectOfType<SceneLoader>();
+
+        LoadSettings[] loadSettingsArray = GameObject.FindObjectsOfType<LoadSettings>();
+
+        foreach (var item in loadSettingsArray)
+        {
+            if (item.CheckMain())
+            {
+                loadSettings = item;
+            }
+            else
+            {
+                Destroy(item); //There is already one in the scene, delete this one
+            }
+
+        }
 
         if (health < maxHealth)
         {
@@ -54,41 +71,15 @@ public class PlayerController : MonoBehaviour
 
         if (loadSettings != null)
         {
-            if (loadSettings.died)
-            {
-                loadSettings.died = false;
+            SetupTransform(loadSettings.RequestPosition(this));
 
-                targetPos = loadSettings.mamaPos;
-
-                targetPos.x = loadSettings.mamaPos.x;
-                targetPos.y = loadSettings.mamaPos.y;
-                targetPos.z = loadSettings.mamaPos.z;
-
-                Debug.Log("Loading respawn position | " + loadSettings.playerPos + " || " + targetPos);
-
-                transform.position = targetPos;
-                Debug.Log(transform.position);
-                health = loadSettings.health;
-
-                SetupTransform(targetPos);
-            }
-            else
-            {
-                targetPos = loadSettings.playerPos;
-
-                targetPos.x = loadSettings.playerPos.x;
-                targetPos.y = loadSettings.playerPos.y;
-                targetPos.z = loadSettings.playerPos.z;
-
-                Debug.Log("Loading position | " + loadSettings.playerPos + " || " + targetPos);
-
-                transform.position = targetPos;
-                Debug.Log(transform.position);
-                health = loadSettings.health;
-
-                SetupTransform(targetPos);
-            }
+            health = loadSettings.health;
         }
+
+        loadSettingsArray = GameObject.FindObjectsOfType<LoadSettings>();
+
+        Debug.Log("Length: " + loadSettingsArray.Length);
+        //Debug.Break();
     }
 
     void SetupTransform(Vector3 targetPosition)
@@ -172,6 +163,40 @@ public class PlayerController : MonoBehaviour
         else if (other.gameObject.CompareTag("NPC"))
         {
             other.gameObject.GetComponent<Dialogue>().LoadScene();
+        }
+    }
+
+    public int GetPotions()
+    {
+        return potionCount;
+    }
+
+    public bool CheckPotions(int value)
+    {
+        return potionCount >= value;
+    }
+
+    public void ChangePotions(int value, bool spend)
+    {
+        if (spend)
+        {
+            potionCount = Mathf.Clamp(potionCount - value, 0, maxPotions);
+        }
+        else
+        {
+            potionCount = Mathf.Clamp(potionCount + value, 0, maxPotions);
+        }
+
+        if (potionCount == 0)
+        {
+            //combatManager.HealingItem.SetActive(false);
+        }
+
+        //combatManager.HealingLeft.text = potionCount.ToString();
+
+        if (loadSettings != null)
+        {
+            loadSettings.potionCount = potionCount;
         }
     }
 }

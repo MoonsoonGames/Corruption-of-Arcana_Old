@@ -36,7 +36,6 @@ public class CombatManager : MonoBehaviour
     public EnemyStats enemyStats;
 
     public int turnCounter = 1;
-    public int HealingPotions = 5;
     public bool battleActive = false;
     public Text turnCountText;
     public Text currentTurnText;
@@ -87,12 +86,6 @@ public class CombatManager : MonoBehaviour
             currentTurnText.color = Color.green;
             PlayableDecks.SetActive(true);
             HealingItem.SetActive(true);
-
-            if (HealingPotions == 0)
-            {
-                HealingItem.SetActive(false);
-                HealingLeft.text = HealingPotions.ToString();
-            }
 
             Debug.Log("Regenerate Mana");
             playerStats.ChangeMana(0.15f, false);
@@ -174,13 +167,5 @@ public class CombatManager : MonoBehaviour
             //SceneManagement.LoadScene("Thoth");
             //Transform.position(Mama reinfeld);
         }
-    }
-    public void HealingButton()
-    {
-        HealingPotions = HealingPotions - 1;
-        HealingLeft.text = HealingPotions.ToString();
-        playerStats.ChangeHeath(Random.Range(0.23f, 0.27f), false);
-
-        EndTurn(true);
     }
 }
