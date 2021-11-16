@@ -18,6 +18,18 @@ public class LoadSettings : MonoBehaviour
 
     public bool died;
 
+    private void Awake()
+    {
+        LoadSettings[] loadSettings = GameObject.FindObjectsOfType<LoadSettings>();
+
+        Debug.Log(loadSettings.Length);
+
+        if (loadSettings.Length > 1)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
