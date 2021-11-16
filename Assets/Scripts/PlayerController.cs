@@ -52,6 +52,20 @@ public class PlayerController : MonoBehaviour
             if (item.CheckMain())
             {
                 loadSettings = item;
+
+                health = loadSettings.health;
+
+                if (loadSettings.died)
+                {
+                    potionCount = loadSettings.checkPointPotionCount;
+                    loadSettings.potionCount = loadSettings.checkPointPotionCount;
+                }
+                else
+                {
+                    potionCount = loadSettings.potionCount;
+                }
+
+                SetupTransform(loadSettings.RequestPosition(this));
             }
             else
             {
@@ -67,23 +81,6 @@ public class PlayerController : MonoBehaviour
         if (arcana < maxArcana)
         {
             arcana = maxArcana;
-        }
-
-        if (loadSettings != null)
-        {
-            health = loadSettings.health;
-
-            if (loadSettings.died)
-            {
-                potionCount = loadSettings.checkPointPotionCount;
-                loadSettings.potionCount = loadSettings.checkPointPotionCount;
-            }
-            else
-            {
-                potionCount = loadSettings.potionCount;
-            }
-
-            SetupTransform(loadSettings.RequestPosition(this));
         }
 
         loadSettingsArray = GameObject.FindObjectsOfType<LoadSettings>();
