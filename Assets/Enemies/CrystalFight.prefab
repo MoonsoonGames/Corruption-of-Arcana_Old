@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 697129594786373101}
   - component: {fileID: 697129594786373102}
   - component: {fileID: 697129594786373103}
-  - component: {fileID: 697129594786373098}
   - component: {fileID: 697129594786373097}
+  - component: {fileID: 6198544624854635711}
   m_Layer: 0
   m_Name: CrystalFight
   m_TagString: commonEnemy
@@ -112,20 +112,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 5.11
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &697129594786373098
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 697129594786373088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c8a244e344d8e846b1a664b311a0a07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 0
-  health: 0
 --- !u!54 &697129594786373097
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -142,3 +128,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6198544624854635711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 697129594786373088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c8a244e344d8e846b1a664b311a0a07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss: 0
+  enemies:
+  - {fileID: 6783367526062023706, guid: 7ec425a601604694f9696b568c64104d, type: 3}
+  - {fileID: 3222143957076568548, guid: fac4c7197be269f42afe4bbe1f44e134, type: 3}
+  - {fileID: 6783367526062023706, guid: 7ec425a601604694f9696b568c64104d, type: 3}
+  combatScene: 2

@@ -13,6 +13,8 @@ public class Dialogue : MonoBehaviour
 
     LoadSettings loadSettings;
 
+    public bool checkpoint = false;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -29,7 +31,21 @@ public class Dialogue : MonoBehaviour
         if (sceneLoader != null)
         {
             if (loadSettings != null)
+            {
                 loadSettings.dialogueComplete = true;
+
+                if (checkpoint)
+                {
+                    PlayerController controller = GameObject.Find("Player").GetComponent<PlayerController>();
+
+                    if (controller != null)
+                    {
+                        loadSettings.checkPointPotionCount = controller.GetPotions();
+
+                        loadSettings.checkPointPos = controller.transform.position;
+                    }
+                }
+            }
 
             sceneLoader.LoadSpecifiedScene(sceneString, LoadSceneMode.Single);
         }
