@@ -71,9 +71,19 @@ public class PlayerController : MonoBehaviour
 
         if (loadSettings != null)
         {
-            SetupTransform(loadSettings.RequestPosition(this));
-
             health = loadSettings.health;
+
+            if (loadSettings.died)
+            {
+                potionCount = loadSettings.checkPointPotionCount;
+                loadSettings.potionCount = loadSettings.checkPointPotionCount;
+            }
+            else
+            {
+                potionCount = loadSettings.potionCount;
+            }
+
+            SetupTransform(loadSettings.RequestPosition(this));
         }
 
         loadSettingsArray = GameObject.FindObjectsOfType<LoadSettings>();
