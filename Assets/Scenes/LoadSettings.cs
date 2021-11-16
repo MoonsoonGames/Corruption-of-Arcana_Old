@@ -18,6 +18,8 @@ public class LoadSettings : MonoBehaviour
 
     public bool died;
 
+    public Object[] enemies = new Object[3];
+
     private void Awake()
     {
         LoadSettings[] loadSettings = GameObject.FindObjectsOfType<LoadSettings>();
@@ -26,7 +28,7 @@ public class LoadSettings : MonoBehaviour
 
         if (loadSettings.Length > 1)
         {
-            Destroy(this.gameObject);
+            Destroy(this.gameObject); //There is already one in the scene, delete this one
         }
     }
 

@@ -179,7 +179,7 @@ public class CombatManager : MonoBehaviour
     {
         HealingPotions = HealingPotions - 1;
         HealingLeft.text = HealingPotions.ToString();
-        playerStats.ChangeHeath(.5f, false);
+        playerStats.ChangeHeath(Random.Range(0.23f, 0.27f), false);
 
         EndTurn(true);
     }

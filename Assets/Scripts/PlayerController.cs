@@ -159,22 +159,14 @@ public class PlayerController : MonoBehaviour
         if (loadSettings != null)
             loadSettings.playerPos = transform.position;
 
-        if (other.gameObject.CompareTag("commonEnemy"))
+        if (other.gameObject.CompareTag("commonEnemy") || other.gameObject.CompareTag("bossEnemy"))
         {
-            if (loadSettings != null)
-                loadSettings.fightingBoss = false;
+            EnemyController enemyController = other.GetComponent<EnemyController>();
 
-            if (sceneLoader != null)
-                sceneLoader.LoadDefaultScene();
-        }
-
-        else if (other.gameObject.CompareTag("bossEnemy"))
-        {
-            if (loadSettings != null)
-                loadSettings.fightingBoss = true;
-
-            if (sceneLoader != null)
-                sceneLoader.LoadDefaultScene();
+            if (enemyController != null)
+            {
+                enemyController.LoadCombat(sceneLoader);
+            }
         }
 
         else if (other.gameObject.CompareTag("NPC"))
