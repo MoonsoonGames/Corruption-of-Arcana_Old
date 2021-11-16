@@ -88,7 +88,7 @@ public class CombatManager : MonoBehaviour
             HealingItem.SetActive(true);
 
             Debug.Log("Regenerate Mana");
-            playerStats.ChangeMana(0.15f, false);
+            playerStats.ChangeMana(15, false);
 
             foreach (var item in cardSetters)
             {
@@ -160,7 +160,7 @@ public class CombatManager : MonoBehaviour
                 loadSettings.bossKilled = false;
                 loadSettings.enemyKilled = false;
                 loadSettings.died = true;
-                loadSettings.health = 1.2f;
+                loadSettings.health = 120;
             }
 
             DefeatScreen.SetActive(true);

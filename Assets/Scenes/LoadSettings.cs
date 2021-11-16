@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LoadSettings : MonoBehaviour
 {
-    public float health = 1.2f;
+    public int health = 1;
 
     public bool dialogueComplete = false;
 

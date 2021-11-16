@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    public float maxHealth = 1f;
-    public float health = 1f;
-    public float maxMana = 1f;
-    float mana = 1f;
+    public int maxHealth = 120;
+    int health = 120;
+    public int maxMana = 120;
+    int mana = 120;
 
     public int maxPotions = 5;
     int potionCount = 3;
@@ -56,12 +56,12 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    public float GetHealth()
+    public int GetHealth()
     {
         return health;
     }
 
-    public void ChangeHeath(float value, bool damage)
+    public void ChangeHeath(int value, bool damage)
     {
         if (damage)
         {
@@ -114,12 +114,12 @@ public class PlayerStats : MonoBehaviour
         combatManager.ShowEndScreen(false);
     }
 
-    public float GetMana()
+    public int GetMana()
     {
         return mana;
     }
 
-    public void ChangeMana(float value, bool spend)
+    public void ChangeMana(int value, bool spend)
     {
         if (spend)
         {

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-    public float damage = 0.2f;
+    public int damage = 20;
 
     GameObject player;
 
