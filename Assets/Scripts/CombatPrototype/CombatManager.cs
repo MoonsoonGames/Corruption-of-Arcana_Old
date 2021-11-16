@@ -9,22 +9,34 @@ public class CombatManager : MonoBehaviour
     /* 
     activeCard;
     */
-    public static CombatHandler instance;
+    public static CombatManager instance;
 
-    public Image difficultyCommon;
-    public Image difficultyBoss;
     public Button attackDeck;
     public Button spellDeck;
     public Button classDeck;
+    public Button HealthPotions;
     public GameObject VictoryScreen;
     public GameObject DefeatScreen;
+    public GameObject PlayableDecks;
+    public GameObject noMana;
+    public GameObject Dmg;
+    public GameObject Ap;
+    public GameObject Healing;
+    public GameObject HealingItem;
     public string playingCard;
     public Text enemyName;
+    public Text ArcanaPointsValue;
+    public Text HealthPointsValue;
+    public Text DmgValue;
+    public Text ApValue;
+    public Text HealingValue;
+    public Text HealingLeft;
 
     public PlayerStats playerStats;
     public EnemyStats enemyStats;
 
     public int turnCounter = 1;
+    public int HealingPotions = 5;
     public bool battleActive = false;
     public Text turnCountText;
     public Text currentTurnText;
@@ -33,6 +45,10 @@ public class CombatManager : MonoBehaviour
     public EnemyManager enemyManager;
 
     public CardSetter[] cardSetters;
+
+    private LoadSettings loadSettings;
+
+    bool boss = false;
 
     public void Start()
     {
@@ -43,6 +59,18 @@ public class CombatManager : MonoBehaviour
 
         DefeatScreen.SetActive(false);
         VictoryScreen.SetActive(false);
+        noMana.SetActive(false);
+
+        Dmg.SetActive(false);
+        Ap.SetActive(false);
+        Healing.SetActive(false);
+
+        loadSettings = GameObject.Find("LoadSettings").GetComponent<LoadSettings>();
+
+        if (loadSettings != null)
+        {
+            boss = loadSettings.fightingBoss;
+        }
 
         battleActive = true;
 
@@ -56,6 +84,15 @@ public class CombatManager : MonoBehaviour
         if (player)
         {
             currentTurnText.text = "Player";
+            currentTurnText.color = Color.green;
+            PlayableDecks.SetActive(true);
+            HealingItem.SetActive(true);
+
+            if (HealingPotions == 0)
+            {
+                HealingItem.SetActive(false);
+                HealingLeft.text = HealingPotions.ToString();
+            }
 
             Debug.Log("Regenerate Mana");
             playerStats.ChangeMana(0.15f, false);
@@ -68,6 +105,13 @@ public class CombatManager : MonoBehaviour
         else
         {
             currentTurnText.text = "Enemy";
+            currentTurnText.color = Color.red;
+            PlayableDecks.SetActive(false);
+            HealingItem.SetActive(false);
+            noMana.SetActive(false);
+            Dmg.SetActive(false);
+            Ap.SetActive(false);
+            Healing.SetActive(false);
 
             if (enemyManager != null)
             {
@@ -98,64 +142,45 @@ public class CombatManager : MonoBehaviour
 
         if (victory)
         {
+            if (loadSettings != null)
+            {
+                loadSettings.health = playerStats.GetHealth();
+
+                if (boss)
+                {
+                    loadSettings.bossKilled = true;
+                }
+                else
+                {
+                    loadSettings.enemyKilled = true;
+                }
+            }
+
+
             VictoryScreen.SetActive(true);
             //SceneManager.LoadLast;//Needs to load last scene and position
         }
         else
         {
+            if (loadSettings != null)
+            {
+                loadSettings.bossKilled = false;
+                loadSettings.enemyKilled = false;
+                loadSettings.died = true;
+                loadSettings.health = 1.2f;
+            }
+
             DefeatScreen.SetActive(true);
             //SceneManagement.LoadScene("Thoth");
             //Transform.position(Mama reinfeld);
         }
     }
-
-    public void OnMouseDown()
+    public void HealingButton()
     {
-        if (turnCounter % 2 == 0) //player turn
-        {
-            if (tag == "attackDeck")
-            {
-                //activeCard.UI.SetActive = true;
-                //activeCard.SetUI = deckHandler.instance.playerAttackDeck[0];
-                playingCard = deckHandler.instance.playerAttackDeck[0];
-                EnemyController.instance.health = EnemyController.instance.health - deckHandler.instance.cardDMG;
-                PlayerController.instance.arcana = PlayerController.instance.arcana - deckHandler.instance.cardArcana;
-                //remove card from array
-                //add card to last position in array
-                turnCounter += 1;
-            }
+        HealingPotions = HealingPotions - 1;
+        HealingLeft.text = HealingPotions.ToString();
+        playerStats.ChangeHeath(.5f, false);
 
-            else if (tag == "spellDeck")
-            {
-                //activeCard.UI.SetActive = true;
-                //activeCard.SetUI = deckHandler.instance.playerSpellDeck[0];
-                playingCard = deckHandler.instance.playerSpellDeck[0];
-                EnemyController.instance.health = EnemyController.instance.health - deckHandler.instance.cardDMG;
-                PlayerController.instance.arcana = PlayerController.instance.arcana - deckHandler.instance.cardArcana;
-                //remove card from array
-                //add card to last position in array
-                turnCounter += 1;
-            }
-
-            else if (tag == "classDeck")
-            {
-                //activeCard.UI.SetActive = true;
-                //activeCard.SetUI = deckHandler.instance.playerClassDeck[0];
-                playingCard = deckHandler.instance.playerClassDeck[0];
-                EnemyController.instance.health = EnemyController.instance.health - deckHandler.instance.cardDMG;
-                PlayerController.instance.arcana = PlayerController.instance.arcana - deckHandler.instance.cardArcana;
-                //remove card from array
-                //add card to last position in array
-                turnCounter += 1;
-            }
-
-            //activeCard.UI.SetActive = false;
-        }
-
-        else if (turnCounter % 2 != 0) //enemy turn
-        {
-            playingCard = deckHandler.instance.enemyDeck[0];
-            PlayerController.instance.health = PlayerController.instance.health - deckHandler.instance.cardDMG;
-        }
+        EndTurn(true);
     }
 }

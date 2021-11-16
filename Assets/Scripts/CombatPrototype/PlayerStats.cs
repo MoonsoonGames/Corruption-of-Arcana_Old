@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     public float maxHealth = 1f;
-    float health = 1f;
+    public float health = 1f;
     public float maxMana = 1f;
     float mana = 1f;
 
@@ -17,10 +17,25 @@ public class PlayerStats : MonoBehaviour
     public Object hitFX;
     public Object healFX;
 
+    private LoadSettings loadSettings;
+
     private void Start()
     {
-        health = maxHealth;
+        loadSettings = GameObject.Find("LoadSettings").GetComponent<LoadSettings>();
+
+        if (loadSettings != null)
+        {
+            health = loadSettings.health;
+            combatManager.HealthPointsValue.text = health.ToString();
+        }
+        else
+        {
+            health = maxHealth;
+            combatManager.HealthPointsValue.text = health.ToString();
+        }
+
         mana = maxMana;
+        combatManager.ArcanaPointsValue.text = mana.ToString();
 
         if (healthSliderValue != null)
         {
@@ -39,6 +54,7 @@ public class PlayerStats : MonoBehaviour
         if (damage)
         {
             health = Mathf.Clamp(health - value, 0, maxHealth);
+            combatManager.HealthPointsValue.text = health.ToString();
 
             if (hitFX != null)
             {
@@ -60,6 +76,7 @@ public class PlayerStats : MonoBehaviour
         else
         {
             health = Mathf.Clamp(health + value, 0, maxHealth);
+            combatManager.HealthPointsValue.text = health.ToString();
 
             if (healFX != null)
             {
@@ -95,10 +112,12 @@ public class PlayerStats : MonoBehaviour
         if (spend)
         {
             mana = Mathf.Clamp(mana - value, 0, maxMana);
+            combatManager.ArcanaPointsValue.text = mana.ToString();
         }
         else
         {
             mana = Mathf.Clamp(mana + value, 0, maxMana);
+            combatManager.ArcanaPointsValue.text = mana.ToString();
         }
 
         if (manaSliderValue != null)

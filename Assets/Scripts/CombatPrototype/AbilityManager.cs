@@ -12,6 +12,8 @@ public class AbilityManager : MonoBehaviour
     private string readyAbility;
     public Text cardText;
 
+    public float popupDuration = 5f;
+
     public void CastAbility(GameObject target)
     {
         if (playerTurn)
@@ -58,6 +60,9 @@ public class AbilityManager : MonoBehaviour
             Debug.Log("Cast Slash on " + target.name);
 
             targetHealth.ChangeHeath(damage, true);
+            combatManager.Dmg.SetActive(true);
+            combatManager.DmgValue.text = damage.ToString();
+            
 
             ResetAbility();
 
@@ -80,6 +85,8 @@ public class AbilityManager : MonoBehaviour
             Debug.Log("Cast Slash on " + target.name + ". It's a critical hit!");
 
             targetHealth.ChangeHeath(damage, true);
+            combatManager.Dmg.SetActive(true);
+            combatManager.DmgValue.text = damage.ToString();
 
             ResetAbility();
 
@@ -111,11 +118,16 @@ public class AbilityManager : MonoBehaviour
                     message += item.gameObject.name + ", ";
 
                     item.ChangeHeath(damage, true);
+                    combatManager.Dmg.SetActive(true);
+                    combatManager.DmgValue.text = damage.ToString();
+
                 }
 
                 Debug.Log(message);
 
                 playerStats.ChangeMana(cost, true);
+                combatManager.Ap.SetActive(true);
+                combatManager.ApValue.text = cost.ToString();
 
                 ResetAbility();
 
@@ -123,7 +135,9 @@ public class AbilityManager : MonoBehaviour
             }
             else
             {
+                combatManager.noMana.SetActive(true);
                 Debug.Log("Insufficient Mana");
+                StartCoroutine(IRemovePopup(popupDuration));
             }
         }
         else
@@ -150,6 +164,8 @@ public class AbilityManager : MonoBehaviour
                 StartCoroutine(IFlurryAttacks(0.7f, targetHealth));
 
                 playerStats.ChangeMana(cost, true);
+                combatManager.Ap.SetActive(true);
+                combatManager.ApValue.text = cost.ToString();
 
                 ResetAbility();
 
@@ -157,7 +173,9 @@ public class AbilityManager : MonoBehaviour
             }
             else
             {
+                combatManager.noMana.SetActive(true);
                 Debug.Log("Insufficient Mana");
+                StartCoroutine(IRemovePopup(popupDuration));
             }
         }
         else
@@ -173,6 +191,8 @@ public class AbilityManager : MonoBehaviour
 
         float damage = Random.Range(0.03f, 0.05f);
         targetHealth.ChangeHeath(damage, true);
+        combatManager.Dmg.SetActive(true);
+        combatManager.DmgValue.text = damage.ToString();
     }
 
     private void Firebolt(GameObject target)
@@ -189,8 +209,12 @@ public class AbilityManager : MonoBehaviour
                 Debug.Log("Cast Firebolt on " + target.name);
 
                 targetHealth.ChangeHeath(damage, true);
+                combatManager.Dmg.SetActive(true);
+                combatManager.DmgValue.text = damage.ToString();
 
                 playerStats.ChangeMana(cost, true);
+                combatManager.Ap.SetActive(true);
+                combatManager.ApValue.text = cost.ToString();
 
                 ResetAbility();
 
@@ -198,7 +222,9 @@ public class AbilityManager : MonoBehaviour
             }
             else
             {
+                combatManager.noMana.SetActive(true);
                 Debug.Log("Insufficient Mana");
+                StartCoroutine(IRemovePopup(popupDuration));
             }
         }
         else
@@ -221,8 +247,12 @@ public class AbilityManager : MonoBehaviour
                 Debug.Log("Cast Chill Touch on " + target.name);
 
                 targetHealth.ChangeHeath(damage, true);
+                combatManager.Dmg.SetActive(true);
+                combatManager.DmgValue.text = damage.ToString();
 
                 playerStats.ChangeMana(cost, true);
+                combatManager.Ap.SetActive(true);
+                combatManager.ApValue.text = cost.ToString();
 
                 ResetAbility();
 
@@ -230,7 +260,9 @@ public class AbilityManager : MonoBehaviour
             }
             else
             {
+                combatManager.noMana.SetActive(true);
                 Debug.Log("Insufficient Mana");
+                StartCoroutine(IRemovePopup(popupDuration));
             }
         }
         else
@@ -260,11 +292,15 @@ public class AbilityManager : MonoBehaviour
                     message += item.gameObject.name + ", ";
 
                     item.ChangeHeath(damage, true);
+                    combatManager.Dmg.SetActive(true);
+                    combatManager.DmgValue.text = damage.ToString();
                 }
 
                 Debug.Log(message);
 
                 playerStats.ChangeMana(cost, true);
+                combatManager.Ap.SetActive(true);
+                combatManager.ApValue.text = cost.ToString();
 
                 ResetAbility();
 
@@ -272,7 +308,9 @@ public class AbilityManager : MonoBehaviour
             }
             else
             {
+                combatManager.noMana.SetActive(true);
                 Debug.Log("Insufficient Mana");
+                StartCoroutine(IRemovePopup(popupDuration));
             }
         }
         else
@@ -295,8 +333,12 @@ public class AbilityManager : MonoBehaviour
                 Debug.Log("Cast CureWounds on " + target.name);
 
                 targetHealth.ChangeHeath(heal, false);
+                combatManager.Healing.SetActive(true);
+                combatManager.HealingValue.text = heal.ToString();
 
                 playerStats.ChangeMana(cost, true);
+                combatManager.Ap.SetActive(true);
+                combatManager.ApValue.text = cost.ToString();
 
                 ResetAbility();
 
@@ -304,7 +346,9 @@ public class AbilityManager : MonoBehaviour
             }
             else
             {
+                combatManager.noMana.SetActive(true);
                 Debug.Log("Insufficient Mana");
+                StartCoroutine(IRemovePopup(popupDuration));
             }
         }
         else
@@ -321,5 +365,12 @@ public class AbilityManager : MonoBehaviour
         {
             combatManager.EndTurn(true);
         }
+    }
+
+    private IEnumerator IRemovePopup(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        combatManager.noMana.SetActive(false);
     }
 }
