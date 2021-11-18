@@ -110,7 +110,7 @@ public class PlayerController : MonoBehaviour
                 moveDirection.y = jumpSpeed;
             }
 
-            else if (Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.LeftShift))
             {
                 moveSpeed = baseSprintSpeed;
             }
@@ -129,12 +129,12 @@ public class PlayerController : MonoBehaviour
         // Move the controller
         characterController.Move(moveDirection * Time.deltaTime);
 
-        turnCamera = Input.GetAxis("Mouse X") * sensitivity;
-        if (turnCamera != 0)
-        {
-            //Code for action on mouse moving horizontally
-            transform.eulerAngles += new Vector3(0, turnCamera, 0);
-        }
+        //turnCamera = Input.GetAxis("Mouse X") * sensitivity;
+        //if (turnCamera != 0)
+        //{
+        //    //Code for action on mouse moving horizontally
+        //    transform.eulerAngles += new Vector3(0, turnCamera, 0);
+        //}
 
         if (health <= 0)
         {
