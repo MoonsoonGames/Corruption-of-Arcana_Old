@@ -8,11 +8,14 @@ public class PlayerCameraController : MonoBehaviour
     public Transform target, player;
     float mouseX, mouseY;
 
+    public bool disableCursor;
+
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = !disableCursor;
+        if (disableCursor)
+            Cursor.lockState = CursorLockMode.Locked;
     }
 
     void LateUpdate()
