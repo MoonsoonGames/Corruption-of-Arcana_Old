@@ -74,15 +74,6 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        if (health < maxHealth)
-        {
-            health = maxHealth;
-        }
-        if (arcana < maxArcana)
-        {
-            arcana = maxArcana;
-        }
-
         loadSettingsArray = GameObject.FindObjectsOfType<LoadSettings>();
 
         Debug.Log("Length: " + loadSettingsArray.Length);
