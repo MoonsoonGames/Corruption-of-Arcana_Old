@@ -502,10 +502,28 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 555724634}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 555724636}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02efb632ea380cd4bb2bdc15d8f4e029, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &555724636 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3312672493111288480, guid: 6cd9afb76eeded444bfcbe0b0afee9f7,
+    type: 3}
+  m_PrefabInstance: {fileID: 555724634}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &555724637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 555724636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f9ac746f2ba32c42ae93197853879a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &699267127
@@ -1420,8 +1438,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 1231231505}
-  selectedCommands: []
+  - {fileID: 1231231502}
+  selectedCommands:
+  - {fileID: 1231231501}
   variables: []
   description: 
   stepPause: 0
@@ -1448,7 +1467,7 @@ MonoBehaviour:
   itemId: 1
   indentLevel: 0
   storyText: Ugh, morning already? I had better go and see {color=pink}Mamma Rheinfeld{/color}
-    to the North
+    to the East
   description: 
   character: {fileID: 1165060491}
   portrait: {fileID: 0}
@@ -1547,7 +1566,7 @@ MonoBehaviour:
       m_Calls: []
 --- !u!114 &1231231504
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}

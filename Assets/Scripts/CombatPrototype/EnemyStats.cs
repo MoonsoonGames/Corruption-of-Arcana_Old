@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class EnemyStats : MonoBehaviour
 {
-    public float maxHealth = 1f;
-    float health = 1f;
-    public float maxMana = 1f;
-    float mana = 1f;
+    public int maxHealth = 100;
+    int health = 100;
+    public int maxMana = 100;
+    int mana = 100;
 
     public SliderValue healthSliderValue;
     public SliderValue manaSliderValue;
@@ -39,7 +39,7 @@ public class EnemyStats : MonoBehaviour
         return health;
     }
 
-    public void ChangeHeath(float value, bool damage)
+    public void ChangeHeath(int value, bool damage)
     {
         if (damage)
         {
@@ -101,7 +101,7 @@ public class EnemyStats : MonoBehaviour
         return mana;
     }
 
-    public void ChangeMana(float value, bool spend)
+    public void ChangeMana(int value, bool spend)
     {
         if (spend)
         {

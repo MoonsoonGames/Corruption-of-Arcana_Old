@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    public float maxHealth = 1f;
-    public float health = 1f;
-    public float maxMana = 1f;
-    float mana = 1f;
+    public int maxHealth = 120;
+    int health = 120;
+    public int maxMana = 120;
+    int mana = 120;
+
+    public int maxPotions = 5;
+    int potionCount = 3;
 
     public SliderValue healthSliderValue;
     public SliderValue manaSliderValue;
@@ -27,6 +30,8 @@ public class PlayerStats : MonoBehaviour
         {
             health = loadSettings.health;
             combatManager.HealthPointsValue.text = health.ToString();
+
+            potionCount = loadSettings.potionCount;
         }
         else
         {
@@ -42,14 +47,21 @@ public class PlayerStats : MonoBehaviour
             healthSliderValue.slider.maxValue = maxHealth;
             healthSliderValue.slider.value = health;
         }
+
+        combatManager.HealingLeft.text = potionCount.ToString();
+
+        if (potionCount == 0)
+        {
+            combatManager.HealingItem.SetActive(false);
+        }
     }
 
-    public float GetHealth()
+    public int GetHealth()
     {
         return health;
     }
 
-    public void ChangeHeath(float value, bool damage)
+    public void ChangeHeath(int value, bool damage)
     {
         if (damage)
         {
@@ -102,12 +114,12 @@ public class PlayerStats : MonoBehaviour
         combatManager.ShowEndScreen(false);
     }
 
-    public float GetMana()
+    public int GetMana()
     {
         return mana;
     }
 
-    public void ChangeMana(float value, bool spend)
+    public void ChangeMana(int value, bool spend)
     {
         if (spend)
         {
@@ -128,6 +140,40 @@ public class PlayerStats : MonoBehaviour
 
     public bool CheckMana(float value)
     {
-        return mana > value;
+        return mana >= value;
+    }
+
+    public int GetPotions()
+    {
+        return potionCount;
+    }
+
+    public bool CheckPotions(int value)
+    {
+        return potionCount >= value;
+    }
+
+    public void ChangePotions(int value, bool spend)
+    {
+        if (spend)
+        {
+            potionCount = Mathf.Clamp(potionCount - value, 0, maxPotions);
+        }
+        else
+        {
+            potionCount = Mathf.Clamp(potionCount + value, 0, maxPotions);
+        }
+
+        if (potionCount == 0)
+        {
+            combatManager.HealingItem.SetActive(false);
+        }
+
+        combatManager.HealingLeft.text = potionCount.ToString();
+
+        if (loadSettings != null)
+        {
+            loadSettings.potionCount = potionCount;
+        }
     }
 }

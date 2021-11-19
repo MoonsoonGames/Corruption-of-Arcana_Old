@@ -7,6 +7,7 @@ public class InventoryManager : MonoBehaviour
     public GameObject Inventory;
     public GameObject ExplorationUI;
     public GameObject player;
+    public GameObject Camera;
     public bool inventoryActive;
 
     public GameObject CombatHelpScreen;
@@ -29,17 +30,23 @@ public class InventoryManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             Inventory.SetActive(!Inventory.activeSelf);
             ExplorationUI.SetActive(!ExplorationUI.activeSelf);
             if (player.GetComponent<PlayerController>().enabled == true)
             {
                 player.GetComponent<PlayerController>().enabled = false;
+                Camera.GetComponent<PlayerCameraController>().enabled = false;
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
             }
             else
             {
                 player.GetComponent<PlayerController>().enabled = true;
+                Camera.GetComponent<PlayerCameraController>().enabled = true;
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
             }
         }
     }
@@ -48,23 +55,25 @@ public class InventoryManager : MonoBehaviour
     {
         Inventory.SetActive(false);
         CombatHelpScreen.SetActive(true);
-        NavigationHelp1.SetActive(true);
-        NavigationHelp2.SetActive(false);
+        Debug.Log("Combat help loaded");
     }
     public void UIHelp()
     {
         Inventory.SetActive(false);
         UIHelpScreen.SetActive(true);
+        Debug.Log("UI help loaded");
     }
     public void MechanicsHelp()
     {
         Inventory.SetActive(false);
         GameMechHelpScreen.SetActive(true);
+        Debug.Log("Mechanics help loaded");
     }
     public void LoreHelp()
     {
         Inventory.SetActive(false);
         LoreHelpScreen.SetActive(true);
+        Debug.Log("Lore help loaded");
     }
     public void Back()
     {
@@ -73,15 +82,22 @@ public class InventoryManager : MonoBehaviour
         UIHelpScreen.SetActive(false);
         GameMechHelpScreen.SetActive(false);
         LoreHelpScreen.SetActive(false);
+        Debug.Log("Inventory loaded");
     }
     public void nextPage()
     {
         NavigationHelp1.SetActive(false);
         NavigationHelp2.SetActive(true);
+        Debug.Log("next page loaded");
     }
     public void backPage()
     {
         NavigationHelp1.SetActive(true);
         NavigationHelp2.SetActive(false);
+        Debug.Log("previous page loaded");
+    }
+    public void quitButton()
+    {
+        Application.Quit();
     }
 }

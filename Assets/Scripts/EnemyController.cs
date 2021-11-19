@@ -7,10 +7,13 @@ public class EnemyController : MonoBehaviour
 {
     public static EnemyController instance;
 
-    public int maxHealth;
-    public int health;
+    public bool boss = false;
+
+    public Object[] enemies = new Object[3];
 
     private LoadSettings loadSettings;
+
+    public E_Levels combatScene;
 
     // Start is called before the first frame update
     void Awake()
@@ -19,28 +22,14 @@ public class EnemyController : MonoBehaviour
 
         if (this.tag == "commonEnemy")
         {
-            maxHealth = 40;
-
-            if (health < maxHealth)
-            {
-                health = maxHealth;
-            }
-
             if (loadSettings != null && loadSettings.enemyKilled)
             {
                 Destroy(this.gameObject);
             }
-
         }
 
         else if (this.tag == "bossEnemy")
         {
-            maxHealth = 100;
-            if (health < maxHealth)
-            {
-                health = maxHealth;
-            }
-
             if (loadSettings != null && loadSettings.bossKilled)
             {
                 Destroy(this.gameObject);
@@ -48,12 +37,18 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void LoadCombat(SceneLoader sceneLoader)
     {
-        if (health < 0)
+        if (loadSettings != null)
         {
-            Destroy(this);
+            loadSettings.fightingBoss = boss;
+
+            loadSettings.enemies[0] = enemies[0];
+            loadSettings.enemies[1] = enemies[1];
+            loadSettings.enemies[2] = enemies[2];
+
+            if (sceneLoader != null)
+                sceneLoader.LoadSpecifiedScene(combatScene.ToString(), LoadSceneMode.Single);
         }
     }
 }
