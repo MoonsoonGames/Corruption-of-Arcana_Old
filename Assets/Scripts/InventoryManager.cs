@@ -30,7 +30,7 @@ public class InventoryManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             Inventory.SetActive(!Inventory.activeSelf);
             ExplorationUI.SetActive(!ExplorationUI.activeSelf);
@@ -55,33 +55,24 @@ public class InventoryManager : MonoBehaviour
     {
         Inventory.SetActive(false);
         CombatHelpScreen.SetActive(true);
-        LoreHelpScreen.SetActive(false);
         Debug.Log("Combat help loaded");
     }
     public void UIHelp()
     {
         Inventory.SetActive(false);
         UIHelpScreen.SetActive(true);
-        CombatHelpScreen.SetActive(false);
-        LoreHelpScreen.SetActive(false);
         Debug.Log("UI help loaded");
     }
     public void MechanicsHelp()
     {
         Inventory.SetActive(false);
         GameMechHelpScreen.SetActive(true);
-        UIHelpScreen.SetActive(false);
-        CombatHelpScreen.SetActive(false);
-        LoreHelpScreen.SetActive(false);
         Debug.Log("Mechanics help loaded");
     }
     public void LoreHelp()
     {
         Inventory.SetActive(false);
-        GameMechHelpScreen.SetActive(false);
         LoreHelpScreen.SetActive(true);
-        UIHelpScreen.SetActive(false);
-        CombatHelpScreen.SetActive(false);
         Debug.Log("Lore help loaded");
     }
     public void Back()
@@ -104,5 +95,9 @@ public class InventoryManager : MonoBehaviour
         NavigationHelp1.SetActive(true);
         NavigationHelp2.SetActive(false);
         Debug.Log("previous page loaded");
+    }
+    public void quitButton()
+    {
+        Application.Quit();
     }
 }

@@ -51,6 +51,9 @@ public class CombatManager : MonoBehaviour
 
     public void Start()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
         if (enemyStats != null)
         {
             enemyStats.gameObject.name = enemyName.text;
