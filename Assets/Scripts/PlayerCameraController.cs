@@ -32,7 +32,7 @@ public class PlayerCameraController : MonoBehaviour
 
         transform.LookAt(target);
 
-        if(Input.GetKey(KeyCode.CapsLock))
+        if(Input.GetKey(KeyCode.Mouse2))
         {
             target.rotation = Quaternion.Euler(mouseY, mouseX, 0);
         }

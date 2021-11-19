@@ -44,16 +44,19 @@ public class InventoryItems : MonoBehaviour
         //heal
         if (controller != null)
         {
-            int heal = Random.Range(30, 46);
-            controller.health += heal;
-
-            healthPotionCount--;
-            healthPotionText.text = healthPotionCount.ToString();
-
-            if (loadSettings != null)
+            if (controller.health < controller.maxHealth && healthPotionCount > 0)
             {
+                int heal = Random.Range(30, 46);
+                controller.health += heal;
 
-                loadSettings.potionCount = healthPotionCount;
+                healthPotionCount--;
+                healthPotionText.text = healthPotionCount.ToString();
+
+                if (loadSettings != null)
+                {
+
+                    loadSettings.potionCount = healthPotionCount;
+                }
             }
         }
     }
