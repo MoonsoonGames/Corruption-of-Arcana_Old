@@ -35,8 +35,6 @@ public class CombatHandler : MonoBehaviour
         EnemyController.instance.gameObject.name = enemyName.text;
         DefeatScreen.SetActive(false);
         VictoryScreen.SetActive(false);
-
-        enemyHealth.value = EnemyController.instance.maxHealth;
         playerHealth.value = PlayerController.instance.maxHealth;
         playerArcana.value = PlayerController.instance.maxArcana;
     }
@@ -44,14 +42,7 @@ public class CombatHandler : MonoBehaviour
     {
         while (battleActive == true)
         {
-            if (EnemyController.instance.health <= 0)
-            {
-                battleActive = false;
-                VictoryScreen.SetActive(true);
-                //SceneManager.LoadLast;//Needs to load last scene and position
-            }
-
-            else if (PlayerController.instance.health <= 0)
+            if (PlayerController.instance.health <= 0)
             {
                 battleActive = false;
                 DefeatScreen.SetActive(true);
@@ -59,7 +50,6 @@ public class CombatHandler : MonoBehaviour
                 //Transform.position(Mama reinfeld);
             }
 
-            enemyHealth.value = EnemyController.instance.health;
             playerHealth.value = PlayerController.instance.health;
             playerArcana.value = PlayerController.instance.arcana;
         }
@@ -73,7 +63,6 @@ public class CombatHandler : MonoBehaviour
                 //activeCard.UI.SetActive = true;
                 //activeCard.SetUI = deckHandler.instance.playerAttackDeck[0];
                 playingCard = deckHandler.instance.playerAttackDeck[0];
-                EnemyController.instance.health = EnemyController.instance.health - deckHandler.instance.cardDMG;
                 PlayerController.instance.arcana = PlayerController.instance.arcana - deckHandler.instance.cardArcana;
                 //remove card from array
                 //add card to last position in array
@@ -85,7 +74,6 @@ public class CombatHandler : MonoBehaviour
                 //activeCard.UI.SetActive = true;
                 //activeCard.SetUI = deckHandler.instance.playerSpellDeck[0];
                 playingCard = deckHandler.instance.playerSpellDeck[0];
-                EnemyController.instance.health = EnemyController.instance.health - deckHandler.instance.cardDMG;
                 PlayerController.instance.arcana = PlayerController.instance.arcana - deckHandler.instance.cardArcana;
                 //remove card from array
                 //add card to last position in array
@@ -97,7 +85,6 @@ public class CombatHandler : MonoBehaviour
                 //activeCard.UI.SetActive = true;
                 //activeCard.SetUI = deckHandler.instance.playerClassDeck[0];
                 playingCard = deckHandler.instance.playerClassDeck[0];
-                EnemyController.instance.health = EnemyController.instance.health - deckHandler.instance.cardDMG;
                 PlayerController.instance.arcana = PlayerController.instance.arcana - deckHandler.instance.cardArcana;
                 //remove card from array
                 //add card to last position in array

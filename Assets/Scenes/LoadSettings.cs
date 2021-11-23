@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LoadSettings : MonoBehaviour
 {
-    public float health = 1.2f;
+    public int health = 1;
 
     public bool dialogueComplete = false;
 
@@ -14,9 +14,16 @@ public class LoadSettings : MonoBehaviour
     public bool fightingBoss = false;
 
     public Vector3 playerPos;
-    public Vector3 mamaPos;
+    public Vector3 checkPointPos;
 
     public bool died;
+
+    public Object[] enemies = new Object[3];
+
+    public int checkPointPotionCount;
+    public int potionCount;
+
+    bool main = false;
 
     private void Awake()
     {
@@ -26,19 +33,59 @@ public class LoadSettings : MonoBehaviour
 
         if (loadSettings.Length > 1)
         {
-            Destroy(this.gameObject);
+            Debug.Log("destroying");
+            Destroy(this); //There is already one in the scene, delete this one
+        }
+        else
+        {
+            main = true;
+            DontDestroyOnLoad(this.gameObject);
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public bool CheckMain()
     {
-        DontDestroyOnLoad(this.gameObject);
+        if (main)
+        {
+            return true;
+        }
+        else
+        {
+            Debug.Log("destroying");
+            return true;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public Vector3 RequestPosition(PlayerController controller)
     {
-        
+        Vector3 targetPos;
+
+        if (died)
+        {
+            died = false;
+
+            targetPos = checkPointPos;
+
+            targetPos.x = checkPointPos.x;
+            targetPos.y = checkPointPos.y;
+            targetPos.z = checkPointPos.z;
+
+            Debug.Log("Loading respawn position | " + checkPointPos + " || " + targetPos);
+        }
+        else
+        {
+            targetPos = playerPos;
+
+            targetPos.x = playerPos.x;
+            targetPos.y = playerPos.y;
+            targetPos.z = playerPos.z;
+
+            Debug.Log("Loading spawn position | " + playerPos + " || " + targetPos);
+
+            controller.transform.position = targetPos;
+            Debug.Log(controller.transform.position);
+        }
+
+        return targetPos;
     }
 }
