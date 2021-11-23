@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-    public float damage = 0.2f;
+    public int damage = 20;
 
-    public GameObject player;
+    GameObject player;
 
     private PlayerStats playerStats;
 
@@ -19,27 +19,14 @@ public class Enemy : MonoBehaviour
 
     LoadSettings loadSettings;
 
-    public Image sprite;
-
-    public Sprite replaceSprite;
-
     private void Start()
     {
+        player = GameObject.Find("Player");
+
         playerStats = player.GetComponent<PlayerStats>();
         enemyStats = GetComponent<EnemyStats>();
-        sprite = GetComponentInChildren<Image>();
 
         loadSettings = GameObject.Find("LoadSettings").GetComponent<LoadSettings>();
-
-        if (this.tag == "bossEnemy")
-        {
-            if (loadSettings != null && !(loadSettings.fightingBoss))
-            {
-                canAttack = false;
-
-                sprite.sprite = replaceSprite;
-            }
-        }
     }
 
     public void TakeTurn()

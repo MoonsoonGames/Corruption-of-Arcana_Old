@@ -36,7 +36,6 @@ public class CombatManager : MonoBehaviour
     public EnemyStats enemyStats;
 
     public int turnCounter = 1;
-    public int HealingPotions = 5;
     public bool battleActive = false;
     public Text turnCountText;
     public Text currentTurnText;
@@ -52,6 +51,9 @@ public class CombatManager : MonoBehaviour
 
     public void Start()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
         if (enemyStats != null)
         {
             enemyStats.gameObject.name = enemyName.text;
@@ -88,14 +90,8 @@ public class CombatManager : MonoBehaviour
             PlayableDecks.SetActive(true);
             HealingItem.SetActive(true);
 
-            if (HealingPotions == 0)
-            {
-                HealingItem.SetActive(false);
-                HealingLeft.text = HealingPotions.ToString();
-            }
-
             Debug.Log("Regenerate Mana");
-            playerStats.ChangeMana(0.15f, false);
+            playerStats.ChangeMana(15, false);
 
             foreach (var item in cardSetters)
             {
@@ -167,20 +163,12 @@ public class CombatManager : MonoBehaviour
                 loadSettings.bossKilled = false;
                 loadSettings.enemyKilled = false;
                 loadSettings.died = true;
-                loadSettings.health = 1.2f;
+                loadSettings.health = 120;
             }
 
             DefeatScreen.SetActive(true);
             //SceneManagement.LoadScene("Thoth");
             //Transform.position(Mama reinfeld);
         }
-    }
-    public void HealingButton()
-    {
-        HealingPotions = HealingPotions - 1;
-        HealingLeft.text = HealingPotions.ToString();
-        playerStats.ChangeHeath(.5f, false);
-
-        EndTurn(true);
     }
 }
