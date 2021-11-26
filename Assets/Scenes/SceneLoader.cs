@@ -8,6 +8,7 @@ public class SceneLoader : MonoBehaviour
     public E_Levels sceneToLoad;
     string sceneString;
     Scene currentScene;
+    LoadSettings loadSettings;
 
     // Start is called before the first frame update
     private void Start()
@@ -15,10 +16,25 @@ public class SceneLoader : MonoBehaviour
         sceneString = sceneToLoad.ToString();
 
         currentScene = SceneManager.GetActiveScene();
+
+        loadSettings = GameObject.FindObjectOfType<LoadSettings>();
+
     }
 
     public void LoadDefaultScene()
     {
+        #region Check Navigation Scenes
+
+        switch (sceneToLoad)
+        {
+            case E_Levels.Thoth:
+                loadSettings.SetLastLevel(sceneToLoad);
+                break;
+        }
+
+        #endregion
+
+
         Debug.Log("Load Scene");
         SceneManager.LoadScene(sceneString);
     }
