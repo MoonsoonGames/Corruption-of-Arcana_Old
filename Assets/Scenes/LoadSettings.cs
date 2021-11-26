@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LoadSettings : MonoBehaviour
 {
@@ -13,8 +14,11 @@ public class LoadSettings : MonoBehaviour
 
     public bool fightingBoss = false;
 
-    public Vector3 playerPos;
+    E_Levels lastLevel;
+    public Vector3 playerPosInThoth;
+
     public Vector3 checkPointPos;
+    Scene checkPointScene;
 
     public bool died;
 
@@ -24,8 +28,6 @@ public class LoadSettings : MonoBehaviour
     public int potionCount;
 
     bool main = false;
-
-    E_Levels lastLevel;
 
     private void Awake()
     {
@@ -76,13 +78,13 @@ public class LoadSettings : MonoBehaviour
         }
         else
         {
-            targetPos = playerPos;
+            targetPos = playerPosInThoth;
 
-            targetPos.x = playerPos.x;
-            targetPos.y = playerPos.y;
-            targetPos.z = playerPos.z;
+            targetPos.x = playerPosInThoth.x;
+            targetPos.y = playerPosInThoth.y;
+            targetPos.z = playerPosInThoth.z;
 
-            Debug.Log("Loading spawn position | " + playerPos + " || " + targetPos);
+            Debug.Log("Loading spawn position | " + playerPosInThoth + " || " + targetPos);
 
             controller.transform.position = targetPos;
             Debug.Log(controller.transform.position);
@@ -99,5 +101,15 @@ public class LoadSettings : MonoBehaviour
     public void SetLastLevel(E_Levels newLevel)
     {
         lastLevel = newLevel;
+    }
+
+    public Scene GetCheckpointScene()
+    {
+        return checkPointScene;
+    }
+
+    public void SetCheckPointLevel(Scene newCheckPoint)
+    {
+        checkPointScene = newCheckPoint;
     }
 }
