@@ -20,7 +20,13 @@ public enum E_Levels
     [InspectorName("Combat")]
     CombatPrototype,
 
-    Narrative, Ending, Fortune, Death
+    Narrative,
+    Ending,
+    Fortune,
+    Death,
+
+    [InspectorName("Overworld Map")]
+    OverworldMap
 }
 
 public enum E_Suits
