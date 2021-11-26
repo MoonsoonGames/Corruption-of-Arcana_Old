@@ -54,8 +54,8 @@ public class InventoryItems : MonoBehaviour
 
                 if (loadSettings != null)
                 {
-
                     loadSettings.potionCount = healthPotionCount;
+                    loadSettings.health = controller.health;
                 }
             }
         }

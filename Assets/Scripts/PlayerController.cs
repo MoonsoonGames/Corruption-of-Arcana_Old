@@ -17,10 +17,10 @@ public class PlayerController : MonoBehaviour
     private float turnCamera;
     public float sensitivity = 5;
 
-    public float maxHealth = 50;
-    public float health;
-    public float maxArcana = 35;
-    public float arcana;
+    public int maxHealth = 50;
+    public int health;
+    public int maxArcana = 35;
+    public int arcana;
     public Slider healthBar;
     public Slider arcanaBar;
 
