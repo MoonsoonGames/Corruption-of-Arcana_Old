@@ -25,6 +25,8 @@ public class LoadSettings : MonoBehaviour
 
     bool main = false;
 
+    E_Levels lastLevel;
+
     private void Awake()
     {
         LoadSettings[] loadSettings = GameObject.FindObjectsOfType<LoadSettings>();
@@ -87,5 +89,15 @@ public class LoadSettings : MonoBehaviour
         }
 
         return targetPos;
+    }
+
+    public E_Levels GetLastLevel()
+    {
+        return lastLevel;
+    }
+
+    public void SetLastLevel(E_Levels newLevel)
+    {
+        lastLevel = newLevel;
     }
 }
