@@ -17,10 +17,10 @@ public class PlayerController : MonoBehaviour
     private float turnCamera;
     public float sensitivity = 5;
 
-    public float maxHealth = 50;
-    public float health;
-    public float maxArcana = 35;
-    public float arcana;
+    public int maxHealth = 50;
+    public int health;
+    public int maxArcana = 35;
+    public int arcana;
     public Slider healthBar;
     public Slider arcanaBar;
 
@@ -36,6 +36,9 @@ public class PlayerController : MonoBehaviour
 
     public int maxPotions = 5;
     int potionCount = 3;
+
+    bool interact = false;
+    Dialogue dialogue;
 
     void Start()
     {
@@ -140,6 +143,12 @@ public class PlayerController : MonoBehaviour
             healthBar.value = health;
         if (arcanaBar != null)
             arcanaBar.value = arcana;
+
+
+        if (Input.GetButton("Interact") && interact && dialogue != null)
+        {
+            dialogue.LoadScene();
+        }
     }
 
     public void OnTriggerEnter(Collider other)
@@ -160,7 +169,19 @@ public class PlayerController : MonoBehaviour
 
         else if (other.gameObject.CompareTag("NPC"))
         {
-            other.gameObject.GetComponent<Dialogue>().LoadScene();
+            Debug.Log("Can Interact");
+            interact = true;
+            dialogue = other.gameObject.GetComponent<Dialogue>();
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("NPC"))
+        {
+            Debug.Log("Can't Interact");
+            interact = false;
+            dialogue = null;
         }
     }
 
