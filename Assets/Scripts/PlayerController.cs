@@ -155,7 +155,7 @@ public class PlayerController : MonoBehaviour
     {
         //Save current position
         if (loadSettings != null)
-            loadSettings.playerPos = transform.position;
+            loadSettings.playerPosInThoth = transform.position;
 
         if (other.gameObject.CompareTag("commonEnemy") || other.gameObject.CompareTag("bossEnemy"))
         {

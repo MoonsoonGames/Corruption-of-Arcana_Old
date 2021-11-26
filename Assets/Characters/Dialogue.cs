@@ -43,6 +43,8 @@ public class Dialogue : MonoBehaviour
                         loadSettings.checkPointPotionCount = controller.GetPotions();
 
                         loadSettings.checkPointPos = controller.transform.position;
+
+                        loadSettings.SetCheckPointLevel(SceneManager.GetActiveScene());
                     }
                 }
             }
