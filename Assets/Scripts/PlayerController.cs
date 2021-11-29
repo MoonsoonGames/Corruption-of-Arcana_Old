@@ -68,7 +68,10 @@ public class PlayerController : MonoBehaviour
                     potionCount = loadSettings.potionCount;
                 }
 
-                SetupTransform(loadSettings.RequestPosition(this));
+                Vector3 spawnPos = loadSettings.RequestPosition(this);
+
+                SetupTransform(spawnPos);
+                StartCoroutine(IDelayStartTransform(1f, spawnPos));
             }
             else
             {
@@ -81,6 +84,12 @@ public class PlayerController : MonoBehaviour
 
         Debug.Log("Length: " + loadSettingsArray.Length);
         //Debug.Break();
+    }
+
+    IEnumerator IDelayStartTransform(float delay, Vector3 newSpawnPos)
+    {
+        yield return new WaitForSeconds(delay);
+        SetupTransform(newSpawnPos);
     }
 
     void SetupTransform(Vector3 targetPosition)
