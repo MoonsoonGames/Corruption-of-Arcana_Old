@@ -7,7 +7,12 @@ public class LoadSettings : MonoBehaviour
 {
     public int health = 1;
 
+    #region Tutorial Dialogue
+
     public bool dialogueComplete = false;
+    public bool prologueComplete = false;
+
+    #endregion 
 
     public bool enemyKilled = false;
     public bool bossKilled = false;

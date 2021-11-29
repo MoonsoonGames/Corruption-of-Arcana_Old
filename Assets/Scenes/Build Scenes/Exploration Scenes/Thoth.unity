@@ -15324,6 +15324,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5837821381250986445, guid: 5bc1429914645f042b0ffa8bd191e782,
+        type: 3}
+      propertyPath: requiresTutorial
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5bc1429914645f042b0ffa8bd191e782, type: 3}
 --- !u!4 &219939036 stripped
@@ -40444,6 +40449,11 @@ PrefabInstance:
       propertyPath: sceneToLoad
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 5837821381250986445, guid: a73244284e1a5824884eeef1f9ddbd82,
+        type: 3}
+      propertyPath: tutorialDialogue
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a73244284e1a5824884eeef1f9ddbd82, type: 3}
 --- !u!4 &977512253 stripped
@@ -45956,6 +45966,31 @@ Transform:
   m_Father: {fileID: 170496874}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1174076046 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5444911181963198280, guid: 5bc1429914645f042b0ffa8bd191e782,
+    type: 3}
+  m_PrefabInstance: {fileID: 219939035}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1174076047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174076046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c589c49517815b43838a1bb732ed791, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collider: {fileID: 1174076049}
+--- !u!135 &1174076049 stripped
+SphereCollider:
+  m_CorrespondingSourceObject: {fileID: 5444911181963198285, guid: 5bc1429914645f042b0ffa8bd191e782,
+    type: 3}
+  m_PrefabInstance: {fileID: 219939035}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1174079323
 Mesh:
   m_ObjectHideFlags: 0
@@ -57207,6 +57242,16 @@ PrefabInstance:
         type: 3}
       propertyPath: sceneToLoad
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4519008102460442177, guid: 01512ccbe093ca143a2d6394cac10aa7,
+        type: 3}
+      propertyPath: knightDialogue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4519008102460442177, guid: 01512ccbe093ca143a2d6394cac10aa7,
+        type: 3}
+      propertyPath: requiresTutorial
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01512ccbe093ca143a2d6394cac10aa7, type: 3}
