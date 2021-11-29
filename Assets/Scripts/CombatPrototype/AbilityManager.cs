@@ -10,9 +10,14 @@ public class AbilityManager : MonoBehaviour
     public PlayerStats playerStats;
 
     private string readyAbility;
-    public Text cardText;
+    private ActiveCard activeCard;
 
     public float popupDuration = 5f;
+
+    private void Start()
+    {
+        activeCard = GameObject.FindObjectOfType<ActiveCard>();
+    }
 
     public void CastAbility(GameObject target)
     {
@@ -35,8 +40,8 @@ public class AbilityManager : MonoBehaviour
     {
         readyAbility = abilityName;
 
-        if (cardText != null)
-            cardText.text = readyAbility;
+        if (activeCard != null)
+            activeCard.ReadyCard(readyAbility);
 
         Debug.Log("Readied " + abilityName + " ability.");
     }
@@ -45,8 +50,8 @@ public class AbilityManager : MonoBehaviour
     {
         readyAbility = null;
 
-        if (cardText != null)
-            cardText.text = null;
+        if (activeCard != null)
+            activeCard.CastCard();
     }
 
     private void Slash(GameObject target)
