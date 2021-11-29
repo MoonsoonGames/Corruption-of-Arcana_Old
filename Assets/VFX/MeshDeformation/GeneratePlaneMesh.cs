@@ -12,6 +12,8 @@ public class GeneratePlaneMesh : MonoBehaviour
     public int xSize = 10;
     public int zSize = 10;
 
+    public float edgeSize = 1f;
+
     Mesh mesh;
 
     Vector3[] verts;
@@ -102,7 +104,7 @@ public class GeneratePlaneMesh : MonoBehaviour
                 offset.y = this.gameObject.transform.position.y;
                 offset.z = this.gameObject.transform.position.z;
 
-                verts[i] = new Vector3(x + offset.x, 0 + offset.y, z + offset.z);
+                verts[i] = new Vector3((edgeSize * x) + offset.x, 0 + offset.y, (edgeSize * z) + offset.z);
                 i++;
             }
         }
