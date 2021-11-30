@@ -155,7 +155,7 @@ public class CombatManager : MonoBehaviour
             {
                 loadSettings.enemiesKilled = loadSettings.checkpointEnemies;
 
-                loadSettings.enemiesKilled[loadSettings.currentFight] = true;
+                loadSettings.enemiesKilled[loadSettings.currentFight] = false;
 
                 loadSettings.died = true;
                 loadSettings.health = 120;
