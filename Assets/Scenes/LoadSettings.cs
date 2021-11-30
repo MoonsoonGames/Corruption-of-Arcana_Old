@@ -39,6 +39,9 @@ public class LoadSettings : MonoBehaviour
     public Dictionary<string, bool> enemiesKilled = new Dictionary<string, bool>();
     public Dictionary<string, bool> checkpointEnemies = new Dictionary<string, bool>();
 
+    public List<string> enemiesString;
+    public List<string> killedString;
+
     public string currentFight;
 
     private void Awake()
@@ -130,5 +133,22 @@ public class LoadSettings : MonoBehaviour
     public void SetCheckPointLevel(Scene newCheckPoint)
     {
         checkPointScene = newCheckPoint;
+    }
+
+    private void Update()
+    {
+        enemiesString.Clear();
+        killedString.Clear();
+        foreach (var item in enemiesKilled)
+        {
+            if (item.Value)
+            {
+                killedString.Add(item.Key);
+            }
+            else
+            {
+                enemiesString.Add(item.Key);
+            }
+        }
     }
 }

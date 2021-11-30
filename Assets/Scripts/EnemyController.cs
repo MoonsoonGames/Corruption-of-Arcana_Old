@@ -15,6 +15,8 @@ public class EnemyController : MonoBehaviour
 
     public E_Levels combatScene;
 
+    public string enemyName;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -26,6 +28,7 @@ public class EnemyController : MonoBehaviour
             {
                 if (loadSettings.enemiesKilled[name])
                 {
+                    Debug.Log("Despawning " + name);
                     Destroy(this.gameObject);
                 }
             }
@@ -33,10 +36,12 @@ public class EnemyController : MonoBehaviour
             {
                 loadSettings.enemiesKilled.Add(name, false);
 
-                foreach (var item in loadSettings.enemiesKilled.Keys)
+                /*
+                foreach (var item in loadSettings.enemiesKilled)
                 {
                     Debug.Log(item);
                 }
+                */
             }
         }
     }

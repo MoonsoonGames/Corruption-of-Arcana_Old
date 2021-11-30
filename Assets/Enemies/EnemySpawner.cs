@@ -33,24 +33,28 @@ public class EnemySpawner : MonoBehaviour
                         Vector3 pos = this.transform.position;
                         Quaternion rot = this.transform.rotation;
 
-                        Instantiate(enemy, pos, rot);
+                        Instantiate(enemy, pos, rot).name = enemyName;
+                    }
+                    else
+                    {
+                        Debug.Log("not spawning " + enemyName);
                     }
                 }
                 else
                 {
-                    loadSettings.enemiesKilled.Add(name, false);
+                    loadSettings.enemiesKilled.Add(enemyName, false);
 
                     Vector3 pos = this.transform.position;
                     Quaternion rot = this.transform.rotation;
 
-                    GameObject spawnedEnemy = Instantiate(enemy, pos, rot) as GameObject;
+                    Instantiate(enemy, pos, rot).name = enemyName;
 
-                    spawnedEnemy.name = enemyName;
-
-                    foreach (var item in loadSettings.enemiesKilled.Keys)
+                    /*
+                    foreach (var item in loadSettings.enemiesKilled)
                     {
                         Debug.Log(item);
                     }
+                    */
                 }
             }
         }
