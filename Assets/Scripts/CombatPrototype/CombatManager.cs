@@ -138,18 +138,11 @@ public class CombatManager : MonoBehaviour
 
         if (victory)
         {
-            if (loadSettings != null)
+            if (loadSettings != null && loadSettings.currentFight != null)
             {
                 loadSettings.health = playerStats.GetHealth();
 
-                if (boss)
-                {
-                    loadSettings.bossKilled = true;
-                }
-                else
-                {
-                    loadSettings.enemyKilled = true;
-                }
+                loadSettings.enemiesKilled[loadSettings.currentFight] = true;
             }
 
 
@@ -160,8 +153,10 @@ public class CombatManager : MonoBehaviour
         {
             if (loadSettings != null)
             {
-                loadSettings.bossKilled = false;
-                loadSettings.enemyKilled = false;
+                loadSettings.enemiesKilled = loadSettings.checkpointEnemies;
+
+                loadSettings.enemiesKilled[loadSettings.currentFight] = true;
+
                 loadSettings.died = true;
                 loadSettings.health = 120;
             }
