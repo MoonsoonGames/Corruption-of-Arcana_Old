@@ -60,7 +60,7 @@ public class AbilityManager : MonoBehaviour
 
         if (targetHealth != null)
         {
-            int damage = Random.Range(8, 12);
+            int damage = Random.Range(9, 12);
 
             Debug.Log("Cast Slash on " + target.name);
 
@@ -85,7 +85,7 @@ public class AbilityManager : MonoBehaviour
 
         if (targetHealth != null)
         {
-            int damage = Random.Range(25, 35);
+            int damage = Random.Range(28, 38);
 
             Debug.Log("Cast Slash on " + target.name + ". It's a critical hit!");
 
@@ -109,41 +109,29 @@ public class AbilityManager : MonoBehaviour
         
         if (targetHealth != null)
         {
-            int cost = 30;
-            if (playerStats.CheckMana(cost))
+            int damage = Random.Range(10, 14);
+
+            EnemyStats[] enemies = FindObjectsOfType<EnemyStats>();
+
+            string message = "Cast Cleave on ";
+
+            foreach (var item in enemies)
             {
-                int damage = Random.Range(10, 14);
+                message += item.gameObject.name + ", ";
 
-                EnemyStats[] enemies = FindObjectsOfType<EnemyStats>();
+                item.ChangeHeath(damage, true);
+                combatManager.Dmg.SetActive(true);
+                combatManager.DmgValue.text = damage.ToString();
 
-                string message = "Cast Cleave on ";
-
-                foreach (var item in enemies)
-                {
-                    message += item.gameObject.name + ", ";
-
-                    item.ChangeHeath(damage, true);
-                    combatManager.Dmg.SetActive(true);
-                    combatManager.DmgValue.text = damage.ToString();
-
-                }
-
-                Debug.Log(message);
-
-                playerStats.ChangeMana(cost, true);
-                combatManager.Ap.SetActive(true);
-                combatManager.ApValue.text = cost.ToString();
-
-                ResetAbility();
-
-                StartCoroutine(IEndTurn(0.2f));
             }
-            else
-            {
-                combatManager.noMana.SetActive(true);
-                Debug.Log("Insufficient Mana");
-                StartCoroutine(IRemovePopup(popupDuration));
-            }
+
+            Debug.Log(message);
+
+            combatManager.Ap.SetActive(true);
+
+            ResetAbility();
+
+            StartCoroutine(IEndTurn(0.2f));
         }
         else
         {
@@ -157,7 +145,44 @@ public class AbilityManager : MonoBehaviour
 
         if (targetHealth != null)
         {
-            int cost = 50;
+            Debug.Log("Cast Flurry on " + target.name);
+
+            StartCoroutine(IFlurryAttacks(0.05f, targetHealth));
+            StartCoroutine(IFlurryAttacks(0.15f, targetHealth));
+            StartCoroutine(IFlurryAttacks(0.25f, targetHealth));
+            StartCoroutine(IFlurryAttacks(0.35f, targetHealth));
+            StartCoroutine(IFlurryAttacks(0.7f, targetHealth));
+
+            combatManager.Ap.SetActive(true);
+
+            ResetAbility();
+
+            StartCoroutine(IEndTurn(1f));
+        }
+        else
+        {
+            Debug.Log("You cannot target that character with this spell");
+        }
+
+    }
+
+    private IEnumerator IFlurryAttacks(float delay, EnemyStats targetHealth)
+    {
+        yield return new WaitForSeconds(delay);
+
+        int damage = Random.Range(3, 5);
+        targetHealth.ChangeHeath(damage, true);
+        combatManager.Dmg.SetActive(true);
+        combatManager.DmgValue.text = damage.ToString();
+    }
+
+    private void StormBarrage(GameObject target)
+    {
+        EnemyStats targetHealth = target.GetComponent<EnemyStats>();
+
+        if (targetHealth != null)
+        {
+            int cost = 55;
             if (playerStats.CheckMana(cost))
             {
                 Debug.Log("Cast Flurry on " + target.name);
@@ -190,11 +215,11 @@ public class AbilityManager : MonoBehaviour
 
     }
 
-    private IEnumerator IFlurryAttacks(float delay, EnemyStats targetHealth)
+    private IEnumerator IStormBarrage(float delay, EnemyStats targetHealth)
     {
         yield return new WaitForSeconds(delay);
 
-        int damage = Random.Range(3, 5);
+        int damage = Random.Range(5, 7);
         targetHealth.ChangeHeath(damage, true);
         combatManager.Dmg.SetActive(true);
         combatManager.DmgValue.text = damage.ToString();
@@ -209,7 +234,7 @@ public class AbilityManager : MonoBehaviour
             int cost = 40;
             if (playerStats.CheckMana(cost))
             {
-                int damage = Random.Range(18, 22);
+                int damage = Random.Range(20, 25);
 
                 Debug.Log("Cast Firebolt on " + target.name);
 
@@ -247,7 +272,7 @@ public class AbilityManager : MonoBehaviour
             int cost = 20;
             if (playerStats.CheckMana(cost))
             {
-                int damage = Random.Range(12, 18);
+                int damage = Random.Range(16, 20);
 
                 Debug.Log("Cast Chill Touch on " + target.name);
 
@@ -292,7 +317,7 @@ public class AbilityManager : MonoBehaviour
 
                 foreach (var item in enemies)
                 {
-                    int damage = Random.Range(12, 20);
+                    int damage = Random.Range(15, 22);
 
                     message += item.gameObject.name + ", ";
 
@@ -333,7 +358,7 @@ public class AbilityManager : MonoBehaviour
             int cost = 40;
             if (playerStats.CheckMana(cost))
             {
-                int heal = Random.Range(24, 30);
+                int heal = Random.Range(28, 34);
 
                 Debug.Log("Cast CureWounds on " + target.name);
 

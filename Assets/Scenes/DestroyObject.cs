@@ -11,7 +11,7 @@ public class DestroyObject : MonoBehaviour
     {
         loadSettings = GameObject.Find("LoadSettings").GetComponent<LoadSettings>();
 
-        if (loadSettings.enemyKilled)
+        if (loadSettings.enemiesKilled["CrystalFight"])
         {
             Destroy();
         }

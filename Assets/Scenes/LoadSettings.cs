@@ -14,9 +14,11 @@ public class LoadSettings : MonoBehaviour
 
     #endregion 
 
+    /*
     public bool enemyKilled = false;
     public bool bossKilled = false;
 
+    */
     public bool fightingBoss = false;
 
     E_Levels lastLevel;
@@ -33,6 +35,14 @@ public class LoadSettings : MonoBehaviour
     public int potionCount;
 
     bool main = false;
+
+    public Dictionary<string, bool> enemiesKilled = new Dictionary<string, bool>();
+    public Dictionary<string, bool> checkpointEnemies = new Dictionary<string, bool>();
+
+    public List<string> enemiesString;
+    public List<string> killedString;
+
+    public string currentFight;
 
     private void Awake()
     {
@@ -113,8 +123,32 @@ public class LoadSettings : MonoBehaviour
         return checkPointScene;
     }
 
+    public void Checkpoint(Scene newCheckPoint)
+    {
+        checkpointEnemies = enemiesKilled;
+
+        SetCheckPointLevel(newCheckPoint);
+    }
+
     public void SetCheckPointLevel(Scene newCheckPoint)
     {
         checkPointScene = newCheckPoint;
+    }
+
+    private void Update()
+    {
+        enemiesString.Clear();
+        killedString.Clear();
+        foreach (var item in enemiesKilled)
+        {
+            if (item.Value)
+            {
+                killedString.Add(item.Key);
+            }
+            else
+            {
+                enemiesString.Add(item.Key);
+            }
+        }
     }
 }

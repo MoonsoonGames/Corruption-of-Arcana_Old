@@ -40,6 +40,8 @@ public class PlayerController : MonoBehaviour
     bool interact = false;
     Dialogue dialogue;
 
+    public GameObject interactImage;
+
     void Start()
     {
         //Load position
@@ -49,6 +51,11 @@ public class PlayerController : MonoBehaviour
         sceneLoader = GameObject.FindObjectOfType<SceneLoader>();
 
         LoadSettings[] loadSettingsArray = GameObject.FindObjectsOfType<LoadSettings>();
+
+        if (interactImage != null)
+        {
+            interactImage.SetActive(false);
+        }
 
         foreach (var item in loadSettingsArray)
         {
@@ -181,6 +188,11 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Can Interact");
             interact = true;
             dialogue = other.gameObject.GetComponent<Dialogue>();
+
+            if (interactImage != null)
+            {
+                interactImage.SetActive(true);
+            }
         }
     }
 
@@ -191,6 +203,11 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Can't Interact");
             interact = false;
             dialogue = null;
+
+            if (interactImage != null)
+            {
+                interactImage.SetActive(false);
+            }
         }
     }
 
