@@ -15,6 +15,11 @@ public class Dialogue : MonoBehaviour
 
     public bool checkpoint = false;
 
+    public bool tutorialDialogue = false;
+    public bool knightDialogue = false;
+
+    public bool requiresTutorial = false;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -28,11 +33,15 @@ public class Dialogue : MonoBehaviour
 
     public void LoadScene()
     {
-        if (sceneLoader != null)
+        if (sceneLoader != null && loadSettings != null)
         {
-            if (loadSettings != null)
+            if ((loadSettings.dialogueComplete && requiresTutorial) || !requiresTutorial)
             {
-                loadSettings.dialogueComplete = true;
+                if (tutorialDialogue)
+                    loadSettings.dialogueComplete = true;
+
+                if (knightDialogue)
+                    loadSettings.prologueComplete = true;
 
                 if (checkpoint)
                 {
@@ -43,11 +52,13 @@ public class Dialogue : MonoBehaviour
                         loadSettings.checkPointPotionCount = controller.GetPotions();
 
                         loadSettings.checkPointPos = controller.transform.position;
+
+                        loadSettings.SetCheckPointLevel(SceneManager.GetActiveScene());
                     }
                 }
-            }
 
-            sceneLoader.LoadSpecifiedScene(sceneString, LoadSceneMode.Single);
+                sceneLoader.LoadSpecifiedScene(sceneString, LoadSceneMode.Single);
+            }
         }
     }
 }

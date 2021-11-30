@@ -17,10 +17,10 @@ public class PlayerController : MonoBehaviour
     private float turnCamera;
     public float sensitivity = 5;
 
-    public float maxHealth = 50;
-    public float health;
-    public float maxArcana = 35;
-    public float arcana;
+    public int maxHealth = 50;
+    public int health;
+    public int maxArcana = 35;
+    public int arcana;
     public Slider healthBar;
     public Slider arcanaBar;
 
@@ -36,6 +36,9 @@ public class PlayerController : MonoBehaviour
 
     public int maxPotions = 5;
     int potionCount = 3;
+
+    bool interact = false;
+    Dialogue dialogue;
 
     void Start()
     {
@@ -65,7 +68,10 @@ public class PlayerController : MonoBehaviour
                     potionCount = loadSettings.potionCount;
                 }
 
-                SetupTransform(loadSettings.RequestPosition(this));
+                Vector3 spawnPos = loadSettings.RequestPosition(this);
+
+                SetupTransform(spawnPos);
+                StartCoroutine(IDelayStartTransform(1f, spawnPos));
             }
             else
             {
@@ -78,6 +84,12 @@ public class PlayerController : MonoBehaviour
 
         Debug.Log("Length: " + loadSettingsArray.Length);
         //Debug.Break();
+    }
+
+    IEnumerator IDelayStartTransform(float delay, Vector3 newSpawnPos)
+    {
+        yield return new WaitForSeconds(delay);
+        SetupTransform(newSpawnPos);
     }
 
     void SetupTransform(Vector3 targetPosition)
@@ -140,13 +152,19 @@ public class PlayerController : MonoBehaviour
             healthBar.value = health;
         if (arcanaBar != null)
             arcanaBar.value = arcana;
+
+
+        if (Input.GetButton("Interact") && interact && dialogue != null)
+        {
+            dialogue.LoadScene();
+        }
     }
 
     public void OnTriggerEnter(Collider other)
     {
         //Save current position
         if (loadSettings != null)
-            loadSettings.playerPos = transform.position;
+            loadSettings.playerPosInThoth = transform.position;
 
         if (other.gameObject.CompareTag("commonEnemy") || other.gameObject.CompareTag("bossEnemy"))
         {
@@ -160,7 +178,19 @@ public class PlayerController : MonoBehaviour
 
         else if (other.gameObject.CompareTag("NPC"))
         {
-            other.gameObject.GetComponent<Dialogue>().LoadScene();
+            Debug.Log("Can Interact");
+            interact = true;
+            dialogue = other.gameObject.GetComponent<Dialogue>();
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("NPC"))
+        {
+            Debug.Log("Can't Interact");
+            interact = false;
+            dialogue = null;
         }
     }
 

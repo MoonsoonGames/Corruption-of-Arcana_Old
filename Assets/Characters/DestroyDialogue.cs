@@ -15,7 +15,7 @@ public class DestroyDialogue : MonoBehaviour
 
         if (loadSettings != null)
         {
-            if (loadSettings.dialogueComplete)
+            if (!loadSettings.prologueComplete)
             {
                 collider.enabled = false;
             }
