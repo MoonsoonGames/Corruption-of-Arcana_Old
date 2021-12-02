@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
                 Vector3 spawnPos = loadSettings.RequestPosition(this);
 
                 SetupTransform(spawnPos);
-                StartCoroutine(IDelayStartTransform(1f, spawnPos));
+                StartCoroutine(IDelayStartTransform(4f, spawnPos));
             }
             else
             {
