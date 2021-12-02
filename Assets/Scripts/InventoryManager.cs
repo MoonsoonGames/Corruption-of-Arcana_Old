@@ -30,10 +30,11 @@ public class InventoryManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.I))
         {
             Inventory.SetActive(!Inventory.activeSelf);
             ExplorationUI.SetActive(!ExplorationUI.activeSelf);
+
             if (player.GetComponent<PlayerController>().enabled == true)
             {
                 player.GetComponent<PlayerController>().enabled = false;
