@@ -4,27 +4,28 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
+    /*
+     * COMP280 NOTE
+     * 
+     * This script was rewritten for comp280 worksheet 4 (Human-Computer interaction)
+     * The script was originally built for handling the inventory and pause menu when they were combined as 1 object, now they have been split and will work in seperate scripts to be managed more efficiently
+    */
+
     public GameObject Inventory;
     public GameObject ExplorationUI;
     public GameObject player;
     public GameObject Camera;
-    public bool inventoryActive;
 
-    public GameObject CombatHelpScreen;
-    public GameObject UIHelpScreen;
-    public GameObject GameMechHelpScreen;
-    public GameObject LoreHelpScreen;
-    public GameObject NavigationHelp1;
-    public GameObject NavigationHelp2;
+    //Inventory Pages
+    public GameObject InvPage1;
+    public GameObject InvPage2;
+    public GameObject InvPage3;
 
     // Start is called before the first frame update
     void Start()
     {
         Inventory.SetActive(false);
-        CombatHelpScreen.SetActive(false);
-        UIHelpScreen.SetActive(false);
-        GameMechHelpScreen.SetActive(false);
-        LoreHelpScreen.SetActive(false);
+        ExplorationUI.SetActive(true);
     }
 
     // Update is called once per frame
@@ -34,7 +35,7 @@ public class InventoryManager : MonoBehaviour
         {
             Inventory.SetActive(!Inventory.activeSelf);
             ExplorationUI.SetActive(!ExplorationUI.activeSelf);
-
+            
             if (player.GetComponent<PlayerController>().enabled == true)
             {
                 player.GetComponent<PlayerController>().enabled = false;
@@ -47,58 +48,45 @@ public class InventoryManager : MonoBehaviour
                 player.GetComponent<PlayerController>().enabled = true;
                 Camera.GetComponent<PlayerCameraController>().enabled = true;
                 Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
             }
         }
     }
 
-    public void CombatHelp()
+    public void CloseMenu()
     {
         Inventory.SetActive(false);
-        CombatHelpScreen.SetActive(true);
-        Debug.Log("Combat help loaded");
+        ExplorationUI.SetActive(true);
+        Cursor.visible = false;
+        player.GetComponent<PlayerController>().enabled = true;
+        Camera.GetComponent<PlayerCameraController>().enabled = true;
+        Debug.Log("Closed Menu");
     }
-    public void UIHelp()
+
+    public void NextInvPage ()
     {
-        Inventory.SetActive(false);
-        UIHelpScreen.SetActive(true);
-        Debug.Log("UI help loaded");
+        if (InvPage1.activeSelf == true)
+        {
+            InvPage1.SetActive(false);
+            InvPage2.SetActive(true);
+        }
+        else if (InvPage2.activeSelf == true)
+        {
+            InvPage2.SetActive(false);
+            InvPage3.SetActive(true);
+        }
     }
-    public void MechanicsHelp()
+
+    public void LastInvPage()
     {
-        Inventory.SetActive(false);
-        GameMechHelpScreen.SetActive(true);
-        Debug.Log("Mechanics help loaded");
-    }
-    public void LoreHelp()
-    {
-        Inventory.SetActive(false);
-        LoreHelpScreen.SetActive(true);
-        Debug.Log("Lore help loaded");
-    }
-    public void Back()
-    {
-        Inventory.SetActive(true);
-        CombatHelpScreen.SetActive(false);
-        UIHelpScreen.SetActive(false);
-        GameMechHelpScreen.SetActive(false);
-        LoreHelpScreen.SetActive(false);
-        Debug.Log("Inventory loaded");
-    }
-    public void nextPage()
-    {
-        NavigationHelp1.SetActive(false);
-        NavigationHelp2.SetActive(true);
-        Debug.Log("next page loaded");
-    }
-    public void backPage()
-    {
-        NavigationHelp1.SetActive(true);
-        NavigationHelp2.SetActive(false);
-        Debug.Log("previous page loaded");
-    }
-    public void quitButton()
-    {
-        Application.Quit();
+        if (InvPage3.activeSelf == true)
+        {
+            InvPage3.SetActive(false);
+            InvPage2.SetActive(true);
+        }
+        else if (InvPage2.activeSelf == true)
+        {
+            InvPage2.SetActive(false);
+            InvPage1.SetActive(true);
+        }
     }
 }
