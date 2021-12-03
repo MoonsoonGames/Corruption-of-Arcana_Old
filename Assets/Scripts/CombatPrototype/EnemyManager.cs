@@ -31,7 +31,12 @@ public class EnemyManager : MonoBehaviour
 
         foreach (var item in enemiesArray)
         {
-            targetters.Add(item.GetComponentInChildren<Targetter>());
+            Targetter targetter = item.GetComponentInChildren<Targetter>();
+
+            if (!targetter.ally)
+            {
+                targetters.Add(item.GetComponentInChildren<Targetter>());
+            }
         }
 
         foreach (var item in enemiesArray)

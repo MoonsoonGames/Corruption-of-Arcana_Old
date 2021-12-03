@@ -14,9 +14,12 @@ public class AbilityManager : MonoBehaviour
 
     public float popupDuration = 5f;
 
+    Targetter targetter;
+
     private void Start()
     {
         activeCard = GameObject.FindObjectOfType<ActiveCard>();
+        targetter = GetComponentInChildren<Targetter>();
     }
 
     public void CastAbility(GameObject target)
@@ -45,7 +48,16 @@ public class AbilityManager : MonoBehaviour
 
         Debug.Log("Readied " + abilityName + " ability.");
 
-        combatManager.TargetEnemies(true);
+        if (abilityName == "HealingPotion" || abilityName == "CureWounds")
+        {
+            combatManager.TargetEnemies(false);
+            targetter.SetVisibility(true);
+        }
+        else
+        {
+            combatManager.TargetEnemies(true);
+            targetter.SetVisibility(false);
+        }
     }
 
     public void ResetAbility()
@@ -56,6 +68,7 @@ public class AbilityManager : MonoBehaviour
             activeCard.CastCard();
 
         combatManager.TargetEnemies(false);
+        targetter.SetVisibility(false);
     }
 
     private void Slash(GameObject target)
