@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour
     public GameObject Camera;
 
     public GameObject PauseMenu;
+    public GameObject GuideBook;
 
     //Inventory pages
     public GameObject InvPage1;
@@ -25,6 +26,13 @@ public class UIManager : MonoBehaviour
 
     //Guide book pages
     public GameObject OpeningPage;
+    public GameObject MonsterPages;
+    public GameObject CardPages;
+    public GameObject PeoplePages;
+    public GameObject SecretsPages;
+    public GameObject ControlsPages;
+    public GameObject CombatPages;
+    public GameObject ObjHistoryPages;
 
     public GameObject Monpage1;
     public GameObject Monpage2;
@@ -63,6 +71,9 @@ public class UIManager : MonoBehaviour
             else if (Inventory.activeSelf == false)
             {
                 PauseMenu.SetActive(true);
+                ExplorationUI.SetActive(false);
+                player.GetComponent<PlayerController>().enabled = false;
+                Camera.GetComponent<PlayerCameraController>().enabled = false;
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
             }
@@ -77,6 +88,9 @@ public class UIManager : MonoBehaviour
             else if (PauseMenu.activeSelf == false)
             {
                 Inventory.SetActive(true);
+                ExplorationUI.SetActive(false);
+                player.GetComponent<PlayerController>().enabled = false;
+                Camera.GetComponent<PlayerCameraController>().enabled = false;
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
             }
@@ -99,15 +113,13 @@ public class UIManager : MonoBehaviour
     public void Help()
     {
         PauseMenu.SetActive(false);
-        //HelpScreen.SetActive(true);
+        GuideBook.SetActive(true);
 
         Debug.Log("Loading Help");
     }
 
     public void MainMenu()
     {
-
-
         Debug.Log("Back to the start");
     }
 
@@ -164,6 +176,8 @@ public class UIManager : MonoBehaviour
 
     public void Monsters()
     {
+        MonsterPages.SetActive(true);
+        OpeningPage.SetActive(false);
         Monpage1.SetActive(true);
         Cardpage1.SetActive(false);
         Pplpage1.SetActive(false);
@@ -172,6 +186,8 @@ public class UIManager : MonoBehaviour
 
     public void Cards()
     {
+        CardPages.SetActive(true);
+        OpeningPage.SetActive(false);
         Monpage1.SetActive(false);
         Cardpage1.SetActive(true);
         Pplpage1.SetActive(false);
@@ -180,6 +196,8 @@ public class UIManager : MonoBehaviour
 
     public void People()
     {
+        PeoplePages.SetActive(true);
+        OpeningPage.SetActive(false);
         Monpage1.SetActive(false);
         Cardpage1.SetActive(false);
         Pplpage1.SetActive(true);
@@ -188,6 +206,8 @@ public class UIManager : MonoBehaviour
 
     public void Secrets()
     {
+        SecretsPages.SetActive(true);
+        OpeningPage.SetActive(false);
         Monpage1.SetActive(false);
         Cardpage1.SetActive(false);
         Pplpage1.SetActive(false);
@@ -196,18 +216,106 @@ public class UIManager : MonoBehaviour
 
     public void Controls()
     {
-
+        ControlsPages.SetActive(true);
+        OpeningPage.SetActive(false);
+        Monpage1.SetActive(false);
+        Cardpage1.SetActive(false);
+        Pplpage1.SetActive(false);
+        Secretpage1.SetActive(false);
     }
 
     public void Combat()
     {
-
+        CombatPages.SetActive(true);
+        OpeningPage.SetActive(false);
+        Monpage1.SetActive(false);
+        Cardpage1.SetActive(false);
+        Pplpage1.SetActive(false);
+        Secretpage1.SetActive(false);
     }
 
     public void ObjectiveHistory()
     {
-
+        ObjHistoryPages.SetActive(true);
+        OpeningPage.SetActive(false);
+        Monpage1.SetActive(false);
+        Cardpage1.SetActive(false);
+        Pplpage1.SetActive(false);
+        Secretpage1.SetActive(false);
     }
 
+    public void nextPage()
+    {
+        if (Monpage1.activeSelf == true)
+        {
+            Monpage1.SetActive(false);
+            Monpage2.SetActive(true);
+        }
+        else if (Cardpage1.activeSelf == true)
+        {
+            Cardpage1.SetActive(false);
+            Cardpage2.SetActive(true);
+        }
+        else if (Cardpage2.activeSelf == true)
+        {
+            Cardpage2.SetActive(false);
+            Cardpage3.SetActive(true);
+        }
+        else if (Cardpage3.activeSelf == true)
+        {
+            Cardpage3.SetActive(false);
+            Cardpage4.SetActive(true);
+        }
+        else if (Cardpage4.activeSelf == true)
+        {
+            Cardpage4.SetActive(false);
+            Cardpage5.SetActive(true);
+        }
+        else if (Pplpage1.activeSelf == true)
+        {
+            Pplpage1.SetActive(false);
+            Pplpage2.SetActive(true);
+        }
+    }
+
+    public void lastPage()
+    {
+        if (Monpage2.activeSelf == true)
+        {
+            Monpage2.SetActive(false);
+            Monpage1.SetActive(true);
+        }
+        else if (Cardpage5.activeSelf == true)
+        {
+            Cardpage5.SetActive(false);
+            Cardpage4.SetActive(true);
+        }
+        else if (Cardpage4.activeSelf == true)
+        {
+            Cardpage4.SetActive(false);
+            Cardpage3.SetActive(true);
+        }
+        else if (Cardpage3.activeSelf == true)
+        {
+            Cardpage3.SetActive(false);
+            Cardpage2.SetActive(true);
+        }
+        else if (Cardpage2.activeSelf == true)
+        {
+            Cardpage2.SetActive(false);
+            Cardpage1.SetActive(true);
+        }
+        else if (Pplpage2.activeSelf == true)
+        {
+            Pplpage2.SetActive(false);
+            Pplpage1.SetActive(true);
+        }
+    }
+
+    public void CloseBook()
+    {
+        GuideBook.SetActive(false);
+        PauseMenu.SetActive(true);
+    }
     #endregion
 }
