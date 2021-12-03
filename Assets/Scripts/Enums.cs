@@ -16,7 +16,7 @@ public enum E_Levels
     [InspectorName("Main Menu")]
     SplashScreen,
     [InspectorName("Thoth")]
-    Thoth,
+    ThothTesting,
     [InspectorName("Combat")]
     CombatPrototype,
 
