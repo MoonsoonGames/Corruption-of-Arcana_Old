@@ -44,6 +44,8 @@ public class AbilityManager : MonoBehaviour
             activeCard.ReadyCard(readyAbility);
 
         Debug.Log("Readied " + abilityName + " ability.");
+
+        combatManager.TargetEnemies(true);
     }
 
     public void ResetAbility()
@@ -52,6 +54,8 @@ public class AbilityManager : MonoBehaviour
 
         if (activeCard != null)
             activeCard.CastCard();
+
+        combatManager.TargetEnemies(false);
     }
 
     private void Slash(GameObject target)
@@ -170,10 +174,13 @@ public class AbilityManager : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
-        int damage = Random.Range(3, 5);
-        targetHealth.ChangeHeath(damage, true);
-        combatManager.Dmg.SetActive(true);
-        combatManager.DmgValue.text = damage.ToString();
+        if (targetHealth != null)
+        {
+            int damage = Random.Range(6, 8);
+            targetHealth.ChangeHeath(damage, true);
+            combatManager.Dmg.SetActive(true);
+            combatManager.DmgValue.text = damage.ToString();
+        }
     }
 
     private void StormBarrage(GameObject target)
@@ -187,11 +194,11 @@ public class AbilityManager : MonoBehaviour
             {
                 Debug.Log("Cast Flurry on " + target.name);
 
-                StartCoroutine(IFlurryAttacks(0.05f, targetHealth));
-                StartCoroutine(IFlurryAttacks(0.15f, targetHealth));
-                StartCoroutine(IFlurryAttacks(0.25f, targetHealth));
-                StartCoroutine(IFlurryAttacks(0.35f, targetHealth));
-                StartCoroutine(IFlurryAttacks(0.7f, targetHealth));
+                StartCoroutine(IStormBarrage(0.05f, targetHealth));
+                StartCoroutine(IStormBarrage(0.15f, targetHealth));
+                StartCoroutine(IStormBarrage(0.25f, targetHealth));
+                StartCoroutine(IStormBarrage(0.35f, targetHealth));
+                StartCoroutine(IStormBarrage(0.7f, targetHealth));
 
                 playerStats.ChangeMana(cost, true);
                 combatManager.Ap.SetActive(true);
@@ -219,10 +226,13 @@ public class AbilityManager : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
-        int damage = Random.Range(5, 7);
-        targetHealth.ChangeHeath(damage, true);
-        combatManager.Dmg.SetActive(true);
-        combatManager.DmgValue.text = damage.ToString();
+        if (targetHealth != null)
+        {
+            int damage = Random.Range(12, 15);
+            targetHealth.ChangeHeath(damage, true);
+            combatManager.Dmg.SetActive(true);
+            combatManager.DmgValue.text = damage.ToString();
+        }
     }
 
     private void Firebolt(GameObject target)
@@ -234,7 +244,7 @@ public class AbilityManager : MonoBehaviour
             int cost = 40;
             if (playerStats.CheckMana(cost))
             {
-                int damage = Random.Range(20, 25);
+                int damage = Random.Range(30, 35);
 
                 Debug.Log("Cast Firebolt on " + target.name);
 
@@ -272,7 +282,7 @@ public class AbilityManager : MonoBehaviour
             int cost = 20;
             if (playerStats.CheckMana(cost))
             {
-                int damage = Random.Range(16, 20);
+                int damage = Random.Range(20, 25);
 
                 Debug.Log("Cast Chill Touch on " + target.name);
 
@@ -317,7 +327,7 @@ public class AbilityManager : MonoBehaviour
 
                 foreach (var item in enemies)
                 {
-                    int damage = Random.Range(15, 22);
+                    int damage = Random.Range(18, 24);
 
                     message += item.gameObject.name + ", ";
 
@@ -358,7 +368,7 @@ public class AbilityManager : MonoBehaviour
             int cost = 40;
             if (playerStats.CheckMana(cost))
             {
-                int heal = Random.Range(28, 34);
+                int heal = Random.Range(32, 38);
 
                 Debug.Log("Cast CureWounds on " + target.name);
 
@@ -396,7 +406,7 @@ public class AbilityManager : MonoBehaviour
             int cost = 1;
             if (playerStats.CheckPotions(cost))
             {
-                int heal = Random.Range(30, 46);
+                int heal = Random.Range(38, 46);
 
                 Debug.Log("Cast CureWounds on " + target.name);
 

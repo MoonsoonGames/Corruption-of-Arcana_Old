@@ -166,4 +166,9 @@ public class CombatManager : MonoBehaviour
             //Transform.position(Mama reinfeld);
         }
     }
+
+    public void TargetEnemies(bool visible)
+    {
+        enemyManager.TargetEnemies(visible);
+    }
 }

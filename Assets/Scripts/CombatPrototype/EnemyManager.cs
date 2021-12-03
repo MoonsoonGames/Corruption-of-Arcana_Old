@@ -4,21 +4,49 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    List<Enemy> enemies = new List<Enemy>();
+    //[HideInInspector]
+    public List<Enemy> enemies = new List<Enemy>();
+    //[HideInInspector]
+    public List<Targetter> targetters;
 
     public CombatManager combatManager;
 
-    int enemiesKilled = 0;
-
     private void Start()
     {
+        SetupLists();
+    }
+
+    public IEnumerator IDelaySetup(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SetupLists();
+    }
+
+    public void SetupLists()
+    {
+        enemies.Clear();
+        targetters.Clear();
+
         Enemy[] enemiesArray = GameObject.FindObjectsOfType<Enemy>();
+
+        foreach (var item in enemiesArray)
+        {
+            targetters.Add(item.GetComponentInChildren<Targetter>());
+        }
 
         foreach (var item in enemiesArray)
         {
             enemies.Add(item);
 
             item.GetComponent<EnemyStats>().enemyManager = this;
+        }
+    }
+
+    public void TargetEnemies(bool visible)
+    {
+        foreach (var item in targetters)
+        {
+            item.SetVisibility(visible);
         }
     }
 
@@ -45,9 +73,9 @@ public class EnemyManager : MonoBehaviour
 
     public void EnemyKilled()
     {
-        enemiesKilled++;
+        StartCoroutine(IDelaySetup(0.5f));
 
-        if (enemiesKilled >= enemies.Count)
+        if (enemies.Count - 1 <= 0)
         {
             combatManager.ShowEndScreen(true);
         }
