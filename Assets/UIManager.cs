@@ -30,9 +30,9 @@ public class UIManager : MonoBehaviour
     public GameObject CardPages;
     public GameObject PeoplePages;
     public GameObject SecretsPages;
-    public GameObject ControlsPages;
-    public GameObject CombatPages;
-    public GameObject ObjHistoryPages;
+    //public GameObject ControlsPages;
+    //public GameObject CombatPages;
+    //public GameObject ObjHistoryPages;
 
     public GameObject Monpage1;
     public GameObject Monpage2;
@@ -216,7 +216,7 @@ public class UIManager : MonoBehaviour
 
     public void Controls()
     {
-        ControlsPages.SetActive(true);
+        //ControlsPages.SetActive(true);
         OpeningPage.SetActive(false);
         Monpage1.SetActive(false);
         Cardpage1.SetActive(false);
@@ -226,7 +226,7 @@ public class UIManager : MonoBehaviour
 
     public void Combat()
     {
-        CombatPages.SetActive(true);
+        //CombatPages.SetActive(true);
         OpeningPage.SetActive(false);
         Monpage1.SetActive(false);
         Cardpage1.SetActive(false);
@@ -236,7 +236,7 @@ public class UIManager : MonoBehaviour
 
     public void ObjectiveHistory()
     {
-        ObjHistoryPages.SetActive(true);
+        //ObjHistoryPages.SetActive(true);
         OpeningPage.SetActive(false);
         Monpage1.SetActive(false);
         Cardpage1.SetActive(false);
