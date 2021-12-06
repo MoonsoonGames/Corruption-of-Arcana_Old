@@ -7,8 +7,9 @@ public class PlayerController : MonoBehaviour
 {
     CharacterController characterController;
 
-    public float baseMoveSpeed = 50f;
-    public float baseSprintSpeed = 80f;
+    public float baseMoveSpeed;
+    public float baseSneakSpeed;
+    public float baseSprintSpeed;
     float moveSpeed;
 
     public float jumpSpeed = 8.0f;
@@ -126,6 +127,11 @@ public class PlayerController : MonoBehaviour
                 moveSpeed = baseSprintSpeed;
             }
 
+            if (Input.GetKey(KeyCode.LeftControl))
+            {
+                moveSpeed = baseSneakSpeed;
+            }
+
             else
             {
                 moveSpeed = baseMoveSpeed;
@@ -139,21 +145,6 @@ public class PlayerController : MonoBehaviour
 
         // Move the controller
         characterController.Move(moveDirection * Time.deltaTime);
-
-        //turnCamera = Input.GetAxis("Mouse X") * sensitivity;
-        //if (turnCamera != 0)
-        //{
-        //    //Code for action on mouse moving horizontally
-        //    transform.eulerAngles += new Vector3(0, turnCamera, 0);
-        //}
-
-        if (health <= 0)
-        {
-            //Set active game over screen
-            //load mama reinfeld trailer scene
-            //transform position to mama reinfeld
-            //Load mama reinfeld dialogue for respawn
-        }
 
         //Sets the values of the healthbars to their specific values
         if (healthBar != null)
@@ -265,13 +256,6 @@ public class PlayerController : MonoBehaviour
         {
             potionCount = Mathf.Clamp(potionCount + value, 0, maxPotions);
         }
-
-        if (potionCount == 0)
-        {
-            //combatManager.HealingItem.SetActive(false);
-        }
-
-        //combatManager.HealingLeft.text = potionCount.ToString();
 
         if (loadSettings != null)
         {

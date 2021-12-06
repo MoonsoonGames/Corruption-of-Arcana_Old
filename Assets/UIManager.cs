@@ -17,9 +17,16 @@ public class UIManager : MonoBehaviour
     public GameObject ExplorationUI;
     public GameObject player;
     public GameObject Camera;
+    public GameObject PlayingCanvas;
 
     public GameObject PauseMenu;
     public GameObject GuideBook;
+
+    #region Main Menu
+    public GameObject MenuCanvas;
+    public GameObject MainMenuScreen;
+    public GameObject MenuCredits;
+    #endregion
 
     #region Inventory pages
     //Inventory pages
@@ -429,6 +436,10 @@ public class UIManager : MonoBehaviour
 
     public void MainMenu()
     {
+        PlayingCanvas.SetActive(false);
+        MenuCanvas.SetActive(true);
+        player.GetComponent<PlayerController>().enabled = false;
+        Camera.GetComponent<PlayerCameraController>().enabled = false;
         Debug.Log("Back to the start");
     }
 
@@ -437,6 +448,15 @@ public class UIManager : MonoBehaviour
         Application.Quit();
 
         Debug.Log("Quiting game");
+    }
+
+    public void resumePlaying()
+    {
+        PlayingCanvas.SetActive(true);
+        MenuCanvas.SetActive(false);
+        player.GetComponent<PlayerController>().enabled = true;
+        Camera.GetComponent<PlayerCameraController>().enabled = true;
+        Debug.Log("Back to the game");
     }
     #endregion
 
