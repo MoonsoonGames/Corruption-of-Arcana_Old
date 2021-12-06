@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class ActiveCard : MonoBehaviour
 {
     public Text cardText;
+    public Text valueText;
+    public Text typeText;
+    public Text descriptionText;
 
     bool cardReadied = false;
 
