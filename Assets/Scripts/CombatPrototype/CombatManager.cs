@@ -93,6 +93,10 @@ public class CombatManager : MonoBehaviour
             Debug.Log("Regenerate Mana");
             playerStats.ChangeMana(15, false);
 
+            Dmg.SetActive(false);
+            Ap.SetActive(false);
+            Healing.SetActive(false);
+
             foreach (var item in cardSetters)
             {
                 item.DrawCards();
@@ -105,9 +109,6 @@ public class CombatManager : MonoBehaviour
             PlayableDecks.SetActive(false);
             HealingItem.SetActive(false);
             noMana.SetActive(false);
-            Dmg.SetActive(false);
-            Ap.SetActive(false);
-            Healing.SetActive(false);
 
             if (enemyManager != null)
             {
