@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class AbilityManager : MonoBehaviour
 {
+    #region Setup
+
     public bool playerTurn = false;
     public CombatManager combatManager;
     public PlayerStats playerStats;
@@ -16,11 +18,49 @@ public class AbilityManager : MonoBehaviour
 
     Targetter targetter;
 
+    #region Ability Values
+
+    #region Basic Attacks
+
+    public int slashDamageMin = 9, slashDamageMax = 12;
+
+    public int criticalSlashDamageMin = 28, criticalSlashDamageMax = 38;
+
+    public int cleaveDamageMin = 10, cleaveDamageMax = 14;
+
+    public int flurryIndividualDamageMin = 6, flurryIndividualDamageMax = 8;
+
+    #endregion
+
+    #region Spells
+
+    public int stormBarrageIndividualDamageMin = 12, stormBarrageIndividualDamageMax = 15;
+    /*
+    public int DamageMin = , DamageMax = ;
+
+    public int DamageMin = , DamageMax = ;
+
+    public int DamageMin = , DamageMax = ;
+
+    public int DamageMin = , DamageMax = ;
+
+    public int DamageMin = , DamageMax = ;
+
+    public int DamageMin = , DamageMax = ;
+    */
+    #endregion
+
+    #endregion
+
     private void Start()
     {
         activeCard = GameObject.FindObjectOfType<ActiveCard>();
         targetter = GetComponentInChildren<Targetter>();
     }
+
+    #endregion
+
+    #region Selecting Abilities
 
     public void CastAbility(GameObject target)
     {
@@ -71,13 +111,19 @@ public class AbilityManager : MonoBehaviour
         targetter.SetVisibility(false);
     }
 
+    #endregion
+
+    #region Abilities
+
+    #region Basic Attacks
+
     private void Slash(GameObject target)
     {
         EnemyStats targetHealth = target.GetComponent<EnemyStats>();
 
         if (targetHealth != null)
         {
-            int damage = Random.Range(9, 12);
+            int damage = Random.Range(slashDamageMin, slashDamageMax);
 
             Debug.Log("Cast Slash on " + target.name);
 
@@ -102,7 +148,7 @@ public class AbilityManager : MonoBehaviour
 
         if (targetHealth != null)
         {
-            int damage = Random.Range(28, 38);
+            int damage = Random.Range(criticalSlashDamageMin, criticalSlashDamageMax);
 
             Debug.Log("Cast Slash on " + target.name + ". It's a critical hit!");
 
@@ -126,7 +172,7 @@ public class AbilityManager : MonoBehaviour
         
         if (targetHealth != null)
         {
-            int damage = Random.Range(10, 14);
+            int damage = Random.Range(cleaveDamageMin, cleaveDamageMax);
 
             EnemyStats[] enemies = FindObjectsOfType<EnemyStats>();
 
@@ -189,12 +235,16 @@ public class AbilityManager : MonoBehaviour
 
         if (targetHealth != null)
         {
-            int damage = Random.Range(6, 8);
+            int damage = Random.Range(flurryIndividualDamageMin, flurryIndividualDamageMax);
             targetHealth.ChangeHeath(damage, true);
             combatManager.Dmg.SetActive(true);
             combatManager.DmgValue.text = damage.ToString();
         }
     }
+
+    #endregion
+
+    #region Spells
 
     private void StormBarrage(GameObject target)
     {
@@ -241,7 +291,7 @@ public class AbilityManager : MonoBehaviour
 
         if (targetHealth != null)
         {
-            int damage = Random.Range(12, 15);
+            int damage = Random.Range(stormBarrageIndividualDamageMin, stormBarrageIndividualDamageMax);
             targetHealth.ChangeHeath(damage, true);
             combatManager.Dmg.SetActive(true);
             combatManager.DmgValue.text = damage.ToString();
@@ -444,6 +494,12 @@ public class AbilityManager : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #endregion
+
+    #region Helper Functions
+
     private IEnumerator IEndTurn(float delay)
     {
         yield return new WaitForSeconds(delay);
@@ -460,4 +516,6 @@ public class AbilityManager : MonoBehaviour
 
         combatManager.noMana.SetActive(false);
     }
+
+    #endregion
 }
