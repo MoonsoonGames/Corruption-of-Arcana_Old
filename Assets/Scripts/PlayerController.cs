@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour
     public float jumpSpeed = 8.0f;
     public float gravity = 20.0f;
 
-    private float turnCamera;
     public float sensitivity = 5;
 
     public int maxHealth = 50;
@@ -23,6 +22,8 @@ public class PlayerController : MonoBehaviour
     public int arcana;
     public Slider healthBar;
     public Slider arcanaBar;
+
+    public Text Location;
 
     private Vector3 moveDirection = Vector3.zero;
 
@@ -194,6 +195,39 @@ public class PlayerController : MonoBehaviour
                 interactImage.SetActive(true);
             }
         }
+
+        #region Thoth location triggers
+        if (other.gameObject.CompareTag("Thoth Mid City"))
+        {
+            Location.text = "Thoth - MidCity".ToString();
+        }
+        else if (other.gameObject.CompareTag("Thoth Market"))
+        {
+            Location.text = "Thoth - Market".ToString();
+        }
+        else if (other.gameObject.CompareTag("Thoth Bridge"))
+        {
+            Location.text = "Thoth - Bridge".ToString();
+        }
+        else if (other.gameObject.CompareTag("Thoth East housing"))
+        {
+            Location.text = "Thoth - East houses".ToString();
+        }
+        else if (other.gameObject.CompareTag("Thoth West housing"))
+        {
+            Location.text = "Thoth - West houses".ToString();
+        }
+        else if (other.gameObject.CompareTag("Thoth Open Sea"))
+        {
+
+        }
+
+        #endregion
+
+        #region Clearing location triggers
+
+        #endregion
+
     }
 
     public void OnTriggerExit(Collider other)

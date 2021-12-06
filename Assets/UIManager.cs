@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -136,7 +137,8 @@ public class UIManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {      
+        #region Hotkeys
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (Inventory.activeSelf == true)
@@ -171,32 +173,228 @@ public class UIManager : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
             }
         }
+        else if (Input.GetKeyDown(KeyCode.H))
+        {
+            GuideBook.SetActive(true);
+            ExplorationUI.SetActive(false);
+            player.GetComponent<PlayerController>().enabled = false;
+            Camera.GetComponent<PlayerCameraController>().enabled = false;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+        //else if (ActiveScene == "Thoth" && Input.GetKeyDown(KeyCode.M))
+        //{
+        //    ThothMap.SetActive(true);
+        //    ExplorationUI.SetActive(false);
+        //    player.GetComponent<PlayerController>().enabled = false;
+        //    Camera.GetComponent<PlayerCameraController>().enabled = false;
+        //}
+        //else if (ActiveScene == "Clearing" && Input.GetKeyDown(KeyCode.M))
+        //{
+        //    ClearingMap.SetActive(true);
+        //    ExplorationUI.SetActive(false);
+        //    player.GetComponent<PlayerController>().enabled = false;
+        //    Camera.GetComponent<PlayerCameraController>().enabled = false;
+        //}
+        #endregion
 
-        if (Cardpage1.activeSelf == true)
+        #region Guide book buttons
+        if (OpeningPage.activeSelf == true)
+        {
+            nextGuideButton.SetActive(false);
+            lastGuideButton.SetActive(false);
+        }
+
+        //Monster pages
+        else if (MonsterPages.activeSelf == true)
         {
             nextGuideButton.SetActive(true);
             lastGuideButton.SetActive(false);
+            if (Monpage1.activeSelf == true)
+            {
+                nextGuideButton.SetActive(true);
+                lastGuideButton.SetActive(false);
+            }
+            else if  (Monpage2.activeSelf == true)
+            {
+                nextGuideButton.SetActive(false);
+                lastGuideButton.SetActive(true);
+            }
         }
-        else if (Cardpage2.activeSelf == true)
+
+        //Card pages
+        else if (CardPages.activeSelf == true)
         {
             nextGuideButton.SetActive(true);
-            lastGuideButton.SetActive(true);
+            lastGuideButton.SetActive(false);
+            if (Cardpage1.activeSelf == true)
+            {
+                nextGuideButton.SetActive(true);
+                lastGuideButton.SetActive(false);
+            }
+            else if (Cardpage2.activeSelf == true)
+            {
+                nextGuideButton.SetActive(true);
+                lastGuideButton.SetActive(true);
+            }
+            else if (Cardpage3.activeSelf == true)
+            {
+                nextGuideButton.SetActive(true);
+                lastGuideButton.SetActive(true);
+            }
+            else if (Cardpage4.activeSelf == true)
+            {
+                nextGuideButton.SetActive(true);
+                lastGuideButton.SetActive(true);
+            }
+            else if (Cardpage5.activeSelf == true)
+            {
+                nextGuideButton.SetActive(false);
+                lastGuideButton.SetActive(true);
+            }
         }
-        else if (Cardpage3.activeSelf == true)
+
+        //People pages
+        else if (PeoplePages.activeSelf == true)
         {
             nextGuideButton.SetActive(true);
-            lastGuideButton.SetActive(true);
+            lastGuideButton.SetActive(false);
+            if (Pplpage1.activeSelf == true)
+            {
+                nextGuideButton.SetActive(true);
+                lastGuideButton.SetActive(false);
+            }
+            else if  (Pplpage2.activeSelf == true)
+            {
+                nextGuideButton.SetActive(false);
+                lastGuideButton.SetActive(true);
+            }
         }
-        else if (Cardpage4.activeSelf == true)
+
+        //Secret pages
+        else if (SecretsPages.activeSelf == true)
         {
             nextGuideButton.SetActive(true);
-            lastGuideButton.SetActive(true);
+            lastGuideButton.SetActive(false);
+            if (Secretpage1.activeSelf == true)
+            {
+                nextGuideButton.SetActive(false);
+                lastGuideButton.SetActive(false);
+            }
         }
-        else if (Cardpage5.activeSelf == true)
+
+        //Navigation pages
+        else if (NavigationSubpage.activeSelf == true)
         {
-            nextGuideButton.SetActive(false);
-            lastGuideButton.SetActive(true);
+            nextGuideButton.SetActive(true);
+            lastGuideButton.SetActive(false);
+            if (NavPage1.activeSelf == true)
+            {
+                nextGuideButton.SetActive(true);
+                lastGuideButton.SetActive(false);
+            }
+            else if (NavPage2.activeSelf == true)
+            {
+                nextGuideButton.SetActive(true);
+                lastGuideButton.SetActive(true);
+            }
+            else if (NavPage3.activeSelf == true)
+            {
+                nextGuideButton.SetActive(false);
+                lastGuideButton.SetActive(true);
+            }
         }
+
+        //InventoryHelp pages
+        else if (InventorySubpage.activeSelf == true)
+        {
+            nextGuideButton.SetActive(true);
+            lastGuideButton.SetActive(false);
+            if (InvHelpPage1.activeSelf == true)
+            {
+                nextGuideButton.SetActive(true);
+                lastGuideButton.SetActive(false);
+            }
+            else if (InvHelpPage2.activeSelf == true)
+            {
+                nextGuideButton.SetActive(true);
+                lastGuideButton.SetActive(true);
+            }
+            else if (InvHelpPage3.activeSelf == true)
+            {
+                nextGuideButton.SetActive(false);
+                lastGuideButton.SetActive(true);
+            }
+        }
+
+        //Player Stats pages
+        else if (PlayerStatSubpage.activeSelf == true)
+        {
+            nextGuideButton.SetActive(true);
+            lastGuideButton.SetActive(false);
+            if (PlyrStatPage1.activeSelf == true)
+            {
+                nextGuideButton.SetActive(true);
+                lastGuideButton.SetActive(false);
+            }
+            else if  (PlyrStatPage2.activeSelf == true)
+            {
+                nextGuideButton.SetActive(false);
+                lastGuideButton.SetActive(true);
+            }
+        }
+
+        //Cards Help pages
+        else if (CardsSubpage.activeSelf == true)
+        {
+            nextGuideButton.SetActive(true);
+            lastGuideButton.SetActive(false);
+            if (CardsPage1.activeSelf == true)
+            {
+                nextGuideButton.SetActive(true);
+                lastGuideButton.SetActive(false);
+            }
+            else if  (CardsPage2.activeSelf == true)
+            {
+                nextGuideButton.SetActive(false);
+                lastGuideButton.SetActive(true);
+            }
+        }
+
+        //Targeting pages
+        else if (TargetSubpage.activeSelf == true)
+        {
+            nextGuideButton.SetActive(true);
+            lastGuideButton.SetActive(false);
+            if (TargetPage1.activeSelf == true)
+            {
+                nextGuideButton.SetActive(true);
+                lastGuideButton.SetActive(false);
+            }
+            else if (TargetPage2.activeSelf == true)
+            {
+                nextGuideButton.SetActive(false);
+                lastGuideButton.SetActive(true);
+            }
+        }
+
+        //Turns pages
+        else if (TurnsSubpage.activeSelf == true)
+        {
+            nextGuideButton.SetActive(true);
+            lastGuideButton.SetActive(false);
+            if (TurnsPage1.activeSelf == true)
+            {
+                nextGuideButton.SetActive(true);
+                lastGuideButton.SetActive(false);
+            }
+            else if (TurnsPage2.activeSelf == true)
+            {
+                nextGuideButton.SetActive(false);
+                lastGuideButton.SetActive(true);
+            }
+        }
+        #endregion
     }
 
     #region Pause menu buttons 
@@ -591,8 +789,6 @@ public class UIManager : MonoBehaviour
         {
             Pplpage1.SetActive(false);
             Pplpage2.SetActive(true);
-            nextGuideButton.SetActive(false);
-            lastGuideButton.SetActive(true);
         }
 
         //Control Section
@@ -601,15 +797,11 @@ public class UIManager : MonoBehaviour
         {
             NavPage1.SetActive(false);
             NavPage2.SetActive(true);
-            nextGuideButton.SetActive(true);
-            lastGuideButton.SetActive(true);
         }
         else if (NavPage2.activeSelf == true)
         {
             NavPage2.SetActive(false);
             NavPage3.SetActive(true);
-            nextGuideButton.SetActive(false);
-            lastGuideButton.SetActive(true);
         }
 
         //inventory help section
@@ -617,15 +809,11 @@ public class UIManager : MonoBehaviour
         {
             InvHelpPage1.SetActive(false);
             InvHelpPage2.SetActive(true);
-            nextGuideButton.SetActive(true);
-            lastGuideButton.SetActive(true);
         }
         else if (InvHelpPage2.activeSelf == true)
         {
             InvHelpPage2.SetActive(false);
             InvHelpPage3.SetActive(true);
-            nextGuideButton.SetActive(false);
-            lastGuideButton.SetActive(true);
         }
 
         //Player Stats section
@@ -633,8 +821,6 @@ public class UIManager : MonoBehaviour
         {
             PlyrStatPage1.SetActive(false);
             PlyrStatPage2.SetActive(true);
-            nextGuideButton.SetActive(false);
-            lastGuideButton.SetActive(true);
         }
 
         //Combat Section
@@ -643,8 +829,6 @@ public class UIManager : MonoBehaviour
         {
             CardsPage1.SetActive(false);
             CardsPage2.SetActive(true);
-            nextGuideButton.SetActive(false);
-            lastGuideButton.SetActive(true);
         }
 
         //Target Section
@@ -652,8 +836,6 @@ public class UIManager : MonoBehaviour
         {
             TargetPage1.SetActive(false);
             TargetPage2.SetActive(true);
-            nextGuideButton.SetActive(false);
-            lastGuideButton.SetActive(true);
         }
 
         //Turns Section
@@ -661,8 +843,6 @@ public class UIManager : MonoBehaviour
         {
             TurnsPage1.SetActive(false);
             TurnsPage2.SetActive(true);
-            nextGuideButton.SetActive(false);
-            lastGuideButton.SetActive(true);
         }
     }
 
@@ -673,8 +853,6 @@ public class UIManager : MonoBehaviour
         {
             Monpage2.SetActive(false);
             Monpage1.SetActive(true);
-            nextGuideButton.SetActive(true);
-            lastGuideButton.SetActive(false);
         }
 
         //card section
@@ -682,29 +860,21 @@ public class UIManager : MonoBehaviour
         {
             Cardpage5.SetActive(false);
             Cardpage4.SetActive(true);
-            nextGuideButton.SetActive(true);
-            lastGuideButton.SetActive(true);
         }
         else if (Cardpage4.activeSelf == true)
         {
             Cardpage4.SetActive(false);
             Cardpage3.SetActive(true);
-            nextGuideButton.SetActive(true);
-            lastGuideButton.SetActive(true);
         }
         else if (Cardpage3.activeSelf == true)
         {
             Cardpage3.SetActive(false);
             Cardpage2.SetActive(true);
-            nextGuideButton.SetActive(true);
-            lastGuideButton.SetActive(true);
         }
         else if (Cardpage2.activeSelf == true)
         {
             Cardpage2.SetActive(false);
             Cardpage1.SetActive(true);
-            nextGuideButton.SetActive(true);
-            lastGuideButton.SetActive(false);
         }
 
         //people section
@@ -712,8 +882,6 @@ public class UIManager : MonoBehaviour
         {
             Pplpage2.SetActive(false);
             Pplpage1.SetActive(true);
-            nextGuideButton.SetActive(true);
-            lastGuideButton.SetActive(false);
         }
 
         //Control Section
@@ -722,15 +890,11 @@ public class UIManager : MonoBehaviour
         {
             NavPage3.SetActive(false);
             NavPage2.SetActive(true);
-            nextGuideButton.SetActive(true);
-            lastGuideButton.SetActive(true);
         }
         else if (NavPage2.activeSelf == true)
         {
             NavPage2.SetActive(false);
             NavPage1.SetActive(true);
-            nextGuideButton.SetActive(true);
-            lastGuideButton.SetActive(false);
         }
 
         //inventory help section
@@ -738,15 +902,11 @@ public class UIManager : MonoBehaviour
         {
             InvHelpPage3.SetActive(false);
             InvHelpPage2.SetActive(true);
-            nextGuideButton.SetActive(true);
-            lastGuideButton.SetActive(true);
         }
         else if (InvHelpPage2.activeSelf == true)
         {
             InvHelpPage2.SetActive(false);
             InvHelpPage1.SetActive(true);
-            nextGuideButton.SetActive(true);
-            lastGuideButton.SetActive(false);
         }
 
         //Player Stats section
@@ -754,8 +914,6 @@ public class UIManager : MonoBehaviour
         {
             PlyrStatPage2.SetActive(false);
             PlyrStatPage1.SetActive(true);
-            nextGuideButton.SetActive(true);
-            lastGuideButton.SetActive(false);
         }
 
         //Combat Section
@@ -764,8 +922,6 @@ public class UIManager : MonoBehaviour
         {
             CardsPage2.SetActive(false);
             CardsPage1.SetActive(true);
-            nextGuideButton.SetActive(true);
-            lastGuideButton.SetActive(false);
         }
 
         //Target Section
@@ -773,8 +929,6 @@ public class UIManager : MonoBehaviour
         {
             TargetPage2.SetActive(false);
             TargetPage1.SetActive(true);
-            nextGuideButton.SetActive(true);
-            lastGuideButton.SetActive(false);
         }
 
         //Turns Section
@@ -782,8 +936,6 @@ public class UIManager : MonoBehaviour
         {
             TurnsPage2.SetActive(false);
             TurnsPage1.SetActive(true);
-            nextGuideButton.SetActive(true);
-            lastGuideButton.SetActive(false);
         }
     }
 
