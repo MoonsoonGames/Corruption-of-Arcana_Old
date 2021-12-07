@@ -14,11 +14,6 @@ public class LoadSettings : MonoBehaviour
 
     #endregion 
 
-    /*
-    public bool enemyKilled = false;
-    public bool bossKilled = false;
-
-    */
     public bool fightingBoss = false;
 
     E_Levels lastLevel;
