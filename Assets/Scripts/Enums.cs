@@ -106,5 +106,5 @@ public enum E_Decks
 
 public enum E_CombatCards
 {
-    Slash, Cleave, Flurry, ChillTouch, Firebolt, ChainLightning, CureWounds, CriticalSlash, HealingPotion
+    Slash, Cleave, Flurry, ChillTouch, Firebolt, ChainLightning, CureWounds, CriticalSlash, HealingPotion, StormBarrage
 }

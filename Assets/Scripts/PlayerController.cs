@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     CharacterController characterController;
+    Rigidbody rb;
 
     public float baseMoveSpeed = 50f;
     public float baseSprintSpeed = 80f;
@@ -40,15 +41,25 @@ public class PlayerController : MonoBehaviour
     bool interact = false;
     Dialogue dialogue;
 
+    public GameObject interactImage;
+
+    bool canMove = false;
+
     void Start()
     {
         //Load position
         moveSpeed = baseMoveSpeed;
         characterController = GetComponent<CharacterController>();
+        rb = GetComponent<Rigidbody>();
 
         sceneLoader = GameObject.FindObjectOfType<SceneLoader>();
 
         LoadSettings[] loadSettingsArray = GameObject.FindObjectsOfType<LoadSettings>();
+
+        if (interactImage != null)
+        {
+            interactImage.SetActive(false);
+        }
 
         foreach (var item in loadSettingsArray)
         {
@@ -71,7 +82,7 @@ public class PlayerController : MonoBehaviour
                 Vector3 spawnPos = loadSettings.RequestPosition(this);
 
                 SetupTransform(spawnPos);
-                StartCoroutine(IDelayStartTransform(1f, spawnPos));
+                StartCoroutine(IDelayStartTransform(2f, spawnPos));
             }
             else
             {
@@ -89,7 +100,9 @@ public class PlayerController : MonoBehaviour
     IEnumerator IDelayStartTransform(float delay, Vector3 newSpawnPos)
     {
         yield return new WaitForSeconds(delay);
+        Debug.Log("Should be able to move");
         SetupTransform(newSpawnPos);
+        canMove = true;
     }
 
     void SetupTransform(Vector3 targetPosition)
@@ -99,52 +112,53 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (characterController.isGrounded)
+        if (canMove)
         {
-            // We are grounded, so recalculate
-            // move direction directly from axes
-
-            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
-            moveDirection = transform.TransformDirection(moveDirection);
-            moveDirection *= moveSpeed;
-
-            if (Input.GetButton("Jump"))
+            if (characterController.isGrounded)
             {
-                moveDirection.y = jumpSpeed;
+                // We are grounded, so recalculate
+                // move direction directly from axes
+
+                moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
+                moveDirection = transform.TransformDirection(moveDirection);
+                moveDirection *= moveSpeed;
+
+                if (Input.GetButton("Jump"))
+                {
+                    moveDirection.y = jumpSpeed;
+                }
+
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    moveSpeed = baseSprintSpeed;
+                }
+
+                else
+                {
+                    moveSpeed = baseMoveSpeed;
+                }
             }
 
-            if (Input.GetKey(KeyCode.LeftShift))
+            // Apply gravity. Gravity is multiplied by deltaTime twice (once here, and once below
+            // when the moveDirection is multiplied by deltaTime). This is because gravity should be applied
+            // as an acceleration (ms^-2)
+            moveDirection.y -= gravity * Time.deltaTime;
+
+            // Move the controller
+            characterController.Move(moveDirection * Time.deltaTime);
+            //rb.velocity += moveDirection;
+
+            //turnCamera = Input.GetAxis("Mouse X") * sensitivity;
+            //if (turnCamera != 0)
+            //{
+            //    //Code for action on mouse moving horizontally
+            //    transform.eulerAngles += new Vector3(0, turnCamera, 0);
+            //}
+
+            if (Input.GetButton("Interact") && interact && dialogue != null)
             {
-                moveSpeed = baseSprintSpeed;
+                dialogue.LoadScene();
             }
-
-            else
-            {
-                moveSpeed = baseMoveSpeed;
-            }
-        }
-
-        // Apply gravity. Gravity is multiplied by deltaTime twice (once here, and once below
-        // when the moveDirection is multiplied by deltaTime). This is because gravity should be applied
-        // as an acceleration (ms^-2)
-        moveDirection.y -= gravity * Time.deltaTime;
-
-        // Move the controller
-        characterController.Move(moveDirection * Time.deltaTime);
-
-        //turnCamera = Input.GetAxis("Mouse X") * sensitivity;
-        //if (turnCamera != 0)
-        //{
-        //    //Code for action on mouse moving horizontally
-        //    transform.eulerAngles += new Vector3(0, turnCamera, 0);
-        //}
-
-        if (health <= 0)
-        {
-            //Set active game over screen
-            //load mama reinfeld trailer scene
-            //transform position to mama reinfeld
-            //Load mama reinfeld dialogue for respawn
         }
 
         //Sets the values of the healthbars to their specific values
@@ -152,12 +166,6 @@ public class PlayerController : MonoBehaviour
             healthBar.value = health;
         if (arcanaBar != null)
             arcanaBar.value = arcana;
-
-
-        if (Input.GetButton("Interact") && interact && dialogue != null)
-        {
-            dialogue.LoadScene();
-        }
     }
 
     public void OnTriggerEnter(Collider other)
@@ -181,6 +189,11 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Can Interact");
             interact = true;
             dialogue = other.gameObject.GetComponent<Dialogue>();
+
+            if (interactImage != null)
+            {
+                interactImage.SetActive(true);
+            }
         }
     }
 
@@ -191,6 +204,11 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Can't Interact");
             interact = false;
             dialogue = null;
+
+            if (interactImage != null)
+            {
+                interactImage.SetActive(false);
+            }
         }
     }
 
