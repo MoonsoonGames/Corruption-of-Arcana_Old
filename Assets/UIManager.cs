@@ -151,7 +151,10 @@ public class UIManager : MonoBehaviour
             if (Inventory.activeSelf == true)
             {
                 PauseMenu.SetActive(false);
-                Cursor.visible = false;
+            }
+            else if (GuideBook.activeSelf == true)
+            {
+                PauseMenu.SetActive(false);
             }
             else if (Inventory.activeSelf == false)
             {
@@ -168,7 +171,10 @@ public class UIManager : MonoBehaviour
             if (PauseMenu.activeSelf == true)
             {
                 Inventory.SetActive(false);
-                Cursor.visible = false;
+            }
+            else if (GuideBook.activeSelf == true)
+            {
+                Inventory.SetActive(false);
             }
             else if (PauseMenu.activeSelf == false)
             {
