@@ -28,29 +28,50 @@ public class SceneLoader : MonoBehaviour
         switch (sceneToLoad)
         {
             case E_Levels.Thoth:
-                loadSettings.SetLastLevel(sceneToLoad);
+                loadSettings.SetLastLevel(E_Levels.Thoth);
+                break;
+            case E_Levels.Clearing:
+                loadSettings.SetLastLevel(E_Levels.Clearing);
                 break;
         }
 
         #endregion
 
-
         Debug.Log("Load Scene");
+        loadSettings.currentLevel = sceneToLoad;
         SceneManager.LoadScene(sceneString);
     }
 
     public void LoadLastScene()
     {
+        //Set load settings level to new level
         SceneManager.LoadScene(loadSettings.GetLastLevel().ToString());
     }
 
     public void LoadCheckpointScene()
     {
+        //Set load settings level to new level
         SceneManager.LoadScene(loadSettings.GetCheckpointScene().ToString());
     }
 
     public void LoadSpecifiedScene(string scene, LoadSceneMode sceneMode)
     {
+        //Set load settings level to new level
+
+        #region Check Navigation Scenes
+
+        switch (sceneToLoad)
+        {
+            case E_Levels.Thoth:
+                loadSettings.SetLastLevel(E_Levels.Thoth);
+                break;
+            case E_Levels.Clearing:
+                loadSettings.SetLastLevel(E_Levels.Clearing);
+                break;
+        }
+
+        #endregion
+
         SceneManager.LoadScene(scene, sceneMode);
     }
 }

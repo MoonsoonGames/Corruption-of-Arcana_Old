@@ -13,12 +13,7 @@ public class DestroyObject : MonoBehaviour
 
         if (loadSettings.enemiesKilled["CrystalFight"])
         {
-            Destroy();
+            Destroy(this.gameObject);
         }
-    }
-
-    void Destroy()
-    {
-        Destroy(this.gameObject);
     }
 }

@@ -17,7 +17,9 @@ public class LoadSettings : MonoBehaviour
     public bool fightingBoss = false;
 
     E_Levels lastLevel;
+    public E_Levels currentLevel;
     public Vector3 playerPosInThoth;
+    public Vector3 playerPosInClearing;
 
     public Vector3 checkPointPos;
     Scene checkPointScene;

@@ -46,10 +46,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1
   dialogueComplete: 0
-  enemyKilled: 0
-  bossKilled: 0
+  prologueComplete: 0
   fightingBoss: 0
-  playerPos: {x: -339.45, y: 32.02, z: 353.46}
+  playerPosInThoth: {x: 0, y: 0, z: 0}
+  playerPosInClearing: {x: 0, y: 0, z: 0}
   checkPointPos: {x: -339.45, y: 32.02, z: 353.46}
   died: 0
   enemies:
@@ -58,6 +58,9 @@ MonoBehaviour:
   - {fileID: 0}
   checkPointPotionCount: 0
   potionCount: 0
+  enemiesString: []
+  killedString: []
+  currentFight: 
 --- !u!114 &-4060218025482095409
 MonoBehaviour:
   m_ObjectHideFlags: 0
