@@ -18,14 +18,17 @@ public class AbilityManager : MonoBehaviour
 
     Targetter targetter;
 
+    public SliderVariation sliderVarScript;
+
     #region Ability Values
 
     int multihitTally = 0;
     int multihitCount = 0;
 
     #region Basic Attacks
-
-    public int slashDamageMin = 9, slashDamageMax = 12;
+    [Header("Basic Attacks")]
+    public int slashDamageMin = 9;
+    public int slashDamageMax = 12;
 
     public int criticalSlashDamageMin = 28, criticalSlashDamageMax = 38;
 
@@ -36,8 +39,9 @@ public class AbilityManager : MonoBehaviour
     #endregion
 
     #region Spells
-
-    public int stormBarrageIndividualDamageMin = 12, stormBarrageIndividualDamageMax = 15;
+    [Header("Spells")]
+    public int stormBarrageIndividualDamageMin = 12;
+    public int stormBarrageIndividualDamageMax = 15;
 
     public int stormBarrageCost = 55;
 
@@ -73,6 +77,82 @@ public class AbilityManager : MonoBehaviour
 
     #region Selecting Abilities
 
+    public void ButtonHovered(GameObject target)
+    {
+        Debug.Log("Button hovering");
+
+        bool multihit;
+        Vector2 dmg;
+
+        GetReadyAbilityInfo(out multihit, out dmg);
+
+        sliderVarScript.ApplyPreview(dmg);
+    }
+
+    public void MouseLeft()
+    {
+        Debug.Log("Button stop hovering");
+        sliderVarScript.StopPreview();
+    }
+
+    public void GetReadyAbilityInfo(out bool multihit, out Vector2 dmg)
+    {
+        //set caller values
+        multihit = false;
+        dmg = new Vector2(0, 0);
+
+        if (readyAbility == "Slash")
+        {
+            multihit = false;
+            dmg = new Vector2(slashDamageMin, slashDamageMax);
+        }
+        else if (readyAbility == "CriticalSlash")
+        {
+            multihit = false;
+            dmg = new Vector2(criticalSlashDamageMin, criticalSlashDamageMax);
+        }
+        else if (readyAbility == "Cleave")
+        {
+            multihit = true;
+            dmg = new Vector2(cleaveDamageMin, cleaveDamageMax);
+        }
+        else if (readyAbility == "Flurry")
+        {
+            multihit = false;
+            dmg = new Vector2(flurryIndividualDamageMin * 5, flurryIndividualDamageMax * 5);
+        }
+        else if (readyAbility == "StormBarrage")
+        {
+            multihit = false;
+            dmg = new Vector2(stormBarrageIndividualDamageMin * 5, stormBarrageIndividualDamageMax * 5);
+        }
+        else if (readyAbility == "Firebolt")
+        {
+            multihit = false;
+            dmg = new Vector2(fireboltDamageMin, fireboltDamageMax);
+        }
+        else if (readyAbility == "ChillTouch")
+        {
+            multihit = false;
+            dmg = new Vector2(chillTouchDamageMin, chillTouchDamageMax);
+        }
+        else if (readyAbility == "ChainLightning")
+        {
+            multihit = true;
+            dmg = new Vector2(chainLightningDamageMin, chainLightningDamageMax);
+        }
+        else if (readyAbility == "CureWounds")
+        {
+            multihit = false;
+            dmg = new Vector2(-cureWoundsHealMin, -cureWoundsHealMax);
+        }
+        else if (readyAbility == "HealingPotion")
+        {
+            multihit = false;
+            dmg = new Vector2(-healthPotionMin, -healthPotionMax);
+        }
+    }
+
     public void CastAbility(GameObject target)
     {
         if (playerTurn)
@@ -95,7 +175,48 @@ public class AbilityManager : MonoBehaviour
         readyAbility = abilityName;
 
         if (activeCard != null)
-            activeCard.ReadyCard(readyAbility);
+        {
+            if (abilityName == "Slash")
+            {
+                activeCard.ReadyCard("Slash", new Vector2(slashDamageMin, slashDamageMax), "Physical DMG", 0, "Hit your opponent with a basic attack", "AP");
+            }
+            else if (abilityName == "CriticalSlash")
+            {
+                activeCard.ReadyCard("Critical Slash", new Vector2(criticalSlashDamageMin, criticalSlashDamageMax), "Physical DMG", 0, "Hit your opponent with a critical attack", "AP");
+            }
+            else if (abilityName == "Cleave")
+            {
+                activeCard.ReadyCard("Cleave", new Vector2(cleaveDamageMin, cleaveDamageMax), "Physical DMG", 0, "With a sweeping strike, you hit all opponents in your way", "AP");
+            }
+            else if (abilityName == "Flurry")
+            {
+                activeCard.ReadyCard("Flurry", new Vector2(flurryIndividualDamageMin * 5, flurryIndividualDamageMax * 5), "Physical DMG", 0, "Hit your opponent with five times in quick succession", "AP");
+            }
+            else if (abilityName == "StormBarrage")
+            {
+                activeCard.ReadyCard("Storm Barrage", new Vector2(stormBarrageIndividualDamageMin * 5, stormBarrageIndividualDamageMax * 5), "Static DMG", stormBarrageCost, "Unleash a devastating ray of lightning at your target", "AP");
+            }
+            else if (abilityName == "Firebolt")
+            {
+                activeCard.ReadyCard("Firebolt", new Vector2(fireboltDamageMin, fireboltDamageMax), "Ember DMG", fireboltCost, "Throw a searing blast of fire at a target", "AP");
+            }
+            else if (abilityName == "ChillTouch")
+            {
+                activeCard.ReadyCard("Chill Touch", new Vector2(chillTouchDamageMin, chillTouchDamageMax), "Frost DMG", chillTouchCost, "Attempt to chill your opponent with a blast of frost from your hand", "AP");
+            }
+            else if (abilityName == "ChainLightning")
+            {
+                activeCard.ReadyCard("Chain Lightning", new Vector2(chainLightningDamageMin, chainLightningDamageMax), "Static DMG", chainLightningCost, "Call down an electric storm to crush all targets and send them reeling", "AP");
+            }
+            else if (abilityName == "CureWounds")
+            {
+                activeCard.ReadyCard("Cure Wounds", new Vector2(cureWoundsHealMin, cureWoundsHealMax), "Healing", cureWoundsCost, "With a cleansing surge, you mend your body of wounds", "AP");
+            }
+            else if (abilityName == "HealingPotion")
+            {
+                activeCard.ReadyCard("Healing Potion", new Vector2(healthPotionMin, healthPotionMax), "Healing", 1, "By imbibing a healing potion, you restore your vitality... tastes grim though", "Health Potions");
+            }
+        }
 
         Debug.Log("Readied " + abilityName + " ability.");
 
@@ -134,6 +255,8 @@ public class AbilityManager : MonoBehaviour
 
         if (targetHealth != null)
         {
+            MouseLeft();
+
             int damage = Random.Range(slashDamageMin, slashDamageMax);
 
             Debug.Log("Cast Slash on " + target.name);
@@ -159,6 +282,8 @@ public class AbilityManager : MonoBehaviour
 
         if (targetHealth != null)
         {
+            MouseLeft();
+
             int damage = Random.Range(criticalSlashDamageMin, criticalSlashDamageMax);
 
             Debug.Log("Cast Slash on " + target.name + ". It's a critical hit!");
@@ -183,6 +308,8 @@ public class AbilityManager : MonoBehaviour
         
         if (targetHealth != null)
         {
+            MouseLeft();
+
             int damage = Random.Range(cleaveDamageMin, cleaveDamageMax);
 
             EnemyStats[] enemies = FindObjectsOfType<EnemyStats>();
@@ -194,14 +321,16 @@ public class AbilityManager : MonoBehaviour
                 message += item.gameObject.name + ", ";
 
                 item.ChangeHeath(damage, true);
-                combatManager.Dmg.SetActive(true);
-                combatManager.DmgValue.text = damage.ToString();
 
+                multihitTally += damage;
             }
 
-            Debug.Log(message);
+            combatManager.Dmg.SetActive(true);
+            combatManager.DmgValue.text = multihitTally.ToString();
 
-            combatManager.Ap.SetActive(true);
+            multihitTally = 0;
+
+            Debug.Log(message);
 
             ResetAbility();
 
@@ -219,6 +348,8 @@ public class AbilityManager : MonoBehaviour
 
         if (targetHealth != null)
         {
+            MouseLeft();
+
             Debug.Log("Cast Flurry on " + target.name);
 
             StartCoroutine(IFlurryAttacks(0.05f, targetHealth));
@@ -226,8 +357,6 @@ public class AbilityManager : MonoBehaviour
             StartCoroutine(IFlurryAttacks(0.25f, targetHealth));
             StartCoroutine(IFlurryAttacks(0.35f, targetHealth));
             StartCoroutine(IFlurryAttacks(0.7f, targetHealth));
-
-            combatManager.Ap.SetActive(true);
 
             ResetAbility();
 
@@ -277,6 +406,8 @@ public class AbilityManager : MonoBehaviour
 
         if (targetHealth != null)
         {
+            MouseLeft();
+
             int cost = stormBarrageCost;
             if (playerStats.CheckMana(cost))
             {
@@ -343,6 +474,8 @@ public class AbilityManager : MonoBehaviour
 
         if (targetHealth != null)
         {
+            MouseLeft();
+
             int cost = fireboltCost;
             if (playerStats.CheckMana(cost))
             {
@@ -381,6 +514,8 @@ public class AbilityManager : MonoBehaviour
 
         if (targetHealth != null)
         {
+            MouseLeft();
+
             int cost = chillTouchCost;
             if (playerStats.CheckMana(cost))
             {
@@ -420,6 +555,8 @@ public class AbilityManager : MonoBehaviour
 
         if (targetHealth != null)
         {
+            MouseLeft();
+
             int cost = chainLightningCost;
             if (playerStats.CheckMana(cost))
             {
@@ -434,9 +571,12 @@ public class AbilityManager : MonoBehaviour
                     message += item.gameObject.name + ", ";
 
                     item.ChangeHeath(damage, true);
-                    combatManager.Dmg.SetActive(true);
-                    combatManager.DmgValue.text = damage.ToString();
+                    multihitTally += damage;
                 }
+
+                combatManager.Dmg.SetActive(true);
+                combatManager.DmgValue.text = multihitTally.ToString();
+                multihitTally = 0;
 
                 Debug.Log(message);
 
@@ -467,6 +607,8 @@ public class AbilityManager : MonoBehaviour
 
         if (targetHealth != null)
         {
+            MouseLeft();
+
             int cost = cureWoundsCost;
             if (playerStats.CheckMana(cost))
             {
@@ -505,6 +647,8 @@ public class AbilityManager : MonoBehaviour
 
         if (targetHealth != null)
         {
+            MouseLeft();
+
             int cost = 1;
             if (playerStats.CheckPotions(cost))
             {
@@ -539,6 +683,8 @@ public class AbilityManager : MonoBehaviour
 
         if (targetHealth != null)
         {
+            MouseLeft();
+
             int cost = 1;
             if (false /*playerStats.CheckArcanaPotions(cost)*/)
             {
