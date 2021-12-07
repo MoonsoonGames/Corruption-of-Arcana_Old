@@ -27,7 +27,7 @@ public class SceneLoader : MonoBehaviour
 
         switch (sceneToLoad)
         {
-            case E_Levels.ThothTesting:
+            case E_Levels.Thoth:
                 loadSettings.SetLastLevel(sceneToLoad);
                 break;
         }

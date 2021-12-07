@@ -100,8 +100,9 @@ public class PlayerController : MonoBehaviour
     IEnumerator IDelayStartTransform(float delay, Vector3 newSpawnPos)
     {
         yield return new WaitForSeconds(delay);
-        canMove = true;
+        Debug.Log("Should be able to move");
         SetupTransform(newSpawnPos);
+        canMove = true;
     }
 
     void SetupTransform(Vector3 targetPosition)
