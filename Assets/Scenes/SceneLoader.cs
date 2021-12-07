@@ -39,6 +39,16 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene(sceneString);
     }
 
+    public void LoadLastScene()
+    {
+        SceneManager.LoadScene(loadSettings.GetLastLevel().ToString());
+    }
+
+    public void LoadCheckpointScene()
+    {
+        SceneManager.LoadScene(loadSettings.GetCheckpointScene().ToString());
+    }
+
     public void LoadSpecifiedScene(string scene, LoadSceneMode sceneMode)
     {
         SceneManager.LoadScene(scene, sceneMode);

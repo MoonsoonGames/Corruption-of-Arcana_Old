@@ -15,24 +15,33 @@ public class EnemyController : MonoBehaviour
 
     public E_Levels combatScene;
 
+    public string enemyName;
+
     // Start is called before the first frame update
     void Awake()
     {
         loadSettings = GameObject.Find("LoadSettings").GetComponent<LoadSettings>();
 
-        if (this.tag == "commonEnemy")
+        if (loadSettings != null)
         {
-            if (loadSettings != null && loadSettings.enemyKilled)
+            if (loadSettings.enemiesKilled.ContainsKey(name))
             {
-                Destroy(this.gameObject);
+                if (loadSettings.enemiesKilled[name])
+                {
+                    Debug.Log("Despawning " + name);
+                    Destroy(this.gameObject);
+                }
             }
-        }
-
-        else if (this.tag == "bossEnemy")
-        {
-            if (loadSettings != null && loadSettings.bossKilled)
+            else
             {
-                Destroy(this.gameObject);
+                loadSettings.enemiesKilled.Add(name, false);
+
+                /*
+                foreach (var item in loadSettings.enemiesKilled)
+                {
+                    Debug.Log(item);
+                }
+                */
             }
         }
     }
@@ -42,6 +51,7 @@ public class EnemyController : MonoBehaviour
         if (loadSettings != null)
         {
             loadSettings.fightingBoss = boss;
+            loadSettings.currentFight = name;
 
             loadSettings.enemies[0] = enemies[0];
             loadSettings.enemies[1] = enemies[1];

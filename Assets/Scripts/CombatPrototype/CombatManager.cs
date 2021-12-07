@@ -93,6 +93,10 @@ public class CombatManager : MonoBehaviour
             Debug.Log("Regenerate Mana");
             playerStats.ChangeMana(15, false);
 
+            Dmg.SetActive(false);
+            Ap.SetActive(false);
+            Healing.SetActive(false);
+
             foreach (var item in cardSetters)
             {
                 item.DrawCards();
@@ -105,9 +109,6 @@ public class CombatManager : MonoBehaviour
             PlayableDecks.SetActive(false);
             HealingItem.SetActive(false);
             noMana.SetActive(false);
-            Dmg.SetActive(false);
-            Ap.SetActive(false);
-            Healing.SetActive(false);
 
             if (enemyManager != null)
             {
@@ -138,18 +139,11 @@ public class CombatManager : MonoBehaviour
 
         if (victory)
         {
-            if (loadSettings != null)
+            if (loadSettings != null && loadSettings.currentFight != null)
             {
                 loadSettings.health = playerStats.GetHealth();
 
-                if (boss)
-                {
-                    loadSettings.bossKilled = true;
-                }
-                else
-                {
-                    loadSettings.enemyKilled = true;
-                }
+                loadSettings.enemiesKilled[loadSettings.currentFight] = true;
             }
 
 
@@ -160,8 +154,10 @@ public class CombatManager : MonoBehaviour
         {
             if (loadSettings != null)
             {
-                loadSettings.bossKilled = false;
-                loadSettings.enemyKilled = false;
+                loadSettings.enemiesKilled = loadSettings.checkpointEnemies;
+
+                loadSettings.enemiesKilled[loadSettings.currentFight] = false;
+
                 loadSettings.died = true;
                 loadSettings.health = 120;
             }
@@ -170,5 +166,10 @@ public class CombatManager : MonoBehaviour
             //SceneManagement.LoadScene("Thoth");
             //Transform.position(Mama reinfeld);
         }
+    }
+
+    public void TargetEnemies(bool visible)
+    {
+        enemyManager.TargetEnemies(visible);
     }
 }
