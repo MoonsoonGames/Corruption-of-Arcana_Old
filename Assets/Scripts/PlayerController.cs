@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
                     potionCount = loadSettings.potionCount;
                 }
 
-                Vector3 spawnPos = loadSettings.RequestPosition(this);
+                Vector3 spawnPos = loadSettings.RequestPosition(this, SceneManager.GetActiveScene().name);
 
                 SetupTransform(spawnPos);
                 StartCoroutine(IDelayStartTransform(2f, spawnPos));
@@ -93,14 +93,14 @@ public class PlayerController : MonoBehaviour
 
         loadSettingsArray = GameObject.FindObjectsOfType<LoadSettings>();
 
-        Debug.Log("Length: " + loadSettingsArray.Length);
+        //Debug.Log("Length: " + loadSettingsArray.Length);
         //Debug.Break();
     }
 
     IEnumerator IDelayStartTransform(float delay, Vector3 newSpawnPos)
     {
         yield return new WaitForSeconds(delay);
-        Debug.Log("Should be able to move");
+        //Debug.Log("Should be able to move");
         SetupTransform(newSpawnPos);
         canMove = true;
     }
@@ -171,8 +171,7 @@ public class PlayerController : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         //Save current position
-        if (loadSettings != null)
-            loadSettings.playerPosInThoth = transform.position;
+        SavePlayerPos();
 
         if (other.gameObject.CompareTag("commonEnemy") || other.gameObject.CompareTag("bossEnemy"))
         {
@@ -186,7 +185,7 @@ public class PlayerController : MonoBehaviour
 
         else if (other.gameObject.CompareTag("NPC"))
         {
-            Debug.Log("Can Interact");
+            //Debug.Log("Can Interact");
             interact = true;
             dialogue = other.gameObject.GetComponent<Dialogue>();
 
@@ -195,6 +194,23 @@ public class PlayerController : MonoBehaviour
                 interactImage.SetActive(true);
             }
         }
+    }
+
+    public void SavePlayerPos()
+    {
+        string scene = SceneManager.GetActiveScene().name;
+        if (loadSettings != null)
+        {
+            if (scene == E_Levels.Thoth.ToString())
+            {
+                loadSettings.playerPosInThoth = transform.position;
+            }
+            else if (scene == E_Levels.Clearing.ToString())
+            {
+                loadSettings.playerPosInClearing = transform.position;
+            }
+        }
+            
     }
 
     public void OnTriggerExit(Collider other)

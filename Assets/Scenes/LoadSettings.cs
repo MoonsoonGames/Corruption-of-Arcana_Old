@@ -16,8 +16,8 @@ public class LoadSettings : MonoBehaviour
 
     public bool fightingBoss = false;
 
-    E_Levels lastLevel;
-    public E_Levels currentLevel;
+    public E_Levels lastLevel;
+    public string lastLevelString;
     public Vector3 playerPosInThoth;
     public Vector3 playerPosInClearing;
 
@@ -45,11 +45,11 @@ public class LoadSettings : MonoBehaviour
     {
         LoadSettings[] loadSettings = GameObject.FindObjectsOfType<LoadSettings>();
 
-        Debug.Log(loadSettings.Length);
+        //Debug.Log(loadSettings.Length);
 
         if (loadSettings.Length > 1)
         {
-            Debug.Log("destroying");
+            //Debug.Log("destroying");
             Destroy(this); //There is already one in the scene, delete this one
         }
         else
@@ -67,12 +67,12 @@ public class LoadSettings : MonoBehaviour
         }
         else
         {
-            Debug.Log("destroying");
+            //Debug.Log("destroying");
             return true;
         }
     }
 
-    public Vector3 RequestPosition(PlayerController controller)
+    public Vector3 RequestPosition(PlayerController controller, string scene)
     {
         Vector3 targetPos;
 
@@ -86,33 +86,37 @@ public class LoadSettings : MonoBehaviour
             targetPos.y = checkPointPos.y;
             targetPos.z = checkPointPos.z;
 
-            Debug.Log("Loading respawn position | " + checkPointPos + " || " + targetPos);
+            //Debug.Log("Loading respawn position | " + checkPointPos + " || " + targetPos);
         }
         else
         {
-            targetPos = playerPosInThoth;
+            targetPos = new Vector3();
+            //Debug.Log(scene);
+            lastLevelString = scene;
+            if (scene == E_Levels.Thoth.ToString())
+            {
+                targetPos = playerPosInThoth;
 
-            targetPos.x = playerPosInThoth.x;
-            targetPos.y = playerPosInThoth.y;
-            targetPos.z = playerPosInThoth.z;
+                targetPos.x = playerPosInThoth.x;
+                targetPos.y = playerPosInThoth.y;
+                targetPos.z = playerPosInThoth.z;
+            }
+            else if (scene == E_Levels.Clearing.ToString())
+            {
+                targetPos = playerPosInClearing;
 
-            Debug.Log("Loading spawn position | " + playerPosInThoth + " || " + targetPos);
+                targetPos.x = playerPosInClearing.x;
+                targetPos.y = playerPosInClearing.y;
+                targetPos.z = playerPosInClearing.z;
+            }
+
+            //Debug.Log("Loading spawn position | " + playerPosInThoth + " || " + targetPos);
 
             controller.transform.position = targetPos;
-            Debug.Log(controller.transform.position);
+            //Debug.Log(controller.transform.position);
         }
 
         return targetPos;
-    }
-
-    public E_Levels GetLastLevel()
-    {
-        return lastLevel;
-    }
-
-    public void SetLastLevel(E_Levels newLevel)
-    {
-        lastLevel = newLevel;
     }
 
     public Scene GetCheckpointScene()

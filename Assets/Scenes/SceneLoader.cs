@@ -10,6 +10,8 @@ public class SceneLoader : MonoBehaviour
     Scene currentScene;
     LoadSettings loadSettings;
 
+    public E_Levels[] navScenes;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -18,34 +20,33 @@ public class SceneLoader : MonoBehaviour
         currentScene = SceneManager.GetActiveScene();
 
         loadSettings = GameObject.FindObjectOfType<LoadSettings>();
-
     }
 
     public void LoadDefaultScene()
     {
         #region Check Navigation Scenes
-
-        switch (sceneToLoad)
+        //Debug.Log(sceneToLoad);
+        foreach (var level in navScenes)
         {
-            case E_Levels.Thoth:
-                loadSettings.SetLastLevel(E_Levels.Thoth);
-                break;
-            case E_Levels.Clearing:
-                loadSettings.SetLastLevel(E_Levels.Clearing);
-                break;
+            if (level == sceneToLoad)
+            {
+                //Debug.Log(level + " is the same");
+                loadSettings.lastLevel = level;
+                
+                SceneManager.LoadScene(sceneString);
+                return;
+            }
         }
 
         #endregion
 
-        Debug.Log("Load Scene");
-        loadSettings.currentLevel = sceneToLoad;
         SceneManager.LoadScene(sceneString);
     }
 
     public void LoadLastScene()
     {
         //Set load settings level to new level
-        SceneManager.LoadScene(loadSettings.GetLastLevel().ToString());
+        SceneManager.LoadScene(loadSettings.lastLevelString);
     }
 
     public void LoadCheckpointScene()
@@ -57,20 +58,6 @@ public class SceneLoader : MonoBehaviour
     public void LoadSpecifiedScene(string scene, LoadSceneMode sceneMode)
     {
         //Set load settings level to new level
-
-        #region Check Navigation Scenes
-
-        switch (sceneToLoad)
-        {
-            case E_Levels.Thoth:
-                loadSettings.SetLastLevel(E_Levels.Thoth);
-                break;
-            case E_Levels.Clearing:
-                loadSettings.SetLastLevel(E_Levels.Clearing);
-                break;
-        }
-
-        #endregion
 
         SceneManager.LoadScene(scene, sceneMode);
     }
