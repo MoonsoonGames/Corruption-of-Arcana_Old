@@ -26,7 +26,10 @@ public enum E_Levels
     Death,
 
     [InspectorName("Overworld Map")]
-    OverworldMap
+    OverworldMap,
+
+    [InspectorName("Clearing")]
+    Clearing
 }
 
 public enum E_Suits
