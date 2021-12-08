@@ -29,7 +29,10 @@ public enum E_Levels
     OverworldMap,
 
     [InspectorName("Clearing")]
-    Clearing
+    Clearing,
+
+    [InspectorName("Checkpoint")]
+    Checkpoint
 }
 
 public enum E_Suits

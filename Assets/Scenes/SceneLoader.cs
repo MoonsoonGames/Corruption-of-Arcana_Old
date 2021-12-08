@@ -52,7 +52,7 @@ public class SceneLoader : MonoBehaviour
     public void LoadCheckpointScene()
     {
         //Set load settings level to new level
-        SceneManager.LoadScene(loadSettings.GetCheckpointScene().ToString());
+        SceneManager.LoadScene(loadSettings.checkPointString);
     }
 
     public void LoadSpecifiedScene(string scene, LoadSceneMode sceneMode)

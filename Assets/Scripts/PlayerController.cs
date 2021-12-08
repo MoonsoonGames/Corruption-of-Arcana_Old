@@ -163,6 +163,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetButton("Interact") && interact && dialogue != null)
             {
+                loadSettings.Checkpoint(SceneManager.GetActiveScene());
                 dialogue.LoadScene();
             }
         }

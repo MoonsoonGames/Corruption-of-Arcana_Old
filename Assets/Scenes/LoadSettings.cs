@@ -22,7 +22,8 @@ public class LoadSettings : MonoBehaviour
     public Vector3 playerPosInClearing;
 
     public Vector3 checkPointPos;
-    Scene checkPointScene;
+    public Scene checkPointScene;
+    public string checkPointString;
 
     public bool died;
 
@@ -119,21 +120,12 @@ public class LoadSettings : MonoBehaviour
         return targetPos;
     }
 
-    public Scene GetCheckpointScene()
-    {
-        return checkPointScene;
-    }
-
     public void Checkpoint(Scene newCheckPoint)
     {
         checkpointEnemies = enemiesKilled;
 
-        SetCheckPointLevel(newCheckPoint);
-    }
-
-    public void SetCheckPointLevel(Scene newCheckPoint)
-    {
         checkPointScene = newCheckPoint;
+        checkPointString = checkPointScene.name;
     }
 
     private void Update()
