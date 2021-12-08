@@ -81,11 +81,14 @@ public class PlayerController : MonoBehaviour
                 {
                     potionCount = loadSettings.potionCount;
                 }
+                
+                Vector3 spawnPos = loadSettings.RequestPosition(SceneManager.GetActiveScene().name);
 
-                Vector3 spawnPos = loadSettings.RequestPosition(this, SceneManager.GetActiveScene().name);
-
-                SetupTransform(spawnPos);
+                //SetupTransform(spawnPos);
+                
                 StartCoroutine(IDelayStartTransform(2f, spawnPos));
+
+                loadSettings.died = false;
             }
             else
             {
@@ -104,7 +107,7 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         //Debug.Log("Should be able to move");
-        SetupTransform(newSpawnPos);
+        //SetupTransform(newSpawnPos);
         canMove = true;
     }
 

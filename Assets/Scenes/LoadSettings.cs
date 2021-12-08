@@ -69,18 +69,16 @@ public class LoadSettings : MonoBehaviour
         else
         {
             //Debug.Log("destroying");
-            return true;
+            return false;
         }
     }
 
-    public Vector3 RequestPosition(PlayerController controller, string scene)
+    public Vector3 RequestPosition(string scene)
     {
         Vector3 targetPos;
 
         if (died)
         {
-            died = false;
-
             targetPos = checkPointPos;
 
             targetPos.x = checkPointPos.x;
@@ -92,9 +90,12 @@ public class LoadSettings : MonoBehaviour
         else
         {
             targetPos = new Vector3();
-            //Debug.Log(scene);
+            
             lastLevelString = scene;
-            if (scene == E_Levels.Thoth.ToString())
+
+            //Debug.Log(scene + " and " + lastLevelString);
+
+            if (lastLevelString == E_Levels.Thoth.ToString())
             {
                 targetPos = playerPosInThoth;
 
@@ -102,8 +103,9 @@ public class LoadSettings : MonoBehaviour
                 targetPos.y = playerPosInThoth.y;
                 targetPos.z = playerPosInThoth.z;
             }
-            else if (scene == E_Levels.Clearing.ToString())
+            else if (lastLevelString == E_Levels.Clearing.ToString())
             {
+                Debug.Log(scene + " and " + lastLevelString);
                 targetPos = playerPosInClearing;
 
                 targetPos.x = playerPosInClearing.x;
@@ -113,8 +115,6 @@ public class LoadSettings : MonoBehaviour
 
             //Debug.Log("Loading spawn position | " + playerPosInThoth + " || " + targetPos);
 
-            controller.transform.position = targetPos;
-            //Debug.Log(controller.transform.position);
         }
 
         return targetPos;
