@@ -14710,8 +14710,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PauseMenuManager, Assembly-CSharp
+      - m_Target: {fileID: 7372821299742135092}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: Help
         m_Mode: 1
         m_Arguments:
@@ -14997,8 +14997,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PauseMenuManager, Assembly-CSharp
+      - m_Target: {fileID: 7372821299742135092}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: Resume
         m_Mode: 1
         m_Arguments:
@@ -19075,6 +19075,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 700653172099530577}
+  - component: {fileID: 2348671218665333373}
   m_Layer: 0
   m_Name: Inventory slots
   m_TagString: Untagged
@@ -19107,6 +19108,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2348671218665333373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5949403848709221418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18f010e184400794e8378ff7417d05b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthPotionText: {fileID: 7850671179771501954}
 --- !u!1 &5973099103042710609
 GameObject:
   m_ObjectHideFlags: 0
@@ -20243,7 +20257,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5294810167928679699}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2348671218665333373}
+        m_TargetAssemblyTypeName: InventoryItems, Assembly-CSharp
+        m_MethodName: HealthPotion
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6365268426428933897
 GameObject:
   m_ObjectHideFlags: 0
@@ -22283,8 +22309,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
+      - m_Target: {fileID: 7372821299742135092}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: CloseMenu
         m_Mode: 1
         m_Arguments:
@@ -22416,8 +22442,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PauseMenuManager, Assembly-CSharp
+      - m_Target: {fileID: 7372821299742135092}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: CloseGame
         m_Mode: 1
         m_Arguments:
@@ -27648,8 +27674,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PauseMenuManager, Assembly-CSharp
+      - m_Target: {fileID: 7372821299742135092}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: MainMenu
         m_Mode: 1
         m_Arguments:
@@ -29804,7 +29830,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8355406584874068900
 Transform:
   m_ObjectHideFlags: 0

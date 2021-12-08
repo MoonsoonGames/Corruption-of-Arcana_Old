@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     CharacterController characterController;
     Rigidbody rb;
 
+    public float baseSneakSpeed = 20f;
     public float baseMoveSpeed = 50f;
     public float baseSprintSpeed = 80f;
     float moveSpeed;
@@ -24,6 +25,8 @@ public class PlayerController : MonoBehaviour
     public int arcana;
     public Slider healthBar;
     public Slider arcanaBar;
+
+    public Text Location;
 
     private Vector3 moveDirection = Vector3.zero;
 
@@ -132,8 +135,11 @@ public class PlayerController : MonoBehaviour
                 {
                     moveSpeed = baseSprintSpeed;
                 }
-
-                else
+                if (Input.GetKey(KeyCode.LeftControl))
+                {
+                    moveSpeed = baseSneakSpeed;
+                }
+                if (!Input.GetKey(KeyCode.LeftShift) & !Input.GetKey(KeyCode.LeftControl))
                 {
                     moveSpeed = baseMoveSpeed;
                 }
@@ -194,6 +200,35 @@ public class PlayerController : MonoBehaviour
                 interactImage.SetActive(true);
             }
         }
+
+        #region Thoth location triggers
+
+        if (other.gameObject.CompareTag("Thoth Mid City"))
+        {
+            Location.text = "Thoth - MidCity".ToString();
+        }
+        else if (other.gameObject.CompareTag("Thoth Market"))
+        {
+            Location.text = "Thoth - Market".ToString();
+        }
+        else if (other.gameObject.CompareTag("Thoth Bridge"))
+        {
+            Location.text = "Thoth - Bridge".ToString();
+        }
+        else if (other.gameObject.CompareTag("Thoth East housing"))
+        {
+            Location.text = "Thoth - East houses".ToString();
+        }
+        else if (other.gameObject.CompareTag("Thoth West housing"))
+        {
+            Location.text = "Thoth - West houses".ToString();
+        }
+        else if (other.gameObject.CompareTag("Thoth Open Sea"))
+        {
+            Location.text = "Thoth - Open Sea".ToString();
+        }
+
+        #endregion
     }
 
     public void SavePlayerPos()
