@@ -79,7 +79,7 @@ public class AbilityManager : MonoBehaviour
 
     public void ButtonHovered(GameObject target)
     {
-        Debug.Log("Button hovering");
+        //Debug.Log("Button hovering");
 
         bool multihit;
         Vector2 dmg;
@@ -91,7 +91,7 @@ public class AbilityManager : MonoBehaviour
 
     public void MouseLeft()
     {
-        Debug.Log("Button stop hovering");
+        //Debug.Log("Button stop hovering");
         sliderVarScript.StopPreview();
     }
 
@@ -218,7 +218,7 @@ public class AbilityManager : MonoBehaviour
             }
         }
 
-        Debug.Log("Readied " + abilityName + " ability.");
+        //Debug.Log("Readied " + abilityName + " ability.");
 
         if (abilityName == "HealingPotion" || abilityName == "CureWounds")
         {

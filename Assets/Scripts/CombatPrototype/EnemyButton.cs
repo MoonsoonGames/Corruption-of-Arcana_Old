@@ -24,7 +24,7 @@ public class EnemyButton : MonoBehaviour
 
     public void ButtonHovered(GameObject target)
     {
-        Debug.Log("Button hovering");
+        //Debug.Log("Button hovering");
         AbilityManager ability = GameObject.Find("Player").GetComponent<AbilityManager>();
 
         if (ability != null)
@@ -56,7 +56,7 @@ public class EnemyButton : MonoBehaviour
 
     public void MouseLeft()
     {
-        Debug.Log("Button stop hovering");
+        //Debug.Log("Button stop hovering");
         EnemyButton[] buttons = GameObject.FindObjectsOfType<EnemyButton>();
 
         foreach (var item in buttons)

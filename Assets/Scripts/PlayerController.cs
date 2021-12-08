@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     CharacterController characterController;
     Rigidbody rb;
 
+    public float baseSneakSpeed = 20f;
     public float baseMoveSpeed = 50f;
     public float baseSprintSpeed = 80f;
     float moveSpeed;
@@ -24,6 +25,8 @@ public class PlayerController : MonoBehaviour
     public int arcana;
     public Slider healthBar;
     public Slider arcanaBar;
+
+    public Text Location;
 
     private Vector3 moveDirection = Vector3.zero;
 
@@ -79,7 +82,7 @@ public class PlayerController : MonoBehaviour
                     potionCount = loadSettings.potionCount;
                 }
 
-                Vector3 spawnPos = loadSettings.RequestPosition(this);
+                Vector3 spawnPos = loadSettings.RequestPosition(this, SceneManager.GetActiveScene().name);
 
                 SetupTransform(spawnPos);
                 StartCoroutine(IDelayStartTransform(2f, spawnPos));
@@ -93,14 +96,14 @@ public class PlayerController : MonoBehaviour
 
         loadSettingsArray = GameObject.FindObjectsOfType<LoadSettings>();
 
-        Debug.Log("Length: " + loadSettingsArray.Length);
+        //Debug.Log("Length: " + loadSettingsArray.Length);
         //Debug.Break();
     }
 
     IEnumerator IDelayStartTransform(float delay, Vector3 newSpawnPos)
     {
         yield return new WaitForSeconds(delay);
-        Debug.Log("Should be able to move");
+        //Debug.Log("Should be able to move");
         SetupTransform(newSpawnPos);
         canMove = true;
     }
@@ -132,8 +135,11 @@ public class PlayerController : MonoBehaviour
                 {
                     moveSpeed = baseSprintSpeed;
                 }
-
-                else
+                if (Input.GetKey(KeyCode.LeftControl))
+                {
+                    moveSpeed = baseSneakSpeed;
+                }
+                if (!Input.GetKey(KeyCode.LeftShift) & !Input.GetKey(KeyCode.LeftControl))
                 {
                     moveSpeed = baseMoveSpeed;
                 }
@@ -171,8 +177,7 @@ public class PlayerController : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         //Save current position
-        if (loadSettings != null)
-            loadSettings.playerPosInThoth = transform.position;
+        SavePlayerPos();
 
         if (other.gameObject.CompareTag("commonEnemy") || other.gameObject.CompareTag("bossEnemy"))
         {
@@ -186,7 +191,7 @@ public class PlayerController : MonoBehaviour
 
         else if (other.gameObject.CompareTag("NPC"))
         {
-            Debug.Log("Can Interact");
+            //Debug.Log("Can Interact");
             interact = true;
             dialogue = other.gameObject.GetComponent<Dialogue>();
 
@@ -195,6 +200,52 @@ public class PlayerController : MonoBehaviour
                 interactImage.SetActive(true);
             }
         }
+
+        #region Thoth location triggers
+
+        if (other.gameObject.CompareTag("Thoth Mid City"))
+        {
+            Location.text = "Thoth - MidCity".ToString();
+        }
+        else if (other.gameObject.CompareTag("Thoth Market"))
+        {
+            Location.text = "Thoth - Market".ToString();
+        }
+        else if (other.gameObject.CompareTag("Thoth Bridge"))
+        {
+            Location.text = "Thoth - Bridge".ToString();
+        }
+        else if (other.gameObject.CompareTag("Thoth East housing"))
+        {
+            Location.text = "Thoth - East houses".ToString();
+        }
+        else if (other.gameObject.CompareTag("Thoth West housing"))
+        {
+            Location.text = "Thoth - West houses".ToString();
+        }
+        else if (other.gameObject.CompareTag("Thoth Open Sea"))
+        {
+            Location.text = "Thoth - Open Sea".ToString();
+        }
+
+        #endregion
+    }
+
+    public void SavePlayerPos()
+    {
+        string scene = SceneManager.GetActiveScene().name;
+        if (loadSettings != null)
+        {
+            if (scene == E_Levels.Thoth.ToString())
+            {
+                loadSettings.playerPosInThoth = transform.position;
+            }
+            else if (scene == E_Levels.Clearing.ToString())
+            {
+                loadSettings.playerPosInClearing = transform.position;
+            }
+        }
+
     }
 
     public void OnTriggerExit(Collider other)
