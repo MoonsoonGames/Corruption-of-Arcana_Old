@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
     public Slider healthBar;
     public Slider arcanaBar;
 
+    public GameObject Player;
+
     public Text Location;
 
     private Vector3 moveDirection = Vector3.zero;
@@ -227,12 +229,45 @@ public class PlayerController : MonoBehaviour
         {
             Location.text = "Thoth - West houses".ToString();
         }
-        else if (other.gameObject.CompareTag("Thoth Open Sea"))
+
+        if (other.gameObject.CompareTag("Thoth Open Sea"))
         {
-            Location.text = "Thoth - Open Sea".ToString();
+            Player.transform.position = new Vector3(-267.317505f, 31.0455322f, 358.720032f);
+            //rescued == true;
+            //Run rescuer dialogue
+            Debug.Log("Player in the water");
         }
 
         #endregion
+
+        if (other.gameObject.CompareTag("EC Camp"))
+        {
+            Location.text = "".ToString();
+        }
+        else if (other.gameObject.CompareTag("EC Forest"))
+        {
+            Location.text = "".ToString();
+        }
+        else if (other.gameObject.CompareTag("EC Pond"))
+        {
+            Location.text = "".ToString();
+        }
+        else if (other.gameObject.CompareTag("EC Pass"))
+        {
+            Location.text = "".ToString();
+        }
+        else if (other.gameObject.CompareTag("EC Far Right"))
+        {
+            Location.text = "".ToString();
+        }
+        else if (other.gameObject.CompareTag("EC Cave"))
+        {
+            Location.text = "".ToString();
+        }
+        else if (other.gameObject.CompareTag("EC Left"))
+        {
+            Location.text = "".ToString();
+        }
     }
 
     public void SavePlayerPos()
