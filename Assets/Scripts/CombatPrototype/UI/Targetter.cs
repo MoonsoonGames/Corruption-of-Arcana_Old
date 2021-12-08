@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Targetter : MonoBehaviour
 {
     public GameObject[] corners;
+    public GameObject[] arrows;
     public bool ally = false;
 
     // Start is called before the first frame update
@@ -19,6 +20,10 @@ public class Targetter : MonoBehaviour
         foreach (var item in corners)
         {
             item.SetActive(visible);
+        }
+        foreach (var item in arrows)
+        {
+            item.SetActive(!visible);
         }
     }
 }

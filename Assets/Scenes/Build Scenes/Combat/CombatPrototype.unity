@@ -2044,6 +2044,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5564511172518815125, guid: e6f554e9aa4ad204d8a5050df75cd470,
         type: 3}
+      propertyPath: lastLevelString
+      value: SplashScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 5564511172518815125, guid: e6f554e9aa4ad204d8a5050df75cd470,
+        type: 3}
       propertyPath: dialogueComplete
       value: 0
       objectReference: {fileID: 0}
@@ -2051,20 +2056,18 @@ PrefabInstance:
         type: 3}
       propertyPath: enemies.Array.data[0]
       value: 
-      objectReference: {fileID: 6783367526062023706, guid: 7ec425a601604694f9696b568c64104d,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 5564511172518815125, guid: e6f554e9aa4ad204d8a5050df75cd470,
         type: 3}
       propertyPath: enemies.Array.data[1]
       value: 
-      objectReference: {fileID: 6783367526062023706, guid: 7ec425a601604694f9696b568c64104d,
+      objectReference: {fileID: 879057485591003285, guid: 79e4aed78d437eb498a51c0aeb093e44,
         type: 3}
     - target: {fileID: 5564511172518815125, guid: e6f554e9aa4ad204d8a5050df75cd470,
         type: 3}
       propertyPath: enemies.Array.data[2]
       value: 
-      objectReference: {fileID: 6783367526062023706, guid: 7ec425a601604694f9696b568c64104d,
-        type: 3}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6f554e9aa4ad204d8a5050df75cd470, type: 3}
 --- !u!1 &492818591
@@ -5764,6 +5767,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: 6
+  navScenes: 
 --- !u!1 &1399252544
 GameObject:
   m_ObjectHideFlags: 0
@@ -6150,6 +6154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: 1
+  navScenes: 
 --- !u!1 &1532432235
 GameObject:
   m_ObjectHideFlags: 0
@@ -6925,6 +6930,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: 1
+  navScenes: 
+--- !u!1 &1643131222 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2611970835545755561, guid: d73e8b11f8c16a54ba36322b12638999,
+    type: 3}
+  m_PrefabInstance: {fileID: 7551587577897521046}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1652779727
 GameObject:
   m_ObjectHideFlags: 0
@@ -10474,6 +10486,16 @@ PrefabInstance:
       propertyPath: ally
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2861644229273839035, guid: d73e8b11f8c16a54ba36322b12638999,
+        type: 3}
+      propertyPath: arrows.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2861644229273839035, guid: d73e8b11f8c16a54ba36322b12638999,
+        type: 3}
+      propertyPath: arrows.Array.data[0]
+      value: 
+      objectReference: {fileID: 1643131222}
     - target: {fileID: 3039368161965268900, guid: d73e8b11f8c16a54ba36322b12638999,
         type: 3}
       propertyPath: m_Color.a
