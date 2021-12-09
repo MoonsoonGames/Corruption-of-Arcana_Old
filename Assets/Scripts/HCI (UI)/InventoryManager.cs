@@ -15,11 +15,15 @@ public class InventoryManager : MonoBehaviour
     public GameObject ExplorationUI;
     public GameObject player;
     public GameObject Camera;
+    public bool PauseActive = false;
+
+    public PauseMenuManager pauseMenuManager;
 
     //Inventory Pages
     public GameObject InvPage1;
     public GameObject InvPage2;
     public GameObject InvPage3;
+
 
     // Start is called before the first frame update
     void Start()
@@ -38,13 +42,18 @@ public class InventoryManager : MonoBehaviour
             
             if (player.GetComponent<PlayerController>().enabled == true)
             {
-                player.GetComponent<PlayerController>().enabled = false;
-                Camera.GetComponent<PlayerCameraController>().enabled = false;
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
+                if (!PauseActive)
+                {
+                    pauseMenuManager.InventoryActive = true;
+                    player.GetComponent<PlayerController>().enabled = false;
+                    Camera.GetComponent<PlayerCameraController>().enabled = false;
+                    Cursor.visible = true;
+                    Cursor.lockState = CursorLockMode.None;
+                }
             }
             else
             {
+                pauseMenuManager.InventoryActive = false;
                 player.GetComponent<PlayerController>().enabled = true;
                 Camera.GetComponent<PlayerCameraController>().enabled = true;
                 Cursor.visible = false;

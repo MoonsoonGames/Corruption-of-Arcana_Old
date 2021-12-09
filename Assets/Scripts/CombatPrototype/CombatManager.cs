@@ -76,12 +76,20 @@ public class CombatManager : MonoBehaviour
 
         battleActive = true;
 
+        Invoke("DelayStart", 0.5f);
+    }
+
+    void DelayStart()
+    {
         StartTurn(true);
     }
 
     public void StartTurn(bool player)
     {
         abilityManager.playerTurn = player;
+
+        if (enemyManager.enemies.Count <= 0)
+            ShowEndScreen(true);
 
         if (player)
         {
@@ -141,6 +149,10 @@ public class CombatManager : MonoBehaviour
         {
             if (loadSettings != null && loadSettings.currentFight != null)
             {
+                playerStats.ChangeHeath(20, false);
+
+                playerStats.ChangePotions(1, false);
+
                 loadSettings.health = playerStats.GetHealth();
 
                 loadSettings.enemiesKilled[loadSettings.currentFight] = true;

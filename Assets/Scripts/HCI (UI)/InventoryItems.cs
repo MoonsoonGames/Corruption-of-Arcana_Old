@@ -35,7 +35,7 @@ public class InventoryItems : MonoBehaviour
 
         loadSettingsArray = GameObject.FindObjectsOfType<LoadSettings>();
 
-        Debug.Log("Length: " + loadSettingsArray.Length);
+        //Debug.Log("Length: " + loadSettingsArray.Length);
         //Debug.Break();
     }
 

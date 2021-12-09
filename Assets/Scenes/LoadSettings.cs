@@ -16,11 +16,14 @@ public class LoadSettings : MonoBehaviour
 
     public bool fightingBoss = false;
 
-    E_Levels lastLevel;
+    public E_Levels lastLevel;
+    public string lastLevelString;
     public Vector3 playerPosInThoth;
+    public Vector3 playerPosInClearing;
 
     public Vector3 checkPointPos;
-    Scene checkPointScene;
+    public Scene checkPointScene;
+    public string checkPointString;
 
     public bool died;
 
@@ -43,11 +46,11 @@ public class LoadSettings : MonoBehaviour
     {
         LoadSettings[] loadSettings = GameObject.FindObjectsOfType<LoadSettings>();
 
-        Debug.Log(loadSettings.Length);
+        //Debug.Log(loadSettings.Length);
 
         if (loadSettings.Length > 1)
         {
-            Debug.Log("destroying");
+            //Debug.Log("destroying");
             Destroy(this); //There is already one in the scene, delete this one
         }
         else
@@ -65,69 +68,90 @@ public class LoadSettings : MonoBehaviour
         }
         else
         {
-            Debug.Log("destroying");
-            return true;
+            //Debug.Log("destroying");
+            return false;
         }
     }
 
-    public Vector3 RequestPosition(PlayerController controller)
+    public Vector3 RequestPosition(string scene)
     {
         Vector3 targetPos;
 
         if (died)
         {
-            died = false;
-
+            ResetEnemies();
             targetPos = checkPointPos;
 
             targetPos.x = checkPointPos.x;
             targetPos.y = checkPointPos.y;
             targetPos.z = checkPointPos.z;
 
-            Debug.Log("Loading respawn position | " + checkPointPos + " || " + targetPos);
+            //Debug.Log("Loading respawn position | " + checkPointPos + " || " + targetPos);
         }
         else
         {
-            targetPos = playerPosInThoth;
+            targetPos = new Vector3();
+            
+            lastLevelString = scene;
 
-            targetPos.x = playerPosInThoth.x;
-            targetPos.y = playerPosInThoth.y;
-            targetPos.z = playerPosInThoth.z;
+            //Debug.Log(scene + " and " + lastLevelString);
 
-            Debug.Log("Loading spawn position | " + playerPosInThoth + " || " + targetPos);
+            if (lastLevelString == E_Levels.Thoth.ToString())
+            {
+                targetPos = playerPosInThoth;
 
-            controller.transform.position = targetPos;
-            Debug.Log(controller.transform.position);
+                targetPos.x = playerPosInThoth.x;
+                targetPos.y = playerPosInThoth.y;
+                targetPos.z = playerPosInThoth.z;
+            }
+            else if (lastLevelString == E_Levels.Clearing.ToString())
+            {
+                Debug.Log(scene + " and " + lastLevelString);
+                targetPos = playerPosInClearing;
+
+                targetPos.x = playerPosInClearing.x;
+                targetPos.y = playerPosInClearing.y;
+                targetPos.z = playerPosInClearing.z;
+            }
+
+            //Debug.Log("Loading spawn position | " + playerPosInThoth + " || " + targetPos);
+
         }
 
         return targetPos;
     }
 
-    public E_Levels GetLastLevel()
+    public void ResetEnemies()
     {
-        return lastLevel;
-    }
+        enemiesKilled.Clear();
+        enemiesString.Clear();
+        killedString.Clear();
 
-    public void SetLastLevel(E_Levels newLevel)
-    {
-        lastLevel = newLevel;
-    }
-
-    public Scene GetCheckpointScene()
-    {
-        return checkPointScene;
+        foreach (var item in checkpointEnemies)
+        {
+            if (!item.Value)
+            {
+                enemiesKilled.Add(item.Key, false);
+                enemiesString.Add(item.Key);
+            }
+            else
+            {
+                enemiesKilled.Add(item.Key, true);
+                killedString.Add(item.Key);
+            }
+        }
     }
 
     public void Checkpoint(Scene newCheckPoint)
     {
         checkpointEnemies = enemiesKilled;
 
-        SetCheckPointLevel(newCheckPoint);
-    }
-
-    public void SetCheckPointLevel(Scene newCheckPoint)
-    {
         checkPointScene = newCheckPoint;
+        checkPointString = checkPointScene.name;
+
+        //health = 120;
+        //potionCount = 3;
+        //potionCount = Mathf.Clamp(potionCount, 3, 5);
     }
 
     private void Update()
