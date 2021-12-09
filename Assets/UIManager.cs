@@ -138,8 +138,6 @@ public class UIManager : MonoBehaviour
         Inventory.SetActive(false);
         ExplorationUI.SetActive(true);
         PauseMenu.SetActive(false);
-
-        Cursor.visible = false;
     }
 
     // Update is called once per frame

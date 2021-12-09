@@ -11,7 +11,7 @@ public class OpenGates : MonoBehaviour
     {
         LoadSettings[] loadSettingsArray = GameObject.FindObjectsOfType<LoadSettings>();
 
-        Debug.Log(loadSettingsArray.Length);
+        //Debug.Log(loadSettingsArray.Length);
 
         foreach (var item in loadSettingsArray)
         {

@@ -17,7 +17,7 @@ public class EnemySpawner : MonoBehaviour
     {
         if (enemy != null)
         {
-            enemyName = enemy.name;
+            enemyName += enemy.name;
         }
 
         loadSettings = GameObject.Find("LoadSettings").GetComponent<LoadSettings>();
@@ -60,5 +60,10 @@ public class EnemySpawner : MonoBehaviour
         }
 
         //Destroy(this.gameObject);
+    }
+
+    public void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireCube(transform.position, new Vector3(0.5f, 2f, 0.5f));
     }
 }
