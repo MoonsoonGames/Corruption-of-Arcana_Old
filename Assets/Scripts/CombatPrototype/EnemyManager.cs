@@ -22,6 +22,11 @@ public class EnemyManager : MonoBehaviour
     private void Start()
     {
         SetupLists();
+
+        foreach (var item in disable)
+        {
+            item.SetActive(false);
+        }
     }
 
     public IEnumerator IDelaySetup(float delay)
@@ -64,14 +69,6 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    public void TargetEnemies(bool visible)
-    {
-        foreach (var item in targetters)
-        {
-            item.SetVisibility(visible);
-        }
-    }
-
     public void StartEnemyTurn()
     {
         float interval = .75f;
@@ -103,6 +100,14 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+    public void TargetEnemies(bool visible)
+    {
+        foreach (var item in targetters)
+        {
+            item.SetVisibility(visible);
+        }
+    }
+
     public void EnemyInfo(Enemy controller)
     {
         if (controller != null)
@@ -117,8 +122,18 @@ public class EnemyManager : MonoBehaviour
             Debug.Log("Remove info");
             foreach (var item in disable)
             {
-                item.SetActive(enabled);
+                item.SetActive(false);
             }
+        }
+    }
+
+    public void RemoveEnemyInfo()
+    {
+        //remove enemy descriptions
+        Debug.Log("Remove info");
+        foreach (var item in disable)
+        {
+            item.SetActive(false);
         }
     }
 }

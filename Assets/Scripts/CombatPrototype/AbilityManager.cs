@@ -180,6 +180,8 @@ public class AbilityManager : MonoBehaviour
 
     public void SetAbility(string abilityName)
     {
+        EnemyInfo(null);
+
         readyAbility = abilityName;
 
         if (activeCard != null)
