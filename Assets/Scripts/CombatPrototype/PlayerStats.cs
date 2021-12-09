@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -21,6 +22,13 @@ public class PlayerStats : MonoBehaviour
     public Object healFX;
 
     private LoadSettings loadSettings;
+
+    public Image image;
+    public Color normalColour = new Color(255, 255, 255, 255);
+    public Color healColour = new Color(0, 255, 0, 255);
+    public Color hitColour = new Color(255, 0, 0, 255);
+    Color flashColour;
+    float p = 0;
 
     private void Start()
     {
@@ -61,10 +69,47 @@ public class PlayerStats : MonoBehaviour
         return health;
     }
 
+    void Flash(Color newColour)
+    {
+        CancelInvoke();
+        p = 0;
+
+        flashColour = newColour;
+        image.color = flashColour;
+
+        InvokeRepeating("RevertColour", 0f, 0.05f);
+    }
+
+    void RevertColour()
+    {
+        image.color = LerpColour(flashColour, normalColour, p);
+
+        p += 0.1f;
+
+        if (p == 1)
+        {
+            CancelInvoke();
+            p = 0;
+        }
+    }
+
+    Color LerpColour(Color a, Color b, float i)
+    {
+        Color lerpColour = new Color(0, 0, 0, 0);
+
+        lerpColour.r = Mathf.Lerp(flashColour.r, normalColour.r, i);
+        lerpColour.g = Mathf.Lerp(flashColour.g, normalColour.g, i);
+        lerpColour.b = Mathf.Lerp(flashColour.b, normalColour.b, i);
+        lerpColour.a = Mathf.Lerp(flashColour.a, normalColour.a, i);
+
+        return lerpColour;
+    }
+
     public void ChangeHeath(int value, bool damage)
     {
         if (damage)
         {
+            Flash(hitColour);
             health = Mathf.Clamp(health - value, 0, maxHealth);
             combatManager.HealthPointsValue.text = health.ToString();
 
@@ -87,6 +132,7 @@ public class PlayerStats : MonoBehaviour
         }
         else
         {
+            Flash(healColour);
             health = Mathf.Clamp(health + value, 0, maxHealth);
             combatManager.HealthPointsValue.text = health.ToString();
 

@@ -76,7 +76,7 @@ public class CombatManager : MonoBehaviour
 
         battleActive = true;
 
-        Invoke("DelayStart", 0.6f);
+        Invoke("DelayStart", 3f);
     }
 
     void DelayStart()
