@@ -163,15 +163,25 @@ public class AbilityManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("You have not readied an ability.");
-
-                //Could cast basic attack
+                //Debug.Log("You have not readied an ability.");
+                
+                EnemyInfo(target.GetComponent<Enemy>());
             }
         }
     }
 
+    private void EnemyInfo(Enemy target)
+    {
+        if (target != null)
+            combatManager.enemyManager.EnemyInfo(target);
+        else
+            combatManager.enemyManager.EnemyInfo(null);
+    }
+
     public void SetAbility(string abilityName)
     {
+        EnemyInfo(null);
+
         readyAbility = abilityName;
 
         if (activeCard != null)

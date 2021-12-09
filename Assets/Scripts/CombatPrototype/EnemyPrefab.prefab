@@ -856,6 +856,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3555124280383455488}
+  - component: {fileID: 7092077428396002396}
   - component: {fileID: 3555124280383455491}
   - component: {fileID: 3555124280383455490}
   m_Layer: 0
@@ -884,6 +885,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7092077428396002396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3555124280383455489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58351ccab2be4c84bb2d18cb61fbf385, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameText: {fileID: 0}
+  attackText: {fileID: 0}
+  dmgText: {fileID: 0}
+  image: {fileID: 0}
+  descriptionText: {fileID: 0}
+  disable:
+  - {fileID: 0}
 --- !u!114 &3555124280383455491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -909,6 +929,10 @@ MonoBehaviour:
   - {fileID: 3555124280383455489}
   hitFX: {fileID: 6727453174112786923, guid: 420809e2f798084488e3873f43ce61a8, type: 3}
   healFX: {fileID: 6727453174112786923, guid: 5117cb09524d9f6479bf5f9776bb954d, type: 3}
+  image: {fileID: 3555124278701396923}
+  normalColour: {r: 255, g: 255, b: 255, a: 255}
+  healColour: {r: 0, g: 255, b: 0, a: 255}
+  hitColour: {r: 255, g: 0, b: 0, a: 255}
 --- !u!114 &3555124280383455490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -921,8 +945,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3e441b438a11f24b94e0f2c52d9396a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
+  displayName: 
+  desciption: 
+  damage: {x: 18, y: 22}
   attackName: Slash
+  descriptionInfo: {fileID: 7092077428396002396}
+  image: {fileID: 3555124278701396923}
 --- !u!1 &3555124280425745447
 GameObject:
   m_ObjectHideFlags: 0

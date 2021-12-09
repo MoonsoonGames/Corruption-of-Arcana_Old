@@ -22,6 +22,13 @@ public class EnemyStats : MonoBehaviour
     public Object hitFX;
     public Object healFX;
 
+    public Image image;
+    public Color normalColour = new Color(255, 255, 255, 255);
+    public Color healColour = new Color(0, 255, 0, 255);
+    public Color hitColour = new Color(255, 0, 0, 255);
+    Color flashColour;
+    float p = 0;
+
     private void Start()
     {
         health = maxHealth;
@@ -43,6 +50,7 @@ public class EnemyStats : MonoBehaviour
     {
         if (damage)
         {
+            Flash(hitColour);
             health = Mathf.Clamp(health - value, 0, maxHealth);
 
             if (hitFX != null)
@@ -64,6 +72,7 @@ public class EnemyStats : MonoBehaviour
         }
         else
         {
+            Flash(healColour);
             health = Mathf.Clamp(health + value, 0, maxHealth);
 
             if (healFX != null)
@@ -85,8 +94,45 @@ public class EnemyStats : MonoBehaviour
         }
     }
 
+    void Flash(Color newColour)
+    {
+        CancelInvoke();
+        p = 0;
+
+        flashColour = newColour;
+        image.color = flashColour;
+
+        InvokeRepeating("RevertColour", 0f, 0.05f);
+    }
+
+    void RevertColour()
+    {
+        image.color = LerpColour(flashColour, normalColour, p);
+
+        p += 0.1f;
+
+        if (p == 1)
+        {
+            CancelInvoke();
+            p = 0;
+        }
+    }
+
+    Color LerpColour(Color a, Color b, float i)
+    {
+        Color lerpColour = new Color(0, 0, 0, 0);
+
+        lerpColour.r = Mathf.Lerp(flashColour.r, normalColour.r, i);
+        lerpColour.g = Mathf.Lerp(flashColour.g, normalColour.g, i);
+        lerpColour.b = Mathf.Lerp(flashColour.b, normalColour.b, i);
+        lerpColour.a = Mathf.Lerp(flashColour.a, normalColour.a, i);
+
+        return lerpColour;
+    }
+
     void Die()
     {
+        enemyManager.enemies.Remove(GetComponent<Enemy>());
         enemyManager.EnemyKilled();
 
         foreach (var item in objectsToDisable)

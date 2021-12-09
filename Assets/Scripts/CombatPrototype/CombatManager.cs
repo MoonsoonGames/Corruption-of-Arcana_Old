@@ -76,7 +76,7 @@ public class CombatManager : MonoBehaviour
 
         battleActive = true;
 
-        Invoke("DelayStart", 0.5f);
+        Invoke("DelayStart", 3f);
     }
 
     void DelayStart()
@@ -88,8 +88,10 @@ public class CombatManager : MonoBehaviour
     {
         abilityManager.playerTurn = player;
 
+        /*
         if (enemyManager.enemies.Count <= 0)
             ShowEndScreen(true);
+        */
 
         if (player)
         {
