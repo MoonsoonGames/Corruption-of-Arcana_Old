@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -10,6 +11,13 @@ public class EnemyManager : MonoBehaviour
     public List<Targetter> targetters;
 
     public CombatManager combatManager;
+
+    public Text nameText;
+    public Text attackText;
+    public Text dmgText;
+    public Image image;
+    public Text descriptionText;
+    public GameObject[] disable;
 
     private void Start()
     {
@@ -44,6 +52,15 @@ public class EnemyManager : MonoBehaviour
             enemies.Add(item);
 
             item.GetComponent<EnemyStats>().enemyManager = this;
+            
+            EnemyDescription description = item.GetComponent<EnemyDescription>();
+
+            description.nameText = nameText;
+            description.attackText = attackText;
+            description.dmgText = dmgText;
+            description.image = image;
+            description.descriptionText = descriptionText;
+            description.disable = disable;
         }
     }
 
@@ -80,9 +97,28 @@ public class EnemyManager : MonoBehaviour
     {
         StartCoroutine(IDelaySetup(0.5f));
 
-        if (enemies.Count - 1 <= 0)
+        if (enemies.Count <= 0)
         {
             combatManager.ShowEndScreen(true);
+        }
+    }
+
+    public void EnemyInfo(Enemy controller)
+    {
+        if (controller != null)
+        {
+            //show enemy description
+            Debug.Log("Display enemy info: " + controller.displayName);
+            controller.DisplayCard(true);
+        }
+        else
+        {
+            //remove enemy descriptions
+            Debug.Log("Remove info");
+            foreach (var item in disable)
+            {
+                item.SetActive(enabled);
+            }
         }
     }
 }

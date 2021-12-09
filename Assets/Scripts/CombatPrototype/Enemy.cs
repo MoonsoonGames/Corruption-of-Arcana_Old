@@ -5,7 +5,11 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-    public int damage = 20;
+    public string displayName;
+
+    public string desciption;
+
+    public Vector2 damage = new Vector2(18, 22);
 
     GameObject player;
 
@@ -19,8 +23,21 @@ public class Enemy : MonoBehaviour
 
     LoadSettings loadSettings;
 
+    [TextArea(1, 3)]
+    public EnemyDescription descriptionInfo;
+
+    Sprite sprite;
+    public Image image;
+
     private void Start()
     {
+        sprite = image.sprite;
+
+        if (displayName != null)
+        {
+            displayName = gameObject.name;
+        }
+
         player = GameObject.Find("Player");
 
         playerStats = player.GetComponent<PlayerStats>();
@@ -33,9 +50,19 @@ public class Enemy : MonoBehaviour
     {
         if (canAttack)
         {
-            playerStats.ChangeHeath(damage, true);
+            int randDMG = (int)Random.Range(damage.x, damage.y);
 
-            Debug.Log(gameObject.name + " cast " + attackName + " for " + damage + " damage. It's really effective!");
+            playerStats.ChangeHeath(randDMG, true);
+
+            Debug.Log(gameObject.name + " cast " + attackName + " for " + randDMG + " damage. It's really effective!");
         }
+    }
+
+    public void DisplayCard(bool display)
+    {
+        if (display)
+            descriptionInfo.ReadyCard(displayName, attackName, damage, desciption, sprite);
+        else
+            descriptionInfo.RemoveCard();
     }
 }

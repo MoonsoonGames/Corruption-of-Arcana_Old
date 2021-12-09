@@ -87,6 +87,7 @@ public class EnemyStats : MonoBehaviour
 
     void Die()
     {
+        enemyManager.enemies.Remove(GetComponent<Enemy>());
         enemyManager.EnemyKilled();
 
         foreach (var item in objectsToDisable)

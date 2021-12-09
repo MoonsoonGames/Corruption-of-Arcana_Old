@@ -15,7 +15,9 @@ public class CombatEnemySpawner : MonoBehaviour
         {
             if (loadSettings.enemies[enemyNumber] != null)
             {
-                Instantiate(loadSettings.enemies[enemyNumber], this.gameObject.transform);
+                GameObject enemy = Instantiate(loadSettings.enemies[enemyNumber], this.gameObject.transform) as GameObject;
+
+                enemy.name = enemy.GetComponent<Enemy>().displayName;
             }
         }
     }
