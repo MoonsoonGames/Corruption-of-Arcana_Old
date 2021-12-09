@@ -33,13 +33,14 @@ RectTransform:
   m_Children:
   - {fileID: 6868794536751281718}
   - {fileID: 4272459143154205623}
+  - {fileID: 8424233304296701744}
   m_Father: {fileID: 7769026328002119499}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.33, y: 0.44}
-  m_SizeDelta: {x: 50, y: 50}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1172172217715192536
 CanvasRenderer:
@@ -311,15 +312,15 @@ RectTransform:
   m_GameObject: {fileID: 2746936473282987897}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalScale: {x: 0.16, y: 0.16, z: 0.16}
   m_Children: []
   m_Father: {fileID: 2089607016541558660}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -1.5381391}
-  m_SizeDelta: {x: 173.3, y: 198}
+  m_AnchoredPosition: {x: 0.000012398, y: 0.0012178}
+  m_SizeDelta: {x: 500, y: 500.05}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1689827267971171946
 CanvasRenderer:
@@ -1149,8 +1150,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 3.7618103}
-  m_SizeDelta: {x: 1500, y: 700}
+  m_AnchoredPosition: {x: -2.1, y: 5}
+  m_SizeDelta: {x: 1500, y: 800}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7428593465606363329
 CanvasRenderer:
@@ -1422,7 +1423,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7769026328002119499}
   m_Layer: 5
-  m_Name: Difficulty icon
+  m_Name: Health Potion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2281,6 +2282,10 @@ MonoBehaviour:
   combatManager: {fileID: 0}
   hitFX: {fileID: 6727453174112786923, guid: 420809e2f798084488e3873f43ce61a8, type: 3}
   healFX: {fileID: 6727453174112786923, guid: 5117cb09524d9f6479bf5f9776bb954d, type: 3}
+  image: {fileID: 0}
+  normalColour: {r: 255, g: 255, b: 255, a: 255}
+  healColour: {r: 0, g: 255, b: 0, a: 255}
+  hitColour: {r: 255, g: 0, b: 0, a: 255}
 --- !u!1 &7551587578166369350
 GameObject:
   m_ObjectHideFlags: 0
@@ -2528,6 +2533,96 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1001 &6190478140787393490
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2089607016541558660}
+    m_Modifications:
+    - target: {fileID: 2377932061956291810, guid: cf680c1cdafe3ef40bc5481d14b61bb3,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377932061956291810, guid: cf680c1cdafe3ef40bc5481d14b61bb3,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377932061956291810, guid: cf680c1cdafe3ef40bc5481d14b61bb3,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377932061956291810, guid: cf680c1cdafe3ef40bc5481d14b61bb3,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377932061956291810, guid: cf680c1cdafe3ef40bc5481d14b61bb3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377932061956291810, guid: cf680c1cdafe3ef40bc5481d14b61bb3,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377932061956291810, guid: cf680c1cdafe3ef40bc5481d14b61bb3,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377932061956291810, guid: cf680c1cdafe3ef40bc5481d14b61bb3,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377932061956291810, guid: cf680c1cdafe3ef40bc5481d14b61bb3,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377932061956291810, guid: cf680c1cdafe3ef40bc5481d14b61bb3,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377932061956291810, guid: cf680c1cdafe3ef40bc5481d14b61bb3,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377932061956291810, guid: cf680c1cdafe3ef40bc5481d14b61bb3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377932061956291810, guid: cf680c1cdafe3ef40bc5481d14b61bb3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377932061956291810, guid: cf680c1cdafe3ef40bc5481d14b61bb3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7016941968081847371, guid: cf680c1cdafe3ef40bc5481d14b61bb3,
+        type: 3}
+      propertyPath: m_Name
+      value: PotionSparkle
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cf680c1cdafe3ef40bc5481d14b61bb3, type: 3}
+--- !u!4 &8424233304296701744 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2377932061956291810, guid: cf680c1cdafe3ef40bc5481d14b61bb3,
+    type: 3}
+  m_PrefabInstance: {fileID: 6190478140787393490}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9073156291397547089
 PrefabInstance:
   m_ObjectHideFlags: 0
