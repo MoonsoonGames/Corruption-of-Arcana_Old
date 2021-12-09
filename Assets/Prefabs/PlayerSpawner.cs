@@ -17,6 +17,8 @@ public class PlayerSpawner : MonoBehaviour
     public MinimapScript minimap;
     public Compass compass;
 
+    public Text location;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -60,5 +62,7 @@ public class PlayerSpawner : MonoBehaviour
 
         minimap.player = playerRef.transform;
         compass.player = playerRef.transform;
+
+        controller.Location = location;
     }
 }

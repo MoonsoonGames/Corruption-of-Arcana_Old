@@ -32,7 +32,9 @@ public enum E_Levels
     Clearing,
 
     [InspectorName("Checkpoint")]
-    Checkpoint
+    Checkpoint,
+
+    UnderBridgeNPC
 }
 
 public enum E_Suits

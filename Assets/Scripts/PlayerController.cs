@@ -240,6 +240,7 @@ public class PlayerController : MonoBehaviour
 
         #endregion
 
+        /*
         if (other.gameObject.CompareTag("EC Camp"))
         {
             Location.text = "".ToString();
@@ -268,6 +269,7 @@ public class PlayerController : MonoBehaviour
         {
             Location.text = "".ToString();
         }
+        */
     }
 
     public void SavePlayerPos()

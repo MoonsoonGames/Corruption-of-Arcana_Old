@@ -79,6 +79,7 @@ public class LoadSettings : MonoBehaviour
 
         if (died)
         {
+            ResetEnemies();
             targetPos = checkPointPos;
 
             targetPos.x = checkPointPos.x;
@@ -120,12 +121,37 @@ public class LoadSettings : MonoBehaviour
         return targetPos;
     }
 
+    public void ResetEnemies()
+    {
+        enemiesKilled.Clear();
+        enemiesString.Clear();
+        killedString.Clear();
+
+        foreach (var item in checkpointEnemies)
+        {
+            if (!item.Value)
+            {
+                enemiesKilled.Add(item.Key, false);
+                enemiesString.Add(item.Key);
+            }
+            else
+            {
+                enemiesKilled.Add(item.Key, true);
+                killedString.Add(item.Key);
+            }
+        }
+    }
+
     public void Checkpoint(Scene newCheckPoint)
     {
         checkpointEnemies = enemiesKilled;
 
         checkPointScene = newCheckPoint;
         checkPointString = checkPointScene.name;
+
+        //health = 120;
+        //potionCount = 3;
+        //potionCount = Mathf.Clamp(potionCount, 3, 5);
     }
 
     private void Update()
