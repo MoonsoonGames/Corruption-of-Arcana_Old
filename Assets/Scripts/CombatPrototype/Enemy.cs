@@ -29,6 +29,9 @@ public class Enemy : MonoBehaviour
     Sprite sprite;
     public Image image;
 
+    public GameObject attackFX;
+    public Transform spawnPos;
+
     private void Start()
     {
         sprite = image.sprite;
@@ -50,11 +53,29 @@ public class Enemy : MonoBehaviour
     {
         if (canAttack)
         {
+            SpawnAttackEffect(player);
+
             int randDMG = (int)Random.Range(damage.x, damage.y);
 
             playerStats.ChangeHeath(randDMG, true);
 
             Debug.Log(gameObject.name + " cast " + attackName + " for " + randDMG + " damage. It's really effective!");
+        }
+    }
+
+    private void SpawnAttackEffect(GameObject target)
+    {
+        if (attackFX != null)
+        {
+            GameObject attackRef = Instantiate(attackFX, spawnPos) as GameObject;
+
+            ProjectileMovement projScript = attackRef.GetComponent<ProjectileMovement>();
+
+            if (projScript != null)
+            {
+                projScript.target = target;
+                projScript.moving = true;
+            }
         }
     }
 

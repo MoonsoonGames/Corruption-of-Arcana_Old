@@ -18,8 +18,10 @@ public class PlayerStats : MonoBehaviour
 
     public CombatManager combatManager;
 
+    /*
     public Object hitFX;
     public Object healFX;
+    */
 
     private LoadSettings loadSettings;
 
@@ -113,6 +115,7 @@ public class PlayerStats : MonoBehaviour
             health = Mathf.Clamp(health - value, 0, maxHealth);
             combatManager.HealthPointsValue.text = health.ToString();
 
+            /*
             if (hitFX != null)
             {
                 Vector3 spawnPos = new Vector3(0, 0, 0);
@@ -124,6 +127,7 @@ public class PlayerStats : MonoBehaviour
 
                 Instantiate(hitFX, spawnPos, spawnRot);
             }
+            */
 
             if (health <= 0)
             {
@@ -136,6 +140,7 @@ public class PlayerStats : MonoBehaviour
             health = Mathf.Clamp(health + value, 0, maxHealth);
             combatManager.HealthPointsValue.text = health.ToString();
 
+            /*
             if (healFX != null)
             {
                 Vector3 spawnPos = new Vector3(0, 0, 0);
@@ -147,6 +152,7 @@ public class PlayerStats : MonoBehaviour
 
                 Instantiate(healFX, spawnPos, spawnRot);
             }
+            */
         }
 
         if (healthSliderValue != null)
