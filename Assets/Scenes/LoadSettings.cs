@@ -38,9 +38,8 @@ public class LoadSettings : MonoBehaviour
     public Dictionary<string, bool> checkpointEnemies = new Dictionary<string, bool>();
     */
     //public List<string> enemiesAlive;
-    public List<string> enemiesKilled;
-    List<string> checkpointEnemies;
-    List<string> test;
+    public List<string> enemiesKilled = new List<string>();
+    public List<string> checkpointEnemies = new List<string>();
 
     public string currentFight;
 
@@ -138,10 +137,10 @@ public class LoadSettings : MonoBehaviour
     {
         Debug.Log("Checkpoint");
         checkpointEnemies.Clear();
-        checkpointEnemies = enemiesKilled;
+
         foreach (var item in enemiesKilled)
         {
-            test.Add(item);
+            checkpointEnemies.Add(item);
         }
 
         checkPointScene = newCheckPoint;
