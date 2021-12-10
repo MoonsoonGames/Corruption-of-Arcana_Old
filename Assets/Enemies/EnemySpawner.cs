@@ -26,24 +26,12 @@ public class EnemySpawner : MonoBehaviour
         {
             if (loadSettings.dialogueComplete)
             {
-                if (loadSettings.enemiesKilled.ContainsKey(enemyName))
+                if (loadSettings.enemiesKilled.Contains(enemyName))
                 {
-                    if (!loadSettings.enemiesKilled[enemyName])
-                    {
-                        Vector3 pos = this.transform.position;
-                        Quaternion rot = this.transform.rotation;
-
-                        Instantiate(enemy, pos, rot).name = enemyName;
-                    }
-                    else
-                    {
-                        Debug.Log("not spawning " + enemyName);
-                    }
+                    Debug.Log("not spawning " + enemyName);
                 }
                 else
                 {
-                    loadSettings.enemiesKilled.Add(enemyName, false);
-
                     Vector3 pos = this.transform.position;
                     Quaternion rot = this.transform.rotation;
 

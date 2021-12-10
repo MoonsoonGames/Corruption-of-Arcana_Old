@@ -33,12 +33,13 @@ public class LoadSettings : MonoBehaviour
     public int potionCount;
 
     bool main = false;
-
+    /*
     public Dictionary<string, bool> enemiesKilled = new Dictionary<string, bool>();
     public Dictionary<string, bool> checkpointEnemies = new Dictionary<string, bool>();
-
-    public List<string> enemiesString;
-    public List<string> killedString;
+    */
+    //public List<string> enemiesAlive;
+    public List<string> enemiesKilled = new List<string>();
+    public List<string> checkpointEnemies = new List<string>();
 
     public string currentFight;
 
@@ -123,28 +124,24 @@ public class LoadSettings : MonoBehaviour
 
     public void ResetEnemies()
     {
+        Debug.Log("Reset Enemies");
         enemiesKilled.Clear();
-        enemiesString.Clear();
-        killedString.Clear();
 
         foreach (var item in checkpointEnemies)
         {
-            if (!item.Value)
-            {
-                enemiesKilled.Add(item.Key, false);
-                enemiesString.Add(item.Key);
-            }
-            else
-            {
-                enemiesKilled.Add(item.Key, true);
-                killedString.Add(item.Key);
-            }
+            enemiesKilled.Add(item);
         }
     }
 
     public void Checkpoint(Scene newCheckPoint)
     {
-        checkpointEnemies = enemiesKilled;
+        Debug.Log("Checkpoint");
+        checkpointEnemies.Clear();
+
+        foreach (var item in enemiesKilled)
+        {
+            checkpointEnemies.Add(item);
+        }
 
         checkPointScene = newCheckPoint;
         checkPointString = checkPointScene.name;
@@ -153,12 +150,12 @@ public class LoadSettings : MonoBehaviour
         //potionCount = 3;
         //potionCount = Mathf.Clamp(potionCount, 3, 5);
     }
-
+    /*
     private void Update()
     {
         enemiesString.Clear();
         killedString.Clear();
-        foreach (var item in enemiesKilled)
+        foreach (var item in enemiesString)
         {
             if (item.Value)
             {
@@ -170,4 +167,5 @@ public class LoadSettings : MonoBehaviour
             }
         }
     }
+    */
 }
