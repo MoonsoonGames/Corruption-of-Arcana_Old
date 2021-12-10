@@ -157,9 +157,8 @@ public class CombatManager : MonoBehaviour
 
                 loadSettings.health = playerStats.GetHealth();
 
-                loadSettings.enemiesKilled[loadSettings.currentFight] = true;
+                loadSettings.enemiesKilled.Add(loadSettings.currentFight);
             }
-
 
             VictoryScreen.SetActive(true);
             //SceneManager.LoadLast;//Needs to load last scene and position
@@ -168,10 +167,6 @@ public class CombatManager : MonoBehaviour
         {
             if (loadSettings != null)
             {
-                loadSettings.enemiesKilled = loadSettings.checkpointEnemies;
-
-                loadSettings.enemiesKilled[loadSettings.currentFight] = false;
-
                 loadSettings.died = true;
                 loadSettings.health = 120;
             }

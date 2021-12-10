@@ -24,24 +24,10 @@ public class EnemyController : MonoBehaviour
 
         if (loadSettings != null)
         {
-            if (loadSettings.enemiesKilled.ContainsKey(name))
+            if (loadSettings.enemiesKilled.Contains(name))
             {
-                if (loadSettings.enemiesKilled[name])
-                {
-                    Debug.Log("Despawning " + name);
-                    Destroy(this.gameObject);
-                }
-            }
-            else
-            {
-                loadSettings.enemiesKilled.Add(name, false);
-
-                /*
-                foreach (var item in loadSettings.enemiesKilled)
-                {
-                    Debug.Log(item);
-                }
-                */
+                Debug.Log("Despawning " + name);
+                Destroy(this.gameObject);
             }
         }
     }
