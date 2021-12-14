@@ -14,6 +14,9 @@ public class EnemyController : MonoBehaviour
     private LoadSettings loadSettings;
 
     public E_Levels combatScene;
+    public Vector2 goldReward;
+    public float potionReward;
+    public string itemReward;
 
     public string enemyName;
 
@@ -42,6 +45,10 @@ public class EnemyController : MonoBehaviour
             loadSettings.enemies[0] = enemies[0];
             loadSettings.enemies[1] = enemies[1];
             loadSettings.enemies[2] = enemies[2];
+
+            loadSettings.goldReward = goldReward;
+            loadSettings.potionReward = potionReward;
+            loadSettings.itemReward = itemReward;
 
             if (sceneLoader != null)
                 sceneLoader.LoadSpecifiedScene(combatScene.ToString(), LoadSceneMode.Single);
