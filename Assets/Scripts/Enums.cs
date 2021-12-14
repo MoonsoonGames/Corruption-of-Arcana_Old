@@ -28,8 +28,8 @@ public enum E_Levels
     [InspectorName("Overworld Map")]
     OverworldMap,
 
-    [InspectorName("Clearing")]
-    Clearing,
+    [InspectorName("East Forest Clearing")]
+    EastForestClearing,
 
     [InspectorName("Checkpoint")]
     Checkpoint,
