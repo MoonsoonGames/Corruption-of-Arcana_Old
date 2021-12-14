@@ -19,8 +19,10 @@ public class EnemyStats : MonoBehaviour
 
     public GameObject[] objectsToDisable;
 
+    
     public Object hitFX;
-    public Object healFX;
+    //public Object healFX;
+    
 
     public Image image;
     public Color normalColour = new Color(255, 255, 255, 255);
@@ -53,6 +55,7 @@ public class EnemyStats : MonoBehaviour
             Flash(hitColour);
             health = Mathf.Clamp(health - value, 0, maxHealth);
 
+            /*
             if (hitFX != null)
             {
                 Vector3 spawnPos = new Vector3(0, 0, 0);
@@ -64,6 +67,7 @@ public class EnemyStats : MonoBehaviour
 
                 Instantiate(hitFX, spawnPos, spawnRot);
             }
+            */
 
             if (health <= 0)
             {
@@ -75,6 +79,7 @@ public class EnemyStats : MonoBehaviour
             Flash(healColour);
             health = Mathf.Clamp(health + value, 0, maxHealth);
 
+            /*
             if (healFX != null)
             {
                 Vector3 spawnPos = new Vector3(0, 0, 0);
@@ -86,6 +91,7 @@ public class EnemyStats : MonoBehaviour
 
                 Instantiate(healFX, spawnPos, spawnRot);
             }
+            */
         }
 
         if (healthSliderValue != null)
@@ -132,6 +138,18 @@ public class EnemyStats : MonoBehaviour
 
     void Die()
     {
+        if (hitFX != null)
+        {
+            Vector3 spawnPos = new Vector3(0, 0, 0);
+            Quaternion spawnRot = new Quaternion(0, 0, 0, 0);
+
+            spawnPos.x = transform.position.x;
+            spawnPos.y = transform.position.y;
+            spawnPos.z = transform.position.z - 5f;
+
+            Instantiate(hitFX, spawnPos, spawnRot);
+        }
+
         enemyManager.enemies.Remove(GetComponent<Enemy>());
         enemyManager.EnemyKilled();
 

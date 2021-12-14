@@ -18,6 +18,9 @@ public class AbilityManager : MonoBehaviour
 
     Targetter targetter;
 
+    public GameObject attackFX;
+    public Transform spawnPos;
+
     public SliderVariation sliderVarScript;
 
     #region Ability Values
@@ -274,7 +277,8 @@ public class AbilityManager : MonoBehaviour
             targetHealth.ChangeHeath(damage, true);
             combatManager.Dmg.SetActive(true);
             combatManager.DmgValue.text = damage.ToString();
-            
+
+            SpawnAttackEffect(target);
 
             ResetAbility();
 
@@ -293,6 +297,7 @@ public class AbilityManager : MonoBehaviour
         if (targetHealth != null)
         {
             MouseLeft();
+            SpawnAttackEffect(target);
 
             int damage = Random.Range(criticalSlashDamageMin, criticalSlashDamageMax);
 
@@ -319,6 +324,10 @@ public class AbilityManager : MonoBehaviour
         if (targetHealth != null)
         {
             MouseLeft();
+            foreach (var item in combatManager.enemyManager.enemies)
+            {
+                SpawnAttackEffect(item.gameObject);
+            }
 
             int damage = Random.Range(cleaveDamageMin, cleaveDamageMax);
 
@@ -362,11 +371,11 @@ public class AbilityManager : MonoBehaviour
 
             Debug.Log("Cast Flurry on " + target.name);
 
-            StartCoroutine(IFlurryAttacks(0.05f, targetHealth));
-            StartCoroutine(IFlurryAttacks(0.15f, targetHealth));
-            StartCoroutine(IFlurryAttacks(0.25f, targetHealth));
-            StartCoroutine(IFlurryAttacks(0.35f, targetHealth));
-            StartCoroutine(IFlurryAttacks(0.7f, targetHealth));
+            StartCoroutine(IFlurryAttacks(0.05f, target, targetHealth));
+            StartCoroutine(IFlurryAttacks(0.15f, target, targetHealth));
+            StartCoroutine(IFlurryAttacks(0.25f, target, targetHealth));
+            StartCoroutine(IFlurryAttacks(0.35f, target, targetHealth));
+            StartCoroutine(IFlurryAttacks(0.7f, target, targetHealth));
 
             ResetAbility();
 
@@ -379,12 +388,14 @@ public class AbilityManager : MonoBehaviour
 
     }
 
-    private IEnumerator IFlurryAttacks(float delay, EnemyStats targetHealth)
+    private IEnumerator IFlurryAttacks(float delay, GameObject target, EnemyStats targetHealth)
     {
         yield return new WaitForSeconds(delay);
 
         if (targetHealth != null)
         {
+            SpawnAttackEffect(target);
+
             int damage = Random.Range(flurryIndividualDamageMin, flurryIndividualDamageMax);
             targetHealth.ChangeHeath(damage, true);
 
@@ -423,11 +434,11 @@ public class AbilityManager : MonoBehaviour
             {
                 Debug.Log("Cast Flurry on " + target.name);
 
-                StartCoroutine(IStormBarrage(0.05f, targetHealth));
-                StartCoroutine(IStormBarrage(0.15f, targetHealth));
-                StartCoroutine(IStormBarrage(0.25f, targetHealth));
-                StartCoroutine(IStormBarrage(0.35f, targetHealth));
-                StartCoroutine(IStormBarrage(0.7f, targetHealth));
+                StartCoroutine(IStormBarrage(0.05f, target, targetHealth));
+                StartCoroutine(IStormBarrage(0.15f, target, targetHealth));
+                StartCoroutine(IStormBarrage(0.25f, target, targetHealth));
+                StartCoroutine(IStormBarrage(0.35f, target, targetHealth));
+                StartCoroutine(IStormBarrage(0.7f, target, targetHealth));
 
                 playerStats.ChangeMana(cost, true);
                 combatManager.Ap.SetActive(true);
@@ -451,12 +462,14 @@ public class AbilityManager : MonoBehaviour
 
     }
 
-    private IEnumerator IStormBarrage(float delay, EnemyStats targetHealth)
+    private IEnumerator IStormBarrage(float delay, GameObject target, EnemyStats targetHealth)
     {
         yield return new WaitForSeconds(delay);
 
         if (targetHealth != null)
         {
+            SpawnAttackEffect(target);
+
             int damage = Random.Range(stormBarrageIndividualDamageMin, stormBarrageIndividualDamageMax);
             targetHealth.ChangeHeath(damage, true);
 
@@ -489,6 +502,7 @@ public class AbilityManager : MonoBehaviour
             int cost = fireboltCost;
             if (playerStats.CheckMana(cost))
             {
+                SpawnAttackEffect(target);
                 int damage = Random.Range(fireboltDamageMin, fireboltDamageMax);
 
                 Debug.Log("Cast Firebolt on " + target.name);
@@ -529,6 +543,8 @@ public class AbilityManager : MonoBehaviour
             int cost = chillTouchCost;
             if (playerStats.CheckMana(cost))
             {
+                SpawnAttackEffect(target);
+
                 int damage = Random.Range(chillTouchDamageMin, chillTouchDamageMax);
 
                 Debug.Log("Cast Chill Touch on " + target.name);
@@ -570,6 +586,11 @@ public class AbilityManager : MonoBehaviour
             int cost = chainLightningCost;
             if (playerStats.CheckMana(cost))
             {
+                foreach (var item in combatManager.enemyManager.enemies)
+                {
+                    SpawnAttackEffect(item.gameObject);
+                }
+
                 EnemyStats[] enemies = FindObjectsOfType<EnemyStats>();
 
                 string message = "Cast Chain Lightning on ";
@@ -728,6 +749,22 @@ public class AbilityManager : MonoBehaviour
     #endregion
 
     #region Helper Functions
+
+    private void SpawnAttackEffect(GameObject target)
+    {
+        if (attackFX != null)
+        {
+            GameObject attackRef = Instantiate(attackFX, spawnPos) as GameObject;
+
+            ProjectileMovement projScript = attackRef.GetComponent<ProjectileMovement>();
+
+            if (projScript != null)
+            {
+                projScript.target = target;
+                projScript.moving = true;
+            }
+        }
+    }
 
     private IEnumerator IEndTurn(float delay)
     {
