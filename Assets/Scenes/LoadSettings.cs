@@ -41,7 +41,13 @@ public class LoadSettings : MonoBehaviour
     public List<string> enemiesKilled = new List<string>();
     public List<string> checkpointEnemies = new List<string>();
 
+    public int currentGold;
+    public int checkPointGold;
+
     public string currentFight;
+    public Vector2 goldReward;
+    public float potionReward;
+    public string itemReward;
 
     private void Awake()
     {

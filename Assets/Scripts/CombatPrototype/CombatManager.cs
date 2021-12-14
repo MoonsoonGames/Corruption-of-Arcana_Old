@@ -149,16 +149,7 @@ public class CombatManager : MonoBehaviour
 
         if (victory)
         {
-            if (loadSettings != null && loadSettings.currentFight != null)
-            {
-                playerStats.ChangeHeath(20, false);
-
-                playerStats.ChangePotions(1, false);
-
-                loadSettings.health = playerStats.GetHealth();
-
-                loadSettings.enemiesKilled.Add(loadSettings.currentFight);
-            }
+            
 
             VictoryScreen.SetActive(true);
             //SceneManager.LoadLast;//Needs to load last scene and position
@@ -180,5 +171,21 @@ public class CombatManager : MonoBehaviour
     public void TargetEnemies(bool visible)
     {
         enemyManager.TargetEnemies(visible);
+    }
+
+    public void Rewards(int healing, int gold, int potions)
+    {
+        if (loadSettings != null && loadSettings.currentFight != null)
+        {
+            playerStats.ChangeHeath(healing, false);
+
+            playerStats.ChangePotions(potions, false);
+
+            loadSettings.health = playerStats.GetHealth();
+
+            loadSettings.currentGold += gold; 
+
+            loadSettings.enemiesKilled.Add(loadSettings.currentFight);
+        }
     }
 }
