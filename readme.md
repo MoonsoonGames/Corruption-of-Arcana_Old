@@ -7,6 +7,6 @@ This is the development repo for Corruption of Arcana by team 2:10
 - Wooden UI Assets (unity store)
 - Vricevdm fog shaders (via github link)
 - fonts
--   BLKCHCRY
--   JazzCreateBubble
--   ThaleahFat_TTF
+   - BLKCHCRY
+   - JazzCreateBubble
+   - ThaleahFat_TTF
