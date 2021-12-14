@@ -41,7 +41,13 @@ public class LoadSettings : MonoBehaviour
     public List<string> enemiesKilled = new List<string>();
     public List<string> checkpointEnemies = new List<string>();
 
+    public int currentGold;
+    public int checkPointGold;
+
     public string currentFight;
+    public Vector2 goldReward;
+    public float potionReward;
+    public string itemReward;
 
     private void Awake()
     {
@@ -105,7 +111,7 @@ public class LoadSettings : MonoBehaviour
                 targetPos.y = playerPosInThoth.y;
                 targetPos.z = playerPosInThoth.z;
             }
-            else if (lastLevelString == E_Levels.Clearing.ToString())
+            else if (lastLevelString == E_Levels.EastForestClearing.ToString())
             {
                 Debug.Log(scene + " and " + lastLevelString);
                 targetPos = playerPosInClearing;

@@ -21,6 +21,7 @@ public class UIManager : MonoBehaviour
 
     public GameObject PauseMenu;
     public GameObject GuideBook;
+    public GameObject SettingsPage;
 
     #region Main Menu
     public GameObject MenuCanvas;
@@ -154,6 +155,10 @@ public class UIManager : MonoBehaviour
             {
                 PauseMenu.SetActive(false);
             }
+            else if (SettingsPage.activeSelf == true)
+            {
+                PauseMenu.SetActive(false);
+            }
             else if (Inventory.activeSelf == false)
             {
                 PauseMenu.SetActive(true);
@@ -174,6 +179,10 @@ public class UIManager : MonoBehaviour
             {
                 Inventory.SetActive(false);
             }
+            else if (SettingsPage.activeSelf == true)
+            {
+                Inventory.SetActive(false);
+            }
             else if (PauseMenu.activeSelf == false)
             {
                 Inventory.SetActive(true);
@@ -186,12 +195,31 @@ public class UIManager : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.H))
         {
-            GuideBook.SetActive(true);
-            ExplorationUI.SetActive(false);
-            player.GetComponent<PlayerController>().enabled = false;
-            Camera.GetComponent<PlayerCameraController>().enabled = false;
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
+            if (PauseMenu.activeSelf == true)
+            {
+                GuideBook.SetActive(false);
+            }
+            else if (GuideBook.activeSelf == true)
+            {
+                GuideBook.SetActive(false);
+            }
+            else if (SettingsPage.activeSelf == true)
+            {
+                GuideBook.SetActive(false);
+            }
+            else if (Inventory.activeSelf == true)
+            {
+                GuideBook.SetActive(false);
+            }
+            else if (GuideBook.activeSelf == false)
+            {
+                GuideBook.SetActive(true);
+                ExplorationUI.SetActive(false);
+                player.GetComponent<PlayerController>().enabled = false;
+                Camera.GetComponent<PlayerCameraController>().enabled = false;
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+            }
         }
         //else if (ActiveScene == "Thoth" && Input.GetKeyDown(KeyCode.M))
         //{
@@ -421,6 +449,14 @@ public class UIManager : MonoBehaviour
         Debug.Log("Resume Playing");
     }
 
+    public void Settings()
+    {
+        PauseMenu.SetActive(false);
+        SettingsPage.SetActive(true);
+
+        Debug.Log("changing Settings");
+    }
+
     public void Help()
     {
         PauseMenu.SetActive(false);
@@ -458,8 +494,8 @@ public class UIManager : MonoBehaviour
     {
         PlayingCanvas.SetActive(true);
         MenuCanvas.SetActive(false);
-        player.GetComponent<PlayerController>().enabled = true;
-        Camera.GetComponent<PlayerCameraController>().enabled = true;
+        player.GetComponent<PlayerController>().enabled = false;
+        Camera.GetComponent<PlayerCameraController>().enabled = false;
         Debug.Log("Back to the game");
     }
     #endregion
@@ -966,6 +1002,12 @@ public class UIManager : MonoBehaviour
     public void CloseBook()
     {
         GuideBook.SetActive(false);
+        PauseMenu.SetActive(true);
+    }
+    
+    public void CloseSettings()
+    {
+        SettingsPage.SetActive(false);
         PauseMenu.SetActive(true);
     }
     #endregion

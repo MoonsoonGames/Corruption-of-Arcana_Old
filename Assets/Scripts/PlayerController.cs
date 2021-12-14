@@ -240,36 +240,29 @@ public class PlayerController : MonoBehaviour
 
         #endregion
 
-        /*
+        #region East Clearing location triggers
+
         if (other.gameObject.CompareTag("EC Camp"))
         {
-            Location.text = "".ToString();
+            Location.text = "Forest Camp".ToString();
         }
         else if (other.gameObject.CompareTag("EC Forest"))
         {
-            Location.text = "".ToString();
+            Location.text = "East Forest".ToString();
         }
         else if (other.gameObject.CompareTag("EC Pond"))
         {
-            Location.text = "".ToString();
+            Location.text = "Hidden Pond".ToString();
         }
         else if (other.gameObject.CompareTag("EC Pass"))
         {
-            Location.text = "".ToString();
-        }
-        else if (other.gameObject.CompareTag("EC Far Right"))
-        {
-            Location.text = "".ToString();
+            Location.text = "Mountain Pass".ToString();
         }
         else if (other.gameObject.CompareTag("EC Cave"))
         {
-            Location.text = "".ToString();
+            Location.text = "Cave Enterance".ToString();
         }
-        else if (other.gameObject.CompareTag("EC Left"))
-        {
-            Location.text = "".ToString();
-        }
-        */
+        #endregion
     }
 
     public void SavePlayerPos()
@@ -281,7 +274,7 @@ public class PlayerController : MonoBehaviour
             {
                 loadSettings.playerPosInThoth = transform.position;
             }
-            else if (scene == E_Levels.Clearing.ToString())
+            else if (scene == E_Levels.EastForestClearing.ToString())
             {
                 loadSettings.playerPosInClearing = transform.position;
             }
