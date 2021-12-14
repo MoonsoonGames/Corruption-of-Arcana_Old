@@ -111,7 +111,7 @@ public class LoadSettings : MonoBehaviour
                 targetPos.y = playerPosInThoth.y;
                 targetPos.z = playerPosInThoth.z;
             }
-            else if (lastLevelString == E_Levels.Clearing.ToString())
+            else if (lastLevelString == E_Levels.EastForestClearing.ToString())
             {
                 Debug.Log(scene + " and " + lastLevelString);
                 targetPos = playerPosInClearing;

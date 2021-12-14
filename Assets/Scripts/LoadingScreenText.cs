@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
 public class LoadingScreenText : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class LoadingScreenText : MonoBehaviour
 
     private void Start()
     {
-        text.text = SceneManager.GetActiveScene().name;
+        text.text = ObjectNames.NicifyVariableName(SceneManager.GetActiveScene().name);
+
+
     }
 }
