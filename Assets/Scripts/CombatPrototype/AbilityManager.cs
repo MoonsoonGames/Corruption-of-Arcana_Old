@@ -25,46 +25,39 @@ public class AbilityManager : MonoBehaviour
 
     #region Ability Values
 
+    int multihitMax = 0;
     int multihitTally = 0;
     int multihitCount = 0;
 
     #region Basic Attacks
     [Header("Basic Attacks")]
-    public int slashDamageMin = 9;
-    public int slashDamageMax = 12;
-
-    public int criticalSlashDamageMin = 28, criticalSlashDamageMax = 38;
-
-    public int cleaveDamageMin = 10, cleaveDamageMax = 14;
-
-    public int flurryIndividualDamageMin = 6, flurryIndividualDamageMax = 8;
+    public Vector2 slashDamage = new Vector2(6, 15);
+    public Vector2 criticalSlashDamage = new Vector2(22, 35);
+    public Vector2 cleaveDamage = new Vector2(8, 16);
+    public Vector2 flurryDamage = new Vector2(4, 8);
+    public Vector2 flurryFinalHitDamage = new Vector2(6, 10);
 
     #endregion
 
     #region Spells
     [Header("Spells")]
-    public int stormBarrageIndividualDamageMin = 12;
-    public int stormBarrageIndividualDamageMax = 15;
 
+    public Vector2 stormBarrageDamage = new Vector2(14, 32);
     public int stormBarrageCost = 55;
 
-    public int fireboltDamageMin = 30, fireboltDamageMax = 35;
-
+    public Vector2 fireboltDamage = new Vector2(26, 40);
     public int fireboltCost = 40;
 
-    public int chillTouchDamageMin = 20, chillTouchDamageMax = 25;
-
+    public Vector2 chillTouchDamage = new Vector2(16, 30);
     public int chillTouchCost = 20;
 
-    public int chainLightningDamageMin = 22, chainLightningDamageMax = 28;
-
+    public Vector2 chainLightningDamage = new Vector2(18, 32);
     public int chainLightningCost = 60;
 
-    public int cureWoundsHealMin = 32, cureWoundsHealMax = 38;
-
+    public Vector2 cureWoundsHealing = new Vector2(28, 42);
     public int cureWoundsCost = 40;
 
-    public int healthPotionMin = 38, healthPotionMax = 46;
+    public Vector2 healthPotionHealing = new Vector2(34, 50);
 
     #endregion
 
@@ -107,52 +100,52 @@ public class AbilityManager : MonoBehaviour
         if (readyAbility == "Slash")
         {
             multihit = false;
-            dmg = new Vector2(slashDamageMin, slashDamageMax);
+            dmg = new Vector2(slashDamage.x, slashDamage.y);
         }
         else if (readyAbility == "CriticalSlash")
         {
             multihit = false;
-            dmg = new Vector2(criticalSlashDamageMin, criticalSlashDamageMax);
+            dmg = new Vector2(criticalSlashDamage.x, criticalSlashDamage.y);
         }
         else if (readyAbility == "Cleave")
         {
             multihit = true;
-            dmg = new Vector2(cleaveDamageMin, cleaveDamageMax);
+            dmg = new Vector2(cleaveDamage.x, cleaveDamage.y);
         }
         else if (readyAbility == "Flurry")
         {
             multihit = false;
-            dmg = new Vector2(flurryIndividualDamageMin * 5, flurryIndividualDamageMax * 5);
+            dmg = new Vector2((flurryDamage.x * 4) + flurryFinalHitDamage.x, (flurryDamage.y * 4) + flurryFinalHitDamage.y);
         }
         else if (readyAbility == "StormBarrage")
         {
             multihit = false;
-            dmg = new Vector2(stormBarrageIndividualDamageMin * 5, stormBarrageIndividualDamageMax * 5);
+            dmg = new Vector2(stormBarrageDamage.x * 3, stormBarrageDamage.y * 3);
         }
         else if (readyAbility == "Firebolt")
         {
             multihit = false;
-            dmg = new Vector2(fireboltDamageMin, fireboltDamageMax);
+            dmg = new Vector2(fireboltDamage.x, fireboltDamage.y);
         }
         else if (readyAbility == "ChillTouch")
         {
             multihit = false;
-            dmg = new Vector2(chillTouchDamageMin, chillTouchDamageMax);
+            dmg = new Vector2(chillTouchDamage.x, chillTouchDamage.y);
         }
         else if (readyAbility == "ChainLightning")
         {
             multihit = true;
-            dmg = new Vector2(chainLightningDamageMin, chainLightningDamageMax);
+            dmg = new Vector2(chainLightningDamage.x, chainLightningDamage.y);
         }
         else if (readyAbility == "CureWounds")
         {
             multihit = false;
-            dmg = new Vector2(-cureWoundsHealMin, -cureWoundsHealMax);
+            dmg = new Vector2(-cureWoundsHealing.x, -cureWoundsHealing.y);
         }
         else if (readyAbility == "HealingPotion")
         {
             multihit = false;
-            dmg = new Vector2(-healthPotionMin, -healthPotionMax);
+            dmg = new Vector2(-healthPotionHealing.x, -healthPotionHealing.y);
         }
     }
 
@@ -191,43 +184,43 @@ public class AbilityManager : MonoBehaviour
         {
             if (abilityName == "Slash")
             {
-                activeCard.ReadyCard("Slash", new Vector2(slashDamageMin, slashDamageMax), "Physical DMG", 0, "Hit your opponent with a basic attack", "AP");
+                activeCard.ReadyCard("Slash", new Vector2(slashDamage.x, slashDamage.y), "Physical DMG", 0, "Hit your opponent with a basic attack", "AP");
             }
             else if (abilityName == "CriticalSlash")
             {
-                activeCard.ReadyCard("Critical Slash", new Vector2(criticalSlashDamageMin, criticalSlashDamageMax), "Physical DMG", 0, "Hit your opponent with a critical attack", "AP");
+                activeCard.ReadyCard("Critical Slash", new Vector2(criticalSlashDamage.x, criticalSlashDamage.y), "Physical DMG", 0, "Hit your opponent with a critical attack", "AP");
             }
             else if (abilityName == "Cleave")
             {
-                activeCard.ReadyCard("Cleave", new Vector2(cleaveDamageMin, cleaveDamageMax), "Physical DMG", 0, "With a sweeping strike, you hit all opponents in your way", "AP");
+                activeCard.ReadyCard("Cleave", new Vector2(cleaveDamage.x, cleaveDamage.y), "Physical DMG", 0, "With a sweeping strike, you hit all opponents in your way", "AP");
             }
             else if (abilityName == "Flurry")
             {
-                activeCard.ReadyCard("Flurry", new Vector2(flurryIndividualDamageMin * 5, flurryIndividualDamageMax * 5), "Physical DMG", 0, "Hit your opponent with five times in quick succession", "AP");
+                activeCard.ReadyCard("Flurry", new Vector2((flurryDamage.x * 4) + flurryFinalHitDamage.x, (flurryDamage.y * 4) + flurryFinalHitDamage.y), "Physical DMG", 0, "Hit your opponent with five times in quick succession", "AP");
             }
             else if (abilityName == "StormBarrage")
             {
-                activeCard.ReadyCard("Storm Barrage", new Vector2(stormBarrageIndividualDamageMin * 5, stormBarrageIndividualDamageMax * 5), "Static DMG", stormBarrageCost, "Unleash a devastating ray of lightning at your target", "AP");
+                activeCard.ReadyCard("Storm Barrage", new Vector2(stormBarrageDamage.x * 3, stormBarrageDamage.y * 3), "Static DMG", stormBarrageCost, "Unleash a devastating ray of lightning at your target", "AP");
             }
             else if (abilityName == "Firebolt")
             {
-                activeCard.ReadyCard("Firebolt", new Vector2(fireboltDamageMin, fireboltDamageMax), "Ember DMG", fireboltCost, "Throw a searing blast of fire at a target", "AP");
+                activeCard.ReadyCard("Firebolt", new Vector2(fireboltDamage.x, fireboltDamage.y), "Ember DMG", fireboltCost, "Throw a searing blast of fire at a target", "AP");
             }
             else if (abilityName == "ChillTouch")
             {
-                activeCard.ReadyCard("Chill Touch", new Vector2(chillTouchDamageMin, chillTouchDamageMax), "Frost DMG", chillTouchCost, "Attempt to chill your opponent with a blast of frost from your hand", "AP");
+                activeCard.ReadyCard("Chill Touch", new Vector2(chillTouchDamage.x, chillTouchDamage.y), "Frost DMG", chillTouchCost, "Attempt to chill your opponent with a blast of frost from your hand", "AP");
             }
             else if (abilityName == "ChainLightning")
             {
-                activeCard.ReadyCard("Chain Lightning", new Vector2(chainLightningDamageMin, chainLightningDamageMax), "Static DMG", chainLightningCost, "Call down an electric storm to crush all targets and send them reeling", "AP");
+                activeCard.ReadyCard("Chain Lightning", new Vector2(chainLightningDamage.x, chainLightningDamage.y), "Static DMG", chainLightningCost, "Call down an electric storm to crush all targets and send them reeling", "AP");
             }
             else if (abilityName == "CureWounds")
             {
-                activeCard.ReadyCard("Cure Wounds", new Vector2(cureWoundsHealMin, cureWoundsHealMax), "Healing", cureWoundsCost, "With a cleansing surge, you mend your body of wounds", "AP");
+                activeCard.ReadyCard("Cure Wounds", new Vector2(cureWoundsHealing.x, cureWoundsHealing.y), "Healing", cureWoundsCost, "With a cleansing surge, you mend your body of wounds", "AP");
             }
             else if (abilityName == "HealingPotion")
             {
-                activeCard.ReadyCard("Healing Potion", new Vector2(healthPotionMin, healthPotionMax), "Healing", 1, "By imbibing a healing potion, you restore your vitality... tastes grim though", "Health Potions");
+                activeCard.ReadyCard("Healing Potion", new Vector2(healthPotionHealing.x, healthPotionHealing.y), "Healing", 1, "By imbibing a healing potion, you restore your vitality... tastes grim though", "Health Potions");
             }
         }
 
@@ -270,7 +263,7 @@ public class AbilityManager : MonoBehaviour
         {
             MouseLeft();
 
-            int damage = Random.Range(slashDamageMin, slashDamageMax);
+            int damage = (int)Random.Range(slashDamage.x, slashDamage.y);
 
             Debug.Log("Cast Slash on " + target.name);
 
@@ -278,7 +271,7 @@ public class AbilityManager : MonoBehaviour
             combatManager.Dmg.SetActive(true);
             combatManager.DmgValue.text = damage.ToString();
 
-            SpawnAttackEffect(target);
+            SpawnAttackEffect(spawnPos, target);
 
             ResetAbility();
 
@@ -297,9 +290,9 @@ public class AbilityManager : MonoBehaviour
         if (targetHealth != null)
         {
             MouseLeft();
-            SpawnAttackEffect(target);
+            SpawnAttackEffect(spawnPos, target);
 
-            int damage = Random.Range(criticalSlashDamageMin, criticalSlashDamageMax);
+            int damage = (int)Random.Range(criticalSlashDamage.x, criticalSlashDamage.y);
 
             Debug.Log("Cast Slash on " + target.name + ". It's a critical hit!");
 
@@ -326,10 +319,10 @@ public class AbilityManager : MonoBehaviour
             MouseLeft();
             foreach (var item in combatManager.enemyManager.enemies)
             {
-                SpawnAttackEffect(item.gameObject);
+                SpawnAttackEffect(spawnPos, item.gameObject);
             }
 
-            int damage = Random.Range(cleaveDamageMin, cleaveDamageMax);
+            int damage = (int)Random.Range(cleaveDamage.x, cleaveDamage.y);
 
             EnemyStats[] enemies = FindObjectsOfType<EnemyStats>();
 
@@ -371,11 +364,12 @@ public class AbilityManager : MonoBehaviour
 
             Debug.Log("Cast Flurry on " + target.name);
 
-            StartCoroutine(IFlurryAttacks(0.05f, target, targetHealth));
-            StartCoroutine(IFlurryAttacks(0.15f, target, targetHealth));
-            StartCoroutine(IFlurryAttacks(0.25f, target, targetHealth));
-            StartCoroutine(IFlurryAttacks(0.35f, target, targetHealth));
-            StartCoroutine(IFlurryAttacks(0.7f, target, targetHealth));
+            multihitMax = 5;
+            StartCoroutine(IDelayDamage(flurryDamage, 0.05f, spawnPos, target, targetHealth));
+            StartCoroutine(IDelayDamage(flurryDamage, 0.15f, spawnPos, target, targetHealth));
+            StartCoroutine(IDelayDamage(flurryDamage, 0.25f, spawnPos, target, targetHealth));
+            StartCoroutine(IDelayDamage(flurryDamage, 0.35f, spawnPos, target, targetHealth));
+            StartCoroutine(IDelayDamage(flurryFinalHitDamage, 0.7f, spawnPos, target, targetHealth));
 
             ResetAbility();
 
@@ -386,35 +380,6 @@ public class AbilityManager : MonoBehaviour
             Debug.Log("You cannot target that character with this spell");
         }
 
-    }
-
-    private IEnumerator IFlurryAttacks(float delay, GameObject target, EnemyStats targetHealth)
-    {
-        yield return new WaitForSeconds(delay);
-
-        if (targetHealth != null)
-        {
-            SpawnAttackEffect(target);
-
-            int damage = Random.Range(flurryIndividualDamageMin, flurryIndividualDamageMax);
-            targetHealth.ChangeHeath(damage, true);
-
-            multihitTally += damage;
-            multihitCount++;
-
-            combatManager.Dmg.SetActive(true);
-            combatManager.DmgValue.text = multihitTally.ToString();
-
-            Debug.Log(multihitCount + " hits for " + multihitTally + " points of damage");
-
-            if (multihitCount >= 5)
-            {
-                Debug.Log("Finish flurry");
-
-                multihitCount = 0;
-                multihitTally = 0;
-            }
-        }
     }
 
     #endregion
@@ -434,11 +399,10 @@ public class AbilityManager : MonoBehaviour
             {
                 Debug.Log("Cast Flurry on " + target.name);
 
-                StartCoroutine(IStormBarrage(0.05f, target, targetHealth));
-                StartCoroutine(IStormBarrage(0.15f, target, targetHealth));
-                StartCoroutine(IStormBarrage(0.25f, target, targetHealth));
-                StartCoroutine(IStormBarrage(0.35f, target, targetHealth));
-                StartCoroutine(IStormBarrage(0.7f, target, targetHealth));
+                multihitMax = 3;
+                StartCoroutine(IDelayDamage(stormBarrageDamage, 0.05f, spawnPos, target, targetHealth));
+                StartCoroutine(IDelayDamage(stormBarrageDamage, 0.2f, spawnPos, target, targetHealth));
+                StartCoroutine(IDelayDamage(stormBarrageDamage, 0.35f, spawnPos, target, targetHealth));
 
                 playerStats.ChangeMana(cost, true);
                 combatManager.Ap.SetActive(true);
@@ -462,35 +426,6 @@ public class AbilityManager : MonoBehaviour
 
     }
 
-    private IEnumerator IStormBarrage(float delay, GameObject target, EnemyStats targetHealth)
-    {
-        yield return new WaitForSeconds(delay);
-
-        if (targetHealth != null)
-        {
-            SpawnAttackEffect(target);
-
-            int damage = Random.Range(stormBarrageIndividualDamageMin, stormBarrageIndividualDamageMax);
-            targetHealth.ChangeHeath(damage, true);
-
-            multihitTally += damage;
-            multihitCount++;
-
-            combatManager.Dmg.SetActive(true);
-            combatManager.DmgValue.text = multihitTally.ToString();
-
-            Debug.Log(multihitCount + " hits for " + multihitTally + " points of damage");
-
-            if (multihitCount >= 5)
-            {
-                Debug.Log("Finish flurry");
-
-                multihitCount = 0;
-                multihitTally = 0;
-            }
-        }
-    }
-
     private void Firebolt(GameObject target)
     {
         EnemyStats targetHealth = target.GetComponent<EnemyStats>();
@@ -502,8 +437,8 @@ public class AbilityManager : MonoBehaviour
             int cost = fireboltCost;
             if (playerStats.CheckMana(cost))
             {
-                SpawnAttackEffect(target);
-                int damage = Random.Range(fireboltDamageMin, fireboltDamageMax);
+                SpawnAttackEffect(spawnPos, target);
+                int damage = (int)Random.Range(fireboltDamage.x, fireboltDamage.y);
 
                 Debug.Log("Cast Firebolt on " + target.name);
 
@@ -543,9 +478,9 @@ public class AbilityManager : MonoBehaviour
             int cost = chillTouchCost;
             if (playerStats.CheckMana(cost))
             {
-                SpawnAttackEffect(target);
+                SpawnAttackEffect(spawnPos, target);
 
-                int damage = Random.Range(chillTouchDamageMin, chillTouchDamageMax);
+                int damage = (int)Random.Range(chillTouchDamage.x, chillTouchDamage.y);
 
                 Debug.Log("Cast Chill Touch on " + target.name);
 
@@ -586,28 +521,23 @@ public class AbilityManager : MonoBehaviour
             int cost = chainLightningCost;
             if (playerStats.CheckMana(cost))
             {
+                string message = "Cast Chain Lightning on ";
+                multihitMax = combatManager.enemyManager.enemies.Count;
+
                 foreach (var item in combatManager.enemyManager.enemies)
                 {
-                    SpawnAttackEffect(item.gameObject);
-                }
-
-                EnemyStats[] enemies = FindObjectsOfType<EnemyStats>();
-
-                string message = "Cast Chain Lightning on ";
-
-                foreach (var item in enemies)
-                {
-                    int damage = Random.Range(chainLightningDamageMin, chainLightningDamageMax);
-
+                    EnemyStats itemHealth = item.gameObject.GetComponent<EnemyStats>();
                     message += item.gameObject.name + ", ";
 
-                    item.ChangeHeath(damage, true);
-                    multihitTally += damage;
+                    if (item.gameObject == target)
+                    {
+                        StartCoroutine(IDelayDamage(chainLightningDamage, 0f, spawnPos, item.gameObject, itemHealth));
+                    }
+                    else
+                    {
+                        StartCoroutine(IDelayDamage(chainLightningDamage, 0.25f, target.transform, item.gameObject, itemHealth));
+                    }
                 }
-
-                combatManager.Dmg.SetActive(true);
-                combatManager.DmgValue.text = multihitTally.ToString();
-                multihitTally = 0;
 
                 Debug.Log(message);
 
@@ -617,7 +547,7 @@ public class AbilityManager : MonoBehaviour
 
                 ResetAbility();
 
-                StartCoroutine(IEndTurn(0.2f));
+                StartCoroutine(IEndTurn(0.6f));
             }
             else
             {
@@ -643,7 +573,7 @@ public class AbilityManager : MonoBehaviour
             int cost = cureWoundsCost;
             if (playerStats.CheckMana(cost))
             {
-                int heal = Random.Range(cureWoundsHealMin, cureWoundsHealMax);
+                int heal = (int)Random.Range(cureWoundsHealing.x, cureWoundsHealing.y);
 
                 Debug.Log("Cast CureWounds on " + target.name);
 
@@ -683,7 +613,7 @@ public class AbilityManager : MonoBehaviour
             int cost = 1;
             if (playerStats.CheckPotions(cost))
             {
-                int heal = Random.Range(healthPotionMin, healthPotionMax);
+                int heal = (int)Random.Range(healthPotionHealing.x, healthPotionHealing.y);
 
                 Debug.Log(target.name + " used a healing potion");
 
@@ -719,7 +649,7 @@ public class AbilityManager : MonoBehaviour
             int cost = 1;
             if (false /*playerStats.CheckArcanaPotions(cost)*/)
             {
-                int restore = Random.Range(1 /*healthPotionMin, healthPotionMax*/, 1);
+                int restore = Random.Range(1 /*healthPotion.x, healthPotion.y*/, 1);
 
                 Debug.Log(target.name + " used an arcana potion");
 
@@ -750,11 +680,40 @@ public class AbilityManager : MonoBehaviour
 
     #region Helper Functions
 
-    private void SpawnAttackEffect(GameObject target)
+    private IEnumerator IDelayDamage(Vector2 damageRange, float delay, Transform origin, GameObject target, EnemyStats targetHealth)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (targetHealth != null)
+        {
+            SpawnAttackEffect(origin, target);
+
+            int damage = (int)Random.Range(damageRange.x, damageRange.y);
+            targetHealth.ChangeHeath(damage, true);
+
+            multihitTally += damage;
+            multihitCount++;
+
+            combatManager.Dmg.SetActive(true);
+            combatManager.DmgValue.text = multihitTally.ToString();
+
+            Debug.Log(multihitCount + " hits for " + multihitTally + " points of damage");
+
+            if (multihitCount >= multihitMax)
+            {
+                Debug.Log("Finish multihit");
+
+                multihitCount = 0;
+                multihitTally = 0;
+            }
+        }
+    }
+
+    private void SpawnAttackEffect(Transform origin, GameObject target)
     {
         if (attackFX != null)
         {
-            GameObject attackRef = Instantiate(attackFX, spawnPos) as GameObject;
+            GameObject attackRef = Instantiate(attackFX, origin.transform) as GameObject;
 
             ProjectileMovement projScript = attackRef.GetComponent<ProjectileMovement>();
 
