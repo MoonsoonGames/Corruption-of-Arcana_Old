@@ -10,17 +10,29 @@ public class PlayerCameraController : MonoBehaviour
 
     public bool disableCursor;
 
+    bool canRotateCam = false;
+
     // Start is called before the first frame update
     void Start()
     {
         Cursor.visible = !disableCursor;
         if (disableCursor)
             Cursor.lockState = CursorLockMode.Locked;
+
+        Invoke("DelayRot", 2f);
+        mouseX = transform.rotation.eulerAngles.y;
+        mouseY = transform.rotation.eulerAngles.x;
+    }
+
+    void DelayRot()
+    {
+        canRotateCam = true;
     }
 
     void LateUpdate()
     {
-        CamControl();
+        if (canRotateCam)
+            CamControl();
     }
 
     // Update is called once per frame

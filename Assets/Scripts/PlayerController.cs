@@ -85,10 +85,11 @@ public class PlayerController : MonoBehaviour
                 }
                 
                 Vector3 spawnPos = loadSettings.RequestPosition(SceneManager.GetActiveScene().name);
-
-                //SetupTransform(spawnPos);
+                Quaternion spawnRot = loadSettings.RequestRotation(SceneManager.GetActiveScene().name);
                 
-                StartCoroutine(IDelayStartTransform(2f, spawnPos));
+                //SetupTransform(spawnPos);
+
+                StartCoroutine(IDelayStartTransform(2f, spawnPos, spawnRot));
 
                 loadSettings.died = false;
             }
@@ -105,17 +106,18 @@ public class PlayerController : MonoBehaviour
         //Debug.Break();
     }
 
-    IEnumerator IDelayStartTransform(float delay, Vector3 newSpawnPos)
+    IEnumerator IDelayStartTransform(float delay, Vector3 newSpawnPos, Quaternion newSpawnRot)
     {
         yield return new WaitForSeconds(delay);
         //Debug.Log("Should be able to move");
-        //SetupTransform(newSpawnPos);
+        SetupTransform(newSpawnPos, newSpawnRot);
         canMove = true;
     }
 
-    void SetupTransform(Vector3 targetPosition)
+    void SetupTransform(Vector3 targetPosition, Quaternion targetRotation)
     {
         transform.position = targetPosition;
+        transform.rotation = targetRotation;
     }
 
     void Update()
@@ -273,10 +275,12 @@ public class PlayerController : MonoBehaviour
             if (scene == E_Levels.Thoth.ToString())
             {
                 loadSettings.playerPosInThoth = transform.position;
+                loadSettings.playerRotInThoth = transform.rotation;
             }
             else if (scene == E_Levels.EastForestClearing.ToString())
             {
                 loadSettings.playerPosInClearing = transform.position;
+                loadSettings.playerRotInClearing = transform.rotation;
             }
         }
 

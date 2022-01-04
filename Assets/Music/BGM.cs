@@ -4,19 +4,24 @@ using UnityEngine;
 
 public class BGM : MonoBehaviour
 {
-    public AudioClip mainMenuMusic;
+    public AudioClip audioClip;
+    public float volume = 0.22f;
 
-    public AudioClip battleMusic;
-
-    
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        DontDestroyOnLoad(this.gameObject);
+        Invoke("PlayMusic", 0.5f);
     }
 
-    public void PlayMusic(AudioClip music, float volume)
+    void PlayMusic()
     {
+        BGMManager[] managers = GameObject.FindObjectsOfType<BGMManager>();
 
+        foreach (var item in managers)
+        {
+            if (item.CheckMain())
+            {
+                item.PlayMusic(audioClip, volume);
+            }
+        }
     }
 }

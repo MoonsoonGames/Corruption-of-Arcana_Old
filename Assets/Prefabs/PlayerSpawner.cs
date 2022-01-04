@@ -45,8 +45,9 @@ public class PlayerSpawner : MonoBehaviour
     void SpawnPlayer(LoadSettings loadSettingsRef)
     {
         Vector3 spawnPos = loadSettingsRef.RequestPosition(SceneManager.GetActiveScene().name);
+        Quaternion spawnRot = loadSettingsRef.RequestRotation(SceneManager.GetActiveScene().name);
 
-        GameObject playerRef = Instantiate(player, spawnPos, transform.rotation) as GameObject;
+        GameObject playerRef = Instantiate(player, spawnPos, spawnRot) as GameObject;
 
         playerRef.name = "Player";
 
