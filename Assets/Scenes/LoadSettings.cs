@@ -19,9 +19,12 @@ public class LoadSettings : MonoBehaviour
     public E_Levels lastLevel;
     public string lastLevelString;
     public Vector3 playerPosInThoth;
+    public Quaternion playerRotInThoth;
     public Vector3 playerPosInClearing;
+    public Quaternion playerRotInClearing;
 
     public Vector3 checkPointPos;
+    public Quaternion checkPointRot;
     public Scene checkPointScene;
     public string checkPointString;
 
@@ -128,6 +131,57 @@ public class LoadSettings : MonoBehaviour
         return targetPos;
     }
 
+    public Quaternion RequestRotation(string scene)
+    {
+        Quaternion targetRot;
+
+        if (died)
+        {
+            ResetEnemies();
+            targetRot = checkPointRot;
+
+            targetRot.x = checkPointRot.x;
+            targetRot.y = checkPointRot.y;
+            targetRot.z = checkPointRot.z;
+            targetRot.w = checkPointRot.w;
+
+            //Debug.Log("Loading respawn position | " + checkPointPos + " || " + targetPos);
+        }
+        else
+        {
+            targetRot = new Quaternion();
+
+            lastLevelString = scene;
+
+            //Debug.Log(scene + " and " + lastLevelString);
+
+            if (lastLevelString == E_Levels.Thoth.ToString())
+            {
+                targetRot = playerRotInThoth;
+
+                targetRot.x = playerRotInThoth.x;
+                targetRot.y = playerRotInThoth.y;
+                targetRot.z = playerRotInThoth.z;
+                targetRot.w = playerRotInThoth.w;
+            }
+            else if (lastLevelString == E_Levels.EastForestClearing.ToString())
+            {
+                Debug.Log(scene + " and " + lastLevelString);
+                targetRot = playerRotInClearing;
+
+                targetRot.x = playerRotInClearing.x;
+                targetRot.y = playerRotInClearing.y;
+                targetRot.z = playerRotInClearing.z;
+                targetRot.w = playerRotInClearing.w;
+            }
+
+            Debug.Log("Loading spawn rotation | " + playerRotInThoth.eulerAngles + " || " + targetRot.eulerAngles);
+
+        }
+
+        return targetRot;
+    }
+
     public void ResetEnemies()
     {
         Debug.Log("Reset Enemies");
@@ -151,27 +205,5 @@ public class LoadSettings : MonoBehaviour
 
         checkPointScene = newCheckPoint;
         checkPointString = checkPointScene.name;
-
-        //health = 120;
-        //potionCount = 3;
-        //potionCount = Mathf.Clamp(potionCount, 3, 5);
     }
-    /*
-    private void Update()
-    {
-        enemiesString.Clear();
-        killedString.Clear();
-        foreach (var item in enemiesString)
-        {
-            if (item.Value)
-            {
-                killedString.Add(item.Key);
-            }
-            else
-            {
-                enemiesString.Add(item.Key);
-            }
-        }
-    }
-    */
 }
