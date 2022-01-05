@@ -8,7 +8,7 @@ public class PlayerSpawner : MonoBehaviour
 {
     public LoadSettings loadSettings;
     public GameObject player;
-    Camera cam;
+    GameObject cam;
     public UIManager UIManager;
     public Slider healthBar;
     public Slider arcanaBar;
@@ -52,12 +52,11 @@ public class PlayerSpawner : MonoBehaviour
         playerRef.name = "Player";
 
         PlayerController controller = playerRef.GetComponent<PlayerController>();
+        cam = playerRef.GetComponentInChildren<PlayerCameraController>().gameObject;
 
         controller.healthBar = healthBar;
         controller.arcanaBar = arcanaBar;
         controller.interactImage = interactImage;
-
-        cam = playerRef.GetComponentInChildren<Camera>();
         UIManager.player = playerRef;
         UIManager.Camera = cam.gameObject;
 

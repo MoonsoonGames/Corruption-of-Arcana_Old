@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerCameraController : MonoBehaviour
 {
-    public float RotationSpeed = 10;
+    public float XRotationSpeed = 1, YRotationSpeed = 1;
     public Transform target, player;
     float mouseX, mouseY;
 
@@ -32,14 +32,16 @@ public class PlayerCameraController : MonoBehaviour
     void LateUpdate()
     {
         if (canRotateCam)
+        {
             CamControl();
+        }
     }
 
     // Update is called once per frame
-    void CamControl()
+    void OldCamControl()
     {
-        mouseX += (Input.GetAxis("Mouse X") * RotationSpeed) * 2;
-        mouseY -= Input.GetAxis("Mouse Y") * RotationSpeed;
+        mouseX += (Input.GetAxis("Mouse X") * XRotationSpeed) * 2;
+        mouseY -= Input.GetAxis("Mouse Y") * YRotationSpeed;
         mouseY = Mathf.Clamp(mouseY, -35, 60);
 
         transform.LookAt(target);
@@ -53,5 +55,16 @@ public class PlayerCameraController : MonoBehaviour
             target.rotation = Quaternion.Euler(mouseY, mouseX, 0);
             player.rotation = Quaternion.Euler(0, mouseX, 0);
         }
+    }
+
+    // Update is called once per frame
+    void CamControl()
+    {
+        mouseX += (Input.GetAxis("Mouse X") * XRotationSpeed) * 2;
+        mouseY -= Input.GetAxis("Mouse Y") * YRotationSpeed;
+        mouseY = Mathf.Clamp(mouseY, -35, 60);
+
+        transform.rotation = Quaternion.Euler(mouseY, mouseX, 0);
+        player.rotation = Quaternion.Euler(0, mouseX, 0);
     }
 }

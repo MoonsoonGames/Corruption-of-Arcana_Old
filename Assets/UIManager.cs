@@ -164,7 +164,7 @@ public class UIManager : MonoBehaviour
                 PauseMenu.SetActive(true);
                 ExplorationUI.SetActive(false);
                 player.GetComponent<PlayerController>().enabled = false;
-                Camera.GetComponent<PlayerCameraController>().enabled = false;
+                //Camera.GetComponent<PlayerCameraController>().enabled = false;
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
             }
