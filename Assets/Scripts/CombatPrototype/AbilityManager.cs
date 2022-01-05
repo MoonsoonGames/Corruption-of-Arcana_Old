@@ -271,7 +271,7 @@ public class AbilityManager : MonoBehaviour
             combatManager.Dmg.SetActive(true);
             combatManager.DmgValue.text = damage.ToString();
 
-            SpawnAttackEffect(spawnPos, target);
+            SpawnAttackEffect(spawnPos.position, target);
 
             ResetAbility();
 
@@ -290,7 +290,7 @@ public class AbilityManager : MonoBehaviour
         if (targetHealth != null)
         {
             MouseLeft();
-            SpawnAttackEffect(spawnPos, target);
+            SpawnAttackEffect(spawnPos.position, target);
 
             int damage = (int)Random.Range(criticalSlashDamage.x, criticalSlashDamage.y);
 
@@ -319,7 +319,7 @@ public class AbilityManager : MonoBehaviour
             MouseLeft();
             foreach (var item in combatManager.enemyManager.enemies)
             {
-                SpawnAttackEffect(spawnPos, item.gameObject);
+                SpawnAttackEffect(spawnPos.position, item.gameObject);
             }
 
             int damage = (int)Random.Range(cleaveDamage.x, cleaveDamage.y);
@@ -437,7 +437,7 @@ public class AbilityManager : MonoBehaviour
             int cost = fireboltCost;
             if (playerStats.CheckMana(cost))
             {
-                SpawnAttackEffect(spawnPos, target);
+                SpawnAttackEffect(spawnPos.position, target);
                 int damage = (int)Random.Range(fireboltDamage.x, fireboltDamage.y);
 
                 Debug.Log("Cast Firebolt on " + target.name);
@@ -478,7 +478,7 @@ public class AbilityManager : MonoBehaviour
             int cost = chillTouchCost;
             if (playerStats.CheckMana(cost))
             {
-                SpawnAttackEffect(spawnPos, target);
+                SpawnAttackEffect(spawnPos.position, target);
 
                 int damage = (int)Random.Range(chillTouchDamage.x, chillTouchDamage.y);
 
@@ -682,11 +682,13 @@ public class AbilityManager : MonoBehaviour
 
     private IEnumerator IDelayDamage(Vector2 damageRange, float delay, Transform origin, GameObject target, EnemyStats targetHealth)
     {
+        Vector3 originRef = origin.position;
+
         yield return new WaitForSeconds(delay);
 
         if (targetHealth != null)
         {
-            SpawnAttackEffect(origin, target);
+            SpawnAttackEffect(originRef, target);
 
             int damage = (int)Random.Range(damageRange.x, damageRange.y);
             targetHealth.ChangeHeath(damage, true);
@@ -709,11 +711,11 @@ public class AbilityManager : MonoBehaviour
         }
     }
 
-    private void SpawnAttackEffect(Transform origin, GameObject target)
+    private void SpawnAttackEffect(Vector3 origin, GameObject target)
     {
         if (attackFX != null)
         {
-            GameObject attackRef = Instantiate(attackFX, origin.transform) as GameObject;
+            GameObject attackRef = Instantiate(attackFX, origin, new Quaternion(0, 0, 0, 0)) as GameObject;
 
             ProjectileMovement projScript = attackRef.GetComponent<ProjectileMovement>();
 
