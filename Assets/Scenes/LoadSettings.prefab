@@ -49,10 +49,16 @@ MonoBehaviour:
   prologueComplete: 0
   fightingBoss: 0
   lastLevel: 0
-  currentLevel: 0
+  lastLevelString: 
   playerPosInThoth: {x: -339.45, y: 32.02, z: 353.46}
+  playerRotInThoth: {x: 0, y: 0, z: 0, w: 0}
   playerPosInClearing: {x: 35.25, y: 7.16, z: 278.63}
+  playerRotInClearing: {x: 0, y: 0, z: 0, w: 0}
   checkPointPos: {x: -339.45, y: 32.02, z: 353.46}
+  checkPointRot: {x: 0, y: 0, z: 0, w: 0}
+  checkPointScene:
+    m_Handle: 0
+  checkPointString: 
   died: 0
   enemies:
   - {fileID: 0}
@@ -60,9 +66,15 @@ MonoBehaviour:
   - {fileID: 0}
   checkPointPotionCount: 3
   potionCount: 3
-  enemiesString: []
-  killedString: []
+  enemiesKilled: []
+  checkpointEnemies: []
+  currentGold: 0
+  checkPointGold: 0
   currentFight: 
+  goldReward: {x: 0, y: 0}
+  potionReward: 0
+  itemReward: 
+  dialogueFlowChart: {fileID: 0}
 --- !u!114 &-4060218025482095409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,4 +88,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: 0
-  navScenes: 0100000008000000
+  navScenes: 0100000005000000

@@ -22,7 +22,7 @@ public class SceneLoader : MonoBehaviour
         loadSettings = GameObject.FindObjectOfType<LoadSettings>();
     }
 
-    public void LoadDefaultScene()
+    public void LoadDefaultScene(Object dialogueFlowChart)
     {
         #region Check Navigation Scenes
         //Debug.Log(sceneToLoad);
@@ -32,7 +32,8 @@ public class SceneLoader : MonoBehaviour
             {
                 //Debug.Log(level + " is the same");
                 loadSettings.lastLevel = level;
-                
+
+                LoadDialogue(dialogueFlowChart);
                 SceneManager.LoadScene(sceneString);
                 return;
             }
@@ -40,25 +41,40 @@ public class SceneLoader : MonoBehaviour
 
         #endregion
 
+        LoadDialogue(dialogueFlowChart);
+
         SceneManager.LoadScene(sceneString);
     }
 
-    public void LoadLastScene()
+    public void LoadLastScene(Object dialogueFlowChart)
     {
         //Set load settings level to new level
+        LoadDialogue(dialogueFlowChart);
         SceneManager.LoadScene(loadSettings.lastLevelString);
     }
 
-    public void LoadCheckpointScene()
+    public void LoadCheckpointScene(Object dialogueFlowChart)
     {
         //Set load settings level to new level
+        LoadDialogue(dialogueFlowChart);
         SceneManager.LoadScene(loadSettings.checkPointString);
     }
 
-    public void LoadSpecifiedScene(string scene, LoadSceneMode sceneMode)
+    public void LoadSpecifiedScene(string scene, LoadSceneMode sceneMode, Object dialogueFlowChart)
     {
         //Set load settings level to new level
 
+        LoadDialogue(dialogueFlowChart);
         SceneManager.LoadScene(scene, sceneMode);
+    }
+
+    void LoadDialogue(Object dialogueFlowChart)
+    {
+        //Debug.Log(dialogueFlowChart);
+        if (dialogueFlowChart != null)
+        {
+            loadSettings.dialogueFlowChart = dialogueFlowChart;
+            Debug.Log(loadSettings.dialogueFlowChart);
+        }
     }
 }

@@ -52,6 +52,8 @@ public class LoadSettings : MonoBehaviour
     public float potionReward;
     public string itemReward;
 
+    public Object dialogueFlowChart;
+
     private void Awake()
     {
         LoadSettings[] loadSettings = GameObject.FindObjectsOfType<LoadSettings>();
@@ -175,8 +177,7 @@ public class LoadSettings : MonoBehaviour
                 targetRot.w = playerRotInClearing.w;
             }
 
-            Debug.Log("Loading spawn rotation | " + playerRotInThoth.eulerAngles + " || " + targetRot.eulerAngles);
-
+            //Debug.Log("Loading spawn rotation | " + playerRotInThoth.eulerAngles + " || " + targetRot.eulerAngles);
         }
 
         return targetRot;

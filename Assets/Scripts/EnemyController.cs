@@ -51,7 +51,7 @@ public class EnemyController : MonoBehaviour
             loadSettings.itemReward = itemReward;
 
             if (sceneLoader != null)
-                sceneLoader.LoadSpecifiedScene(combatScene.ToString(), LoadSceneMode.Single);
+                sceneLoader.LoadSpecifiedScene(combatScene.ToString(), LoadSceneMode.Single, null);
         }
     }
 }

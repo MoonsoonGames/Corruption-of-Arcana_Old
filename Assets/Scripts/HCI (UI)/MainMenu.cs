@@ -12,6 +12,9 @@ public class MainMenu : MonoBehaviour
     public E_Levels sceneToLoad;
     string sceneString;
 
+    public SceneLoader sceneLoader;
+    public Object dialogue;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +23,7 @@ public class MainMenu : MonoBehaviour
 
     public void playGame()
     {
-        SceneManager.LoadScene(sceneString);
+        sceneLoader.LoadSpecifiedScene(sceneString, LoadSceneMode.Single, dialogue);
     }
     public void credits()
     {
