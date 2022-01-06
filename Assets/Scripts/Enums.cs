@@ -20,21 +20,13 @@ public enum E_Levels
     [InspectorName("Combat")]
     CombatPrototype,
 
-    Narrative,
-    Ending,
-    Fortune,
-    Death,
+    Dialogue,
 
     [InspectorName("Overworld Map")]
     OverworldMap,
 
     [InspectorName("East Forest Clearing")]
     EastForestClearing,
-
-    [InspectorName("Checkpoint")]
-    Checkpoint,
-
-    UnderBridgeNPC
 }
 
 public enum E_Suits

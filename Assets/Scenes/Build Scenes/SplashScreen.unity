@@ -1223,7 +1223,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 0}
+  selectedFlowchart: {fileID: 3129275416178547644, guid: 5e328e5cc1cdea445a80c064cf3ced47,
+    type: 3}
 --- !u!4 &572948027
 Transform:
   m_ObjectHideFlags: 1
@@ -1238,6 +1239,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &588834516 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3312672493111288481, guid: 6cd9afb76eeded444bfcbe0b0afee9f7,
+    type: 3}
+  m_PrefabInstance: {fileID: 36482603}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02efb632ea380cd4bb2bdc15d8f4e029, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &615479003
 GameObject:
   m_ObjectHideFlags: 0
@@ -1289,6 +1302,9 @@ MonoBehaviour:
   mainMenu: {fileID: 615479003}
   creditsScreen: {fileID: 1913762315}
   sceneToLoad: 3
+  sceneLoader: {fileID: 588834516}
+  dialogue: {fileID: 5788963369338986575, guid: 5e44c1da357e9554e9892f17692c2d11,
+    type: 3}
 --- !u!1 &720386784
 GameObject:
   m_ObjectHideFlags: 0
@@ -3140,6 +3156,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4060218025482095409, guid: e6f554e9aa4ad204d8a5050df75cd470,
+        type: 3}
+      propertyPath: navScenes.Array.data[1]
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5564511172518815122, guid: e6f554e9aa4ad204d8a5050df75cd470,
         type: 3}
       propertyPath: m_RootOrder
