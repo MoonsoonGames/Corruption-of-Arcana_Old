@@ -203,6 +203,9 @@ public class PlayerController : MonoBehaviour
             interact = true;
             dialogue = other.gameObject.GetComponent<Dialogue>();
 
+            if (dialogue != null && dialogue.dialogue != null)
+                loadSettings.dialogueFlowChart = dialogue.dialogue;
+
             if (interactImage != null)
             {
                 interactImage.SetActive(true);
@@ -293,6 +296,8 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Can't Interact");
             interact = false;
             dialogue = null;
+
+            loadSettings.dialogueFlowChart = null;
 
             if (interactImage != null)
             {

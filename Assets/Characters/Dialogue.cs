@@ -20,6 +20,8 @@ public class Dialogue : MonoBehaviour
 
     public bool requiresTutorial = false;
 
+    public Object dialogue;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -58,7 +60,7 @@ public class Dialogue : MonoBehaviour
                     }
                 }
 
-                sceneLoader.LoadSpecifiedScene(sceneString, LoadSceneMode.Single);
+                sceneLoader.LoadSpecifiedScene(sceneString, LoadSceneMode.Single, dialogue);
             }
         }
     }
