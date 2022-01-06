@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject interactImage;
 
-    bool canMove = false;
+    public bool canMove = false;
 
     void Start()
     {
@@ -150,6 +150,12 @@ public class PlayerController : MonoBehaviour
                 {
                     moveSpeed = baseMoveSpeed;
                 }
+                if (Input.GetButton("Interact") && interact && dialogue != null)
+                {
+                    canMove = false;
+                    loadSettings.Checkpoint(SceneManager.GetActiveScene());
+                    dialogue.LoadScene();
+                }
             }
 
             // Apply gravity. Gravity is multiplied by deltaTime twice (once here, and once below
@@ -167,12 +173,6 @@ public class PlayerController : MonoBehaviour
             //    //Code for action on mouse moving horizontally
             //    transform.eulerAngles += new Vector3(0, turnCamera, 0);
             //}
-
-            if (Input.GetButton("Interact") && interact && dialogue != null)
-            {
-                loadSettings.Checkpoint(SceneManager.GetActiveScene());
-                dialogue.LoadScene();
-            }
         }
 
         //Sets the values of the healthbars to their specific values
