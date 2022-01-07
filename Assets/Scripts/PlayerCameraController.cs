@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class PlayerCameraController : MonoBehaviour
 {
@@ -10,7 +11,12 @@ public class PlayerCameraController : MonoBehaviour
 
     public bool disableCursor;
 
-    bool canRotateCam = false;
+    public PlayerController controller;
+
+    public CinemachineVirtualCamera virtualCamRef;
+    public float zoomValue = 60;
+    public float zoomInterval = 0.6f;
+    public float zoomMin = 50, zoomMax = 70;
 
     // Start is called before the first frame update
     void Start()
@@ -19,19 +25,13 @@ public class PlayerCameraController : MonoBehaviour
         if (disableCursor)
             Cursor.lockState = CursorLockMode.Locked;
 
-        Invoke("DelayRot", 2f);
         mouseX = transform.rotation.eulerAngles.y;
         mouseY = transform.rotation.eulerAngles.x;
     }
 
-    void DelayRot()
-    {
-        canRotateCam = true;
-    }
-
     void LateUpdate()
     {
-        if (canRotateCam)
+        if (controller.canMove)
         {
             CamControl();
         }
@@ -60,11 +60,23 @@ public class PlayerCameraController : MonoBehaviour
     // Update is called once per frame
     void CamControl()
     {
+        #region Movement
+
         mouseX += (Input.GetAxis("Mouse X") * XRotationSpeed) * 2;
         mouseY -= Input.GetAxis("Mouse Y") * YRotationSpeed;
         mouseY = Mathf.Clamp(mouseY, -35, 60);
 
         transform.rotation = Quaternion.Euler(mouseY, mouseX, 0);
         player.rotation = Quaternion.Euler(0, mouseX, 0);
+
+        #endregion
+
+        #region Zoom
+
+        zoomValue -= Input.mouseScrollDelta.y * zoomInterval;
+        zoomValue = Mathf.Clamp(zoomValue, zoomMin, zoomMax);
+        virtualCamRef.m_Lens.FieldOfView = zoomValue;
+
+        #endregion
     }
 }

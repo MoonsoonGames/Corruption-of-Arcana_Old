@@ -22,6 +22,44 @@ public class SceneLoader : MonoBehaviour
         loadSettings = GameObject.FindObjectOfType<LoadSettings>();
     }
 
+    void LoadScene(string scene)
+    {
+        bool contains = false;
+
+        int index = 9999999;
+
+        for (int i = 0; i < SceneManager.sceneCount; i++)
+        {
+            if (scene == SceneManager.GetSceneAt(i).name)
+            {
+                Debug.Log(scene + " || " + SceneManager.GetSceneAt(i).name);
+                loadSettings.SetPlayerInput(true);
+                contains = true;
+                index = i;
+
+                DestroyDialogue[] destroyArray = GameObject.FindObjectsOfType<DestroyDialogue>();
+
+                foreach (var item in destroyArray)
+                {
+                    item.CheckDialogue();
+                }
+            }
+        }
+
+        for (int i = 0; i < SceneManager.sceneCount; i++)
+        {
+            if (i != index)
+            {
+                SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(i));
+            }
+        }
+
+        if (!contains)
+        {
+            SceneManager.LoadScene(scene);
+        }
+    }
+
     public void LoadDefaultScene(Object dialogueFlowChart)
     {
         #region Check Navigation Scenes
@@ -34,7 +72,7 @@ public class SceneLoader : MonoBehaviour
                 loadSettings.lastLevel = level;
 
                 LoadDialogue(dialogueFlowChart);
-                SceneManager.LoadScene(sceneString);
+                LoadScene(sceneString);
                 return;
             }
         }
@@ -43,21 +81,21 @@ public class SceneLoader : MonoBehaviour
 
         LoadDialogue(dialogueFlowChart);
 
-        SceneManager.LoadScene(sceneString);
+        LoadScene(sceneString);
     }
 
     public void LoadLastScene(Object dialogueFlowChart)
     {
         //Set load settings level to new level
         LoadDialogue(dialogueFlowChart);
-        SceneManager.LoadScene(loadSettings.lastLevelString);
+        LoadScene(loadSettings.lastLevelString);
     }
 
     public void LoadCheckpointScene(Object dialogueFlowChart)
     {
         //Set load settings level to new level
         LoadDialogue(dialogueFlowChart);
-        SceneManager.LoadScene(loadSettings.checkPointString);
+        LoadScene(loadSettings.checkPointString);
     }
 
     public void LoadSpecifiedScene(string scene, LoadSceneMode sceneMode, Object dialogueFlowChart)
@@ -74,7 +112,7 @@ public class SceneLoader : MonoBehaviour
         if (dialogueFlowChart != null)
         {
             loadSettings.dialogueFlowChart = dialogueFlowChart;
-            Debug.Log(loadSettings.dialogueFlowChart);
+            //Debug.Log(loadSettings.dialogueFlowChart);
         }
     }
 }

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2603805917448669382}
   - component: {fileID: 2603805917448669377}
   - component: {fileID: 4519008102460442177}
+  - component: {fileID: 8443779025970856771}
   m_Layer: 0
   m_Name: Knight
   m_TagString: NPC
@@ -126,7 +127,23 @@ MonoBehaviour:
   sceneToLoad: 3
   checkpoint: 0
   tutorialDialogue: 0
-  knightDialogue: 0
-  requiresTutorial: 0
+  knightDialogue: 1
+  requiresTutorial: 1
   dialogue: {fileID: 5457298887973350162, guid: 91b46a3d7e09bef4bb81d318755898da,
     type: 3}
+  sceneMode: 1
+--- !u!114 &8443779025970856771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2603805917448669380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c589c49517815b43838a1bb732ed791, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliderRef: {fileID: 2603805917448669377}
+  requireTutorial: 1
+  requireDialogue: 0
