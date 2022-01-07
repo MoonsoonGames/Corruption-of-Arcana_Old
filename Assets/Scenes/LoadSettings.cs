@@ -5,16 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class LoadSettings : MonoBehaviour
 {
-    public int health = 1;
+    #region Setup
 
-    #region Tutorial Dialogue
+    #region Variables
+
+    #region Dialogue
 
     public bool dialogueComplete = false;
     public bool prologueComplete = false;
 
+    public Object dialogueFlowChart;
+    public bool loadSceneMultiple = false;
+
     #endregion 
 
-    public bool fightingBoss = false;
+    #region Exploration
+
+    #region Levels
 
     public E_Levels lastLevel;
     public string lastLevelString;
@@ -23,6 +30,10 @@ public class LoadSettings : MonoBehaviour
     public Vector3 playerPosInClearing;
     public Quaternion playerRotInClearing;
 
+    #endregion
+
+    #region Checkpoints
+
     public Vector3 checkPointPos;
     public Quaternion checkPointRot;
     public Scene checkPointScene;
@@ -30,19 +41,18 @@ public class LoadSettings : MonoBehaviour
 
     public bool died;
 
+    #endregion
+
+    #region Stats
+
+    public bool fightingBoss = false;
     public Object[] enemies = new Object[3];
-
-    public int checkPointPotionCount;
-    public int potionCount;
-
-    bool main = false;
-    /*
-    public Dictionary<string, bool> enemiesKilled = new Dictionary<string, bool>();
-    public Dictionary<string, bool> checkpointEnemies = new Dictionary<string, bool>();
-    */
-    //public List<string> enemiesAlive;
     public List<string> enemiesKilled = new List<string>();
     public List<string> checkpointEnemies = new List<string>();
+
+    public int health = 1;
+    public int checkPointPotionCount;
+    public int potionCount;
 
     public int currentGold;
     public int checkPointGold;
@@ -52,7 +62,11 @@ public class LoadSettings : MonoBehaviour
     public float potionReward;
     public string itemReward;
 
-    public Object dialogueFlowChart;
+    #endregion
+
+    #endregion
+
+    #endregion
 
     private void Awake()
     {
@@ -72,6 +86,12 @@ public class LoadSettings : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region Singleton
+
+    bool main = false;
+
     public bool CheckMain()
     {
         if (main)
@@ -84,6 +104,12 @@ public class LoadSettings : MonoBehaviour
             return false;
         }
     }
+
+    #endregion
+
+    #region Player
+
+    #region Player Position and Rotation
 
     public Vector3 RequestPosition(string scene)
     {
@@ -183,6 +209,26 @@ public class LoadSettings : MonoBehaviour
         return targetRot;
     }
 
+    #endregion
+
+    #region Inputs
+
+    public void SetPlayerInput(bool enabled)
+    {
+        PlayerController controller = GameObject.FindObjectOfType<PlayerController>();
+
+        if (controller != null)
+        {
+            controller.canMove = enabled;
+        }
+    }
+
+    #endregion
+
+    #endregion
+
+    #region Checkpoints
+
     public void ResetEnemies()
     {
         Debug.Log("Reset Enemies");
@@ -207,4 +253,6 @@ public class LoadSettings : MonoBehaviour
         checkPointScene = newCheckPoint;
         checkPointString = checkPointScene.name;
     }
+
+    #endregion
 }
