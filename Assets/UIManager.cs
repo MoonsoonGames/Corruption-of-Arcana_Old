@@ -446,7 +446,7 @@ public class UIManager : MonoBehaviour
         Camera.GetComponent<PlayerCameraController>().enabled = true;
         Cursor.visible = false;
 
-        Debug.Log("Resume Playing");
+        //Debug.Log("Resume Playing");
     }
 
     public void Settings()

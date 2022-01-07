@@ -112,7 +112,7 @@ public class SceneLoader : MonoBehaviour
         if (dialogueFlowChart != null)
         {
             loadSettings.dialogueFlowChart = dialogueFlowChart;
-            Debug.Log(loadSettings.dialogueFlowChart);
+            //Debug.Log(loadSettings.dialogueFlowChart);
         }
     }
 }
