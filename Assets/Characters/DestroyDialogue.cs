@@ -6,19 +6,26 @@ public class DestroyDialogue : MonoBehaviour
 {
     LoadSettings loadSettings;
 
-    public SphereCollider collider;
+    public SphereCollider colliderRef;
+
+    public bool requireTutorial = false;
+    public bool requireDialogue = false;
     
     // Start is called before the first frame update
     void Start()
     {
         loadSettings = GameObject.Find("LoadSettings").GetComponent<LoadSettings>();
 
+        CheckDialogue();
+    }
+
+    public void CheckDialogue()
+    {
         if (loadSettings != null)
         {
-            if (!loadSettings.prologueComplete)
-            {
-                collider.enabled = false;
-            }
+            Debug.Log(loadSettings.dialogueComplete);
+            colliderRef.enabled = (((loadSettings.dialogueComplete && requireTutorial) || !requireTutorial)
+                                && ((loadSettings.prologueComplete && requireDialogue) || !requireDialogue));
         }
     }
 

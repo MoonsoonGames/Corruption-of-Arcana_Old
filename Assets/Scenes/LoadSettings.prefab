@@ -44,37 +44,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 503a009eb14d28f428f323d3d7575a16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 120
   dialogueComplete: 0
   prologueComplete: 0
-  fightingBoss: 0
+  dialogueFlowChart: {fileID: 0}
+  loadSceneMultiple: 0
   lastLevel: 0
   lastLevelString: 
   playerPosInThoth: {x: -339.45, y: 32.02, z: 353.46}
   playerRotInThoth: {x: 0, y: 0, z: 0, w: 0}
   playerPosInClearing: {x: 35.25, y: 7.16, z: 278.63}
-  playerRotInClearing: {x: 0, y: 0, z: 0, w: 0}
+  playerRotInClearing: {x: 0, y: 1, z: 0, w: -0.00000004371139}
   checkPointPos: {x: -339.45, y: 32.02, z: 353.46}
   checkPointRot: {x: 0, y: 0, z: 0, w: 0}
   checkPointScene:
     m_Handle: 0
   checkPointString: 
   died: 0
+  fightingBoss: 0
   enemies:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  checkPointPotionCount: 3
-  potionCount: 3
   enemiesKilled: []
   checkpointEnemies: []
+  health: 120
+  checkPointPotionCount: 3
+  potionCount: 3
   currentGold: 0
   checkPointGold: 0
   currentFight: 
   goldReward: {x: 0, y: 0}
   potionReward: 0
   itemReward: 
-  dialogueFlowChart: {fileID: 0}
 --- !u!114 &-4060218025482095409
 MonoBehaviour:
   m_ObjectHideFlags: 0

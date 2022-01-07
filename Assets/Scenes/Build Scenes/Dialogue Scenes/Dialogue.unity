@@ -368,7 +368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 2118633817}
+  selectedFlowchart: {fileID: 852061631}
 --- !u!4 &336365333
 Transform:
   m_ObjectHideFlags: 1
@@ -439,6 +439,9 @@ MonoBehaviour:
   - {fileID: 268925932}
   - {fileID: 1719618805}
   - {fileID: 1415994193}
+  singleBGColour: {r: 0, g: 0, b: 0, a: 1}
+  multipleBGColour: {r: 1, g: 1, b: 0.89411765, a: 0.3882353}
+  background: {fileID: 1020455822}
 --- !u!1001 &555724634
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -941,6 +944,18 @@ PrefabInstance:
       objectReference: {fileID: 1392018093}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e328e5cc1cdea445a80c064cf3ced47, type: 3}
+--- !u!114 &852061631 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3129275416178547644, guid: 5e328e5cc1cdea445a80c064cf3ced47,
+    type: 3}
+  m_PrefabInstance: {fileID: 852061630}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415994193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a334fe2ffb574b3583ff3b18b4792d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &852061632 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3129275416178547628, guid: 5e328e5cc1cdea445a80c064cf3ced47,
@@ -1364,7 +1379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 0.89411765, a: 0.3882353}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3570,15 +3585,3 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2118633815}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2118633817 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6333189798414483471, guid: 09ad4ff9bfed78f44a9c4e23020e5e5f,
-    type: 3}
-  m_PrefabInstance: {fileID: 2118633815}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1767726074}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a334fe2ffb574b3583ff3b18b4792d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

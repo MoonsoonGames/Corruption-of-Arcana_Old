@@ -62,6 +62,7 @@ public class Dialogue : MonoBehaviour
                     }
                 }
 
+                loadSettings.loadSceneMultiple = sceneMode == LoadSceneMode.Additive;
                 sceneLoader.LoadSpecifiedScene(sceneString, sceneMode, dialogue);
             }
         }
