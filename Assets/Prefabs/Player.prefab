@@ -197,6 +197,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52cce36001b46b849890d0970772e773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 3612950577671395418}
+  Location: {fileID: 0}
+  interactImage: {fileID: 0}
+  canMove: 0
   baseSneakSpeed: 5
   baseMoveSpeed: 10
   baseSprintSpeed: 15
@@ -209,10 +213,7 @@ MonoBehaviour:
   arcana: 120
   healthBar: {fileID: 0}
   arcanaBar: {fileID: 0}
-  Player: {fileID: 3612950577671395418}
-  Location: {fileID: 0}
   maxPotions: 5
-  interactImage: {fileID: 0}
 --- !u!54 &3612950577671395411
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -257,7 +258,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5279266081784411995}
   - component: {fileID: 4702134612609712564}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -296,6 +297,12 @@ MonoBehaviour:
   target: {fileID: 5279266081784411995}
   player: {fileID: 3612950577671395422}
   disableCursor: 0
+  controller: {fileID: 3612950577671395421}
+  virtualCamRef: {fileID: 4556315099383331730}
+  zoomValue: 60
+  zoomInterval: 2
+  zoomMin: 50
+  zoomMax: 90
 --- !u!1 &5279266082244895331
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,7 +315,7 @@ GameObject:
   - component: {fileID: 5279266082244895343}
   - component: {fileID: 5279266082244895342}
   - component: {fileID: 5279266082244895329}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -387,7 +394,7 @@ BoxCollider:
   m_GameObject: {fileID: 5279266082244895331}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -476,7 +483,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damping: {x: 0.1, y: 0.5, z: 0.3}
-  ShoulderOffset: {x: 0, y: 3.45, z: -6.13}
+  ShoulderOffset: {x: 0, y: 3.45, z: -4.32}
   VerticalArmLength: 0.4
   CameraSide: 0.5
   CameraDistance: 2
@@ -509,8 +516,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7574482492987210382}
-  m_LocalRotation: {x: 0.120931104, y: -0, z: -0, w: 0.9926609}
-  m_LocalPosition: {x: 0.0000009536743, y: 3.0000024, z: -8.130006}
+  m_LocalRotation: {x: 0.15433812, y: 0.000000059604645, z: -0, w: 0.98801816}
+  m_LocalPosition: {x: 0.0000009536743, y: 3.0000024, z: -6.3200083}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7057626893527837827}

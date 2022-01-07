@@ -5,19 +5,60 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    #region Variables
+
+    #region References
+
     CharacterController characterController;
     Rigidbody rb;
+
+    public GameObject Player;
+    public Text Location;
+    public static PlayerController instance;
+    private SceneLoader sceneLoader;
+    private LoadSettings loadSettings;
+
+    public GameObject interactImage;
+    bool interact = false;
+    Dialogue dialogue;
+
+    #endregion
+
+    #region Stats
+
+    #region Movement
+
+    public bool canMove = false;
+
+    #region Move Speed
+
+    private Vector3 moveDirection = Vector3.zero;
+    private Vector3 targetPos; //Spawn position
 
     public float baseSneakSpeed = 20f;
     public float baseMoveSpeed = 50f;
     public float baseSprintSpeed = 80f;
     float moveSpeed;
 
+    #endregion
+
+    #region Jumping
+
     public float jumpSpeed = 8.0f;
     public float gravity = 20.0f;
 
+    #endregion
+
+    #region Camera
+
     private float turnCamera;
     public float sensitivity = 5;
+
+    #endregion
+
+    #endregion
+
+    #region Health and Arcana
 
     public int maxHealth = 50;
     public int health;
@@ -26,29 +67,14 @@ public class PlayerController : MonoBehaviour
     public Slider healthBar;
     public Slider arcanaBar;
 
-    public GameObject Player;
-
-    public Text Location;
-
-    private Vector3 moveDirection = Vector3.zero;
-
-    public static PlayerController instance;
-
-    private SceneLoader sceneLoader;
-
-    private LoadSettings loadSettings;
-
-    private Vector3 targetPos;
-
     public int maxPotions = 5;
     int potionCount = 3;
 
-    bool interact = false;
-    Dialogue dialogue;
+    #endregion
 
-    public GameObject interactImage;
+    #endregion
 
-    bool canMove = false;
+    #endregion
 
     void Start()
     {
@@ -150,6 +176,12 @@ public class PlayerController : MonoBehaviour
                 {
                     moveSpeed = baseMoveSpeed;
                 }
+                if (Input.GetButton("Interact") && interact && dialogue != null)
+                {
+                    canMove = false;
+                    loadSettings.Checkpoint(SceneManager.GetActiveScene());
+                    dialogue.LoadScene();
+                }
             }
 
             // Apply gravity. Gravity is multiplied by deltaTime twice (once here, and once below
@@ -167,12 +199,6 @@ public class PlayerController : MonoBehaviour
             //    //Code for action on mouse moving horizontally
             //    transform.eulerAngles += new Vector3(0, turnCamera, 0);
             //}
-
-            if (Input.GetButton("Interact") && interact && dialogue != null)
-            {
-                loadSettings.Checkpoint(SceneManager.GetActiveScene());
-                dialogue.LoadScene();
-            }
         }
 
         //Sets the values of the healthbars to their specific values
