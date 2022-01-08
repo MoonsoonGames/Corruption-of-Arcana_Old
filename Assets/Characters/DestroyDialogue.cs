@@ -21,7 +21,7 @@ public class DestroyDialogue : MonoBehaviour
 
     public void CheckDialogue()
     {
-        if (loadSettings != null)
+        if (loadSettings != null && colliderRef != null)
         {
             //Debug.Log(loadSettings.dialogueComplete);
             colliderRef.enabled = (((loadSettings.dialogueComplete && requireTutorial) || !requireTutorial)
