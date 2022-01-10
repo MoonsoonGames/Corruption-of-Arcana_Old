@@ -39,6 +39,8 @@ GameObject:
   - component: {fileID: 5457298887973350159}
   - component: {fileID: 5457298887973350158}
   - component: {fileID: 5457298887973350157}
+  - component: {fileID: 7871005674256078442}
+  - component: {fileID: 5828279372227087078}
   m_Layer: 0
   m_Name: Knight Dialogue
   m_TagString: Untagged
@@ -73,11 +75,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 56.764397, y: 21.62637}
+  scrollPos: {x: 74.53519, y: 41.71823}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
-  blockViewHeight: 400
-  zoom: 0.9399996
+  blockViewHeight: 355
+  zoom: 0.87999964
   scrollViewRect:
     serializedVersion: 2
     x: -343
@@ -85,9 +87,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 5457298887973350172}
+  - {fileID: 5457298887973350174}
   selectedCommands:
-  - {fileID: 5457298887973350170}
+  - {fileID: 5457298887973350161}
   variables: []
   description: 
   stepPause: 0
@@ -113,9 +115,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 67
-    y: 70
-    width: 88.29789
+    x: 69.272736
+    y: 67.727264
+    width: 86.36365
     height: 40
   tint: {r: 0.7311321, g: 0.82633495, b: 1, a: 1}
   useCustomTint: 1
@@ -147,7 +149,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: -61.06383
     y: 179.43617
-    width: 95.744705
+    width: 93.18184
     height: 40
   tint: {r: 1, g: 0.7294118, b: 0.731794, a: 1}
   useCustomTint: 1
@@ -175,7 +177,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 196
     y: 180.5
-    width: 108.510666
+    width: 105.68184
     height: 40
   tint: {r: 0.7294118, g: 1, b: 0.73073727, a: 1}
   useCustomTint: 1
@@ -203,7 +205,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 54.063828
     y: 294.39362
-    width: 125.53195
+    width: 122.7273
     height: 40
   tint: {r: 1, g: 0.98257554, b: 0.7294118, a: 1}
   useCustomTint: 1
@@ -213,6 +215,8 @@ MonoBehaviour:
   eventHandler: {fileID: 0}
   commandList:
   - {fileID: 5457298887973350166}
+  - {fileID: 7871005674256078442}
+  - {fileID: 5828279372227087078}
   - {fileID: 5457298887973350161}
   - {fileID: 5457298887973350160}
   - {fileID: 5457298887973350163}
@@ -319,7 +323,7 @@ MonoBehaviour:
   storyText: Well Mr. Nobody, you just saved my axe
   description: 
   character: {fileID: 0}
-  portrait: {fileID: 0}
+  portrait: {fileID: 21300000, guid: 105e31eb67206aa4d97e2e338d182ece, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -412,8 +416,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 8
   indentLevel: 0
-  storyText: Either way, I'm just glad you got here when you did. {wc}I'm afraid
-    I can't recruit anybody right now, my comrade ran off to chase the other monsters.
+  storyText: I'm just glad you got here when you did. {wc}Speaking of which, what
+    brings you here young man?
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -440,8 +444,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 9
   indentLevel: 0
-  storyText: Which way did he go? I'll find and help him. Helping people is part
-    of the Knights code.
+  storyText: Which way did he go? I'll find and help him. I'd do anything to become
+    an Arcana Knight.
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -469,11 +473,12 @@ MonoBehaviour:
   itemId: 10
   indentLevel: 0
   storyText: Eager aren't you? {wc}They ran into the {color=red}Forest east of town{/color}.
-    I'd chase them myself but someone needs to defend the town incase they come back.
+    Head back {color=red}across the bridge{/color} and towards the towngate. {wc}I'd
+    chase them myself but someone needs to defend the town incase they come back.
     {wc}I can't tell you to go after my fellow knights but if you do, be safe.
   description: 
   character: {fileID: 0}
-  portrait: {fileID: 0}
+  portrait: {fileID: 21300000, guid: 105e31eb67206aa4d97e2e338d182ece, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -500,7 +505,7 @@ MonoBehaviour:
   storyText: Like Mamma R. always said {wc}Fortune favours the bold
   description: 
   character: {fileID: 0}
-  portrait: {fileID: 0}
+  portrait: {fileID: 21300000, guid: 846a6d4a97b657e44a04ff51ddae73c9, type: 3}
   voiceOverClip: {fileID: 0}
   showAlways: 1
   showCount: 1
@@ -757,7 +762,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 33.139923
     y: 383.90594
-    width: 163.82983
+    width: 157.95459
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -861,3 +866,59 @@ MonoBehaviour:
     stringVal: 
   startIndex: 0
   callMode: 0
+--- !u!114 &7871005674256078442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5457298887973350162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 37
+  indentLevel: 0
+  storyText: Im here to join the Arcana Knights.
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &5828279372227087078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5457298887973350162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 38
+  indentLevel: 0
+  storyText: I'm afraid I can't recruit anybody right now, my comrade ran off to
+    chase the other monsters. {wc}Without him, I cant lawfully induct someone into
+    the Knights order.
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
