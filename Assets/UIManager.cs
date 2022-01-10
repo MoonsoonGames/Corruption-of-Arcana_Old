@@ -163,8 +163,7 @@ public class UIManager : MonoBehaviour
             {
                 PauseMenu.SetActive(true);
                 ExplorationUI.SetActive(false);
-                player.GetComponent<PlayerController>().enabled = false;
-                //Camera.GetComponent<PlayerCameraController>().enabled = false;
+                player.GetComponent<PlayerController>().canMove = false;
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
             }
@@ -187,8 +186,7 @@ public class UIManager : MonoBehaviour
             {
                 Inventory.SetActive(true);
                 ExplorationUI.SetActive(false);
-                player.GetComponent<PlayerController>().enabled = false;
-                Camera.GetComponent<PlayerCameraController>().enabled = false;
+                player.GetComponent<PlayerController>().canMove = false;
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
             }
@@ -215,8 +213,7 @@ public class UIManager : MonoBehaviour
             {
                 GuideBook.SetActive(true);
                 ExplorationUI.SetActive(false);
-                player.GetComponent<PlayerController>().enabled = false;
-                Camera.GetComponent<PlayerCameraController>().enabled = false;
+                player.GetComponent<PlayerController>().canMove = false;
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
             }
@@ -442,8 +439,7 @@ public class UIManager : MonoBehaviour
         PauseMenu.SetActive(false);
         ExplorationUI.SetActive(true);
 
-        player.GetComponent<PlayerController>().enabled = true;
-        Camera.GetComponent<PlayerCameraController>().enabled = true;
+        player.GetComponent<PlayerController>().canMove = true;
         Cursor.visible = false;
 
         //Debug.Log("Resume Playing");
@@ -478,8 +474,7 @@ public class UIManager : MonoBehaviour
     {
         PlayingCanvas.SetActive(false);
         MenuCanvas.SetActive(true);
-        player.GetComponent<PlayerController>().enabled = false;
-        Camera.GetComponent<PlayerCameraController>().enabled = false;
+        player.GetComponent<PlayerController>().canMove = false;
         Debug.Log("Back to the start");
     }
 
@@ -494,8 +489,7 @@ public class UIManager : MonoBehaviour
     {
         PlayingCanvas.SetActive(true);
         MenuCanvas.SetActive(false);
-        player.GetComponent<PlayerController>().enabled = false;
-        Camera.GetComponent<PlayerCameraController>().enabled = false;
+        player.GetComponent<PlayerController>().canMove = true;
         Debug.Log("Back to the game");
     }
     #endregion
@@ -506,8 +500,7 @@ public class UIManager : MonoBehaviour
         Inventory.SetActive(false);
         ExplorationUI.SetActive(true);
         Cursor.visible = false;
-        player.GetComponent<PlayerController>().enabled = true;
-        Camera.GetComponent<PlayerCameraController>().enabled = true;
+        player.GetComponent<PlayerController>().canMove = true;
         Debug.Log("Closed Menu");
     }
 
