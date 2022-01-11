@@ -229,7 +229,7 @@ public class PlayerController : MonoBehaviour
             interact = true;
             dialogue = other.gameObject.GetComponent<Dialogue>();
 
-            if (dialogue != null && dialogue.dialogue != null)
+            if (dialogue != null && dialogue.dialogue != null && loadSettings != null)
                 loadSettings.dialogueFlowChart = dialogue.dialogue;
 
             if (interactImage != null)
