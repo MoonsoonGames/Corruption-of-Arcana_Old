@@ -117,6 +117,19 @@ public class LoadSettings : MonoBehaviour
 
         if (died)
         {
+            #region Reset last position
+
+            if (lastLevelString == E_Levels.Thoth.ToString())
+            {
+                playerPosInThoth = new Vector3(-358.679993f, 38.8400002f, 288.880005f);
+            }
+            else if (lastLevelString == E_Levels.EastForestClearing.ToString())
+            {
+                playerPosInClearing = new Vector3(37f, 7.61000013f, 294.160004f);
+            }
+
+            #endregion
+
             ResetEnemies();
             targetPos = checkPointPos;
 

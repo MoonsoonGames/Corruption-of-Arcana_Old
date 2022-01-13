@@ -8,6 +8,10 @@ public class BGMManager : MonoBehaviour
     AudioClip currentClip;
     bool main = false;
 
+    float baseVolume;
+    float currentVolume;
+    public float volumeMultiplier = 0.3f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,11 +49,21 @@ public class BGMManager : MonoBehaviour
         if (music != currentClip)
         {
             audioSource.clip = music;
-            audioSource.volume = volume;
+            audioSource.volume = volume * volumeMultiplier;
             audioSource.Play();
             audioSource.loop = true;
         }
 
+        baseVolume = volume;
         currentClip = music;
+    }
+
+    public void ChangeVolume(float newVolumeMultiplier)
+    {
+        volumeMultiplier = newVolumeMultiplier;
+
+        currentVolume = volumeMultiplier * baseVolume;
+
+        audioSource.volume = currentVolume;
     }
 }

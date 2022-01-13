@@ -14,17 +14,21 @@ public class Compass : MonoBehaviour
 
     float compassUnit;
 
-    public QuestMarkers MammaR;
-    public QuestMarkers LtHeirophante;
-    public QuestMarkers TownGate;
-
     private void Start()
     {
         compassUnit = compassImage.rectTransform.rect.width / 360f;
 
-        AddQuestMarker(MammaR);
-        AddQuestMarker(LtHeirophante);
-        AddQuestMarker(TownGate);
+        SetupQuestMarkers();
+    }
+
+    private void SetupQuestMarkers()
+    {
+        QuestMarkers[] questMarkersScripts = GameObject.FindObjectsOfType<QuestMarkers>();
+
+        foreach (var item in questMarkersScripts)
+        {
+            AddQuestMarker(item);
+        }
     }
 
     private void Update()
