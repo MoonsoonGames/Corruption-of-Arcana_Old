@@ -4027,7 +4027,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f94c122215b60c14e8a8a0152e0021d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  combatCards: 090000000900000003000000030000000300000004000000040000000400000005000000060000000600000006000000
+  combatCards:
+  - {fileID: 11400000, guid: 7cc4db331eb08374d81db6261e960368, type: 2}
+  - {fileID: 11400000, guid: 7cc4db331eb08374d81db6261e960368, type: 2}
   cardText: {fileID: 1132079545}
   abilityManager: {fileID: 947729006}
 --- !u!95 &944373735
@@ -4701,7 +4703,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f94c122215b60c14e8a8a0152e0021d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  combatCards: 090000000900000003000000030000000300000004000000040000000400000005000000060000000600000006000000
+  combatCards:
+  - {fileID: 11400000, guid: 7cc4db331eb08374d81db6261e960368, type: 2}
+  - {fileID: 11400000, guid: 7cc4db331eb08374d81db6261e960368, type: 2}
   cardText: {fileID: 1421737585}
   abilityManager: {fileID: 947729006}
 --- !u!95 &1058294342
@@ -5087,7 +5091,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f94c122215b60c14e8a8a0152e0021d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  combatCards: 01000000010000000100000001000000020000000200000003000000030000000300000004000000040000000400000005000000060000000600000006000000
+  combatCards:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   cardText: {fileID: 0}
   abilityManager: {fileID: 947729006}
 --- !u!114 &1249306802
@@ -8435,7 +8455,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f94c122215b60c14e8a8a0152e0021d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  combatCards: 0000000000000000000000000000000000000000000000000100000001000000010000000200000002000000020000000700000007000000
+  combatCards:
+  - {fileID: 11400000, guid: 7cc4db331eb08374d81db6261e960368, type: 2}
+  - {fileID: 11400000, guid: 7cc4db331eb08374d81db6261e960368, type: 2}
   cardText: {fileID: 16354994}
   abilityManager: {fileID: 947729006}
 --- !u!95 &2097494806
@@ -10330,6 +10352,17 @@ PrefabInstance:
       propertyPath: abilityManager
       value: 
       objectReference: {fileID: 947729006}
+    - target: {fileID: 2966654302018596838, guid: d73e8b11f8c16a54ba36322b12638999,
+        type: 3}
+      propertyPath: combatCards.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2966654302018596838, guid: d73e8b11f8c16a54ba36322b12638999,
+        type: 3}
+      propertyPath: combatCards.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 7cc4db331eb08374d81db6261e960368,
+        type: 2}
     - target: {fileID: 3039368161965268900, guid: d73e8b11f8c16a54ba36322b12638999,
         type: 3}
       propertyPath: m_Color.a

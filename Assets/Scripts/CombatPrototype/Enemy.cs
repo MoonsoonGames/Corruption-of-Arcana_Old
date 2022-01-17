@@ -57,7 +57,7 @@ public class Enemy : MonoBehaviour
 
             int randDMG = (int)Random.Range(damage.x, damage.y);
 
-            playerStats.ChangeHeath(randDMG, true);
+            playerStats.ChangeHealth(randDMG, true);
 
             Debug.Log(gameObject.name + " cast " + attackName + " for " + randDMG + " damage. It's really effective!");
         }

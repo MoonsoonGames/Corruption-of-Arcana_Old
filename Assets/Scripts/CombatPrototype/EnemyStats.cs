@@ -48,7 +48,7 @@ public class EnemyStats : MonoBehaviour
         return health;
     }
 
-    public void ChangeHeath(int value, bool damage)
+    public void ChangeHealth(int value, bool damage)
     {
         if (damage)
         {

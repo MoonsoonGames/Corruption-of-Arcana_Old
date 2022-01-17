@@ -6,9 +6,9 @@ using System.Text;
 
 public class CardSetter : MonoBehaviour
 {
-    public E_CombatCards[] combatCards;
+    public CardParent[] combatCards;
 
-    private string currentCard;
+    private CardParent currentCard;
 
     public Text cardText;
 
@@ -23,10 +23,8 @@ public class CardSetter : MonoBehaviour
     {
         int rInt = Random.Range(0, combatCards.Length);
         //Debug.Log(rInt);
-        currentCard = combatCards[rInt].ToString();
-
-        if(cardText != null)
-            cardText.text = AddSpacesToSentence(currentCard);
+        currentCard = combatCards[rInt];
+        Debug.Log(currentCard);
     }
 
     public void ButtonPressed()
