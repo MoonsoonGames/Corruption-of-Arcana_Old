@@ -7,6 +7,7 @@ public class CardParent : ScriptableObject
 {
     public string cardName;
     public bool self = false;
+    public bool target = false;
 
     public string selfName;
     public string selfDescription;

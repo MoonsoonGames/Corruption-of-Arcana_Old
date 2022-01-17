@@ -188,24 +188,15 @@ public class AbilityManager : MonoBehaviour
             if (ability.self)
             {
                 activeCard.ReadyCard(ability.cardName, ability.selfHeal, "Healing", ability.selfCost, ability.selfDescription, ability.selfCostType);
+                combatManager.TargetEnemies(false);
+                targetter.SetVisibility(true);
             }
             else
             {
                 activeCard.ReadyCard(ability.cardName, ability.selfHeal, ability.damageType, ability.targetCost, ability.targetDescription, ability.targetCostType);
+                combatManager.TargetEnemies(true);
+                targetter.SetVisibility(false);
             }
-        }
-
-        //Debug.Log("Readied " + abilityName + " ability.");
-
-        if (ability == "HealingPotion" || ability == "CureWounds")
-        {
-            combatManager.TargetEnemies(false);
-            targetter.SetVisibility(true);
-        }
-        else
-        {
-            combatManager.TargetEnemies(true);
-            targetter.SetVisibility(false);
         }
     }
 
