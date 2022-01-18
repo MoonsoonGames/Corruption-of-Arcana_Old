@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d042955bf60bea84b9273684d78676b5, type: 3}
-  m_Name: The Magician
+  m_Name: 1Magician
   m_EditorClassIdentifier: 
   cardName: The Magician
   cardNumber: 1
@@ -20,22 +20,18 @@ MonoBehaviour:
   selfName: Adept Arcana
   selfDescription: Drink from the occult wellspring of magic to restore your potential
   selfCost: 0
-  selfCostType: AP
+  selfCostType: 
   selfHeal: {x: 0, y: 0}
   selfAP: {x: 24, y: 36}
   selfEndTurnDelay: 0.2
   targetInterpretationUnlocked: 0
   targetName: Chain Lightning
-  targetDescription: 'Unleash your arcana as a storm of lightning that arcs between
+  targetDescription: Unleash your arcana as a storm of lightning that arcs between
     multiple enemies
-
-
-    Each hit has a change to shock the target'
   targetCost: 60
   targetCostType: AP
-  damageType: Static
+  damageType: Static DMG
   targetDmg: {x: 24, y: 36}
-  lifeLeach: {x: 0, y: 0}
   hits: 1
   hitInterval: 0
   finalHitInterval: 0
@@ -44,3 +40,7 @@ MonoBehaviour:
   targetCleave: 0
   targetChain: 1
   extraDmg: {x: 18, y: 30}
+  randomTargets: 0
+  lifeLeach: {x: 0, y: 0}
+  healOnKill: {x: 0, y: 0}
+  executeThreshhold: 0

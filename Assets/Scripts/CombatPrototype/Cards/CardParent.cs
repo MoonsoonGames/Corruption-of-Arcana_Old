@@ -38,6 +38,7 @@ public class CardParent : ScriptableObject
     [TextArea(3, 10)]
     public string selfDescription;
     public int selfCost;
+    public int selfPotionCost;
     public string selfCostType;
     public Vector2Int selfHeal;
     public Vector2Int selfAP;
@@ -53,8 +54,7 @@ public class CardParent : ScriptableObject
         {
             abilityManager.MouseLeft();
 
-            int cost = selfCost;
-            if (abilityManager.playerStats.CheckMana(cost))
+            if (abilityManager.playerStats.CheckMana(selfCost) && abilityManager.playerStats.CheckPotions(selfPotionCost))
             {
                 int heal = (int)Random.Range(selfHeal.x, selfHeal.y);
                 int mana = (int)Random.Range(selfAP.x, selfAP.y);
@@ -65,9 +65,11 @@ public class CardParent : ScriptableObject
                 abilityManager.combatManager.Healing.SetActive(true);
                 abilityManager.combatManager.HealingValue.text = heal.ToString();
 
-                playerStats.ChangeMana(cost - mana, true);
+                playerStats.ChangeMana(selfCost - mana, true);
                 abilityManager.combatManager.Ap.SetActive(true);
-                abilityManager.combatManager.ApValue.text = cost.ToString();
+                abilityManager.combatManager.ApValue.text = selfCost.ToString();
+
+                playerStats.ChangePotions(selfPotionCost, true);
 
                 abilityManager.ResetAbility();
 
@@ -100,8 +102,6 @@ public class CardParent : ScriptableObject
     public string targetCostType;
     public string damageType;
     public Vector2Int targetDmg;
-    public Vector2Int lifeLeach;
-    public bool execute;
     public int hits;
     public float hitInterval;
     public float finalHitInterval;
@@ -111,6 +111,11 @@ public class CardParent : ScriptableObject
     public bool targetCleave;
     public bool targetChain;
     public Vector2Int extraDmg;
+
+    public bool randomTargets;
+    public Vector2Int lifeLeach;
+    public Vector2Int healOnKill;
+    public float executeThreshhold;
     //public Status[] targetStatus;
     //public float statusChance;
     //public GameObject targetPrepareEffect;
@@ -182,6 +187,51 @@ public class CardParent : ScriptableObject
 
                     Debug.Log(message);
                 }  //cleave target attack
+                else if (randomTargets)
+                {
+                    abilityManager.multihitMax = hits;
+                    abilityManager.combatManager.Dmg.SetActive(true);
+
+                    if (hits > 1)
+                    {
+                        EnemyStats[] enemyStatsArray = GameObject.FindObjectsOfType<EnemyStats>();
+
+                        int randTarget = Random.Range(0, enemyStatsArray.Length);
+
+                        for (int i = 1; i < hits; i++)
+                        {
+                            enemyStatsArray = GameObject.FindObjectsOfType<EnemyStats>();
+
+                            Vector2 dmgVector = targetDmg;
+                            float hitTime = i * hitInterval;
+
+                            abilityManager.DelayDamage(dmgVector, hitTime, abilityManager.spawnPos, enemyStatsArray[randTarget].gameObject, enemyStatsArray[randTarget]);
+
+                            int nextRandTarget = Random.Range(0, enemyStatsArray.Length);
+
+                            if (enemyStatsArray.Length != 1)
+                            {
+                                while (nextRandTarget == randTarget)
+                                {
+                                    nextRandTarget = Random.Range(0, enemyStatsArray.Length);
+                                }
+                            }
+
+                            randTarget = nextRandTarget;
+                        }
+
+                        Vector2 dmgVectorFinal = targetFinalDmg;
+                        float hitTimeFinal = (hits * hitInterval) + finalHitInterval;
+
+                        abilityManager.DelayDamage(dmgVectorFinal, hitTimeFinal, abilityManager.spawnPos, target, enemyStats);
+                    }
+                    else
+                    {
+                        Vector2 dmgVector = targetDmg;
+
+                        abilityManager.DelayDamage(dmgVector, 0f, abilityManager.spawnPos, target, enemyStats);
+                    }
+                } //random targets
                 else
                 {
                     abilityManager.multihitMax = hits;
@@ -209,6 +259,19 @@ public class CardParent : ScriptableObject
                         abilityManager.DelayDamage(dmgVector, 0f, abilityManager.spawnPos, target, enemyStats);
                     }
                 } //single target attack
+
+                //execute enemy
+                if (enemyStats.HealthPercentage() < executeThreshhold)
+                {
+                    //execute anim and delay
+                    enemyStats.ChangeHealth(999999999, true);
+                }
+
+                if (enemyStats == null || enemyStats.GetHealth() == 0)
+                {
+                    //killed enemy
+                    abilityManager.playerStats.ChangeHealth(Random.Range(healOnKill.x, healOnKill.y), false);
+                }
 
                 abilityManager.playerStats.ChangeMana(cost, true);
                 abilityManager.combatManager.Ap.SetActive(true);
@@ -274,7 +337,6 @@ public class CardParent : ScriptableObject
 
     public void GetReadyAbilityInfo(out bool multihit, out Vector2Int restore, out string selfType, out Vector2Int dmg, out string type, out string cardNameSelf, out string cardNameTarget, out bool hitsAll, out Vector2Int extradmg)
     {
-
         multihit = false;
         restore = new Vector2Int(0, 0);
         selfType = "none";

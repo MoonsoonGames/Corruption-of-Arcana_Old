@@ -186,4 +186,9 @@ public class EnemyStats : MonoBehaviour
     {
         return mana > value;
     }
+
+    public float HealthPercentage()
+    {
+        return (float)health / (float)maxHealth;
+    }
 }
