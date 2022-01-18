@@ -25,9 +25,12 @@ public class AbilityManager : MonoBehaviour
 
     #region Ability Values
 
-    int multihitMax = 0;
-    int multihitTally = 0;
-    int multihitCount = 0;
+    [HideInInspector]
+    public int multihitMax = 0;
+    [HideInInspector]
+    public int multihitTally = 0;
+    [HideInInspector]
+    public int multihitCount = 0;
 
     #region Basic Attacks
     [Header("Basic Attacks")]
@@ -78,7 +81,8 @@ public class AbilityManager : MonoBehaviour
         //Debug.Log("Button hovering");
 
         bool multihit;
-        Vector2Int heal;
+        Vector2Int restore;
+        string selfType;
         Vector2Int dmg;
         string type;
         string cardNameSelf;
@@ -86,22 +90,31 @@ public class AbilityManager : MonoBehaviour
         bool hitsAll;
         Vector2Int extradmg;
 
-        GetReadyAbilityInfo(out multihit, out heal, out dmg, out type, out cardNameSelf, out cardNameTarget, out hitsAll, out extradmg);
-
-        sliderVarScript.ApplyPreview(-heal);
+        GetReadyAbilityInfo(out multihit, out restore, out selfType, out dmg, out type, out cardNameSelf, out cardNameTarget, out hitsAll, out extradmg);
+        Debug.Log(selfType);
+        if (selfType == "Healing & Arcana" || selfType == "Healing")
+        {
+            sliderVarScript.ApplyPreview(-restore);
+        }
+        if (selfType == "Healing & Arcana" || selfType == "Arcana")
+        {
+            //newSliderVarScript for mana preview
+        }
     }
 
     public void MouseLeft()
     {
         //Debug.Log("Button stop hovering");
         sliderVarScript.StopPreview();
+        //stop preview for mana slider too
     }
 
-    public void GetReadyAbilityInfo(out bool multihit, out Vector2Int heal, out Vector2Int dmg, out string type, out string cardNameSelf, out string cardNameTarget, out bool hitsAll, out Vector2Int extradmg)
+    public void GetReadyAbilityInfo(out bool multihit, out Vector2Int restore, out string selfType, out Vector2Int dmg, out string type, out string cardNameSelf, out string cardNameTarget, out bool hitsAll, out Vector2Int extradmg)
     {
 
         multihit = false;
-        heal = new Vector2Int(0, 0);
+        restore = new Vector2Int(0, 0);
+        selfType = "none";
         dmg = new Vector2Int(0, 0);
         type = "none";
         cardNameSelf = "none";
@@ -111,7 +124,7 @@ public class AbilityManager : MonoBehaviour
 
         if (readyAbility != null)
         {
-            readyAbility.GetReadyAbilityInfo(out multihit, out heal, out dmg, out type, out cardNameSelf, out cardNameTarget, out hitsAll, out extradmg);
+            readyAbility.GetReadyAbilityInfo(out multihit, out restore, out selfType, out dmg, out type, out cardNameSelf, out cardNameTarget, out hitsAll, out extradmg);
         }
     }
 
@@ -148,21 +161,21 @@ public class AbilityManager : MonoBehaviour
 
         if (activeCard != null)
         {
-            if (ability.self && ability.target)
+            if (ability.selfInterpretationUnlocked && ability.targetInterpretationUnlocked)
             {
                 activeCard.ReadyCard(ability.cardName, ability.selfHeal, "Unknown", ability.selfCost, "Two interpretations active, UI issue", ability.selfCostType);
                 combatManager.TargetEnemies(true);
                 targetter.SetVisibility(true);
             }
-            else if (ability.self)
+            else if (ability.selfInterpretationUnlocked)
             {
-                activeCard.ReadyCard(ability.cardName, ability.selfHeal, "Healing", ability.selfCost, ability.selfDescription, ability.selfCostType);
+                activeCard.ReadyCard(ability.cardName, ability.RestoreValue(), ability.RestoreType(), ability.selfCost, ability.selfDescription, ability.selfCostType); ;
                 combatManager.TargetEnemies(false);
                 targetter.SetVisibility(true);
             }
-            else if (ability.target)
+            else if (ability.targetInterpretationUnlocked)
             {
-                activeCard.ReadyCard(ability.cardName, ability.targetDmg * ability.hits, ability.damageType, ability.targetCost, ability.targetDescription, ability.targetCostType);
+                activeCard.ReadyCard(ability.cardName, ability.TotalDmgRange(), ability.damageType, ability.targetCost, ability.targetDescription, ability.targetCostType);
                 combatManager.TargetEnemies(true);
                 targetter.SetVisibility(false);
             }
@@ -458,7 +471,7 @@ public class AbilityManager : MonoBehaviour
                 foreach (var item in combatManager.enemyManager.enemies)
                 {
                     EnemyStats itemHealth = item.gameObject.GetComponent<EnemyStats>();
-                    message += item.gameObject.name + ", ";
+                    
 
                     if (item.gameObject == target)
                     {

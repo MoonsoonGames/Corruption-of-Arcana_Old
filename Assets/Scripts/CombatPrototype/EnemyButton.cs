@@ -30,7 +30,8 @@ public class EnemyButton : MonoBehaviour
         if (ability != null)
         {
             bool multihit;
-            Vector2Int heal;
+            Vector2Int restore;
+            string selfType;
             Vector2Int dmg;
             string type;
             string cardNameSelf;
@@ -38,7 +39,7 @@ public class EnemyButton : MonoBehaviour
             bool hitsAll;
             Vector2Int extradmg;
 
-            ability.GetReadyAbilityInfo(out multihit, out heal, out dmg, out type, out cardNameSelf, out cardNameTarget, out hitsAll, out extradmg);
+            ability.GetReadyAbilityInfo(out multihit, out restore, out selfType, out dmg, out type, out cardNameSelf, out cardNameTarget, out hitsAll, out extradmg);
 
             if (hitsAll)
             {

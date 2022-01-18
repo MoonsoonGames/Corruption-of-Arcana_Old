@@ -5,33 +5,43 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewCard", menuName = "Cards/Spells", order = 0)]
 public class CardParent : ScriptableObject
 {
+    #region General
+
     [Header("General")]
     public string cardName;
     public int cardNumber;
+    [TextArea(3, 10)]
     public string flavourDescription;
     public Sprite cardImage;
 
     public void CastSpell(GameObject target, AbilityManager abilityManager)
     {
-        if (target.GetComponent<PlayerStats>() != null)
+        Debug.Log("Self is " + selfInterpretationUnlocked + " || Target is " + target);
+        if (target.GetComponent<PlayerStats>() != null && selfInterpretationUnlocked)
         {
             OnSelfCast(target, abilityManager);
         }
-        else if (target.GetComponent<EnemyStats>() != null)
+        else if (target.GetComponent<EnemyStats>() != null && targetInterpretationUnlocked)
         {
             OnTargetCast(target, abilityManager);
         }
     }
 
+    #endregion
+
+    #region Self
+
     [Header("Self")]
-    public bool self = false;
+    public bool selfInterpretationUnlocked = false;
 
     public string selfName;
+    [TextArea(3, 10)]
     public string selfDescription;
     public int selfCost;
     public string selfCostType;
     public Vector2Int selfHeal;
-    public float selfEndTurnDelay;
+    public Vector2Int selfAP;
+    public float selfEndTurnDelay = 0.2f;
     //public Status[] selfStatus;
     //public GameObject selfPrepareEffect;
     //public GameObject selfCastEffect;
@@ -47,6 +57,7 @@ public class CardParent : ScriptableObject
             if (abilityManager.playerStats.CheckMana(cost))
             {
                 int heal = (int)Random.Range(selfHeal.x, selfHeal.y);
+                int mana = (int)Random.Range(selfAP.x, selfAP.y);
 
                 Debug.Log("Cast" + cardName + "on Taro");
 
@@ -54,7 +65,7 @@ public class CardParent : ScriptableObject
                 abilityManager.combatManager.Healing.SetActive(true);
                 abilityManager.combatManager.HealingValue.text = heal.ToString();
 
-                playerStats.ChangeMana(cost, true);
+                playerStats.ChangeMana(cost - mana, true);
                 abilityManager.combatManager.Ap.SetActive(true);
                 abilityManager.combatManager.ApValue.text = cost.ToString();
 
@@ -75,26 +86,33 @@ public class CardParent : ScriptableObject
         }
     }
 
+    #endregion
+
+    #region Target
+
     [Header("Target")]
-    public bool target = false;
+    public bool targetInterpretationUnlocked = false;
 
     public string targetName;
+    [TextArea(3, 10)]
     public string targetDescription;
     public int targetCost;
     public string targetCostType;
     public string damageType;
     public Vector2Int targetDmg;
     public Vector2Int lifeLeach;
+    public bool execute;
     public int hits;
     public float hitInterval;
     public float finalHitInterval;
     public Vector2Int targetFinalDmg;
-    public float targetEndTurnDelay;
+    public float targetEndTurnDelay = 0.2f;
 
     public bool targetCleave;
     public bool targetChain;
     public Vector2Int extraDmg;
     //public Status[] targetStatus;
+    //public float statusChance;
     //public GameObject targetPrepareEffect;
     //public GameObject targetCastEffect;
 
@@ -103,51 +121,92 @@ public class CardParent : ScriptableObject
         EnemyStats enemyStats = target.GetComponent<EnemyStats>();
         if (enemyStats != null)
         {
-            abilityManager.MouseLeft();
-
-            int cost = selfCost;
+            int cost = targetCost;
             if (abilityManager.playerStats.CheckMana(cost))
             {
-                int dmg = (int)Random.Range(targetDmg.x, targetDmg.y);
-                abilityManager.SpawnAttackEffect(abilityManager.spawnPos.position, target);
+                abilityManager.MouseLeft();
 
                 Debug.Log("Cast" + cardName + "on " + target.name);
 
-                if (targetChain) // chain target attack
+                if (targetChain)
                 {
-                    enemyStats.ChangeHealth(dmg, true);
-                    abilityManager.combatManager.Healing.SetActive(true);
-                    abilityManager.combatManager.HealingValue.text = dmg.ToString();
+                    string message = "Cast Chain Lightning on ";
+                    abilityManager.multihitMax = abilityManager.combatManager.enemyManager.enemies.Count;
 
-                    //chain code
-                }
-                else if (targetCleave) // cleave target attack
+                    foreach (var item in abilityManager.combatManager.enemyManager.enemies)
+                    {
+                        EnemyStats itemHealth = item.gameObject.GetComponent<EnemyStats>();
+                        message += item.gameObject.name + ", ";
+
+                        if (item.gameObject == target)
+                        {
+                            abilityManager.DelayDamage(targetDmg, 0f, abilityManager.spawnPos, target, itemHealth);
+                        }
+                        else
+                        {
+                            abilityManager.DelayDamage(extraDmg, 0.25f, target.transform, item.gameObject, itemHealth);
+                        }
+                    }
+
+                    abilityManager.combatManager.Dmg.SetActive(true);
+                    abilityManager.combatManager.DmgValue.text = abilityManager.multihitTally.ToString();
+
+                    abilityManager.multihitTally = 0;
+
+                    Debug.Log(message);
+                } //chain target attack
+                else if (targetCleave)
                 {
-                    enemyStats.ChangeHealth(dmg, true);
-                    abilityManager.combatManager.Healing.SetActive(true);
-                    abilityManager.combatManager.HealingValue.text = dmg.ToString();
+                    string message = "Cast Chain Lightning on ";
+                    abilityManager.multihitMax = abilityManager.combatManager.enemyManager.enemies.Count;
 
-                    //cleave code
-                }
+                    foreach (var item in abilityManager.combatManager.enemyManager.enemies)
+                    {
+                        EnemyStats itemHealth = item.gameObject.GetComponent<EnemyStats>();
+                        message += item.gameObject.name + ", ";
+
+                        if (item.gameObject == target)
+                        {
+                            abilityManager.DelayDamage(targetDmg, 0f, abilityManager.spawnPos, item.gameObject, itemHealth);
+                        }
+                        else
+                        {
+                            abilityManager.DelayDamage(extraDmg, 0.1f, abilityManager.spawnPos, item.gameObject, itemHealth);
+                        }
+                    }
+
+                    abilityManager.combatManager.Dmg.SetActive(true);
+                    abilityManager.combatManager.DmgValue.text = abilityManager.multihitTally.ToString();
+
+                    abilityManager.multihitTally = 0;
+
+                    Debug.Log(message);
+                }  //cleave target attack
                 else
                 {
-                    enemyStats.ChangeHealth(dmg, true);
-                    abilityManager.combatManager.Healing.SetActive(true);
-                    abilityManager.combatManager.HealingValue.text = dmg.ToString();
+                    abilityManager.multihitMax = hits;
+                    abilityManager.combatManager.Dmg.SetActive(true);
 
                     if (hits > 1)
                     {
-                        for (int i = 1; i <= hits; i++)
+                        for (int i = 1; i < hits; i++)
                         {
                             Vector2 dmgVector = targetDmg;
+                            float hitTime = i * hitInterval;
 
-                            if (i == hits)
-                            {
-                                dmgVector = targetFinalDmg;
-                            }
-
-                            abilityManager.DelayDamage(dmgVector, 0f, abilityManager.spawnPos, target, enemyStats);
+                            abilityManager.DelayDamage(dmgVector, hitTime, abilityManager.spawnPos, target, enemyStats);
                         }
+
+                        Vector2 dmgVectorFinal = targetFinalDmg;
+                        float hitTimeFinal = (hits * hitInterval) + finalHitInterval;
+
+                        abilityManager.DelayDamage(dmgVectorFinal, hitTimeFinal, abilityManager.spawnPos, target, enemyStats);
+                    }
+                    else
+                    {
+                        Vector2 dmgVector = targetDmg;
+
+                        abilityManager.DelayDamage(dmgVector, 0f, abilityManager.spawnPos, target, enemyStats);
                     }
                 } //single target attack
 
@@ -157,7 +216,7 @@ public class CardParent : ScriptableObject
 
                 abilityManager.ResetAbility();
 
-                abilityManager.EndTurn(selfEndTurnDelay);
+                abilityManager.EndTurn(targetEndTurnDelay);
             }
             else
             {
@@ -172,11 +231,53 @@ public class CardParent : ScriptableObject
         }
     }
 
-    public void GetReadyAbilityInfo(out bool multihit, out Vector2Int heal, out Vector2Int dmg, out string type, out string cardNameSelf, out string cardNameTarget, out bool hitsAll, out Vector2Int extradmg)
+    #endregion
+
+    #region Helper Functions
+
+    public Vector2Int TotalDmgRange()
+    {
+        if (hits > 1)
+        {
+            return (targetDmg * (hits - 1)) + (targetFinalDmg);
+        }
+        else
+        {
+            return targetDmg;
+        }
+    }
+
+    public string RestoreType()
+    {
+        if (selfHeal != new Vector2Int(0, 0) && selfAP != new Vector2Int(0, 0))
+        {
+            return "Healing & Arcana";
+        }
+        else if (selfHeal != new Vector2Int(0, 0))
+        {
+            return "Healing";
+        }
+        else if (selfAP != new Vector2Int(0, 0))
+        {
+            return "Arcana";
+        }
+        else
+        {
+            return " ";
+        }
+    }
+
+    public Vector2Int RestoreValue()
+    {
+        return selfHeal + selfAP;
+    }
+
+    public void GetReadyAbilityInfo(out bool multihit, out Vector2Int restore, out string selfType, out Vector2Int dmg, out string type, out string cardNameSelf, out string cardNameTarget, out bool hitsAll, out Vector2Int extradmg)
     {
 
         multihit = false;
-        heal = new Vector2Int(0, 0);
+        restore = new Vector2Int(0, 0);
+        selfType = "none";
         dmg = new Vector2Int(0, 0);
         type = "none";
         cardNameSelf = "none";
@@ -184,19 +285,43 @@ public class CardParent : ScriptableObject
         hitsAll = false;
         extradmg = new Vector2Int(0, 0);
 
-        if (self)
+        if (selfInterpretationUnlocked)
         {
-            heal = selfHeal;
+            if (selfHeal != new Vector2Int(0, 0) && selfAP != new Vector2Int(0, 0))
+            {
+                restore = selfHeal + selfAP;
+                selfType = "Healing & Arcana";
+            }
+            else if (selfHeal != new Vector2Int(0, 0))
+            {
+                restore = selfHeal;
+                selfType = "Healing";
+            }
+            else if (selfAP != new Vector2Int(0, 0))
+            {
+                restore = selfAP;
+                selfType = "Arcana";
+            }
             cardNameSelf = selfName;
         }
-        if (target)
+        if (targetInterpretationUnlocked)
         {
             multihit = hits > 1;
-            dmg = targetDmg * hits;
+            if (multihit)
+            {
+                dmg = (targetDmg * (hits - 1)) + (targetFinalDmg);
+            }
+            else
+            {
+                dmg = targetDmg;
+            }
+
             type = damageType;
             cardNameTarget = targetName;
             hitsAll = (targetCleave || targetChain);
             extradmg = extraDmg;
         }
     }
+
+    #endregion
 }
