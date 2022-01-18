@@ -5,9 +5,26 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewCard", menuName = "Cards/Spells", order = 0)]
 public class CardParent : ScriptableObject
 {
+    [Header("General")]
     public string cardName;
+    public int cardNumber;
+    public string flavourDescription;
+    public Sprite cardImage;
+
+    public void CastSpell(GameObject target, AbilityManager abilityManager)
+    {
+        if (target.GetComponent<PlayerStats>() != null)
+        {
+            OnSelfCast(target, abilityManager);
+        }
+        else if (target.GetComponent<EnemyStats>() != null)
+        {
+            OnTargetCast(target, abilityManager);
+        }
+    }
+
+    [Header("Self")]
     public bool self = false;
-    public bool target = false;
 
     public string selfName;
     public string selfDescription;
@@ -16,6 +33,8 @@ public class CardParent : ScriptableObject
     public Vector2Int selfHeal;
     public float selfEndTurnDelay;
     //public Status[] selfStatus;
+    //public GameObject selfPrepareEffect;
+    //public GameObject selfCastEffect;
 
     public void OnSelfCast(GameObject target, AbilityManager abilityManager)
     {
@@ -56,6 +75,9 @@ public class CardParent : ScriptableObject
         }
     }
 
+    [Header("Target")]
+    public bool target = false;
+
     public string targetName;
     public string targetDescription;
     public int targetCost;
@@ -72,7 +94,9 @@ public class CardParent : ScriptableObject
     public bool targetCleave;
     public bool targetChain;
     public Vector2Int extraDmg;
-    //public Status[] selfStatus;
+    //public Status[] targetStatus;
+    //public GameObject targetPrepareEffect;
+    //public GameObject targetCastEffect;
 
     public void OnTargetCast(GameObject target, AbilityManager abilityManager)
     {
@@ -89,7 +113,7 @@ public class CardParent : ScriptableObject
 
                 Debug.Log("Cast" + cardName + "on " + target.name);
 
-                if (targetChain)
+                if (targetChain) // chain target attack
                 {
                     enemyStats.ChangeHealth(dmg, true);
                     abilityManager.combatManager.Healing.SetActive(true);
@@ -97,7 +121,7 @@ public class CardParent : ScriptableObject
 
                     //chain code
                 }
-                else if (targetCleave)
+                else if (targetCleave) // cleave target attack
                 {
                     enemyStats.ChangeHealth(dmg, true);
                     abilityManager.combatManager.Healing.SetActive(true);
@@ -125,7 +149,7 @@ public class CardParent : ScriptableObject
                             abilityManager.DelayDamage(dmgVector, 0f, abilityManager.spawnPos, target, enemyStats);
                         }
                     }
-                }
+                } //single target attack
 
                 abilityManager.playerStats.ChangeMana(cost, true);
                 abilityManager.combatManager.Ap.SetActive(true);
@@ -148,13 +172,31 @@ public class CardParent : ScriptableObject
         }
     }
 
-    public void GetReadyAbilityInfo(out bool multihit, out Vector2Int heal, out Vector2Int dmg, out string type, out string cardNameSelf, out string cardNameTarget)
+    public void GetReadyAbilityInfo(out bool multihit, out Vector2Int heal, out Vector2Int dmg, out string type, out string cardNameSelf, out string cardNameTarget, out bool hitsAll, out Vector2Int extradmg)
     {
-        multihit = hits > 1;
-        dmg = targetDmg * hits;
-        heal = selfHeal;
-        type = damageType;
-        cardNameSelf = selfName;
-        cardNameTarget = targetName;
+
+        multihit = false;
+        heal = new Vector2Int(0, 0);
+        dmg = new Vector2Int(0, 0);
+        type = "none";
+        cardNameSelf = "none";
+        cardNameTarget = "none";
+        hitsAll = false;
+        extradmg = new Vector2Int(0, 0);
+
+        if (self)
+        {
+            heal = selfHeal;
+            cardNameSelf = selfName;
+        }
+        if (target)
+        {
+            multihit = hits > 1;
+            dmg = targetDmg * hits;
+            type = damageType;
+            cardNameTarget = targetName;
+            hitsAll = (targetCleave || targetChain);
+            extradmg = extraDmg;
+        }
     }
 }

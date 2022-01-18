@@ -24,7 +24,11 @@ public class CardSetter : MonoBehaviour
         int rInt = Random.Range(0, combatCards.Length);
         //Debug.Log(rInt);
         currentCard = combatCards[rInt];
-        Debug.Log(currentCard);
+
+        if (cardText != null)
+        {
+            cardText.text = currentCard.cardName;
+        }
     }
 
     public void ButtonPressed()

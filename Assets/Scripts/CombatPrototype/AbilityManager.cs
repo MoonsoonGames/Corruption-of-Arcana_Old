@@ -11,7 +11,7 @@ public class AbilityManager : MonoBehaviour
     public CombatManager combatManager;
     public PlayerStats playerStats;
 
-    private string readyAbility;
+    private CardParent readyAbility;
     private ActiveCard activeCard;
 
     public float popupDuration = 5f;
@@ -78,11 +78,17 @@ public class AbilityManager : MonoBehaviour
         //Debug.Log("Button hovering");
 
         bool multihit;
-        Vector2 dmg;
+        Vector2Int heal;
+        Vector2Int dmg;
+        string type;
+        string cardNameSelf;
+        string cardNameTarget;
+        bool hitsAll;
+        Vector2Int extradmg;
 
-        GetReadyAbilityInfo(out multihit, out dmg);
+        GetReadyAbilityInfo(out multihit, out heal, out dmg, out type, out cardNameSelf, out cardNameTarget, out hitsAll, out extradmg);
 
-        sliderVarScript.ApplyPreview(dmg);
+        sliderVarScript.ApplyPreview(-heal);
     }
 
     public void MouseLeft()
@@ -91,61 +97,21 @@ public class AbilityManager : MonoBehaviour
         sliderVarScript.StopPreview();
     }
 
-    public void GetReadyAbilityInfo(out bool multihit, out Vector2 dmg)
+    public void GetReadyAbilityInfo(out bool multihit, out Vector2Int heal, out Vector2Int dmg, out string type, out string cardNameSelf, out string cardNameTarget, out bool hitsAll, out Vector2Int extradmg)
     {
-        //set caller values
-        multihit = false;
-        dmg = new Vector2(0, 0);
 
-        if (readyAbility == "Slash")
+        multihit = false;
+        heal = new Vector2Int(0, 0);
+        dmg = new Vector2Int(0, 0);
+        type = "none";
+        cardNameSelf = "none";
+        cardNameTarget = "none";
+        hitsAll = false;
+        extradmg = new Vector2Int(0, 0);
+
+        if (readyAbility != null)
         {
-            multihit = false;
-            dmg = new Vector2(slashDamage.x, slashDamage.y);
-        }
-        else if (readyAbility == "CriticalSlash")
-        {
-            multihit = false;
-            dmg = new Vector2(criticalSlashDamage.x, criticalSlashDamage.y);
-        }
-        else if (readyAbility == "Cleave")
-        {
-            multihit = true;
-            dmg = new Vector2(cleaveDamage.x, cleaveDamage.y);
-        }
-        else if (readyAbility == "Flurry")
-        {
-            multihit = false;
-            dmg = new Vector2((flurryDamage.x * 4) + flurryFinalHitDamage.x, (flurryDamage.y * 4) + flurryFinalHitDamage.y);
-        }
-        else if (readyAbility == "StormBarrage")
-        {
-            multihit = false;
-            dmg = new Vector2(stormBarrageDamage.x * 3, stormBarrageDamage.y * 3);
-        }
-        else if (readyAbility == "Firebolt")
-        {
-            multihit = false;
-            dmg = new Vector2(fireboltDamage.x, fireboltDamage.y);
-        }
-        else if (readyAbility == "ChillTouch")
-        {
-            multihit = false;
-            dmg = new Vector2(chillTouchDamage.x, chillTouchDamage.y);
-        }
-        else if (readyAbility == "ChainLightning")
-        {
-            multihit = true;
-            dmg = new Vector2(chainLightningDamage.x, chainLightningDamage.y);
-        }
-        else if (readyAbility == "CureWounds")
-        {
-            multihit = false;
-            dmg = new Vector2(-cureWoundsHealing.x, -cureWoundsHealing.y);
-        }
-        else if (readyAbility == "HealingPotion")
-        {
-            multihit = false;
-            dmg = new Vector2(-healthPotionHealing.x, -healthPotionHealing.y);
+            readyAbility.GetReadyAbilityInfo(out multihit, out heal, out dmg, out type, out cardNameSelf, out cardNameTarget, out hitsAll, out extradmg);
         }
     }
 
@@ -155,7 +121,7 @@ public class AbilityManager : MonoBehaviour
         {
             if (readyAbility != null)
             {
-                gameObject.SendMessage(readyAbility, target);
+                readyAbility.CastSpell(target, this);
             }
             else
             {
@@ -178,22 +144,25 @@ public class AbilityManager : MonoBehaviour
     {
         EnemyInfo(null);
 
-        readyAbility = ability.cardName;
-
-        
-        
+        readyAbility = ability;
 
         if (activeCard != null)
         {
-            if (ability.self)
+            if (ability.self && ability.target)
+            {
+                activeCard.ReadyCard(ability.cardName, ability.selfHeal, "Unknown", ability.selfCost, "Two interpretations active, UI issue", ability.selfCostType);
+                combatManager.TargetEnemies(true);
+                targetter.SetVisibility(true);
+            }
+            else if (ability.self)
             {
                 activeCard.ReadyCard(ability.cardName, ability.selfHeal, "Healing", ability.selfCost, ability.selfDescription, ability.selfCostType);
                 combatManager.TargetEnemies(false);
                 targetter.SetVisibility(true);
             }
-            else
+            else if (ability.target)
             {
-                activeCard.ReadyCard(ability.cardName, ability.selfHeal, ability.damageType, ability.targetCost, ability.targetDescription, ability.targetCostType);
+                activeCard.ReadyCard(ability.cardName, ability.targetDmg * ability.hits, ability.damageType, ability.targetCost, ability.targetDescription, ability.targetCostType);
                 combatManager.TargetEnemies(true);
                 targetter.SetVisibility(false);
             }
