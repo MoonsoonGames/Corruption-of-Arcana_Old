@@ -143,9 +143,9 @@ public class UIManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {      
+    {
         #region Hotkeys
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (PauseMenu.activeSelf == false && Input.GetKeyDown(KeyCode.Escape))
         {
             if (Inventory.activeSelf == true)
             {
@@ -165,10 +165,11 @@ public class UIManager : MonoBehaviour
                 ExplorationUI.SetActive(false);
                 player.GetComponent<PlayerController>().canMove = false;
                 Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
+                Cursor.lockState = CursorLockMode.Confined;
             }
         }
-        else if (Input.GetKeyDown(KeyCode.I))
+
+        else if (Inventory.activeSelf == false && Input.GetKeyDown(KeyCode.I))
         {
             if (PauseMenu.activeSelf == true)
             {
@@ -188,10 +189,11 @@ public class UIManager : MonoBehaviour
                 ExplorationUI.SetActive(false);
                 player.GetComponent<PlayerController>().canMove = false;
                 Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
+                Cursor.lockState = CursorLockMode.Confined;
             }
         }
-        else if (Input.GetKeyDown(KeyCode.H))
+
+        else if (GuideBook.activeSelf == false && Input.GetKeyDown(KeyCode.H))
         {
             if (PauseMenu.activeSelf == true)
             {
@@ -215,7 +217,7 @@ public class UIManager : MonoBehaviour
                 ExplorationUI.SetActive(false);
                 player.GetComponent<PlayerController>().canMove = false;
                 Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
+                Cursor.lockState = CursorLockMode.Confined;
             }
         }
         //else if (ActiveScene == "Thoth" && Input.GetKeyDown(KeyCode.M))
@@ -232,6 +234,35 @@ public class UIManager : MonoBehaviour
         //    player.GetComponent<PlayerController>().enabled = false;
         //    Camera.GetComponent<PlayerCameraController>().enabled = false;
         //}
+        #endregion
+
+        #region Esc Hotkeys
+        else if (PauseMenu.activeSelf == true && Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseMenu.SetActive(false);
+            ExplorationUI.SetActive(true);
+            player.GetComponent<PlayerController>().canMove = true;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Confined;
+        }
+
+        else if (Inventory.activeSelf == true && Input.GetKeyDown(KeyCode.I))
+        {
+            Inventory.SetActive(false);
+            ExplorationUI.SetActive(true);
+            player.GetComponent<PlayerController>().canMove = true;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Confined;
+        }
+
+        else if (GuideBook.activeSelf == true && Input.GetKeyDown(KeyCode.H))
+        {
+            GuideBook.SetActive(false);
+            ExplorationUI.SetActive(true);
+            player.GetComponent<PlayerController>().canMove = true;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Confined;
+        }
         #endregion
 
         #region Guide book buttons
@@ -251,7 +282,7 @@ public class UIManager : MonoBehaviour
                 nextGuideButton.SetActive(true);
                 lastGuideButton.SetActive(false);
             }
-            else if  (Monpage2.activeSelf == true)
+            else if (Monpage2.activeSelf == true)
             {
                 nextGuideButton.SetActive(false);
                 lastGuideButton.SetActive(true);
@@ -300,7 +331,7 @@ public class UIManager : MonoBehaviour
                 nextGuideButton.SetActive(true);
                 lastGuideButton.SetActive(false);
             }
-            else if  (Pplpage2.activeSelf == true)
+            else if (Pplpage2.activeSelf == true)
             {
                 nextGuideButton.SetActive(false);
                 lastGuideButton.SetActive(true);
@@ -373,7 +404,7 @@ public class UIManager : MonoBehaviour
                 nextGuideButton.SetActive(true);
                 lastGuideButton.SetActive(false);
             }
-            else if  (PlyrStatPage2.activeSelf == true)
+            else if (PlyrStatPage2.activeSelf == true)
             {
                 nextGuideButton.SetActive(false);
                 lastGuideButton.SetActive(true);
@@ -390,7 +421,7 @@ public class UIManager : MonoBehaviour
                 nextGuideButton.SetActive(true);
                 lastGuideButton.SetActive(false);
             }
-            else if  (CardsPage2.activeSelf == true)
+            else if (CardsPage2.activeSelf == true)
             {
                 nextGuideButton.SetActive(false);
                 lastGuideButton.SetActive(true);
@@ -632,7 +663,7 @@ public class UIManager : MonoBehaviour
     #endregion
 
     #region Guide book - left Tabs(help)
-        #region controls
+    #region controls
     public void Controls()
     {
         //Main pages (parents)
@@ -708,9 +739,9 @@ public class UIManager : MonoBehaviour
         nextGuideButton.SetActive(true);
         lastGuideButton.SetActive(false);
     }
-        #endregion
+    #endregion
 
-        #region combat
+    #region combat
     public void Combat()
     {
         //Main pages (parents)
@@ -786,7 +817,7 @@ public class UIManager : MonoBehaviour
     }
     #endregion
 
-        #region objective history
+    #region objective history
     public void ObjectiveHistory()
     {
         OpeningPage.SetActive(false);
@@ -997,7 +1028,7 @@ public class UIManager : MonoBehaviour
         GuideBook.SetActive(false);
         PauseMenu.SetActive(true);
     }
-    
+
     public void CloseSettings()
     {
         SettingsPage.SetActive(false);

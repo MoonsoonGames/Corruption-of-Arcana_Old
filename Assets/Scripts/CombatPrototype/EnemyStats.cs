@@ -48,7 +48,7 @@ public class EnemyStats : MonoBehaviour
         return health;
     }
 
-    public void ChangeHeath(int value, bool damage)
+    public void ChangeHealth(int value, bool damage)
     {
         if (damage)
         {
@@ -185,5 +185,10 @@ public class EnemyStats : MonoBehaviour
     public bool CheckMana(float value)
     {
         return mana > value;
+    }
+
+    public float HealthPercentage()
+    {
+        return (float)health / (float)maxHealth;
     }
 }

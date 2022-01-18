@@ -30,23 +30,28 @@ public class EnemyButton : MonoBehaviour
         if (ability != null)
         {
             bool multihit;
-            Vector2 dmg;
+            Vector2Int restore;
+            string selfType;
+            Vector2Int dmg;
+            string type;
+            string cardNameSelf;
+            string cardNameTarget;
+            bool hitsAll;
+            Vector2Int extradmg;
 
-            ability.GetReadyAbilityInfo(out multihit, out dmg);
+            ability.GetReadyAbilityInfo(out multihit, out restore, out selfType, out dmg, out type, out cardNameSelf, out cardNameTarget, out hitsAll, out extradmg);
 
-            if (multihit)
+            if (hitsAll)
             {
                 EnemyButton[] buttons = GameObject.FindObjectsOfType<EnemyButton>();
 
                 foreach (var item in buttons)
                 {
-                    item.sliderVarScript.ApplyPreview(dmg);
+                    item.sliderVarScript.ApplyPreview(extradmg);
                 }
             }
-            else
-            {
-                sliderVarScript.ApplyPreview(dmg);
-            }
+
+            sliderVarScript.ApplyPreview(dmg);
         }
         else
         {
