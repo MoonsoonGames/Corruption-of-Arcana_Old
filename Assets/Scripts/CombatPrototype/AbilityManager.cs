@@ -32,38 +32,22 @@ public class AbilityManager : MonoBehaviour
     [HideInInspector]
     public int multihitCount = 0;
 
-    #region Basic Attacks
-    [Header("Basic Attacks")]
-    public Vector2 slashDamage = new Vector2(6, 15);
-    public Vector2 criticalSlashDamage = new Vector2(22, 35);
-    public Vector2 cleaveDamage = new Vector2(8, 16);
-    public Vector2 flurryDamage = new Vector2(4, 8);
-    public Vector2 flurryFinalHitDamage = new Vector2(6, 10);
-
     #endregion
 
-    #region Spells
-    [Header("Spells")]
+    #region Damage Type Colours
+    [Header("Damage Type Colours - Image")]
+    public Color physicalColour;
+    public Color emberColour;
+    public Color staticColour;
+    public Color bleakColour;
+    public Color septicColour;
 
-    public Vector2 stormBarrageDamage = new Vector2(14, 32);
-    public int stormBarrageCost = 55;
-
-    public Vector2 fireboltDamage = new Vector2(26, 40);
-    public int fireboltCost = 40;
-
-    public Vector2 chillTouchDamage = new Vector2(16, 30);
-    public int chillTouchCost = 20;
-
-    public Vector2 chainLightningDamage = new Vector2(18, 32);
-    public int chainLightningCost = 60;
-
-    public Vector2 cureWoundsHealing = new Vector2(28, 42);
-    public int cureWoundsCost = 40;
-
-    public Vector2 healthPotionHealing = new Vector2(34, 50);
-
-    #endregion
-
+    [Header("Damage Type Colours - Trail")]
+    public Gradient physicalTrailColour;
+    public Gradient emberTrailColour;
+    public Gradient staticTrailColour;
+    public Gradient bleakTrailColour;
+    public Gradient septicTrailColour;
     #endregion
 
     private void Start()
@@ -84,7 +68,7 @@ public class AbilityManager : MonoBehaviour
         Vector2Int restore;
         string selfType;
         Vector2Int dmg;
-        string type;
+        E_DamageTypes type;
         string cardNameSelf;
         string cardNameTarget;
         bool hitsAll;
@@ -109,14 +93,14 @@ public class AbilityManager : MonoBehaviour
         //stop preview for mana slider too
     }
 
-    public void GetReadyAbilityInfo(out bool multihit, out Vector2Int restore, out string selfType, out Vector2Int dmg, out string type, out string cardNameSelf, out string cardNameTarget, out bool hitsAll, out Vector2Int extradmg)
+    public void GetReadyAbilityInfo(out bool multihit, out Vector2Int restore, out string selfType, out Vector2Int dmg, out E_DamageTypes type, out string cardNameSelf, out string cardNameTarget, out bool hitsAll, out Vector2Int extradmg)
     {
 
         multihit = false;
         restore = new Vector2Int(0, 0);
         selfType = "none";
         dmg = new Vector2Int(0, 0);
-        type = "none";
+        type = E_DamageTypes.Physical;
         cardNameSelf = "none";
         cardNameTarget = "none";
         hitsAll = false;
@@ -175,7 +159,7 @@ public class AbilityManager : MonoBehaviour
             }
             else if (ability.targetInterpretationUnlocked)
             {
-                activeCard.ReadyCard(ability.targetName, ability.TotalDmgRange(), ability.damageType, ability.targetCost, ability.targetDescription, ability.targetCostType);
+                activeCard.ReadyCard(ability.targetName, ability.TotalDmgRange(), ability.damageType.ToString(), ability.targetCost, ability.targetDescription, ability.targetCostType);
                 combatManager.TargetEnemies(true);
                 targetter.SetVisibility(false);
             }
@@ -195,441 +179,43 @@ public class AbilityManager : MonoBehaviour
 
     #endregion
 
-    #region Abilities
-
-    #region Basic Attacks
-
-    private void Slash(GameObject target)
-    {
-        EnemyStats targetHealth = target.GetComponent<EnemyStats>();
-
-        if (targetHealth != null)
-        {
-            MouseLeft();
-
-            int damage = (int)Random.Range(slashDamage.x, slashDamage.y);
-
-            Debug.Log("Cast Slash on " + target.name);
-
-            targetHealth.ChangeHealth(damage, true);
-            combatManager.Dmg.SetActive(true);
-            combatManager.DmgValue.text = damage.ToString();
-
-            SpawnAttackEffect(spawnPos.position, target);
-
-            ResetAbility();
-
-            StartCoroutine(IEndTurn(0.2f));
-        }
-        else
-        {
-            Debug.Log("You cannot target that character with this spell");
-        }
-    }
-
-    private void CriticalSlash(GameObject target)
-    {
-        EnemyStats targetHealth = target.GetComponent<EnemyStats>();
-
-        if (targetHealth != null)
-        {
-            MouseLeft();
-            SpawnAttackEffect(spawnPos.position, target);
-
-            int damage = (int)Random.Range(criticalSlashDamage.x, criticalSlashDamage.y);
-
-            Debug.Log("Cast Slash on " + target.name + ". It's a critical hit!");
-
-            targetHealth.ChangeHealth(damage, true);
-            combatManager.Dmg.SetActive(true);
-            combatManager.DmgValue.text = damage.ToString();
-
-            ResetAbility();
-
-            StartCoroutine(IEndTurn(0.2f));
-        }
-        else
-        {
-            Debug.Log("You cannot target that character with this spell");
-        }
-    }
-
-    private void Cleave(GameObject target)
-    {
-        EnemyStats targetHealth = target.GetComponent<EnemyStats>();
-        
-        if (targetHealth != null)
-        {
-            MouseLeft();
-            foreach (var item in combatManager.enemyManager.enemies)
-            {
-                SpawnAttackEffect(spawnPos.position, item.gameObject);
-            }
-
-            int damage = (int)Random.Range(cleaveDamage.x, cleaveDamage.y);
-
-            EnemyStats[] enemies = FindObjectsOfType<EnemyStats>();
-
-            string message = "Cast Cleave on ";
-
-            foreach (var item in enemies)
-            {
-                message += item.gameObject.name + ", ";
-
-                item.ChangeHealth(damage, true);
-
-                multihitTally += damage;
-            }
-
-            combatManager.Dmg.SetActive(true);
-            combatManager.DmgValue.text = multihitTally.ToString();
-
-            multihitTally = 0;
-
-            Debug.Log(message);
-
-            ResetAbility();
-
-            StartCoroutine(IEndTurn(0.2f));
-        }
-        else
-        {
-            Debug.Log("You cannot target that character with this spell");
-        }
-    }
-
-    private void Flurry(GameObject target)
-    {
-        EnemyStats targetHealth = target.GetComponent<EnemyStats>();
-
-        if (targetHealth != null)
-        {
-            MouseLeft();
-
-            Debug.Log("Cast Flurry on " + target.name);
-
-            multihitMax = 5;
-            StartCoroutine(IDelayDamage(flurryDamage, 0.05f, spawnPos, target, targetHealth));
-            StartCoroutine(IDelayDamage(flurryDamage, 0.15f, spawnPos, target, targetHealth));
-            StartCoroutine(IDelayDamage(flurryDamage, 0.25f, spawnPos, target, targetHealth));
-            StartCoroutine(IDelayDamage(flurryDamage, 0.35f, spawnPos, target, targetHealth));
-            StartCoroutine(IDelayDamage(flurryFinalHitDamage, 0.7f, spawnPos, target, targetHealth));
-
-            ResetAbility();
-
-            StartCoroutine(IEndTurn(1f));
-        }
-        else
-        {
-            Debug.Log("You cannot target that character with this spell");
-        }
-
-    }
-
-    #endregion
-
-    #region Spells
-
-    private void StormBarrage(GameObject target)
-    {
-        EnemyStats targetHealth = target.GetComponent<EnemyStats>();
-
-        if (targetHealth != null)
-        {
-            MouseLeft();
-
-            int cost = stormBarrageCost;
-            if (playerStats.CheckMana(cost))
-            {
-                Debug.Log("Cast Flurry on " + target.name);
-
-                multihitMax = 3;
-                StartCoroutine(IDelayDamage(stormBarrageDamage, 0.05f, spawnPos, target, targetHealth));
-                StartCoroutine(IDelayDamage(stormBarrageDamage, 0.2f, spawnPos, target, targetHealth));
-                StartCoroutine(IDelayDamage(stormBarrageDamage, 0.35f, spawnPos, target, targetHealth));
-
-                playerStats.ChangeMana(cost, true);
-                combatManager.Ap.SetActive(true);
-                combatManager.ApValue.text = cost.ToString();
-
-                ResetAbility();
-
-                StartCoroutine(IEndTurn(1f));
-            }
-            else
-            {
-                combatManager.noMana.SetActive(true);
-                Debug.Log("Insufficient Mana");
-                StartCoroutine(IRemovePopup(popupDuration));
-            }
-        }
-        else
-        {
-            Debug.Log("You cannot target that character with this spell");
-        }
-
-    }
-
-    private void Firebolt(GameObject target)
-    {
-        EnemyStats targetHealth = target.GetComponent<EnemyStats>();
-
-        if (targetHealth != null)
-        {
-            MouseLeft();
-
-            int cost = fireboltCost;
-            if (playerStats.CheckMana(cost))
-            {
-                SpawnAttackEffect(spawnPos.position, target);
-                int damage = (int)Random.Range(fireboltDamage.x, fireboltDamage.y);
-
-                Debug.Log("Cast Firebolt on " + target.name);
-
-                targetHealth.ChangeHealth(damage, true);
-                combatManager.Dmg.SetActive(true);
-                combatManager.DmgValue.text = damage.ToString();
-
-                playerStats.ChangeMana(cost, true);
-                combatManager.Ap.SetActive(true);
-                combatManager.ApValue.text = cost.ToString();
-
-                ResetAbility();
-
-                StartCoroutine(IEndTurn(0.2f));
-            }
-            else
-            {
-                combatManager.noMana.SetActive(true);
-                Debug.Log("Insufficient Mana");
-                StartCoroutine(IRemovePopup(popupDuration));
-            }
-        }
-        else
-        {
-            Debug.Log("You cannot target that character with this spell");
-        }
-    }
-
-    private void ChillTouch(GameObject target)
-    {
-        EnemyStats targetHealth = target.GetComponent<EnemyStats>();
-
-        if (targetHealth != null)
-        {
-            MouseLeft();
-
-            int cost = chillTouchCost;
-            if (playerStats.CheckMana(cost))
-            {
-                SpawnAttackEffect(spawnPos.position, target);
-
-                int damage = (int)Random.Range(chillTouchDamage.x, chillTouchDamage.y);
-
-                Debug.Log("Cast Chill Touch on " + target.name);
-
-                targetHealth.ChangeHealth(damage, true);
-                combatManager.Dmg.SetActive(true);
-                combatManager.DmgValue.text = damage.ToString();
-
-                playerStats.ChangeMana(cost, true);
-                combatManager.Ap.SetActive(true);
-                combatManager.ApValue.text = cost.ToString();
-
-                ResetAbility();
-
-                StartCoroutine(IEndTurn(0.2f));
-            }
-            else
-            {
-                combatManager.noMana.SetActive(true);
-                Debug.Log("Insufficient Mana");
-                StartCoroutine(IRemovePopup(popupDuration));
-            }
-        }
-        else
-        {
-            Debug.Log("You cannot target that character with this spell");
-        }
-
-    }
-
-    private void ChainLightning(GameObject target)
-    {
-        EnemyStats targetHealth = target.GetComponent<EnemyStats>();
-
-        if (targetHealth != null)
-        {
-            MouseLeft();
-
-            int cost = chainLightningCost;
-            if (playerStats.CheckMana(cost))
-            {
-                string message = "Cast Chain Lightning on ";
-                multihitMax = combatManager.enemyManager.enemies.Count;
-
-                foreach (var item in combatManager.enemyManager.enemies)
-                {
-                    EnemyStats itemHealth = item.gameObject.GetComponent<EnemyStats>();
-                    
-
-                    if (item.gameObject == target)
-                    {
-                        StartCoroutine(IDelayDamage(chainLightningDamage, 0f, spawnPos, item.gameObject, itemHealth));
-                    }
-                    else
-                    {
-                        StartCoroutine(IDelayDamage(chainLightningDamage, 0.25f, target.transform, item.gameObject, itemHealth));
-                    }
-                }
-
-                Debug.Log(message);
-
-                playerStats.ChangeMana(cost, true);
-                combatManager.Ap.SetActive(true);
-                combatManager.ApValue.text = cost.ToString();
-
-                ResetAbility();
-
-                StartCoroutine(IEndTurn(0.6f));
-            }
-            else
-            {
-                combatManager.noMana.SetActive(true);
-                Debug.Log("Insufficient Mana");
-                StartCoroutine(IRemovePopup(popupDuration));
-            }
-        }
-        else
-        {
-            Debug.Log("You cannot target that character with this spell");
-        }
-    }
-
-    private void CureWounds(GameObject target)
-    {
-        PlayerStats targetHealth = target.GetComponent<PlayerStats>();
-
-        if (targetHealth != null)
-        {
-            MouseLeft();
-
-            int cost = cureWoundsCost;
-            if (playerStats.CheckMana(cost))
-            {
-                int heal = (int)Random.Range(cureWoundsHealing.x, cureWoundsHealing.y);
-
-                Debug.Log("Cast CureWounds on " + target.name);
-
-                targetHealth.ChangeHealth(heal, false);
-                combatManager.Healing.SetActive(true);
-                combatManager.HealingValue.text = heal.ToString();
-
-                playerStats.ChangeMana(cost, true);
-                combatManager.Ap.SetActive(true);
-                combatManager.ApValue.text = cost.ToString();
-
-                ResetAbility();
-
-                StartCoroutine(IEndTurn(0.2f));
-            }
-            else
-            {
-                combatManager.noMana.SetActive(true);
-                Debug.Log("Insufficient Mana");
-                StartCoroutine(IRemovePopup(popupDuration));
-            }
-        }
-        else
-        {
-            Debug.Log("You cannot target that character with this spell");
-        }
-    }
-
-    private void HealingPotion(GameObject target)
-    {
-        PlayerStats targetHealth = target.GetComponent<PlayerStats>();
-
-        if (targetHealth != null)
-        {
-            MouseLeft();
-
-            int cost = 1;
-            if (playerStats.CheckPotions(cost))
-            {
-                int heal = (int)Random.Range(healthPotionHealing.x, healthPotionHealing.y);
-
-                Debug.Log(target.name + " used a healing potion");
-
-                targetHealth.ChangeHealth(heal, false);
-                combatManager.Healing.SetActive(true);
-                combatManager.HealingValue.text = heal.ToString();
-
-                playerStats.ChangePotions(cost, true);
-
-                ResetAbility();
-
-                StartCoroutine(IEndTurn(0.2f));
-            }
-            else
-            {
-                Debug.Log("Insufficient Potions");
-            }
-        }
-        else
-        {
-            Debug.Log("You cannot use a healing potion on that character");
-        }
-    }
-
-    private void ArcanaPotion(GameObject target)
-    {
-        PlayerStats targetHealth = target.GetComponent<PlayerStats>();
-
-        if (targetHealth != null)
-        {
-            MouseLeft();
-
-            int cost = 1;
-            if (false /*playerStats.CheckArcanaPotions(cost)*/)
-            {
-                int restore = Random.Range(1 /*healthPotion.x, healthPotion.y*/, 1);
-
-                Debug.Log(target.name + " used an arcana potion");
-
-                targetHealth.ChangeMana(restore, false);
-                combatManager.Healing.SetActive(true);
-                combatManager.HealingValue.text = restore.ToString();
-
-                //playerStats.ChangePotions(cost, true);
-
-                ResetAbility();
-
-                StartCoroutine(IEndTurn(0.2f));
-            }
-            else
-            {
-                Debug.Log("Insufficient Potions");
-            }
-        }
-        else
-        {
-            Debug.Log("You cannot use an arcana potion on that character");
-        }
-    }
-
-    #endregion
-
-    #endregion
-
     #region Helper Functions
 
-    public void DelayDamage(Vector2 damageRange, float delay, Transform origin, GameObject target, EnemyStats targetHealth)
+    public void DelayDamage(Vector2 damageRange, E_DamageTypes damageType, float delay, Transform origin, GameObject target, EnemyStats targetHealth)
     {
-        StartCoroutine(IDelayDamage(damageRange, delay, origin, target, targetHealth));
+        if (damageType == E_DamageTypes.Random)
+        {
+            int randDamage = Random.Range(0, System.Enum.GetValues(typeof(E_DamageTypes)).Length - 1);
+
+            switch (randDamage)
+            {
+                case 1:
+                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Physical, delay, origin, target, targetHealth));
+                    break;
+                case 2:
+                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Ember, delay, origin, target, targetHealth));
+                    break;
+                case 3:
+                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Static, delay, origin, target, targetHealth));
+                    break;
+                case 4:
+                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Bleak, delay, origin, target, targetHealth));
+                    break;
+                case 5:
+                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Septic, delay, origin, target, targetHealth));
+                    break;
+                default:
+                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Physical, delay, origin, target, targetHealth));
+                    break;
+            }
+        }
+        else
+        {
+            StartCoroutine(IDelayDamage(damageRange, damageType, delay, origin, target, targetHealth));
+        }
     }
 
-    private IEnumerator IDelayDamage(Vector2 damageRange, float delay, Transform origin, GameObject target, EnemyStats targetHealth)
+    private IEnumerator IDelayDamage(Vector2 damageRange, E_DamageTypes damageType, float delay, Transform origin, GameObject target, EnemyStats targetHealth)
     {
         Vector3 originRef = origin.position;
 
@@ -637,10 +223,10 @@ public class AbilityManager : MonoBehaviour
 
         if (targetHealth != null)
         {
-            SpawnAttackEffect(originRef, target);
+            SpawnAttackEffect(originRef, target, damageType);
 
             int damage = (int)Random.Range(damageRange.x, damageRange.y);
-            targetHealth.ChangeHealth(damage, true);
+            targetHealth.ChangeHealth(damage, true, damageType);
 
             multihitTally += damage;
             multihitCount++;
@@ -648,7 +234,7 @@ public class AbilityManager : MonoBehaviour
             combatManager.Dmg.SetActive(true);
             combatManager.DmgValue.text = multihitTally.ToString();
 
-            Debug.Log(multihitCount + " hits for " + multihitTally + " points of damage");
+            Debug.Log(multihitCount + " hits for " + multihitTally + " points of damage (not final damage as enemy mey be vulnerable or resistant to the damage)");
 
             if (multihitCount >= multihitMax)
             {
@@ -660,11 +246,67 @@ public class AbilityManager : MonoBehaviour
         }
     }
 
-    public void SpawnAttackEffect(Vector3 origin, GameObject target)
+    public void SpawnAttackEffect(Vector3 origin, GameObject target, E_DamageTypes damageType)
     {
         if (attackFX != null)
         {
             GameObject attackRef = Instantiate(attackFX, origin, new Quaternion(0, 0, 0, 0)) as GameObject;
+
+            #region Colour
+
+            SpriteRenderer image = attackRef.GetComponent<SpriteRenderer>();
+
+            if (image != null)
+            {
+                if (damageType == E_DamageTypes.Physical)
+                {
+                    image.color = physicalColour;
+                }
+                if (damageType == E_DamageTypes.Ember)
+                {
+                    image.color = emberColour;
+                }
+                if (damageType == E_DamageTypes.Static)
+                {
+                    image.color = staticColour;
+                }
+                if (damageType == E_DamageTypes.Bleak)
+                {
+                    image.color = bleakColour;
+                }
+                if (damageType == E_DamageTypes.Septic)
+                {
+                    image.color = septicColour;
+                }
+            }
+
+            TrailRenderer trail = attackRef.GetComponent<TrailRenderer>();
+
+            if (trail != null)
+            {
+                if (damageType == E_DamageTypes.Physical)
+                {
+                    trail.colorGradient = physicalTrailColour;
+                }
+                if (damageType == E_DamageTypes.Ember)
+                {
+                    trail.colorGradient = emberTrailColour;
+                }
+                if (damageType == E_DamageTypes.Static)
+                {
+                    trail.colorGradient = staticTrailColour;
+                }
+                if (damageType == E_DamageTypes.Bleak)
+                {
+                    trail.colorGradient = bleakTrailColour;
+                }
+                if (damageType == E_DamageTypes.Septic)
+                {
+                    trail.colorGradient = septicTrailColour;
+                }
+            }
+
+            #endregion
 
             ProjectileMovement projScript = attackRef.GetComponent<ProjectileMovement>();
 
@@ -673,6 +315,8 @@ public class AbilityManager : MonoBehaviour
                 projScript.target = target;
                 projScript.moving = true;
             }
+
+            //Debug.Break();
         }
     }
 

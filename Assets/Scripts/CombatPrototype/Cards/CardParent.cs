@@ -59,7 +59,7 @@ public class CardParent : ScriptableObject
                 int heal = (int)Random.Range(selfHeal.x, selfHeal.y);
                 int mana = (int)Random.Range(selfAP.x, selfAP.y);
 
-                Debug.Log("Cast" + cardName + "on Taro");
+                Debug.Log("Cast" + selfName + "on Taro");
 
                 playerStats.ChangeHealth(heal, false);
                 abilityManager.combatManager.Healing.SetActive(true);
@@ -100,7 +100,7 @@ public class CardParent : ScriptableObject
     public string targetDescription;
     public int targetCost;
     public string targetCostType;
-    public string damageType;
+    public E_DamageTypes damageType;
     public Vector2Int targetDmg;
     public int hits;
     public float hitInterval;
@@ -131,11 +131,9 @@ public class CardParent : ScriptableObject
             {
                 abilityManager.MouseLeft();
 
-                Debug.Log("Cast" + cardName + "on " + target.name);
-
                 if (targetChain)
                 {
-                    string message = "Cast Chain Lightning on ";
+                    string message = "Cast " + targetName + " on ";
                     abilityManager.multihitMax = abilityManager.combatManager.enemyManager.enemies.Count;
 
                     foreach (var item in abilityManager.combatManager.enemyManager.enemies)
@@ -145,11 +143,11 @@ public class CardParent : ScriptableObject
 
                         if (item.gameObject == target)
                         {
-                            abilityManager.DelayDamage(targetDmg, 0f, abilityManager.spawnPos, target, itemHealth);
+                            abilityManager.DelayDamage(targetDmg, damageType, 0f, abilityManager.spawnPos, target, itemHealth);
                         }
                         else
                         {
-                            abilityManager.DelayDamage(extraDmg, 0.25f, target.transform, item.gameObject, itemHealth);
+                            abilityManager.DelayDamage(extraDmg, damageType, 0.25f, target.transform, item.gameObject, itemHealth);
                         }
                     }
 
@@ -162,7 +160,7 @@ public class CardParent : ScriptableObject
                 } //chain target attack
                 else if (targetCleave)
                 {
-                    string message = "Cast Chain Lightning on ";
+                    string message = "Cast " + targetName + " on ";
                     abilityManager.multihitMax = abilityManager.combatManager.enemyManager.enemies.Count;
 
                     foreach (var item in abilityManager.combatManager.enemyManager.enemies)
@@ -172,11 +170,11 @@ public class CardParent : ScriptableObject
 
                         if (item.gameObject == target)
                         {
-                            abilityManager.DelayDamage(targetDmg, 0f, abilityManager.spawnPos, item.gameObject, itemHealth);
+                            abilityManager.DelayDamage(targetDmg, damageType, 0f, abilityManager.spawnPos, item.gameObject, itemHealth);
                         }
                         else
                         {
-                            abilityManager.DelayDamage(extraDmg, 0.1f, abilityManager.spawnPos, item.gameObject, itemHealth);
+                            abilityManager.DelayDamage(extraDmg, damageType, 0.1f, abilityManager.spawnPos, item.gameObject, itemHealth);
                         }
                     }
 
@@ -205,7 +203,7 @@ public class CardParent : ScriptableObject
                             Vector2 dmgVector = targetDmg;
                             float hitTime = i * hitInterval;
 
-                            abilityManager.DelayDamage(dmgVector, hitTime, abilityManager.spawnPos, enemyStatsArray[randTarget].gameObject, enemyStatsArray[randTarget]);
+                            abilityManager.DelayDamage(dmgVector, damageType, hitTime, abilityManager.spawnPos, enemyStatsArray[randTarget].gameObject, enemyStatsArray[randTarget]);
 
                             int nextRandTarget = Random.Range(0, enemyStatsArray.Length);
 
@@ -223,13 +221,13 @@ public class CardParent : ScriptableObject
                         Vector2 dmgVectorFinal = targetFinalDmg;
                         float hitTimeFinal = (hits * hitInterval) + finalHitInterval;
 
-                        abilityManager.DelayDamage(dmgVectorFinal, hitTimeFinal, abilityManager.spawnPos, target, enemyStats);
+                        abilityManager.DelayDamage(dmgVectorFinal, damageType, hitTimeFinal, abilityManager.spawnPos, target, enemyStats);
                     }
                     else
                     {
                         Vector2 dmgVector = targetDmg;
 
-                        abilityManager.DelayDamage(dmgVector, 0f, abilityManager.spawnPos, target, enemyStats);
+                        abilityManager.DelayDamage(dmgVector, damageType, 0f, abilityManager.spawnPos, target, enemyStats);
                     }
                 } //random targets
                 else
@@ -244,19 +242,19 @@ public class CardParent : ScriptableObject
                             Vector2 dmgVector = targetDmg;
                             float hitTime = i * hitInterval;
 
-                            abilityManager.DelayDamage(dmgVector, hitTime, abilityManager.spawnPos, target, enemyStats);
+                            abilityManager.DelayDamage(dmgVector, damageType, hitTime, abilityManager.spawnPos, target, enemyStats);
                         }
 
                         Vector2 dmgVectorFinal = targetFinalDmg;
                         float hitTimeFinal = (hits * hitInterval) + finalHitInterval;
 
-                        abilityManager.DelayDamage(dmgVectorFinal, hitTimeFinal, abilityManager.spawnPos, target, enemyStats);
+                        abilityManager.DelayDamage(dmgVectorFinal, damageType, hitTimeFinal, abilityManager.spawnPos, target, enemyStats);
                     }
                     else
                     {
                         Vector2 dmgVector = targetDmg;
 
-                        abilityManager.DelayDamage(dmgVector, 0f, abilityManager.spawnPos, target, enemyStats);
+                        abilityManager.DelayDamage(dmgVector, damageType, 0f, abilityManager.spawnPos, target, enemyStats);
                     }
                 } //single target attack
 
@@ -264,7 +262,7 @@ public class CardParent : ScriptableObject
                 if (enemyStats.HealthPercentage() < executeThreshhold)
                 {
                     //execute anim and delay
-                    enemyStats.ChangeHealth(999999999, true);
+                    enemyStats.ChangeHealth(999999999, true, damageType);
                 }
 
                 if (enemyStats == null || enemyStats.GetHealth() == 0)
@@ -335,13 +333,13 @@ public class CardParent : ScriptableObject
         return selfHeal + selfAP;
     }
 
-    public void GetReadyAbilityInfo(out bool multihit, out Vector2Int restore, out string selfType, out Vector2Int dmg, out string type, out string cardNameSelf, out string cardNameTarget, out bool hitsAll, out Vector2Int extradmg)
+    public void GetReadyAbilityInfo(out bool multihit, out Vector2Int restore, out string selfType, out Vector2Int dmg, out E_DamageTypes type, out string cardNameSelf, out string cardNameTarget, out bool hitsAll, out Vector2Int extradmg)
     {
         multihit = false;
         restore = new Vector2Int(0, 0);
         selfType = "none";
         dmg = new Vector2Int(0, 0);
-        type = "none";
+        type = E_DamageTypes.Physical;
         cardNameSelf = "none";
         cardNameTarget = "none";
         hitsAll = false;

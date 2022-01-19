@@ -104,7 +104,7 @@ public enum E_Decks
     Banes
 }
 
-public enum E_CombatCards
+public enum E_DamageTypes
 {
-    Slash, Cleave, Flurry, ChillTouch, Firebolt, ChainLightning, CureWounds, CriticalSlash, HealingPotion, StormBarrage
+    Physical, Ember, Static, Bleak, Septic, Random
 }

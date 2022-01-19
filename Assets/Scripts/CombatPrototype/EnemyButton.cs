@@ -33,7 +33,7 @@ public class EnemyButton : MonoBehaviour
             Vector2Int restore;
             string selfType;
             Vector2Int dmg;
-            string type;
+            E_DamageTypes type;
             string cardNameSelf;
             string cardNameTarget;
             bool hitsAll;
