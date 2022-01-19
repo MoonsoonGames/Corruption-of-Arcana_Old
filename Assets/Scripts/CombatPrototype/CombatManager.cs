@@ -100,7 +100,7 @@ public class CombatManager : MonoBehaviour
             PlayableDecks.SetActive(true);
             HealingItem.SetActive(true);
 
-            Debug.Log("Regenerate Mana");
+            //Debug.Log("Regenerate Mana");
             playerStats.ChangeMana(15, false);
 
             Dmg.SetActive(false);
@@ -187,5 +187,7 @@ public class CombatManager : MonoBehaviour
 
             loadSettings.enemiesKilled.Add(loadSettings.currentFight);
         }
+
+        //Debug.Log("No current fight");
     }
 }

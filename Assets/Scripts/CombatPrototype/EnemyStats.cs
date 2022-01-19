@@ -19,17 +19,24 @@ public class EnemyStats : MonoBehaviour
 
     public GameObject[] objectsToDisable;
 
-    
     public Object hitFX;
     //public Object healFX;
     
-
     public Image image;
     public Color normalColour = new Color(255, 255, 255, 255);
     public Color healColour = new Color(0, 255, 0, 255);
     public Color hitColour = new Color(255, 0, 0, 255);
     Color flashColour;
     float p = 0;
+
+    #region Received Damage Multipliers
+    [Header("Received Damage Multipliers")]
+    public float physicalMultiplier = 1f;
+    public float emberMultiplier = 1f;
+    public float staticMultiplier = 1f;
+    public float bleakMultiplier = 1f;
+    public float septicMultiplier = 1f;
+    #endregion
 
     private void Start()
     {
@@ -48,12 +55,15 @@ public class EnemyStats : MonoBehaviour
         return health;
     }
 
-    public void ChangeHealth(int value, bool damage)
+    public void ChangeHealth(int value, bool damage, E_DamageTypes damageType, out int damageTaken)
     {
         if (damage)
         {
             Flash(hitColour);
-            health = Mathf.Clamp(health - value, 0, maxHealth);
+
+            damageTaken = (int)DamageResistance(value, damageType);
+
+            health = Mathf.Clamp(health - damageTaken, 0, maxHealth);
 
             /*
             if (hitFX != null)
@@ -76,6 +86,7 @@ public class EnemyStats : MonoBehaviour
         }
         else
         {
+            damageTaken = 0;
             Flash(healColour);
             health = Mathf.Clamp(health + value, 0, maxHealth);
 
@@ -98,6 +109,66 @@ public class EnemyStats : MonoBehaviour
         {
             healthSliderValue.slider.value = health;
         }
+    }
+
+    public float DamageResistance(float damageValue, E_DamageTypes damageType)
+    {
+        if (damageType == E_DamageTypes.Physical)
+        {
+            return damageValue * physicalMultiplier;
+        }
+        if (damageType == E_DamageTypes.Ember)
+        {
+            return damageValue * emberMultiplier;
+        }
+        if (damageType == E_DamageTypes.Static)
+        {
+            return damageValue * staticMultiplier;
+        }
+        if (damageType == E_DamageTypes.Bleak)
+        {
+            return damageValue * bleakMultiplier;
+        }
+        if (damageType == E_DamageTypes.Septic)
+        {
+            return damageValue * septicMultiplier;
+        }
+        if (damageType == E_DamageTypes.Perforation)
+        {
+            return damageValue * 1.5f;
+        }
+
+        return damageValue;
+    }
+
+    public Vector2 DamageResistanceVector(Vector2 damageValue, E_DamageTypes damageType)
+    {
+        if (damageType == E_DamageTypes.Physical)
+        {
+            return damageValue * physicalMultiplier;
+        }
+        if (damageType == E_DamageTypes.Ember)
+        {
+            return damageValue * emberMultiplier;
+        }
+        if (damageType == E_DamageTypes.Static)
+        {
+            return damageValue * staticMultiplier;
+        }
+        if (damageType == E_DamageTypes.Bleak)
+        {
+            return damageValue * bleakMultiplier;
+        }
+        if (damageType == E_DamageTypes.Septic)
+        {
+            return damageValue * septicMultiplier;
+        }
+        if (damageType == E_DamageTypes.Perforation)
+        {
+            return damageValue * 1.5f;
+        }
+
+        return damageValue;
     }
 
     void Flash(Color newColour)

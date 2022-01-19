@@ -1958,15 +1958,12 @@ MonoBehaviour:
   - {fileID: 76912867}
   - {fileID: 432546383}
   - {fileID: 758801704}
-  text:
-  - {fileID: 0}
-  - {fileID: 0}
+  itemName:
   - {fileID: 726307318}
-  - {fileID: 0}
   count:
+  - {fileID: 30288445}
   - {fileID: 1980009042}
   - {fileID: 713399403}
-  - {fileID: 30288445}
   - {fileID: 1869405736}
   combatManager: {fileID: 1294213170}
 --- !u!1 &432546383
@@ -2021,7 +2018,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
+  m_Color: {r: 0.7686275, g: 0.7686275, b: 0.7686275, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2440,13 +2437,13 @@ PrefabInstance:
         type: 3}
       propertyPath: enemies.Array.data[0]
       value: 
-      objectReference: {fileID: 6783367526062023706, guid: 7ec425a601604694f9696b568c64104d,
+      objectReference: {fileID: 6783367526062023706, guid: be38e07ea0d318e40826251030f89164,
         type: 3}
     - target: {fileID: 5564511172518815125, guid: e6f554e9aa4ad204d8a5050df75cd470,
         type: 3}
       propertyPath: enemies.Array.data[1]
       value: 
-      objectReference: {fileID: 879057485591003285, guid: ec71ff0ba2e2d9e4a8066e6fbf187f58,
+      objectReference: {fileID: 3222143957076568548, guid: fac4c7197be269f42afe4bbe1f44e134,
         type: 3}
     - target: {fileID: 5564511172518815125, guid: e6f554e9aa4ad204d8a5050df75cd470,
         type: 3}
@@ -3112,9 +3109,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Gold
-
-'
+  m_Text: Healing
 --- !u!222 &726307319
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8478,6 +8473,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a48dc9199156577478bae5f018251083, type: 2}
   - {fileID: 11400000, guid: a48dc9199156577478bae5f018251083, type: 2}
   - {fileID: 11400000, guid: a48dc9199156577478bae5f018251083, type: 2}
+  - {fileID: 11400000, guid: a48dc9199156577478bae5f018251083, type: 2}
   - {fileID: 11400000, guid: 418dd24db35e0614882f380ad6210dfd, type: 2}
   - {fileID: 11400000, guid: 418dd24db35e0614882f380ad6210dfd, type: 2}
   - {fileID: 11400000, guid: 418dd24db35e0614882f380ad6210dfd, type: 2}
@@ -8486,7 +8482,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6bd1335480a7f754cb51f229a108c6cc, type: 2}
   - {fileID: 11400000, guid: eaa0fa9c7224ad741bf189b989628694, type: 2}
   - {fileID: 11400000, guid: eaa0fa9c7224ad741bf189b989628694, type: 2}
-  - {fileID: 11400000, guid: eaa0fa9c7224ad741bf189b989628694, type: 2}
+  - {fileID: 11400000, guid: af89ff48f79a6dd4e88996f7325d33f6, type: 2}
+  - {fileID: 11400000, guid: af89ff48f79a6dd4e88996f7325d33f6, type: 2}
   cardText: {fileID: 16354994}
   abilityManager: {fileID: 947729006}
 --- !u!95 &2097494806
@@ -10539,6 +10536,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7551587578028801528, guid: d73e8b11f8c16a54ba36322b12638999,
         type: 3}
+      propertyPath: perforationColour.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7551587578028801528, guid: d73e8b11f8c16a54ba36322b12638999,
+        type: 3}
+      propertyPath: perforationColour.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7551587578028801528, guid: d73e8b11f8c16a54ba36322b12638999,
+        type: 3}
+      propertyPath: perforationColour.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7551587578028801528, guid: d73e8b11f8c16a54ba36322b12638999,
+        type: 3}
+      propertyPath: perforationColour.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7551587578028801528, guid: d73e8b11f8c16a54ba36322b12638999,
+        type: 3}
       propertyPath: stormBarrageDamage.x
       value: 12
       objectReference: {fileID: 0}
@@ -10546,6 +10563,46 @@ PrefabInstance:
         type: 3}
       propertyPath: stormBarrageDamage.y
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7551587578028801528, guid: d73e8b11f8c16a54ba36322b12638999,
+        type: 3}
+      propertyPath: perforationTrailColour.ctime0
+      value: 14456
+      objectReference: {fileID: 0}
+    - target: {fileID: 7551587578028801528, guid: d73e8b11f8c16a54ba36322b12638999,
+        type: 3}
+      propertyPath: perforationTrailColour.key0.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7551587578028801528, guid: d73e8b11f8c16a54ba36322b12638999,
+        type: 3}
+      propertyPath: perforationTrailColour.key0.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7551587578028801528, guid: d73e8b11f8c16a54ba36322b12638999,
+        type: 3}
+      propertyPath: perforationTrailColour.key0.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7551587578028801528, guid: d73e8b11f8c16a54ba36322b12638999,
+        type: 3}
+      propertyPath: perforationTrailColour.key1.a
+      value: 0.7921569
+      objectReference: {fileID: 0}
+    - target: {fileID: 7551587578028801528, guid: d73e8b11f8c16a54ba36322b12638999,
+        type: 3}
+      propertyPath: perforationTrailColour.key1.b
+      value: 0.5377358
+      objectReference: {fileID: 0}
+    - target: {fileID: 7551587578028801528, guid: d73e8b11f8c16a54ba36322b12638999,
+        type: 3}
+      propertyPath: perforationTrailColour.key1.g
+      value: 0.5377358
+      objectReference: {fileID: 0}
+    - target: {fileID: 7551587578028801528, guid: d73e8b11f8c16a54ba36322b12638999,
+        type: 3}
+      propertyPath: perforationTrailColour.key1.r
+      value: 0.5377358
       objectReference: {fileID: 0}
     - target: {fileID: 7551587578028801529, guid: d73e8b11f8c16a54ba36322b12638999,
         type: 3}

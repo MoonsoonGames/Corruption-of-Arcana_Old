@@ -9,7 +9,7 @@ public class Rewards : MonoBehaviour
 
     public GameObject[] images;
 
-    public Text[] text;
+    public Text[] itemName;
     public Text[] count;
 
     public CombatManager combatManager;
@@ -28,35 +28,30 @@ public class Rewards : MonoBehaviour
 
             string item = loadSettings.itemReward;
 
-            if (gold > 0)
+            if (healing > 0)
             {
                 images[0].SetActive(true);
 
-                text[0].text = "Gold";
-                count[0].text = gold.ToString();
+                itemName[0].text = "Health";
+                count[0].text = healing.ToString();
+            }
+
+            if (gold > 0)
+            {
+                images[1].SetActive(true);
+
+                count[1].text = gold.ToString();
             }
 
             if (potions > 0)
             {
-                images[1].SetActive(true);
-
-                text[1].text = "Potions";
-                count[1].text = potions.ToString();
-            }
-
-            if (healing > 0)
-            {
                 images[2].SetActive(true);
-
-                text[2].text = "Health";
-                count[2].text = healing.ToString();
+                count[2].text = potions.ToString();
             }
 
             if (item != "")
             {
                 images[3].SetActive(true);
-
-                text[3].text = item;
                 count[3].text = "1";
             }
 
@@ -74,7 +69,7 @@ public class Rewards : MonoBehaviour
         if (RandomBoolWeighting(chance))
             potionsReward++;
 
-        Debug.Log(test + " | " + chance + " | " + potionsReward);
+        //Debug.Log(test + " | " + chance + " | " + potionsReward);
 
         return potionsReward;
     }

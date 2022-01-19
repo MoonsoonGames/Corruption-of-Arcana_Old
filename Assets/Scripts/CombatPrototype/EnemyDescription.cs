@@ -15,7 +15,7 @@ public class EnemyDescription : MonoBehaviour
 
     public GameObject[] disable;
 
-    public void ReadyCard(string cardName, string attack, Vector2 dmg, string description, Sprite sprite)
+    public void ReadyCard(string cardName, string attack, Vector2 dmg, E_DamageTypes damageType, string description, Sprite sprite)
     {
         if (nameText != null)
             nameText.text = cardName;
@@ -24,7 +24,7 @@ public class EnemyDescription : MonoBehaviour
             attackText.text = attack;
 
         if (dmgText != null)
-            attackText.text = (dmg.x + "-" + dmg.y);
+            dmgText.text = (dmg.x + "-" + dmg.y + " " + damageType.ToString() + " dmg");
 
         if (descriptionText != null)
             descriptionText.text = description;

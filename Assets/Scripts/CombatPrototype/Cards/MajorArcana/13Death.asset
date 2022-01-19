@@ -20,6 +20,7 @@ MonoBehaviour:
   selfName: 
   selfDescription: 
   selfCost: 0
+  selfPotionCost: 0
   selfCostType: 
   selfHeal: {x: 0, y: 0}
   selfAP: {x: 0, y: 0}
@@ -29,13 +30,13 @@ MonoBehaviour:
   targetDescription: 'With a grim scythe, you strike one of your opponents, executing
     them if they are below 25% of their maximum HP
 
-    
 
-    Killing a target
-    with this attack heals you'
+
+    Killing a target with this
+    attack heals you'
   targetCost: 30
   targetCostType: AP
-  damageType: Septic DMG
+  damageType: 6
   targetDmg: {x: 16, y: 30}
   hits: 1
   hitInterval: 0
@@ -49,3 +50,4 @@ MonoBehaviour:
   lifeLeach: {x: 0, y: 0}
   healOnKill: {x: 16, y: 30}
   executeThreshhold: 0.25
+  spawnPosition: 0

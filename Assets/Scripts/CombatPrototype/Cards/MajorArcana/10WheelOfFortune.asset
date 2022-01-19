@@ -20,24 +20,25 @@ MonoBehaviour:
   selfName: 
   selfDescription: 
   selfCost: 0
+  selfPotionCost: 0
   selfCostType: 
   selfHeal: {x: 0, y: 0}
   selfAP: {x: 0, y: 0}
   selfEndTurnDelay: 0.2
   targetInterpretationUnlocked: 1
   targetName: Four Seasons
-  targetDescription: Conjure an elemental storm, causing 8 bolts of elemental energy
-    to hit random enemies with a random damage type among the following (Ember, Static,
-    Bleak and Septic)
+  targetDescription: Conjure an elemental storm, causing 16 bolts of elemental energy
+    to hit random enemies with a random damage type among the following (Physical,
+    Ember, Static, Bleak and Septic)
   targetCost: 55
   targetCostType: AP
-  damageType: Elemental DMG
-  targetDmg: {x: 8, y: 12}
-  hits: 8
-  hitInterval: 0.15
-  finalHitInterval: 0.15
-  targetFinalDmg: {x: 8, y: 12}
-  targetEndTurnDelay: 1.5
+  damageType: 5
+  targetDmg: {x: 4, y: 6}
+  hits: 16
+  hitInterval: 0.1
+  finalHitInterval: 0.1
+  targetFinalDmg: {x: 4, y: 6}
+  targetEndTurnDelay: 2
   targetCleave: 0
   targetChain: 0
   extraDmg: {x: 0, y: 0}
@@ -45,3 +46,4 @@ MonoBehaviour:
   lifeLeach: {x: 0, y: 0}
   healOnKill: {x: 0, y: 0}
   executeThreshhold: 0
+  spawnPosition: 2
