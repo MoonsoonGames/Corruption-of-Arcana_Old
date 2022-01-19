@@ -89,7 +89,33 @@ public class Enemy : MonoBehaviour
 
             #region Colour
 
-            SpriteRenderer image = attackRef.GetComponent<SpriteRenderer>();
+            SpriteRenderer spriteRenderer = attackRef.GetComponent<SpriteRenderer>();
+
+            if (spriteRenderer != null)
+            {
+                if (attackType == E_DamageTypes.Physical)
+                {
+                    spriteRenderer.color = physicalColour;
+                }
+                if (attackType == E_DamageTypes.Ember)
+                {
+                    spriteRenderer.color = emberColour;
+                }
+                if (attackType == E_DamageTypes.Static)
+                {
+                    spriteRenderer.color = staticColour;
+                }
+                if (attackType == E_DamageTypes.Bleak)
+                {
+                    spriteRenderer.color = bleakColour;
+                }
+                if (attackType == E_DamageTypes.Septic)
+                {
+                    spriteRenderer.color = septicColour;
+                }
+            }
+
+            Image image = attackRef.GetComponent<Image>();
 
             if (image != null)
             {

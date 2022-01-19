@@ -187,5 +187,7 @@ public class CombatManager : MonoBehaviour
 
             loadSettings.enemiesKilled.Add(loadSettings.currentFight);
         }
+
+        Debug.Log("No current fight");
     }
 }
