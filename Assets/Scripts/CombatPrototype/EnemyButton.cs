@@ -47,11 +47,15 @@ public class EnemyButton : MonoBehaviour
 
                 foreach (var item in buttons)
                 {
-                    item.sliderVarScript.ApplyPreview(extradmg);
+                    Vector2 trueDamageRangeExtra = item.GetComponentInParent<EnemyStats>().DamageResistanceVector(dmg, type);
+
+                    item.sliderVarScript.ApplyPreview(trueDamageRangeExtra);
                 }
             }
 
-            sliderVarScript.ApplyPreview(dmg);
+            Vector2 trueDamageRange = target.GetComponent<EnemyStats>().DamageResistanceVector(dmg, type);
+
+            sliderVarScript.ApplyPreview(trueDamageRange);
         }
         else
         {

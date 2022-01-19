@@ -55,15 +55,15 @@ public class EnemyStats : MonoBehaviour
         return health;
     }
 
-    public void ChangeHealth(int value, bool damage, E_DamageTypes damageType)
+    public void ChangeHealth(int value, bool damage, E_DamageTypes damageType, out int damageTaken)
     {
         if (damage)
         {
             Flash(hitColour);
 
-            int takenDamage = (int)DamageResistance(value, damageType);
+            damageTaken = (int)DamageResistance(value, damageType);
 
-            health = Mathf.Clamp(health - takenDamage, 0, maxHealth);
+            health = Mathf.Clamp(health - damageTaken, 0, maxHealth);
 
             /*
             if (hitFX != null)
@@ -86,6 +86,7 @@ public class EnemyStats : MonoBehaviour
         }
         else
         {
+            damageTaken = 0;
             Flash(healColour);
             health = Mathf.Clamp(health + value, 0, maxHealth);
 
@@ -110,7 +111,33 @@ public class EnemyStats : MonoBehaviour
         }
     }
 
-    float DamageResistance(float damageValue, E_DamageTypes damageType)
+    public float DamageResistance(float damageValue, E_DamageTypes damageType)
+    {
+        if (damageType == E_DamageTypes.Physical)
+        {
+            return damageValue * physicalMultiplier;
+        }
+        if (damageType == E_DamageTypes.Ember)
+        {
+            return damageValue * emberMultiplier;
+        }
+        if (damageType == E_DamageTypes.Static)
+        {
+            return damageValue * staticMultiplier;
+        }
+        if (damageType == E_DamageTypes.Bleak)
+        {
+            return damageValue * bleakMultiplier;
+        }
+        if (damageType == E_DamageTypes.Septic)
+        {
+            return damageValue * septicMultiplier;
+        }
+
+        return damageValue;
+    }
+
+    public Vector2 DamageResistanceVector(Vector2 damageValue, E_DamageTypes damageType)
     {
         if (damageType == E_DamageTypes.Physical)
         {

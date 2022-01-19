@@ -262,7 +262,7 @@ public class CardParent : ScriptableObject
                 if (enemyStats.HealthPercentage() < executeThreshhold)
                 {
                     //execute anim and delay
-                    enemyStats.ChangeHealth(999999999, true, damageType);
+                    enemyStats.ChangeHealth(999999999, true, damageType, out int damageTaken);
                 }
 
                 if (enemyStats == null || enemyStats.GetHealth() == 0)

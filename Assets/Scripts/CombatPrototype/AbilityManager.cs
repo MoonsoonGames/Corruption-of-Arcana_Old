@@ -226,9 +226,12 @@ public class AbilityManager : MonoBehaviour
             SpawnAttackEffect(originRef, target, damageType);
 
             int damage = (int)Random.Range(damageRange.x, damageRange.y);
-            targetHealth.ChangeHealth(damage, true, damageType);
 
-            multihitTally += damage;
+            int damageTaken;
+
+            targetHealth.ChangeHealth(damage, true, damageType, out damageTaken);
+
+            multihitTally += damageTaken;
             multihitCount++;
 
             combatManager.Dmg.SetActive(true);
