@@ -106,5 +106,10 @@ public enum E_Decks
 
 public enum E_DamageTypes
 {
-    Physical, Ember, Static, Bleak, Septic, Random
+    Physical, Ember, Static, Bleak, Septic, Random, Perforation
+}
+
+public enum E_CombatEffectSpawn
+{
+    Player, Ground, Sky, Enemies, Backstab
 }

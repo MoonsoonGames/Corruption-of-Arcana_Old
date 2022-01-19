@@ -113,13 +113,13 @@ public class EnemyManager : MonoBehaviour
         if (controller != null)
         {
             //show enemy description
-            Debug.Log("Display enemy info: " + controller.displayName);
+            //Debug.Log("Display enemy info: " + controller.displayName);
             controller.DisplayCard(true);
         }
         else
         {
             //remove enemy descriptions
-            Debug.Log("Remove info");
+            //Debug.Log("Remove info");
             foreach (var item in disable)
             {
                 item.SetActive(false);

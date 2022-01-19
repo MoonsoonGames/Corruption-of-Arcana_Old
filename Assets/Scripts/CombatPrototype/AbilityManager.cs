@@ -19,7 +19,7 @@ public class AbilityManager : MonoBehaviour
     Targetter targetter;
 
     public GameObject attackFX;
-    public Transform spawnPos;
+    public Transform playerSpawnPos, skySpawnPos, groundSpawnPos, enemiesSpawnPos, backstabSpawnPos;
 
     public SliderVariation sliderVarScript;
 
@@ -41,6 +41,7 @@ public class AbilityManager : MonoBehaviour
     public Color staticColour;
     public Color bleakColour;
     public Color septicColour;
+    public Color perforationColour;
 
     [Header("Damage Type Colours - Trail")]
     public Gradient physicalTrailColour;
@@ -48,6 +49,7 @@ public class AbilityManager : MonoBehaviour
     public Gradient staticTrailColour;
     public Gradient bleakTrailColour;
     public Gradient septicTrailColour;
+    public Gradient perforationTrailColour;
     #endregion
 
     private void Start()
@@ -75,7 +77,7 @@ public class AbilityManager : MonoBehaviour
         Vector2Int extradmg;
 
         GetReadyAbilityInfo(out multihit, out restore, out selfType, out dmg, out type, out cardNameSelf, out cardNameTarget, out hitsAll, out extradmg);
-        Debug.Log(selfType);
+        //Debug.Log(selfType);
         if (selfType == "Healing & Arcana" || selfType == "Healing")
         {
             sliderVarScript.ApplyPreview(-restore);
@@ -237,11 +239,11 @@ public class AbilityManager : MonoBehaviour
             combatManager.Dmg.SetActive(true);
             combatManager.DmgValue.text = multihitTally.ToString();
 
-            Debug.Log(multihitCount + " hits for " + multihitTally + " points of damage (not final damage as enemy mey be vulnerable or resistant to the damage)");
+            //Debug.Log(multihitCount + " hits for " + multihitTally + " points of damage (not final damage as enemy mey be vulnerable or resistant to the damage)");
 
             if (multihitCount >= multihitMax)
             {
-                Debug.Log("Finish multihit");
+                //Debug.Log("Finish multihit");
 
                 multihitCount = 0;
                 multihitTally = 0;
@@ -281,6 +283,10 @@ public class AbilityManager : MonoBehaviour
                 {
                     image.color = septicColour;
                 }
+                if (damageType == E_DamageTypes.Perforation)
+                {
+                    image.color = perforationColour;
+                }
             }
 
             TrailRenderer trail = attackRef.GetComponent<TrailRenderer>();
@@ -306,6 +312,10 @@ public class AbilityManager : MonoBehaviour
                 if (damageType == E_DamageTypes.Septic)
                 {
                     trail.colorGradient = septicTrailColour;
+                }
+                if (damageType == E_DamageTypes.Perforation)
+                {
+                    trail.colorGradient = perforationTrailColour;
                 }
             }
 

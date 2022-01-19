@@ -133,6 +133,10 @@ public class EnemyStats : MonoBehaviour
         {
             return damageValue * septicMultiplier;
         }
+        if (damageType == E_DamageTypes.Perforation)
+        {
+            return damageValue * 1.5f;
+        }
 
         return damageValue;
     }
@@ -158,6 +162,10 @@ public class EnemyStats : MonoBehaviour
         if (damageType == E_DamageTypes.Septic)
         {
             return damageValue * septicMultiplier;
+        }
+        if (damageType == E_DamageTypes.Perforation)
+        {
+            return damageValue * 1.5f;
         }
 
         return damageValue;

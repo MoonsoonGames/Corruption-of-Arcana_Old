@@ -10,28 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d042955bf60bea84b9273684d78676b5, type: 3}
-  m_Name: Strike
+  m_Name: 5Backstab
   m_EditorClassIdentifier: 
-  cardName: Strike
-  cardNumber: 1
+  cardName: Backstab
+  cardNumber: 5
   flavourDescription: 
   cardImage: {fileID: 0}
   selfInterpretationUnlocked: 0
   selfName: 
   selfDescription: 
   selfCost: 0
+  selfPotionCost: 0
   selfCostType: 
   selfHeal: {x: 0, y: 0}
   selfAP: {x: 0, y: 0}
   selfEndTurnDelay: 0
   targetInterpretationUnlocked: 1
-  targetName: Strike
-  targetDescription: Hit your opponent with a weapon attack
+  targetName: Backstab
+  targetDescription: Bypass your opponent's defenses with a strike that ignores damage
+    resistances
   targetCost: 0
   targetCostType: 
-  damageType: Physical DMG
+  damageType: 6
   targetDmg: {x: 12, y: 24}
-  lifeLeach: {x: 0, y: 0}
   hits: 1
   hitInterval: 0
   finalHitInterval: 0
@@ -40,3 +41,8 @@ MonoBehaviour:
   targetCleave: 0
   targetChain: 0
   extraDmg: {x: 0, y: 0}
+  randomTargets: 0
+  lifeLeach: {x: 0, y: 0}
+  healOnKill: {x: 0, y: 0}
+  executeThreshhold: 0
+  spawnPosition: 4

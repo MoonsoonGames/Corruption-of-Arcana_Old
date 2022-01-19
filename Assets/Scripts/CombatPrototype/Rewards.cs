@@ -69,7 +69,7 @@ public class Rewards : MonoBehaviour
         if (RandomBoolWeighting(chance))
             potionsReward++;
 
-        Debug.Log(test + " | " + chance + " | " + potionsReward);
+        //Debug.Log(test + " | " + chance + " | " + potionsReward);
 
         return potionsReward;
     }

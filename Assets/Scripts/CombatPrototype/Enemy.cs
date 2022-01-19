@@ -77,7 +77,7 @@ public class Enemy : MonoBehaviour
 
             playerStats.ChangeHealth(randDMG, true);
 
-            Debug.Log(gameObject.name + " cast " + attackName + " for " + randDMG + " damage. It's really effective!");
+            //Debug.Log(gameObject.name + " cast " + attackName + " for " + randDMG + " damage. It's really effective!");
         }
     }
 
