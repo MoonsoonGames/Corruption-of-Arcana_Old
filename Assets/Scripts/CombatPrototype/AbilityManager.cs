@@ -183,7 +183,7 @@ public class AbilityManager : MonoBehaviour
 
     #region Helper Functions
 
-    public void DelayDamage(Vector2 damageRange, E_DamageTypes damageType, float delay, Transform origin, GameObject target, EnemyStats targetHealth)
+    public void DelayDamage(Vector2 damageRange, E_DamageTypes damageType, float delay, Transform origin, GameObject target, EnemyStats targetHealth, float executeThreshold, Vector2Int healOnKill)
     {
         if (damageType == E_DamageTypes.Random)
         {
@@ -192,32 +192,32 @@ public class AbilityManager : MonoBehaviour
             switch (randDamage)
             {
                 case 1:
-                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Physical, delay, origin, target, targetHealth));
+                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Physical, delay, origin, target, targetHealth, executeThreshold, healOnKill));
                     break;
                 case 2:
-                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Ember, delay, origin, target, targetHealth));
+                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Ember, delay, origin, target, targetHealth, executeThreshold, healOnKill));
                     break;
                 case 3:
-                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Static, delay, origin, target, targetHealth));
+                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Static, delay, origin, target, targetHealth, executeThreshold, healOnKill));
                     break;
                 case 4:
-                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Bleak, delay, origin, target, targetHealth));
+                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Bleak, delay, origin, target, targetHealth, executeThreshold, healOnKill));
                     break;
                 case 5:
-                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Septic, delay, origin, target, targetHealth));
+                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Septic, delay, origin, target, targetHealth, executeThreshold, healOnKill));
                     break;
                 default:
-                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Physical, delay, origin, target, targetHealth));
+                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Physical, delay, origin, target, targetHealth, executeThreshold, healOnKill));
                     break;
             }
         }
         else
         {
-            StartCoroutine(IDelayDamage(damageRange, damageType, delay, origin, target, targetHealth));
+            StartCoroutine(IDelayDamage(damageRange, damageType, delay, origin, target, targetHealth, executeThreshold, healOnKill));
         }
     }
 
-    private IEnumerator IDelayDamage(Vector2 damageRange, E_DamageTypes damageType, float delay, Transform origin, GameObject target, EnemyStats targetHealth)
+    private IEnumerator IDelayDamage(Vector2 damageRange, E_DamageTypes damageType, float delay, Transform origin, GameObject target, EnemyStats targetHealth, float executeThreshold, Vector2Int healOnKill)
     {
         Vector3 originRef = origin.position;
 
@@ -232,6 +232,21 @@ public class AbilityManager : MonoBehaviour
             int damageTaken;
 
             targetHealth.ChangeHealth(damage, true, damageType, out damageTaken);
+
+            //execute enemy
+            if (targetHealth.HealthPercentage() < executeThreshold)
+            {
+                //execute anim and delay
+                targetHealth.ChangeHealth(999999999, true, damageType, out int nullDamageTaken);
+                //Debug.Log("Executed");
+            }
+
+            if (targetHealth == null || targetHealth.GetHealth() == 0)
+            {
+                //killed enemy
+                playerStats.ChangeHealth(Random.Range(healOnKill.x, healOnKill.y), false);
+                //Debug.Log("Heal on Kill");
+            }
 
             multihitTally += damageTaken;
             multihitCount++;
