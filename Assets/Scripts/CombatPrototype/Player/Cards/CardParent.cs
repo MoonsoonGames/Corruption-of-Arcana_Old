@@ -414,29 +414,35 @@ public class CardParent : ScriptableObject
 
     void SelfApplyStatus(CharacterStats target)
     {
-        if (selfStatus.Length > 0)
+        if (selfStatus != null)
         {
-            for (int i = 0; i < selfStatus.Length; i++)
+            if (selfStatus.Length > 0)
             {
-                target.ApplyStatus(selfStatus[i], selfStatusDuration[i]);
+                for (int i = 0; i < selfStatus.Length; i++)
+                {
+                    target.ApplyStatus(selfStatus[i], selfStatusDuration[i]);
+                }
             }
         }
     }
 
     void TargetApplyStatus(CharacterStats target)
     {
-        if (targetStatus.Length > 0)
+        if (targetStatus != null)
         {
-            for (int i = 0; i < targetStatus.Length; i++)
+            if (targetStatus.Length > 0)
             {
-                float randomNumber = Random.Range(0f, 1f);
-
-                //Debug.Log("Attempt to apply " + targetStatus[i].effectName);
-
-                if (randomNumber > targetStatusChance[i])
+                for (int i = 0; i < targetStatus.Length; i++)
                 {
-                    //apply status
-                    target.ApplyStatus(targetStatus[i], targetStatusDuration[i]);
+                    float randomNumber = Random.Range(0f, 1f);
+
+                    //Debug.Log("Attempt to apply " + targetStatus[i].effectName);
+
+                    if (randomNumber > targetStatusChance[i])
+                    {
+                        //apply status
+                        target.ApplyStatus(targetStatus[i], targetStatusDuration[i]);
+                    }
                 }
             }
         }
