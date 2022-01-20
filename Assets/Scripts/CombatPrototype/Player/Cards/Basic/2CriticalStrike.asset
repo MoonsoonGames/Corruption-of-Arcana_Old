@@ -29,7 +29,11 @@ MonoBehaviour:
   selfStatusDuration: 
   targetInterpretationUnlocked: 1
   targetName: Critical Strike
-  targetDescription: Hit your opponent with a critical attack
+  targetDescription: 'Hit your opponent with a critical attack
+
+
+    Also has a low
+    chance to bleed targets'
   targetCost: 0
   targetCostType: 
   damageType: 0
@@ -47,7 +51,8 @@ MonoBehaviour:
   healOnKill: {x: 0, y: 0}
   executeThreshold: 0
   targetStatus:
-  - {fileID: 0}
-  targetStatusDuration: 
-  targetStatusChance: []
+  - {fileID: 11400000, guid: 0aa56a9e5ce959e4b96c703989b64011, type: 2}
+  targetStatusDuration: 03000000
+  targetStatusChance:
+  - 0.3
   spawnPosition: 0
