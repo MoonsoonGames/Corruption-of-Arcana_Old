@@ -22,29 +22,33 @@ public class StatusParent : ScriptableObject
 
     #region Damage and Healing
 
+    [Header("General Damage and Healing")]
+    public Object healFX;
+    public Object damageFX;
+
     [Header("Damage To Applied Character")]
-    public int applyDamage;
+    public Vector2Int applyDamage;
     public E_DamageTypes applyDamageType;
-    public int turnDamage;
+    public Vector2Int turnDamage;
     public E_DamageTypes turnDamageType;
 
     [Header("Damage To Opponents")]
-    public int applyDamageOpponents;
+    public Vector2Int applyDamageOpponents;
     public E_DamageTypes applyDamageTypeOpponents;
-    public int turnDamageOpponents;
+    public Vector2Int turnDamageOpponents;
     public E_DamageTypes turnDamageTypeOpponents;
 
     [Header("Damage To Other Characters")]
-    public int applyDamageOther;
+    public Vector2Int applyDamageOther;
     public E_DamageTypes applyDamageTypeOther;
-    public int turnDamageOther;
+    public Vector2Int turnDamageOther;
     public E_DamageTypes turnDamageTypeOther;
 
     [Header("Healing To Applied Character")]
-    public int applyHealing;
-    public int applyArcana;
-    public int turnHealing;
-    public int turnArcana;
+    public Vector2Int applyHealing;
+    public Vector2Int applyArcana;
+    public Vector2Int turnHealing;
+    public Vector2Int turnArcana;
 
     #endregion
 
@@ -141,11 +145,31 @@ public class StatusParent : ScriptableObject
 
     }
 
+    void SpawnFX(Object FX, Transform transform)
+    {
+        if (FX != null)
+        {
+            Vector3 spawnPos = new Vector3(0, 0, 0);
+            Quaternion spawnRot = new Quaternion(0, 0, 0, 0);
+
+            spawnPos.x = transform.position.x;
+            spawnPos.y = transform.position.y;
+            spawnPos.z = transform.position.z - 5f;
+
+            Instantiate(FX, spawnPos, spawnRot);
+        }
+    }
+
     void ApplyDamage(GameObject target, AbilityManager abilityManager)
     {
         CharacterStats stats = target.GetComponent<CharacterStats>();
 
-        stats.ChangeHealth(applyDamage, true, applyDamageType, out int damageTaken);
+        abilityManager.DelayDamage(applyDamage, applyDamageType, 0.2f, null, stats.gameObject, stats, 0f, new Vector2Int(0, 0));
+
+        if (applyDamage.y > 0f)
+        {
+            SpawnFX(damageFX, target.transform);
+        }
 
         if (target.GetComponent<EnemyStats>())
         {
@@ -155,11 +179,21 @@ public class StatusParent : ScriptableObject
 
                 if (testStats != stats)
                 {
-                    testStats.ChangeHealth(applyDamageOther, true, applyDamageTypeOther, out int damageTakenOther);
+                    abilityManager.DelayDamage(applyDamageOther, applyDamageTypeOther, 0.2f, null, testStats.gameObject, testStats, 0f, new Vector2Int(0, 0));
+
+                    if (applyDamageOther.y > 0f)
+                    {
+                        SpawnFX(damageFX, item.gameObject.transform);
+                    }
                 }
             }
 
-            abilityManager.combatManager.playerStats.ChangeHealth(applyDamageOpponents, true, applyDamageTypeOpponents, out int damageTakenOpponents);
+            abilityManager.DelayDamage(applyDamageOpponents, applyDamageTypeOpponents, 0.2f, null, abilityManager.combatManager.playerStats.gameObject, abilityManager.combatManager.playerStats, 0f, new Vector2Int(0, 0));
+
+            if (applyDamageOpponents.y > 0f)
+            {
+                SpawnFX(damageFX, abilityManager.combatManager.playerStats.transform);
+            }
         }
         else
         {
@@ -169,7 +203,12 @@ public class StatusParent : ScriptableObject
 
                 if (testStats != stats)
                 {
-                    testStats.ChangeHealth(applyDamageOpponents, true, applyDamageTypeOpponents, out int damageTakenOpponents);
+                    abilityManager.DelayDamage(applyDamageOpponents, applyDamageTypeOpponents, 0.2f, null, testStats.gameObject, testStats, 0f, new Vector2Int(0, 0));
+
+                    if (applyDamageOpponents.y > 0f)
+                    {
+                        SpawnFX(damageFX, item.gameObject.transform);
+                    }
                 }
             }
         }
@@ -179,7 +218,12 @@ public class StatusParent : ScriptableObject
     {
         CharacterStats stats = target.GetComponent<CharacterStats>();
 
-        stats.ChangeHealth(turnDamage, true, turnDamageType, out int damageTaken);
+        abilityManager.DelayDamage(turnDamage, turnDamageType, 0.2f, null, stats.gameObject, stats, 0f, new Vector2Int(0, 0));
+
+        if (turnDamage.y > 0f)
+        {
+            SpawnFX(damageFX, target.transform);
+        }
 
         if (target.GetComponent<EnemyStats>())
         {
@@ -189,11 +233,21 @@ public class StatusParent : ScriptableObject
 
                 if (testStats != stats)
                 {
-                    testStats.ChangeHealth(turnDamageOther, true, turnDamageTypeOther, out int damageTakenOther);
+                    abilityManager.DelayDamage(turnDamageOther, turnDamageTypeOther, 0.2f, null, testStats.gameObject, testStats, 0f, new Vector2Int(0, 0));
+
+                    if (turnDamageOther.y > 0f)
+                    {
+                        SpawnFX(damageFX, item.gameObject.transform);
+                    }
                 }
             }
 
-            abilityManager.combatManager.playerStats.ChangeHealth(turnDamageOpponents, true, turnDamageTypeOpponents, out int damageTakenOpponents);
+            abilityManager.DelayDamage(turnDamageOpponents, turnDamageTypeOpponents, 0.2f, null, abilityManager.combatManager.playerStats.gameObject, abilityManager.combatManager.playerStats, 0f, new Vector2Int(0, 0));
+
+            if (turnDamageOpponents.y > 0f)
+            {
+                SpawnFX(damageFX, abilityManager.combatManager.playerStats.transform);
+            }
         }
         else
         {
@@ -203,7 +257,12 @@ public class StatusParent : ScriptableObject
 
                 if (testStats != stats)
                 {
-                    testStats.ChangeHealth(turnDamageOpponents, true, turnDamageTypeOpponents, out int damageTakenOpponents);
+                    abilityManager.DelayDamage(turnDamageOpponents, turnDamageTypeOpponents, 0.2f, null, testStats.gameObject, testStats, 0f, new Vector2Int(0, 0));
+
+                    if (turnDamageOpponents.y > 0f)
+                    {
+                        SpawnFX(damageFX, item.gameObject.transform);
+                    }
                 }
             }
         }

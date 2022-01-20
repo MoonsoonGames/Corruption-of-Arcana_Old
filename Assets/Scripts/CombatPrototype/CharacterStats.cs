@@ -15,7 +15,7 @@ public class CharacterStats : MonoBehaviour
 
     public CombatManager combatManager;
 
-    public Object hitFX;
+    public Object killFX;
     public Object healFX;
 
     Dictionary<StatusParent, int> statuses = new Dictionary<StatusParent, int>();
@@ -99,7 +99,8 @@ public class CharacterStats : MonoBehaviour
 
             health = Mathf.Clamp(health - damageTaken, 0, maxHealth);
 
-            if (hitFX != null)
+            /*
+            if (killFX != null)
             {
                 Vector3 spawnPos = new Vector3(0, 0, 0);
                 Quaternion spawnRot = new Quaternion(0, 0, 0, 0);
@@ -108,8 +109,9 @@ public class CharacterStats : MonoBehaviour
                 spawnPos.y = transform.position.y;
                 spawnPos.z = transform.position.z - 5f;
 
-                Instantiate(hitFX, spawnPos, spawnRot);
+                Instantiate(killFX, spawnPos, spawnRot);
             }
+            */
 
             if (health <= 0)
             {
@@ -244,6 +246,8 @@ public class CharacterStats : MonoBehaviour
 
     #endregion
 
+    #region Statuses
+
     public void ApplyStatus(StatusParent status, int duration)
     {
         Debug.Log("Applied " + status.effectName);
@@ -277,4 +281,6 @@ public class CharacterStats : MonoBehaviour
             item.Key.OnTurnEnd(this.gameObject);
         }
     }
+
+    #endregion
 }

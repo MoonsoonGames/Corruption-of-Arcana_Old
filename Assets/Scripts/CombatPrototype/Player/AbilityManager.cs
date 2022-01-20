@@ -183,7 +183,7 @@ public class AbilityManager : MonoBehaviour
 
     #region Helper Functions
 
-    public void DelayDamage(Vector2 damageRange, E_DamageTypes damageType, float delay, Transform origin, GameObject target, EnemyStats targetHealth, float executeThreshold, Vector2Int healOnKill)
+    public void DelayDamage(Vector2 damageRange, E_DamageTypes damageType, float delay, Transform origin, GameObject target, CharacterStats targetHealth, float executeThreshold, Vector2Int healOnKill)
     {
         if (damageType == E_DamageTypes.Random)
         {
@@ -217,15 +217,23 @@ public class AbilityManager : MonoBehaviour
         }
     }
 
-    private IEnumerator IDelayDamage(Vector2 damageRange, E_DamageTypes damageType, float delay, Transform origin, GameObject target, EnemyStats targetHealth, float executeThreshold, Vector2Int healOnKill)
+    private IEnumerator IDelayDamage(Vector2 damageRange, E_DamageTypes damageType, float delay, Transform origin, GameObject target, CharacterStats targetHealth, float executeThreshold, Vector2Int healOnKill)
     {
-        Vector3 originRef = origin.position;
+        Vector3 originRef = new Vector3(999999, 999999, 999999);
+
+        if (origin != null)
+        {
+            originRef = origin.position;
+        }
 
         yield return new WaitForSeconds(delay);
 
         if (targetHealth != null)
         {
-            SpawnAttackEffect(originRef, target, damageType);
+            if (originRef != new Vector3(999999, 999999, 999999))
+            {
+                SpawnAttackEffect(originRef, target, damageType);
+            }
 
             int damage = (int)Random.Range(damageRange.x, damageRange.y);
 

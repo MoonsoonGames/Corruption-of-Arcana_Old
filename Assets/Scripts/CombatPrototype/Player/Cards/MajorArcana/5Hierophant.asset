@@ -25,9 +25,15 @@ MonoBehaviour:
   selfHeal: {x: 0, y: 0}
   selfAP: {x: 0, y: 0}
   selfEndTurnDelay: 0.2
+  selfStatus: []
+  selfStatusDuration: 
   targetInterpretationUnlocked: 1
   targetName: Firebolt
-  targetDescription: Strike a target with a searing blast of fire
+  targetDescription: 'Strike a target with a searing blast of fire
+
+
+    Also has
+    a high chance to burn targets'
   targetCost: 40
   targetCostType: AP
   damageType: 1
@@ -46,7 +52,7 @@ MonoBehaviour:
   executeThreshold: 0
   targetStatus:
   - {fileID: 11400000, guid: 857605ed69fe8ae4e994947dd3d52f69, type: 2}
-  targetStatusDuration: 02000000
+  targetStatusDuration: 03000000
   targetStatusChance:
-  - 0.6
+  - 0.75
   spawnPosition: 0

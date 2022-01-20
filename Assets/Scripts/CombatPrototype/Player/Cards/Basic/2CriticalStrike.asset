@@ -20,18 +20,20 @@ MonoBehaviour:
   selfName: 
   selfDescription: 
   selfCost: 0
+  selfPotionCost: 0
   selfCostType: 
   selfHeal: {x: 0, y: 0}
   selfAP: {x: 0, y: 0}
   selfEndTurnDelay: 0
+  selfStatus: []
+  selfStatusDuration: 
   targetInterpretationUnlocked: 1
   targetName: Critical Strike
   targetDescription: Hit your opponent with a critical attack
   targetCost: 0
   targetCostType: 
-  damageType: Physical DMG
+  damageType: 0
   targetDmg: {x: 22, y: 35}
-  lifeLeach: {x: 0, y: 0}
   hits: 1
   hitInterval: 0
   finalHitInterval: 0
@@ -40,3 +42,12 @@ MonoBehaviour:
   targetCleave: 0
   targetChain: 0
   extraDmg: {x: 0, y: 0}
+  randomTargets: 0
+  lifeLeach: {x: 0, y: 0}
+  healOnKill: {x: 0, y: 0}
+  executeThreshold: 0
+  targetStatus:
+  - {fileID: 0}
+  targetStatusDuration: 
+  targetStatusChance: []
+  spawnPosition: 0

@@ -23,7 +23,7 @@ public class EnemyStats : CharacterStats
 
     protected override void Die()
     {
-        if (hitFX != null)
+        if (killFX != null)
         {
             Vector3 spawnPos = new Vector3(0, 0, 0);
             Quaternion spawnRot = new Quaternion(0, 0, 0, 0);
@@ -32,7 +32,7 @@ public class EnemyStats : CharacterStats
             spawnPos.y = transform.position.y;
             spawnPos.z = transform.position.z - 5f;
 
-            Instantiate(hitFX, spawnPos, spawnRot);
+            Instantiate(killFX, spawnPos, spawnRot);
         }
 
         enemyManager.enemies.Remove(GetComponent<Enemy>());
