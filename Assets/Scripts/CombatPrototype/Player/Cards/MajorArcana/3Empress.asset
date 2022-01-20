@@ -27,6 +27,8 @@ MonoBehaviour:
   selfHeal: {x: 20, y: 30}
   selfAP: {x: 0, y: 0}
   selfEndTurnDelay: 0.2
+  selfStatus: []
+  selfStatusDuration: 
   targetInterpretationUnlocked: 1
   targetName: Living Lash
   targetDescription: "Conjure a vine and lash out at a single target, poisoning them
@@ -46,5 +48,10 @@ MonoBehaviour:
   randomTargets: 0
   lifeLeach: {x: 0, y: 0}
   healOnKill: {x: 0, y: 0}
-  executeThreshhold: 0
+  executeThreshold: 0
+  targetStatus:
+  - {fileID: 11400000, guid: 857605ed69fe8ae4e994947dd3d52f69, type: 2}
+  targetStatusDuration: 03000000
+  targetStatusChance:
+  - 1
   spawnPosition: 1

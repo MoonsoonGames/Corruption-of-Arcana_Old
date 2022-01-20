@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewCard", menuName = "Cards/Spells", order = 0)]
+[CreateAssetMenu(fileName = "NewCard", menuName = "Combat/Spells", order = 0)]
 public class CardParent : ScriptableObject
 {
     #region General
@@ -43,7 +43,8 @@ public class CardParent : ScriptableObject
     public Vector2Int selfHeal;
     public Vector2Int selfAP;
     public float selfEndTurnDelay = 0.2f;
-    //public Status[] selfStatus;
+    public StatusParent[] selfStatus;
+    public int[] selfStatusDuration;
     //public GameObject selfPrepareEffect;
     //public GameObject selfCastEffect;
 
@@ -61,7 +62,7 @@ public class CardParent : ScriptableObject
 
                 Debug.Log("Cast" + selfName + "on Taro");
 
-                playerStats.ChangeHealth(heal, false);
+                playerStats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int damageTaken);
                 abilityManager.combatManager.Healing.SetActive(true);
                 abilityManager.combatManager.HealingValue.text = heal.ToString();
 
@@ -70,6 +71,8 @@ public class CardParent : ScriptableObject
                 abilityManager.combatManager.ApValue.text = selfCost.ToString();
 
                 playerStats.ChangePotions(selfPotionCost, true);
+
+                SelfApplyStatus(playerStats);
 
                 abilityManager.ResetAbility();
 
@@ -116,8 +119,9 @@ public class CardParent : ScriptableObject
     public Vector2Int lifeLeach;
     public Vector2Int healOnKill;
     public float executeThreshold;
-    //public Status[] targetStatus;
-    //public float statusChance;
+    public StatusParent[] targetStatus;
+    public int[] targetStatusDuration;
+    public float[] targetStatusChance;
     //public GameObject targetPrepareEffect;
     //public GameObject targetCastEffect;
 
@@ -148,10 +152,12 @@ public class CardParent : ScriptableObject
                         if (item.gameObject == target)
                         {
                             abilityManager.DelayDamage(targetDmg, damageType, 0f, spawnPos, target, itemHealth, executeThreshold, healOnKill);
+                            TargetApplyStatus(itemHealth);
                         }
                         else
                         {
                             abilityManager.DelayDamage(extraDmg, damageType, 0.25f, target.transform, item.gameObject, itemHealth, executeThreshold, healOnKill);
+                            TargetApplyStatus(itemHealth);
                         }
                     }
 
@@ -175,10 +181,12 @@ public class CardParent : ScriptableObject
                         if (item.gameObject == target)
                         {
                             abilityManager.DelayDamage(targetDmg, damageType, 0f, spawnPos, item.gameObject, itemHealth, executeThreshold, healOnKill);
+                            TargetApplyStatus(itemHealth);
                         }
                         else
                         {
                             abilityManager.DelayDamage(extraDmg, damageType, 0.1f, spawnPos, item.gameObject, itemHealth, executeThreshold, healOnKill);
+                            TargetApplyStatus(itemHealth);
                         }
                     }
 
@@ -208,6 +216,7 @@ public class CardParent : ScriptableObject
                             float hitTime = i * hitInterval;
 
                             abilityManager.DelayDamage(dmgVector, damageType, hitTime, spawnPos, enemyStatsArray[randTarget].gameObject, enemyStatsArray[randTarget], executeThreshold, healOnKill);
+                            TargetApplyStatus(enemyStatsArray[randTarget]);
 
                             int nextRandTarget = Random.Range(0, enemyStatsArray.Length);
 
@@ -226,12 +235,14 @@ public class CardParent : ScriptableObject
                         float hitTimeFinal = (hits * hitInterval) + finalHitInterval;
 
                         abilityManager.DelayDamage(dmgVectorFinal, damageType, hitTimeFinal, spawnPos, target, enemyStats, executeThreshold, healOnKill);
+                        TargetApplyStatus(enemyStats);
                     }
                     else
                     {
                         Vector2 dmgVector = targetDmg;
 
                         abilityManager.DelayDamage(dmgVector, damageType, 0f, spawnPos, target, enemyStats, executeThreshold, healOnKill);
+                        TargetApplyStatus(enemyStats);
                     }
                 } //random targets
                 else
@@ -247,18 +258,21 @@ public class CardParent : ScriptableObject
                             float hitTime = i * hitInterval;
 
                             abilityManager.DelayDamage(dmgVector, damageType, hitTime, spawnPos, target, enemyStats, executeThreshold, healOnKill);
+                            TargetApplyStatus(enemyStats);
                         }
 
                         Vector2 dmgVectorFinal = targetFinalDmg;
                         float hitTimeFinal = (hits * hitInterval) + finalHitInterval;
 
                         abilityManager.DelayDamage(dmgVectorFinal, damageType, hitTimeFinal, spawnPos, target, enemyStats, executeThreshold, healOnKill);
+                        TargetApplyStatus(enemyStats);
                     }
                     else
                     {
                         Vector2 dmgVector = targetDmg;
 
                         abilityManager.DelayDamage(dmgVector, damageType, 0f, spawnPos, target, enemyStats, executeThreshold, healOnKill);
+                        TargetApplyStatus(enemyStats);
                     }
                 } //single target attack
 
@@ -395,6 +409,36 @@ public class CardParent : ScriptableObject
         else
         {
             return abilityManager.playerSpawnPos;
+        }
+    }
+
+    void SelfApplyStatus(CharacterStats target)
+    {
+        if (selfStatus.Length > 0)
+        {
+            for (int i = 0; i <= selfStatus.Length; i++)
+            {
+                target.ApplyStatus(selfStatus[i], selfStatusDuration[i]);
+            }
+        }
+    }
+
+    void TargetApplyStatus(CharacterStats target)
+    {
+        if (targetStatus.Length > 0)
+        {
+            for (int i = 0; i < targetStatus.Length; i++)
+            {
+                float randomNumber = Random.Range(0f, 1f);
+
+                Debug.Log("Attempt to apply " + targetStatus[i].effectName);
+
+                if (randomNumber > targetStatusChance[i])
+                {
+                    //apply status
+                    target.ApplyStatus(targetStatus[i], targetStatusDuration[i]);
+                }
+            }
         }
     }
 

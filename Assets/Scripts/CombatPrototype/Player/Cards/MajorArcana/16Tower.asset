@@ -25,6 +25,8 @@ MonoBehaviour:
   selfHeal: {x: 0, y: 0}
   selfAP: {x: 0, y: 0}
   selfEndTurnDelay: 0.2
+  selfStatus: []
+  selfStatusDuration: 
   targetInterpretationUnlocked: 1
   targetName: Calamity
   targetDescription: With a blast of searing flame and smoke, you deal X Ember damage
@@ -44,5 +46,10 @@ MonoBehaviour:
   randomTargets: 0
   lifeLeach: {x: 0, y: 0}
   healOnKill: {x: 0, y: 0}
-  executeThreshhold: 0
+  executeThreshold: 0
+  targetStatus:
+  - {fileID: 11400000, guid: 857605ed69fe8ae4e994947dd3d52f69, type: 2}
+  targetStatusDuration: 02000000
+  targetStatusChance:
+  - 0.4
   spawnPosition: 3

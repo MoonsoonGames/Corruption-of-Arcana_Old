@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
 {
     public string displayName;
 
+    [TextArea(1, 4)]
     public string desciption;
 
     public Vector2 damage = new Vector2(18, 22);
@@ -25,7 +26,6 @@ public class Enemy : MonoBehaviour
 
     LoadSettings loadSettings;
 
-    [TextArea(1, 3)]
     public EnemyDescription descriptionInfo;
 
     Sprite sprite;
@@ -75,7 +75,7 @@ public class Enemy : MonoBehaviour
 
             int randDMG = (int)Random.Range(damage.x, damage.y);
 
-            playerStats.ChangeHealth(randDMG, true);
+            playerStats.ChangeHealth(randDMG, true, damageType, out int damageTaken);
 
             //Debug.Log(gameObject.name + " cast " + attackName + " for " + randDMG + " damage. It's really effective!");
         }

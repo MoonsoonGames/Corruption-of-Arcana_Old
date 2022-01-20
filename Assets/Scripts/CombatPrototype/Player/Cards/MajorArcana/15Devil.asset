@@ -25,6 +25,8 @@ MonoBehaviour:
   selfHeal: {x: 0, y: 0}
   selfAP: {x: 0, y: 0}
   selfEndTurnDelay: 0.2
+  selfStatus: []
+  selfStatusDuration: 
   targetInterpretationUnlocked: 1
   targetName: Chains of Rot
   targetDescription: Imbue your targets with a debilitating plague, dealing a high
@@ -45,4 +47,9 @@ MonoBehaviour:
   lifeLeach: {x: 0, y: 0}
   healOnKill: {x: 0, y: 0}
   executeThreshold: 0
+  targetStatus:
+  - {fileID: 11400000, guid: dd42f13ff5230a44d9186f92af88c469, type: 2}
+  targetStatusDuration: 03000000
+  targetStatusChance:
+  - 0.6
   spawnPosition: 1
