@@ -53,10 +53,13 @@ public class StatusParent : ScriptableObject
     #endregion
 
     #region Buffs and Debuffs
-
+    
     [Header("Buffs")]
-    public float reflectDamagePercent;
+    public Vector2Int reflectDamage;
     public E_DamageTypes reflectDamageType;
+    public E_CombatEffectSpawn reflectDamageSpawner;
+
+    /*
     public float increaseDmgPercent;
     public float increaseDefPercent;
     public float increaseAccPercent;
@@ -121,16 +124,21 @@ public class StatusParent : ScriptableObject
     public float reduceStaticResistOtherOnHit;
     public float reduceBleakResistOtherOnHit;
     public float reduceSepticResistOtherOnHit;
-
+    */
     #endregion
 
     #endregion
+
+    #region Effects
+
+    #region Turns
 
     public void OnApply(GameObject target)
     {
         AbilityManager abilityManager = GameObject.FindObjectOfType<AbilityManager>();
 
         ApplyDamage(target, abilityManager);
+        ApplyHealing(target);
     }
 
     public void OnTurnStart(GameObject target)
@@ -138,6 +146,7 @@ public class StatusParent : ScriptableObject
         AbilityManager abilityManager = GameObject.FindObjectOfType<AbilityManager>();
 
         TurnStartDamage(target, abilityManager);
+        TurnStartHealing(target);
     }
 
     public void OnTurnEnd(GameObject target)
@@ -145,9 +154,32 @@ public class StatusParent : ScriptableObject
 
     }
 
+    #endregion
+
+    #region Take Damage
+
+    public void OnTakeDamage(GameObject attacker, AbilityManager abilityManager)
+    {
+        if (reflectDamage.y > 0 && attacker != null)
+        {
+            CharacterStats stats = attacker.GetComponent<CharacterStats>();
+
+            if (stats != null)
+            {
+                abilityManager.DelayDamage(reflectDamage, reflectDamageType, 0.2f, GetSpawnLocation(abilityManager), attacker, stats, 0f, new Vector2Int(0, 0));
+                //SpawnFX(damageFX, attacker.transform);
+                SpawnFX(damageFX, GetSpawnLocation(abilityManager));
+            }
+        }
+    }
+
+    #endregion
+
+    #region Helper Functions
+
     void SpawnFX(Object FX, Transform transform)
     {
-        if (FX != null)
+        if (FX != null && transform != null)
         {
             Vector3 spawnPos = new Vector3(0, 0, 0);
             Quaternion spawnRot = new Quaternion(0, 0, 0, 0);
@@ -160,14 +192,42 @@ public class StatusParent : ScriptableObject
         }
     }
 
+    Transform GetSpawnLocation(AbilityManager abilityManager)
+    {
+        if (reflectDamageSpawner == E_CombatEffectSpawn.Player)
+        {
+            return abilityManager.playerSpawnPos;
+        }
+        if (reflectDamageSpawner == E_CombatEffectSpawn.Sky)
+        {
+            return abilityManager.skySpawnPos;
+        }
+        else if (reflectDamageSpawner == E_CombatEffectSpawn.Ground)
+        {
+            return abilityManager.groundSpawnPos;
+        }
+        else if (reflectDamageSpawner == E_CombatEffectSpawn.Enemies)
+        {
+            return abilityManager.enemiesSpawnPos;
+        }
+        else if (reflectDamageSpawner == E_CombatEffectSpawn.Backstab)
+        {
+            return abilityManager.backstabSpawnPos;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
     void ApplyDamage(GameObject target, AbilityManager abilityManager)
     {
         CharacterStats stats = target.GetComponent<CharacterStats>();
 
-        abilityManager.DelayDamage(applyDamage, applyDamageType, 0.2f, null, stats.gameObject, stats, 0f, new Vector2Int(0, 0));
-
         if (applyDamage.y > 0f)
         {
+            abilityManager.DelayDamage(applyDamage, applyDamageType, 0.2f, null, stats.gameObject, stats, 0f, new Vector2Int(0, 0));
+
             SpawnFX(damageFX, target.transform);
         }
 
@@ -179,19 +239,19 @@ public class StatusParent : ScriptableObject
 
                 if (testStats != stats)
                 {
-                    abilityManager.DelayDamage(applyDamageOther, applyDamageTypeOther, 0.2f, null, testStats.gameObject, testStats, 0f, new Vector2Int(0, 0));
-
                     if (applyDamageOther.y > 0f)
                     {
+                        abilityManager.DelayDamage(applyDamageOther, applyDamageTypeOther, 0.2f, null, testStats.gameObject, testStats, 0f, new Vector2Int(0, 0));
+
                         SpawnFX(damageFX, item.gameObject.transform);
                     }
                 }
             }
 
-            abilityManager.DelayDamage(applyDamageOpponents, applyDamageTypeOpponents, 0.2f, null, abilityManager.combatManager.playerStats.gameObject, abilityManager.combatManager.playerStats, 0f, new Vector2Int(0, 0));
-
             if (applyDamageOpponents.y > 0f)
             {
+                abilityManager.DelayDamage(applyDamageOpponents, applyDamageTypeOpponents, 0.2f, null, abilityManager.combatManager.playerStats.gameObject, abilityManager.combatManager.playerStats, 0f, new Vector2Int(0, 0));
+
                 SpawnFX(damageFX, abilityManager.combatManager.playerStats.transform);
             }
         }
@@ -203,10 +263,10 @@ public class StatusParent : ScriptableObject
 
                 if (testStats != stats)
                 {
-                    abilityManager.DelayDamage(applyDamageOpponents, applyDamageTypeOpponents, 0.2f, null, testStats.gameObject, testStats, 0f, new Vector2Int(0, 0));
-
                     if (applyDamageOpponents.y > 0f)
                     {
+                        abilityManager.DelayDamage(applyDamageOpponents, applyDamageTypeOpponents, 0.2f, null, testStats.gameObject, testStats, 0f, new Vector2Int(0, 0));
+
                         SpawnFX(damageFX, item.gameObject.transform);
                     }
                 }
@@ -218,10 +278,10 @@ public class StatusParent : ScriptableObject
     {
         CharacterStats stats = target.GetComponent<CharacterStats>();
 
-        abilityManager.DelayDamage(turnDamage, turnDamageType, 0.2f, null, stats.gameObject, stats, 0f, new Vector2Int(0, 0));
-
         if (turnDamage.y > 0f)
         {
+            abilityManager.DelayDamage(turnDamage, turnDamageType, 0.2f, null, stats.gameObject, stats, 0f, new Vector2Int(0, 0));
+
             SpawnFX(damageFX, target.transform);
         }
 
@@ -233,19 +293,19 @@ public class StatusParent : ScriptableObject
 
                 if (testStats != stats)
                 {
-                    abilityManager.DelayDamage(turnDamageOther, turnDamageTypeOther, 0.2f, null, testStats.gameObject, testStats, 0f, new Vector2Int(0, 0));
-
                     if (turnDamageOther.y > 0f)
                     {
+                        abilityManager.DelayDamage(turnDamageOther, turnDamageTypeOther, 0.2f, null, testStats.gameObject, testStats, 0f, new Vector2Int(0, 0));
+
                         SpawnFX(damageFX, item.gameObject.transform);
                     }
                 }
             }
 
-            abilityManager.DelayDamage(turnDamageOpponents, turnDamageTypeOpponents, 0.2f, null, abilityManager.combatManager.playerStats.gameObject, abilityManager.combatManager.playerStats, 0f, new Vector2Int(0, 0));
-
             if (turnDamageOpponents.y > 0f)
             {
+                abilityManager.DelayDamage(turnDamageOpponents, turnDamageTypeOpponents, 0.2f, null, abilityManager.combatManager.playerStats.gameObject, abilityManager.combatManager.playerStats, 0f, new Vector2Int(0, 0));
+
                 SpawnFX(damageFX, abilityManager.combatManager.playerStats.transform);
             }
         }
@@ -257,14 +317,46 @@ public class StatusParent : ScriptableObject
 
                 if (testStats != stats)
                 {
-                    abilityManager.DelayDamage(turnDamageOpponents, turnDamageTypeOpponents, 0.2f, null, testStats.gameObject, testStats, 0f, new Vector2Int(0, 0));
-
                     if (turnDamageOpponents.y > 0f)
                     {
+                        abilityManager.DelayDamage(turnDamageOpponents, turnDamageTypeOpponents, 0.2f, null, testStats.gameObject, testStats, 0f, new Vector2Int(0, 0));
+
                         SpawnFX(damageFX, item.gameObject.transform);
                     }
                 }
             }
         }
     }
+
+    void ApplyHealing(GameObject target)
+    {
+        CharacterStats stats = target.GetComponent<CharacterStats>();
+
+        int heal = Random.Range(applyHealing.x, applyHealing.y);
+
+        if (applyHealing.y > 0f)
+        {
+            stats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int healing, null);
+
+            SpawnFX(healFX, target.transform);
+        }
+    }
+
+    void TurnStartHealing(GameObject target)
+    {
+        CharacterStats stats = target.GetComponent<CharacterStats>();
+
+        int heal = Random.Range(turnHealing.x, turnHealing.y);
+
+        if (turnHealing.y > 0f)
+        {
+            stats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int healing, null);
+
+            SpawnFX(healFX, target.transform);
+        }
+    }
+
+    #endregion
+
+    #endregion
 }

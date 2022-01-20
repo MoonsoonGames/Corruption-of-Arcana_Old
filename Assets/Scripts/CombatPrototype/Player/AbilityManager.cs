@@ -239,20 +239,20 @@ public class AbilityManager : MonoBehaviour
 
             int damageTaken;
 
-            targetHealth.ChangeHealth(damage, true, damageType, out damageTaken);
+            targetHealth.ChangeHealth(damage, true, damageType, out damageTaken, playerStats.gameObject);
 
             //execute enemy
             if (targetHealth.HealthPercentage() < executeThreshold)
             {
                 //execute anim and delay
-                targetHealth.ChangeHealth(999999999, true, damageType, out int nullDamageTaken);
+                targetHealth.ChangeHealth(999999999, true, damageType, out int nullDamageTaken, playerStats.gameObject);
                 //Debug.Log("Executed");
             }
 
             if (targetHealth == null || targetHealth.GetHealth() == 0)
             {
                 //killed enemy
-                playerStats.ChangeHealth(Random.Range(healOnKill.x, healOnKill.y), false, E_DamageTypes.Physical, out int damageTakenNull);
+                playerStats.ChangeHealth(Random.Range(healOnKill.x, healOnKill.y), false, E_DamageTypes.Physical, out int damageTakenNull, playerStats.gameObject);
                 //Debug.Log("Heal on Kill");
             }
 

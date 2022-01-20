@@ -62,7 +62,7 @@ public class CardParent : ScriptableObject
 
                 Debug.Log("Cast" + selfName + "on Taro");
 
-                playerStats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int damageTaken);
+                playerStats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int damageTaken, playerStats.gameObject);
                 abilityManager.combatManager.Healing.SetActive(true);
                 abilityManager.combatManager.HealingValue.text = heal.ToString();
 
@@ -416,7 +416,7 @@ public class CardParent : ScriptableObject
     {
         if (selfStatus.Length > 0)
         {
-            for (int i = 0; i <= selfStatus.Length; i++)
+            for (int i = 0; i < selfStatus.Length; i++)
             {
                 target.ApplyStatus(selfStatus[i], selfStatusDuration[i]);
             }
@@ -431,7 +431,7 @@ public class CardParent : ScriptableObject
             {
                 float randomNumber = Random.Range(0f, 1f);
 
-                Debug.Log("Attempt to apply " + targetStatus[i].effectName);
+                //Debug.Log("Attempt to apply " + targetStatus[i].effectName);
 
                 if (randomNumber > targetStatusChance[i])
                 {

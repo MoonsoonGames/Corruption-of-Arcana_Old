@@ -73,9 +73,9 @@ public class PlayerStats : CharacterStats
         return potionCount;
     }
 
-    public override void ChangeHealth(int value, bool damage, E_DamageTypes damageType, out int damageTaken)
+    public override void ChangeHealth(int value, bool damage, E_DamageTypes damageType, out int damageTaken, GameObject attacker)
     {
-        base.ChangeHealth(value, damage, damageType, out damageTaken);
+        base.ChangeHealth(value, damage, damageType, out damageTaken, attacker);
 
         combatManager.HealthPointsValue.text = health.ToString();
     }

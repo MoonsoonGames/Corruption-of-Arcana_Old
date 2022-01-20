@@ -89,7 +89,7 @@ public class CharacterStats : MonoBehaviour
         return health;
     }
 
-    public virtual void ChangeHealth(int value, bool damage, E_DamageTypes damageType, out int damageTaken)
+    public virtual void ChangeHealth(int value, bool damage, E_DamageTypes damageType, out int damageTaken, GameObject attacker)
     {
         if (damage)
         {
@@ -98,6 +98,8 @@ public class CharacterStats : MonoBehaviour
             damageTaken = (int)DamageResistance(value, damageType);
 
             health = Mathf.Clamp(health - damageTaken, 0, maxHealth);
+
+            OnTakeDamageStatus(attacker);
 
             /*
             if (killFX != null)
@@ -253,15 +255,15 @@ public class CharacterStats : MonoBehaviour
         Debug.Log("Applied " + status.effectName);
         if (!statuses.ContainsKey(status))
         {
-            statuses.Add(status, duration);
+            statuses.Add(status, duration + 1);
 
             status.OnApply(this.gameObject);
         }
         else
         {
-            if (statuses[status] < duration)
+            if (statuses[status] < duration + 1)
             {
-                statuses[status] = duration;
+                statuses[status] = duration + 1;
             }
         }
     }
@@ -276,9 +278,33 @@ public class CharacterStats : MonoBehaviour
 
     public void OnTurnEndStatus()
     {
+        Dictionary<StatusParent, int> statusesCopy = new Dictionary<StatusParent, int>();
+
         foreach (var item in statuses)
         {
             item.Key.OnTurnEnd(this.gameObject);
+
+            int turnsLeft = item.Value - 1;
+            Debug.Log(item.Key + " has " + turnsLeft + " turns left");
+            if (turnsLeft > 0)
+            {
+                statusesCopy.Add(item.Key, turnsLeft);
+            }
+        }
+
+        statuses.Clear();
+
+        foreach (var item in statusesCopy)
+        {
+            statuses.Add(item.Key, item.Value);
+        }
+    }
+
+    public void OnTakeDamageStatus(GameObject attacker)
+    {
+        foreach (var item in statuses)
+        {
+            item.Key.OnTakeDamage(attacker, GameObject.FindObjectOfType<AbilityManager>());
         }
     }
 

@@ -25,10 +25,15 @@ MonoBehaviour:
   selfHeal: {x: 0, y: 0}
   selfAP: {x: 0, y: 0}
   selfEndTurnDelay: 0
+  selfStatus: []
+  selfStatusDuration: 
   targetInterpretationUnlocked: 1
   targetName: Overpower
-  targetDescription: With a great hew, you carve into your target and cripple their
+  targetDescription: 'With a great hew, you carve into your target and cripple their
     defenses
+
+
+    Also has a high chance to bleed targets'
   targetCost: 30
   targetCostType: AP
   damageType: 6
@@ -44,5 +49,10 @@ MonoBehaviour:
   randomTargets: 0
   lifeLeach: {x: 0, y: 0}
   healOnKill: {x: 0, y: 0}
-  executeThreshhold: 0
+  executeThreshold: 0
+  targetStatus:
+  - {fileID: 11400000, guid: 0aa56a9e5ce959e4b96c703989b64011, type: 2}
+  targetStatusDuration: 03000000
+  targetStatusChance:
+  - 0.75
   spawnPosition: 0

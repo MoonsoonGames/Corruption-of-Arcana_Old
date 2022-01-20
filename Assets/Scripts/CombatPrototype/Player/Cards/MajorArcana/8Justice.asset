@@ -25,9 +25,15 @@ MonoBehaviour:
   selfHeal: {x: 0, y: 0}
   selfAP: {x: 0, y: 0}
   selfEndTurnDelay: 0.2
+  selfStatus: []
+  selfStatusDuration: 
   targetInterpretationUnlocked: 1
   targetName: Tip the Scales
-  targetDescription: With a weapon wreathed in flame, you smite your targets
+  targetDescription: 'With a weapon wreathed in flame, you smite your targets
+
+
+    Also
+    has a low chance to burn targets'
   targetCost: 40
   targetCostType: AP
   damageType: 1
@@ -43,4 +49,10 @@ MonoBehaviour:
   randomTargets: 0
   lifeLeach: {x: 0, y: 0}
   healOnKill: {x: 0, y: 0}
-  executeThreshhold: 0
+  executeThreshold: 0
+  targetStatus:
+  - {fileID: 11400000, guid: 857605ed69fe8ae4e994947dd3d52f69, type: 2}
+  targetStatusDuration: 02000000
+  targetStatusChance:
+  - 0.3
+  spawnPosition: 0
