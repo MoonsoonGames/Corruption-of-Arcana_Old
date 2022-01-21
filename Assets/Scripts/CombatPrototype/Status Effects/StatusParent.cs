@@ -327,15 +327,18 @@ public class StatusParent : ScriptableObject
         {
             foreach (var item in abilityManager.combatManager.enemyManager.enemies)
             {
-                CharacterStats testStats = item.gameObject.GetComponent<CharacterStats>();
-
-                if (testStats != stats)
+                if (item != null)
                 {
-                    if (turnDamageOpponents.y > 0f)
-                    {
-                        abilityManager.DelayDamage(turnDamageOpponents, turnDamageTypeOpponents, 0.2f, null, testStats.gameObject, testStats, 0f, new Vector2Int(0, 0));
+                    CharacterStats testStats = item.gameObject.GetComponent<CharacterStats>();
 
-                        SpawnFX(damageFX, item.gameObject.transform);
+                    if (testStats != stats)
+                    {
+                        if (turnDamageOpponents.y > 0f)
+                        {
+                            abilityManager.DelayDamage(turnDamageOpponents, turnDamageTypeOpponents, 0.2f, null, testStats.gameObject, testStats, 0f, new Vector2Int(0, 0));
+
+                            SpawnFX(damageFX, item.gameObject.transform);
+                        }
                     }
                 }
             }
