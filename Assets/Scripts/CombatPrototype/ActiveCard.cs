@@ -25,7 +25,7 @@ public class ActiveCard : MonoBehaviour
         cam = GameObject.FindObjectOfType<Camera>();
     }
 
-    public void ReadyCard(string cardName, Vector2 dmg, string type, int cost, string description, string costType)
+    public void ReadyCard(string cardName, Vector2Int dmg, string type, int cost, string description, string costType)
     {
         if (cardText != null)
             cardText.text = cardName;

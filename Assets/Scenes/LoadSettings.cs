@@ -268,4 +268,39 @@ public class LoadSettings : MonoBehaviour
     }
 
     #endregion
+
+    #region Guidebook
+
+    public List<string> revealedEntries = new List<string>();
+
+    public void AddToGuidebook(string name)
+    {
+        if (revealedEntries.Contains(name))
+        {
+            //
+        }
+        else
+        {
+            revealedEntries.Add(name);
+            //sort
+        }
+    }
+
+    static int SortByInt(Object e1, Object e2)
+    {
+        GameObject gObject1 = e1 as GameObject;
+        GameObject gObject2 = e2 as GameObject;
+
+        Enemy stats1 = gObject1.GetComponent<Enemy>();
+        Enemy stats2 = gObject2.GetComponent<Enemy>();
+
+        return stats1.guidebookOrder.CompareTo(stats2.guidebookOrder);
+    }
+
+    public bool CheckExposed(string name)
+    {
+        return revealedEntries.Contains(name);
+    }
+
+    #endregion
 }
