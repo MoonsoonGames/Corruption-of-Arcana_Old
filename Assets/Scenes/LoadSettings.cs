@@ -271,17 +271,17 @@ public class LoadSettings : MonoBehaviour
 
     #region Guidebook
 
-    public List<int> revealedEnemies = new List<int>();
+    public List<string> revealedEntries = new List<string>();
 
-    public void AddToGuidebook(int order)
+    public void AddToGuidebook(string name)
     {
-        if (revealedEnemies.Contains(order))
+        if (revealedEntries.Contains(name))
         {
             //
         }
         else
         {
-            revealedEnemies.Add(order);
+            revealedEntries.Add(name);
             //sort
         }
     }
@@ -297,9 +297,9 @@ public class LoadSettings : MonoBehaviour
         return stats1.guidebookOrder.CompareTo(stats2.guidebookOrder);
     }
 
-    public bool CheckExposed(int order)
+    public bool CheckExposed(string name)
     {
-        return revealedEnemies.Contains(order);
+        return revealedEntries.Contains(name);
     }
 
     #endregion

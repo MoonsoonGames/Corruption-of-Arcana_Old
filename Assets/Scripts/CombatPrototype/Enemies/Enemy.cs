@@ -12,8 +12,8 @@ public class Enemy : MonoBehaviour
     public string desciption;
 
     public Vector2 damage = new Vector2(18, 22);
-
     public E_DamageTypes damageType;
+    public int hitCount = 1;
 
     GameObject player;
 
@@ -86,15 +86,23 @@ public class Enemy : MonoBehaviour
             }
             else
             {
-                SpawnAttackEffect(player, damageType);
-
-                int randDMG = (int)Random.Range(damage.x, damage.y);
-
-                playerStats.ChangeHealth(randDMG, true, damageType, out int damageTaken, this.gameObject);
-
-                //Debug.Log(gameObject.name + " cast " + attackName + " for " + randDMG + " damage. It's really effective!");
+                for (int i = 0; i < hitCount; i++)
+                {
+                    Invoke("BasicAttack", 0.25f * i);
+                }
             }
         }
+    }
+
+    public void BasicAttack()
+    {
+        SpawnAttackEffect(player, damageType);
+
+        int randDMG = (int)Random.Range(damage.x, damage.y);
+
+        playerStats.ChangeHealth(randDMG, true, damageType, out int damageTaken, this.gameObject);
+
+        //Debug.Log(gameObject.name + " cast " + attackName + " for " + randDMG + " damage. It's really effective!");
     }
 
     private void SpawnAttackEffect(GameObject target, E_DamageTypes attackType)
@@ -197,9 +205,9 @@ public class Enemy : MonoBehaviour
 
     public void DisplayCard(bool display)
     {
-        if (loadSettings.CheckExposed(guidebookOrder) && display)
+        if (loadSettings.CheckExposed(displayName) && display)
         {
-            descriptionInfo.ReadyCard(displayName, attackName, damage, damageType, desciption, sprite);
+            descriptionInfo.ReadyCard(displayName, attackName, damage * hitCount, damageType, desciption, sprite);
         }
         else
             descriptionInfo.RemoveCard();
