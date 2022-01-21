@@ -60,36 +60,33 @@ public class StatusParent : ScriptableObject
     public E_CombatEffectSpawn reflectDamageSpawner;
 
     /*
-    public float increaseDmgPercent;
-    public float increaseDefPercent;
-    public float increaseAccPercent;
-    public float increaseDodgePercent;
-    public float increaseFleePercent;
     public bool extraTurn;
     public bool untargettable;
     public bool immune;
-    public float increasePhysResist;
-    public float increaseEmberResist;
-    public float increaseStaticResist;
-    public float increaseBleakResist;
-    public float increaseSepticResist;
+    */
 
+    [Header("Stat Adjustments")]
+    public float adjustPhysMultiplier;
+    public float adjustEmberMultiplier;
+    public float adjustStaticMultiplier;
+    public float adjustBleakMultiplier;
+    public float adjustSepticMultiplier;
+
+    /*
+    public float adjustDmgPercent;
+    public float adjustDefPercent;
+    public float adjustAccPercent;
+    public float adjustDodgePercent;
+    public float adjustFleePercent;
+    */
+
+    /*
     [Header("Debuffs")]
     public bool charm;
     public bool revealEntry;
-    public float shareDamagePercent;
-    public float reduceDmgPercent;
-    public float reduceDefPercent;
-    public float reduceAccPercent;
-    public float reduceDodgePercent;
     public bool skipTurn;
     public bool sleepTurn;
     public bool silence;
-    public float reducePhysResist;
-    public float reduceEmberResist;
-    public float reduceStaticResist;
-    public float reduceBleakResist;
-    public float reduceSepticResist;
 
     [Header("Debuff Others")]
     public bool charmOther;
@@ -131,7 +128,7 @@ public class StatusParent : ScriptableObject
 
     #region Effects
 
-    #region Turns
+    #region Apply and Remove Status
 
     public void OnApply(GameObject target)
     {
@@ -139,7 +136,18 @@ public class StatusParent : ScriptableObject
 
         ApplyDamage(target, abilityManager);
         ApplyHealing(target);
+
+        ApplyStatAdjustments(target);
     }
+
+    public void OnRemove(GameObject target)
+    {
+        RemoveStatAdjustments(target);
+    }
+
+    #endregion
+
+    #region Turns
 
     public void OnTurnStart(GameObject target)
     {
@@ -219,6 +227,8 @@ public class StatusParent : ScriptableObject
             return null;
         }
     }
+
+    #region Damage and Healing
 
     void ApplyDamage(GameObject target, AbilityManager abilityManager)
     {
@@ -355,6 +365,26 @@ public class StatusParent : ScriptableObject
             SpawnFX(healFX, target.transform);
         }
     }
+
+    #endregion
+
+    #region Adjust Stats
+
+    void ApplyStatAdjustments(GameObject target)
+    {
+        CharacterStats stats = target.GetComponent<CharacterStats>();
+
+        stats.AdjustDamageMultipliers(adjustPhysMultiplier, adjustEmberMultiplier, adjustStaticMultiplier, adjustBleakMultiplier, adjustSepticMultiplier);
+    }
+
+    void RemoveStatAdjustments(GameObject target)
+    {
+        CharacterStats stats = target.GetComponent<CharacterStats>();
+
+        stats.AdjustDamageMultipliers(-adjustPhysMultiplier, -adjustEmberMultiplier, -adjustStaticMultiplier, -adjustBleakMultiplier, -adjustSepticMultiplier);
+    }
+
+    #endregion
 
     #endregion
 

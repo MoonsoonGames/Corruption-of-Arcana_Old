@@ -9,8 +9,10 @@ public class EnemyStats : CharacterStats
 
     public GameObject[] objectsToDisable;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+
         health = maxHealth;
         mana = maxMana;
 

@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class CharacterStats : MonoBehaviour
 {
+    #region Setup
+
     public int maxHealth = 120;
     protected int health = 120;
     public int maxMana = 120;
@@ -19,6 +21,13 @@ public class CharacterStats : MonoBehaviour
     public Object healFX;
 
     Dictionary<StatusParent, int> statuses = new Dictionary<StatusParent, int>();
+
+    protected virtual void Start()
+    {
+        ResetDamageMultipliers();
+    }
+
+    #endregion
 
     #region Flash
 
@@ -68,6 +77,7 @@ public class CharacterStats : MonoBehaviour
     #endregion
 
     #region Received Damage Multipliers
+
     [Header("Received Damage Multipliers")]
     public float basePhysicalMultiplier = 1f;
     public float baseEmberMultiplier = 1f;
@@ -80,6 +90,47 @@ public class CharacterStats : MonoBehaviour
     protected float staticMultiplier = 1f;
     protected float bleakMultiplier = 1f;
     protected float septicMultiplier = 1f;
+
+    #region Functions
+
+    public void ResetDamageMultipliers()
+    {
+        physicalMultiplier = basePhysicalMultiplier;
+        emberMultiplier = baseEmberMultiplier;
+        staticMultiplier = baseStaticMultiplier;
+        bleakMultiplier = baseBleakMultiplier;
+        septicMultiplier = baseSepticMultiplier;
+    }
+
+    public void ResetDamageMultipliersSpecific(bool physicalRes, bool emberRes, bool staticRes, bool bleakRes, bool septicRes)
+    {
+        if (physicalRes)
+            physicalMultiplier = basePhysicalMultiplier;
+
+        if (emberRes)
+            emberMultiplier = baseEmberMultiplier;
+
+        if (staticRes)
+            staticMultiplier = baseStaticMultiplier;
+
+        if (bleakRes)
+            bleakMultiplier = baseBleakMultiplier;
+
+        if (septicRes)
+            septicMultiplier = baseSepticMultiplier;
+    }
+
+    public void AdjustDamageMultipliers(float physicalAdjust, float emberAdjust, float staticAdjust, float bleakAdjust, float septicAdjust)
+    {
+        physicalMultiplier += physicalAdjust;
+        emberMultiplier += emberAdjust;
+        staticMultiplier += staticAdjust;
+        bleakMultiplier += bleakAdjust;
+        septicMultiplier += septicAdjust;
+    }
+
+    #endregion
+
     #endregion
 
     #region Health
@@ -289,6 +340,10 @@ public class CharacterStats : MonoBehaviour
             if (turnsLeft > 0)
             {
                 statusesCopy.Add(item.Key, turnsLeft);
+            }
+            else
+            {
+                item.Key.OnTurnEnd(this.gameObject);
             }
         }
 
