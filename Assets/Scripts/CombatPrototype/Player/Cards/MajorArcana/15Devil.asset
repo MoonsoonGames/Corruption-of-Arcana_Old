@@ -16,18 +16,20 @@ MonoBehaviour:
   cardNumber: 1
   flavourDescription: Two creatures are bound to his round pedestal
   cardImage: {fileID: 0}
-  selfInterpretationUnlocked: 0
-  selfName: 
-  selfDescription: 
-  selfCost: 0
+  selfInterpretationUnlocked: 1
+  selfName: Gorge on Misery
+  selfDescription: Generate a life draining aura, which drains the vigour from your
+    enemies each turn and heals you
+  selfCost: 40
   selfPotionCost: 0
-  selfCostType: 
+  selfCostType: AP
   selfHeal: {x: 0, y: 0}
   selfAP: {x: 0, y: 0}
   selfEndTurnDelay: 0.2
-  selfStatus: []
-  selfStatusDuration: 
-  targetInterpretationUnlocked: 1
+  selfStatus:
+  - {fileID: 11400000, guid: ca78733804eabdb4a8fc7392ad606344, type: 2}
+  selfStatusDuration: 03000000
+  targetInterpretationUnlocked: 0
   targetName: Chains of Rot
   targetDescription: 'Imbue your targets with a debilitating plague, dealing a high
     amount of septic damage and spreads to nearby target with a lesser effect

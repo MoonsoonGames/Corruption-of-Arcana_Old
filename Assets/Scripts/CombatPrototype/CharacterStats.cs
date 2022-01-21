@@ -29,6 +29,21 @@ public class CharacterStats : MonoBehaviour
 
     #endregion
 
+    #region Turn Inhibitors
+
+    [HideInInspector]
+    public bool charm;
+    [HideInInspector]
+    public bool revealEntry;
+    [HideInInspector]
+    public bool skipTurn;
+    [HideInInspector]
+    public bool sleepTurn;
+    [HideInInspector]
+    public bool silence;
+
+    #endregion
+
     #region Flash
 
     public Image image;
@@ -142,7 +157,8 @@ public class CharacterStats : MonoBehaviour
 
     public virtual void ChangeHealth(int value, bool damage, E_DamageTypes damageType, out int damageTaken, GameObject attacker)
     {
-        if (damage)
+        damageTaken = 0;
+        if (damage && value > 0)
         {
             Flash(hitColour);
 
@@ -151,6 +167,8 @@ public class CharacterStats : MonoBehaviour
             health = Mathf.Clamp(health - damageTaken, 0, maxHealth);
 
             OnTakeDamageStatus(attacker);
+
+            RemoveSleepStatus();
 
             /*
             if (killFX != null)
@@ -171,7 +189,7 @@ public class CharacterStats : MonoBehaviour
                 Die();
             }
         }
-        else
+        else if (!damage && value > 0)
         {
             damageTaken = 0;
             Flash(healColour);
@@ -340,10 +358,11 @@ public class CharacterStats : MonoBehaviour
             if (turnsLeft > 0)
             {
                 statusesCopy.Add(item.Key, turnsLeft);
+                item.Key.OnTurnEnd(this.gameObject);
             }
             else
             {
-                item.Key.OnTurnEnd(this.gameObject);
+                item.Key.OnRemove(this.gameObject);
             }
         }
 
@@ -360,6 +379,32 @@ public class CharacterStats : MonoBehaviour
         foreach (var item in statuses)
         {
             item.Key.OnTakeDamage(attacker, GameObject.FindObjectOfType<AbilityManager>());
+        }
+    }
+
+    public void RemoveSleepStatus()
+    {
+        Dictionary<StatusParent, int> statusesCopy = new Dictionary<StatusParent, int>();
+
+        foreach (var item in statuses)
+        {
+            item.Key.OnTurnEnd(this.gameObject);
+
+            if (item.Key.sleepTurn!)
+            {
+                statusesCopy.Add(item.Key, item.Value);
+            }
+            else
+            {
+                item.Key.OnRemove(this.gameObject);
+            }
+        }
+
+        statuses.Clear();
+
+        foreach (var item in statusesCopy)
+        {
+            statuses.Add(item.Key, item.Value);
         }
     }
 

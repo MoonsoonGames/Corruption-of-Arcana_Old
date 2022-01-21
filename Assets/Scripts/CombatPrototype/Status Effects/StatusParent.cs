@@ -53,17 +53,6 @@ public class StatusParent : ScriptableObject
     #endregion
 
     #region Buffs and Debuffs
-    
-    [Header("Buffs")]
-    public Vector2Int reflectDamage;
-    public E_DamageTypes reflectDamageType;
-    public E_CombatEffectSpawn reflectDamageSpawner;
-
-    /*
-    public bool extraTurn;
-    public bool untargettable;
-    public bool immune;
-    */
 
     [Header("Stat Adjustments")]
     public float adjustPhysMultiplier;
@@ -80,7 +69,18 @@ public class StatusParent : ScriptableObject
     public float adjustFleePercent;
     */
 
+    [Header("Buffs")]
+    public Vector2Int reflectDamage;
+    public E_DamageTypes reflectDamageType;
+    public E_CombatEffectSpawn reflectDamageSpawner;
+
     /*
+    public bool extraTurn;
+    public bool untargettable;
+    public bool immune;
+    */
+
+    
     [Header("Debuffs")]
     public bool charm;
     public bool revealEntry;
@@ -88,6 +88,7 @@ public class StatusParent : ScriptableObject
     public bool sleepTurn;
     public bool silence;
 
+    /*
     [Header("Debuff Others")]
     public bool charmOther;
     public bool revealEntryOther;
@@ -138,11 +139,13 @@ public class StatusParent : ScriptableObject
         ApplyHealing(target);
 
         ApplyStatAdjustments(target);
+        ApplyTurnInhibitors(target);
     }
 
     public void OnRemove(GameObject target)
     {
         RemoveStatAdjustments(target);
+        RemoveTurnInhibitors(target);
     }
 
     #endregion
@@ -155,6 +158,7 @@ public class StatusParent : ScriptableObject
 
         TurnStartDamage(target, abilityManager);
         TurnStartHealing(target);
+        ApplyTurnInhibitors(target);
     }
 
     public void OnTurnEnd(GameObject target)
@@ -382,6 +386,60 @@ public class StatusParent : ScriptableObject
         CharacterStats stats = target.GetComponent<CharacterStats>();
 
         stats.AdjustDamageMultipliers(-adjustPhysMultiplier, -adjustEmberMultiplier, -adjustStaticMultiplier, -adjustBleakMultiplier, -adjustSepticMultiplier);
+    }
+
+    #endregion
+
+    #region Turn Inhibitors
+
+    void ApplyTurnInhibitors(GameObject target)
+    {
+        CharacterStats stats = target.GetComponent<CharacterStats>();
+
+        if (charm)
+        {
+            stats.charm = true;
+        }
+
+        if (silence)
+        {
+            stats.silence = true;
+        }
+
+        if (skipTurn)
+        {
+            stats.skipTurn = true;
+        }
+
+        if (stats.sleepTurn)
+        {
+            stats.sleepTurn = true;
+        }
+    }
+
+    void RemoveTurnInhibitors(GameObject target)
+    {
+        CharacterStats stats = target.GetComponent<CharacterStats>();
+
+        if (charm)
+        {
+            stats.charm = false;
+        }
+
+        if (silence)
+        {
+            stats.silence = false;
+        }
+
+        if (skipTurn)
+        {
+            stats.skipTurn = false;
+        }
+
+        if (stats.sleepTurn)
+        {
+            stats.sleepTurn = false;
+        }
     }
 
     #endregion

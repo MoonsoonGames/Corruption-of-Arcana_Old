@@ -69,15 +69,30 @@ public class Enemy : MonoBehaviour
 
     public void TakeTurn()
     {
-        if (canAttack)
+        if (canAttack && enemyStats != null)
         {
-            SpawnAttackEffect(player, damageType);
+            if (enemyStats.charm)
+            {
+                //charm code here
+            }
+            else if (enemyStats.silence)
+            {
+                //silence code here
+            }
+            else if (enemyStats.skipTurn || enemyStats.sleepTurn)
+            {
+                //skip turn code here
+            }
+            else
+            {
+                SpawnAttackEffect(player, damageType);
 
-            int randDMG = (int)Random.Range(damage.x, damage.y);
+                int randDMG = (int)Random.Range(damage.x, damage.y);
 
-            playerStats.ChangeHealth(randDMG, true, damageType, out int damageTaken, this.gameObject);
+                playerStats.ChangeHealth(randDMG, true, damageType, out int damageTaken, this.gameObject);
 
-            //Debug.Log(gameObject.name + " cast " + attackName + " for " + randDMG + " damage. It's really effective!");
+                //Debug.Log(gameObject.name + " cast " + attackName + " for " + randDMG + " damage. It's really effective!");
+            }
         }
     }
 
