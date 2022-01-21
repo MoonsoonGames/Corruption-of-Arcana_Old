@@ -10,8 +10,10 @@ public class PlayerStats : CharacterStats
 
     private LoadSettings loadSettings;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+
         loadSettings = GameObject.Find("LoadSettings").GetComponent<LoadSettings>();
 
         if (loadSettings != null)

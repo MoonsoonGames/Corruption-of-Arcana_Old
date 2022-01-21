@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class CharacterStats : MonoBehaviour
 {
+    #region Setup
+
     public int maxHealth = 120;
     protected int health = 120;
     public int maxMana = 120;
@@ -19,6 +21,28 @@ public class CharacterStats : MonoBehaviour
     public Object healFX;
 
     Dictionary<StatusParent, int> statuses = new Dictionary<StatusParent, int>();
+
+    protected virtual void Start()
+    {
+        ResetDamageMultipliers();
+    }
+
+    #endregion
+
+    #region Turn Inhibitors
+
+    [HideInInspector]
+    public bool charm;
+    [HideInInspector]
+    public bool revealEntry;
+    [HideInInspector]
+    public bool skipTurn;
+    [HideInInspector]
+    public bool sleepTurn;
+    [HideInInspector]
+    public bool silence;
+
+    #endregion
 
     #region Flash
 
@@ -68,6 +92,7 @@ public class CharacterStats : MonoBehaviour
     #endregion
 
     #region Received Damage Multipliers
+
     [Header("Received Damage Multipliers")]
     public float basePhysicalMultiplier = 1f;
     public float baseEmberMultiplier = 1f;
@@ -80,6 +105,47 @@ public class CharacterStats : MonoBehaviour
     protected float staticMultiplier = 1f;
     protected float bleakMultiplier = 1f;
     protected float septicMultiplier = 1f;
+
+    #region Functions
+
+    public void ResetDamageMultipliers()
+    {
+        physicalMultiplier = basePhysicalMultiplier;
+        emberMultiplier = baseEmberMultiplier;
+        staticMultiplier = baseStaticMultiplier;
+        bleakMultiplier = baseBleakMultiplier;
+        septicMultiplier = baseSepticMultiplier;
+    }
+
+    public void ResetDamageMultipliersSpecific(bool physicalRes, bool emberRes, bool staticRes, bool bleakRes, bool septicRes)
+    {
+        if (physicalRes)
+            physicalMultiplier = basePhysicalMultiplier;
+
+        if (emberRes)
+            emberMultiplier = baseEmberMultiplier;
+
+        if (staticRes)
+            staticMultiplier = baseStaticMultiplier;
+
+        if (bleakRes)
+            bleakMultiplier = baseBleakMultiplier;
+
+        if (septicRes)
+            septicMultiplier = baseSepticMultiplier;
+    }
+
+    public void AdjustDamageMultipliers(float physicalAdjust, float emberAdjust, float staticAdjust, float bleakAdjust, float septicAdjust)
+    {
+        physicalMultiplier += physicalAdjust;
+        emberMultiplier += emberAdjust;
+        staticMultiplier += staticAdjust;
+        bleakMultiplier += bleakAdjust;
+        septicMultiplier += septicAdjust;
+    }
+
+    #endregion
+
     #endregion
 
     #region Health
@@ -91,7 +157,8 @@ public class CharacterStats : MonoBehaviour
 
     public virtual void ChangeHealth(int value, bool damage, E_DamageTypes damageType, out int damageTaken, GameObject attacker)
     {
-        if (damage)
+        damageTaken = 0;
+        if (damage && value > 0)
         {
             Flash(hitColour);
 
@@ -100,6 +167,8 @@ public class CharacterStats : MonoBehaviour
             health = Mathf.Clamp(health - damageTaken, 0, maxHealth);
 
             OnTakeDamageStatus(attacker);
+
+            RemoveSleepStatus();
 
             /*
             if (killFX != null)
@@ -120,7 +189,7 @@ public class CharacterStats : MonoBehaviour
                 Die();
             }
         }
-        else
+        else if (!damage && value > 0)
         {
             damageTaken = 0;
             Flash(healColour);
@@ -250,7 +319,7 @@ public class CharacterStats : MonoBehaviour
 
     #region Statuses
 
-    public void ApplyStatus(StatusParent status, int duration)
+    public virtual void ApplyStatus(StatusParent status, int duration)
     {
         Debug.Log("Applied " + status.effectName);
         if (!statuses.ContainsKey(status))
@@ -289,6 +358,11 @@ public class CharacterStats : MonoBehaviour
             if (turnsLeft > 0)
             {
                 statusesCopy.Add(item.Key, turnsLeft);
+                item.Key.OnTurnEnd(this.gameObject);
+            }
+            else
+            {
+                item.Key.OnRemove(this.gameObject);
             }
         }
 
@@ -305,6 +379,31 @@ public class CharacterStats : MonoBehaviour
         foreach (var item in statuses)
         {
             item.Key.OnTakeDamage(attacker, GameObject.FindObjectOfType<AbilityManager>());
+        }
+    }
+
+    public void RemoveSleepStatus()
+    {
+        Dictionary<StatusParent, int> statusesCopy = new Dictionary<StatusParent, int>();
+
+        foreach (var item in statuses)
+        {
+            if (item.Key.sleepTurn == false)
+            {
+                statusesCopy.Add(item.Key, item.Value);
+            }
+            else
+            {
+                Debug.Log("Damage taken, remove sleep status");
+                item.Key.OnRemove(this.gameObject);
+            }
+        }
+
+        statuses.Clear();
+
+        foreach (var item in statusesCopy)
+        {
+            statuses.Add(item.Key, item.Value);
         }
     }
 

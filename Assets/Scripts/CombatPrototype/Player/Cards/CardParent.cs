@@ -438,7 +438,7 @@ public class CardParent : ScriptableObject
 
                     //Debug.Log("Attempt to apply " + targetStatus[i].effectName);
 
-                    if (randomNumber > targetStatusChance[i])
+                    if (randomNumber < targetStatusChance[i])
                     {
                         //apply status
                         target.ApplyStatus(targetStatus[i], targetStatusDuration[i]);

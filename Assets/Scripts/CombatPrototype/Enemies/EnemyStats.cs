@@ -9,8 +9,16 @@ public class EnemyStats : CharacterStats
 
     public GameObject[] objectsToDisable;
 
-    private void Start()
+    public bool boss = false;
+
+    Enemy enemy;
+
+    protected override void Start()
     {
+        base.Start();
+
+        enemy = GetComponent<Enemy>();
+
         health = maxHealth;
         mana = maxMana;
 
@@ -35,6 +43,11 @@ public class EnemyStats : CharacterStats
             Instantiate(killFX, spawnPos, spawnRot);
         }
 
+        if (boss && enemy != null)
+        {
+            GameObject.FindObjectOfType<LoadSettings>().AddToGuidebook(enemy.guidebookOrder);
+        }
+
         enemyManager.enemies.Remove(GetComponent<Enemy>());
         enemyManager.EnemyKilled();
 
@@ -43,5 +56,15 @@ public class EnemyStats : CharacterStats
             Destroy(item);
         }
         //disable targetting, health and taking turns
+    }
+
+    public override void ApplyStatus(StatusParent status, int duration)
+    {
+        base.ApplyStatus(status, duration);
+
+        if (status.revealEntry && enemy != null)
+        {
+            GameObject.FindObjectOfType<LoadSettings>().AddToGuidebook(enemy.guidebookOrder);
+        }
     }
 }
