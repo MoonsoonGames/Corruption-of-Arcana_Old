@@ -388,14 +388,13 @@ public class CharacterStats : MonoBehaviour
 
         foreach (var item in statuses)
         {
-            item.Key.OnTurnEnd(this.gameObject);
-
-            if (item.Key.sleepTurn!)
+            if (item.Key.sleepTurn == false)
             {
                 statusesCopy.Add(item.Key, item.Value);
             }
             else
             {
+                Debug.Log("Damage taken, remove sleep status");
                 item.Key.OnRemove(this.gameObject);
             }
         }

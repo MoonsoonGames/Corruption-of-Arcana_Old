@@ -411,7 +411,7 @@ public class StatusParent : ScriptableObject
             stats.skipTurn = true;
         }
 
-        if (stats.sleepTurn)
+        if (sleepTurn)
         {
             stats.sleepTurn = true;
         }
@@ -436,7 +436,7 @@ public class StatusParent : ScriptableObject
             stats.skipTurn = false;
         }
 
-        if (stats.sleepTurn)
+        if (sleepTurn)
         {
             stats.sleepTurn = false;
         }
