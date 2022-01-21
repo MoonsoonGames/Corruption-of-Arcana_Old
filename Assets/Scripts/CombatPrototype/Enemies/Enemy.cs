@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Enemy : MonoBehaviour
 {
     public string displayName;
+    public int guidebookOrder;
 
     [TextArea(1, 4)]
     public string desciption;
@@ -196,8 +197,10 @@ public class Enemy : MonoBehaviour
 
     public void DisplayCard(bool display)
     {
-        if (display)
+        if (loadSettings.CheckExposed(guidebookOrder) && display)
+        {
             descriptionInfo.ReadyCard(displayName, attackName, damage, damageType, desciption, sprite);
+        }
         else
             descriptionInfo.RemoveCard();
     }

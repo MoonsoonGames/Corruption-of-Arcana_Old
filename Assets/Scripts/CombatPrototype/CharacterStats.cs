@@ -319,7 +319,7 @@ public class CharacterStats : MonoBehaviour
 
     #region Statuses
 
-    public void ApplyStatus(StatusParent status, int duration)
+    public virtual void ApplyStatus(StatusParent status, int duration)
     {
         Debug.Log("Applied " + status.effectName);
         if (!statuses.ContainsKey(status))
