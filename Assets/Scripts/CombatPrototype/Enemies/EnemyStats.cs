@@ -45,7 +45,7 @@ public class EnemyStats : CharacterStats
 
         if (boss && enemy != null)
         {
-            GameObject.FindObjectOfType<LoadSettings>().AddToGuidebook(enemy.guidebookOrder);
+            GameObject.FindObjectOfType<LoadSettings>().AddToGuidebook(enemy.displayName);
         }
 
         enemyManager.enemies.Remove(GetComponent<Enemy>());
@@ -64,7 +64,7 @@ public class EnemyStats : CharacterStats
 
         if (status.revealEntry && enemy != null)
         {
-            GameObject.FindObjectOfType<LoadSettings>().AddToGuidebook(enemy.guidebookOrder);
+            GameObject.FindObjectOfType<LoadSettings>().AddToGuidebook(enemy.displayName);
         }
     }
 }

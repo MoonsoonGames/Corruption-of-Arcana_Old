@@ -197,7 +197,7 @@ public class Enemy : MonoBehaviour
 
     public void DisplayCard(bool display)
     {
-        if (loadSettings.CheckExposed(guidebookOrder) && display)
+        if (loadSettings.CheckExposed(displayName) && display)
         {
             descriptionInfo.ReadyCard(displayName, attackName, damage, damageType, desciption, sprite);
         }
