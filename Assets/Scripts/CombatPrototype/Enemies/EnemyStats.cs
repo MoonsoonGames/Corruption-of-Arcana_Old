@@ -58,9 +58,9 @@ public class EnemyStats : CharacterStats
         //disable targetting, health and taking turns
     }
 
-    public override void ApplyStatus(StatusParent status, int duration)
+    public override void ApplyStatus(StatusParent status, GameObject caster, int duration)
     {
-        base.ApplyStatus(status, duration);
+        base.ApplyStatus(status, caster, duration);
 
         if (status.revealEntry && enemy != null)
         {

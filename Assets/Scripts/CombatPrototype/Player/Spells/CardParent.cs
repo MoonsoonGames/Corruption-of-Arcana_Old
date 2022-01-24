@@ -14,16 +14,34 @@ public class CardParent : ScriptableObject
     public string flavourDescription;
     public Sprite cardImage;
 
-    public void CastSpell(GameObject target, AbilityManager abilityManager)
+    public bool enemySpell;
+
+    public void CastSpell(GameObject target, GameObject caster, AbilityManager abilityManager)
     {
-        //Debug.Log("Self is " + selfInterpretationUnlocked + " || Target is " + target);
-        if (target.GetComponent<PlayerStats>() != null && selfInterpretationUnlocked)
+        if (!enemySpell)
         {
-            OnSelfCast(target, abilityManager);
+            //Debug.Log("Self is " + selfInterpretationUnlocked + " || Target is " + target);
+            if (target.GetComponent<PlayerStats>() != null && selfInterpretationUnlocked)
+            {
+                OnSelfCast(target, caster, abilityManager);
+            }
+            else if (target.GetComponent<EnemyStats>() != null && targetInterpretationUnlocked)
+            {
+                OnTargetCast(target, caster, abilityManager);
+            }
         }
-        else if (target.GetComponent<EnemyStats>() != null && targetInterpretationUnlocked)
+        else
         {
-            OnTargetCast(target, abilityManager);
+            Debug.Log("Spell Cast");
+            //Debug.Log("Self is " + selfInterpretationUnlocked + " || Target is " + target);
+            if (target.GetComponent<EnemyStats>() != null && selfInterpretationUnlocked)
+            {
+                OnSelfCast(target, caster, abilityManager);
+            }
+            else if (target.GetComponent<PlayerStats>() != null && targetInterpretationUnlocked)
+            {
+                OnTargetCast(target, caster, abilityManager);
+            }
         }
     }
 
@@ -48,10 +66,10 @@ public class CardParent : ScriptableObject
     //public GameObject selfPrepareEffect;
     //public GameObject selfCastEffect;
 
-    public void OnSelfCast(GameObject target, AbilityManager abilityManager)
+    public void OnSelfCast(GameObject target, GameObject caster, AbilityManager abilityManager)
     {
-        PlayerStats playerStats = target.GetComponent<PlayerStats>();
-        if (playerStats != null && abilityManager != null)
+        CharacterStats stats = target.GetComponent<CharacterStats>();
+        if (stats != null && abilityManager != null)
         {
             abilityManager.MouseLeft();
 
@@ -60,23 +78,28 @@ public class CardParent : ScriptableObject
                 int heal = (int)Random.Range(selfHeal.x, selfHeal.y);
                 int mana = (int)Random.Range(selfAP.x, selfAP.y);
 
-                Debug.Log("Cast" + selfName + "on Taro");
+                Debug.Log("Cast" + selfName + "on " + target.name);
 
-                playerStats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int damageTaken, playerStats.gameObject);
+                stats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int damageTaken, stats.gameObject);
                 abilityManager.combatManager.Healing.SetActive(true);
                 abilityManager.combatManager.HealingValue.text = heal.ToString();
 
-                playerStats.ChangeMana(selfCost - mana, true);
-                abilityManager.combatManager.Ap.SetActive(true);
-                abilityManager.combatManager.ApValue.text = selfCost.ToString();
+                PlayerStats playerStats = target.GetComponent<PlayerStats>();
 
-                playerStats.ChangePotions(selfPotionCost, true);
+                SelfApplyStatus(stats, caster);
 
-                SelfApplyStatus(playerStats);
+                if (!enemySpell)
+                {
+                    stats.ChangeMana(selfCost - mana, true);
+                    abilityManager.combatManager.Ap.SetActive(true);
+                    abilityManager.combatManager.ApValue.text = selfCost.ToString();
 
-                abilityManager.ResetAbility();
+                    playerStats.ChangePotions(selfPotionCost, true);
 
-                abilityManager.EndTurn(selfEndTurnDelay);
+                    abilityManager.ResetAbility();
+
+                    abilityManager.EndTurn(selfEndTurnDelay);
+                }
             }
             else
             {
@@ -127,12 +150,12 @@ public class CardParent : ScriptableObject
 
     public E_CombatEffectSpawn spawnPosition;
 
-    public void OnTargetCast(GameObject target, AbilityManager abilityManager)
+    public void OnTargetCast(GameObject target, GameObject caster, AbilityManager abilityManager)
     {
-        EnemyStats enemyStats = target.GetComponent<EnemyStats>();
-        if (enemyStats != null)
+        CharacterStats stats = target.GetComponent<CharacterStats>();
+        if (stats != null)
         {
-            Transform spawnPos = GetSpawnLocation(abilityManager);
+            Transform spawnPos = GetSpawnLocation(abilityManager, caster);
 
             int cost = targetCost;
             if (abilityManager.playerStats.CheckMana(cost))
@@ -146,18 +169,18 @@ public class CardParent : ScriptableObject
 
                     foreach (var item in abilityManager.combatManager.enemyManager.enemies)
                     {
-                        EnemyStats itemHealth = item.gameObject.GetComponent<EnemyStats>();
+                        CharacterStats itemHealth = item.gameObject.GetComponent<CharacterStats>();
                         message += item.gameObject.name + ", ";
 
                         if (item.gameObject == target)
                         {
-                            abilityManager.DelayDamage(targetDmg, damageType, 0f, spawnPos, target, itemHealth, executeThreshold, healOnKill);
-                            TargetApplyStatus(itemHealth);
+                            abilityManager.DelayDamage(targetDmg, damageType, 0f, spawnPos, target, caster, itemHealth, executeThreshold, healOnKill);
+                            TargetApplyStatus(itemHealth, caster);
                         }
                         else
                         {
-                            abilityManager.DelayDamage(extraDmg, damageType, 0.25f, target.transform, item.gameObject, itemHealth, executeThreshold, healOnKill);
-                            TargetApplyStatus(itemHealth);
+                            abilityManager.DelayDamage(extraDmg, damageType, 0.25f, target.transform, item.gameObject, caster, itemHealth, executeThreshold, healOnKill);
+                            TargetApplyStatus(itemHealth, caster);
                         }
                     }
 
@@ -175,18 +198,18 @@ public class CardParent : ScriptableObject
 
                     foreach (var item in abilityManager.combatManager.enemyManager.enemies)
                     {
-                        EnemyStats itemHealth = item.gameObject.GetComponent<EnemyStats>();
+                        CharacterStats itemHealth = item.gameObject.GetComponent<CharacterStats>();
                         message += item.gameObject.name + ", ";
 
                         if (item.gameObject == target)
                         {
-                            abilityManager.DelayDamage(targetDmg, damageType, 0f, spawnPos, item.gameObject, itemHealth, executeThreshold, healOnKill);
-                            TargetApplyStatus(itemHealth);
+                            abilityManager.DelayDamage(targetDmg, damageType, 0f, spawnPos, item.gameObject, caster, itemHealth, executeThreshold, healOnKill);
+                            TargetApplyStatus(itemHealth, caster);
                         }
                         else
                         {
-                            abilityManager.DelayDamage(extraDmg, damageType, 0.1f, spawnPos, item.gameObject, itemHealth, executeThreshold, healOnKill);
-                            TargetApplyStatus(itemHealth);
+                            abilityManager.DelayDamage(extraDmg, damageType, 0.1f, spawnPos, item.gameObject, caster, itemHealth, executeThreshold, healOnKill);
+                            TargetApplyStatus(itemHealth, caster);
                         }
                     }
 
@@ -215,8 +238,8 @@ public class CardParent : ScriptableObject
                             Vector2 dmgVector = targetDmg;
                             float hitTime = i * hitInterval;
 
-                            abilityManager.DelayDamage(dmgVector, damageType, hitTime, spawnPos, enemyStatsArray[randTarget].gameObject, enemyStatsArray[randTarget], executeThreshold, healOnKill);
-                            TargetApplyStatus(enemyStatsArray[randTarget]);
+                            abilityManager.DelayDamage(dmgVector, damageType, hitTime, spawnPos, enemyStatsArray[randTarget].gameObject, caster, enemyStatsArray[randTarget], executeThreshold, healOnKill);
+                            TargetApplyStatus(enemyStatsArray[randTarget], caster);
 
                             int nextRandTarget = Random.Range(0, enemyStatsArray.Length);
 
@@ -234,15 +257,15 @@ public class CardParent : ScriptableObject
                         Vector2 dmgVectorFinal = targetFinalDmg;
                         float hitTimeFinal = (hits * hitInterval) + finalHitInterval;
 
-                        abilityManager.DelayDamage(dmgVectorFinal, damageType, hitTimeFinal, spawnPos, target, enemyStats, executeThreshold, healOnKill);
-                        TargetApplyStatus(enemyStats);
+                        abilityManager.DelayDamage(dmgVectorFinal, damageType, hitTimeFinal, spawnPos, target, caster, stats, executeThreshold, healOnKill);
+                        TargetApplyStatus(stats, caster);
                     }
                     else
                     {
                         Vector2 dmgVector = targetDmg;
 
-                        abilityManager.DelayDamage(dmgVector, damageType, 0f, spawnPos, target, enemyStats, executeThreshold, healOnKill);
-                        TargetApplyStatus(enemyStats);
+                        abilityManager.DelayDamage(dmgVector, damageType, 0f, spawnPos, target, caster, stats, executeThreshold, healOnKill);
+                        TargetApplyStatus(stats, caster);
                     }
                 } //random targets
                 else
@@ -257,32 +280,43 @@ public class CardParent : ScriptableObject
                             Vector2 dmgVector = targetDmg;
                             float hitTime = i * hitInterval;
 
-                            abilityManager.DelayDamage(dmgVector, damageType, hitTime, spawnPos, target, enemyStats, executeThreshold, healOnKill);
-                            TargetApplyStatus(enemyStats);
+                            abilityManager.DelayDamage(dmgVector, damageType, hitTime, spawnPos, target, caster, stats, executeThreshold, healOnKill);
+                            TargetApplyStatus(stats, caster);
                         }
 
                         Vector2 dmgVectorFinal = targetFinalDmg;
                         float hitTimeFinal = (hits * hitInterval) + finalHitInterval;
 
-                        abilityManager.DelayDamage(dmgVectorFinal, damageType, hitTimeFinal, spawnPos, target, enemyStats, executeThreshold, healOnKill);
-                        TargetApplyStatus(enemyStats);
+                        abilityManager.DelayDamage(dmgVectorFinal, damageType, hitTimeFinal, spawnPos, target, caster, stats, executeThreshold, healOnKill);
+                        TargetApplyStatus(stats, caster);
                     }
                     else
                     {
                         Vector2 dmgVector = targetDmg;
 
-                        abilityManager.DelayDamage(dmgVector, damageType, 0f, spawnPos, target, enemyStats, executeThreshold, healOnKill);
-                        TargetApplyStatus(enemyStats);
+                        abilityManager.DelayDamage(dmgVector, damageType, 0f, spawnPos, target, caster, stats, executeThreshold, healOnKill);
+                        TargetApplyStatus(stats, caster);
                     }
                 } //single target attack
 
-                abilityManager.playerStats.ChangeMana(cost, true);
-                abilityManager.combatManager.Ap.SetActive(true);
-                abilityManager.combatManager.ApValue.text = cost.ToString();
+                if (!enemySpell)
+                {
+                    abilityManager.playerStats.ChangeMana(cost, true);
+                    abilityManager.combatManager.Ap.SetActive(true);
+                    abilityManager.combatManager.ApValue.text = cost.ToString();
 
-                abilityManager.ResetAbility();
+                    abilityManager.ResetAbility();
 
-                abilityManager.EndTurn(targetEndTurnDelay);
+                    abilityManager.EndTurn(targetEndTurnDelay);
+                }
+
+                CharacterStats casterStats = caster.GetComponent<CharacterStats>();
+
+                if (casterStats != null)
+                {
+                    int heal = Random.Range(lifeLeach.x, lifeLeach.y);
+                    casterStats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int healNull, caster);
+                }
             }
             else
             {
@@ -388,31 +422,38 @@ public class CardParent : ScriptableObject
         }
     }
 
-    Transform GetSpawnLocation(AbilityManager abilityManager)
+    Transform GetSpawnLocation(AbilityManager abilityManager, GameObject caster)
     {
-        if (spawnPosition == E_CombatEffectSpawn.Sky)
+        if (!enemySpell)
         {
-            return abilityManager.skySpawnPos;
-        }
-        else if (spawnPosition == E_CombatEffectSpawn.Ground)
-        {
-            return abilityManager.groundSpawnPos;
-        }
-        else if (spawnPosition == E_CombatEffectSpawn.Enemies)
-        {
-            return abilityManager.enemiesSpawnPos;
-        }
-        else if (spawnPosition == E_CombatEffectSpawn.Backstab)
-        {
-            return abilityManager.backstabSpawnPos;
+            if (spawnPosition == E_CombatEffectSpawn.Sky)
+            {
+                return abilityManager.skySpawnPos;
+            }
+            else if (spawnPosition == E_CombatEffectSpawn.Ground)
+            {
+                return abilityManager.groundSpawnPos;
+            }
+            else if (spawnPosition == E_CombatEffectSpawn.Enemies)
+            {
+                return abilityManager.enemiesSpawnPos;
+            }
+            else if (spawnPosition == E_CombatEffectSpawn.Backstab)
+            {
+                return abilityManager.backstabSpawnPos;
+            }
+            else
+            {
+                return abilityManager.playerSpawnPos;
+            }
         }
         else
         {
-            return abilityManager.playerSpawnPos;
+            return caster.transform;
         }
     }
 
-    void SelfApplyStatus(CharacterStats target)
+    void SelfApplyStatus(CharacterStats target, GameObject caster)
     {
         if (selfStatus != null)
         {
@@ -420,13 +461,13 @@ public class CardParent : ScriptableObject
             {
                 for (int i = 0; i < selfStatus.Length; i++)
                 {
-                    target.ApplyStatus(selfStatus[i], selfStatusDuration[i]);
+                    target.ApplyStatus(selfStatus[i], caster, selfStatusDuration[i]);
                 }
             }
         }
     }
 
-    void TargetApplyStatus(CharacterStats target)
+    void TargetApplyStatus(CharacterStats target, GameObject caster)
     {
         if (targetStatus != null)
         {
@@ -441,7 +482,7 @@ public class CardParent : ScriptableObject
                     if (randomNumber < targetStatusChance[i])
                     {
                         //apply status
-                        target.ApplyStatus(targetStatus[i], targetStatusDuration[i]);
+                        target.ApplyStatus(targetStatus[i], caster, targetStatusDuration[i]);
                     }
                 }
             }

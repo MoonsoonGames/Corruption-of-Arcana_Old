@@ -319,14 +319,14 @@ public class CharacterStats : MonoBehaviour
 
     #region Statuses
 
-    public virtual void ApplyStatus(StatusParent status, int duration)
+    public virtual void ApplyStatus(StatusParent status, GameObject caster, int duration)
     {
         Debug.Log("Applied " + status.effectName);
         if (!statuses.ContainsKey(status))
         {
             statuses.Add(status, duration + 1);
 
-            status.OnApply(this.gameObject);
+            status.OnApply(this.gameObject, this.gameObject);
         }
         else
         {
@@ -341,7 +341,7 @@ public class CharacterStats : MonoBehaviour
     {
         foreach (var item in statuses)
         {
-            item.Key.OnTurnStart(this.gameObject);
+            item.Key.OnTurnStart(this.gameObject, this.gameObject);
         }
     }
 
@@ -378,7 +378,7 @@ public class CharacterStats : MonoBehaviour
     {
         foreach (var item in statuses)
         {
-            item.Key.OnTakeDamage(attacker, GameObject.FindObjectOfType<AbilityManager>());
+            item.Key.OnTakeDamage(attacker, this.gameObject, GameObject.FindObjectOfType<AbilityManager>());
         }
     }
 
