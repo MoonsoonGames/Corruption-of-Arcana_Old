@@ -319,20 +319,28 @@ public class CharacterStats : MonoBehaviour
 
     #region Statuses
 
-    public virtual void ApplyStatus(StatusParent status, GameObject caster, int duration)
+    public virtual void ApplyStatus(StatusParent status, GameObject caster, int statusDuration)
     {
-        Debug.Log("Applied " + status.effectName);
+        //Debug.Log("Applied " + status.effectName);
+
+        int duration = statusDuration;
+
+        if (caster == this.gameObject)
+        {
+            duration++;
+        }
+
         if (!statuses.ContainsKey(status))
         {
-            statuses.Add(status, duration + 1);
+            statuses.Add(status, duration);
 
             status.OnApply(this.gameObject, this.gameObject);
         }
         else
         {
-            if (statuses[status] < duration + 1)
+            if (statuses[status] < duration)
             {
-                statuses[status] = duration + 1;
+                statuses[status] = duration;
             }
         }
     }
@@ -354,7 +362,7 @@ public class CharacterStats : MonoBehaviour
             item.Key.OnTurnEnd(this.gameObject);
 
             int turnsLeft = item.Value - 1;
-            Debug.Log(item.Key + " has " + turnsLeft + " turns left");
+            //Debug.Log(item.Key + " has " + turnsLeft + " turns left");
             if (turnsLeft > 0)
             {
                 statusesCopy.Add(item.Key, turnsLeft);

@@ -10,39 +10,36 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d042955bf60bea84b9273684d78676b5, type: 3}
-  m_Name: 18Moon
+  m_Name: 9Hermit
   m_EditorClassIdentifier: 
-  cardName: The Moon
-  cardNumber: 7
-  flavourDescription: There shall come a calm upon the animal nature, while the abyss
-    beneath shall cease from giving up a form
+  cardName: The Hermit
+  cardNumber: 9
+  flavourDescription: "The Lamp of Truth guides the unknowing, the patriarch\u2019s
+    staff helps him navigate narrow paths and his cloak is a form of discretion"
   cardImage: {fileID: 0}
   enemySpell: 0
-  selfInterpretationUnlocked: 0
-  selfName: 
-  selfDescription: 
-  selfCost: 0
+  selfInterpretationUnlocked: 1
+  selfName: Cloak of Discretion
+  selfDescription: Disguise your form, hiding from your opponents and causing them
+    to be unable to target you with their abilities
+  selfCost: 20
   selfPotionCost: 0
-  selfCostType: 
+  selfCostType: AP
   selfHeal: {x: 0, y: 0}
   selfAP: {x: 0, y: 0}
   restoreType: 0
   selfEndTurnDelay: 0.2
-  selfStatus: []
-  selfStatusDuration: 
-  targetInterpretationUnlocked: 1
-  targetName: Revelation
-  targetDescription: 'Use the light of the moon to reveal your opponents, exposing
-    their weaknesses and revealing their log entry in the journal
-
-
-    Also allows
-    to to click on the enemy to view their stats in combat'
-  targetCost: 15
-  targetCostType: AP
-  damageType: 3
+  selfStatus:
+  - {fileID: 11400000, guid: d8d4bb0d002a04c49a5b898acd885737, type: 2}
+  selfStatusDuration: 01000000
+  targetInterpretationUnlocked: 0
+  targetName: 
+  targetDescription: 
+  targetCost: 0
+  targetCostType: 
+  damageType: 0
   targetDmg: {x: 0, y: 0}
-  hits: 1
+  hits: 0
   hitInterval: 0
   finalHitInterval: 0
   targetFinalDmg: {x: 0, y: 0}
@@ -54,12 +51,10 @@ MonoBehaviour:
   lifeLeach: {x: 0, y: 0}
   healOnKill: {x: 0, y: 0}
   executeThreshold: 0
-  targetStatus:
-  - {fileID: 11400000, guid: a71ba48d9e31518499d97057b673a672, type: 2}
-  targetStatusDuration: 05000000
-  targetStatusChance:
-  - 1
-  spawnPosition: 2
+  targetStatus: []
+  targetStatusDuration: 
+  targetStatusChance: []
+  spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0
   summonFX: {fileID: 0}

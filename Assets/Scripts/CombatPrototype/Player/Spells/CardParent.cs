@@ -32,7 +32,7 @@ public class CardParent : ScriptableObject
         }
         else
         {
-            Debug.Log("Spell Cast");
+            //Debug.Log("Spell Cast");
             //Debug.Log("Self is " + selfInterpretationUnlocked + " || Target is " + target);
             if (target.GetComponent<EnemyStats>() != null && selfInterpretationUnlocked)
             {
@@ -79,7 +79,7 @@ public class CardParent : ScriptableObject
                 int heal = (int)Random.Range(selfHeal.x, selfHeal.y);
                 int mana = (int)Random.Range(selfAP.x, selfAP.y);
 
-                Debug.Log("Cast" + selfName + "on " + target.name);
+                //Debug.Log("Cast" + selfName + "on " + target.name);
 
                 stats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int damageTaken, stats.gameObject);
                 abilityManager.combatManager.Healing.SetActive(true);
@@ -347,30 +347,33 @@ public class CardParent : ScriptableObject
 
     void Summon(GameObject caster)
     {
-        int currentSpawnNumber = caster.GetComponentInParent<CombatEnemySpawner>().enemyNumber;
-
-        CombatEnemySpawner[] spawners = GameObject.FindObjectsOfType<CombatEnemySpawner>();
-
-        int spawned = 0;
-
-        foreach (var item in spawners)
+        if (summonAlly != null && summonCount > 0)
         {
-            if (item.enemyNumber != currentSpawnNumber)
-            {
-                if (item.GetComponentInChildren<Enemy>() == null)
-                {
-                    item.Spawn(summonAlly);
-                    SpawnFX(summonFX, item.transform);
+            int currentSpawnNumber = caster.GetComponentInParent<CombatEnemySpawner>().enemyNumber;
 
-                    spawned++;
+            CombatEnemySpawner[] spawners = GameObject.FindObjectsOfType<CombatEnemySpawner>();
+
+            int spawned = 0;
+
+            foreach (var item in spawners)
+            {
+                if (item.enemyNumber != currentSpawnNumber)
+                {
+                    if (item.GetComponentInChildren<Enemy>() == null)
+                    {
+                        item.Spawn(summonAlly);
+                        SpawnFX(summonFX, item.transform);
+
+                        spawned++;
+                    }
                 }
+
+                if (spawned >= summonCount)
+                    break;
             }
 
-            if (spawned >= summonCount)
-                break;
+            GameObject.FindObjectOfType<EnemyManager>().SetupLists();
         }
-
-        GameObject.FindObjectOfType<EnemyManager>().SetupLists();
     }
 
     #endregion

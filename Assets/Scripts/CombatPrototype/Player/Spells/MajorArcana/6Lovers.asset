@@ -10,38 +10,39 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d042955bf60bea84b9273684d78676b5, type: 3}
-  m_Name: E_GroundPound
+  m_Name: 6Lovers
   m_EditorClassIdentifier: 
-  cardName: Ground Pound
-  cardNumber: 0
-  flavourDescription: 
+  cardName: The Lovers
+  cardNumber: 6
+  flavourDescription: Whatever the choice, it should not be made lightly, as the
+    ramifications will be lasting
   cardImage: {fileID: 0}
-  enemySpell: 1
-  selfInterpretationUnlocked: 0
-  selfName: 
-  selfDescription: 
-  selfCost: 0
+  enemySpell: 0
+  selfInterpretationUnlocked: 1
+  selfName: Enthralling Gaze
+  selfDescription: With an alluring gaze, you enthrall your targets, silencing them
+  selfCost: 25
   selfPotionCost: 0
-  selfCostType: 
+  selfCostType: AP
   selfHeal: {x: 0, y: 0}
   selfAP: {x: 0, y: 0}
-  restoreType: 0
+  restoreType: 7
   selfEndTurnDelay: 0.2
-  selfStatus: []
-  selfStatusDuration: 
-  targetInterpretationUnlocked: 1
-  targetName: Ground Pound
-  targetDescription: The enemy strikes the ground twice, causing Physical damage
-    and knocking Taro off balance
+  selfStatus:
+  - {fileID: 11400000, guid: 30d7d54c4e9fb974dabf48061e061fe4, type: 2}
+  selfStatusDuration: 03000000
+  targetInterpretationUnlocked: 0
+  targetName: 
+  targetDescription: 
   targetCost: 0
   targetCostType: 
   damageType: 0
-  targetDmg: {x: 6, y: 10}
-  hits: 2
-  hitInterval: 0.1
-  finalHitInterval: 0.1
-  targetFinalDmg: {x: 5, y: 8}
-  targetEndTurnDelay: 1
+  targetDmg: {x: 0, y: 0}
+  hits: 0
+  hitInterval: 0
+  finalHitInterval: 0
+  targetFinalDmg: {x: 0, y: 0}
+  targetEndTurnDelay: 0.2
   targetCleave: 0
   targetChain: 0
   extraDmg: {x: 0, y: 0}
@@ -49,11 +50,9 @@ MonoBehaviour:
   lifeLeach: {x: 0, y: 0}
   healOnKill: {x: 0, y: 0}
   executeThreshold: 0
-  targetStatus:
-  - {fileID: 11400000, guid: 248186047f0223649a1003cedd41cb2e, type: 2}
-  targetStatusDuration: 03000000
-  targetStatusChance:
-  - 0.6
+  targetStatus: []
+  targetStatusDuration: 
+  targetStatusChance: []
   spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0

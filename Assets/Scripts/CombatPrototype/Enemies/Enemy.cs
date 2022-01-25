@@ -80,7 +80,7 @@ public class Enemy : MonoBehaviour
             {
                 basicAttacks[currentAttack].CastSpell(player, this.gameObject, abilityManager);
                 currentAttack++;
-                if (currentAttack > basicAttacks.Count)
+                if (currentAttack >= basicAttacks.Count)
                 {
                     currentAttack = 0;
                 }
@@ -137,7 +137,7 @@ public class Enemy : MonoBehaviour
 
     public float GetEndTurnDelay()
     {
-        if (enemyStats != null && abilityManager != null)
+        if (enemyStats != null)
         {
             if (enemyStats.charm)
             {
@@ -187,7 +187,7 @@ public class Enemy : MonoBehaviour
         damageType = E_DamageTypes.Physical;
         description = "";
 
-        if (enemyStats != null && abilityManager != null)
+        if (enemyStats != null)
         {
             if (enemyStats.charm)
             {

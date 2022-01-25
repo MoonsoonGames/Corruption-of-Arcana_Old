@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d042955bf60bea84b9273684d78676b5, type: 3}
-  m_Name: E_GroundPound
+  m_Name: E_Stomp
   m_EditorClassIdentifier: 
-  cardName: Ground Pound
+  cardName: Stomp
   cardNumber: 0
   flavourDescription: 
   cardImage: {fileID: 0}
@@ -30,14 +30,14 @@ MonoBehaviour:
   selfStatus: []
   selfStatusDuration: 
   targetInterpretationUnlocked: 1
-  targetName: Ground Pound
-  targetDescription: The enemy strikes the ground twice, causing Physical damage
-    and knocking Taro off balance
+  targetName: Stomp
+  targetDescription: The enemy strikes Taro, causing Physical damage and knocking
+    Taro off balance
   targetCost: 0
   targetCostType: 
   damageType: 0
   targetDmg: {x: 6, y: 10}
-  hits: 2
+  hits: 1
   hitInterval: 0.1
   finalHitInterval: 0.1
   targetFinalDmg: {x: 5, y: 8}
@@ -51,7 +51,7 @@ MonoBehaviour:
   executeThreshold: 0
   targetStatus:
   - {fileID: 11400000, guid: 248186047f0223649a1003cedd41cb2e, type: 2}
-  targetStatusDuration: 03000000
+  targetStatusDuration: 02000000
   targetStatusChance:
   - 0.6
   spawnPosition: 0
