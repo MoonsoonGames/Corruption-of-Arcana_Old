@@ -80,7 +80,6 @@ public class StatusParent : ScriptableObject
     public bool immune;
     */
 
-    
     [Header("Debuffs")]
     public bool charm;
     public bool revealEntry;
@@ -88,41 +87,20 @@ public class StatusParent : ScriptableObject
     public bool sleepTurn;
     public bool silence;
 
-    /*
     [Header("Debuff Others")]
     public bool charmOther;
     public bool revealEntryOther;
-    public float shareDamagePercentOther;
-    public float reduceDmgPercentOther;
-    public float reduceDefPercentOther;
-    public float reduceAccPercentOther;
-    public float reduceDodgePercentOther;
     public bool skipTurnOther;
     public bool sleepTurnOther;
     public bool silenceOther;
-    public float reducePhysResistOther;
-    public float reduceEmberResistOther;
-    public float reduceStaticResistOther;
-    public float reduceBleakResistOther;
-    public float reduceSepticResistOther;
 
-    [Header("Debuff Others on Hit")]
-    public bool charmOtherOnHit;
-    public bool revealEntryOtherOnHit;
-    public float shareDamagePercentOtherOnHit;
-    public float reduceDmgPercentOtherOnHit;
-    public float reduceDefPercentOtherOnHit;
-    public float reduceAccPercentOtherOnHit;
-    public float reduceDodgePercentOtherOnHit;
-    public bool skipTurnOtherOnHit;
-    public bool sleepTurnOtherOnHit;
-    public bool silenceOtherOnHit;
-    public float reducePhysResistOtherOnHit;
-    public float reduceEmberResistOtherOnHit;
-    public float reduceStaticResistOtherOnHit;
-    public float reduceBleakResistOtherOnHit;
-    public float reduceSepticResistOtherOnHit;
-    */
+    [Header("Debuff Opponents")]
+    public bool charmOpponents;
+    public bool revealEntryOpponents;
+    public bool skipTurnOpponents;
+    public bool sleepTurnOpponents;
+    public bool silenceOpponents;
+
     #endregion
 
     #endregion
@@ -139,13 +117,15 @@ public class StatusParent : ScriptableObject
         ApplyHealing(target);
 
         ApplyStatAdjustments(target);
-        ApplyTurnInhibitors(target);
+        ApplyTurnInhibitors(target, abilityManager);
     }
 
     public void OnRemove(GameObject target)
     {
+        AbilityManager abilityManager = GameObject.FindObjectOfType<AbilityManager>();
+
         RemoveStatAdjustments(target);
-        RemoveTurnInhibitors(target);
+        RemoveTurnInhibitors(target, abilityManager);
     }
 
     #endregion
@@ -158,7 +138,7 @@ public class StatusParent : ScriptableObject
 
         TurnStartDamage(target, caster, abilityManager);
         TurnStartHealing(target);
-        ApplyTurnInhibitors(target);
+        ApplyTurnInhibitors(target, abilityManager);
     }
 
     public void OnTurnEnd(GameObject target)
@@ -395,53 +375,197 @@ public class StatusParent : ScriptableObject
 
     #region Turn Inhibitors
 
-    void ApplyTurnInhibitors(GameObject target)
+    void ApplyTurnInhibitors(GameObject target, AbilityManager abilityManager)
     {
         CharacterStats stats = target.GetComponent<CharacterStats>();
 
-        if (charm)
+        if (target.GetComponent<EnemyStats>())
         {
-            stats.charm = true;
-        }
+            foreach (var item in abilityManager.combatManager.enemyManager.enemies)
+            {
+                CharacterStats testStats = item.gameObject.GetComponent<CharacterStats>();
 
-        if (silence)
-        {
-            stats.silence = true;
-        }
+                if (testStats != stats)
+                {
+                    if (charmOther)
+                    {
+                        testStats.charm = true;
+                    }
 
-        if (skipTurn)
-        {
-            stats.skipTurn = true;
-        }
+                    if (silenceOther)
+                    {
+                        testStats.silence = true;
+                    }
 
-        if (sleepTurn)
+                    if (skipTurnOther)
+                    {
+                        testStats.skipTurn = true;
+                    }
+
+                    if (sleepTurnOther)
+                    {
+                        testStats.sleepTurn = true;
+                    }
+                }
+            }
+
+            if (applyDamageOpponents.y > 0f)
+            {
+                CharacterStats playerStats = abilityManager.combatManager.playerStats;
+
+                if (playerStats != stats)
+                {
+                    if (charmOpponents)
+                    {
+                        playerStats.charm = true;
+                    }
+
+                    if (silenceOpponents)
+                    {
+                        playerStats.silence = true;
+                    }
+
+                    if (skipTurnOpponents)
+                    {
+                        playerStats.skipTurn = true;
+                    }
+
+                    if (sleepTurnOpponents)
+                    {
+                        playerStats.sleepTurn = true;
+                    }
+                }
+            }
+        }
+        else
         {
-            stats.sleepTurn = true;
+            foreach (var item in abilityManager.combatManager.enemyManager.enemies)
+            {
+                CharacterStats testStats = item.gameObject.GetComponent<CharacterStats>();
+
+                if (testStats != stats)
+                {
+                    if (testStats != stats)
+                    {
+                        if (charmOpponents)
+                        {
+                            testStats.charm = true;
+                        }
+
+                        if (silenceOpponents)
+                        {
+                            testStats.silence = true;
+                        }
+
+                        if (skipTurnOpponents)
+                        {
+                            testStats.skipTurn = true;
+                        }
+
+                        if (sleepTurnOpponents)
+                        {
+                            testStats.sleepTurn = true;
+                        }
+                    }
+                }
+            }
         }
     }
 
-    void RemoveTurnInhibitors(GameObject target)
+    void RemoveTurnInhibitors(GameObject target, AbilityManager abilityManager)
     {
         CharacterStats stats = target.GetComponent<CharacterStats>();
 
-        if (charm)
+        if (target.GetComponent<EnemyStats>())
         {
-            stats.charm = false;
-        }
+            foreach (var item in abilityManager.combatManager.enemyManager.enemies)
+            {
+                CharacterStats testStats = item.gameObject.GetComponent<CharacterStats>();
 
-        if (silence)
-        {
-            stats.silence = false;
-        }
+                if (testStats != stats)
+                {
+                    if (charmOther)
+                    {
+                        testStats.charm = false;
+                    }
 
-        if (skipTurn)
-        {
-            stats.skipTurn = false;
-        }
+                    if (silenceOther)
+                    {
+                        testStats.silence = false;
+                    }
 
-        if (sleepTurn)
+                    if (skipTurnOther)
+                    {
+                        testStats.skipTurn = false;
+                    }
+
+                    if (sleepTurnOther)
+                    {
+                        testStats.sleepTurn = false;
+                    }
+                }
+            }
+
+            if (applyDamageOpponents.y > 0f)
+            {
+                CharacterStats playerStats = abilityManager.combatManager.playerStats;
+
+                if (playerStats != stats)
+                {
+                    if (charmOpponents)
+                    {
+                        playerStats.charm = false;
+                    }
+
+                    if (silenceOpponents)
+                    {
+                        playerStats.silence = false;
+                    }
+
+                    if (skipTurnOpponents)
+                    {
+                        playerStats.skipTurn = false;
+                    }
+
+                    if (sleepTurnOpponents)
+                    {
+                        playerStats.sleepTurn = false;
+                    }
+                }
+            }
+        }
+        else
         {
-            stats.sleepTurn = false;
+            foreach (var item in abilityManager.combatManager.enemyManager.enemies)
+            {
+                CharacterStats testStats = item.gameObject.GetComponent<CharacterStats>();
+
+                if (testStats != stats)
+                {
+                    if (testStats != stats)
+                    {
+                        if (charmOpponents)
+                        {
+                            testStats.charm = false;
+                        }
+
+                        if (silenceOpponents)
+                        {
+                            testStats.silence = false;
+                        }
+
+                        if (skipTurnOpponents)
+                        {
+                            testStats.skipTurn = false;
+                        }
+
+                        if (sleepTurnOpponents)
+                        {
+                            testStats.sleepTurn = false;
+                        }
+                    }
+                }
+            }
         }
     }
 

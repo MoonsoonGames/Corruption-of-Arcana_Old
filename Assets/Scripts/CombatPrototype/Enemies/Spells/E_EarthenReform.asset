@@ -10,38 +10,39 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d042955bf60bea84b9273684d78676b5, type: 3}
-  m_Name: E_GroundPound
+  m_Name: E_EarthenReform
   m_EditorClassIdentifier: 
-  cardName: Ground Pound
+  cardName: Earthen Reform
   cardNumber: 0
   flavourDescription: 
   cardImage: {fileID: 0}
   enemySpell: 1
-  selfInterpretationUnlocked: 0
-  selfName: 
-  selfDescription: 
+  selfInterpretationUnlocked: 1
+  selfName: Earthen Reform
+  selfDescription: The enemy will reform the earth around them into armour, healing
+    them and increasing their resistances for 2 turns
   selfCost: 0
   selfPotionCost: 0
   selfCostType: 
-  selfHeal: {x: 0, y: 0}
+  selfHeal: {x: 5, y: 10}
   selfAP: {x: 0, y: 0}
-  restoreType: 0
+  restoreType: 7
   selfEndTurnDelay: 0.2
-  selfStatus: []
-  selfStatusDuration: 
-  targetInterpretationUnlocked: 1
-  targetName: Ground Pound
-  targetDescription: The enemy strikes the ground twice, causing Physical damage
-    and knocking Taro off balance
+  selfStatus:
+  - {fileID: 11400000, guid: 6166346aa005d984eb083c1a9422efa2, type: 2}
+  selfStatusDuration: 02000000
+  targetInterpretationUnlocked: 0
+  targetName: 
+  targetDescription: 
   targetCost: 0
   targetCostType: 
   damageType: 0
-  targetDmg: {x: 6, y: 10}
-  hits: 2
-  hitInterval: 0.1
-  finalHitInterval: 0.1
-  targetFinalDmg: {x: 5, y: 8}
-  targetEndTurnDelay: 1
+  targetDmg: {x: 0, y: 0}
+  hits: 0
+  hitInterval: 0
+  finalHitInterval: 0
+  targetFinalDmg: {x: 0, y: 0}
+  targetEndTurnDelay: 0.2
   targetCleave: 0
   targetChain: 0
   extraDmg: {x: 0, y: 0}
@@ -49,11 +50,9 @@ MonoBehaviour:
   lifeLeach: {x: 0, y: 0}
   healOnKill: {x: 0, y: 0}
   executeThreshold: 0
-  targetStatus:
-  - {fileID: 11400000, guid: 248186047f0223649a1003cedd41cb2e, type: 2}
-  targetStatusDuration: 03000000
-  targetStatusChance:
-  - 0.6
+  targetStatus: []
+  targetStatusDuration: 
+  targetStatusChance: []
   spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0
