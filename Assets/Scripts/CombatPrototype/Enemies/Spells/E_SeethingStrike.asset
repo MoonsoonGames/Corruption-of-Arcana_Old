@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d042955bf60bea84b9273684d78676b5, type: 3}
-  m_Name: 11Strength
+  m_Name: E_SeethingStrike
   m_EditorClassIdentifier: 
-  cardName: Strength
-  cardNumber: 11
-  flavourDescription: Never Despair
+  cardName: Seething Strike
+  cardNumber: 0
+  flavourDescription: 
   cardImage: {fileID: 0}
+  enemySpell: 1
   selfInterpretationUnlocked: 0
   selfName: 
   selfDescription: 
@@ -24,35 +25,29 @@ MonoBehaviour:
   selfCostType: 
   selfHeal: {x: 0, y: 0}
   selfAP: {x: 0, y: 0}
-  selfEndTurnDelay: 0
+  selfEndTurnDelay: 0.2
   selfStatus: []
   selfStatusDuration: 
   targetInterpretationUnlocked: 1
-  targetName: Overpower
-  targetDescription: 'With a great hew, you carve into your target and cripple their
-    defenses
-
-
-    Also has a high chance to bleed targets'
-  targetCost: 30
-  targetCostType: AP
-  damageType: 6
-  targetDmg: {x: 24, y: 35}
+  targetName: Seething Strike
+  targetDescription: The enemy makes a life draining strike with the Kingmaker sword
+  targetCost: 0
+  targetCostType: 
+  damageType: 3
+  targetDmg: {x: 7, y: 12}
   hits: 1
   hitInterval: 0
   finalHitInterval: 0
   targetFinalDmg: {x: 0, y: 0}
-  targetEndTurnDelay: 0.2
+  targetEndTurnDelay: 0.4
   targetCleave: 0
   targetChain: 0
   extraDmg: {x: 0, y: 0}
   randomTargets: 0
-  lifeLeach: {x: 0, y: 0}
+  lifeLeach: {x: 7, y: 12}
   healOnKill: {x: 0, y: 0}
   executeThreshold: 0
-  targetStatus:
-  - {fileID: 11400000, guid: 0aa56a9e5ce959e4b96c703989b64011, type: 2}
-  targetStatusDuration: 03000000
-  targetStatusChance:
-  - 0.75
+  targetStatus: []
+  targetStatusDuration: 
+  targetStatusChance: []
   spawnPosition: 0

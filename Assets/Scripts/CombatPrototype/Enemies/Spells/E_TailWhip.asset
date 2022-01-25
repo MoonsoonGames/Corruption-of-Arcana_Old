@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d042955bf60bea84b9273684d78676b5, type: 3}
-  m_Name: 10WheelOfFortune
+  m_Name: E_TailWhip
   m_EditorClassIdentifier: 
-  cardName: Wheel of Fortune
-  cardNumber: 10
-  flavourDescription: Fortune Favours the Bold
+  cardName: Cruel Infection
+  cardNumber: 0
+  flavourDescription: 
   cardImage: {fileID: 0}
+  enemySpell: 1
   selfInterpretationUnlocked: 0
   selfName: 
   selfDescription: 
@@ -25,24 +26,28 @@ MonoBehaviour:
   selfHeal: {x: 0, y: 0}
   selfAP: {x: 0, y: 0}
   selfEndTurnDelay: 0.2
+  selfStatus: []
+  selfStatusDuration: 
   targetInterpretationUnlocked: 1
-  targetName: Four Seasons
-  targetDescription: Conjure an elemental storm, causing 16 bolts of elemental energy
-    to hit random enemies with a random damage
-  targetCost: 55
-  targetCostType: AP
-  damageType: 5
-  targetDmg: {x: 4, y: 6}
-  hits: 16
-  hitInterval: 0.1
-  finalHitInterval: 0.1
-  targetFinalDmg: {x: 4, y: 6}
-  targetEndTurnDelay: 2
+  targetName: Cruel Infection
+  targetDescription: The enemy makes a tail whip attack
+  targetCost: 0
+  targetCostType: 
+  damageType: 0
+  targetDmg: {x: 12, y: 16}
+  hits: 1
+  hitInterval: 0
+  finalHitInterval: 0
+  targetFinalDmg: {x: 0, y: 0}
+  targetEndTurnDelay: 0.4
   targetCleave: 0
   targetChain: 0
   extraDmg: {x: 0, y: 0}
-  randomTargets: 1
+  randomTargets: 0
   lifeLeach: {x: 0, y: 0}
   healOnKill: {x: 0, y: 0}
   executeThreshold: 0
-  spawnPosition: 2
+  targetStatus: []
+  targetStatusDuration: 
+  targetStatusChance: []
+  spawnPosition: 0

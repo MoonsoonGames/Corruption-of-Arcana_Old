@@ -11,17 +11,10 @@ public class Enemy : MonoBehaviour
     [TextArea(1, 4)]
     public string desciption;
 
-    public Vector2 damage = new Vector2(18, 22);
-    public E_DamageTypes damageType;
-    public int hitCount = 1;
-
+    AbilityManager abilityManager;
     GameObject player;
-
     private PlayerStats playerStats;
-
     private EnemyStats enemyStats;
-
-    public string attackName = "Slash";
 
     private bool canAttack = true;
 
@@ -66,11 +59,18 @@ public class Enemy : MonoBehaviour
         enemyStats = GetComponent<EnemyStats>();
 
         loadSettings = GameObject.Find("LoadSettings").GetComponent<LoadSettings>();
+
+        abilityManager = GameObject.FindObjectOfType<AbilityManager>();
     }
+
+    public List<CardParent> basicAttacks;
+    public int currentAttack = 0;
+    public List<CardParent> spells;
+    public int currentSpell = 0;
 
     public void TakeTurn()
     {
-        if (canAttack && enemyStats != null)
+        if (canAttack && enemyStats != null && abilityManager != null)
         {
             if (enemyStats.charm)
             {
@@ -78,7 +78,12 @@ public class Enemy : MonoBehaviour
             }
             else if (enemyStats.silence)
             {
-                //silence code here
+                basicAttacks[currentAttack].CastSpell(player, this.gameObject, abilityManager);
+                currentAttack++;
+                if (currentAttack > basicAttacks.Count)
+                {
+                    currentAttack = 0;
+                }
             }
             else if (enemyStats.skipTurn || enemyStats.sleepTurn)
             {
@@ -86,23 +91,109 @@ public class Enemy : MonoBehaviour
             }
             else
             {
-                for (int i = 0; i < hitCount; i++)
+                if (spells.Count > 0)
                 {
-                    Invoke("BasicAttack", 0.25f * i);
+                    spells[currentSpell].CastSpell(player, this.gameObject, abilityManager);
+                    currentSpell++;
+                    if (currentSpell >= spells.Count)
+                    {
+                        currentSpell = 0;
+                    }
+                }
+                else
+                {
+                    basicAttacks[currentAttack].CastSpell(player, this.gameObject, abilityManager);
+                    currentAttack++;
+                    if (currentAttack >= basicAttacks.Count)
+                    {
+                        currentAttack = 0;
+                    }
                 }
             }
         }
     }
 
-    public void BasicAttack()
+    public float GetEndTurnDelay()
     {
-        SpawnAttackEffect(player, damageType);
+        if (enemyStats != null && abilityManager != null)
+        {
+            if (enemyStats.charm)
+            {
+                return 0;
+            }
+            else if (enemyStats.silence)
+            {
+                return basicAttacks[currentAttack].targetEndTurnDelay;
+            }
+            else if (enemyStats.skipTurn || enemyStats.sleepTurn)
+            {
+                return 0;
+            }
+            else
+            {
+                if (spells.Count > 0)
+                {
+                    return spells[currentSpell].targetEndTurnDelay;
+                }
+                else
+                {
+                    return basicAttacks[currentAttack].targetEndTurnDelay;
+                }
+            }
+        }
+        else
+        {
+            return 0;
+        }
+    }
 
-        int randDMG = (int)Random.Range(damage.x, damage.y);
+    public void GetAbilityInfo(out string attackName, out Vector2Int damage, out E_DamageTypes damageType, out string description)
+    {
+        attackName = "";
+        damage = new Vector2Int(0, 0);
+        damageType = E_DamageTypes.Physical;
+        description = "";
 
-        playerStats.ChangeHealth(randDMG, true, damageType, out int damageTaken, this.gameObject);
-
-        //Debug.Log(gameObject.name + " cast " + attackName + " for " + randDMG + " damage. It's really effective!");
+        if (enemyStats != null && abilityManager != null)
+        {
+            if (enemyStats.charm)
+            {
+                attackName = "Skipping turn";
+            }
+            else if (enemyStats.silence)
+            {
+                attackName = basicAttacks[currentAttack].targetName;
+                damage = basicAttacks[currentAttack].TotalDmgRange();
+                damageType = basicAttacks[currentAttack].damageType;
+                description = basicAttacks[currentAttack].targetDescription;
+            }
+            else if (enemyStats.skipTurn)
+            {
+                attackName = "Skipping turn";
+            }
+            else if (enemyStats.sleepTurn)
+            {
+                attackName = "Sleeping";
+                description = "Target will awake upon taking damage";
+            }
+            else
+            {
+                if (spells.Count > 0)
+                {
+                    attackName = spells[currentSpell].targetName;
+                    damage = spells[currentSpell].TotalDmgRange();
+                    damageType = spells[currentSpell].damageType;
+                    description = spells[currentSpell].targetDescription;
+                }
+                else
+                {
+                    attackName = basicAttacks[currentAttack].targetName;
+                    damage = basicAttacks[currentAttack].TotalDmgRange();
+                    damageType = basicAttacks[currentAttack].damageType;
+                    description = basicAttacks[currentAttack].targetDescription;
+                }
+            }
+        }
     }
 
     private void SpawnAttackEffect(GameObject target, E_DamageTypes attackType)
@@ -207,7 +298,14 @@ public class Enemy : MonoBehaviour
     {
         if (loadSettings.CheckExposed(displayName) && display)
         {
-            descriptionInfo.ReadyCard(displayName, attackName, damage * hitCount, damageType, desciption, sprite);
+            string attackName = "";
+            Vector2Int damage = new Vector2Int(0, 0);
+            E_DamageTypes damageType = E_DamageTypes.Physical;
+            string abilityDescription = "";
+
+            GetAbilityInfo(out attackName, out damage, out damageType, out abilityDescription);
+
+            descriptionInfo.ReadyCard(displayName, attackName, damage, damageType, abilityDescription, sprite);
         }
         else
             descriptionInfo.RemoveCard();
