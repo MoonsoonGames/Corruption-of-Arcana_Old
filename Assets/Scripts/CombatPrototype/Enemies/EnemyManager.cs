@@ -71,15 +71,17 @@ public class EnemyManager : MonoBehaviour
 
     public void StartEnemyTurn()
     {
-        float interval = .75f;
-
+        float interval = 2f;
+        float turnDuration = 0;
         for (int i = 0; i < enemies.Count; i++)
         {
+            float delay = (enemies[i].GetEndTurnDelay() * i * interval) + 0.5f;
             if (enemies[i] != null)
-                enemies[i].Invoke("TakeTurn", (0.6f + i) * interval);
+                enemies[i].Invoke("TakeTurn", delay);
+            turnDuration += delay;
         }
 
-        Invoke("EndEnemyTurn", interval * (0.4f + enemies.Count));
+        Invoke("EndEnemyTurn", turnDuration + 0.5f);
     }
 
     private void EndEnemyTurn()
