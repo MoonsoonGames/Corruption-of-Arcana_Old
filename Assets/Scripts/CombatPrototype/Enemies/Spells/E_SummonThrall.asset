@@ -10,37 +10,37 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d042955bf60bea84b9273684d78676b5, type: 3}
-  m_Name: E_Slash
+  m_Name: E_SummonThrall
   m_EditorClassIdentifier: 
-  cardName: Slash
+  cardName: Summon Thrall
   cardNumber: 0
   flavourDescription: 
   cardImage: {fileID: 0}
   enemySpell: 1
-  selfInterpretationUnlocked: 0
-  selfName: 
-  selfDescription: 
+  selfInterpretationUnlocked: 1
+  selfName: Summon Thrall
+  selfDescription: The enemy will unearth an ally Thrall to aid them
   selfCost: 0
   selfPotionCost: 0
   selfCostType: 
   selfHeal: {x: 0, y: 0}
   selfAP: {x: 0, y: 0}
-  restoreType: 0
+  restoreType: 7
   selfEndTurnDelay: 0.2
   selfStatus: []
   selfStatusDuration: 
-  targetInterpretationUnlocked: 1
-  targetName: Slash
-  targetDescription: The enemy makes a wild sword swing
+  targetInterpretationUnlocked: 0
+  targetName: 
+  targetDescription: 
   targetCost: 0
   targetCostType: 
   damageType: 0
-  targetDmg: {x: 5, y: 9}
-  hits: 1
+  targetDmg: {x: 0, y: 0}
+  hits: 0
   hitInterval: 0
   finalHitInterval: 0
   targetFinalDmg: {x: 0, y: 0}
-  targetEndTurnDelay: 0.4
+  targetEndTurnDelay: 0.2
   targetCleave: 0
   targetChain: 0
   extraDmg: {x: 0, y: 0}
@@ -52,5 +52,8 @@ MonoBehaviour:
   targetStatusDuration: 
   targetStatusChance: []
   spawnPosition: 0
-  summonAlly: {fileID: 0}
-  summonCount: 0
+  summonAlly: {fileID: 6783367526062023706, guid: 7ec425a601604694f9696b568c64104d,
+    type: 3}
+  summonCount: 1
+  summonFX: {fileID: 6727453174112786923, guid: 01c9fa2983e5d054fb3afcb34baf29e9,
+    type: 3}

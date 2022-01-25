@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d042955bf60bea84b9273684d78676b5, type: 3}
-  m_Name: E_Slash
+  m_Name: E_Skewer
   m_EditorClassIdentifier: 
-  cardName: Slash
+  cardName: Skewer
   cardNumber: 0
   flavourDescription: 
   cardImage: {fileID: 0}
@@ -30,17 +30,18 @@ MonoBehaviour:
   selfStatus: []
   selfStatusDuration: 
   targetInterpretationUnlocked: 1
-  targetName: Slash
-  targetDescription: The enemy makes a wild sword swing
+  targetName: Skewer
+  targetDescription: The Corrupted Golem unearths spikes from the ground to impale
+    Taro, with a chance to apply bleeding.
   targetCost: 0
   targetCostType: 
-  damageType: 0
-  targetDmg: {x: 5, y: 9}
+  damageType: 6
+  targetDmg: {x: 7, y: 13}
   hits: 1
-  hitInterval: 0
-  finalHitInterval: 0
-  targetFinalDmg: {x: 0, y: 0}
-  targetEndTurnDelay: 0.4
+  hitInterval: 0.1
+  finalHitInterval: 0.1
+  targetFinalDmg: {x: 5, y: 8}
+  targetEndTurnDelay: 1
   targetCleave: 0
   targetChain: 0
   extraDmg: {x: 0, y: 0}
@@ -48,9 +49,11 @@ MonoBehaviour:
   lifeLeach: {x: 0, y: 0}
   healOnKill: {x: 0, y: 0}
   executeThreshold: 0
-  targetStatus: []
-  targetStatusDuration: 
-  targetStatusChance: []
+  targetStatus:
+  - {fileID: 11400000, guid: 0aa56a9e5ce959e4b96c703989b64011, type: 2}
+  targetStatusDuration: 02000000
+  targetStatusChance:
+  - 0.6
   spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0

@@ -87,17 +87,39 @@ public class Enemy : MonoBehaviour
             }
             else if (enemyStats.skipTurn || enemyStats.sleepTurn)
             {
-                //skip turn code here
+                currentSpell++;
+                if (currentSpell >= spells.Count)
+                {
+                    currentSpell = 0;
+                }
+
+                currentAttack++;
+                if (currentAttack >= basicAttacks.Count)
+                {
+                    currentAttack = 0;
+                }
             }
             else
             {
                 if (spells.Count > 0)
                 {
-                    spells[currentSpell].CastSpell(player, this.gameObject, abilityManager);
-                    currentSpell++;
-                    if (currentSpell >= spells.Count)
+                    if (spells[currentSpell].selfInterpretationUnlocked)
                     {
-                        currentSpell = 0;
+                        spells[currentSpell].CastSpell(this.gameObject, this.gameObject, abilityManager);
+                        currentSpell++;
+                        if (currentSpell >= spells.Count)
+                        {
+                            currentSpell = 0;
+                        }
+                    }
+                    else if (spells[currentSpell].targetInterpretationUnlocked)
+                    {
+                        spells[currentSpell].CastSpell(player, this.gameObject, abilityManager);
+                        currentSpell++;
+                        if (currentSpell >= spells.Count)
+                        {
+                            currentSpell = 0;
+                        }
                     }
                 }
                 else
@@ -133,7 +155,18 @@ public class Enemy : MonoBehaviour
             {
                 if (spells.Count > 0)
                 {
-                    return spells[currentSpell].targetEndTurnDelay;
+                    if (spells[currentSpell].selfInterpretationUnlocked)
+                    {
+                        return spells[currentSpell].selfEndTurnDelay;
+                    }
+                    else if (spells[currentSpell].targetInterpretationUnlocked)
+                    {
+                        return spells[currentSpell].targetEndTurnDelay;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
                 }
                 else
                 {
@@ -180,10 +213,20 @@ public class Enemy : MonoBehaviour
             {
                 if (spells.Count > 0)
                 {
-                    attackName = spells[currentSpell].targetName;
-                    damage = spells[currentSpell].TotalDmgRange();
-                    damageType = spells[currentSpell].damageType;
-                    description = spells[currentSpell].targetDescription;
+                    if (spells[currentSpell].selfInterpretationUnlocked)
+                    {
+                        attackName = spells[currentSpell].selfName;
+                        damage = spells[currentSpell].selfHeal;
+                        damageType = spells[currentSpell].restoreType;
+                        description = spells[currentSpell].selfDescription;
+                    }
+                    else if (spells[currentSpell].targetInterpretationUnlocked)
+                    {
+                        attackName = spells[currentSpell].targetName;
+                        damage = spells[currentSpell].TotalDmgRange();
+                        damageType = spells[currentSpell].damageType;
+                        description = spells[currentSpell].targetDescription;
+                    }
                 }
                 else
                 {
