@@ -18,30 +18,13 @@ public class CardParent : ScriptableObject
 
     public void CastSpell(GameObject target, GameObject caster, AbilityManager abilityManager)
     {
-        if (!enemySpell)
+        if (target == caster && selfInterpretationUnlocked && target.GetComponent<CharacterStats>() != null)
         {
-            //Debug.Log("Self is " + selfInterpretationUnlocked + " || Target is " + target);
-            if (target.GetComponent<PlayerStats>() != null && selfInterpretationUnlocked)
-            {
-                OnSelfCast(target, caster, abilityManager);
-            }
-            else if (target.GetComponent<EnemyStats>() != null && targetInterpretationUnlocked)
-            {
-                OnTargetCast(target, caster, abilityManager);
-            }
+            OnSelfCast(target, caster, abilityManager);
         }
-        else
+        else if (target != caster && targetInterpretationUnlocked && target.GetComponent<CharacterStats>() != null)
         {
-            //Debug.Log("Spell Cast");
-            //Debug.Log("Self is " + selfInterpretationUnlocked + " || Target is " + target);
-            if (target.GetComponent<EnemyStats>() != null && selfInterpretationUnlocked)
-            {
-                OnSelfCast(target, caster, abilityManager);
-            }
-            else if (target.GetComponent<PlayerStats>() != null && targetInterpretationUnlocked)
-            {
-                OnTargetCast(target, caster, abilityManager);
-            }
+            OnTargetCast(target, caster, abilityManager);
         }
     }
 

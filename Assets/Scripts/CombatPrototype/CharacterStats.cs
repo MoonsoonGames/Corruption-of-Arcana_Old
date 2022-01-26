@@ -41,6 +41,8 @@ public class CharacterStats : MonoBehaviour
     public bool sleepTurn;
     [HideInInspector]
     public bool silence;
+    [HideInInspector]
+    public bool slow;
 
     #endregion
 

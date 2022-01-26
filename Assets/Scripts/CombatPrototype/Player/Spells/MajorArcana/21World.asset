@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d042955bf60bea84b9273684d78676b5, type: 3}
-  m_Name: 18Moon
+  m_Name: 21World
   m_EditorClassIdentifier: 
-  cardName: The Moon
-  cardNumber: 7
-  flavourDescription: There shall come a calm upon the animal nature, while the abyss
-    beneath shall cease from giving up a form
+  cardName: The World
+  cardNumber: 21
+  flavourDescription: Wherever it comes up, this card represents what is truly desired
   cardImage: {fileID: 0}
   enemySpell: 0
   selfInterpretationUnlocked: 0
@@ -31,17 +30,17 @@ MonoBehaviour:
   selfStatus: []
   selfStatusDuration: 
   targetInterpretationUnlocked: 1
-  targetName: Revelation
-  targetDescription: 'The moon''s light reveals your opponents,reducing their resistances
-    and revealing their log entry in the journal
+  targetName: Slow
+  targetDescription: 'You cause a wave of lethargy to wash over your target, dealing
+    a small amount of Bleak damage
 
 
-    Also allows to to click on
-    the enemy to view their stats in combat'
-  targetCost: 15
+    Also applies slow to the target for 3 turns,
+    which has a chance on each of the turns to prevent them from taking their action'
+  targetCost: 20
   targetCostType: AP
   damageType: 3
-  targetDmg: {x: 0, y: 0}
+  targetDmg: {x: 12, y: 24}
   hits: 1
   hitInterval: 0
   finalHitInterval: 0
@@ -55,11 +54,11 @@ MonoBehaviour:
   healOnKill: {x: 0, y: 0}
   executeThreshold: 0
   targetStatus:
-  - {fileID: 11400000, guid: a71ba48d9e31518499d97057b673a672, type: 2}
-  targetStatusDuration: 05000000
+  - {fileID: 11400000, guid: 55cb1b4ff4ba17a43b59215f4bd14d23, type: 2}
+  targetStatusDuration: 03000000
   targetStatusChance:
   - 1
-  spawnPosition: 2
+  spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0
   summonFX: {fileID: 0}

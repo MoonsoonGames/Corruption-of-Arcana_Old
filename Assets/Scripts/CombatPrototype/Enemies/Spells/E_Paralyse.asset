@@ -25,6 +25,7 @@ MonoBehaviour:
   selfCostType: 
   selfHeal: {x: 0, y: 0}
   selfAP: {x: 0, y: 0}
+  restoreType: 0
   selfEndTurnDelay: 0.2
   selfStatus: []
   selfStatusDuration: 
@@ -49,10 +50,13 @@ MonoBehaviour:
   healOnKill: {x: 0, y: 0}
   executeThreshold: 0
   targetStatus:
-  - {fileID: 11400000, guid: fac4e7676c5c0b44fb5d0d8c67c6ed80, type: 2}
+  - {fileID: 11400000, guid: a71ba48d9e31518499d97057b673a672, type: 2}
   - {fileID: 11400000, guid: 2cd33fbda2b7c314199986b19faf45a6, type: 2}
   targetStatusDuration: 0200000001000000
   targetStatusChance:
   - 0.6
   - 0.3
   spawnPosition: 0
+  summonAlly: {fileID: 0}
+  summonCount: 0
+  summonFX: {fileID: 0}
