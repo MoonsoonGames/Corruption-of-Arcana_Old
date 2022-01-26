@@ -29,6 +29,8 @@ public class LoadSettings : MonoBehaviour
     public Quaternion playerRotInThoth;
     public Vector3 playerPosInClearing;
     public Quaternion playerRotInClearing;
+    public Vector3 playerPosInTiertarock;
+    public Quaternion playerRotInTiertarock;
 
     #endregion
 
