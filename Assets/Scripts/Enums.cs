@@ -106,7 +106,7 @@ public enum E_Decks
 
 public enum E_DamageTypes
 {
-    Physical, Ember, Static, Bleak, Septic, Random, Perforation
+    Physical, Ember, Static, Bleak, Septic, Random, Perforation, Healing, Arcana
 }
 
 public enum E_CombatEffectSpawn

@@ -24,7 +24,16 @@ public class EnemyDescription : MonoBehaviour
             attackText.text = attack;
 
         if (dmgText != null)
-            dmgText.text = (dmg.x + "-" + dmg.y + " " + damageType.ToString() + " dmg");
+        {
+            if (dmg.y > 0)
+            {
+                dmgText.text = (dmg.x + "-" + dmg.y + " " + damageType.ToString() + " dmg");
+            }
+            else
+            {
+                dmgText.text = "";
+            }
+        }
 
         if (descriptionText != null)
             descriptionText.text = description;

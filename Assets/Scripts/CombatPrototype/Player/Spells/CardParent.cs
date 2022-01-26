@@ -32,7 +32,7 @@ public class CardParent : ScriptableObject
         }
         else
         {
-            Debug.Log("Spell Cast");
+            //Debug.Log("Spell Cast");
             //Debug.Log("Self is " + selfInterpretationUnlocked + " || Target is " + target);
             if (target.GetComponent<EnemyStats>() != null && selfInterpretationUnlocked)
             {
@@ -60,6 +60,7 @@ public class CardParent : ScriptableObject
     public string selfCostType;
     public Vector2Int selfHeal;
     public Vector2Int selfAP;
+    public E_DamageTypes restoreType;
     public float selfEndTurnDelay = 0.2f;
     public StatusParent[] selfStatus;
     public int[] selfStatusDuration;
@@ -78,7 +79,7 @@ public class CardParent : ScriptableObject
                 int heal = (int)Random.Range(selfHeal.x, selfHeal.y);
                 int mana = (int)Random.Range(selfAP.x, selfAP.y);
 
-                Debug.Log("Cast" + selfName + "on " + target.name);
+                //Debug.Log("Cast" + selfName + "on " + target.name);
 
                 stats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int damageTaken, stats.gameObject);
                 abilityManager.combatManager.Healing.SetActive(true);
@@ -88,7 +89,11 @@ public class CardParent : ScriptableObject
 
                 SelfApplyStatus(stats, caster);
 
-                if (!enemySpell)
+                if (enemySpell)
+                {
+                    Summon(caster);
+                }
+                else
                 {
                     stats.ChangeMana(selfCost - mana, true);
                     abilityManager.combatManager.Ap.SetActive(true);
@@ -333,7 +338,62 @@ public class CardParent : ScriptableObject
 
     #endregion
 
+    #region Enemy
+
+    [Header("Enemy Only")]
+    public Object summonAlly;
+    public int summonCount;
+    public Object summonFX;
+
+    void Summon(GameObject caster)
+    {
+        if (summonAlly != null && summonCount > 0)
+        {
+            int currentSpawnNumber = caster.GetComponentInParent<CombatEnemySpawner>().enemyNumber;
+
+            CombatEnemySpawner[] spawners = GameObject.FindObjectsOfType<CombatEnemySpawner>();
+
+            int spawned = 0;
+
+            foreach (var item in spawners)
+            {
+                if (item.enemyNumber != currentSpawnNumber)
+                {
+                    if (item.GetComponentInChildren<Enemy>() == null)
+                    {
+                        item.Spawn(summonAlly);
+                        SpawnFX(summonFX, item.transform);
+
+                        spawned++;
+                    }
+                }
+
+                if (spawned >= summonCount)
+                    break;
+            }
+
+            GameObject.FindObjectOfType<EnemyManager>().SetupLists();
+        }
+    }
+
+    #endregion
+
     #region Helper Functions
+
+    void SpawnFX(Object FX, Transform transform)
+    {
+        if (FX != null && transform != null)
+        {
+            Vector3 spawnPos = new Vector3(0, 0, 0);
+            Quaternion spawnRot = new Quaternion(0, 0, 0, 0);
+
+            spawnPos.x = transform.position.x;
+            spawnPos.y = transform.position.y;
+            spawnPos.z = transform.position.z - 5f;
+
+            Instantiate(FX, spawnPos, spawnRot);
+        }
+    }
 
     public Vector2Int TotalDmgRange()
     {
