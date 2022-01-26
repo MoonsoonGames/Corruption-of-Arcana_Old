@@ -404,7 +404,7 @@ public class CharacterStats : MonoBehaviour
             }
             else
             {
-                Debug.Log("Damage taken, remove sleep status");
+                //Debug.Log("Damage taken, remove sleep status");
                 item.Key.OnRemove(this.gameObject);
             }
         }

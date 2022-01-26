@@ -363,6 +363,7 @@ public class StatusParent : ScriptableObject
 
             if (slow)
             {
+                Debug.Log("slow applied");
                 stats.slow = apply;
             }
 

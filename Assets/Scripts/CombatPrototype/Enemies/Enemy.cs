@@ -74,10 +74,12 @@ public class Enemy : MonoBehaviour
         {
             if (enemyStats.slow)
             {
+                Debug.Log("slowed");
                 float random = Random.Range(0f, 1f);
 
-                if (random >= 30f)
+                if (random >= 0.3f)
                 {
+                    Debug.Log("slowed, but still took turn");
                     TakeTurn();
                 }
             }
