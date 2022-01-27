@@ -166,6 +166,15 @@ public class LoadSettings : MonoBehaviour
                 targetPos.y = playerPosInClearing.y;
                 targetPos.z = playerPosInClearing.z;
             }
+            else if (lastLevelString == E_Levels.Tiertarock.ToString())
+            {
+                Debug.Log(scene + " and " + lastLevelString);
+                targetPos = playerPosInTiertarock;
+
+                targetPos.x = playerPosInTiertarock.x;
+                targetPos.y = playerPosInTiertarock.y;
+                targetPos.z = playerPosInTiertarock.z;
+            }
 
             //Debug.Log("Loading spawn position | " + playerPosInThoth + " || " + targetPos);
 
@@ -216,6 +225,15 @@ public class LoadSettings : MonoBehaviour
                 targetRot.y = playerRotInClearing.y;
                 targetRot.z = playerRotInClearing.z;
                 targetRot.w = playerRotInClearing.w;
+            }
+            else if (lastLevelString == E_Levels.Tiertarock.ToString())
+            {
+                Debug.Log(scene + " and " + lastLevelString);
+                targetRot = playerRotInTiertarock;
+
+                targetRot.x = playerRotInTiertarock.x;
+                targetRot.y = playerRotInTiertarock.y;
+                targetRot.z = playerRotInTiertarock.z;
             }
 
             //Debug.Log("Loading spawn rotation | " + playerRotInThoth.eulerAngles + " || " + targetRot.eulerAngles);
