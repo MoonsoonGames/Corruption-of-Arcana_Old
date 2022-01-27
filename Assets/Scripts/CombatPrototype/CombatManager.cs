@@ -49,6 +49,8 @@ public class CombatManager : MonoBehaviour
 
     bool boss = false;
 
+    List<CardParent> castSpells = new List<CardParent>();
+
     public void Start()
     {
         Cursor.visible = true;
@@ -86,6 +88,8 @@ public class CombatManager : MonoBehaviour
 
     public void StartTurn(bool player)
     {
+        castSpells.Clear();
+
         abilityManager.playerTurn = player;
 
         /*
@@ -140,6 +144,8 @@ public class CombatManager : MonoBehaviour
 
     public void EndTurn(bool player)
     {
+        ResetCards();
+
         abilityManager.playerTurn = !player;
         
         if (player)
@@ -160,6 +166,21 @@ public class CombatManager : MonoBehaviour
 
         if (turnCountText != null)
             turnCountText.text = turnCounter.ToString();
+    }
+
+    public void AddCardsToList(CardParent card)
+    {
+        castSpells.Add(card);
+    }
+
+    void ResetCards()
+    {
+        foreach (var item in castSpells)
+        {
+            Debug.Log(item.cardName);
+
+            item.ResetCast();
+        }
     }
 
     public void ShowEndScreen(bool victory)
