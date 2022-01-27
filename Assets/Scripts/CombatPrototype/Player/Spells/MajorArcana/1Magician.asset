@@ -16,19 +16,25 @@ MonoBehaviour:
   cardNumber: 1
   flavourDescription: As Above, so below
   cardImage: {fileID: 0}
+  enemySpell: 0
   selfInterpretationUnlocked: 1
   selfName: Adept Arcana
   selfDescription: Drink from the occult wellspring of magic to restore your potential
+  selfEndTurn: 0
   selfCost: 0
   selfPotionCost: 0
   selfCostType: 
   selfHeal: {x: 0, y: 0}
   selfAP: {x: 24, y: 36}
+  restoreType: 0
   selfEndTurnDelay: 0.2
+  selfStatus: []
+  selfStatusDuration: 
   targetInterpretationUnlocked: 0
   targetName: Chain Lightning
   targetDescription: Unleash your arcana as a storm of lightning that arcs between
     multiple enemies
+  targetEndTurn: 0
   targetCost: 60
   targetCostType: AP
   damageType: 2
@@ -44,5 +50,11 @@ MonoBehaviour:
   randomTargets: 0
   lifeLeach: {x: 0, y: 0}
   healOnKill: {x: 0, y: 0}
-  executeThreshhold: 0
+  executeThreshold: 0
+  targetStatus: []
+  targetStatusDuration: 
+  targetStatusChance: []
   spawnPosition: 2
+  summonAlly: {fileID: 0}
+  summonCount: 0
+  summonFX: {fileID: 0}

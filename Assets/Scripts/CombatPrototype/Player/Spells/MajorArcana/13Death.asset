@@ -16,19 +16,25 @@ MonoBehaviour:
   cardNumber: 13
   flavourDescription: The Card with no name
   cardImage: {fileID: 0}
+  enemySpell: 0
   selfInterpretationUnlocked: 0
   selfName: 
   selfDescription: 
+  selfEndTurn: 0
   selfCost: 0
   selfPotionCost: 0
   selfCostType: 
   selfHeal: {x: 0, y: 0}
   selfAP: {x: 0, y: 0}
+  restoreType: 0
   selfEndTurnDelay: 0.2
+  selfStatus: []
+  selfStatusDuration: 
   targetInterpretationUnlocked: 1
   targetName: Cycle of Death
   targetDescription: With a grim scythe, you strike one of your opponents, executing
     them if they are below 30% of their maximum HP, and healing from the kill
+  targetEndTurn: 0
   targetCost: 30
   targetCostType: AP
   damageType: 6
@@ -45,4 +51,10 @@ MonoBehaviour:
   lifeLeach: {x: 0, y: 0}
   healOnKill: {x: 16, y: 30}
   executeThreshold: 0.3
+  targetStatus: []
+  targetStatusDuration: 
+  targetStatusChance: []
   spawnPosition: 0
+  summonAlly: {fileID: 0}
+  summonCount: 0
+  summonFX: {fileID: 0}

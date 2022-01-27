@@ -16,15 +16,18 @@ MonoBehaviour:
   cardNumber: 14
   flavourDescription: Representing the dilution of wine with water
   cardImage: {fileID: 0}
+  enemySpell: 0
   selfInterpretationUnlocked: 1
   selfName: Cleanse
   selfDescription: Cleanse yourself of infection and become immune to septic damage
     and infection for Y turns
+  selfEndTurn: 0
   selfCost: 20
   selfPotionCost: 0
   selfCostType: AP
   selfHeal: {x: 0, y: 0}
   selfAP: {x: 0, y: 0}
+  restoreType: 0
   selfEndTurnDelay: 0.2
   selfStatus:
   - {fileID: 11400000, guid: 40677b4c91ba48441951916eb69ab764, type: 2}
@@ -33,6 +36,7 @@ MonoBehaviour:
   targetName: Restraint
   targetDescription: "Shackle your target\u2019s mind, causing them to miss their
     next turns"
+  targetEndTurn: 0
   targetCost: 20
   targetCostType: AP
   damageType: 0
@@ -55,3 +59,6 @@ MonoBehaviour:
   targetStatusChance:
   - 0.7
   spawnPosition: 0
+  summonAlly: {fileID: 0}
+  summonCount: 0
+  summonFX: {fileID: 0}

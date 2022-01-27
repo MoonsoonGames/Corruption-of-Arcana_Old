@@ -20,11 +20,13 @@ MonoBehaviour:
   selfInterpretationUnlocked: 0
   selfName: 
   selfDescription: 
+  selfEndTurn: 0
   selfCost: 0
   selfPotionCost: 0
   selfCostType: 
   selfHeal: {x: 0, y: 0}
   selfAP: {x: 0, y: 0}
+  restoreType: 0
   selfEndTurnDelay: 0.2
   selfStatus: []
   selfStatusDuration: 
@@ -32,6 +34,7 @@ MonoBehaviour:
   targetName: Four Seasons
   targetDescription: Conjure an elemental storm, causing 16 bolts of elemental energy
     to hit random enemies with a random damage
+  targetEndTurn: 0
   targetCost: 55
   targetCostType: AP
   damageType: 5
@@ -52,3 +55,6 @@ MonoBehaviour:
   targetStatusDuration: 
   targetStatusChance: []
   spawnPosition: 2
+  summonAlly: {fileID: 0}
+  summonCount: 0
+  summonFX: {fileID: 0}

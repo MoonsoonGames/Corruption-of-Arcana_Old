@@ -19,23 +19,29 @@ public class CardParent : ScriptableObject
 
     public void CastSpell(GameObject target, GameObject caster, AbilityManager abilityManager)
     {
-        if (cast &! enemySpell)
+        if (abilityManager.combatManager.GetCardsCast() < 2 || cardName == "End Turn" || caster != GameObject.Find("Player"))
         {
-            Debug.Log("Spell has already been cast");
+            if (cast & !enemySpell)
+            {
+                Debug.Log("Spell has already been cast");
+            }
+            else
+            {
+                if (target == caster && selfInterpretationUnlocked && target.GetComponent<CharacterStats>() != null)
+                {
+                    OnSelfCast(target, caster, abilityManager);
+                }
+                else if (target != caster && targetInterpretationUnlocked && target.GetComponent<CharacterStats>() != null)
+                {
+                    OnTargetCast(target, caster, abilityManager);
+                }
+            }
         }
         else
         {
-            Cast(abilityManager.combatManager);
-
-            if (target == caster && selfInterpretationUnlocked && target.GetComponent<CharacterStats>() != null)
-            {
-                OnSelfCast(target, caster, abilityManager);
-            }
-            else if (target != caster && targetInterpretationUnlocked && target.GetComponent<CharacterStats>() != null)
-            {
-                OnTargetCast(target, caster, abilityManager);
-            }
+            Debug.Log("Too many spells cast");
         }
+        
     }
 
     public void ResetCast()
@@ -85,6 +91,8 @@ public class CardParent : ScriptableObject
 
             if (abilityManager.playerStats.CheckMana(selfCost) && abilityManager.playerStats.CheckPotions(selfPotionCost))
             {
+                Cast(abilityManager.combatManager);
+
                 int heal = (int)Random.Range(selfHeal.x, selfHeal.y);
                 int mana = (int)Random.Range(selfAP.x, selfAP.y);
 
@@ -178,6 +186,8 @@ public class CardParent : ScriptableObject
             int cost = targetCost;
             if (abilityManager.playerStats.CheckMana(cost))
             {
+                Cast(abilityManager.combatManager);
+
                 abilityManager.MouseLeft();
 
                 if (targetChain)

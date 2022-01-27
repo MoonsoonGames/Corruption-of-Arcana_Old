@@ -155,13 +155,13 @@ public class AbilityManager : MonoBehaviour
             }
             else if (ability.selfInterpretationUnlocked)
             {
-                activeCard.ReadyCard(ability.selfName, ability.RestoreValue(), ability.RestoreType(), ability.selfCost, ability.selfDescription, ability.selfCostType); ;
+                activeCard.ReadyCard(ability.cardName, ability.RestoreValue(), ability.RestoreType(), ability.selfCost, ability.selfDescription, ability.selfCostType); ;
                 combatManager.TargetEnemies(false);
                 targetter.SetVisibility(true);
             }
             else if (ability.targetInterpretationUnlocked)
             {
-                activeCard.ReadyCard(ability.targetName, ability.TotalDmgRange(), ability.damageType.ToString(), ability.targetCost, ability.targetDescription, ability.targetCostType);
+                activeCard.ReadyCard(ability.cardName, ability.TotalDmgRange(), ability.damageType.ToString(), ability.targetCost, ability.targetDescription, ability.targetCostType);
                 combatManager.TargetEnemies(true);
                 targetter.SetVisibility(false);
             }
