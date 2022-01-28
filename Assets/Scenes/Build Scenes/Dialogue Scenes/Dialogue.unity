@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -368,7 +368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 1616293608113260743}
+  selectedFlowchart: {fileID: 2684919792142466537}
 --- !u!4 &336365333
 Transform:
   m_ObjectHideFlags: 1
@@ -4525,18 +4525,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c0b2227930638042824499d913e6e32, type: 3}
---- !u!114 &1616293608113260743 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3687597253407275091, guid: 2c0b2227930638042824499d913e6e32,
-    type: 3}
-  m_PrefabInstance: {fileID: 1616293608113260742}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2684919790855303314}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a334fe2ffb574b3583ff3b18b4792d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &2684919790855303301 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3687597253407275075, guid: 2c0b2227930638042824499d913e6e32,
@@ -4567,375 +4555,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a334fe2ffb574b3583ff3b18b4792d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2684919792142466538
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2684919792142466536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nodeRect:
-    serializedVersion: 2
-    x: -119.63122
-    y: -82.648056
-    width: 90
-    height: 40
-  tint: {r: 0.73431396, g: 1, b: 0.7294118, a: 1}
-  useCustomTint: 1
-  itemId: 12
-  blockName: Accept
-  description: 
-  eventHandler: {fileID: 0}
-  commandList:
-  - {fileID: 2684919792142466543}
-  - {fileID: 2684919792142466539}
-  suppressAllAutoSelections: 0
---- !u!114 &2684919792142466539
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2684919792142466536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 050fb9e6e72f442b3b883da8a965bdeb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 16
-  indentLevel: 0
-  targetFlowchart: {fileID: 2684919792142466537}
-  targetBlock: {fileID: 2684919792142466540}
-  startLabel:
-    stringRef: {fileID: 0}
-    stringVal: 
-  startIndex: 0
-  callMode: 0
---- !u!114 &2684919792142466540 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8052595513141617247, guid: 231f1225157f1ee46a86abdfa3c06ca0,
-    type: 3}
-  m_PrefabInstance: {fileID: 5368942384868810669}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2684919792142466536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2684919792142466543
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2684919792142466536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 15
-  indentLevel: 0
-  storyText: Then prepare yourself for glory or death!
-  description: 
-  character: {fileID: 1115000471}
-  portrait: {fileID: 0}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 0}
---- !u!114 &2684919792142466544
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2684919792142466536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95d9ff288f3904c05ada7ac9c9a075bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 26
-  indentLevel: 0
-  description: 
-  delay: 0
-  invokeType: 0
-  staticEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5368942384868810670}
-        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
-        m_MethodName: LoadLastScene
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  booleanParameter:
-    booleanRef: {fileID: 0}
-    booleanVal: 0
-  booleanEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  integerParameter:
-    integerRef: {fileID: 0}
-    integerVal: 0
-  integerEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  floatParameter:
-    floatRef: {fileID: 0}
-    floatVal: 0
-  floatEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  stringParameter:
-    stringRef: {fileID: 0}
-    stringVal: 
-  stringEvent:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &2684919792142466545
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2684919792142466536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nodeRect:
-    serializedVersion: 2
-    x: 31.821938
-    y: 36.16713
-    width: 158
-    height: 40
-  tint: {r: 1, g: 1, b: 1, a: 1}
-  useCustomTint: 0
-  itemId: 27
-  blockName: Load Scene (Copy)
-  description: 
-  eventHandler: {fileID: 0}
-  commandList:
-  - {fileID: 2684919792142466544}
-  suppressAllAutoSelections: 0
---- !u!114 &2684919792142466546
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2684919792142466536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 24
-  indentLevel: 0
-  storyText: Now that you have bested these unnatural invaders, you have one more
-    challenge to conquer. Do you accept my challenge?
-  description: 
-  character: {fileID: 1115000471}
-  portrait: {fileID: 0}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 0}
---- !u!114 &2684919792142466547
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2684919792142466536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2f6487d21a03404cb21b245f0242e79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parentBlock: {fileID: 2684919792142466550}
-  suppressBlockAutoSelect: 0
-  waitForFrames: 1
---- !u!114 &2684919792142466548
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2684919792142466536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 841589fc622bc494aa5405f416fa1301, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 23
-  indentLevel: 0
-  text: Not yet.
-  description: 
-  targetBlock: {fileID: 2684919792142466553}
-  hideIfVisited: 0
-  interactable:
-    booleanRef: {fileID: 0}
-    booleanVal: 1
-  setMenuDialog: {fileID: 0}
-  hideThisOption:
-    booleanRef: {fileID: 0}
-    booleanVal: 0
---- !u!114 &2684919792142466549
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2684919792142466536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 841589fc622bc494aa5405f416fa1301, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 22
-  indentLevel: 0
-  text: I accept your challenge!
-  description: 
-  targetBlock: {fileID: 2684919792142466538}
-  hideIfVisited: 0
-  interactable:
-    booleanRef: {fileID: 0}
-    booleanVal: 1
-  setMenuDialog: {fileID: 0}
-  hideThisOption:
-    booleanRef: {fileID: 0}
-    booleanVal: 0
---- !u!114 &2684919792142466550
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2684919792142466536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nodeRect:
-    serializedVersion: 2
-    x: -18.898857
-    y: -219.0628
-    width: 78
-    height: 40
-  tint: {r: 0.7311321, g: 0.82633495, b: 1, a: 1}
-  useCustomTint: 1
-  itemId: 0
-  blockName: Lake
-  description: 
-  eventHandler: {fileID: 2684919792142466547}
-  commandList:
-  - {fileID: 2684919792142466546}
-  - {fileID: 2684919792142466549}
-  - {fileID: 2684919792142466548}
-  suppressAllAutoSelections: 0
---- !u!114 &2684919792142466551
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2684919792142466536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 050fb9e6e72f442b3b883da8a965bdeb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 10
-  indentLevel: 0
-  targetFlowchart: {fileID: 2684919792142466537}
-  targetBlock: {fileID: 2684919792142466545}
-  startLabel:
-    stringRef: {fileID: 0}
-    stringVal: 
-  startIndex: 0
-  callMode: 0
---- !u!114 &2684919792142466552
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2684919792142466536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 9
-  indentLevel: 0
-  storyText: Then come back when you are ready to face the final trial.
-  description: 
-  character: {fileID: 1115000471}
-  portrait: {fileID: 0}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 0}
---- !u!114 &2684919792142466553
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2684919792142466536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nodeRect:
-    serializedVersion: 2
-    x: 68.06107
-    y: -74.48534
-    width: 93
-    height: 40
-  tint: {r: 1, g: 0.7294118, b: 0.7383701, a: 1}
-  useCustomTint: 1
-  itemId: 13
-  blockName: Decline
-  description: 
-  eventHandler: {fileID: 0}
-  commandList:
-  - {fileID: 2684919792142466552}
-  - {fileID: 2684919792142466551}
-  suppressAllAutoSelections: 0
 --- !u!4 &2684919792142466559 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8052595513141617234, guid: 231f1225157f1ee46a86abdfa3c06ca0,
@@ -4949,32 +4568,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 429087823}
     m_Modifications:
-    - target: {fileID: 5368942385580772168, guid: 231f1225157f1ee46a86abdfa3c06ca0,
+    - target: {fileID: 2684919792142466543, guid: 231f1225157f1ee46a86abdfa3c06ca0,
         type: 3}
-      propertyPath: _targetGameObject.gameObjectVal
+      propertyPath: character
       value: 
-      objectReference: {fileID: 1020455820}
-    - target: {fileID: 8052595513141617216, guid: 231f1225157f1ee46a86abdfa3c06ca0,
+      objectReference: {fileID: 1115000471}
+    - target: {fileID: 2684919792142466546, guid: 231f1225157f1ee46a86abdfa3c06ca0,
         type: 3}
-      propertyPath: nodeRect.x
-      value: -23.305883
-      objectReference: {fileID: 0}
-    - target: {fileID: 8052595513141617216, guid: 231f1225157f1ee46a86abdfa3c06ca0,
-        type: 3}
-      propertyPath: nodeRect.y
-      value: -153.62935
-      objectReference: {fileID: 0}
-    - target: {fileID: 8052595513141617217, guid: 231f1225157f1ee46a86abdfa3c06ca0,
-        type: 3}
-      propertyPath: staticEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      propertyPath: character
       value: 
-      objectReference: {fileID: 5368942384868810670}
-    - target: {fileID: 8052595513141617218, guid: 231f1225157f1ee46a86abdfa3c06ca0,
-        type: 3}
-      propertyPath: selectedBlocks.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8052595513141617219, guid: 231f1225157f1ee46a86abdfa3c06ca0,
+      objectReference: {fileID: 1115000471}
+    - target: {fileID: 2684919792142466552, guid: 231f1225157f1ee46a86abdfa3c06ca0,
         type: 3}
       propertyPath: character
       value: 
@@ -4982,12 +4586,7 @@ PrefabInstance:
     - target: {fileID: 8052595513141617221, guid: 231f1225157f1ee46a86abdfa3c06ca0,
         type: 3}
       propertyPath: m_Name
-      value: Lake Dialogue (post)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8052595513141617221, guid: 231f1225157f1ee46a86abdfa3c06ca0,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      value: ExcaliburFight
       objectReference: {fileID: 0}
     - target: {fileID: 8052595513141617234, guid: 231f1225157f1ee46a86abdfa3c06ca0,
         type: 3}
@@ -5044,35 +4643,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8052595513141617247, guid: 231f1225157f1ee46a86abdfa3c06ca0,
-        type: 3}
-      propertyPath: nodeRect.x
-      value: -131.96614
-      objectReference: {fileID: 0}
-    - target: {fileID: 8052595513141617247, guid: 231f1225157f1ee46a86abdfa3c06ca0,
-        type: 3}
-      propertyPath: nodeRect.y
-      value: 35.533833
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8052595513141617219, guid: 231f1225157f1ee46a86abdfa3c06ca0, type: 3}
-    - {fileID: 5368942385580772168, guid: 231f1225157f1ee46a86abdfa3c06ca0, type: 3}
-    - {fileID: 5368942385580772169, guid: 231f1225157f1ee46a86abdfa3c06ca0, type: 3}
-    - {fileID: 8052595513141617244, guid: 231f1225157f1ee46a86abdfa3c06ca0, type: 3}
-    - {fileID: 8052595513141617216, guid: 231f1225157f1ee46a86abdfa3c06ca0, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 231f1225157f1ee46a86abdfa3c06ca0, type: 3}
---- !u!114 &5368942384868810670 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7456459822066922545, guid: 231f1225157f1ee46a86abdfa3c06ca0,
-    type: 3}
-  m_PrefabInstance: {fileID: 5368942384868810669}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02efb632ea380cd4bb2bdc15d8f4e029, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &7372420886022795191
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -340,6 +340,8 @@ public class CharacterStats : MonoBehaviour
         }
         else
         {
+            status.OnApply(this.gameObject, this.gameObject);
+
             if (statuses[status] < duration)
             {
                 statuses[status] = duration;
