@@ -11,7 +11,9 @@ public class AbilityManager : MonoBehaviour
     public CombatManager combatManager;
     public PlayerStats playerStats;
 
+    public CombatDeckManager combatDeckManager;
     private CardParent readyAbility;
+    private CardSetter readiedCard;
     private ActiveCard activeCard;
 
     public float popupDuration = 5f;
@@ -22,6 +24,7 @@ public class AbilityManager : MonoBehaviour
     public Transform playerSpawnPos, skySpawnPos, groundSpawnPos, enemiesSpawnPos, backstabSpawnPos;
 
     public SliderVariation sliderVarScript;
+
 
     #region Ability Values
 
@@ -120,7 +123,22 @@ public class AbilityManager : MonoBehaviour
         {
             if (readyAbility != null)
             {
-                readyAbility.CastSpell(target, this.gameObject, this);
+                bool canCast;
+                string cardName = readyAbility.cardName;
+
+                readyAbility.CastSpell(target, this.gameObject, this, out canCast);
+
+                if (canCast)
+                {
+                    if (cardName != "End Turn")
+                    {
+                        combatDeckManager.RemoveCard(readiedCard);
+
+                        combatManager.IncrementCastCards();
+                    }
+
+                    readiedCard = null;
+                }
             }
             else
             {
@@ -139,31 +157,32 @@ public class AbilityManager : MonoBehaviour
             combatManager.enemyManager.EnemyInfo(null);
     }
 
-    public void SetAbility(CardParent ability)
+    public void SetAbility(CardParent ability, CardSetter card)
     {
         EnemyInfo(null);
 
         readyAbility = ability;
+        readiedCard = card;
 
         if (activeCard != null)
         {
             if (ability.selfInterpretationUnlocked && ability.targetInterpretationUnlocked)
             {
-                activeCard.ReadyCard(ability.cardName, ability.selfHeal, "Unknown", ability.selfCost, "Two interpretations active, UI issue", ability.selfCostType);
                 combatManager.TargetEnemies(true);
                 targetter.SetVisibility(true);
+                activeCard.ReadyCard(ability.cardName, "Two interpretations", ability.selfHeal, "Unknown", ability.selfCost, "Two interpretations active, UI issue", ability.selfCostType);
             }
             else if (ability.selfInterpretationUnlocked)
             {
-                activeCard.ReadyCard(ability.cardName, ability.RestoreValue(), ability.RestoreType(), ability.selfCost, ability.selfDescription, ability.selfCostType); ;
                 combatManager.TargetEnemies(false);
                 targetter.SetVisibility(true);
+                activeCard.ReadyCard(ability.cardName, ability.selfName, ability.RestoreValue(), ability.RestoreType(), ability.selfCost, ability.selfDescription, ability.selfCostType);
             }
             else if (ability.targetInterpretationUnlocked)
             {
-                activeCard.ReadyCard(ability.cardName, ability.TotalDmgRange(), ability.damageType.ToString(), ability.targetCost, ability.targetDescription, ability.targetCostType);
                 combatManager.TargetEnemies(true);
                 targetter.SetVisibility(false);
+                activeCard.ReadyCard(ability.cardName, ability.targetName, ability.TotalDmgRange(), ability.damageType.ToString(), ability.targetCost, ability.targetDescription, ability.targetCostType);
             }
         }
     }

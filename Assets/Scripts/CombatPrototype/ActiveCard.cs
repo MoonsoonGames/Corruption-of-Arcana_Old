@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ActiveCard : MonoBehaviour
 {
     public Text cardText;
+    public Text spellText;
     public Text valueText;
     public Text typeText;
     public Text costText;
@@ -25,10 +26,13 @@ public class ActiveCard : MonoBehaviour
         cam = GameObject.FindObjectOfType<Camera>();
     }
 
-    public void ReadyCard(string cardName, Vector2Int dmg, string type, int cost, string description, string costType)
+    public void ReadyCard(string cardName, string spellName, Vector2Int dmg, string type, int cost, string description, string costType)
     {
         if (cardText != null)
             cardText.text = cardName;
+
+        if (spellText != null)
+            spellText.text = spellName;
 
         if (valueText != null)
             valueText.text = (dmg.x + "-" + dmg.y);

@@ -14,8 +14,11 @@ public class CardSetter : MonoBehaviour
 
     public AbilityManager abilityManager;
 
+    public GameObject parent;
+
     private void Start()
     {
+        abilityManager = GameObject.FindObjectOfType<AbilityManager>();
         DrawCards();
     }
 
@@ -25,8 +28,6 @@ public class CardSetter : MonoBehaviour
         //Debug.Log(rInt);
         currentCard = combatCards[rInt];
 
-        currentCard.ResetCast();
-
         if (cardText != null)
         {
             cardText.text = currentCard.cardName;
@@ -35,7 +36,7 @@ public class CardSetter : MonoBehaviour
 
     public void ButtonPressed()
     {
-        abilityManager.SetAbility(currentCard);
+        abilityManager.SetAbility(currentCard, this);
     }
 
 

@@ -100,7 +100,7 @@ public class Enemy : MonoBehaviour
             }
             else if (enemyStats.silence)
             {
-                basicAttacks[currentAttack].CastSpell(player, this.gameObject, abilityManager);
+                basicAttacks[currentAttack].CastSpell(player, this.gameObject, abilityManager, out bool nullify);
                 currentAttack++;
                 if (currentAttack >= basicAttacks.Count)
                 {
@@ -127,7 +127,7 @@ public class Enemy : MonoBehaviour
                 {
                     if (spells[currentSpell].selfInterpretationUnlocked)
                     {
-                        spells[currentSpell].CastSpell(this.gameObject, this.gameObject, abilityManager);
+                        spells[currentSpell].CastSpell(this.gameObject, this.gameObject, abilityManager, out bool nullify);
                         currentSpell++;
                         if (currentSpell >= spells.Count)
                         {
@@ -136,7 +136,7 @@ public class Enemy : MonoBehaviour
                     }
                     else if (spells[currentSpell].targetInterpretationUnlocked)
                     {
-                        spells[currentSpell].CastSpell(player, this.gameObject, abilityManager);
+                        spells[currentSpell].CastSpell(player, this.gameObject, abilityManager, out bool nullify);
                         currentSpell++;
                         if (currentSpell >= spells.Count)
                         {
@@ -146,7 +146,7 @@ public class Enemy : MonoBehaviour
                 }
                 else
                 {
-                    basicAttacks[currentAttack].CastSpell(player, this.gameObject, abilityManager);
+                    basicAttacks[currentAttack].CastSpell(player, this.gameObject, abilityManager, out bool nullify);
                     currentAttack++;
                     if (currentAttack >= basicAttacks.Count)
                     {

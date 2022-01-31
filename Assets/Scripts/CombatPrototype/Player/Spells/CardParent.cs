@@ -15,26 +15,19 @@ public class CardParent : ScriptableObject
     public Sprite cardImage;
 
     public bool enemySpell;
-    bool cast = false;
 
-    public void CastSpell(GameObject target, GameObject caster, AbilityManager abilityManager)
+    public void CastSpell(GameObject target, GameObject caster, AbilityManager abilityManager, out bool canCast)
     {
+        canCast = false;
         if (abilityManager.combatManager.GetCardsCast() < 2 || cardName == "End Turn" || caster != GameObject.Find("Player"))
         {
-            if (cast & !enemySpell)
+            if (target == caster && selfInterpretationUnlocked && target.GetComponent<CharacterStats>() != null)
             {
-                Debug.Log("Spell has already been cast");
+                OnSelfCast(target, caster, abilityManager, out canCast);
             }
-            else
+            else if (target != caster && targetInterpretationUnlocked && target.GetComponent<CharacterStats>() != null)
             {
-                if (target == caster && selfInterpretationUnlocked && target.GetComponent<CharacterStats>() != null)
-                {
-                    OnSelfCast(target, caster, abilityManager);
-                }
-                else if (target != caster && targetInterpretationUnlocked && target.GetComponent<CharacterStats>() != null)
-                {
-                    OnTargetCast(target, caster, abilityManager);
-                }
+                OnTargetCast(target, caster, abilityManager, out canCast);
             }
         }
         else
@@ -42,21 +35,6 @@ public class CardParent : ScriptableObject
             Debug.Log("Too many spells cast");
         }
         
-    }
-
-    public void ResetCast()
-    {
-        cast = false;
-    }
-
-    public void Cast(CombatManager combatManager)
-    {
-        if (combatManager != null)
-        {
-            combatManager.AddCardsToList(this);
-
-            cast = true;
-        }
     }
 
     #endregion
@@ -82,8 +60,9 @@ public class CardParent : ScriptableObject
     //public GameObject selfPrepareEffect;
     //public GameObject selfCastEffect;
 
-    public void OnSelfCast(GameObject target, GameObject caster, AbilityManager abilityManager)
+    public void OnSelfCast(GameObject target, GameObject caster, AbilityManager abilityManager, out bool canCast)
     {
+        canCast = false;
         CharacterStats stats = target.GetComponent<CharacterStats>();
         if (stats != null && abilityManager != null)
         {
@@ -91,7 +70,7 @@ public class CardParent : ScriptableObject
 
             if (abilityManager.playerStats.CheckMana(selfCost) && abilityManager.playerStats.CheckPotions(selfPotionCost))
             {
-                Cast(abilityManager.combatManager);
+                canCast = true;
 
                 int heal = (int)Random.Range(selfHeal.x, selfHeal.y);
                 int mana = (int)Random.Range(selfAP.x, selfAP.y);
@@ -176,8 +155,9 @@ public class CardParent : ScriptableObject
 
     public E_CombatEffectSpawn spawnPosition;
 
-    public void OnTargetCast(GameObject target, GameObject caster, AbilityManager abilityManager)
+    public void OnTargetCast(GameObject target, GameObject caster, AbilityManager abilityManager, out bool canCast)
     {
+        canCast = false;
         CharacterStats stats = target.GetComponent<CharacterStats>();
         if (stats != null)
         {
@@ -186,7 +166,7 @@ public class CardParent : ScriptableObject
             int cost = targetCost;
             if (abilityManager.playerStats.CheckMana(cost))
             {
-                Cast(abilityManager.combatManager);
+                canCast = true;
 
                 abilityManager.MouseLeft();
 
