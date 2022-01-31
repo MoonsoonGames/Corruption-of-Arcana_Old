@@ -41,6 +41,8 @@ public class CharacterStats : MonoBehaviour
     public bool sleepTurn;
     [HideInInspector]
     public bool silence;
+    [HideInInspector]
+    public bool slow;
 
     #endregion
 
@@ -338,6 +340,8 @@ public class CharacterStats : MonoBehaviour
         }
         else
         {
+            status.OnApply(this.gameObject, this.gameObject);
+
             if (statuses[status] < duration)
             {
                 statuses[status] = duration;
@@ -402,7 +406,7 @@ public class CharacterStats : MonoBehaviour
             }
             else
             {
-                Debug.Log("Damage taken, remove sleep status");
+                //Debug.Log("Damage taken, remove sleep status");
                 item.Key.OnRemove(this.gameObject);
             }
         }

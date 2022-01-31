@@ -17,15 +17,18 @@ MonoBehaviour:
   flavourDescription: The Empress connects with the Death card, for she is accustomed
     to life, death and rebirth
   cardImage: {fileID: 0}
+  enemySpell: 0
   selfInterpretationUnlocked: 0
   selfName: Spore Growth
   selfDescription: "This growth of healing plants will restore your vitality over
     Y turns\r"
+  selfEndTurn: 0
   selfCost: 50
   selfPotionCost: 0
   selfCostType: AP
   selfHeal: {x: 20, y: 30}
   selfAP: {x: 0, y: 0}
+  restoreType: 0
   selfEndTurnDelay: 0.2
   selfStatus: []
   selfStatusDuration: 
@@ -36,6 +39,7 @@ MonoBehaviour:
 
 
     Also has a chance to poison targets'
+  targetEndTurn: 0
   targetCost: 20
   targetCostType: AP
   damageType: 4
@@ -58,3 +62,6 @@ MonoBehaviour:
   targetStatusChance:
   - 0.6
   spawnPosition: 1
+  summonAlly: {fileID: 0}
+  summonCount: 0
+  summonFX: {fileID: 0}

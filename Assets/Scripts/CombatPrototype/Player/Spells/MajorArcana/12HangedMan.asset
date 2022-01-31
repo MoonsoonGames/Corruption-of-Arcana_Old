@@ -16,20 +16,25 @@ MonoBehaviour:
   cardNumber: 14
   flavourDescription: Representing the dilution of wine with water
   cardImage: {fileID: 0}
+  enemySpell: 0
   selfInterpretationUnlocked: 0
   selfName: 
   selfDescription: 
+  selfEndTurn: 0
   selfCost: 0
   selfPotionCost: 0
   selfCostType: 
   selfHeal: {x: 0, y: 0}
   selfAP: {x: 0, y: 0}
+  restoreType: 0
   selfEndTurnDelay: 0.2
   selfStatus: []
   selfStatusDuration: 
   targetInterpretationUnlocked: 1
   targetName: Trickery
-  targetDescription: Cause your opponent to fumble, skipping their next 2 turns
+  targetDescription: Cause your opponent to fumble, having a chance to skip their
+    next 2 turns
+  targetEndTurn: 0
   targetCost: 20
   targetCostType: AP
   damageType: 0
@@ -52,3 +57,6 @@ MonoBehaviour:
   targetStatusChance:
   - 0.7
   spawnPosition: 0
+  summonAlly: {fileID: 0}
+  summonCount: 0
+  summonFX: {fileID: 0}

@@ -86,6 +86,7 @@ public class StatusParent : ScriptableObject
     public bool skipTurn;
     public bool sleepTurn;
     public bool silence;
+    public bool slow;
 
     [Header("Debuff Others")]
     public bool charmOther;
@@ -93,6 +94,7 @@ public class StatusParent : ScriptableObject
     public bool skipTurnOther;
     public bool sleepTurnOther;
     public bool silenceOther;
+    public bool slowOther;
 
     [Header("Debuff Opponents")]
     public bool charmOpponents;
@@ -100,6 +102,7 @@ public class StatusParent : ScriptableObject
     public bool skipTurnOpponents;
     public bool sleepTurnOpponents;
     public bool silenceOpponents;
+    public bool slowOpponents;
 
     #endregion
 
@@ -117,7 +120,7 @@ public class StatusParent : ScriptableObject
         ApplyHealing(target);
 
         ApplyStatAdjustments(target);
-        ApplyTurnInhibitors(target, abilityManager);
+        TurnInhibitors(target, abilityManager, true);
     }
 
     public void OnRemove(GameObject target)
@@ -125,7 +128,7 @@ public class StatusParent : ScriptableObject
         AbilityManager abilityManager = GameObject.FindObjectOfType<AbilityManager>();
 
         RemoveStatAdjustments(target);
-        RemoveTurnInhibitors(target, abilityManager);
+        TurnInhibitors(target, abilityManager, false);
     }
 
     #endregion
@@ -138,7 +141,7 @@ public class StatusParent : ScriptableObject
 
         TurnStartDamage(target, caster, abilityManager);
         TurnStartHealing(target);
-        ApplyTurnInhibitors(target, abilityManager);
+        TurnInhibitors(target, abilityManager, true);
     }
 
     public void OnTurnEnd(GameObject target)
@@ -166,51 +169,6 @@ public class StatusParent : ScriptableObject
     }
 
     #endregion
-
-    #region Helper Functions
-
-    void SpawnFX(Object FX, Transform transform)
-    {
-        if (FX != null && transform != null)
-        {
-            Vector3 spawnPos = new Vector3(0, 0, 0);
-            Quaternion spawnRot = new Quaternion(0, 0, 0, 0);
-
-            spawnPos.x = transform.position.x;
-            spawnPos.y = transform.position.y;
-            spawnPos.z = transform.position.z - 5f;
-
-            Instantiate(FX, spawnPos, spawnRot);
-        }
-    }
-
-    Transform GetSpawnLocation(AbilityManager abilityManager)
-    {
-        if (reflectDamageSpawner == E_CombatEffectSpawn.Player)
-        {
-            return abilityManager.playerSpawnPos;
-        }
-        if (reflectDamageSpawner == E_CombatEffectSpawn.Sky)
-        {
-            return abilityManager.skySpawnPos;
-        }
-        else if (reflectDamageSpawner == E_CombatEffectSpawn.Ground)
-        {
-            return abilityManager.groundSpawnPos;
-        }
-        else if (reflectDamageSpawner == E_CombatEffectSpawn.Enemies)
-        {
-            return abilityManager.enemiesSpawnPos;
-        }
-        else if (reflectDamageSpawner == E_CombatEffectSpawn.Backstab)
-        {
-            return abilityManager.backstabSpawnPos;
-        }
-        else
-        {
-            return null;
-        }
-    }
 
     #region Damage and Healing
 
@@ -249,7 +207,7 @@ public class StatusParent : ScriptableObject
                 SpawnFX(damageFX, abilityManager.combatManager.playerStats.transform);
             }
         }
-        else
+        else if (target.GetComponent<PlayerStats>())
         {
             foreach (var item in abilityManager.combatManager.enemyManager.enemies)
             {
@@ -303,7 +261,7 @@ public class StatusParent : ScriptableObject
                 SpawnFX(damageFX, abilityManager.combatManager.playerStats.transform);
             }
         }
-        else
+        else if (target.GetComponent<PlayerStats>())
         {
             foreach (var item in abilityManager.combatManager.enemyManager.enemies)
             {
@@ -375,12 +333,44 @@ public class StatusParent : ScriptableObject
 
     #region Turn Inhibitors
 
-    void ApplyTurnInhibitors(GameObject target, AbilityManager abilityManager)
+    void TurnInhibitors(GameObject target, AbilityManager abilityManager, bool apply)
     {
         CharacterStats stats = target.GetComponent<CharacterStats>();
 
         if (target.GetComponent<EnemyStats>())
         {
+            #region Self
+
+            if (charm)
+            {
+                stats.charm = apply;
+            }
+
+            if (silence)
+            {
+                stats.silence = apply;
+            }
+
+            if (skipTurn)
+            {
+                stats.skipTurn = apply;
+            }
+
+            if (sleepTurn)
+            {
+                stats.sleepTurn = apply;
+            }
+
+            if (slow)
+            {
+                Debug.Log("slow applied");
+                stats.slow = apply;
+            }
+
+            #endregion
+
+            #region Allies
+
             foreach (var item in abilityManager.combatManager.enemyManager.enemies)
             {
                 CharacterStats testStats = item.gameObject.GetComponent<CharacterStats>();
@@ -406,170 +396,167 @@ public class StatusParent : ScriptableObject
                     {
                         testStats.sleepTurn = true;
                     }
+
+                    if (slowOther)
+                    {
+                        testStats.slow = true;
+                    }
                 }
             }
 
-            if (applyDamageOpponents.y > 0f)
-            {
-                CharacterStats playerStats = abilityManager.combatManager.playerStats;
+            #endregion
 
-                if (playerStats != stats)
+            #region Opponents
+
+            CharacterStats playerStats = abilityManager.combatManager.playerStats;
+
+            if (playerStats != stats)
+            {
+                if (charmOpponents)
+                {
+                    playerStats.charm = apply;
+                }
+
+                if (silenceOpponents)
+                {
+                    playerStats.silence = apply;
+                }
+
+                if (skipTurnOpponents)
+                {
+                    playerStats.skipTurn = apply;
+                }
+
+                if (sleepTurnOpponents)
+                {
+                    playerStats.sleepTurn = apply;
+                }
+
+                if (slowOpponents)
+                {
+                    playerStats.slow = apply;
+                }
+            }
+
+            #endregion
+        }
+        else if (target.GetComponent<PlayerStats>())
+        {
+            #region Self
+
+            if (charm)
+            {
+                stats.charm = apply;
+            }
+
+            if (silence)
+            {
+                stats.silence = apply;
+            }
+
+            if (skipTurn)
+            {
+                stats.skipTurn = apply;
+            }
+
+            if (sleepTurn)
+            {
+                stats.sleepTurn = apply;
+            }
+
+            if (slow)
+            {
+                stats.slow = apply;
+            }
+
+            #endregion
+
+            #region Opponents
+
+            foreach (var item in abilityManager.combatManager.enemyManager.enemies)
+            {
+                CharacterStats testStats = item.gameObject.GetComponent<CharacterStats>();
+
+                if (testStats != stats)
                 {
                     if (charmOpponents)
                     {
-                        playerStats.charm = true;
+                        testStats.charm = apply;
                     }
 
                     if (silenceOpponents)
                     {
-                        playerStats.silence = true;
+                        Debug.Log("silence worked");
+                        testStats.silence = apply;
                     }
 
                     if (skipTurnOpponents)
                     {
-                        playerStats.skipTurn = true;
+                        testStats.skipTurn = apply;
                     }
 
                     if (sleepTurnOpponents)
                     {
-                        playerStats.sleepTurn = true;
-                    }
-                }
-            }
-        }
-        else
-        {
-            foreach (var item in abilityManager.combatManager.enemyManager.enemies)
-            {
-                CharacterStats testStats = item.gameObject.GetComponent<CharacterStats>();
-
-                if (testStats != stats)
-                {
-                    if (testStats != stats)
-                    {
-                        if (charmOpponents)
-                        {
-                            testStats.charm = true;
-                        }
-
-                        if (silenceOpponents)
-                        {
-                            testStats.silence = true;
-                        }
-
-                        if (skipTurnOpponents)
-                        {
-                            testStats.skipTurn = true;
-                        }
-
-                        if (sleepTurnOpponents)
-                        {
-                            testStats.sleepTurn = true;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    void RemoveTurnInhibitors(GameObject target, AbilityManager abilityManager)
-    {
-        CharacterStats stats = target.GetComponent<CharacterStats>();
-
-        if (target.GetComponent<EnemyStats>())
-        {
-            foreach (var item in abilityManager.combatManager.enemyManager.enemies)
-            {
-                CharacterStats testStats = item.gameObject.GetComponent<CharacterStats>();
-
-                if (testStats != stats)
-                {
-                    if (charmOther)
-                    {
-                        testStats.charm = false;
+                        testStats.sleepTurn = apply;
                     }
 
-                    if (silenceOther)
+                    if (slowOpponents)
                     {
-                        testStats.silence = false;
-                    }
-
-                    if (skipTurnOther)
-                    {
-                        testStats.skipTurn = false;
-                    }
-
-                    if (sleepTurnOther)
-                    {
-                        testStats.sleepTurn = false;
+                        testStats.slow = apply;
                     }
                 }
             }
 
-            if (applyDamageOpponents.y > 0f)
-            {
-                CharacterStats playerStats = abilityManager.combatManager.playerStats;
-
-                if (playerStats != stats)
-                {
-                    if (charmOpponents)
-                    {
-                        playerStats.charm = false;
-                    }
-
-                    if (silenceOpponents)
-                    {
-                        playerStats.silence = false;
-                    }
-
-                    if (skipTurnOpponents)
-                    {
-                        playerStats.skipTurn = false;
-                    }
-
-                    if (sleepTurnOpponents)
-                    {
-                        playerStats.sleepTurn = false;
-                    }
-                }
-            }
-        }
-        else
-        {
-            foreach (var item in abilityManager.combatManager.enemyManager.enemies)
-            {
-                CharacterStats testStats = item.gameObject.GetComponent<CharacterStats>();
-
-                if (testStats != stats)
-                {
-                    if (testStats != stats)
-                    {
-                        if (charmOpponents)
-                        {
-                            testStats.charm = false;
-                        }
-
-                        if (silenceOpponents)
-                        {
-                            testStats.silence = false;
-                        }
-
-                        if (skipTurnOpponents)
-                        {
-                            testStats.skipTurn = false;
-                        }
-
-                        if (sleepTurnOpponents)
-                        {
-                            testStats.sleepTurn = false;
-                        }
-                    }
-                }
-            }
+            #endregion
         }
     }
 
     #endregion
+
+    #region Helper Functions
+
+    void SpawnFX(Object FX, Transform transform)
+    {
+        if (FX != null && transform != null)
+        {
+            Vector3 spawnPos = new Vector3(0, 0, 0);
+            Quaternion spawnRot = new Quaternion(0, 0, 0, 0);
+
+            spawnPos.x = transform.position.x;
+            spawnPos.y = transform.position.y;
+            spawnPos.z = transform.position.z - 5f;
+
+            Instantiate(FX, spawnPos, spawnRot);
+        }
+    }
+
+    Transform GetSpawnLocation(AbilityManager abilityManager)
+    {
+        if (reflectDamageSpawner == E_CombatEffectSpawn.Player)
+        {
+            return abilityManager.playerSpawnPos;
+        }
+        if (reflectDamageSpawner == E_CombatEffectSpawn.Sky)
+        {
+            return abilityManager.skySpawnPos;
+        }
+        else if (reflectDamageSpawner == E_CombatEffectSpawn.Ground)
+        {
+            return abilityManager.groundSpawnPos;
+        }
+        else if (reflectDamageSpawner == E_CombatEffectSpawn.Enemies)
+        {
+            return abilityManager.enemiesSpawnPos;
+        }
+        else if (reflectDamageSpawner == E_CombatEffectSpawn.Backstab)
+        {
+            return abilityManager.backstabSpawnPos;
+        }
+        else
+        {
+            return null;
+        }
+    }
 
     #endregion
 

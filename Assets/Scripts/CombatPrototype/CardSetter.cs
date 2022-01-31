@@ -25,6 +25,8 @@ public class CardSetter : MonoBehaviour
         //Debug.Log(rInt);
         currentCard = combatCards[rInt];
 
+        currentCard.ResetCast();
+
         if (cardText != null)
         {
             cardText.text = currentCard.cardName;

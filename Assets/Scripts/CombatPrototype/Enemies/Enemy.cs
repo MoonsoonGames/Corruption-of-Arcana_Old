@@ -68,7 +68,29 @@ public class Enemy : MonoBehaviour
     public List<CardParent> spells;
     public int currentSpell = 0;
 
-    public void TakeTurn()
+    public void AttemptTakeTurn()
+    {
+        if (enemyStats != null)
+        {
+            if (enemyStats.slow)
+            {
+                Debug.Log("slowed");
+                float random = Random.Range(0f, 1f);
+
+                if (random >= 0.3f)
+                {
+                    Debug.Log("slowed, but still took turn");
+                    TakeTurn();
+                }
+            }
+            else
+            {
+                TakeTurn();
+            }
+        }
+    }
+
+    void TakeTurn()
     {
         if (canAttack && enemyStats != null && abilityManager != null)
         {

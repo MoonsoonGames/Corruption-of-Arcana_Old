@@ -15,33 +15,47 @@ public class CardParent : ScriptableObject
     public Sprite cardImage;
 
     public bool enemySpell;
+    bool cast = false;
 
     public void CastSpell(GameObject target, GameObject caster, AbilityManager abilityManager)
     {
-        if (!enemySpell)
+        if (abilityManager.combatManager.GetCardsCast() < 2 || cardName == "End Turn" || caster != GameObject.Find("Player"))
         {
-            //Debug.Log("Self is " + selfInterpretationUnlocked + " || Target is " + target);
-            if (target.GetComponent<PlayerStats>() != null && selfInterpretationUnlocked)
+            if (cast & !enemySpell)
             {
-                OnSelfCast(target, caster, abilityManager);
+                Debug.Log("Spell has already been cast");
             }
-            else if (target.GetComponent<EnemyStats>() != null && targetInterpretationUnlocked)
+            else
             {
-                OnTargetCast(target, caster, abilityManager);
+                if (target == caster && selfInterpretationUnlocked && target.GetComponent<CharacterStats>() != null)
+                {
+                    OnSelfCast(target, caster, abilityManager);
+                }
+                else if (target != caster && targetInterpretationUnlocked && target.GetComponent<CharacterStats>() != null)
+                {
+                    OnTargetCast(target, caster, abilityManager);
+                }
             }
         }
         else
         {
-            //Debug.Log("Spell Cast");
-            //Debug.Log("Self is " + selfInterpretationUnlocked + " || Target is " + target);
-            if (target.GetComponent<EnemyStats>() != null && selfInterpretationUnlocked)
-            {
-                OnSelfCast(target, caster, abilityManager);
-            }
-            else if (target.GetComponent<PlayerStats>() != null && targetInterpretationUnlocked)
-            {
-                OnTargetCast(target, caster, abilityManager);
-            }
+            Debug.Log("Too many spells cast");
+        }
+        
+    }
+
+    public void ResetCast()
+    {
+        cast = false;
+    }
+
+    public void Cast(CombatManager combatManager)
+    {
+        if (combatManager != null)
+        {
+            combatManager.AddCardsToList(this);
+
+            cast = true;
         }
     }
 
@@ -55,6 +69,7 @@ public class CardParent : ScriptableObject
     public string selfName;
     [TextArea(3, 10)]
     public string selfDescription;
+    public bool selfEndTurn = true;
     public int selfCost;
     public int selfPotionCost;
     public string selfCostType;
@@ -76,6 +91,8 @@ public class CardParent : ScriptableObject
 
             if (abilityManager.playerStats.CheckMana(selfCost) && abilityManager.playerStats.CheckPotions(selfPotionCost))
             {
+                Cast(abilityManager.combatManager);
+
                 int heal = (int)Random.Range(selfHeal.x, selfHeal.y);
                 int mana = (int)Random.Range(selfAP.x, selfAP.y);
 
@@ -103,7 +120,10 @@ public class CardParent : ScriptableObject
 
                     abilityManager.ResetAbility();
 
-                    abilityManager.EndTurn(selfEndTurnDelay);
+                    if (selfEndTurn)
+                    {
+                        abilityManager.EndTurn(selfEndTurnDelay);
+                    }
                 }
             }
             else
@@ -129,6 +149,7 @@ public class CardParent : ScriptableObject
     public string targetName;
     [TextArea(3, 10)]
     public string targetDescription;
+    public bool targetEndTurn = true;
     public int targetCost;
     public string targetCostType;
     public E_DamageTypes damageType;
@@ -165,6 +186,8 @@ public class CardParent : ScriptableObject
             int cost = targetCost;
             if (abilityManager.playerStats.CheckMana(cost))
             {
+                Cast(abilityManager.combatManager);
+
                 abilityManager.MouseLeft();
 
                 if (targetChain)
@@ -312,7 +335,10 @@ public class CardParent : ScriptableObject
 
                     abilityManager.ResetAbility();
 
-                    abilityManager.EndTurn(targetEndTurnDelay);
+                    if (targetEndTurn)
+                    {
+                        abilityManager.EndTurn(selfEndTurnDelay);
+                    }
                 }
 
                 CharacterStats casterStats = caster.GetComponent<CharacterStats>();

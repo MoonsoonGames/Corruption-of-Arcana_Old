@@ -49,6 +49,10 @@ public class CombatManager : MonoBehaviour
 
     bool boss = false;
 
+    List<CardParent> castSpells = new List<CardParent>();
+
+    int cardsCast = 0;
+
     public void Start()
     {
         Cursor.visible = true;
@@ -86,6 +90,8 @@ public class CombatManager : MonoBehaviour
 
     public void StartTurn(bool player)
     {
+        castSpells.Clear();
+
         abilityManager.playerTurn = player;
 
         /*
@@ -101,7 +107,7 @@ public class CombatManager : MonoBehaviour
             HealingItem.SetActive(true);
 
             //Debug.Log("Regenerate Mana");
-            playerStats.ChangeMana(15, false);
+            playerStats.ChangeMana(30, false);
 
             Dmg.SetActive(false);
             Ap.SetActive(false);
@@ -140,6 +146,9 @@ public class CombatManager : MonoBehaviour
 
     public void EndTurn(bool player)
     {
+        cardsCast = 0;
+        ResetCards();
+
         abilityManager.playerTurn = !player;
         
         if (player)
@@ -160,6 +169,27 @@ public class CombatManager : MonoBehaviour
 
         if (turnCountText != null)
             turnCountText.text = turnCounter.ToString();
+    }
+
+    public void AddCardsToList(CardParent card)
+    {
+        castSpells.Add(card);
+        cardsCast++;
+    }
+
+    public int GetCardsCast()
+    {
+        return cardsCast;
+    }
+
+    void ResetCards()
+    {
+        foreach (var item in castSpells)
+        {
+            Debug.Log(item.cardName);
+
+            item.ResetCast();
+        }
     }
 
     public void ShowEndScreen(bool victory)

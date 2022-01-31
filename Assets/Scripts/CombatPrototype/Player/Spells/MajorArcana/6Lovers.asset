@@ -20,8 +20,13 @@ MonoBehaviour:
   enemySpell: 0
   selfInterpretationUnlocked: 1
   selfName: Enthralling Gaze
-  selfDescription: With an alluring gaze, you enthrall your targets, silencing them
-  selfCost: 25
+  selfDescription: 'With an alluring gaze, you enthrall your targets, silencing them
+
+
+    Silence
+    prevents the target from casting spells, forcing them to use basic attacks'
+  selfEndTurn: 0
+  selfCost: 30
   selfPotionCost: 0
   selfCostType: AP
   selfHeal: {x: 0, y: 0}
@@ -34,6 +39,7 @@ MonoBehaviour:
   targetInterpretationUnlocked: 0
   targetName: 
   targetDescription: 
+  targetEndTurn: 0
   targetCost: 0
   targetCostType: 
   damageType: 0

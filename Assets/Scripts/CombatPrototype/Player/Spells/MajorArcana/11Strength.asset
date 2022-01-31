@@ -20,11 +20,13 @@ MonoBehaviour:
   selfInterpretationUnlocked: 0
   selfName: 
   selfDescription: 
+  selfEndTurn: 0
   selfCost: 0
   selfPotionCost: 0
   selfCostType: 
   selfHeal: {x: 0, y: 0}
   selfAP: {x: 0, y: 0}
+  restoreType: 0
   selfEndTurnDelay: 0
   selfStatus: []
   selfStatusDuration: 
@@ -35,6 +37,7 @@ MonoBehaviour:
 
 
     Also has a high chance to knock target off balance and bleed them'
+  targetEndTurn: 0
   targetCost: 30
   targetCostType: AP
   damageType: 6
@@ -59,3 +62,6 @@ MonoBehaviour:
   - 0.75
   - 0.75
   spawnPosition: 0
+  summonAlly: {fileID: 0}
+  summonCount: 0
+  summonFX: {fileID: 0}

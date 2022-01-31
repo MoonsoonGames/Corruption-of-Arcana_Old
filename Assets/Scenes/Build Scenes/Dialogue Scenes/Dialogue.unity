@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -368,7 +368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 728357798}
+  selectedFlowchart: {fileID: 2684919792142466537}
 --- !u!4 &336365333
 Transform:
   m_ObjectHideFlags: 1
@@ -964,18 +964,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 728357796}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &728357798 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5457298887973350146, guid: 91b46a3d7e09bef4bb81d318755898da,
-    type: 3}
-  m_PrefabInstance: {fileID: 728357796}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 268925932}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a334fe2ffb574b3583ff3b18b4792d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &830277212
 GameObject:
   m_ObjectHideFlags: 0
@@ -4520,6 +4508,11 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1115000471}
+    - target: {fileID: 3687597253407275090, guid: 2c0b2227930638042824499d913e6e32,
+        type: 3}
+      propertyPath: storyText
+      value: Prove your valour by conquering the hidden creature beneath Thoth
+      objectReference: {fileID: 0}
     - target: {fileID: 3687597253407275092, guid: 2c0b2227930638042824499d913e6e32,
         type: 3}
       propertyPath: m_Name
@@ -4550,6 +4543,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5368942384868810669}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2684919792142466537 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8052595513141617218, guid: 231f1225157f1ee46a86abdfa3c06ca0,
+    type: 3}
+  m_PrefabInstance: {fileID: 5368942384868810669}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2684919792142466536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a334fe2ffb574b3583ff3b18b4792d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2684919792142466559 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8052595513141617234, guid: 231f1225157f1ee46a86abdfa3c06ca0,
@@ -4563,22 +4568,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 429087823}
     m_Modifications:
-    - target: {fileID: 5368942385580772168, guid: 231f1225157f1ee46a86abdfa3c06ca0,
+    - target: {fileID: 2684919792142466543, guid: 231f1225157f1ee46a86abdfa3c06ca0,
         type: 3}
-      propertyPath: _targetGameObject.gameObjectVal
+      propertyPath: character
       value: 
-      objectReference: {fileID: 1020455820}
-    - target: {fileID: 8052595513141617217, guid: 231f1225157f1ee46a86abdfa3c06ca0,
+      objectReference: {fileID: 1115000471}
+    - target: {fileID: 2684919792142466546, guid: 231f1225157f1ee46a86abdfa3c06ca0,
         type: 3}
-      propertyPath: staticEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      propertyPath: character
       value: 
-      objectReference: {fileID: 5368942384868810670}
-    - target: {fileID: 8052595513141617218, guid: 231f1225157f1ee46a86abdfa3c06ca0,
-        type: 3}
-      propertyPath: selectedBlocks.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8052595513141617219, guid: 231f1225157f1ee46a86abdfa3c06ca0,
+      objectReference: {fileID: 1115000471}
+    - target: {fileID: 2684919792142466552, guid: 231f1225157f1ee46a86abdfa3c06ca0,
         type: 3}
       propertyPath: character
       value: 
@@ -4586,12 +4586,7 @@ PrefabInstance:
     - target: {fileID: 8052595513141617221, guid: 231f1225157f1ee46a86abdfa3c06ca0,
         type: 3}
       propertyPath: m_Name
-      value: Lake Dialogue (post)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8052595513141617221, guid: 231f1225157f1ee46a86abdfa3c06ca0,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      value: ExcaliburFight
       objectReference: {fileID: 0}
     - target: {fileID: 8052595513141617234, guid: 231f1225157f1ee46a86abdfa3c06ca0,
         type: 3}
@@ -4650,18 +4645,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 231f1225157f1ee46a86abdfa3c06ca0, type: 3}
---- !u!114 &5368942384868810670 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7456459822066922545, guid: 231f1225157f1ee46a86abdfa3c06ca0,
-    type: 3}
-  m_PrefabInstance: {fileID: 5368942384868810669}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02efb632ea380cd4bb2bdc15d8f4e029, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &7372420886022795191
 PrefabInstance:
   m_ObjectHideFlags: 0
