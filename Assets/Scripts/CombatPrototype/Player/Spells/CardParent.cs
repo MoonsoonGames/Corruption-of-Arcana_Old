@@ -19,16 +19,14 @@ public class CardParent : ScriptableObject
     public void CastSpell(GameObject target, GameObject caster, AbilityManager abilityManager, out bool canCast)
     {
         canCast = false;
-        if (abilityManager.combatManager.GetCardsCast() < 2 || cardName == "End Turn" || caster != GameObject.Find("Player"))
+
+        if (QuerySelf(target, caster, abilityManager))
         {
-            if (target == caster && selfInterpretationUnlocked && target.GetComponent<CharacterStats>() != null)
-            {
-                OnSelfCast(target, caster, abilityManager, out canCast);
-            }
-            else if (target != caster && targetInterpretationUnlocked && target.GetComponent<CharacterStats>() != null)
-            {
-                OnTargetCast(target, caster, abilityManager, out canCast);
-            }
+            OnSelfCast(target, caster, abilityManager, out canCast);
+        }
+        else if (QueryTarget(target, caster, abilityManager))
+        {
+            OnTargetCast(target, caster, abilityManager, out canCast);
         }
         else
         {
@@ -47,7 +45,8 @@ public class CardParent : ScriptableObject
     public string selfName;
     [TextArea(3, 10)]
     public string selfDescription;
-    public bool selfEndTurn = true;
+    public bool selfEndTurn = false;
+    public bool selfUsesAction = true;
     public int selfCost;
     public int selfPotionCost;
     public string selfCostType;
@@ -103,6 +102,12 @@ public class CardParent : ScriptableObject
                     {
                         abilityManager.EndTurn(selfEndTurnDelay);
                     }
+                    else if (selfUsesAction)
+                    {
+                        CombatManager combatManager = GameObject.FindObjectOfType<CombatManager>();
+
+                        combatManager.IncrementCastCards();
+                    }
                 }
             }
             else
@@ -128,7 +133,8 @@ public class CardParent : ScriptableObject
     public string targetName;
     [TextArea(3, 10)]
     public string targetDescription;
-    public bool targetEndTurn = true;
+    public bool targetEndTurn = false;
+    public bool targetUsesAction = true;
     public int targetCost;
     public string targetCostType;
     public E_DamageTypes damageType;
@@ -328,6 +334,13 @@ public class CardParent : ScriptableObject
                     int heal = Random.Range(lifeLeach.x, lifeLeach.y);
                     casterStats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int healNull, caster);
                 }
+
+                if (targetUsesAction)
+                {
+                    CombatManager combatManager = GameObject.FindObjectOfType<CombatManager>();
+
+                    combatManager.IncrementCastCards();
+                }
             }
             else
             {
@@ -385,6 +398,16 @@ public class CardParent : ScriptableObject
     #endregion
 
     #region Helper Functions
+
+    public bool QuerySelf(GameObject target, GameObject caster, AbilityManager abilityManager)
+    {
+        return (abilityManager.combatManager.GetCardsCast() < 2 || !selfUsesAction || caster != GameObject.Find("Player")) && (target == caster && selfInterpretationUnlocked && target.GetComponent<CharacterStats>() != null);
+    }
+
+    public bool QueryTarget(GameObject target, GameObject caster, AbilityManager abilityManager)
+    {
+        return (abilityManager.combatManager.GetCardsCast() < 2 || !targetUsesAction || caster != GameObject.Find("Player")) && (target != caster && targetInterpretationUnlocked && target.GetComponent<CharacterStats>() != null);
+    }
 
     void SpawnFX(Object FX, Transform transform)
     {

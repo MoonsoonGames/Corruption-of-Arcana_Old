@@ -123,18 +123,15 @@ public class AbilityManager : MonoBehaviour
         {
             if (readyAbility != null)
             {
-                bool canCast;
                 string cardName = readyAbility.cardName;
 
-                readyAbility.CastSpell(target, this.gameObject, this, out canCast);
+                readyAbility.CastSpell(target, this.gameObject, this, out bool canCast);
 
                 if (canCast)
                 {
                     if (cardName != "End Turn")
                     {
                         combatDeckManager.RemoveCard(readiedCard);
-
-                        combatManager.IncrementCastCards();
                     }
 
                     readiedCard = null;
