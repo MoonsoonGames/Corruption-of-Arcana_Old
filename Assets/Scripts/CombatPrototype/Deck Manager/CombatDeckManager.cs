@@ -14,7 +14,7 @@ public class CombatDeckManager : MonoBehaviour
 
     public float offsetInterval = 0.5f;
 
-    private void Start()
+    private void Awake()
     {
         decks = new Dictionary<Object, float>();
 
@@ -23,17 +23,18 @@ public class CombatDeckManager : MonoBehaviour
             decks.Add(deckObjects[i], deckChances[i]);
         }
 
+        /*
         foreach (var item in decks)
         {
             Debug.Log(item.Key + " || " + item.Value);
         }
+        */
     }
 
     public void DrawCards()
     {
         if (cards.Count < cardsCount.x - 1)
         {
-            
             for (int i = cards.Count; i < cardsCount.x; i++)
             {
                 SpawnCard();
@@ -49,6 +50,7 @@ public class CombatDeckManager : MonoBehaviour
         }
 
         //reorganize cards
+        OffsetTransform();
     }
 
     void SpawnCard()
@@ -61,8 +63,6 @@ public class CombatDeckManager : MonoBehaviour
             CardSetter cardSetter = newCard.GetComponentInChildren<CardSetter>();
             cardSetter.DrawCards();
             cards.Add(cardSetter);
-
-            OffsetTransform(newCard);
         }
         else
         {
@@ -73,13 +73,13 @@ public class CombatDeckManager : MonoBehaviour
     Object DetermineDeck()
     {
         float rFloat = Random.Range(0f, 1f);
-        Debug.Log(rFloat);
+        //Debug.Log(rFloat);
 
         foreach (var item in decks)
         {
             if (rFloat <= item.Value)
             {
-                Debug.Log(item.Key);
+                //Debug.Log(item.Key);
                 return item.Key;
             }
         }
@@ -87,9 +87,12 @@ public class CombatDeckManager : MonoBehaviour
         return null;
     }
 
-    void OffsetTransform(GameObject card)
+    void OffsetTransform()
     {
-        card.transform.position = new Vector3(card.transform.position.x + (cards.Count * offsetInterval), card.transform.position.y, card.transform.position.z);
+        for (int i = 0; i < cards.Count; i++)
+        {
+            cards[i].parent.transform.position = new Vector3(this.transform.position.x + (i * offsetInterval), this.transform.position.y, this.transform.position.z);
+        }
     }
 
     public void RemoveCard(CardSetter card)

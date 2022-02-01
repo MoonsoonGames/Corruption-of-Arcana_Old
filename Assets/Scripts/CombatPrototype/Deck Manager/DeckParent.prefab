@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7978782399096148068}
   m_Layer: 5
-  m_Name: BasicArcana
+  m_Name: DeckParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -114,7 +114,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Basic
+  m_Text: Deck
 --- !u!1 &7978782400424018988
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,12 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f94c122215b60c14e8a8a0152e0021d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  combatCards:
-  - {fileID: 11400000, guid: af89ff48f79a6dd4e88996f7325d33f6, type: 2}
-  - {fileID: 11400000, guid: a48dc9199156577478bae5f018251083, type: 2}
-  - {fileID: 11400000, guid: 418dd24db35e0614882f380ad6210dfd, type: 2}
-  - {fileID: 11400000, guid: 6bd1335480a7f754cb51f229a108c6cc, type: 2}
-  - {fileID: 11400000, guid: eaa0fa9c7224ad741bf189b989628694, type: 2}
+  combatCards: []
   cardText: {fileID: 7978782399775387677}
   abilityManager: {fileID: 0}
   parent: {fileID: 7978782399096148075}
