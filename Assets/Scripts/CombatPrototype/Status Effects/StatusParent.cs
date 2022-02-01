@@ -38,7 +38,7 @@ public class StatusParent : ScriptableObject
     public Vector2Int turnDamageOpponents;
     public E_DamageTypes turnDamageTypeOpponents;
 
-    [Header("Damage To Other Characters")]
+    [Header("Damage To Allies")]
     public Vector2Int applyDamageOther;
     public E_DamageTypes applyDamageTypeOther;
     public Vector2Int turnDamageOther;
@@ -49,6 +49,18 @@ public class StatusParent : ScriptableObject
     public Vector2Int applyArcana;
     public Vector2Int turnHealing;
     public Vector2Int turnArcana;
+
+    [Header("Healing To Allies")]
+    public Vector2Int applyHealingOther;
+    public Vector2Int applyArcanaOther;
+    public Vector2Int turnHealingOther;
+    public Vector2Int turnArcanaOther;
+
+    [Header("Healing To Opponents")]
+    public Vector2Int applyHealingOpponents;
+    public Vector2Int applyArcanaOpponents;
+    public Vector2Int turnHealingOpponents;
+    public Vector2Int turnArcanaOpponents;
 
     #endregion
 
@@ -117,7 +129,7 @@ public class StatusParent : ScriptableObject
         AbilityManager abilityManager = GameObject.FindObjectOfType<AbilityManager>();
 
         ApplyDamage(target, caster, abilityManager);
-        ApplyHealing(target);
+        ApplyHealing(target, caster, abilityManager);
 
         ApplyStatAdjustments(target);
         TurnInhibitors(target, abilityManager, true);
@@ -140,7 +152,7 @@ public class StatusParent : ScriptableObject
         AbilityManager abilityManager = GameObject.FindObjectOfType<AbilityManager>();
 
         TurnStartDamage(target, caster, abilityManager);
-        TurnStartHealing(target);
+        TurnStartHealing(target, caster, abilityManager);
         TurnInhibitors(target, abilityManager, true);
     }
 
@@ -283,6 +295,127 @@ public class StatusParent : ScriptableObject
         }
     }
 
+    void ApplyHealing(GameObject target, GameObject caster, AbilityManager abilityManager)
+    {
+        CharacterStats stats = target.GetComponent<CharacterStats>();
+
+        if (applyHealing.y > 0f)
+        {
+            int heal = Random.Range(applyHealing.x, applyHealing.y);
+            stats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int healing, null);
+
+            SpawnFX(healFX, target.transform);
+        }
+
+        if (target.GetComponent<EnemyStats>())
+        {
+            foreach (var item in abilityManager.combatManager.enemyManager.enemies)
+            {
+                CharacterStats testStats = item.gameObject.GetComponent<CharacterStats>();
+                
+                if (testStats != stats)
+                {
+                    if (applyHealingOther.y > 0f)
+                    {
+                        int heal = Random.Range(applyHealingOther.x, applyHealingOther.y);
+                        testStats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int healing, null);
+                        Debug.Log("Healed " + testStats.name);
+                        SpawnFX(healFX, item.gameObject.transform);
+                    }
+                }
+            }
+
+            if (applyHealingOpponents.y > 0f)
+            {
+                int heal = Random.Range(applyHealingOpponents.x, applyHealingOpponents.y);
+                abilityManager.combatManager.playerStats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int healing, null);
+
+                SpawnFX(healFX, abilityManager.combatManager.playerStats.transform);
+            }
+        }
+        else if (target.GetComponent<PlayerStats>())
+        {
+            foreach (var item in abilityManager.combatManager.enemyManager.enemies)
+            {
+                CharacterStats testStats = item.gameObject.GetComponent<CharacterStats>();
+
+                if (testStats != stats)
+                {
+                    if (applyHealingOpponents.y > 0f)
+                    {
+                        int heal = Random.Range(applyHealingOpponents.x, applyHealingOpponents.y);
+                        testStats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int healing, null);
+
+                        SpawnFX(healFX, item.gameObject.transform);
+                    }
+                }
+            }
+        }
+    }
+
+    void TurnStartHealing(GameObject target, GameObject caster, AbilityManager abilityManager)
+    {
+        CharacterStats stats = target.GetComponent<CharacterStats>();
+
+        if (turnHealing.y > 0f)
+        {
+            int heal = Random.Range(turnHealing.x, turnHealing.y);
+            stats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int healing, null);
+
+            SpawnFX(healFX, target.transform);
+        }
+
+        if (target.GetComponent<EnemyStats>())
+        {
+            foreach (var item in abilityManager.combatManager.enemyManager.enemies)
+            {
+                CharacterStats testStats = item.gameObject.GetComponent<CharacterStats>();
+
+                if (testStats != stats)
+                {
+                    if (turnHealingOther.y > 0f)
+                    {
+                        int heal = Random.Range(turnHealingOther.x, turnHealingOther.y);
+                        testStats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int healing, null);
+
+                        SpawnFX(healFX, item.gameObject.transform);
+                    }
+                }
+            }
+
+            if (turnHealingOpponents.y > 0f)
+            {
+                int heal = Random.Range(turnHealingOpponents.x, turnHealingOpponents.y);
+                abilityManager.combatManager.playerStats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int healing, null);
+
+                SpawnFX(healFX, abilityManager.combatManager.playerStats.transform);
+            }
+        }
+        else if (target.GetComponent<PlayerStats>())
+        {
+            foreach (var item in abilityManager.combatManager.enemyManager.enemies)
+            {
+                if (item != null)
+                {
+                    CharacterStats testStats = item.gameObject.GetComponent<CharacterStats>();
+
+                    if (testStats != stats)
+                    {
+                        if (turnHealingOpponents.y > 0f)
+                        {
+                            int heal = Random.Range(turnHealingOpponents.x, turnHealingOpponents.y);
+                            testStats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int healing, null);
+
+                            SpawnFX(healFX, item.gameObject.transform);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /*
+
     void ApplyHealing(GameObject target)
     {
         CharacterStats stats = target.GetComponent<CharacterStats>();
@@ -310,6 +443,7 @@ public class StatusParent : ScriptableObject
             SpawnFX(healFX, target.transform);
         }
     }
+    */
 
     #endregion
 
@@ -363,7 +497,6 @@ public class StatusParent : ScriptableObject
 
             if (slow)
             {
-                Debug.Log("slow applied");
                 stats.slow = apply;
             }
 
