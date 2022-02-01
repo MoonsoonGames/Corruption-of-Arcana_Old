@@ -10,7 +10,7 @@ public class CombatDeckManager : MonoBehaviour
     public float[] deckChances; //Arrange in order of chance from lowest to highest, highest must be 1
     Dictionary<Object, float> decks;
 
-    public Vector2Int cardsCount;
+    public Vector3Int cardsCount;
 
     public float offsetInterval = 0.5f;
 
@@ -33,14 +33,19 @@ public class CombatDeckManager : MonoBehaviour
 
     public void DrawCards()
     {
-        if (cards.Count < cardsCount.x - 1)
+        if (cards.Count < cardsCount.x - 2)
         {
             for (int i = cards.Count; i < cardsCount.x; i++)
             {
                 SpawnCard();
             }
         }
-        else if (cards.Count >= cardsCount.y)
+        else if (cards.Count < cardsCount.y)
+        {
+            SpawnCard();
+            SpawnCard();
+        }
+        else if (cards.Count >= cardsCount.z)
         {
             //draw no cards
         }
