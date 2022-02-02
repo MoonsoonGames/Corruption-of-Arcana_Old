@@ -90,7 +90,7 @@ public class SceneLoader : MonoBehaviour
         LoadDialogue(dialogueFlowChart);
         LoadScene(loadSettings.lastLevelString);
     }
-
+    
     public void LoadCheckpointScene(Object dialogueFlowChart)
     {
         //Set load settings level to new level
@@ -101,7 +101,6 @@ public class SceneLoader : MonoBehaviour
     public void LoadSpecifiedScene(string scene, LoadSceneMode sceneMode, Object dialogueFlowChart)
     {
         //Set load settings level to new level
-
         LoadDialogue(dialogueFlowChart);
         SceneManager.LoadScene(scene, sceneMode);
     }

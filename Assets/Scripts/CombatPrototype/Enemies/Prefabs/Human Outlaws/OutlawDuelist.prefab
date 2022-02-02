@@ -46,7 +46,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: a358616ddda77b04bafb56dc57ddd29a,
+      objectReference: {fileID: 21300000, guid: 1ee0179d1f9b0874693d43ddb6cdd811,
         type: 3}
     - target: {fileID: 3555124278701396923, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
@@ -76,7 +76,7 @@ PrefabInstance:
     - target: {fileID: 3555124280068035575, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: m_Text
-      value: Minion
+      value: Duelist
       objectReference: {fileID: 0}
     - target: {fileID: 3555124280068035575, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
@@ -161,7 +161,7 @@ PrefabInstance:
     - target: {fileID: 3555124280383455489, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: m_Name
-      value: Minion
+      value: OutlawDuelist
       objectReference: {fileID: 0}
     - target: {fileID: 3555124280383455490, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
@@ -186,13 +186,13 @@ PrefabInstance:
     - target: {fileID: 3555124280383455490, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: desciption
-      value: Minions are feeble and weak they can overpower you in large numbers,
-        so make sure to deal with them quickly.
+      value: These duelists are experts with the blade, and can counter your attacks
+        with their own.
       objectReference: {fileID: 0}
     - target: {fileID: 3555124280383455490, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: displayName
-      value: Minion
+      value: Duelist
       objectReference: {fileID: 0}
     - target: {fileID: 3555124280383455490, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
@@ -202,13 +202,20 @@ PrefabInstance:
     - target: {fileID: 3555124280383455490, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: spells.Array.size
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3555124280383455490, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: spells.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 74302a71759a54e458e5ddbbfed8ab23,
+        type: 2}
+    - target: {fileID: 3555124280383455490, guid: 24c6b79283add374eb3a4c0e1395b423,
+        type: 3}
+      propertyPath: spells.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: aaf1b115402a9f541a13d54b0d4e0544,
+        type: 2}
     - target: {fileID: 3555124280383455490, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: basicAttacks.Array.size
@@ -218,7 +225,7 @@ PrefabInstance:
         type: 3}
       propertyPath: basicAttacks.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: abbaffaf5f1ee2544b141726c1d036bf,
+      objectReference: {fileID: 11400000, guid: aaf1b115402a9f541a13d54b0d4e0544,
         type: 2}
     - target: {fileID: 3555124280383455491, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
@@ -247,18 +254,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3555124280383455491, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
+      propertyPath: baseEmberMultiplier
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555124280383455491, guid: 24c6b79283add374eb3a4c0e1395b423,
+        type: 3}
       propertyPath: baseSepticMultiplier
-      value: 0.6
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 3555124280383455491, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: baseStaticMultiplier
-      value: 0.95
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 3555124280383455491, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: basePhysicalMultiplier
-      value: 0.95
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3623350128645117188, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}

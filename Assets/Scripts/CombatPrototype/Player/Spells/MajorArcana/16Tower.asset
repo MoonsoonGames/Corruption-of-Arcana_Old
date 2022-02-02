@@ -22,6 +22,7 @@ MonoBehaviour:
   selfDescription: Engulf yourself in an aura of flame, becoming immune to fire damage
     and burning while also dealing damage to enemies that attack you
   selfEndTurn: 0
+  selfUsesAction: 1
   selfCost: 30
   selfPotionCost: 0
   selfCostType: AP
@@ -40,9 +41,11 @@ MonoBehaviour:
 
     Also has a chance to burn targets'
   targetEndTurn: 0
+  targetUsesAction: 1
   targetCost: 55
   targetCostType: AP
   damageType: 1
+  targetCanBeCountered: 1
   targetDmg: {x: 22, y: 34}
   hits: 1
   hitInterval: 0

@@ -114,5 +114,5 @@ public enum E_DamageTypes
 
 public enum E_CombatEffectSpawn
 {
-    Player, Ground, Sky, Enemies, Backstab
+    Caster, Ground, Sky, Enemies, Backstab
 }

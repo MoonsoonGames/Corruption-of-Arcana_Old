@@ -22,6 +22,7 @@ MonoBehaviour:
   selfDescription: Generate a life draining aura, which drains the vigour from your
     enemies each turn and heals you
   selfEndTurn: 0
+  selfUsesAction: 1
   selfCost: 40
   selfPotionCost: 0
   selfCostType: AP
@@ -41,9 +42,11 @@ MonoBehaviour:
     Also
     has a chance to poison targets'
   targetEndTurn: 0
+  targetUsesAction: 1
   targetCost: 60
   targetCostType: AP
   damageType: 4
+  targetCanBeCountered: 1
   targetDmg: {x: 24, y: 36}
   hits: 1
   hitInterval: 0

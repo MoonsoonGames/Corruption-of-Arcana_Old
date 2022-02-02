@@ -323,4 +323,15 @@ public class LoadSettings : MonoBehaviour
     }
 
     #endregion
+
+    #region Travelling
+
+    public string currentNodeID;
+
+    public void TravelStart(NavigationNode newNode)
+    {
+        currentNodeID = newNode.name;
+    }
+
+    #endregion
 }
