@@ -74,12 +74,10 @@ public class Enemy : MonoBehaviour
         {
             if (enemyStats.slow)
             {
-                Debug.Log("slowed");
                 float random = Random.Range(0f, 1f);
 
                 if (random >= 0.3f)
                 {
-                    Debug.Log("slowed, but still took turn");
                     TakeTurn();
                 }
             }
@@ -98,8 +96,9 @@ public class Enemy : MonoBehaviour
             {
                 //charm code here
             }
-            else if (enemyStats.silence)
+            else if (enemyStats.silence && basicAttacks.Count > 0)
             {
+
                 basicAttacks[currentAttack].CastSpell(player, this.gameObject, abilityManager, out bool nullify);
                 currentAttack++;
                 if (currentAttack >= basicAttacks.Count)
@@ -144,7 +143,7 @@ public class Enemy : MonoBehaviour
                         }
                     }
                 }
-                else
+                else if (basicAttacks.Count > 0)
                 {
                     basicAttacks[currentAttack].CastSpell(player, this.gameObject, abilityManager, out bool nullify);
                     currentAttack++;
