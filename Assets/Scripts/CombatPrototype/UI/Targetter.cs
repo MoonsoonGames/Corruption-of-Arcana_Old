@@ -19,11 +19,17 @@ public class Targetter : MonoBehaviour
     {
         foreach (var item in corners)
         {
-            item.SetActive(visible);
+            if (item != null)
+            {
+                item.SetActive(visible);
+            }
         }
         foreach (var item in arrows)
         {
-            item.SetActive(!visible);
+            if (item != null)
+            {
+                item.SetActive(!visible);
+            }
         }
     }
 }

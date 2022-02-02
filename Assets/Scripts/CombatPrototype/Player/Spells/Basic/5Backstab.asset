@@ -16,19 +16,27 @@ MonoBehaviour:
   cardNumber: 5
   flavourDescription: 
   cardImage: {fileID: 0}
+  enemySpell: 0
   selfInterpretationUnlocked: 0
   selfName: 
   selfDescription: 
+  selfEndTurn: 0
+  selfUsesAction: 1
   selfCost: 0
   selfPotionCost: 0
   selfCostType: 
   selfHeal: {x: 0, y: 0}
   selfAP: {x: 0, y: 0}
+  restoreType: 0
   selfEndTurnDelay: 0
+  selfStatus: []
+  selfStatusDuration: 
   targetInterpretationUnlocked: 1
   targetName: Backstab
   targetDescription: Bypass your opponent's defenses with a strike that ignores damage
     resistances
+  targetEndTurn: 0
+  targetUsesAction: 1
   targetCost: 0
   targetCostType: 
   damageType: 6
@@ -44,5 +52,11 @@ MonoBehaviour:
   randomTargets: 0
   lifeLeach: {x: 0, y: 0}
   healOnKill: {x: 0, y: 0}
-  executeThreshhold: 0
+  executeThreshold: 0
+  targetStatus: []
+  targetStatusDuration: 
+  targetStatusChance: []
   spawnPosition: 4
+  summonAlly: {fileID: 0}
+  summonCount: 0
+  summonFX: {fileID: 0}

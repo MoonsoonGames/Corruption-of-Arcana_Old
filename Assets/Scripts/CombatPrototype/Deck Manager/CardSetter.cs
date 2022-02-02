@@ -14,8 +14,11 @@ public class CardSetter : MonoBehaviour
 
     public AbilityManager abilityManager;
 
+    public GameObject parent;
+
     private void Start()
     {
+        abilityManager = GameObject.FindObjectOfType<AbilityManager>();
         DrawCards();
     }
 
@@ -33,7 +36,7 @@ public class CardSetter : MonoBehaviour
 
     public void ButtonPressed()
     {
-        abilityManager.SetAbility(currentCard);
+        abilityManager.SetAbility(currentCard, this);
     }
 
 

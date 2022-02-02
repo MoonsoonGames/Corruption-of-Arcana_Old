@@ -11,6 +11,8 @@ public class CombatManager : MonoBehaviour
     */
     public static CombatManager instance;
 
+    #region UI
+
     public Button attackDeck;
     public Button spellDeck;
     public Button classDeck;
@@ -32,6 +34,8 @@ public class CombatManager : MonoBehaviour
     public Text HealingValue;
     public Text HealingLeft;
 
+    #endregion
+
     public PlayerStats playerStats;
     public EnemyStats enemyStats;
 
@@ -43,11 +47,12 @@ public class CombatManager : MonoBehaviour
     public AbilityManager abilityManager;
     public EnemyManager enemyManager;
 
-    public CardSetter[] cardSetters;
-
+    public CombatDeckManager combatDeckManager;
     private LoadSettings loadSettings;
 
     bool boss = false;
+
+    int cardsCast = 0;
 
     public void Start()
     {
@@ -66,6 +71,7 @@ public class CombatManager : MonoBehaviour
         Dmg.SetActive(false);
         Ap.SetActive(false);
         Healing.SetActive(false);
+        PlayableDecks.SetActive(false);
 
         loadSettings = GameObject.Find("LoadSettings").GetComponent<LoadSettings>();
 
@@ -86,6 +92,8 @@ public class CombatManager : MonoBehaviour
 
     public void StartTurn(bool player)
     {
+        cardsCast = 0;
+
         abilityManager.playerTurn = player;
 
         /*
@@ -97,19 +105,19 @@ public class CombatManager : MonoBehaviour
         {
             currentTurnText.text = "Player";
             currentTurnText.color = Color.green;
-            PlayableDecks.SetActive(true);
             HealingItem.SetActive(true);
+            PlayableDecks.SetActive(true);
 
             //Debug.Log("Regenerate Mana");
-            playerStats.ChangeMana(15, false);
+            playerStats.ChangeMana(30, false);
 
             Dmg.SetActive(false);
             Ap.SetActive(false);
             Healing.SetActive(false);
 
-            foreach (var item in cardSetters)
+            if (combatDeckManager != null)
             {
-                item.DrawCards();
+                combatDeckManager.DrawCards();
             }
 
             playerStats.OnTurnStartStatus();
@@ -140,6 +148,8 @@ public class CombatManager : MonoBehaviour
 
     public void EndTurn(bool player)
     {
+        cardsCast = 0;
+
         abilityManager.playerTurn = !player;
         
         if (player)
@@ -160,6 +170,16 @@ public class CombatManager : MonoBehaviour
 
         if (turnCountText != null)
             turnCountText.text = turnCounter.ToString();
+    }
+
+    public void IncrementCastCards()
+    {
+        cardsCast++;
+    }
+
+    public int GetCardsCast()
+    {
+        return cardsCast;
     }
 
     public void ShowEndScreen(bool victory)

@@ -16,16 +16,23 @@ public class CardParent : ScriptableObject
 
     public bool enemySpell;
 
-    public void CastSpell(GameObject target, GameObject caster, AbilityManager abilityManager)
+    public void CastSpell(GameObject target, GameObject caster, AbilityManager abilityManager, out bool canCast)
     {
-        if (target == caster && selfInterpretationUnlocked && target.GetComponent<CharacterStats>() != null)
+        canCast = false;
+
+        if (QuerySelf(target, caster, abilityManager))
         {
-            OnSelfCast(target, caster, abilityManager);
+            OnSelfCast(target, caster, abilityManager, out canCast);
         }
-        else if (target != caster && targetInterpretationUnlocked && target.GetComponent<CharacterStats>() != null)
+        else if (QueryTarget(target, caster, abilityManager))
         {
-            OnTargetCast(target, caster, abilityManager);
+            OnTargetCast(target, caster, abilityManager, out canCast);
         }
+        else
+        {
+            Debug.Log("Too many spells cast");
+        }
+        
     }
 
     #endregion
@@ -38,6 +45,8 @@ public class CardParent : ScriptableObject
     public string selfName;
     [TextArea(3, 10)]
     public string selfDescription;
+    public bool selfEndTurn = false;
+    public bool selfUsesAction = true;
     public int selfCost;
     public int selfPotionCost;
     public string selfCostType;
@@ -50,8 +59,9 @@ public class CardParent : ScriptableObject
     //public GameObject selfPrepareEffect;
     //public GameObject selfCastEffect;
 
-    public void OnSelfCast(GameObject target, GameObject caster, AbilityManager abilityManager)
+    public void OnSelfCast(GameObject target, GameObject caster, AbilityManager abilityManager, out bool canCast)
     {
+        canCast = false;
         CharacterStats stats = target.GetComponent<CharacterStats>();
         if (stats != null && abilityManager != null)
         {
@@ -59,6 +69,8 @@ public class CardParent : ScriptableObject
 
             if (abilityManager.playerStats.CheckMana(selfCost) && abilityManager.playerStats.CheckPotions(selfPotionCost))
             {
+                canCast = true;
+
                 int heal = (int)Random.Range(selfHeal.x, selfHeal.y);
                 int mana = (int)Random.Range(selfAP.x, selfAP.y);
 
@@ -86,7 +98,16 @@ public class CardParent : ScriptableObject
 
                     abilityManager.ResetAbility();
 
-                    abilityManager.EndTurn(selfEndTurnDelay);
+                    if (selfEndTurn)
+                    {
+                        abilityManager.EndTurn(selfEndTurnDelay);
+                    }
+                    else if (selfUsesAction)
+                    {
+                        CombatManager combatManager = GameObject.FindObjectOfType<CombatManager>();
+
+                        combatManager.IncrementCastCards();
+                    }
                 }
             }
             else
@@ -112,6 +133,8 @@ public class CardParent : ScriptableObject
     public string targetName;
     [TextArea(3, 10)]
     public string targetDescription;
+    public bool targetEndTurn = false;
+    public bool targetUsesAction = true;
     public int targetCost;
     public string targetCostType;
     public E_DamageTypes damageType;
@@ -138,8 +161,9 @@ public class CardParent : ScriptableObject
 
     public E_CombatEffectSpawn spawnPosition;
 
-    public void OnTargetCast(GameObject target, GameObject caster, AbilityManager abilityManager)
+    public void OnTargetCast(GameObject target, GameObject caster, AbilityManager abilityManager, out bool canCast)
     {
+        canCast = false;
         CharacterStats stats = target.GetComponent<CharacterStats>();
         if (stats != null)
         {
@@ -148,6 +172,8 @@ public class CardParent : ScriptableObject
             int cost = targetCost;
             if (abilityManager.playerStats.CheckMana(cost))
             {
+                canCast = true;
+
                 abilityManager.MouseLeft();
 
                 if (targetChain)
@@ -295,7 +321,10 @@ public class CardParent : ScriptableObject
 
                     abilityManager.ResetAbility();
 
-                    abilityManager.EndTurn(targetEndTurnDelay);
+                    if (targetEndTurn)
+                    {
+                        abilityManager.EndTurn(selfEndTurnDelay);
+                    }
                 }
 
                 CharacterStats casterStats = caster.GetComponent<CharacterStats>();
@@ -304,6 +333,13 @@ public class CardParent : ScriptableObject
                 {
                     int heal = Random.Range(lifeLeach.x, lifeLeach.y);
                     casterStats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int healNull, caster);
+                }
+
+                if (targetUsesAction)
+                {
+                    CombatManager combatManager = GameObject.FindObjectOfType<CombatManager>();
+
+                    combatManager.IncrementCastCards();
                 }
             }
             else
@@ -362,6 +398,16 @@ public class CardParent : ScriptableObject
     #endregion
 
     #region Helper Functions
+
+    public bool QuerySelf(GameObject target, GameObject caster, AbilityManager abilityManager)
+    {
+        return (abilityManager.combatManager.GetCardsCast() < 2 || !selfUsesAction || caster != GameObject.Find("Player")) && (target == caster && selfInterpretationUnlocked && target.GetComponent<CharacterStats>() != null);
+    }
+
+    public bool QueryTarget(GameObject target, GameObject caster, AbilityManager abilityManager)
+    {
+        return (abilityManager.combatManager.GetCardsCast() < 2 || !targetUsesAction || caster != GameObject.Find("Player")) && (target != caster && targetInterpretationUnlocked && target.GetComponent<CharacterStats>() != null);
+    }
 
     void SpawnFX(Object FX, Transform transform)
     {

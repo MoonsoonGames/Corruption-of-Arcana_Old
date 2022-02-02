@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1807520508}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.089050435, g: 0.089050435, b: 0.20751971, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8488,7 +8488,7 @@ PrefabInstance:
     - target: {fileID: 5564511172518815125, guid: e6f554e9aa4ad204d8a5050df75cd470,
         type: 3}
       propertyPath: enemiesKilled.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5564511172518815125, guid: e6f554e9aa4ad204d8a5050df75cd470,
         type: 3}
@@ -11520,7 +11520,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemiesRequired:
   - WellFight
-  requireAll: 1
+  - ExcaliburFight
+  requireAll: 0
   destroyIfContains: 1
 --- !u!1001 &1589427761
 PrefabInstance:
@@ -11984,7 +11985,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemiesRequired:
   - WellFight
-  requireAll: 1
+  requireAll: 0
   destroyIfContains: 0
 --- !u!114 &1735862499
 MonoBehaviour:
@@ -12000,7 +12001,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemiesRequired:
   - ExcaliburFight
-  requireAll: 1
+  requireAll: 0
   destroyIfContains: 1
 --- !u!1 &1771214307
 GameObject:
