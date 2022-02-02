@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 3829321742630870872}
   - component: {fileID: 3829321742630870873}
   - component: {fileID: 3829321742630870875}
+  - component: {fileID: 4593078606833834094}
   - component: {fileID: -1507822664420518}
   m_Layer: 0
   m_Name: ClearingFights
@@ -160,6 +161,33 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4593078606833834094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3829321742630870876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad703943eaaa2064db4adbb13e11e40e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy1:
+  - {fileID: 0}
+  - {fileID: 6783367526062023706, guid: be38e07ea0d318e40826251030f89164, type: 3}
+  - {fileID: 6783367526062023706, guid: 7ec425a601604694f9696b568c64104d, type: 3}
+  - {fileID: 6783367526062023706, guid: 199d05dc127155d4c960a2a5ebae90b5, type: 3}
+  enemy2:
+  - {fileID: 6783367526062023706, guid: 7ec425a601604694f9696b568c64104d, type: 3}
+  - {fileID: 6783367526062023706, guid: 199d05dc127155d4c960a2a5ebae90b5, type: 3}
+  - {fileID: 6783367526062023706, guid: 2e3c569447eba584cb58ad5b55ba5d09, type: 3}
+  - {fileID: 6783367526062023706, guid: da06ad2a7467ea5499e417f5df20d229, type: 3}
+  enemy3:
+  - {fileID: 0}
+  - {fileID: 6783367526062023706, guid: be38e07ea0d318e40826251030f89164, type: 3}
+  - {fileID: 6783367526062023706, guid: 7ec425a601604694f9696b568c64104d, type: 3}
+  - {fileID: 6783367526062023706, guid: 199d05dc127155d4c960a2a5ebae90b5, type: 3}
 --- !u!114 &-1507822664420518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,9 +202,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boss: 0
   enemies:
-  - {fileID: 6783367526062023706, guid: be38e07ea0d318e40826251030f89164, type: 3}
-  - {fileID: 6783367526062023706, guid: 7ec425a601604694f9696b568c64104d, type: 3}
-  - {fileID: 6783367526062023706, guid: be38e07ea0d318e40826251030f89164, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   combatScene: 2
   goldReward: {x: 15, y: 20}
   potionReward: 0.7
