@@ -109,7 +109,7 @@ public class CombatManager : MonoBehaviour
             PlayableDecks.SetActive(true);
 
             //Debug.Log("Regenerate Mana");
-            playerStats.ChangeMana(30, false);
+            playerStats.ChangeMana(20, false);
 
             Dmg.SetActive(false);
             Ap.SetActive(false);
