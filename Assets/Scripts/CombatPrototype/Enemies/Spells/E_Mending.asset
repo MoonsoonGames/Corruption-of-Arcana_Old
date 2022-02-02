@@ -10,42 +10,42 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d042955bf60bea84b9273684d78676b5, type: 3}
-  m_Name: E_Skewer
+  m_Name: E_Mending
   m_EditorClassIdentifier: 
-  cardName: Skewer
+  cardName: Mending
   cardNumber: 0
   flavourDescription: 
   cardImage: {fileID: 0}
   enemySpell: 1
-  selfInterpretationUnlocked: 0
-  selfName: 
-  selfDescription: 
-  selfEndTurn: 1
+  selfInterpretationUnlocked: 1
+  selfName: Mending
+  selfDescription: Restores ally health
+  selfEndTurn: 0
   selfUsesAction: 1
   selfCost: 0
   selfPotionCost: 0
   selfCostType: 
   selfHeal: {x: 0, y: 0}
   selfAP: {x: 0, y: 0}
-  restoreType: 0
+  restoreType: 7
   selfEndTurnDelay: 0.2
-  selfStatus: []
-  selfStatusDuration: 
-  targetInterpretationUnlocked: 1
-  targetName: Skewer
-  targetDescription: The enemy unearths spikes from the ground to impale Taro, with
-    a chance to apply bleeding.
-  targetEndTurn: 1
+  selfStatus:
+  - {fileID: 11400000, guid: 39f99529f37231149a374c402729d68e, type: 2}
+  selfStatusDuration: 01000000
+  targetInterpretationUnlocked: 0
+  targetName: 
+  targetDescription: 
+  targetEndTurn: 0
   targetUsesAction: 1
   targetCost: 0
   targetCostType: 
-  damageType: 6
-  targetDmg: {x: 6, y: 14}
-  hits: 1
-  hitInterval: 0.1
-  finalHitInterval: 0.1
-  targetFinalDmg: {x: 5, y: 8}
-  targetEndTurnDelay: 1
+  damageType: 0
+  targetDmg: {x: 0, y: 0}
+  hits: 0
+  hitInterval: 0
+  finalHitInterval: 0
+  targetFinalDmg: {x: 0, y: 0}
+  targetEndTurnDelay: 0.2
   targetCleave: 0
   targetChain: 0
   extraDmg: {x: 0, y: 0}
@@ -53,11 +53,9 @@ MonoBehaviour:
   lifeLeach: {x: 0, y: 0}
   healOnKill: {x: 0, y: 0}
   executeThreshold: 0
-  targetStatus:
-  - {fileID: 11400000, guid: 0aa56a9e5ce959e4b96c703989b64011, type: 2}
-  targetStatusDuration: 02000000
-  targetStatusChance:
-  - 0.6
+  targetStatus: []
+  targetStatusDuration: 
+  targetStatusChance: []
   spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0
