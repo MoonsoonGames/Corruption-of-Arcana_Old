@@ -118,4 +118,14 @@ public class MenuManager : MonoBehaviour
         Application.Quit();
     }
     #endregion
+
+    #region DeckBuilder Button
+    public void DeckBuilder()
+    {
+        //turn off pause menu UI
+        //turn on deck builder UI
+    }
+    #endregion
+
+    #endregion
 }
