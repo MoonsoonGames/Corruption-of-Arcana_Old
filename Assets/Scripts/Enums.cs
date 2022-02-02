@@ -20,13 +20,16 @@ public enum E_Levels
     [InspectorName("Combat")]
     CombatPrototype,
 
-    Narrative,
-    Ending,
-    Fortune,
-    Death,
+    Dialogue,
 
     [InspectorName("Overworld Map")]
-    OverworldMap
+    OverworldMap,
+
+    [InspectorName("East Forest Clearing")]
+    EastForestClearing,
+
+    [InspectorName("Tiertarock")]
+    Tiertarock
 }
 
 public enum E_Suits
@@ -104,7 +107,12 @@ public enum E_Decks
     Banes
 }
 
-public enum E_CombatCards
+public enum E_DamageTypes
 {
-    Slash, Cleave, Flurry, ChillTouch, Firebolt, ChainLightning, CureWounds, CriticalSlash, HealingPotion
+    Physical, Ember, Static, Bleak, Septic, Random, Perforation, Healing, Arcana
+}
+
+public enum E_CombatEffectSpawn
+{
+    Player, Ground, Sky, Enemies, Backstab
 }

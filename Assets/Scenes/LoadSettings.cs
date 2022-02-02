@@ -5,44 +5,80 @@ using UnityEngine.SceneManagement;
 
 public class LoadSettings : MonoBehaviour
 {
-    public int health = 1;
+    #region Setup
 
-    #region Tutorial Dialogue
+    #region Variables
+
+    #region Dialogue
 
     public bool dialogueComplete = false;
     public bool prologueComplete = false;
 
+    public Object dialogueFlowChart;
+    public bool loadSceneMultiple = false;
+
     #endregion 
 
-    public bool enemyKilled = false;
-    public bool bossKilled = false;
+    #region Exploration
 
-    public bool fightingBoss = false;
+    #region Levels
 
-    E_Levels lastLevel;
+    public E_Levels lastLevel;
+    public string lastLevelString;
     public Vector3 playerPosInThoth;
+    public Quaternion playerRotInThoth;
+    public Vector3 playerPosInClearing;
+    public Quaternion playerRotInClearing;
+    public Vector3 playerPosInTiertarock;
+    public Quaternion playerRotInTiertarock;
+
+    #endregion
+
+    #region Checkpoints
 
     public Vector3 checkPointPos;
-    Scene checkPointScene;
+    public Quaternion checkPointRot;
+    public Scene checkPointScene;
+    public string checkPointString;
 
     public bool died;
 
-    public Object[] enemies = new Object[3];
+    #endregion
 
+    #region Stats
+
+    public bool fightingBoss = false;
+    public Object[] enemies = new Object[3];
+    public List<string> enemiesKilled = new List<string>();
+    public List<string> checkpointEnemies = new List<string>();
+
+    public int health = 1;
     public int checkPointPotionCount;
     public int potionCount;
 
-    bool main = false;
+    public int currentGold;
+    public int checkPointGold;
+
+    public string currentFight;
+    public Vector2 goldReward;
+    public float potionReward;
+    public string itemReward;
+
+    #endregion
+
+    #endregion
+
+    #endregion
 
     private void Awake()
     {
         LoadSettings[] loadSettings = GameObject.FindObjectsOfType<LoadSettings>();
 
-        Debug.Log(loadSettings.Length);
+        //Debug.Log(loadSettings.Length);
 
         if (loadSettings.Length > 1)
         {
-            Debug.Log("destroying");
+            //Debug.Log("destroying");
             Destroy(this); //There is already one in the scene, delete this one
         }
         else
@@ -52,6 +88,12 @@ public class LoadSettings : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region Singleton
+
+    bool main = false;
+
     public bool CheckMain()
     {
         if (main)
@@ -60,61 +102,225 @@ public class LoadSettings : MonoBehaviour
         }
         else
         {
-            Debug.Log("destroying");
-            return true;
+            //Debug.Log("destroying");
+            return false;
         }
     }
 
-    public Vector3 RequestPosition(PlayerController controller)
+    #endregion
+
+    #region Player
+
+    #region Player Position and Rotation
+
+    public Vector3 RequestPosition(string scene)
     {
         Vector3 targetPos;
 
         if (died)
         {
-            died = false;
+            #region Reset last position
 
+            if (lastLevelString == E_Levels.Thoth.ToString())
+            {
+                playerPosInThoth = new Vector3(-358.679993f, 38.8400002f, 288.880005f);
+            }
+            else if (lastLevelString == E_Levels.EastForestClearing.ToString())
+            {
+                playerPosInClearing = new Vector3(37f, 7.61000013f, 294.160004f);
+            }
+
+            #endregion
+
+            ResetEnemies();
             targetPos = checkPointPos;
 
             targetPos.x = checkPointPos.x;
             targetPos.y = checkPointPos.y;
             targetPos.z = checkPointPos.z;
 
-            Debug.Log("Loading respawn position | " + checkPointPos + " || " + targetPos);
+            //Debug.Log("Loading respawn position | " + checkPointPos + " || " + targetPos);
         }
         else
         {
-            targetPos = playerPosInThoth;
+            targetPos = new Vector3();
+            
+            lastLevelString = scene;
 
-            targetPos.x = playerPosInThoth.x;
-            targetPos.y = playerPosInThoth.y;
-            targetPos.z = playerPosInThoth.z;
+            //Debug.Log(scene + " and " + lastLevelString);
 
-            Debug.Log("Loading spawn position | " + playerPosInThoth + " || " + targetPos);
+            if (lastLevelString == E_Levels.Thoth.ToString())
+            {
+                targetPos = playerPosInThoth;
 
-            controller.transform.position = targetPos;
-            Debug.Log(controller.transform.position);
+                targetPos.x = playerPosInThoth.x;
+                targetPos.y = playerPosInThoth.y;
+                targetPos.z = playerPosInThoth.z;
+            }
+            else if (lastLevelString == E_Levels.EastForestClearing.ToString())
+            {
+                Debug.Log(scene + " and " + lastLevelString);
+                targetPos = playerPosInClearing;
+
+                targetPos.x = playerPosInClearing.x;
+                targetPos.y = playerPosInClearing.y;
+                targetPos.z = playerPosInClearing.z;
+            }
+            else if (lastLevelString == E_Levels.Tiertarock.ToString())
+            {
+                Debug.Log(scene + " and " + lastLevelString);
+                targetPos = playerPosInTiertarock;
+
+                targetPos.x = playerPosInTiertarock.x;
+                targetPos.y = playerPosInTiertarock.y;
+                targetPos.z = playerPosInTiertarock.z;
+            }
+
+            //Debug.Log("Loading spawn position | " + playerPosInThoth + " || " + targetPos);
+
         }
 
         return targetPos;
     }
 
-    public E_Levels GetLastLevel()
+    public Quaternion RequestRotation(string scene)
     {
-        return lastLevel;
+        Quaternion targetRot;
+
+        if (died)
+        {
+            ResetEnemies();
+            targetRot = checkPointRot;
+
+            targetRot.x = checkPointRot.x;
+            targetRot.y = checkPointRot.y;
+            targetRot.z = checkPointRot.z;
+            targetRot.w = checkPointRot.w;
+
+            //Debug.Log("Loading respawn position | " + checkPointPos + " || " + targetPos);
+        }
+        else
+        {
+            targetRot = new Quaternion();
+
+            lastLevelString = scene;
+
+            //Debug.Log(scene + " and " + lastLevelString);
+
+            if (lastLevelString == E_Levels.Thoth.ToString())
+            {
+                targetRot = playerRotInThoth;
+
+                targetRot.x = playerRotInThoth.x;
+                targetRot.y = playerRotInThoth.y;
+                targetRot.z = playerRotInThoth.z;
+                targetRot.w = playerRotInThoth.w;
+            }
+            else if (lastLevelString == E_Levels.EastForestClearing.ToString())
+            {
+                Debug.Log(scene + " and " + lastLevelString);
+                targetRot = playerRotInClearing;
+
+                targetRot.x = playerRotInClearing.x;
+                targetRot.y = playerRotInClearing.y;
+                targetRot.z = playerRotInClearing.z;
+                targetRot.w = playerRotInClearing.w;
+            }
+            else if (lastLevelString == E_Levels.Tiertarock.ToString())
+            {
+                Debug.Log(scene + " and " + lastLevelString);
+                targetRot = playerRotInTiertarock;
+
+                targetRot.x = playerRotInTiertarock.x;
+                targetRot.y = playerRotInTiertarock.y;
+                targetRot.z = playerRotInTiertarock.z;
+            }
+
+            //Debug.Log("Loading spawn rotation | " + playerRotInThoth.eulerAngles + " || " + targetRot.eulerAngles);
+        }
+
+        return targetRot;
     }
 
-    public void SetLastLevel(E_Levels newLevel)
+    #endregion
+
+    #region Inputs
+
+    public void SetPlayerInput(bool enabled)
     {
-        lastLevel = newLevel;
+        PlayerController controller = GameObject.FindObjectOfType<PlayerController>();
+
+        if (controller != null)
+        {
+            controller.canMove = enabled;
+        }
     }
 
-    public Scene GetCheckpointScene()
+    #endregion
+
+    #endregion
+
+    #region Checkpoints
+
+    public void ResetEnemies()
     {
-        return checkPointScene;
+        Debug.Log("Reset Enemies");
+        enemiesKilled.Clear();
+
+        foreach (var item in checkpointEnemies)
+        {
+            enemiesKilled.Add(item);
+        }
     }
 
-    public void SetCheckPointLevel(Scene newCheckPoint)
+    public void Checkpoint(Scene newCheckPoint)
     {
+        Debug.Log("Checkpoint");
+        checkpointEnemies.Clear();
+
+        foreach (var item in enemiesKilled)
+        {
+            checkpointEnemies.Add(item);
+        }
+
         checkPointScene = newCheckPoint;
+        checkPointString = checkPointScene.name;
     }
+
+    #endregion
+
+    #region Guidebook
+
+    public List<string> revealedEntries = new List<string>();
+
+    public void AddToGuidebook(string name)
+    {
+        if (revealedEntries.Contains(name))
+        {
+            //
+        }
+        else
+        {
+            revealedEntries.Add(name);
+            //sort
+        }
+    }
+
+    static int SortByInt(Object e1, Object e2)
+    {
+        GameObject gObject1 = e1 as GameObject;
+        GameObject gObject2 = e2 as GameObject;
+
+        Enemy stats1 = gObject1.GetComponent<Enemy>();
+        Enemy stats2 = gObject2.GetComponent<Enemy>();
+
+        return stats1.guidebookOrder.CompareTo(stats2.guidebookOrder);
+    }
+
+    public bool CheckExposed(string name)
+    {
+        return revealedEntries.Contains(name);
+    }
+
+    #endregion
 }

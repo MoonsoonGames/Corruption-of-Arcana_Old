@@ -11,6 +11,8 @@ public class CombatManager : MonoBehaviour
     */
     public static CombatManager instance;
 
+    #region UI
+
     public Button attackDeck;
     public Button spellDeck;
     public Button classDeck;
@@ -32,6 +34,8 @@ public class CombatManager : MonoBehaviour
     public Text HealingValue;
     public Text HealingLeft;
 
+    #endregion
+
     public PlayerStats playerStats;
     public EnemyStats enemyStats;
 
@@ -43,11 +47,12 @@ public class CombatManager : MonoBehaviour
     public AbilityManager abilityManager;
     public EnemyManager enemyManager;
 
-    public CardSetter[] cardSetters;
-
+    public CombatDeckManager combatDeckManager;
     private LoadSettings loadSettings;
 
     bool boss = false;
+
+    int cardsCast = 0;
 
     public void Start()
     {
@@ -66,6 +71,7 @@ public class CombatManager : MonoBehaviour
         Dmg.SetActive(false);
         Ap.SetActive(false);
         Healing.SetActive(false);
+        PlayableDecks.SetActive(false);
 
         loadSettings = GameObject.Find("LoadSettings").GetComponent<LoadSettings>();
 
@@ -76,27 +82,45 @@ public class CombatManager : MonoBehaviour
 
         battleActive = true;
 
+        Invoke("DelayStart", 3f);
+    }
+
+    void DelayStart()
+    {
         StartTurn(true);
     }
 
     public void StartTurn(bool player)
     {
+        cardsCast = 0;
+
         abilityManager.playerTurn = player;
+
+        /*
+        if (enemyManager.enemies.Count <= 0)
+            ShowEndScreen(true);
+        */
 
         if (player)
         {
             currentTurnText.text = "Player";
             currentTurnText.color = Color.green;
-            PlayableDecks.SetActive(true);
             HealingItem.SetActive(true);
+            PlayableDecks.SetActive(true);
 
-            Debug.Log("Regenerate Mana");
-            playerStats.ChangeMana(15, false);
+            //Debug.Log("Regenerate Mana");
+            playerStats.ChangeMana(30, false);
 
-            foreach (var item in cardSetters)
+            Dmg.SetActive(false);
+            Ap.SetActive(false);
+            Healing.SetActive(false);
+
+            if (combatDeckManager != null)
             {
-                item.DrawCards();
+                combatDeckManager.DrawCards();
             }
+
+            playerStats.OnTurnStartStatus();
         }
         else
         {
@@ -105,9 +129,6 @@ public class CombatManager : MonoBehaviour
             PlayableDecks.SetActive(false);
             HealingItem.SetActive(false);
             noMana.SetActive(false);
-            Dmg.SetActive(false);
-            Ap.SetActive(false);
-            Healing.SetActive(false);
 
             if (enemyManager != null)
             {
@@ -117,12 +138,31 @@ public class CombatManager : MonoBehaviour
             {
                 EndTurn(false);
             }
+
+            foreach (var item in enemyManager.enemies)
+            {
+                item.GetComponent<EnemyStats>().OnTurnStartStatus();
+            }
         }
     }
 
     public void EndTurn(bool player)
     {
+        cardsCast = 0;
+
         abilityManager.playerTurn = !player;
+        
+        if (player)
+        {
+            playerStats.OnTurnEndStatus();
+        }
+        else
+        {
+            foreach (var item in enemyManager.enemies)
+            {
+                item.GetComponent<EnemyStats>().OnTurnEndStatus();
+            }
+        }
 
         StartTurn(!player);
 
@@ -132,26 +172,23 @@ public class CombatManager : MonoBehaviour
             turnCountText.text = turnCounter.ToString();
     }
 
+    public void IncrementCastCards()
+    {
+        cardsCast++;
+    }
+
+    public int GetCardsCast()
+    {
+        return cardsCast;
+    }
+
     public void ShowEndScreen(bool victory)
     {
         battleActive = false;
 
         if (victory)
         {
-            if (loadSettings != null)
-            {
-                loadSettings.health = playerStats.GetHealth();
-
-                if (boss)
-                {
-                    loadSettings.bossKilled = true;
-                }
-                else
-                {
-                    loadSettings.enemyKilled = true;
-                }
-            }
-
+            
 
             VictoryScreen.SetActive(true);
             //SceneManager.LoadLast;//Needs to load last scene and position
@@ -160,8 +197,6 @@ public class CombatManager : MonoBehaviour
         {
             if (loadSettings != null)
             {
-                loadSettings.bossKilled = false;
-                loadSettings.enemyKilled = false;
                 loadSettings.died = true;
                 loadSettings.health = 120;
             }
@@ -170,5 +205,28 @@ public class CombatManager : MonoBehaviour
             //SceneManagement.LoadScene("Thoth");
             //Transform.position(Mama reinfeld);
         }
+    }
+
+    public void TargetEnemies(bool visible)
+    {
+        enemyManager.TargetEnemies(visible);
+    }
+
+    public void Rewards(int healing, int gold, int potions)
+    {
+        if (loadSettings != null && loadSettings.currentFight != null)
+        {
+            playerStats.ChangeHealth(healing, false, E_DamageTypes.Physical, out int damageTaken, this.gameObject);
+
+            playerStats.ChangePotions(potions, false);
+
+            loadSettings.health = playerStats.GetHealth();
+
+            loadSettings.currentGold += gold; 
+
+            loadSettings.enemiesKilled.Add(loadSettings.currentFight);
+        }
+
+        //Debug.Log("No current fight");
     }
 }

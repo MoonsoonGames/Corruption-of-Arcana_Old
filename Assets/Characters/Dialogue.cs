@@ -20,6 +20,10 @@ public class Dialogue : MonoBehaviour
 
     public bool requiresTutorial = false;
 
+    public Object dialogue;
+
+    public LoadSceneMode sceneMode;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -49,15 +53,17 @@ public class Dialogue : MonoBehaviour
 
                     if (controller != null)
                     {
+                        Debug.Log(SceneManager.GetActiveScene());
                         loadSettings.checkPointPotionCount = controller.GetPotions();
 
                         loadSettings.checkPointPos = controller.transform.position;
 
-                        loadSettings.SetCheckPointLevel(SceneManager.GetActiveScene());
+                        loadSettings.checkPointScene = SceneManager.GetActiveScene();
                     }
                 }
 
-                sceneLoader.LoadSpecifiedScene(sceneString, LoadSceneMode.Single);
+                loadSettings.loadSceneMultiple = sceneMode == LoadSceneMode.Additive;
+                sceneLoader.LoadSpecifiedScene(sceneString, sceneMode, dialogue);
             }
         }
     }

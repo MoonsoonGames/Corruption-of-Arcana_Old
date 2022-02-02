@@ -14,24 +14,22 @@ public class EnemyController : MonoBehaviour
     private LoadSettings loadSettings;
 
     public E_Levels combatScene;
+    public Vector2 goldReward;
+    public float potionReward;
+    public string itemReward;
+
+    public string enemyName;
 
     // Start is called before the first frame update
     void Awake()
     {
         loadSettings = GameObject.Find("LoadSettings").GetComponent<LoadSettings>();
 
-        if (this.tag == "commonEnemy")
+        if (loadSettings != null)
         {
-            if (loadSettings != null && loadSettings.enemyKilled)
+            if (loadSettings.enemiesKilled.Contains(name))
             {
-                Destroy(this.gameObject);
-            }
-        }
-
-        else if (this.tag == "bossEnemy")
-        {
-            if (loadSettings != null && loadSettings.bossKilled)
-            {
+                Debug.Log("Despawning " + name);
                 Destroy(this.gameObject);
             }
         }
@@ -42,13 +40,18 @@ public class EnemyController : MonoBehaviour
         if (loadSettings != null)
         {
             loadSettings.fightingBoss = boss;
+            loadSettings.currentFight = name;
 
             loadSettings.enemies[0] = enemies[0];
             loadSettings.enemies[1] = enemies[1];
             loadSettings.enemies[2] = enemies[2];
 
+            loadSettings.goldReward = goldReward;
+            loadSettings.potionReward = potionReward;
+            loadSettings.itemReward = itemReward;
+
             if (sceneLoader != null)
-                sceneLoader.LoadSpecifiedScene(combatScene.ToString(), LoadSceneMode.Single);
+                sceneLoader.LoadSpecifiedScene(combatScene.ToString(), LoadSceneMode.Single, null);
         }
     }
 }
