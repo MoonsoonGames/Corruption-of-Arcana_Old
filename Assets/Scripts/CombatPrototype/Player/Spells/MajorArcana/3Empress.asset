@@ -23,6 +23,7 @@ MonoBehaviour:
   selfDescription: "This growth of healing plants will restore your vitality over
     Y turns\r"
   selfEndTurn: 0
+  selfUsesAction: 1
   selfCost: 50
   selfPotionCost: 0
   selfCostType: AP
@@ -40,9 +41,11 @@ MonoBehaviour:
 
     Also has a chance to poison targets'
   targetEndTurn: 0
+  targetUsesAction: 1
   targetCost: 20
   targetCostType: AP
   damageType: 4
+  targetCanBeCountered: 1
   targetDmg: {x: 16, y: 30}
   hits: 1
   hitInterval: 0

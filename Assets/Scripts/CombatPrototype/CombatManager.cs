@@ -216,7 +216,7 @@ public class CombatManager : MonoBehaviour
     {
         if (loadSettings != null && loadSettings.currentFight != null)
         {
-            playerStats.ChangeHealth(healing, false, E_DamageTypes.Physical, out int damageTaken, this.gameObject);
+            playerStats.ChangeHealth(healing, false, E_DamageTypes.Physical, out int damageTaken, this.gameObject, false);
 
             playerStats.ChangePotions(potions, false);
 

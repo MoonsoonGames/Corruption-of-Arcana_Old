@@ -157,7 +157,7 @@ public class CharacterStats : MonoBehaviour
         return health;
     }
 
-    public virtual void ChangeHealth(int value, bool damage, E_DamageTypes damageType, out int damageTaken, GameObject attacker)
+    public virtual void ChangeHealth(int value, bool damage, E_DamageTypes damageType, out int damageTaken, GameObject attacker, bool canBeCountered)
     {
         damageTaken = 0;
         if (damage && value > 0)
@@ -168,7 +168,10 @@ public class CharacterStats : MonoBehaviour
 
             health = Mathf.Clamp(health - damageTaken, 0, maxHealth);
 
-            OnTakeDamageStatus(attacker);
+            if (canBeCountered)
+            {
+                OnTakeDamageStatus(attacker);
+            }
 
             RemoveSleepStatus();
 
