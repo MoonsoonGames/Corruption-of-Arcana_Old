@@ -18,6 +18,11 @@ public class NavigationNode : MonoBehaviour
     public Color unavailableColour;
     public bool canTravelTo = false;
 
+    [HideInInspector]
+    public bool stopEvents = false;
+    [HideInInspector]
+    public bool stopLevels = false;
+
     public void Setup(NavigationManager navigationManager, E_Levels newNavScene, bool current)
     {
         navManager = navigationManager;
@@ -74,14 +79,20 @@ public class NavigationNode : MonoBehaviour
 
             generateEvent = navEvent.eventName;
 
-            navEvent.Setup(sceneLoader, navScene);
-            navEvent.StartEvent();
+            if (!stopEvents)
+            {
+                navEvent.Setup(sceneLoader, navScene);
+                navEvent.StartEvent();
+            }
         }
         else
         {
             generateEvent = "Arrive";
 
-            sceneLoader.LoadDefaultScene(null);
+            if (!stopLevels)
+            {
+                sceneLoader.LoadDefaultScene(null);
+            }
         }
         
         return generateEvent;
