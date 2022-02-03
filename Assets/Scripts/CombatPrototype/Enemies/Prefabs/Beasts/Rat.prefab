@@ -20,17 +20,17 @@ PrefabInstance:
     - target: {fileID: 3555124278701396920, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.84811145
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3555124278701396920, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.84811145
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3555124278701396920, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.84811145
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3555124278701396920, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
@@ -46,12 +46,27 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: a358616ddda77b04bafb56dc57ddd29a,
+      objectReference: {fileID: 21300000, guid: 8c7a13a35a86dc44ab40de9d93374d78,
         type: 3}
     - target: {fileID: 3555124278701396923, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: m_Color.a
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555124278701396923, guid: 24c6b79283add374eb3a4c0e1395b423,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.041384835
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555124278701396923, guid: 24c6b79283add374eb3a4c0e1395b423,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.2830189
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555124278701396923, guid: 24c6b79283add374eb3a4c0e1395b423,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.277708
       objectReference: {fileID: 0}
     - target: {fileID: 3555124278825360684, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
@@ -76,7 +91,7 @@ PrefabInstance:
     - target: {fileID: 3555124280068035575, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: m_Text
-      value: Minion
+      value: Rat
       objectReference: {fileID: 0}
     - target: {fileID: 3555124280068035575, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
@@ -161,7 +176,7 @@ PrefabInstance:
     - target: {fileID: 3555124280383455489, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: m_Name
-      value: Minion
+      value: Rat
       objectReference: {fileID: 0}
     - target: {fileID: 3555124280383455490, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
@@ -186,13 +201,12 @@ PrefabInstance:
     - target: {fileID: 3555124280383455490, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: desciption
-      value: Minions are feeble and weak they can overpower you in large numbers,
-        so make sure to deal with them quickly.
+      value: Rats are feeble alone, but they pose a great threat in numbers
       objectReference: {fileID: 0}
     - target: {fileID: 3555124280383455490, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: displayName
-      value: Minion
+      value: Rat
       objectReference: {fileID: 0}
     - target: {fileID: 3555124280383455490, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
@@ -223,7 +237,27 @@ PrefabInstance:
     - target: {fileID: 3555124280383455491, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: maxHealth
-      value: 45
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555124280383455491, guid: 24c6b79283add374eb3a4c0e1395b423,
+        type: 3}
+      propertyPath: normalColour.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555124280383455491, guid: 24c6b79283add374eb3a4c0e1395b423,
+        type: 3}
+      propertyPath: normalColour.b
+      value: 0.10980392
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555124280383455491, guid: 24c6b79283add374eb3a4c0e1395b423,
+        type: 3}
+      propertyPath: normalColour.g
+      value: 0.16470589
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555124280383455491, guid: 24c6b79283add374eb3a4c0e1395b423,
+        type: 3}
+      propertyPath: normalColour.r
+      value: 0.34901962
       objectReference: {fileID: 0}
     - target: {fileID: 3555124280383455491, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
@@ -247,18 +281,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3555124280383455491, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
+      propertyPath: baseBleakMultiplier
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555124280383455491, guid: 24c6b79283add374eb3a4c0e1395b423,
+        type: 3}
+      propertyPath: baseEmberMultiplier
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3555124280383455491, guid: 24c6b79283add374eb3a4c0e1395b423,
+        type: 3}
       propertyPath: baseSepticMultiplier
-      value: 0.6
+      value: 1.35
       objectReference: {fileID: 0}
     - target: {fileID: 3555124280383455491, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: baseStaticMultiplier
-      value: 0.95
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 3555124280383455491, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: basePhysicalMultiplier
-      value: 0.95
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3623350128645117188, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
