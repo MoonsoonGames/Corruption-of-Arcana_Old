@@ -14,7 +14,7 @@ public class NavigationEvents : ScriptableObject
     public bool bane;
 
     E_Levels navScene;
-    public E_Levels combatScene;
+    public E_Levels loadScene;
     public Vector2Int goldReward;
     public float potionReward;
 
@@ -78,7 +78,7 @@ public class NavigationEvents : ScriptableObject
             loadSettings.lastLevelString = navScene.ToString();
 
             if (sceneLoader != null)
-                sceneLoader.LoadSpecifiedScene(combatScene.ToString(), LoadSceneMode.Single, null);
+                sceneLoader.LoadSpecifiedScene(loadScene.ToString(), LoadSceneMode.Single, null);
         }
     }
 }
