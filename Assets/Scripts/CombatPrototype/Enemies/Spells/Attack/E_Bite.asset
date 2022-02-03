@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d042955bf60bea84b9273684d78676b5, type: 3}
-  m_Name: E_Paralyse
+  m_Name: E_Bite
   m_EditorClassIdentifier: 
-  cardName: Paralyse
+  cardName: Bite
   cardNumber: 0
   flavourDescription: 
   cardImage: {fileID: 0}
@@ -32,16 +32,16 @@ MonoBehaviour:
   selfStatus: []
   selfStatusDuration: 
   targetInterpretationUnlocked: 1
-  targetName: Paralyse
-  targetDescription: The enemy makes a venemous bite attack, which has a chance to
-    apply a crippling poison that paralyses the target
+  targetName: Bite
+  targetDescription: The enemy makes a vicious bite attack, which has a small chance
+    to apply sicken
   targetEndTurn: 1
   targetUsesAction: 1
   targetCost: 0
   targetCostType: 
-  damageType: 4
+  damageType: 0
   targetCanBeCountered: 1
-  targetDmg: {x: 8, y: 12}
+  targetDmg: {x: 3, y: 8}
   hits: 1
   hitInterval: 0
   finalHitInterval: 0
@@ -55,12 +55,10 @@ MonoBehaviour:
   healOnKill: {x: 0, y: 0}
   executeThreshold: 0
   targetStatus:
-  - {fileID: 11400000, guid: a71ba48d9e31518499d97057b673a672, type: 2}
-  - {fileID: 11400000, guid: 2cd33fbda2b7c314199986b19faf45a6, type: 2}
-  targetStatusDuration: 0200000001000000
+  - {fileID: 11400000, guid: b0bde84afd59e73448a71364b842e47d, type: 2}
+  targetStatusDuration: 02000000
   targetStatusChance:
-  - 0.6
-  - 0.3
+  - 0.08
   spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0

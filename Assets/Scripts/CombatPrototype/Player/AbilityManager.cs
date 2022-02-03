@@ -134,6 +134,11 @@ public class AbilityManager : MonoBehaviour
                         combatDeckManager.RemoveCard(readiedCard);
                     }
 
+                    if (cardName != "End Turn")
+                    {
+                        combatDeckManager.RemoveCard(readiedCard);
+                    }
+
                     readiedCard = null;
                 }
             }
@@ -146,7 +151,7 @@ public class AbilityManager : MonoBehaviour
         }
     }
 
-    private void EnemyInfo(Enemy target)
+    public void EnemyInfo(Enemy target)
     {
         if (target != null)
             combatManager.enemyManager.EnemyInfo(target);
