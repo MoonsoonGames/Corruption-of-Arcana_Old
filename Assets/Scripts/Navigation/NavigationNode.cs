@@ -66,7 +66,7 @@ public class NavigationNode : MonoBehaviour
 
     public string GenerateNavigationEvent()
     {
-        string generateEvent = "Arrive";
+        string generateEvent = " - ";
 
         if (possibleEvents.Length > 0)
         {
@@ -76,6 +76,12 @@ public class NavigationNode : MonoBehaviour
 
             navEvent.Setup(sceneLoader, navScene);
             navEvent.StartEvent();
+        }
+        else
+        {
+            generateEvent = "Arrive";
+
+            sceneLoader.LoadDefaultScene(null);
         }
         
         return generateEvent;
