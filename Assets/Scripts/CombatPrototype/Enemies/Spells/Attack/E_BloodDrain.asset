@@ -10,54 +10,56 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d042955bf60bea84b9273684d78676b5, type: 3}
-  m_Name: 1Magician
+  m_Name: E_BloodDrain
   m_EditorClassIdentifier: 
-  cardName: The Magician
-  cardNumber: 1
-  flavourDescription: As Above, so below
+  cardName: Blood Drain
+  cardNumber: 0
+  flavourDescription: 
   cardImage: {fileID: 0}
-  enemySpell: 0
-  selfInterpretationUnlocked: 1
-  selfName: Adept Arcana
-  selfDescription: Drink from the occult wellspring of magic to restore your potential
-  selfEndTurn: 0
+  enemySpell: 1
+  selfInterpretationUnlocked: 0
+  selfName: 
+  selfDescription: 
+  selfEndTurn: 1
   selfUsesAction: 1
   selfCost: 0
   selfPotionCost: 0
   selfCostType: 
   selfHeal: {x: 0, y: 0}
-  selfAP: {x: 24, y: 36}
-  restoreType: 8
+  selfAP: {x: 0, y: 0}
+  restoreType: 0
   selfEndTurnDelay: 0.2
   selfStatus: []
   selfStatusDuration: 
-  targetInterpretationUnlocked: 0
-  targetName: Chain Lightning
-  targetDescription: Unleash your arcana as a storm of lightning that arcs between
-    multiple enemies
-  targetEndTurn: 0
+  targetInterpretationUnlocked: 1
+  targetName: Blood Drain
+  targetDescription: The enemy redirects Taro's essense to restore their own vitality
+    and causes Taro to bleed
+  targetEndTurn: 1
   targetUsesAction: 1
-  targetCost: 60
-  targetCostType: AP
-  damageType: 2
+  targetCost: 0
+  targetCostType: 
+  damageType: 3
   targetCanBeCountered: 1
-  targetDmg: {x: 24, y: 36}
+  targetDmg: {x: 6, y: 12}
   hits: 1
   hitInterval: 0
   finalHitInterval: 0
   targetFinalDmg: {x: 0, y: 0}
-  targetEndTurnDelay: 0.2
+  targetEndTurnDelay: 0.4
   targetCleave: 0
-  targetChain: 1
-  extraDmg: {x: 18, y: 30}
+  targetChain: 0
+  extraDmg: {x: 0, y: 0}
   randomTargets: 0
-  lifeLeach: {x: 0, y: 0}
+  lifeLeach: {x: 6, y: 12}
   healOnKill: {x: 0, y: 0}
   executeThreshold: 0
-  targetStatus: []
-  targetStatusDuration: 
-  targetStatusChance: []
-  spawnPosition: 2
+  targetStatus:
+  - {fileID: 11400000, guid: 0aa56a9e5ce959e4b96c703989b64011, type: 2}
+  targetStatusDuration: 02000000
+  targetStatusChance:
+  - 0.4
+  spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0
   summonFX: {fileID: 0}

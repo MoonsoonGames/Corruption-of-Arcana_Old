@@ -46,27 +46,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 8c7a13a35a86dc44ab40de9d93374d78,
+      objectReference: {fileID: 21300000, guid: faec8b309a13fa94ab34b7e790aebc17,
         type: 3}
     - target: {fileID: 3555124278701396923, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: m_Color.a
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3555124278701396923, guid: 24c6b79283add374eb3a4c0e1395b423,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.11031505
-      objectReference: {fileID: 0}
-    - target: {fileID: 3555124278701396923, guid: 24c6b79283add374eb3a4c0e1395b423,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0.16480213
-      objectReference: {fileID: 0}
-    - target: {fileID: 3555124278701396923, guid: 24c6b79283add374eb3a4c0e1395b423,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0.3490566
       objectReference: {fileID: 0}
     - target: {fileID: 3555124278825360684, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
@@ -91,7 +76,7 @@ PrefabInstance:
     - target: {fileID: 3555124280068035575, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: m_Text
-      value: Wolf
+      value: Occultist
       objectReference: {fileID: 0}
     - target: {fileID: 3555124280068035575, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
@@ -176,7 +161,7 @@ PrefabInstance:
     - target: {fileID: 3555124280383455489, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: m_Name
-      value: Wolf
+      value: OutlawOccultist
       objectReference: {fileID: 0}
     - target: {fileID: 3555124280383455490, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
@@ -201,12 +186,13 @@ PrefabInstance:
     - target: {fileID: 3555124280383455490, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: desciption
-      value: Wolves are feeble alone, but they pose a great threat in numbers
+      value: These occultists are experts with dark arts, and can use it to cast
+        various spells, mending allies and dealing a high amount of damage.
       objectReference: {fileID: 0}
     - target: {fileID: 3555124280383455490, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: displayName
-      value: Wolf
+      value: Occultist
       objectReference: {fileID: 0}
     - target: {fileID: 3555124280383455490, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
@@ -216,13 +202,38 @@ PrefabInstance:
     - target: {fileID: 3555124280383455490, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: spells.Array.size
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3555124280383455490, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: spells.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 42d2ad0ae79965947b93622dac1aa945,
+        type: 2}
+    - target: {fileID: 3555124280383455490, guid: 24c6b79283add374eb3a4c0e1395b423,
+        type: 3}
+      propertyPath: spells.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 67a47940916d71448aa852559873a91b,
+        type: 2}
+    - target: {fileID: 3555124280383455490, guid: 24c6b79283add374eb3a4c0e1395b423,
+        type: 3}
+      propertyPath: spells.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 94bee4377f8a877449aeace203d1a62d,
+        type: 2}
+    - target: {fileID: 3555124280383455490, guid: 24c6b79283add374eb3a4c0e1395b423,
+        type: 3}
+      propertyPath: spells.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: ca62eb86703f21744994322eca3193d5,
+        type: 2}
+    - target: {fileID: 3555124280383455490, guid: 24c6b79283add374eb3a4c0e1395b423,
+        type: 3}
+      propertyPath: spells.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 841880c8434ccf74db41b73760e261c2,
+        type: 2}
     - target: {fileID: 3555124280383455490, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: basicAttacks.Array.size
@@ -232,32 +243,17 @@ PrefabInstance:
         type: 3}
       propertyPath: basicAttacks.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: abbaffaf5f1ee2544b141726c1d036bf,
+      objectReference: {fileID: 11400000, guid: 450abe2c8a18ac343ae24b011db20306,
         type: 2}
     - target: {fileID: 3555124280383455491, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
-      propertyPath: maxHealth
-      value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 3555124280383455491, guid: 24c6b79283add374eb3a4c0e1395b423,
-        type: 3}
-      propertyPath: normalColour.a
+      propertyPath: boss
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3555124280383455491, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
-      propertyPath: normalColour.b
-      value: 0.10980392
-      objectReference: {fileID: 0}
-    - target: {fileID: 3555124280383455491, guid: 24c6b79283add374eb3a4c0e1395b423,
-        type: 3}
-      propertyPath: normalColour.g
-      value: 0.16470589
-      objectReference: {fileID: 0}
-    - target: {fileID: 3555124280383455491, guid: 24c6b79283add374eb3a4c0e1395b423,
-        type: 3}
-      propertyPath: normalColour.r
-      value: 0.34901962
+      propertyPath: maxHealth
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 3555124280383455491, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
@@ -281,28 +277,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3555124280383455491, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
-      propertyPath: baseBleakMultiplier
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 3555124280383455491, guid: 24c6b79283add374eb3a4c0e1395b423,
-        type: 3}
       propertyPath: baseEmberMultiplier
-      value: 0.1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3555124280383455491, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: baseSepticMultiplier
-      value: 1.35
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 3555124280383455491, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: baseStaticMultiplier
-      value: 1.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3555124280383455491, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: basePhysicalMultiplier
-      value: 1
+      value: 1.15
       objectReference: {fileID: 0}
     - target: {fileID: 3623350128645117188, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
