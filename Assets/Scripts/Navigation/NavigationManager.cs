@@ -9,6 +9,9 @@ public class NavigationManager : MonoBehaviour
     LoadSettings loadSettings;
     NavigationNode[] nodes;
 
+    public bool stopEvents = false;
+    public bool stopLevels = false;
+
     private void Start()
     {
         LoadSettings[] loadSettingsArray = GameObject.FindObjectsOfType<LoadSettings>();
@@ -36,6 +39,9 @@ public class NavigationManager : MonoBehaviour
         foreach (var item in nodes)
         {
             item.SetAvailable(false);
+
+            item.stopEvents = stopEvents;
+            item.stopLevels = stopLevels;
         }
     }
 
