@@ -133,6 +133,13 @@ public class StatusParent : ScriptableObject
 
         ApplyStatAdjustments(target);
         TurnInhibitors(target, abilityManager, true);
+
+        Enemy stats = target.GetComponent<Enemy>();
+
+        if (revealEntry && stats != null)
+        {
+            ExposeEnemy(abilityManager, stats);
+        }
     }
 
     public void OnRemove(GameObject target)
@@ -647,6 +654,11 @@ public class StatusParent : ScriptableObject
     #endregion
 
     #region Helper Functions
+
+    void ExposeEnemy(AbilityManager abilityManager, Enemy target)
+    {
+        abilityManager.EnemyInfo(target);
+    }
 
     void SpawnFX(Object FX, Transform transform)
     {
