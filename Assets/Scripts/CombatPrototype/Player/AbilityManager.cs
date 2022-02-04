@@ -25,6 +25,8 @@ public class AbilityManager : MonoBehaviour
 
     public SliderVariation sliderVarScript;
 
+    EndTurn endTurn;
+
 
     #region Ability Values
 
@@ -59,6 +61,7 @@ public class AbilityManager : MonoBehaviour
     {
         activeCard = GameObject.FindObjectOfType<ActiveCard>();
         targetter = GetComponentInChildren<Targetter>();
+        endTurn = GameObject.FindObjectOfType<EndTurn>();
     }
 
     #endregion
@@ -119,6 +122,8 @@ public class AbilityManager : MonoBehaviour
 
     public void CastAbility(GameObject target)
     {
+        endTurn.OpenMenu(false);
+
         if (playerTurn)
         {
             if (readyAbility != null)
@@ -162,7 +167,7 @@ public class AbilityManager : MonoBehaviour
     public void SetAbility(CardParent ability, CardSetter card)
     {
         EnemyInfo(null);
-
+        endTurn.OpenMenu(false);
         readyAbility = ability;
         readiedCard = card;
 
