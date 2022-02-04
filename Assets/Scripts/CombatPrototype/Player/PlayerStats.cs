@@ -57,6 +57,7 @@ public class PlayerStats : CharacterStats
         {
             mana = Mathf.Clamp(mana - value, 0, maxMana);
             combatManager.ArcanaPointsValue.text = mana.ToString();
+            combatManager.abilityManager.RemoveApPopup(2f);
         }
         else
         {

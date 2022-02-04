@@ -282,7 +282,7 @@ public class AbilityManager : MonoBehaviour
 
             combatManager.Dmg.SetActive(true);
             combatManager.DmgValue.text = multihitTally.ToString();
-
+            
             //Debug.Log(multihitCount + " hits for " + multihitTally + " points of damage (not final damage as enemy mey be vulnerable or resistant to the damage)");
 
             if (multihitCount >= multihitMax)
@@ -291,6 +291,7 @@ public class AbilityManager : MonoBehaviour
 
                 multihitCount = 0;
                 multihitTally = 0;
+                RemoveDmgPopup(2f);
             }
         }
     }
@@ -392,16 +393,52 @@ public class AbilityManager : MonoBehaviour
         }
     }
 
-    public void RemovePopup(float delay)
+    public void RemoveArcanaPopup(float delay)
     {
-        StartCoroutine(IRemovePopup(delay));
+        StartCoroutine(IRemoveArcanaPopup(delay));
     }
 
-    private IEnumerator IRemovePopup(float delay)
+    private IEnumerator IRemoveArcanaPopup(float delay)
     {
         yield return new WaitForSeconds(delay);
 
         combatManager.noMana.SetActive(false);
+    }
+
+    public void RemoveDmgPopup(float delay)
+    {
+        StartCoroutine(IRemoveDmgPopup(delay));
+    }
+
+    private IEnumerator IRemoveDmgPopup(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        combatManager.Dmg.SetActive(false);
+    }
+
+    public void RemoveHpPopup(float delay)
+    {
+        StartCoroutine(IRemoveHpPopup(delay));
+    }
+
+    private IEnumerator IRemoveHpPopup(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        combatManager.Healing.SetActive(false);
+    }
+
+    public void RemoveApPopup(float delay)
+    {
+        StartCoroutine(IRemoveApPopup(delay));
+    }
+
+    private IEnumerator IRemoveApPopup(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        combatManager.Ap.SetActive(false);
     }
 
     #endregion
