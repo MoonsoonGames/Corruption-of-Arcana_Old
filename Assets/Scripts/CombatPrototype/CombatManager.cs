@@ -53,6 +53,8 @@ public class CombatManager : MonoBehaviour
     public int maxActions;
     int actionsLeft = 0;
 
+    public int arcanaRegen = 20;
+
     public void Start()
     {
         Cursor.visible = true;
@@ -111,7 +113,7 @@ public class CombatManager : MonoBehaviour
             PlayableDecks.SetActive(true);
 
             //Debug.Log("Regenerate Mana");
-            playerStats.ChangeMana(20, false);
+            playerStats.ChangeMana(arcanaRegen, false);
 
             if (combatDeckManager != null)
             {

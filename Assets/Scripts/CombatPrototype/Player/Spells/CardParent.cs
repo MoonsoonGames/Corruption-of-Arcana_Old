@@ -107,7 +107,7 @@ public class CardParent : ScriptableObject
                     {
                         abilityManager.EndTurn(selfEndTurnDelay);
                     }
-                    else if (selfUsesAction)
+                    else if (selfUsesAction &! enemySpell)
                     {
                         CombatManager combatManager = GameObject.FindObjectOfType<CombatManager>();
 
@@ -341,7 +341,7 @@ public class CardParent : ScriptableObject
                     casterStats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int healNull, caster, false);
                 }
 
-                if (targetUsesAction)
+                if (targetUsesAction & !enemySpell)
                 {
                     CombatManager combatManager = GameObject.FindObjectOfType<CombatManager>();
 
