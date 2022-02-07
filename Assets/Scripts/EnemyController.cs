@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour
     public bool boss = false;
 
     public Object[] enemies = new Object[3];
+    public QuestObjective objective;
 
     private LoadSettings loadSettings;
 
@@ -49,6 +50,11 @@ public class EnemyController : MonoBehaviour
             loadSettings.goldReward = goldReward;
             loadSettings.potionReward = potionReward;
             loadSettings.itemReward = itemReward;
+
+            if (objective.canComplete)
+            {
+                loadSettings.currentFightObjective = objective;
+            }
 
             if (sceneLoader != null)
                 sceneLoader.LoadSpecifiedScene(combatScene.ToString(), LoadSceneMode.Single, null);

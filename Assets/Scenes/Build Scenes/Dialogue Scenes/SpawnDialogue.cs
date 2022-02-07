@@ -49,11 +49,14 @@ public class SpawnDialogue : MonoBehaviour
 
     void BeginDialogue(Object flowChart)
     {
-        foreach (var item in flowCharts)
+        if (flowChart != null)
         {
-            if (item.name == flowChart.name)
+            foreach (var item in flowCharts)
             {
-                item.SetActive(true);
+                if (item.name == flowChart.name)
+                {
+                    item.SetActive(true);
+                }
             }
         }
     }

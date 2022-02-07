@@ -68,6 +68,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 34102981c7e63b646b05313914b723a6, type: 3}
   image: {fileID: 0}
+  showMarker: 1
 --- !u!1 &5444911181963198280
 GameObject:
   m_ObjectHideFlags: 0
@@ -83,6 +84,7 @@ GameObject:
   - component: {fileID: 5444911181963198285}
   - component: {fileID: 5837821381250986445}
   - component: {fileID: 7542391053577058892}
+  - component: {fileID: 7319648475985244968}
   m_Layer: 0
   m_Name: Overworld Map
   m_TagString: NPC
@@ -215,3 +217,18 @@ MonoBehaviour:
   colliderRef: {fileID: 5444911181963198285}
   requireTutorial: 0
   requireDialogue: 1
+--- !u!114 &7319648475985244968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5444911181963198280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6636e82920d61b14f925f3c8c1a09af9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 34102981c7e63b646b05313914b723a6, type: 3}
+  image: {fileID: 0}
+  showMarker: 1

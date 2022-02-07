@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewCard", menuName = "Combat/Spells", order = 0)]
+[CreateAssetMenu(fileName = "NewStatusEffect", menuName = "Combat/Spells", order = 0)]
 public class CardParent : ScriptableObject
 {
     #region General
