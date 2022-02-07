@@ -7,6 +7,7 @@ public class Compass : MonoBehaviour
 {
     public GameObject IconPrefab;
     List<QuestMarkers> questMarkers = new List<QuestMarkers>();
+    List<GameObject> icons = new List<GameObject>();
 
     public float Offset = 90f;
     public RawImage compassImage;
@@ -14,16 +15,54 @@ public class Compass : MonoBehaviour
 
     float compassUnit;
 
+    bool updateIcons = false;
+
     private void Start()
     {
         compassUnit = compassImage.rectTransform.rect.width / 360f;
 
-        Invoke("SetupQuestMarkers", 2f);
+        ChangeQuestMarkers();
+    }
+
+    public void ChangeQuestMarkers()
+    {
+        updateIcons = false;
+
+        foreach (var item in icons)
+        {
+            Destroy(item);
+        }
+
+        Invoke("SetupQuestMarkers", 0.1f);
+
+        Invoke("ResetQuestMarkers", 0.2f);
+    }
+
+    private void ResetQuestMarkers()
+    {
+        QuestMarkers[] clearList = GameObject.FindObjectsOfType<QuestMarkers>();
+
+        foreach (var item in clearList)
+        {
+            if (!questMarkers.Contains(item))
+            {
+                Debug.Log("Should not appear");
+                item.RemoveIcon();
+            }
+            else
+            {
+                Debug.Log("Should appear");
+            }
+        }
+
+        updateIcons = true;
     }
 
     private void SetupQuestMarkers()
     {
         QuestMarkers[] questMarkersScripts = GameObject.FindObjectsOfType<QuestMarkers>();
+
+        questMarkers.Clear();
 
         foreach (var item in questMarkersScripts)
         {
@@ -33,17 +72,16 @@ public class Compass : MonoBehaviour
 
     private void Update()
     {
-        compassImage.uvRect = new Rect((player.localEulerAngles.y / 360f) + Offset, 0f, 1f, 1f);
-
-        foreach (QuestMarkers marker in questMarkers)
+        if (updateIcons)
         {
-            if (marker != null && marker.gameObject.activeSelf/* && marker.showMarker*/)
+            compassImage.uvRect = new Rect((player.localEulerAngles.y / 360f) + Offset, 0f, 1f, 1f);
+
+            foreach (QuestMarkers marker in questMarkers)
             {
-                marker.image.rectTransform.anchoredPosition = GetPosOnCompass(marker);
-            }
-            else
-            {
-                RemoveQuestMarker(marker);
+                if (marker != null && marker.gameObject.activeSelf && marker.showMarker)
+                {
+                    marker.image.rectTransform.anchoredPosition = GetPosOnCompass(marker);
+                }
             }
         }
     }
@@ -59,6 +97,8 @@ public class Compass : MonoBehaviour
 
             questMarkers.Add(marker);
         }
+
+        icons.Add(newMarker);
     }
 
     public void RemoveQuestMarker(QuestMarkers marker)

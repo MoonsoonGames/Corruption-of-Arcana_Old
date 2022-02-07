@@ -10,7 +10,6 @@ public class ResetQuest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Reset");
         quests = Resources.FindObjectsOfTypeAll<Quest>();
         objectives = Resources.FindObjectsOfTypeAll<QuestObjective>();
 

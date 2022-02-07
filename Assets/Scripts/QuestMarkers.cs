@@ -13,4 +13,11 @@ public class QuestMarkers : MonoBehaviour
     {
         get { return new Vector2(transform.position.x, transform.position.z); }
     }
+
+    public void RemoveIcon()
+    {
+        icon = null;
+        //image = null;
+        showMarker = false;
+    }
 }

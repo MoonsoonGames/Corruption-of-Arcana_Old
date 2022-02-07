@@ -32,7 +32,7 @@ public class Quest : ScriptableObject
 
     public void AcceptQuest()
     {
-        Debug.Log("Accepted Quest " + title);
+        Debug.Log("Accepted Quest: " + title);
         isActive = true;
 
         if (showAllObjectives)
