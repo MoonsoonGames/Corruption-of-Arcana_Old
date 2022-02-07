@@ -37,17 +37,33 @@ public class Compass : MonoBehaviour
 
         foreach (QuestMarkers marker in questMarkers)
         {
-            marker.image.rectTransform.anchoredPosition = GetPosOnCompass(marker);
+            if (marker != null && marker.gameObject.activeSelf/* && marker.showMarker*/)
+            {
+                marker.image.rectTransform.anchoredPosition = GetPosOnCompass(marker);
+            }
+            else
+            {
+                RemoveQuestMarker(marker);
+            }
         }
     }
 
     public void AddQuestMarker(QuestMarkers marker)
     {
         GameObject newMarker = Instantiate(IconPrefab, compassImage.transform);
-        marker.image = newMarker.GetComponent<Image>();
-        marker.image.sprite = marker.icon;
 
-        questMarkers.Add(marker);
+        if (marker.showMarker)
+        {
+            marker.image = newMarker.GetComponent<Image>();
+            marker.image.sprite = marker.icon;
+
+            questMarkers.Add(marker);
+        }
+    }
+
+    public void RemoveQuestMarker(QuestMarkers marker)
+    {
+        questMarkers.Remove(marker);
     }
 
     Vector2 GetPosOnCompass(QuestMarkers marker)

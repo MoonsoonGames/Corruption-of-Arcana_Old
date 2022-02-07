@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class QuestMarkers : MonoBehaviour
 {
-
     public Sprite icon;
     public Image image;
+    public bool showMarker = true;
 
     public Vector2 position 
     {

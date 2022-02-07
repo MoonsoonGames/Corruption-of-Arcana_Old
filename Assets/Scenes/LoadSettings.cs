@@ -334,4 +334,11 @@ public class LoadSettings : MonoBehaviour
     }
 
     #endregion
+
+    #region Quests
+
+    public List<Quest> quests;
+    public QuestObjective currentFightObjective;
+
+    #endregion
 }
