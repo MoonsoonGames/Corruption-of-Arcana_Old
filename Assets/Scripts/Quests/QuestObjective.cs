@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewQuest", menuName = "Quests/Objective", order = 1)]
 public class QuestObjective : ScriptableObject
 {
+    public bool completedReset;
     public bool completed;
     public Quest quest;
     public string title;
@@ -14,9 +15,23 @@ public class QuestObjective : ScriptableObject
     Object questMarkerPosition;
 
     public int requiredAmount = 1;
+    public int currentAmountReset = 0;
     public int currentAmount = 0;
 
+    public bool canCompleteReset = false;
     public bool canComplete = false;
+
+    private void Awake()
+    {
+        ResetValues();
+    }
+
+    public void ResetValues()
+    {
+        completed = completedReset;
+        currentAmount = currentAmountReset;
+        canComplete = canCompleteReset;
+    }
 
     public void SetCanComplete()
     {

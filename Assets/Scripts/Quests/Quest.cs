@@ -5,7 +5,18 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewQuest", menuName = "Quests/Quest", order = 0)]
 public class Quest : ScriptableObject
 {
+    public bool isActiveReset;
     public bool isActive;
+
+    private void Awake()
+    {
+        ResetValues();
+    }
+
+    public void ResetValues()
+    {
+        isActive = isActiveReset;
+    }
 
     [Header("Quest Info")]
     public string title;
