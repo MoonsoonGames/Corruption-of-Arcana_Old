@@ -15,6 +15,12 @@ public class EndTurn : MonoBehaviour
     public void OpenMenu(bool open)
     {
         confirmMenu.SetActive(open);
+
+        if (open)
+        {
+            abilityManager.ResetAbility();
+            abilityManager.EnemyInfo(null);
+        }
     }
 
     public void ConfirmEndTurn()
