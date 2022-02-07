@@ -18,7 +18,7 @@ public class Compass : MonoBehaviour
     {
         compassUnit = compassImage.rectTransform.rect.width / 360f;
 
-        SetupQuestMarkers();
+        Invoke("SetupQuestMarkers", 2f);
     }
 
     private void SetupQuestMarkers()
