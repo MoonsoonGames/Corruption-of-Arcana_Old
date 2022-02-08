@@ -23,6 +23,7 @@ public class ShowQuestMarker : MonoBehaviour
             {
                 if (item.canComplete && item.completed == false)
                 {
+                    Debug.Log(item.title);
                     contains = true;
                 }
             }

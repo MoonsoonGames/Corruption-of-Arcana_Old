@@ -24,7 +24,18 @@ public class Compass : MonoBehaviour
         ChangeQuestMarkers();
     }
 
-    public void ChangeQuestMarkers()
+    bool alreadyCalled = false;
+
+    public void ResetMarkersOnce()
+    {
+        if (!alreadyCalled)
+        {
+            alreadyCalled = true;
+            Invoke("ChangeQuestMarkers", 1f);
+        }
+    }
+
+    private void ChangeQuestMarkers()
     {
         updateIcons = false;
 
@@ -40,9 +51,9 @@ public class Compass : MonoBehaviour
             Destroy(item);
         }
 
-        Invoke("ResetQuestMarkers", 0.05f);
+        Invoke("ResetQuestMarkers", 0.2f);
 
-        Invoke("SetupQuestMarkers", 0.1f);
+        Invoke("SetupQuestMarkers", 0.6f);
     }
 
     private void ResetQuestMarkers()
@@ -59,8 +70,6 @@ public class Compass : MonoBehaviour
 
     private void SetupQuestMarkers()
     {
-
-
         QuestMarkers[] questMarkersScripts = GameObject.FindObjectsOfType<QuestMarkers>();
 
         questMarkers.Clear();
@@ -71,6 +80,8 @@ public class Compass : MonoBehaviour
         }
 
         updateIcons = true;
+
+        alreadyCalled = false;
     }
 
     private void Update()

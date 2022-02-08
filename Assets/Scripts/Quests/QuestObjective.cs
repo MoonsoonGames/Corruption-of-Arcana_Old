@@ -74,11 +74,6 @@ public class QuestObjective : ScriptableObject
             quest.CheckObjectives();
         }
 
-        Compass compass = GameObject.FindObjectOfType<Compass>();
-
-        if (compass != null)
-        {
-            compass.ChangeQuestMarkers();
-        }
+        quest.ResetCompass();
     }
 }

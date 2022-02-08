@@ -51,7 +51,7 @@ public class EnemyController : MonoBehaviour
             loadSettings.potionReward = potionReward;
             loadSettings.itemReward = itemReward;
 
-            if (objective.canComplete)
+            if (objective != null && objective.canComplete)
             {
                 loadSettings.currentFightObjective = objective;
             }
