@@ -4,20 +4,30 @@ using UnityEngine;
 
 public class ShowQuestMarker : MonoBehaviour
 {
-    public QuestObjective objective;
+    public QuestObjective[] objectives;
 
-    public GameObject marker;
+    public QuestMarkers marker;
 
     private void Start()
     {
-        ShowObjective();
+        CheckObjective();
     }
 
-    public void ShowObjective()
+    public void CheckObjective()
     {
         if (marker != null)
         {
-            marker.SetActive(objective.canComplete && !objective.completed);
+            bool contains = false;
+
+            foreach (var item in objectives)
+            {
+                if (item.canComplete && item.completed == false)
+                {
+                    contains = true;
+                }
+            }
+
+            marker.showMarker = contains;
         }
     }
 }

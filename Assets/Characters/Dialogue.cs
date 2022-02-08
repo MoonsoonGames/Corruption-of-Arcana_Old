@@ -70,12 +70,15 @@ public class Dialogue : MonoBehaviour
 
     public Quest[] requireQuests;
     public QuestObjective[] requireObjectives;
-
     public bool requireAll = true;
-    public bool destroyIfContains = true;
+
+    public Quest[] disableQuests;
+    public QuestObjective[] disableObjectives;
 
     public bool CanSpeak()
     {
+        bool enableDialogue = false;
+
         bool contains1 = false;
         bool containsAll = true;
 
@@ -103,7 +106,25 @@ public class Dialogue : MonoBehaviour
             }
         }
 
-        return !((((requireAll && containsAll) || (!requireAll && contains1)) && destroyIfContains) || (((!requireAll && !containsAll) || (requireAll && !contains1)) && !destroyIfContains));
+        enableDialogue = (containsAll) || (!requireAll && contains1);
+
+        foreach (var item in disableQuests)
+        {
+            if (item.isComplete)
+            {
+                enableDialogue = false;
+            }
+        }
+
+        foreach (var item in disableObjectives)
+        {
+            if (item.completed)
+            {
+                enableDialogue = false;
+            }
+        }
+
+        return enableDialogue;
     }
 
     #endregion

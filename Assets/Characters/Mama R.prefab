@@ -128,16 +128,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneToLoad: 3
   checkpoint: 1
-  tutorialDialogue: 1
-  knightDialogue: 0
-  requiresTutorial: 0
   dialogue: {fileID: 6333189798414483464, guid: 09ad4ff9bfed78f44a9c4e23020e5e5f,
     type: 3}
   sceneMode: 0
   requireQuests: []
   requireObjectives: []
   requireAll: 0
-  destroyIfContains: 0
+  disableQuests: []
+  disableObjectives: []
 --- !u!114 &5490141779846893166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,7 +426,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7057609158513621916, guid: feceddc3c64c65b499b909203d7d5124,
         type: 3}
+      propertyPath: marker
+      value: 
+      objectReference: {fileID: 1096873406688741628}
+    - target: {fileID: 7057609158513621916, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
       propertyPath: objective
+      value: 
+      objectReference: {fileID: 11400000, guid: 5b29b3e09c0a69a4b8be7012996008a6,
+        type: 2}
+    - target: {fileID: 7057609158513621916, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: objectives.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7057609158513621916, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: objectives.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: 5b29b3e09c0a69a4b8be7012996008a6,
         type: 2}
@@ -445,3 +459,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1514447772072044862}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1096873406688741628 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1890534054537535938, guid: feceddc3c64c65b499b909203d7d5124,
+    type: 3}
+  m_PrefabInstance: {fileID: 1514447772072044862}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6636e82920d61b14f925f3c8c1a09af9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

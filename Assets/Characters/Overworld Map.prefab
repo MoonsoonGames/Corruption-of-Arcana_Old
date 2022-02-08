@@ -103,6 +103,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 8994229373830673351}
+  - {fileID: 3639896267380036237}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -196,16 +197,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneToLoad: 4
   checkpoint: 1
-  tutorialDialogue: 0
-  knightDialogue: 0
-  requiresTutorial: 0
   dialogue: {fileID: 0}
   sceneMode: 0
   requireQuests:
   - {fileID: 11400000, guid: 71c46a20a32941d4d93df721b09f798c, type: 2}
   requireObjectives: []
   requireAll: 1
-  destroyIfContains: 0
+  disableQuests: []
+  disableObjectives: []
 --- !u!114 &7319648475985244968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,3 +220,73 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 34102981c7e63b646b05313914b723a6, type: 3}
   image: {fileID: 0}
   showMarker: 1
+--- !u!1001 &192842057581335217
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5444911181963198281}
+    m_Modifications:
+    - target: {fileID: 3471886681103204412, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3471886681103204412, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3471886681103204412, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3471886681103204412, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3471886681103204412, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3471886681103204412, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3471886681103204412, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3471886681103204412, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3471886681103204412, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3471886681103204412, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7057609158513621916, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: objectives.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: feceddc3c64c65b499b909203d7d5124, type: 3}
+--- !u!4 &3639896267380036237 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3471886681103204412, guid: feceddc3c64c65b499b909203d7d5124,
+    type: 3}
+  m_PrefabInstance: {fileID: 192842057581335217}
+  m_PrefabAsset: {fileID: 0}

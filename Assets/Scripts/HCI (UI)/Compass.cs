@@ -28,60 +28,39 @@ public class Compass : MonoBehaviour
     {
         updateIcons = false;
 
+        ShowQuestMarker[] markers = GameObject.FindObjectsOfType<ShowQuestMarker>();
+
+        foreach (var item in markers)
+        {
+            item.CheckObjective();
+        }
+
         foreach (var item in icons)
         {
             Destroy(item);
         }
 
-        Invoke("SetupQuestMarkers", 0.1f);
+        Invoke("ResetQuestMarkers", 0.05f);
 
-        Invoke("ResetQuestMarkers", 0.2f);
+        Invoke("SetupQuestMarkers", 0.1f);
     }
 
     private void ResetQuestMarkers()
     {
-        QuestMarkers[] clearList = GameObject.FindObjectsOfType<QuestMarkers>();
+        questMarkers.Clear();
 
-        foreach (var item in clearList)
+        for (int i = 0; i < icons.Count; i++)
         {
-            if (!questMarkers.Contains(item))
-            {
-                Debug.Log("Should not appear");
-                item.RemoveIcon();
-            }
-            else
-            {
-                Debug.Log("Should appear");
-            }
+            Destroy(icons[i]);
         }
 
-        updateIcons = true;
-
-        List<GameObject> clear = new List<GameObject>();
-
-        foreach (var item in icons)
-        {
-            if (item.GetComponent<Image>().sprite == null)
-            {
-                clear.Add(item);
-            }
-        }
-
-        foreach (var item in clear)
-        {
-            if (icons.Contains(item))
-            {
-                icons.Remove(item);
-            }
-
-            Destroy(item);
-        }
-
-        clear.Clear();
+        icons.Clear();
     }
 
     private void SetupQuestMarkers()
     {
+
+
         QuestMarkers[] questMarkersScripts = GameObject.FindObjectsOfType<QuestMarkers>();
 
         questMarkers.Clear();
@@ -90,6 +69,8 @@ public class Compass : MonoBehaviour
         {
             AddQuestMarker(item);
         }
+
+        updateIcons = true;
     }
 
     private void Update()
@@ -110,22 +91,17 @@ public class Compass : MonoBehaviour
 
     public void AddQuestMarker(QuestMarkers marker)
     {
-        GameObject newMarker = Instantiate(IconPrefab, compassImage.transform);
-
         if (marker.showMarker)
         {
+            GameObject newMarker = Instantiate(IconPrefab, compassImage.transform);
+
             marker.image = newMarker.GetComponent<Image>();
             marker.image.sprite = marker.icon;
 
             questMarkers.Add(marker);
+
+            icons.Add(newMarker);
         }
-
-        icons.Add(newMarker);
-    }
-
-    public void RemoveQuestMarker(QuestMarkers marker)
-    {
-        questMarkers.Remove(marker);
     }
 
     Vector2 GetPosOnCompass(QuestMarkers marker)
