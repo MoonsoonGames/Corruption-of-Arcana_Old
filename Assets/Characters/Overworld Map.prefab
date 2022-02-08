@@ -83,7 +83,6 @@ GameObject:
   - component: {fileID: 5444911181963198282}
   - component: {fileID: 5444911181963198285}
   - component: {fileID: 5837821381250986445}
-  - component: {fileID: 7542391053577058892}
   - component: {fileID: 7319648475985244968}
   m_Layer: 0
   m_Name: Overworld Map
@@ -202,21 +201,11 @@ MonoBehaviour:
   requiresTutorial: 0
   dialogue: {fileID: 0}
   sceneMode: 0
---- !u!114 &7542391053577058892
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5444911181963198280}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c589c49517815b43838a1bb732ed791, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  colliderRef: {fileID: 5444911181963198285}
-  requireTutorial: 0
-  requireDialogue: 1
+  requireQuests:
+  - {fileID: 11400000, guid: 71c46a20a32941d4d93df721b09f798c, type: 2}
+  requireObjectives: []
+  requireAll: 1
+  destroyIfContains: 0
 --- !u!114 &7319648475985244968
 MonoBehaviour:
   m_ObjectHideFlags: 0

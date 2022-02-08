@@ -178,9 +178,8 @@ public class PlayerController : MonoBehaviour
                 }
                 if (Input.GetButton("Interact") && interact && dialogue != null)
                 {
-                    canMove = false;
                     loadSettings.Checkpoint(SceneManager.GetActiveScene());
-                    dialogue.LoadScene();
+                    canMove = !dialogue.LoadScene();
                 }
             }
 
@@ -229,10 +228,10 @@ public class PlayerController : MonoBehaviour
             interact = true;
             dialogue = other.gameObject.GetComponent<Dialogue>();
 
-            if (dialogue != null && dialogue.dialogue != null && loadSettings != null)
-                loadSettings.dialogueFlowChart = dialogue.dialogue;
+            /*if (dialogue != null && dialogue.dialogue != null && loadSettings != null)
+                loadSettings.dialogueFlowChart = dialogue.dialogue;*/
 
-            if (interactImage != null)
+            if (interactImage != null && dialogue.CanSpeak())
             {
                 interactImage.SetActive(true);
             }

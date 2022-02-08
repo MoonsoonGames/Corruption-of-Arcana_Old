@@ -8,6 +8,9 @@ public class Quest : ScriptableObject
     public bool isActiveReset;
     public bool isActive;
 
+    public bool isCompleteReset;
+    public bool isComplete;
+
     private void Awake()
     {
         ResetValues();
@@ -16,6 +19,7 @@ public class Quest : ScriptableObject
     public void ResetValues()
     {
         isActive = isActiveReset;
+        isComplete = isCompleteReset;
     }
 
     [Header("Quest Info")]
@@ -62,16 +66,21 @@ public class Quest : ScriptableObject
 
         foreach (var item in objectives)
         {
-            if (item.completed!)
+            if (item.completed == false)
             {
+                Debug.Log(item.title + " is " + item.completed);
                 allComplete = false;
-                break;
             }
         }
 
         if (allComplete)
         {
             Debug.Log("Completed Quest: " + title);
+            isComplete = true;
+        }
+        else
+        {
+            Debug.Log("Not completed all objectives");
         }
     }
 
@@ -83,11 +92,7 @@ public class Quest : ScriptableObject
         {
             if (objectives[i] == objective)
             {
-                if (i >= objectives.Length - 1)
-                {
-                    CheckObjectives();
-                }
-                else
+                if (!(i >= objectives.Length - 1))
                 {
                     QuestObjective nextObjective = objectives[i + 1];
 
@@ -98,5 +103,7 @@ public class Quest : ScriptableObject
                 }
             }
         }
+
+        CheckObjectives();
     }
 }

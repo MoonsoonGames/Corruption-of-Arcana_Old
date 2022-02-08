@@ -36,13 +36,6 @@ public class SceneLoader : MonoBehaviour
                 loadSettings.SetPlayerInput(true);
                 contains = true;
                 index = i;
-
-                DestroyDialogue[] destroyArray = GameObject.FindObjectsOfType<DestroyDialogue>();
-
-                foreach (var item in destroyArray)
-                {
-                    item.CheckDialogue();
-                }
             }
         }
 

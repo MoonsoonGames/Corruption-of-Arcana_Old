@@ -15,11 +15,6 @@ public class Dialogue : MonoBehaviour
 
     public bool checkpoint = false;
 
-    public bool tutorialDialogue = false;
-    public bool knightDialogue = false;
-
-    public bool requiresTutorial = false;
-
     public Object dialogue;
 
     public LoadSceneMode sceneMode;
@@ -35,18 +30,12 @@ public class Dialogue : MonoBehaviour
         loadSettings = GameObject.Find("LoadSettings").GetComponent<LoadSettings>();
     }
 
-    public void LoadScene()
+    public bool LoadScene()
     {
         if (sceneLoader != null && loadSettings != null)
         {
-            if ((loadSettings.dialogueComplete && requiresTutorial) || !requiresTutorial)
+            if (CanSpeak())
             {
-                if (tutorialDialogue)
-                    loadSettings.dialogueComplete = true;
-
-                if (knightDialogue)
-                    loadSettings.prologueComplete = true;
-
                 if (checkpoint)
                 {
                     PlayerController controller = GameObject.Find("Player").GetComponent<PlayerController>();
@@ -55,16 +44,67 @@ public class Dialogue : MonoBehaviour
                     {
                         Debug.Log(SceneManager.GetActiveScene());
                         loadSettings.checkPointPotionCount = controller.GetPotions();
-
                         loadSettings.checkPointPos = controller.transform.position;
-
                         loadSettings.checkPointScene = SceneManager.GetActiveScene();
                     }
                 }
 
+                loadSettings.dialogueFlowChart = dialogue;
                 loadSettings.loadSceneMultiple = sceneMode == LoadSceneMode.Additive;
                 sceneLoader.LoadSpecifiedScene(sceneString, sceneMode, dialogue);
+
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
+        else
+        {
+            return false;
+        }
     }
+
+    #region Enable/ Disable Dialogue
+
+    public Quest[] requireQuests;
+    public QuestObjective[] requireObjectives;
+
+    public bool requireAll = true;
+    public bool destroyIfContains = true;
+
+    public bool CanSpeak()
+    {
+        bool contains1 = false;
+        bool containsAll = true;
+
+        foreach (var item in requireQuests)
+        {
+            if (item.isComplete)
+            {
+                contains1 = true;
+            }
+            else
+            {
+                containsAll = false;
+            }
+        }
+
+        foreach (var item in requireObjectives)
+        {
+            if (item.completed)
+            {
+                contains1 = true;
+            }
+            else
+            {
+                containsAll = false;
+            }
+        }
+
+        return !((((requireAll && containsAll) || (!requireAll && contains1)) && destroyIfContains) || (((!requireAll && !containsAll) || (requireAll && !contains1)) && !destroyIfContains));
+    }
+
+    #endregion
 }
