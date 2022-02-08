@@ -83,6 +83,8 @@ public class LoadSettings : MonoBehaviour
             main = true;
             DontDestroyOnLoad(this.gameObject);
         }
+
+        questSaver = GetComponent<SaveLoadQuestData>();
     }
 
     #endregion
@@ -116,7 +118,9 @@ public class LoadSettings : MonoBehaviour
 
         if (died)
         {
-            #region Reset last position
+            #region Reset last position and quest data
+
+            questSaver.LoadQuestData();
 
             if (lastLevelString == E_Levels.Thoth.ToString())
             {
@@ -282,6 +286,8 @@ public class LoadSettings : MonoBehaviour
 
         checkPointScene = newCheckPoint;
         checkPointString = checkPointScene.name;
+
+        questSaver.SaveQuestData();
     }
 
     #endregion
@@ -336,6 +342,7 @@ public class LoadSettings : MonoBehaviour
 
     public List<Quest> quests;
     public QuestObjective currentFightObjective;
+    SaveLoadQuestData questSaver;
 
     #endregion
 }
