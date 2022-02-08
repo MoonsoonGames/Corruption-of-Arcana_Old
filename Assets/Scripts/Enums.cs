@@ -29,7 +29,10 @@ public enum E_Levels
     EastForestClearing,
 
     [InspectorName("Tiertarock")]
-    Tiertarock
+    Tiertarock,
+
+    [InspectorName("East Forest Cave")]
+    Cave
 }
 
 public enum E_Suits

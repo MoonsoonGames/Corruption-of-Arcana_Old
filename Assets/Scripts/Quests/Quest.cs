@@ -6,9 +6,11 @@ using UnityEngine;
 public class Quest : ScriptableObject
 {
     public bool isActiveReset;
+    public bool isActiveCheckpoint;
     public bool isActive;
 
     public bool isCompleteReset;
+    public bool isCompleteCheckpoint;
     public bool isComplete;
 
     private void Awake()
@@ -20,6 +22,21 @@ public class Quest : ScriptableObject
     {
         isActive = isActiveReset;
         isComplete = isCompleteReset;
+
+        isActiveCheckpoint = isActiveReset;
+        isCompleteCheckpoint = isCompleteReset;
+    }
+
+    public void SaveProgress()
+    {
+        isActiveCheckpoint = isActive;
+        isCompleteCheckpoint = isComplete;
+    }
+
+    public void LoadProgress()
+    {
+        isActive = isActiveCheckpoint;
+        isComplete = isCompleteCheckpoint;
     }
 
     [Header("Quest Info")]
