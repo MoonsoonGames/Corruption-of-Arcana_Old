@@ -4,26 +4,54 @@ using UnityEngine;
 
 public class OpenGates : MonoBehaviour
 {
-    LoadSettings loadSettings;
-
     // Start is called before the first frame update
     void Start()
     {
-        LoadSettings[] loadSettingsArray = GameObject.FindObjectsOfType<LoadSettings>();
+        Open();
+    }
 
-        //Debug.Log(loadSettingsArray.Length);
+    public Quest[] requireQuests;
+    public QuestObjective[] requireObjectives;
 
-        foreach (var item in loadSettingsArray)
+    public bool requireAll = true;
+    public bool destroyIfContains = true;
+
+    public void Open()
+    {
+        bool contains1 = false;
+        bool containsAll = true;
+
+        foreach (var item in requireQuests)
         {
-            if (item.CheckMain())
+            if (item.isComplete)
             {
-                loadSettings = item;
+                contains1 = true;
+            }
+            else
+            {
+                containsAll = false;
             }
         }
 
-        if (loadSettings != null && loadSettings.dialogueComplete)
+        foreach (var item in requireObjectives)
+        {
+            if (item.completed)
+            {
+                contains1 = true;
+            }
+            else
+            {
+                containsAll = false;
+            }
+        }
+
+        if ((((requireAll && containsAll) || (!requireAll && contains1)) && destroyIfContains) || (((!requireAll && !containsAll) || (requireAll && !contains1)) && !destroyIfContains))
         {
             Destroy(this.gameObject);
+        }
+        else
+        {
+
         }
     }
 }

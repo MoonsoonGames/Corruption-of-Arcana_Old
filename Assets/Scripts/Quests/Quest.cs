@@ -8,6 +8,9 @@ public class Quest : ScriptableObject
     public bool isActiveReset;
     public bool isActive;
 
+    public bool isCompleteReset;
+    public bool isComplete;
+
     private void Awake()
     {
         ResetValues();
@@ -16,6 +19,7 @@ public class Quest : ScriptableObject
     public void ResetValues()
     {
         isActive = isActiveReset;
+        isComplete = isCompleteReset;
     }
 
     [Header("Quest Info")]
@@ -32,14 +36,14 @@ public class Quest : ScriptableObject
 
     public void AcceptQuest()
     {
-        Debug.Log("Accepted Quest: " + title);
+        //Debug.Log("Accepted Quest: " + title);
         isActive = true;
 
         if (showAllObjectives)
         {
             for (int i = 0; i < objectives.Length; i++)
             {
-                if (i == objectives.Length)
+                if (i == objectives.Length - 1)
                 {
                     if (showFinalObjective)
                         objectives[i].SetCanComplete();
@@ -62,32 +66,33 @@ public class Quest : ScriptableObject
 
         foreach (var item in objectives)
         {
-            if (item.completed!)
+            if (item.completed == false)
             {
+                Debug.Log(item.title + " is " + item.completed);
                 allComplete = false;
-                break;
             }
         }
 
         if (allComplete)
         {
-            Debug.Log("Completed Quest: " + title);
+            //Debug.Log("Completed Quest: " + title);
+            isComplete = true;
+        }
+        else
+        {
+            //Debug.Log("Not completed all objectives");
         }
     }
 
     public void CompleteObjective(QuestObjective objective)
     {
-        Debug.Log("Completed Objective: " + objective.title);
+        //Debug.Log("Completed Objective: " + objective.title);
 
         for (int i = 0; i < objectives.Length; i++)
         {
             if (objectives[i] == objective)
             {
-                if (i >= objectives.Length - 1)
-                {
-                    CheckObjectives();
-                }
-                else
+                if (!(i >= objectives.Length - 1))
                 {
                     QuestObjective nextObjective = objectives[i + 1];
 
@@ -97,6 +102,18 @@ public class Quest : ScriptableObject
                     }
                 }
             }
+        }
+
+        CheckObjectives();
+    }
+
+    public void ResetCompass()
+    {
+        Compass compass = GameObject.FindObjectOfType<Compass>();
+
+        if (compass != null)
+        {
+            compass.ResetMarkersOnce();
         }
     }
 }

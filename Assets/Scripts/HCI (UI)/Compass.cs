@@ -24,38 +24,48 @@ public class Compass : MonoBehaviour
         ChangeQuestMarkers();
     }
 
-    public void ChangeQuestMarkers()
+    bool alreadyCalled = false;
+
+    public void ResetMarkersOnce()
+    {
+        if (!alreadyCalled)
+        {
+            alreadyCalled = true;
+            Invoke("ChangeQuestMarkers", 1f);
+        }
+    }
+
+    private void ChangeQuestMarkers()
     {
         updateIcons = false;
+
+        ShowQuestMarker[] markers = GameObject.FindObjectsOfType<ShowQuestMarker>();
+
+        foreach (var item in markers)
+        {
+            item.CheckObjective();
+        }
 
         foreach (var item in icons)
         {
             Destroy(item);
         }
 
-        Invoke("SetupQuestMarkers", 0.1f);
-
         Invoke("ResetQuestMarkers", 0.2f);
+
+        Invoke("SetupQuestMarkers", 0.6f);
     }
 
     private void ResetQuestMarkers()
     {
-        QuestMarkers[] clearList = GameObject.FindObjectsOfType<QuestMarkers>();
+        questMarkers.Clear();
 
-        foreach (var item in clearList)
+        for (int i = 0; i < icons.Count; i++)
         {
-            if (!questMarkers.Contains(item))
-            {
-                Debug.Log("Should not appear");
-                item.RemoveIcon();
-            }
-            else
-            {
-                Debug.Log("Should appear");
-            }
+            Destroy(icons[i]);
         }
 
-        updateIcons = true;
+        icons.Clear();
     }
 
     private void SetupQuestMarkers()
@@ -68,6 +78,10 @@ public class Compass : MonoBehaviour
         {
             AddQuestMarker(item);
         }
+
+        updateIcons = true;
+
+        alreadyCalled = false;
     }
 
     private void Update()
@@ -88,22 +102,17 @@ public class Compass : MonoBehaviour
 
     public void AddQuestMarker(QuestMarkers marker)
     {
-        GameObject newMarker = Instantiate(IconPrefab, compassImage.transform);
-
         if (marker.showMarker)
         {
+            GameObject newMarker = Instantiate(IconPrefab, compassImage.transform);
+
             marker.image = newMarker.GetComponent<Image>();
             marker.image.sprite = marker.icon;
 
             questMarkers.Add(marker);
+
+            icons.Add(newMarker);
         }
-
-        icons.Add(newMarker);
-    }
-
-    public void RemoveQuestMarker(QuestMarkers marker)
-    {
-        questMarkers.Remove(marker);
     }
 
     Vector2 GetPosOnCompass(QuestMarkers marker)

@@ -24,7 +24,7 @@ public class EnemySpawner : MonoBehaviour
 
         if (loadSettings != null)
         {
-            if (loadSettings.dialogueComplete)
+            if (CanSpawn())
             {
                 if (loadSettings.enemiesKilled.Contains(enemyName))
                 {
@@ -54,4 +54,46 @@ public class EnemySpawner : MonoBehaviour
     {
         Gizmos.DrawWireCube(transform.position, new Vector3(0.5f, 2f, 0.5f));
     }
+
+    #region Enable/ Disable Spawning
+
+    public Quest[] requireQuests;
+    public QuestObjective[] requireObjectives;
+
+    public bool requireAll = true;
+    public bool destroyIfContains = true;
+
+    public bool CanSpawn()
+    {
+        bool contains1 = false;
+        bool containsAll = true;
+
+        foreach (var item in requireQuests)
+        {
+            if (item.isComplete)
+            {
+                contains1 = true;
+            }
+            else
+            {
+                containsAll = false;
+            }
+        }
+
+        foreach (var item in requireObjectives)
+        {
+            if (item.completed)
+            {
+                contains1 = true;
+            }
+            else
+            {
+                containsAll = false;
+            }
+        }
+
+        return !((((requireAll && containsAll) || (!requireAll && contains1)) && destroyIfContains) || (((!requireAll && !containsAll) || (requireAll && !contains1)) && !destroyIfContains));
+    }
+
+    #endregion
 }

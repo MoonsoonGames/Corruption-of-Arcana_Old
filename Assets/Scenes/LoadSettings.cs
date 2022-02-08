@@ -11,9 +11,6 @@ public class LoadSettings : MonoBehaviour
 
     #region Dialogue
 
-    public bool dialogueComplete = false;
-    public bool prologueComplete = false;
-
     public Object dialogueFlowChart;
     public bool loadSceneMultiple = false;
 

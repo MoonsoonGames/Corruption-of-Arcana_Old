@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1807520508}
-  m_IndirectSpecularColor: {r: 0.089050435, g: 0.089050435, b: 0.20751971, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1147,6 +1147,35 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 12.56
       objectReference: {fileID: 0}
+    - target: {fileID: 7159798681386576173, guid: 5bc1429914645f042b0ffa8bd191e782,
+        type: 3}
+      propertyPath: objectives.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159798681386576173, guid: 5bc1429914645f042b0ffa8bd191e782,
+        type: 3}
+      propertyPath: objectives.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 5b29b3e09c0a69a4b8be7012996008a6,
+        type: 2}
+    - target: {fileID: 7159798681386576173, guid: 5bc1429914645f042b0ffa8bd191e782,
+        type: 3}
+      propertyPath: objectives.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 3fb0b8fb6ce9af34ab8fd2790b94933e,
+        type: 2}
+    - target: {fileID: 7159798681386576173, guid: 5bc1429914645f042b0ffa8bd191e782,
+        type: 3}
+      propertyPath: objectives.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4072ab47128beee4585704b7f1612df5,
+        type: 2}
+    - target: {fileID: 7159798681386576173, guid: 5bc1429914645f042b0ffa8bd191e782,
+        type: 3}
+      propertyPath: objectives.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 489d25753c0a2e14f85eb924810724bb,
+        type: 2}
     - target: {fileID: 8994229373830673351, guid: 5bc1429914645f042b0ffa8bd191e782,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -6631,6 +6660,16 @@ PrefabInstance:
       propertyPath: enemyName
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6878985116278136377, guid: 10c5f1db6de486e4c9dbfccfddd0078e,
+        type: 3}
+      propertyPath: requireAll
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6878985116278136377, guid: 10c5f1db6de486e4c9dbfccfddd0078e,
+        type: 3}
+      propertyPath: destroyIfContains
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10c5f1db6de486e4c9dbfccfddd0078e, type: 3}
 --- !u!1001 &454017584
@@ -7622,6 +7661,16 @@ PrefabInstance:
         type: 3}
       propertyPath: enemyName
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6878985116278136377, guid: 10c5f1db6de486e4c9dbfccfddd0078e,
+        type: 3}
+      propertyPath: requireAll
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6878985116278136377, guid: 10c5f1db6de486e4c9dbfccfddd0078e,
+        type: 3}
+      propertyPath: destroyIfContains
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10c5f1db6de486e4c9dbfccfddd0078e, type: 3}
@@ -8984,9 +9033,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c589c49517815b43838a1bb732ed791, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderRef: {fileID: 0}
-  requireTutorial: 0
-  requireDialogue: 0
 --- !u!1001 &973168602
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9304,6 +9350,16 @@ PrefabInstance:
         type: 3}
       propertyPath: enemyName
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6878985116278136377, guid: 10c5f1db6de486e4c9dbfccfddd0078e,
+        type: 3}
+      propertyPath: requireAll
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6878985116278136377, guid: 10c5f1db6de486e4c9dbfccfddd0078e,
+        type: 3}
+      propertyPath: destroyIfContains
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10c5f1db6de486e4c9dbfccfddd0078e, type: 3}
@@ -10129,6 +10185,16 @@ PrefabInstance:
       propertyPath: enemyName
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6878985116278136377, guid: 10c5f1db6de486e4c9dbfccfddd0078e,
+        type: 3}
+      propertyPath: requireAll
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6878985116278136377, guid: 10c5f1db6de486e4c9dbfccfddd0078e,
+        type: 3}
+      propertyPath: destroyIfContains
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10c5f1db6de486e4c9dbfccfddd0078e, type: 3}
 --- !u!1 &1224688296
@@ -10897,6 +10963,16 @@ PrefabInstance:
         type: 3}
       propertyPath: enemyName
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6878985116278136377, guid: 10c5f1db6de486e4c9dbfccfddd0078e,
+        type: 3}
+      propertyPath: requireAll
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6878985116278136377, guid: 10c5f1db6de486e4c9dbfccfddd0078e,
+        type: 3}
+      propertyPath: destroyIfContains
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10c5f1db6de486e4c9dbfccfddd0078e, type: 3}
