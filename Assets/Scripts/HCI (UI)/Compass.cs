@@ -56,6 +56,28 @@ public class Compass : MonoBehaviour
         }
 
         updateIcons = true;
+
+        List<GameObject> clear = new List<GameObject>();
+
+        foreach (var item in icons)
+        {
+            if (item.GetComponent<Image>().sprite == null)
+            {
+                clear.Add(item);
+            }
+        }
+
+        foreach (var item in clear)
+        {
+            if (icons.Contains(item))
+            {
+                icons.Remove(item);
+            }
+
+            Destroy(item);
+        }
+
+        clear.Clear();
     }
 
     private void SetupQuestMarkers()
