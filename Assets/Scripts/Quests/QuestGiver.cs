@@ -27,10 +27,13 @@ public class QuestGiver : MonoBehaviour
         //Add to guidebook
         //Set window to false
         //Check Objectives
-        quest.AcceptQuest();
+        if (quest != null)
+        {
+            quest.AcceptQuest();
 
-        LoadSettings loadSettings = LoadSettings.instance;
+            LoadSettings loadSettings = LoadSettings.instance;
 
-        loadSettings.quests.Add(quest);
+            loadSettings.quests.Add(quest);
+        }
     }
 }

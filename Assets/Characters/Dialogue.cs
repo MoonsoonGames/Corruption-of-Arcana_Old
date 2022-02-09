@@ -28,7 +28,7 @@ public class Dialogue : MonoBehaviour
 
         currentScene = SceneManager.GetActiveScene();
 
-        sceneLoader = GameObject.FindObjectOfType<SceneLoader>();
+        sceneLoader = GetComponent<SceneLoader>();
         loadSettings = LoadSettings.instance;
     }
 
