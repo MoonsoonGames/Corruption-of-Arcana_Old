@@ -68,6 +68,8 @@ public class NavigationNode : MonoBehaviour
         else
         {
             button.image.color = new Color(0, 0, 0, 0);
+            button.interactable = false;
+            canTravelTo = false;
         }
     }
 

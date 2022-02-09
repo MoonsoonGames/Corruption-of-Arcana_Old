@@ -124,7 +124,7 @@ public class NavigationEvents : ScriptableObject
 
         //Debug.Log(test + " | " + chance + " | " + potionsReward);
 
-        return potionsReward;
+        return Mathf.Clamp(potionsReward, 0, 5);
     }
 
     //From Gam140 Godsent by Andrew Scott
