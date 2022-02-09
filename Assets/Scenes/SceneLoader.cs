@@ -19,7 +19,7 @@ public class SceneLoader : MonoBehaviour
 
         currentScene = SceneManager.GetActiveScene();
 
-        loadSettings = GameObject.FindObjectOfType<LoadSettings>();
+        loadSettings = LoadSettings.instance;
     }
 
     void LoadScene(string scene)

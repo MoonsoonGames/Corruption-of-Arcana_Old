@@ -141,12 +141,12 @@ public class Quest : ScriptableObject
     void GiveRewards()
     {
         Debug.Log("Give rewards");
-        LoadSettings loadSettings = GameObject.FindObjectOfType<LoadSettings>();
+        LoadSettings loadSettings = LoadSettings.instance;
 
         if (loadSettings != null && loadSettings.currentFight != null)
         {
             loadSettings.currentGold += goldReward;
-            loadSettings.potionCount += DeterminePotions(potionReward);
+            loadSettings.potionCount = DeterminePotions(loadSettings.potionCount);
         }
     }
 

@@ -29,7 +29,7 @@ public class QuestGiver : MonoBehaviour
         //Check Objectives
         quest.AcceptQuest();
 
-        LoadSettings loadSettings = GameObject.FindObjectOfType<LoadSettings>();
+        LoadSettings loadSettings = LoadSettings.instance;
 
         loadSettings.quests.Add(quest);
     }

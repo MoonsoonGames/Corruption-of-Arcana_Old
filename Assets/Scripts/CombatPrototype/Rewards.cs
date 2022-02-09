@@ -16,7 +16,7 @@ public class Rewards : MonoBehaviour
 
     public void GiveRewards()
     {
-        loadSettings = GameObject.FindObjectOfType<LoadSettings>();
+        loadSettings = LoadSettings.instance;
 
         if (combatManager != null && loadSettings != null)
         {

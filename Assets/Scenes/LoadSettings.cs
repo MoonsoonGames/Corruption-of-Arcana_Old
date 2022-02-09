@@ -26,6 +26,8 @@ public class LoadSettings : MonoBehaviour
     public Quaternion playerRotInThoth;
     public Vector3 playerPosInClearing;
     public Quaternion playerRotInClearing;
+    public Vector3 playerPosInCave;
+    public Quaternion playerRotInCave;
     public Vector3 playerPosInTiertarock;
     public Quaternion playerRotInTiertarock;
 
@@ -39,6 +41,7 @@ public class LoadSettings : MonoBehaviour
     public string checkPointString;
 
     public bool died;
+    public bool checkPoint = false;
 
     #endregion
 
@@ -69,40 +72,28 @@ public class LoadSettings : MonoBehaviour
 
     private void Awake()
     {
-        LoadSettings[] loadSettings = GameObject.FindObjectsOfType<LoadSettings>();
-
-        //Debug.Log(loadSettings.Length);
-
-        if (loadSettings.Length > 1)
-        {
-            //Debug.Log("destroying");
-            Destroy(this); //There is already one in the scene, delete this one
-        }
-        else
-        {
-            main = true;
-            DontDestroyOnLoad(this.gameObject);
-        }
+        Singleton();
 
         questSaver = GetComponent<SaveLoadQuestData>();
+
+        DontDestroyOnLoad(this);
     }
 
     #endregion
 
     #region Singleton
 
-    bool main = false;
+    public static LoadSettings instance = null;
 
-    public bool CheckMain()
+    void Singleton()
     {
-        if (main)
+        if (instance == null)
         {
-            return true;
+            instance = this;
         }
-        else
+        else if (instance != this)
         {
-            //Debug.Log("destroying");
-            return false;
+            Destroy(gameObject);
         }
     }
 
@@ -130,6 +121,8 @@ public class LoadSettings : MonoBehaviour
             {
                 playerPosInClearing = new Vector3(37f, 7.61000013f, 294.160004f);
             }
+
+            currentNodeID = checkpointNodeID;
 
             #endregion
 
@@ -166,6 +159,15 @@ public class LoadSettings : MonoBehaviour
                 targetPos.x = playerPosInClearing.x;
                 targetPos.y = playerPosInClearing.y;
                 targetPos.z = playerPosInClearing.z;
+            }
+            else if (lastLevelString == E_Levels.Cave.ToString())
+            {
+                Debug.Log(scene + " and " + lastLevelString);
+                targetPos = playerPosInCave;
+
+                targetPos.x = playerPosInCave.x;
+                targetPos.y = playerPosInCave.y;
+                targetPos.z = playerPosInCave.z;
             }
             else if (lastLevelString == E_Levels.Tiertarock.ToString())
             {
@@ -227,6 +229,15 @@ public class LoadSettings : MonoBehaviour
                 targetRot.z = playerRotInClearing.z;
                 targetRot.w = playerRotInClearing.w;
             }
+            else if (lastLevelString == E_Levels.Cave.ToString())
+            {
+                Debug.Log(scene + " and " + lastLevelString);
+                targetRot = playerRotInCave;
+
+                targetRot.x = playerRotInCave.x;
+                targetRot.y = playerRotInCave.y;
+                targetRot.z = playerRotInCave.z;
+            }
             else if (lastLevelString == E_Levels.Tiertarock.ToString())
             {
                 Debug.Log(scene + " and " + lastLevelString);
@@ -274,7 +285,12 @@ public class LoadSettings : MonoBehaviour
         }
     }
 
-    public void Checkpoint(Scene newCheckPoint)
+    public void SetCheckpoint()
+    {
+        checkPoint = true;
+    }
+
+    public void SaveCheckpoint(Scene newCheckPoint)
     {
         Debug.Log("Checkpoint");
         checkpointEnemies.Clear();
@@ -284,10 +300,17 @@ public class LoadSettings : MonoBehaviour
             checkpointEnemies.Add(item);
         }
 
-        checkPointScene = newCheckPoint;
-        checkPointString = checkPointScene.name;
+        if (newCheckPoint != null)
+        {
+            checkPointScene = newCheckPoint;
+            checkPointString = checkPointScene.name;
+        }
+
+        checkpointNodeID = currentNodeID;
 
         questSaver.SaveQuestData();
+
+        checkPoint = false;
     }
 
     #endregion
@@ -330,6 +353,7 @@ public class LoadSettings : MonoBehaviour
     #region Travelling
 
     public string currentNodeID;
+    public string checkpointNodeID;
 
     public void TravelStart(NavigationNode newNode)
     {

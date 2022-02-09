@@ -15,20 +15,7 @@ public class SpawnDialogue : MonoBehaviour
 
     private void Start()
     {
-        LoadSettings[] loadSettingsArray = GameObject.FindObjectsOfType<LoadSettings>();
-
-        foreach (var item in loadSettingsArray)
-        {
-            if (item.CheckMain())
-            {
-                loadSettings = item;
-            }
-            else
-            {
-                Destroy(item); //There is already one in the scene, delete this one
-            }
-
-        }
+        loadSettings = LoadSettings.instance;
 
         SetBGColour();
         BeginDialogue(loadSettings.dialogueFlowChart);

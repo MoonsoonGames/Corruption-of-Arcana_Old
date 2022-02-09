@@ -31,7 +31,7 @@ public class NavigationEvents : ScriptableObject
 
     public void Setup(SceneLoader newSceneLoader, E_Levels newNavScene)
     {
-        loadSettings = GameObject.FindObjectOfType<LoadSettings>();
+        loadSettings = LoadSettings.instance;
         navScene = newNavScene;
         sceneLoader = newSceneLoader;
 
@@ -108,7 +108,7 @@ public class NavigationEvents : ScriptableObject
         if (loadSettings != null && loadSettings.currentFight != null)
         {
             loadSettings.currentGold += (int)Random.Range(goldReward.x, goldReward.y);
-            loadSettings.potionCount += DeterminePotions(potionReward);
+            loadSettings.potionCount = DeterminePotions(loadSettings.potionCount);
         }
     }
 
