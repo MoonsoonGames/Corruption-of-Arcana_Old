@@ -226,7 +226,16 @@ public class PlayerController : MonoBehaviour
         {
             //Debug.Log("Can Interact");
             interact = true;
-            dialogue = other.gameObject.GetComponent<Dialogue>();
+
+            Dialogue[] dialogueArray = other.gameObject.GetComponents<Dialogue>();
+
+            foreach (var item in dialogueArray)
+            {
+                if (item.CanSpeak())
+                {
+                    dialogue = item;
+                }
+            }
 
             /*if (dialogue != null && dialogue.dialogue != null && loadSettings != null)
                 loadSettings.dialogueFlowChart = dialogue.dialogue;*/

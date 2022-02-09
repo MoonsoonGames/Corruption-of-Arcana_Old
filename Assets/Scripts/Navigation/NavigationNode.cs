@@ -51,16 +51,23 @@ public class NavigationNode : MonoBehaviour
 
     public void SetAvailable(bool available)
     {
-        button.interactable = available;
-        canTravelTo = available;
-
-        if (available)
+        if (CheckQuestsInProgress() && CheckQuestsCompleted())
         {
-            button.image.color = availableColour;
+            button.interactable = available;
+            canTravelTo = available;
+
+            if (available)
+            {
+                button.image.color = availableColour;
+            }
+            else
+            {
+                button.image.color = unavailableColour;
+            }
         }
         else
         {
-            button.image.color = unavailableColour;
+            button.image.color = new Color(0, 0, 0, 0);
         }
     }
 
@@ -97,4 +104,130 @@ public class NavigationNode : MonoBehaviour
         
         return generateEvent;
     }
+
+    #region Quest Progress Requirements
+
+    public Quest[] requireQuestsInProgress;
+    public QuestObjective[] requireObjectivesInProgress;
+    public bool requireAllInProgress = true;
+
+    public Quest[] disableQuestsInProgress;
+    public QuestObjective[] disableObjectivesInProgress;
+
+    public bool CheckQuestsInProgress()
+    {
+        bool enableNode = false;
+
+        bool contains1 = false;
+        bool containsAll = true;
+
+        foreach (var item in requireQuestsInProgress)
+        {
+            if (item.isActive)
+            {
+                contains1 = true;
+            }
+            else
+            {
+                containsAll = false;
+            }
+        }
+
+        foreach (var item in requireObjectivesInProgress)
+        {
+            if (item.canComplete)
+            {
+                contains1 = true;
+            }
+            else
+            {
+                containsAll = false;
+            }
+        }
+
+        enableNode = (containsAll) || (!requireAllCompleted && contains1);
+
+        foreach (var item in disableQuestsInProgress)
+        {
+            if (item.isActive)
+            {
+                enableNode = false;
+            }
+        }
+
+        foreach (var item in disableObjectivesInProgress)
+        {
+            if (item.canComplete)
+            {
+                enableNode = false;
+            }
+        }
+
+        return enableNode;
+    }
+
+    #endregion
+
+    #region Quest Completed Requirements
+
+    public Quest[] requireQuestsCompleted;
+    public QuestObjective[] requireObjectivesCompleted;
+    public bool requireAllCompleted = true;
+
+    public Quest[] disableQuestsCompleted;
+    public QuestObjective[] disableObjectivesCompleted;
+
+    public bool CheckQuestsCompleted()
+    {
+        bool enableNode = false;
+
+        bool contains1 = false;
+        bool containsAll = true;
+
+        foreach (var item in requireQuestsCompleted)
+        {
+            if (item.isComplete)
+            {
+                contains1 = true;
+            }
+            else
+            {
+                containsAll = false;
+            }
+        }
+
+        foreach (var item in requireObjectivesCompleted)
+        {
+            if (item.completed)
+            {
+                contains1 = true;
+            }
+            else
+            {
+                containsAll = false;
+            }
+        }
+
+        enableNode = (containsAll) || (!requireAllCompleted && contains1);
+
+        foreach (var item in disableQuestsCompleted)
+        {
+            if (item.isComplete)
+            {
+                enableNode = false;
+            }
+        }
+
+        foreach (var item in disableObjectivesCompleted)
+        {
+            if (item.completed)
+            {
+                enableNode = false;
+            }
+        }
+
+        return enableNode;
+    }
+
+    #endregion
 }
