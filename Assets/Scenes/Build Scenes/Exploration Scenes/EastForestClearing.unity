@@ -376,7 +376,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1584830240}
-  - {fileID: 1735862496}
   m_Father: {fileID: 0}
   m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6663,7 +6662,7 @@ PrefabInstance:
     - target: {fileID: 6878985116278136377, guid: 10c5f1db6de486e4c9dbfccfddd0078e,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6878985116278136377, guid: 10c5f1db6de486e4c9dbfccfddd0078e,
         type: 3}
@@ -10098,7 +10097,7 @@ PrefabInstance:
     - target: {fileID: 6878985116278136377, guid: 10c5f1db6de486e4c9dbfccfddd0078e,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6878985116278136377, guid: 10c5f1db6de486e4c9dbfccfddd0078e,
         type: 3}
@@ -10882,7 +10881,7 @@ PrefabInstance:
     - target: {fileID: 6878985116278136377, guid: 10c5f1db6de486e4c9dbfccfddd0078e,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6878985116278136377, guid: 10c5f1db6de486e4c9dbfccfddd0078e,
         type: 3}
@@ -11419,14 +11418,8 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 9216620810431011222, guid: f20694b206ce2824da12e1dcf352dbae,
         type: 3}
-      propertyPath: dialogue
+      propertyPath: requireObjectives.Array.data[0]
       value: 
-      objectReference: {fileID: 3687597253407275092, guid: 2c0b2227930638042824499d913e6e32,
-        type: 3}
-    - target: {fileID: 9216620810431011222, guid: f20694b206ce2824da12e1dcf352dbae,
-        type: 3}
-      propertyPath: sceneMode
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9216620810431011224, guid: f20694b206ce2824da12e1dcf352dbae,
         type: 3}
@@ -11486,7 +11479,12 @@ PrefabInstance:
     - target: {fileID: 9216620810431011225, guid: f20694b206ce2824da12e1dcf352dbae,
         type: 3}
       propertyPath: m_Name
-      value: Lady of the Lake (pre)
+      value: Lady of the Lake
+      objectReference: {fileID: 0}
+    - target: {fileID: 9216620810431011225, guid: f20694b206ce2824da12e1dcf352dbae,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f20694b206ce2824da12e1dcf352dbae, type: 3}
@@ -11496,29 +11494,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1584830239}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1584830241 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9216620810431011225, guid: f20694b206ce2824da12e1dcf352dbae,
-    type: 3}
-  m_PrefabInstance: {fileID: 1584830239}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1584830242
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1584830241}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bcb8024cf64c4644a89ed366b0284cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemiesRequired:
-  - WellFight
-  - ExcaliburFight
-  requireAll: 0
-  destroyIfContains: 1
 --- !u!1001 &1589427761
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11875,130 +11850,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1730706295}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &1735862495
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 66234318}
-    m_Modifications:
-    - target: {fileID: 9216620810431011222, guid: f20694b206ce2824da12e1dcf352dbae,
-        type: 3}
-      propertyPath: dialogue
-      value: 
-      objectReference: {fileID: 8052595513141617221, guid: 231f1225157f1ee46a86abdfa3c06ca0,
-        type: 3}
-    - target: {fileID: 9216620810431011222, guid: f20694b206ce2824da12e1dcf352dbae,
-        type: 3}
-      propertyPath: sceneMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9216620810431011224, guid: f20694b206ce2824da12e1dcf352dbae,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9216620810431011224, guid: f20694b206ce2824da12e1dcf352dbae,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9216620810431011224, guid: f20694b206ce2824da12e1dcf352dbae,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9216620810431011224, guid: f20694b206ce2824da12e1dcf352dbae,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9216620810431011224, guid: f20694b206ce2824da12e1dcf352dbae,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9216620810431011224, guid: f20694b206ce2824da12e1dcf352dbae,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9216620810431011224, guid: f20694b206ce2824da12e1dcf352dbae,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9216620810431011224, guid: f20694b206ce2824da12e1dcf352dbae,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9216620810431011224, guid: f20694b206ce2824da12e1dcf352dbae,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9216620810431011224, guid: f20694b206ce2824da12e1dcf352dbae,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9216620810431011224, guid: f20694b206ce2824da12e1dcf352dbae,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9216620810431011225, guid: f20694b206ce2824da12e1dcf352dbae,
-        type: 3}
-      propertyPath: m_Name
-      value: Lady of the Lake (post)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f20694b206ce2824da12e1dcf352dbae, type: 3}
---- !u!4 &1735862496 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 9216620810431011224, guid: f20694b206ce2824da12e1dcf352dbae,
-    type: 3}
-  m_PrefabInstance: {fileID: 1735862495}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1735862497 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9216620810431011225, guid: f20694b206ce2824da12e1dcf352dbae,
-    type: 3}
-  m_PrefabInstance: {fileID: 1735862495}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1735862498
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1735862497}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bcb8024cf64c4644a89ed366b0284cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemiesRequired:
-  - WellFight
-  requireAll: 0
-  destroyIfContains: 0
---- !u!114 &1735862499
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1735862497}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bcb8024cf64c4644a89ed366b0284cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemiesRequired:
-  - ExcaliburFight
-  requireAll: 0
-  destroyIfContains: 1
 --- !u!1 &1771214307
 GameObject:
   m_ObjectHideFlags: 0
