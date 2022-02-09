@@ -279,6 +279,11 @@ public class PlayerController : MonoBehaviour
                 loadSettings.playerPosInClearing = transform.position;
                 loadSettings.playerRotInClearing = transform.rotation;
             }
+            else if (scene == E_Levels.Cave.ToString())
+            {
+                loadSettings.playerPosInCave = transform.position;
+                loadSettings.playerRotInCave = transform.rotation;
+            }
             else if (scene == E_Levels.Tiertarock.ToString())
             {
                 loadSettings.playerPosInTiertarock = transform.position;
