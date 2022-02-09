@@ -16,27 +16,10 @@ public class InventoryItems : MonoBehaviour
     {
         controller = GameObject.FindObjectOfType<PlayerController>();
 
-        LoadSettings[] loadSettingsArray = GameObject.FindObjectsOfType<LoadSettings>();
+        loadSettings = LoadSettings.instance;
 
-        foreach (var item in loadSettingsArray)
-        {
-            if (item.CheckMain())
-            {
-                loadSettings = item;
-                healthPotionCount = loadSettings.potionCount;
-                healthPotionText.text = healthPotionCount.ToString();
-            }
-            else
-            {
-                Destroy(item); //There is already one in the scene, delete this one
-            }
-
-        }
-
-        loadSettingsArray = GameObject.FindObjectsOfType<LoadSettings>();
-
-        //Debug.Log("Length: " + loadSettingsArray.Length);
-        //Debug.Break();
+        healthPotionCount = loadSettings.potionCount;
+        healthPotionText.text = healthPotionCount.ToString();
     }
 
     public void HealthPotion()

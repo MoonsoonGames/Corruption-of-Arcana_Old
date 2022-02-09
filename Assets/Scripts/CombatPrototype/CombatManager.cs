@@ -74,7 +74,7 @@ public class CombatManager : MonoBehaviour
         Healing.SetActive(false);
         PlayableDecks.SetActive(false);
 
-        loadSettings = GameObject.Find("LoadSettings").GetComponent<LoadSettings>();
+        loadSettings = LoadSettings.instance;
 
         if (loadSettings != null)
         {

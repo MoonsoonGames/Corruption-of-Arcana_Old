@@ -94,6 +94,8 @@ public class Quest : ScriptableObject
         {
             //Debug.Log("Completed Quest: " + title);
             isComplete = true;
+
+            GiveRewards();
         }
         else
         {
@@ -133,4 +135,45 @@ public class Quest : ScriptableObject
             compass.ResetMarkersOnce();
         }
     }
+
+    #region Rewards
+
+    void GiveRewards()
+    {
+        Debug.Log("Give rewards");
+        LoadSettings loadSettings = LoadSettings.instance;
+
+        if (loadSettings != null && loadSettings.currentFight != null)
+        {
+            loadSettings.currentGold += goldReward;
+            loadSettings.potionCount = DeterminePotions(loadSettings.potionCount);
+        }
+    }
+
+    int DeterminePotions(float potions)
+    {
+        int potionsReward = (int)potions;
+        float chance = potions % 1f;
+
+        int test = potionsReward;
+
+        if (RandomBoolWeighting(chance))
+            potionsReward++;
+
+        //Debug.Log(test + " | " + chance + " | " + potionsReward);
+
+        return Mathf.Clamp(potionsReward, 0, 5);
+    }
+
+    //From Gam140 Godsent by Andrew Scott
+    private bool RandomBoolWeighting(float weighting)
+    {
+        if (Random.value >= weighting)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    #endregion
 }

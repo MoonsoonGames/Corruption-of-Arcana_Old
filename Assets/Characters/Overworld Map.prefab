@@ -84,6 +84,7 @@ GameObject:
   - component: {fileID: 5444911181963198285}
   - component: {fileID: 5837821381250986445}
   - component: {fileID: 7319648475985244968}
+  - component: {fileID: 5023872103768746102}
   m_Layer: 0
   m_Name: Overworld Map
   m_TagString: NPC
@@ -199,6 +200,7 @@ MonoBehaviour:
   checkpoint: 1
   dialogue: {fileID: 0}
   sceneMode: 0
+  completeObjectives: []
   requireQuests:
   - {fileID: 11400000, guid: 71c46a20a32941d4d93df721b09f798c, type: 2}
   requireObjectives: []
@@ -220,6 +222,20 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 34102981c7e63b646b05313914b723a6, type: 3}
   image: {fileID: 0}
   showMarker: 1
+--- !u!114 &5023872103768746102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5444911181963198280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02efb632ea380cd4bb2bdc15d8f4e029, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToLoad: 0
+  navScenes: 
 --- !u!1001 &192842057581335217
 PrefabInstance:
   m_ObjectHideFlags: 0

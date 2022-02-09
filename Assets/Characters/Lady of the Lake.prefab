@@ -127,6 +127,8 @@ GameObject:
   - component: {fileID: 9216620810431011227}
   - component: {fileID: 9216620810431011228}
   - component: {fileID: 9216620810431011222}
+  - component: {fileID: 8659085368928631126}
+  - component: {fileID: 6435733521936544711}
   m_Layer: 0
   m_Name: Lady of the Lake
   m_TagString: NPC
@@ -241,11 +243,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneToLoad: 3
   checkpoint: 0
-  dialogue: {fileID: 2684919790725851444, guid: 0f26e8e0f64fcda46901c0f705428219,
+  dialogue: {fileID: 3687597253407275092, guid: 2c0b2227930638042824499d913e6e32,
     type: 3}
-  sceneMode: 1
+  sceneMode: 0
+  completeObjectives: []
   requireQuests: []
   requireObjectives: []
+  requireAll: 0
+  disableQuests: []
+  disableObjectives:
+  - {fileID: 11400000, guid: 9602018115db68c43a1b18b264164618, type: 2}
+--- !u!114 &8659085368928631126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9216620810431011225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02efb632ea380cd4bb2bdc15d8f4e029, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToLoad: 0
+  navScenes: 
+--- !u!114 &6435733521936544711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9216620810431011225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed6416ce628326043976b601c4d11834, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToLoad: 3
+  checkpoint: 0
+  dialogue: {fileID: 8052595513141617221, guid: 231f1225157f1ee46a86abdfa3c06ca0,
+    type: 3}
+  sceneMode: 0
+  completeObjectives: []
+  requireQuests: []
+  requireObjectives:
+  - {fileID: 11400000, guid: 9602018115db68c43a1b18b264164618, type: 2}
   requireAll: 0
   disableQuests: []
   disableObjectives: []

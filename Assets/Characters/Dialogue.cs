@@ -19,6 +19,8 @@ public class Dialogue : MonoBehaviour
 
     public LoadSceneMode sceneMode;
 
+    public QuestObjective[] completeObjectives;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -26,8 +28,8 @@ public class Dialogue : MonoBehaviour
 
         currentScene = SceneManager.GetActiveScene();
 
-        sceneLoader = GameObject.Find("SceneLoader").GetComponent<SceneLoader>();
-        loadSettings = GameObject.Find("LoadSettings").GetComponent<LoadSettings>();
+        sceneLoader = GetComponent<SceneLoader>();
+        loadSettings = LoadSettings.instance;
     }
 
     public bool LoadScene()
@@ -38,6 +40,8 @@ public class Dialogue : MonoBehaviour
             {
                 if (checkpoint)
                 {
+                    loadSettings.SetCheckpoint();
+
                     PlayerController controller = GameObject.Find("Player").GetComponent<PlayerController>();
 
                     if (controller != null)
@@ -52,6 +56,14 @@ public class Dialogue : MonoBehaviour
                 loadSettings.dialogueFlowChart = dialogue;
                 loadSettings.loadSceneMultiple = sceneMode == LoadSceneMode.Additive;
                 sceneLoader.LoadSpecifiedScene(sceneString, sceneMode, dialogue);
+
+                if (completeObjectives.Length != 0)
+                {
+                    foreach (var item in completeObjectives)
+                    {
+                        item.CompleteGoal();
+                    }
+                }
 
                 return true;
             }
