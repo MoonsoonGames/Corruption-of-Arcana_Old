@@ -10,6 +10,7 @@ public class PlayerSpawner : MonoBehaviour
     public GameObject player;
     GameObject cam;
     public UIManager UIManager;
+    public MenuManager MenuManager;
     public Slider healthBar;
     public Slider arcanaBar;
     public GameObject interactImage;

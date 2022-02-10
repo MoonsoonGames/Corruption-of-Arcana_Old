@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
@@ -22,10 +23,13 @@ public class MenuManager : MonoBehaviour
 
     public GameObject SettingsMenu;
     public GameObject HelpMenu;
-    public GameObject PlayerStatsUI;
+    public GameObject QuestMenuUI;
 
     public GameObject MainMenuConfirmScreen;
     public GameObject QuitConfirmScreen;
+
+    //public Slider PauseHealthBar;
+    //public Slider PauseArcanaBar;
     #endregion
 
     // Start is called before the first frame update
@@ -45,44 +49,69 @@ public class MenuManager : MonoBehaviour
     {
         #region Open Hotkeys
         //Esc to OPEN menu
-        if (PauseMenuUI.activeSelf == false && Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && QuestMenuUI.activeSelf == false)
         {
             //turn off Exploration UI
             ExplorationUI.SetActive(false);
             //turn on Pause Menu UI
             PauseMenuUI.SetActive(true);
-            //turn on player Stats
-            PlayerStatsUI.SetActive(true);
 
             //Freeze player and camera
-            Player.GetComponent<PlayerController>().canMove = false;
+            /*if (Player != null)
+            {
+                Player.GetComponent<PlayerController>().canMove = false;
+            }*/
 
             //unlock mouse - not confined
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
-
             //Debug
             Debug.Log("Pause Menu Active");
         }
-        //M to open local map
+        //M to OPEN local map
             //turn off Exploration UI
             //turn on local map
             //freeze player and camera
             //keep mouse hidden/locked in place
             //Debug
+        //Q to OPEN quest menu
+        if (Input.GetKeyDown(KeyCode.Q) && PauseMenuUI.activeSelf == false)
+        {
+            //turn off Exploration UI
+            ExplorationUI.SetActive(false);
+            //turn on Quest Menu UI
+            QuestMenuUI.SetActive(true);
+            //freeze player/camera
+            Player.GetComponent<PlayerController>().canMove = false;
+            //unlock mouse - confined to window
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
+            //debug
+            Debug.Log("Quest Menu Active");
+        }
+        #endregion
 
+        #region Stats Update
+        if (PauseMenuUI.activeSelf == true)
+        {
+            //PauseHealthBar.value;
+            //PauseArcanaBar.value;
+        }
         #endregion
 
         #region Close Hotkeys
         //Esc to CLOSE menu
-        if (PauseMenuUI.activeSelf == true && Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && PauseMenuUI.activeSelf == true)
         {
             //turn on Exploration UI
             ExplorationUI.SetActive(true);
             //turn off Pause Menu UI
             PauseMenuUI.SetActive(false);
+
             //Unfreeze player and camera
-            Player.GetComponent<PlayerController>().canMove = true;
+            
+            if (Player != null)
+                Player.GetComponent<PlayerController>().canMove = true;
 
             //hide mouse/locked in place
             Cursor.visible = false;
@@ -91,12 +120,33 @@ public class MenuManager : MonoBehaviour
             //Debug
             Debug.Log("Pause Menu Deactive");
         }
+
         //M to close local map
             //turn on Exploration UI
             //turn off local map
             //unfreeze player and camera
             //keep mouse hidden/locked in place
             //Debug
+
+        else if (QuestMenuUI.activeSelf == true && Input.GetKeyDown(KeyCode.Escape))
+        {
+            //turn on Exploration UI
+            ExplorationUI.SetActive(true);
+            //turn off Quest Menu UI
+            QuestMenuUI.SetActive(false);
+
+            /*
+            //Unfreeze player and camera
+            Player.GetComponent<PlayerController>().canMove = true;
+            */
+
+            //hide mouse/locked in place
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+
+            //Debug
+            Debug.Log("Quest Menu Deactive");
+        }
         #endregion
     }
 
