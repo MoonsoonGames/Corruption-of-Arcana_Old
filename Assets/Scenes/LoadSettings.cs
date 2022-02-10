@@ -124,6 +124,8 @@ public class LoadSettings : MonoBehaviour
 
             currentNodeID = checkpointNodeID;
 
+            potionCount = checkPointPotionCount;
+
             #endregion
 
             ResetEnemies();

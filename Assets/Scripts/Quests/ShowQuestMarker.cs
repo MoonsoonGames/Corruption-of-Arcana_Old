@@ -21,7 +21,7 @@ public class ShowQuestMarker : MonoBehaviour
 
             foreach (var item in objectives)
             {
-                if (item.canComplete && item.completed == false)
+                if (item.canComplete && item.completed == false && item.quest.isActive)
                 {
                     Debug.Log(item.title);
                     contains = true;
