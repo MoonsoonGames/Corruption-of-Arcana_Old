@@ -55,6 +55,7 @@ public class NavigationNode : MonoBehaviour
         {
             button.interactable = available;
             canTravelTo = available;
+            button.image.raycastTarget = available;
 
             if (available)
             {
@@ -69,6 +70,7 @@ public class NavigationNode : MonoBehaviour
         {
             button.image.color = new Color(0, 0, 0, 0);
             button.interactable = false;
+            button.image.raycastTarget = false;
             canTravelTo = false;
         }
     }

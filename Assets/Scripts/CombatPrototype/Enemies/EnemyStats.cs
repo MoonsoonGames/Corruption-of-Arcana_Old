@@ -65,6 +65,7 @@ public class EnemyStats : CharacterStats
         if (status.revealEntry && enemy != null)
         {
             GameObject.FindObjectOfType<LoadSettings>().AddToGuidebook(enemy.displayName);
+            GameObject.FindObjectOfType<AbilityManager>().EnemyInfo(enemy);
         }
     }
 }
