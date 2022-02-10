@@ -59,6 +59,8 @@ public class EnemyController : MonoBehaviour
                 loadSettings.currentFightObjective = objective;
             }
 
+            loadSettings.lastLevelString = SceneManager.GetActiveScene().name;
+
             if (sceneLoader != null)
                 sceneLoader.LoadSpecifiedScene(combatScene.ToString(), LoadSceneMode.Single, null);
             else

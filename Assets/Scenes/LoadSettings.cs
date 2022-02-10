@@ -274,6 +274,18 @@ public class LoadSettings : MonoBehaviour
 
     #endregion
 
+    #region Last Level
+
+    public void SetScene(string scene)
+    {
+        lastLevelString = scene;
+
+        //https://answers.unity.com/questions/52162/converting-a-string-to-an-enum.html
+        lastLevel = (E_Levels)System.Enum.Parse(typeof(E_Levels), scene);
+    }
+
+    #endregion
+
     #region Checkpoints
 
     public void ResetEnemies()

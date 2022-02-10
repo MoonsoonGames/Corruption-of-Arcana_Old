@@ -53,10 +53,6 @@ public class Dialogue : MonoBehaviour
                     }
                 }
 
-                loadSettings.dialogueFlowChart = dialogue;
-                loadSettings.loadSceneMultiple = sceneMode == LoadSceneMode.Additive;
-                sceneLoader.LoadSpecifiedScene(sceneString, sceneMode, dialogue);
-
                 if (completeObjectives.Length != 0)
                 {
                     foreach (var item in completeObjectives)
@@ -64,6 +60,12 @@ public class Dialogue : MonoBehaviour
                         item.CompleteGoal();
                     }
                 }
+
+                loadSettings.SetScene(SceneManager.GetActiveScene().name);
+
+                loadSettings.dialogueFlowChart = dialogue;
+                loadSettings.loadSceneMultiple = sceneMode == LoadSceneMode.Additive;
+                sceneLoader.LoadSpecifiedScene(sceneString, sceneMode, dialogue);
 
                 return true;
             }
