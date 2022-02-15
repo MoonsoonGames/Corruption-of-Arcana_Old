@@ -68,6 +68,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 34102981c7e63b646b05313914b723a6, type: 3}
   image: {fileID: 0}
+  showMarker: 1
 --- !u!1 &5444911181963198280
 GameObject:
   m_ObjectHideFlags: 0
@@ -82,7 +83,8 @@ GameObject:
   - component: {fileID: 5444911181963198282}
   - component: {fileID: 5444911181963198285}
   - component: {fileID: 5837821381250986445}
-  - component: {fileID: 7542391053577058892}
+  - component: {fileID: 7319648475985244968}
+  - component: {fileID: 5023872103768746102}
   m_Layer: 0
   m_Name: Overworld Map
   m_TagString: NPC
@@ -98,10 +100,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5444911181963198280}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1480.7, y: 1292.15, z: -1019}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8994229373830673351}
+  - {fileID: 3639896267380036237}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -194,13 +197,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: 4
-  checkpoint: 1
-  tutorialDialogue: 0
-  knightDialogue: 0
-  requiresTutorial: 0
+  checkpoint: 0
   dialogue: {fileID: 0}
   sceneMode: 0
---- !u!114 &7542391053577058892
+  completeObjectives: []
+  requireQuests:
+  - {fileID: 11400000, guid: 71c46a20a32941d4d93df721b09f798c, type: 2}
+  requireObjectives: []
+  requireAll: 1
+  disableQuests: []
+  disableObjectives: []
+--- !u!114 &7319648475985244968
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -209,9 +216,93 @@ MonoBehaviour:
   m_GameObject: {fileID: 5444911181963198280}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c589c49517815b43838a1bb732ed791, type: 3}
+  m_Script: {fileID: 11500000, guid: 6636e82920d61b14f925f3c8c1a09af9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderRef: {fileID: 5444911181963198285}
-  requireTutorial: 0
-  requireDialogue: 1
+  icon: {fileID: 21300000, guid: 34102981c7e63b646b05313914b723a6, type: 3}
+  image: {fileID: 0}
+  showMarker: 1
+--- !u!114 &5023872103768746102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5444911181963198280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02efb632ea380cd4bb2bdc15d8f4e029, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToLoad: 0
+  navScenes: 
+--- !u!1001 &192842057581335217
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5444911181963198281}
+    m_Modifications:
+    - target: {fileID: 3471886681103204412, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3471886681103204412, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3471886681103204412, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3471886681103204412, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3471886681103204412, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3471886681103204412, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3471886681103204412, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3471886681103204412, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3471886681103204412, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3471886681103204412, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7057609158513621916, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: objectives.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: feceddc3c64c65b499b909203d7d5124, type: 3}
+--- !u!4 &3639896267380036237 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3471886681103204412, guid: feceddc3c64c65b499b909203d7d5124,
+    type: 3}
+  m_PrefabInstance: {fileID: 192842057581335217}
+  m_PrefabAsset: {fileID: 0}

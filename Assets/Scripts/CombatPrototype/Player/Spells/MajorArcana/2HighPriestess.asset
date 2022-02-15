@@ -21,12 +21,13 @@ MonoBehaviour:
   selfName: Cure Wounds
   selfDescription: With a cleansing surge, you mend your body of wounds
   selfEndTurn: 0
-  selfCost: 40
+  selfUsesAction: 1
+  selfCost: 50
   selfPotionCost: 0
   selfCostType: AP
   selfHeal: {x: 34, y: 50}
   selfAP: {x: 0, y: 0}
-  restoreType: 0
+  restoreType: 7
   selfEndTurnDelay: 0.2
   selfStatus: []
   selfStatusDuration: 
@@ -34,9 +35,11 @@ MonoBehaviour:
   targetName: Storm Barrage
   targetDescription: Unleash a devastating ray of lightning at your target
   targetEndTurn: 0
-  targetCost: 40
+  targetUsesAction: 1
+  targetCost: 55
   targetCostType: AP
   damageType: 2
+  targetCanBeCountered: 1
   targetDmg: {x: 10, y: 24}
   hits: 3
   hitInterval: 0.2

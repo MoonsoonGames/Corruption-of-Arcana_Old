@@ -21,6 +21,7 @@ MonoBehaviour:
   selfName: 
   selfDescription: 
   selfEndTurn: 0
+  selfUsesAction: 1
   selfCost: 0
   selfPotionCost: 0
   selfCostType: 
@@ -39,9 +40,11 @@ MonoBehaviour:
     Also applies slow to the target for 3 turns,
     which has a chance on each of the turns to prevent them from taking their action'
   targetEndTurn: 0
-  targetCost: 20
+  targetUsesAction: 1
+  targetCost: 30
   targetCostType: AP
   damageType: 3
+  targetCanBeCountered: 1
   targetDmg: {x: 12, y: 24}
   hits: 1
   hitInterval: 0

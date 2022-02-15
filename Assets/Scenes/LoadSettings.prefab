@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5564511172518815122}
   - component: {fileID: 5564511172518815125}
   - component: {fileID: -4060218025482095409}
+  - component: {fileID: 4705479259065515254}
   m_Layer: 0
   m_Name: LoadSettings
   m_TagString: Untagged
@@ -44,8 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 503a009eb14d28f428f323d3d7575a16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueComplete: 0
-  prologueComplete: 0
   dialogueFlowChart: {fileID: 0}
   loadSceneMultiple: 0
   lastLevel: 0
@@ -54,6 +53,8 @@ MonoBehaviour:
   playerRotInThoth: {x: 0, y: 0, z: 0, w: 0}
   playerPosInClearing: {x: 37, y: 7.61, z: 294.16}
   playerRotInClearing: {x: 0, y: 1, z: 0, w: -0.00000004371139}
+  playerPosInCave: {x: 37, y: 45.3, z: 260.9}
+  playerRotInCave: {x: 0, y: 0, z: 0, w: 0}
   playerPosInTiertarock: {x: 168.83, y: 4.25, z: 26.04}
   playerRotInTiertarock: {x: 0, y: 0, z: 0, w: 0}
   checkPointPos: {x: -339.45, y: 32.02, z: 353.46}
@@ -62,6 +63,7 @@ MonoBehaviour:
     m_Handle: 0
   checkPointString: 
   died: 0
+  checkPoint: 0
   fightingBoss: 0
   enemies:
   - {fileID: 0}
@@ -79,6 +81,10 @@ MonoBehaviour:
   potionReward: 0
   itemReward: 
   revealedEntries: []
+  currentNodeID: LevelNode Thoth
+  checkpointNodeID: LevelNode Thoth
+  quests: []
+  currentFightObjective: {fileID: 0}
 --- !u!114 &-4060218025482095409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,4 +98,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: 0
-  navScenes: 0100000005000000
+  navScenes: 01000000050000000700000006000000
+--- !u!114 &4705479259065515254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5564511172518815124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2e98e08095ae5545abc94739baccc84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

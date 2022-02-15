@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class SpawnDialogue : MonoBehaviour
 {
     public GameObject[] flowCharts;
+    public GameObject backupFlowChart;
     LoadSettings loadSettings;
 
     public Color singleBGColour;
@@ -14,20 +15,7 @@ public class SpawnDialogue : MonoBehaviour
 
     private void Start()
     {
-        LoadSettings[] loadSettingsArray = GameObject.FindObjectsOfType<LoadSettings>();
-
-        foreach (var item in loadSettingsArray)
-        {
-            if (item.CheckMain())
-            {
-                loadSettings = item;
-            }
-            else
-            {
-                Destroy(item); //There is already one in the scene, delete this one
-            }
-
-        }
+        loadSettings = LoadSettings.instance;
 
         SetBGColour();
         BeginDialogue(loadSettings.dialogueFlowChart);
@@ -49,12 +37,24 @@ public class SpawnDialogue : MonoBehaviour
 
     void BeginDialogue(Object flowChart)
     {
-        foreach (var item in flowCharts)
+        bool spawned = false;
+
+        if (flowChart != null)
         {
-            if (item.name == flowChart.name)
+            foreach (var item in flowCharts)
             {
-                item.SetActive(true);
+                if (item.name == flowChart.name)
+                {
+                    item.SetActive(true);
+                    spawned = true;
+                }
             }
         }
+        /*
+        if (spawned! && backupFlowChart != null)
+        {
+            backupFlowChart.SetActive(true);
+        }
+        */
     }
 }

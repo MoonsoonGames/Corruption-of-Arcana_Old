@@ -38,10 +38,8 @@ public class CombatManager : MonoBehaviour
 
     public PlayerStats playerStats;
     public EnemyStats enemyStats;
-
-    public int turnCounter = 1;
     public bool battleActive = false;
-    public Text turnCountText;
+    public Text actionsCountText;
     public Text currentTurnText;
 
     public AbilityManager abilityManager;
@@ -52,7 +50,10 @@ public class CombatManager : MonoBehaviour
 
     bool boss = false;
 
-    int cardsCast = 0;
+    public int maxActions;
+    int actionsLeft = 0;
+
+    public int arcanaRegen = 20;
 
     public void Start()
     {
@@ -73,7 +74,7 @@ public class CombatManager : MonoBehaviour
         Healing.SetActive(false);
         PlayableDecks.SetActive(false);
 
-        loadSettings = GameObject.Find("LoadSettings").GetComponent<LoadSettings>();
+        loadSettings = LoadSettings.instance;
 
         if (loadSettings != null)
         {
@@ -92,8 +93,6 @@ public class CombatManager : MonoBehaviour
 
     public void StartTurn(bool player)
     {
-        cardsCast = 0;
-
         abilityManager.playerTurn = player;
 
         /*
@@ -103,17 +102,18 @@ public class CombatManager : MonoBehaviour
 
         if (player)
         {
+            actionsLeft = maxActions;
+
+            if (actionsCountText != null)
+                actionsCountText.text = actionsLeft.ToString();
+
             currentTurnText.text = "Player";
             currentTurnText.color = Color.green;
             HealingItem.SetActive(true);
             PlayableDecks.SetActive(true);
 
             //Debug.Log("Regenerate Mana");
-            playerStats.ChangeMana(30, false);
-
-            Dmg.SetActive(false);
-            Ap.SetActive(false);
-            Healing.SetActive(false);
+            playerStats.ChangeMana(arcanaRegen, false);
 
             if (combatDeckManager != null)
             {
@@ -148,9 +148,11 @@ public class CombatManager : MonoBehaviour
 
     public void EndTurn(bool player)
     {
-        cardsCast = 0;
+        actionsLeft = 0;
 
         abilityManager.playerTurn = !player;
+
+        abilityManager.ResetAbility();
         
         if (player)
         {
@@ -165,21 +167,19 @@ public class CombatManager : MonoBehaviour
         }
 
         StartTurn(!player);
-
-        turnCounter++;
-
-        if (turnCountText != null)
-            turnCountText.text = turnCounter.ToString();
     }
 
-    public void IncrementCastCards()
+    public void UseAction()
     {
-        cardsCast++;
+        actionsLeft--;
+
+        if (actionsCountText != null)
+            actionsCountText.text = actionsLeft.ToString();
     }
 
     public int GetCardsCast()
     {
-        return cardsCast;
+        return actionsLeft;
     }
 
     public void ShowEndScreen(bool victory)
@@ -216,7 +216,7 @@ public class CombatManager : MonoBehaviour
     {
         if (loadSettings != null && loadSettings.currentFight != null)
         {
-            playerStats.ChangeHealth(healing, false, E_DamageTypes.Physical, out int damageTaken, this.gameObject);
+            playerStats.ChangeHealth(healing, false, E_DamageTypes.Physical, out int damageTaken, this.gameObject, false);
 
             playerStats.ChangePotions(potions, false);
 

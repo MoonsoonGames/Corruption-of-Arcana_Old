@@ -24,6 +24,7 @@ public class Targetter : MonoBehaviour
                 item.SetActive(visible);
             }
         }
+        /*
         foreach (var item in arrows)
         {
             if (item != null)
@@ -31,5 +32,6 @@ public class Targetter : MonoBehaviour
                 item.SetActive(!visible);
             }
         }
+        */
     }
 }

@@ -17,12 +17,13 @@ MonoBehaviour:
   flavourDescription: Destructive change follows the Devil
   cardImage: {fileID: 0}
   enemySpell: 0
-  selfInterpretationUnlocked: 1
+  selfInterpretationUnlocked: 0
   selfName: Catastrophe
   selfDescription: Engulf yourself in an aura of flame, becoming immune to fire damage
     and burning while also dealing damage to enemies that attack you
   selfEndTurn: 0
-  selfCost: 30
+  selfUsesAction: 1
+  selfCost: 40
   selfPotionCost: 0
   selfCostType: AP
   selfHeal: {x: 0, y: 0}
@@ -32,7 +33,7 @@ MonoBehaviour:
   selfStatus:
   - {fileID: 11400000, guid: ecbaf2dda0943bd4898ca1344d6b1822, type: 2}
   selfStatusDuration: 02000000
-  targetInterpretationUnlocked: 0
+  targetInterpretationUnlocked: 1
   targetName: Calamity
   targetDescription: 'With a blast of searing flame and smoke, you deal X Ember damage
     to all your enemies
@@ -40,9 +41,11 @@ MonoBehaviour:
 
     Also has a chance to burn targets'
   targetEndTurn: 0
-  targetCost: 55
+  targetUsesAction: 1
+  targetCost: 65
   targetCostType: AP
   damageType: 1
+  targetCanBeCountered: 1
   targetDmg: {x: 22, y: 34}
   hits: 1
   hitInterval: 0

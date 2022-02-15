@@ -15,7 +15,6 @@ public class PlayerController : MonoBehaviour
     public GameObject Player;
     public Text Location;
     public static PlayerController instance;
-    private SceneLoader sceneLoader;
     private LoadSettings loadSettings;
 
     public GameObject interactImage;
@@ -76,67 +75,29 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
-    void Start()
+    public void Setup()
     {
         //Load position
         moveSpeed = baseMoveSpeed;
         characterController = GetComponent<CharacterController>();
         rb = GetComponent<Rigidbody>();
 
-        sceneLoader = GameObject.FindObjectOfType<SceneLoader>();
+        loadSettings = LoadSettings.instance;
 
-        LoadSettings[] loadSettingsArray = GameObject.FindObjectsOfType<LoadSettings>();
-
-        if (interactImage != null)
+        if (loadSettings.checkPoint)
         {
-            interactImage.SetActive(false);
+            loadSettings.SaveCheckpoint(SceneManager.GetActiveScene());
         }
 
-        foreach (var item in loadSettingsArray)
-        {
-            if (item.CheckMain())
-            {
-                loadSettings = item;
+        loadSettings.died = false;
 
-                health = loadSettings.health;
-
-                if (loadSettings.died)
-                {
-                    potionCount = loadSettings.checkPointPotionCount;
-                    loadSettings.potionCount = loadSettings.checkPointPotionCount;
-                }
-                else
-                {
-                    potionCount = loadSettings.potionCount;
-                }
-                
-                Vector3 spawnPos = loadSettings.RequestPosition(SceneManager.GetActiveScene().name);
-                Quaternion spawnRot = loadSettings.RequestRotation(SceneManager.GetActiveScene().name);
-                
-                //SetupTransform(spawnPos);
-
-                StartCoroutine(IDelayStartTransform(2f, spawnPos, spawnRot));
-
-                loadSettings.died = false;
-            }
-            else
-            {
-                Destroy(item); //There is already one in the scene, delete this one
-            }
-
-        }
-
-        loadSettingsArray = GameObject.FindObjectsOfType<LoadSettings>();
-
-        //Debug.Log("Length: " + loadSettingsArray.Length);
-        //Debug.Break();
+        StartCoroutine(IDelayMovement(2f));
     }
 
-    IEnumerator IDelayStartTransform(float delay, Vector3 newSpawnPos, Quaternion newSpawnRot)
+    IEnumerator IDelayMovement(float delay)
     {
         yield return new WaitForSeconds(delay);
         //Debug.Log("Should be able to move");
-        SetupTransform(newSpawnPos, newSpawnRot);
         canMove = true;
     }
 
@@ -178,9 +139,7 @@ public class PlayerController : MonoBehaviour
                 }
                 if (Input.GetButton("Interact") && interact && dialogue != null)
                 {
-                    canMove = false;
-                    loadSettings.Checkpoint(SceneManager.GetActiveScene());
-                    dialogue.LoadScene();
+                    canMove = !dialogue.LoadScene();
                 }
             }
 
@@ -219,7 +178,7 @@ public class PlayerController : MonoBehaviour
 
             if (enemyController != null)
             {
-                enemyController.LoadCombat(sceneLoader);
+                enemyController.LoadCombat();
             }
         }
 
@@ -227,12 +186,21 @@ public class PlayerController : MonoBehaviour
         {
             //Debug.Log("Can Interact");
             interact = true;
-            dialogue = other.gameObject.GetComponent<Dialogue>();
 
-            if (dialogue != null && dialogue.dialogue != null && loadSettings != null)
-                loadSettings.dialogueFlowChart = dialogue.dialogue;
+            Dialogue[] dialogueArray = other.gameObject.GetComponents<Dialogue>();
 
-            if (interactImage != null)
+            foreach (var item in dialogueArray)
+            {
+                if (item.CanSpeak())
+                {
+                    dialogue = item;
+                }
+            }
+
+            /*if (dialogue != null && dialogue.dialogue != null && loadSettings != null)
+                loadSettings.dialogueFlowChart = dialogue.dialogue;*/
+
+            if (interactImage != null && dialogue != null)
             {
                 interactImage.SetActive(true);
             }
@@ -310,6 +278,11 @@ public class PlayerController : MonoBehaviour
             {
                 loadSettings.playerPosInClearing = transform.position;
                 loadSettings.playerRotInClearing = transform.rotation;
+            }
+            else if (scene == E_Levels.Cave.ToString())
+            {
+                loadSettings.playerPosInCave = transform.position;
+                loadSettings.playerRotInCave = transform.rotation;
             }
             else if (scene == E_Levels.Tiertarock.ToString())
             {

@@ -19,7 +19,7 @@ public class SceneLoader : MonoBehaviour
 
         currentScene = SceneManager.GetActiveScene();
 
-        loadSettings = GameObject.FindObjectOfType<LoadSettings>();
+        loadSettings = LoadSettings.instance;
     }
 
     void LoadScene(string scene)
@@ -36,13 +36,6 @@ public class SceneLoader : MonoBehaviour
                 loadSettings.SetPlayerInput(true);
                 contains = true;
                 index = i;
-
-                DestroyDialogue[] destroyArray = GameObject.FindObjectsOfType<DestroyDialogue>();
-
-                foreach (var item in destroyArray)
-                {
-                    item.CheckDialogue();
-                }
             }
         }
 
@@ -90,7 +83,7 @@ public class SceneLoader : MonoBehaviour
         LoadDialogue(dialogueFlowChart);
         LoadScene(loadSettings.lastLevelString);
     }
-
+    
     public void LoadCheckpointScene(Object dialogueFlowChart)
     {
         //Set load settings level to new level
@@ -101,7 +94,6 @@ public class SceneLoader : MonoBehaviour
     public void LoadSpecifiedScene(string scene, LoadSceneMode sceneMode, Object dialogueFlowChart)
     {
         //Set load settings level to new level
-
         LoadDialogue(dialogueFlowChart);
         SceneManager.LoadScene(scene, sceneMode);
     }

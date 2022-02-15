@@ -26,7 +26,8 @@ MonoBehaviour:
     Silence
     prevents the target from casting spells, forcing them to use basic attacks'
   selfEndTurn: 0
-  selfCost: 30
+  selfUsesAction: 1
+  selfCost: 45
   selfPotionCost: 0
   selfCostType: AP
   selfHeal: {x: 0, y: 0}
@@ -40,9 +41,11 @@ MonoBehaviour:
   targetName: 
   targetDescription: 
   targetEndTurn: 0
+  targetUsesAction: 1
   targetCost: 0
   targetCostType: 
   damageType: 0
+  targetCanBeCountered: 1
   targetDmg: {x: 0, y: 0}
   hits: 0
   hitInterval: 0

@@ -25,6 +25,8 @@ public class AbilityManager : MonoBehaviour
 
     public SliderVariation sliderVarScript;
 
+    EndTurn endTurn;
+
 
     #region Ability Values
 
@@ -59,6 +61,7 @@ public class AbilityManager : MonoBehaviour
     {
         activeCard = GameObject.FindObjectOfType<ActiveCard>();
         targetter = GetComponentInChildren<Targetter>();
+        endTurn = GameObject.FindObjectOfType<EndTurn>();
     }
 
     #endregion
@@ -119,6 +122,8 @@ public class AbilityManager : MonoBehaviour
 
     public void CastAbility(GameObject target)
     {
+        endTurn.OpenMenu(false);
+
         if (playerTurn)
         {
             if (readyAbility != null)
@@ -129,6 +134,11 @@ public class AbilityManager : MonoBehaviour
 
                 if (canCast)
                 {
+                    if (cardName != "End Turn")
+                    {
+                        combatDeckManager.RemoveCard(readiedCard);
+                    }
+
                     if (cardName != "End Turn")
                     {
                         combatDeckManager.RemoveCard(readiedCard);
@@ -146,7 +156,7 @@ public class AbilityManager : MonoBehaviour
         }
     }
 
-    private void EnemyInfo(Enemy target)
+    public void EnemyInfo(Enemy target)
     {
         if (target != null)
             combatManager.enemyManager.EnemyInfo(target);
@@ -157,7 +167,7 @@ public class AbilityManager : MonoBehaviour
     public void SetAbility(CardParent ability, CardSetter card)
     {
         EnemyInfo(null);
-
+        endTurn.OpenMenu(false);
         readyAbility = ability;
         readiedCard = card;
 
@@ -199,7 +209,7 @@ public class AbilityManager : MonoBehaviour
 
     #region Helper Functions
 
-    public void DelayDamage(Vector2 damageRange, E_DamageTypes damageType, float delay, Transform origin, GameObject target, GameObject caster, CharacterStats targetHealth, float executeThreshold, Vector2Int healOnKill)
+    public void DelayDamage(Vector2 damageRange, E_DamageTypes damageType, float delay, Transform origin, GameObject target, GameObject caster, CharacterStats targetHealth, float executeThreshold, Vector2Int healOnKill, bool canBeCountered)
     {
         if (damageType == E_DamageTypes.Random)
         {
@@ -208,32 +218,32 @@ public class AbilityManager : MonoBehaviour
             switch (randDamage)
             {
                 case 1:
-                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Physical, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill));
+                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Physical, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered));
                     break;
                 case 2:
-                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Ember, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill));
+                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Ember, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered));
                     break;
                 case 3:
-                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Static, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill));
+                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Static, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered));
                     break;
                 case 4:
-                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Bleak, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill));
+                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Bleak, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered));
                     break;
                 case 5:
-                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Septic, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill));
+                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Septic, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered));
                     break;
                 default:
-                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Physical, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill));
+                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Physical, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered));
                     break;
             }
         }
         else
         {
-            StartCoroutine(IDelayDamage(damageRange, damageType, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill));
+            StartCoroutine(IDelayDamage(damageRange, damageType, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered));
         }
     }
 
-    private IEnumerator IDelayDamage(Vector2 damageRange, E_DamageTypes damageType, float delay, Transform origin, GameObject target, GameObject caster, CharacterStats targetHealth, float executeThreshold, Vector2Int healOnKill)
+    private IEnumerator IDelayDamage(Vector2 damageRange, E_DamageTypes damageType, float delay, Transform origin, GameObject target, GameObject caster, CharacterStats targetHealth, float executeThreshold, Vector2Int healOnKill, bool canBeCountered)
     {
         Vector3 originRef = new Vector3(999999, 999999, 999999);
 
@@ -255,20 +265,20 @@ public class AbilityManager : MonoBehaviour
 
             int damageTaken;
 
-            targetHealth.ChangeHealth(damage, true, damageType, out damageTaken, caster);
+            targetHealth.ChangeHealth(damage, true, damageType, out damageTaken, caster, canBeCountered);
 
             //execute enemy
             if (targetHealth.HealthPercentage() < executeThreshold)
             {
                 //execute anim and delay
-                targetHealth.ChangeHealth(999999999, true, damageType, out int nullDamageTaken, caster);
+                targetHealth.ChangeHealth(999999999, true, damageType, out int nullDamageTaken, caster, canBeCountered);
                 //Debug.Log("Executed");
             }
 
             if (targetHealth == null || targetHealth.GetHealth() == 0)
             {
                 //killed enemy
-                playerStats.ChangeHealth(Random.Range(healOnKill.x, healOnKill.y), false, E_DamageTypes.Physical, out int damageTakenNull, caster);
+                playerStats.ChangeHealth(Random.Range(healOnKill.x, healOnKill.y), false, E_DamageTypes.Physical, out int damageTakenNull, caster, canBeCountered);
                 //Debug.Log("Heal on Kill");
             }
 
@@ -277,7 +287,7 @@ public class AbilityManager : MonoBehaviour
 
             combatManager.Dmg.SetActive(true);
             combatManager.DmgValue.text = multihitTally.ToString();
-
+            
             //Debug.Log(multihitCount + " hits for " + multihitTally + " points of damage (not final damage as enemy mey be vulnerable or resistant to the damage)");
 
             if (multihitCount >= multihitMax)
@@ -286,6 +296,7 @@ public class AbilityManager : MonoBehaviour
 
                 multihitCount = 0;
                 multihitTally = 0;
+                RemoveDmgPopup(2f);
             }
         }
     }
@@ -387,16 +398,52 @@ public class AbilityManager : MonoBehaviour
         }
     }
 
-    public void RemovePopup(float delay)
+    public void RemoveArcanaPopup(float delay)
     {
-        StartCoroutine(IRemovePopup(delay));
+        StartCoroutine(IRemoveArcanaPopup(delay));
     }
 
-    private IEnumerator IRemovePopup(float delay)
+    private IEnumerator IRemoveArcanaPopup(float delay)
     {
         yield return new WaitForSeconds(delay);
 
         combatManager.noMana.SetActive(false);
+    }
+
+    public void RemoveDmgPopup(float delay)
+    {
+        StartCoroutine(IRemoveDmgPopup(delay));
+    }
+
+    private IEnumerator IRemoveDmgPopup(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        combatManager.Dmg.SetActive(false);
+    }
+
+    public void RemoveHpPopup(float delay)
+    {
+        StartCoroutine(IRemoveHpPopup(delay));
+    }
+
+    private IEnumerator IRemoveHpPopup(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        combatManager.Healing.SetActive(false);
+    }
+
+    public void RemoveApPopup(float delay)
+    {
+        StartCoroutine(IRemoveApPopup(delay));
+    }
+
+    private IEnumerator IRemoveApPopup(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        combatManager.Ap.SetActive(false);
     }
 
     #endregion

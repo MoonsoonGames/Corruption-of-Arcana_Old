@@ -127,6 +127,8 @@ GameObject:
   - component: {fileID: 9216620810431011227}
   - component: {fileID: 9216620810431011228}
   - component: {fileID: 9216620810431011222}
+  - component: {fileID: 8659085368928631126}
+  - component: {fileID: 6435733521936544711}
   m_Layer: 0
   m_Name: Lady of the Lake
   m_TagString: NPC
@@ -142,11 +144,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9216620810431011225}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1745, y: 1302.94, z: -847.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7431456850245625392}
   - {fileID: 7431456849524243543}
+  - {fileID: 1392488788854060872}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -240,9 +243,112 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneToLoad: 3
   checkpoint: 0
-  tutorialDialogue: 0
-  knightDialogue: 0
-  requiresTutorial: 0
-  dialogue: {fileID: 2684919790725851444, guid: 0f26e8e0f64fcda46901c0f705428219,
+  dialogue: {fileID: 3687597253407275092, guid: 2c0b2227930638042824499d913e6e32,
     type: 3}
-  sceneMode: 1
+  sceneMode: 0
+  completeObjectives: []
+  requireQuests: []
+  requireObjectives: []
+  requireAll: 0
+  disableQuests: []
+  disableObjectives:
+  - {fileID: 11400000, guid: 9602018115db68c43a1b18b264164618, type: 2}
+--- !u!114 &8659085368928631126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9216620810431011225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02efb632ea380cd4bb2bdc15d8f4e029, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToLoad: 0
+  navScenes: 
+--- !u!114 &6435733521936544711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9216620810431011225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed6416ce628326043976b601c4d11834, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToLoad: 3
+  checkpoint: 0
+  dialogue: {fileID: 8052595513141617221, guid: 231f1225157f1ee46a86abdfa3c06ca0,
+    type: 3}
+  sceneMode: 0
+  completeObjectives: []
+  requireQuests: []
+  requireObjectives:
+  - {fileID: 11400000, guid: 9602018115db68c43a1b18b264164618, type: 2}
+  requireAll: 0
+  disableQuests: []
+  disableObjectives: []
+--- !u!1001 &2557344913927518068
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 9216620810431011224}
+    m_Modifications:
+    - target: {fileID: 3471886681103204412, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3471886681103204412, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3471886681103204412, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3471886681103204412, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3471886681103204412, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3471886681103204412, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3471886681103204412, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7057609158513621916, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: objectives.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7057609158513621916, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: objectives.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 5b64d884ac3966f4c8b3dd90ca33e8c0,
+        type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: feceddc3c64c65b499b909203d7d5124, type: 3}
+--- !u!4 &1392488788854060872 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3471886681103204412, guid: feceddc3c64c65b499b909203d7d5124,
+    type: 3}
+  m_PrefabInstance: {fileID: 2557344913927518068}
+  m_PrefabAsset: {fileID: 0}

@@ -57,6 +57,7 @@ public class PlayerStats : CharacterStats
         {
             mana = Mathf.Clamp(mana - value, 0, maxMana);
             combatManager.ArcanaPointsValue.text = mana.ToString();
+            combatManager.abilityManager.RemoveApPopup(2f);
         }
         else
         {
@@ -75,9 +76,9 @@ public class PlayerStats : CharacterStats
         return potionCount;
     }
 
-    public override void ChangeHealth(int value, bool damage, E_DamageTypes damageType, out int damageTaken, GameObject attacker)
+    public override void ChangeHealth(int value, bool damage, E_DamageTypes damageType, out int damageTaken, GameObject attacker, bool canBeCountered)
     {
-        base.ChangeHealth(value, damage, damageType, out damageTaken, attacker);
+        base.ChangeHealth(value, damage, damageType, out damageTaken, attacker, canBeCountered);
 
         combatManager.HealthPointsValue.text = health.ToString();
     }

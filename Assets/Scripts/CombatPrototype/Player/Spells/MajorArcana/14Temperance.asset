@@ -22,7 +22,8 @@ MonoBehaviour:
   selfDescription: Cleanse yourself of infection and become immune to septic damage
     and infection for Y turns
   selfEndTurn: 0
-  selfCost: 20
+  selfUsesAction: 1
+  selfCost: 25
   selfPotionCost: 0
   selfCostType: AP
   selfHeal: {x: 0, y: 0}
@@ -37,10 +38,12 @@ MonoBehaviour:
   targetDescription: "Shackle your target\u2019s mind, causing them to miss their
     next turns"
   targetEndTurn: 0
-  targetCost: 20
+  targetUsesAction: 1
+  targetCost: 30
   targetCostType: AP
-  damageType: 0
-  targetDmg: {x: 0, y: 0}
+  damageType: 6
+  targetCanBeCountered: 0
+  targetDmg: {x: 5, y: 12}
   hits: 1
   hitInterval: 0
   finalHitInterval: 0

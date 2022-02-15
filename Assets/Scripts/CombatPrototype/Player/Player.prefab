@@ -356,6 +356,81 @@ MonoBehaviour:
   - {fileID: 1831232799863650937}
   arrows: []
   ally: 0
+--- !u!1 &3620284864101889492
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7019949327585260673}
+  - component: {fileID: 556265978089828163}
+  - component: {fileID: 507913832014022316}
+  m_Layer: 0
+  m_Name: DropShadow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7019949327585260673
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3620284864101889492}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7551587578028801531}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -22, y: -184}
+  m_SizeDelta: {x: 300, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &556265978089828163
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3620284864101889492}
+  m_CullTransparentMesh: 1
+--- !u!114 &507913832014022316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3620284864101889492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.5882353}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &3641880379724528118
 GameObject:
   m_ObjectHideFlags: 0
@@ -494,7 +569,7 @@ Transform:
   - {fileID: 9167567096404509963}
   - {fileID: 7952508898232540968}
   m_Father: {fileID: 7551587578028801531}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4151990609013843852
 GameObject:
@@ -1956,7 +2031,7 @@ RectTransform:
   - {fileID: 7551587578315140548}
   - {fileID: 4499977042949009558}
   m_Father: {fileID: 7551587578028801531}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2105,6 +2180,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 7019949327585260673}
   - {fileID: 7551587577644542344}
   - {fileID: 7731388772680355552}
   - {fileID: 5831522655608212843}
@@ -2126,6 +2202,7 @@ MonoBehaviour:
   playerTurn: 0
   combatManager: {fileID: 0}
   playerStats: {fileID: 7551587578028801529}
+  combatDeckManager: {fileID: 0}
   popupDuration: 3
   attackFX: {fileID: 6727453174112786923, guid: 43cc6876ce061d74b89617cfdc09661a,
     type: 3}
@@ -2331,7 +2408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 120
-  maxMana: 120
+  maxMana: 12000
   healthSliderValue: {fileID: 6677293646742279964}
   manaSliderValue: {fileID: 7551587576675593065}
   combatManager: {fileID: 0}
@@ -2342,6 +2419,7 @@ MonoBehaviour:
   skipTurn: 0
   sleepTurn: 0
   silence: 0
+  slow: 0
   image: {fileID: 7551587577644542345}
   normalColour: {r: 255, g: 255, b: 255, a: 255}
   healColour: {r: 0, g: 255, b: 0, a: 255}
@@ -7551,6 +7629,7 @@ MonoBehaviour:
   combatCards: []
   cardText: {fileID: 0}
   abilityManager: {fileID: 0}
+  parent: {fileID: 0}
 --- !u!1 &8263128947926914160
 GameObject:
   m_ObjectHideFlags: 0
@@ -7612,7 +7691,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 7551587578028801531}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -7836,6 +7915,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerDropdownArrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 6473297955657579512, guid: 965f5d7165b05bd49aa032d79277acb1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 965f5d7165b05bd49aa032d79277acb1, type: 3}

@@ -26,8 +26,8 @@ MonoBehaviour:
   selfPotionCost: 0
   selfCostType: 
   selfHeal: {x: 0, y: 0}
-  selfAP: {x: 24, y: 36}
-  restoreType: 0
+  selfAP: {x: 60, y: 80}
+  restoreType: 8
   selfEndTurnDelay: 0.2
   selfStatus: []
   selfStatusDuration: 
@@ -37,9 +37,10 @@ MonoBehaviour:
     multiple enemies
   targetEndTurn: 0
   targetUsesAction: 1
-  targetCost: 60
+  targetCost: 55
   targetCostType: AP
   damageType: 2
+  targetCanBeCountered: 1
   targetDmg: {x: 24, y: 36}
   hits: 1
   hitInterval: 0
@@ -56,7 +57,7 @@ MonoBehaviour:
   targetStatus: []
   targetStatusDuration: 
   targetStatusChance: []
-  spawnPosition: 2
+  spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0
   summonFX: {fileID: 0}
