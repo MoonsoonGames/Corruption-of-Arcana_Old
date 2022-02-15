@@ -100,27 +100,6 @@ public class MenuManager : MonoBehaviour
         #endregion
 
         #region Close Hotkeys
-        //Esc to CLOSE menu
-        if (Input.GetKeyDown(KeyCode.Escape) && PauseMenuUI.activeSelf == true)
-        {
-            //turn on Exploration UI
-            ExplorationUI.SetActive(true);
-            //turn off Pause Menu UI
-            PauseMenuUI.SetActive(false);
-
-            //Unfreeze player and camera
-            
-            if (Player != null)
-                Player.GetComponent<PlayerController>().canMove = true;
-
-            //hide mouse/locked in place
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-
-            //Debug
-            Debug.Log("Pause Menu Deactive");
-        }
-
         //M to close local map
             //turn on Exploration UI
             //turn off local map
@@ -128,7 +107,7 @@ public class MenuManager : MonoBehaviour
             //keep mouse hidden/locked in place
             //Debug
 
-        else if (QuestMenuUI.activeSelf == true && Input.GetKeyDown(KeyCode.Escape))
+        if (QuestMenuUI.activeSelf == true && Input.GetKeyDown(KeyCode.Escape))
         {
             //turn on Exploration UI
             ExplorationUI.SetActive(true);
@@ -233,6 +212,18 @@ public class MenuManager : MonoBehaviour
     {
         //turn off pause menu UI
         //turn on deck builder UI
+    }
+    #endregion
+
+    #region Close Sub-Menu Button
+    public void CloseSubMenu()
+    {
+        //close settings/guidebook menus
+        SettingsMenu.SetActive(false);
+        //open pausemenu UI
+        PauseMenuUI.SetActive(true);
+        //debug
+        Debug.Log("Closed Sub Menu");
     }
     #endregion
 
