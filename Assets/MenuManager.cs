@@ -20,6 +20,7 @@ public class MenuManager : MonoBehaviour
     public GameObject PauseMenuUI;
     public GameObject Player;
     public GameObject PlayerCamera;
+    public Compass compass;
 
     public GameObject SettingsMenu;
     public GameObject HelpMenu;
