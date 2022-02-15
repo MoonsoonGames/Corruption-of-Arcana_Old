@@ -28,6 +28,8 @@ public class SceneLoader : MonoBehaviour
 
         int index = 9999999;
 
+        loadSettings.lastLevelString = SceneManager.GetActiveScene().ToString();
+
         for (int i = 0; i < SceneManager.sceneCount; i++)
         {
             if (scene == SceneManager.GetSceneAt(i).name)
@@ -93,6 +95,8 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadSpecifiedScene(string scene, LoadSceneMode sceneMode, Object dialogueFlowChart)
     {
+        loadSettings.lastLevelString = SceneManager.GetActiveScene().name;
+
         //Set load settings level to new level
         LoadDialogue(dialogueFlowChart);
         SceneManager.LoadScene(scene, sceneMode);

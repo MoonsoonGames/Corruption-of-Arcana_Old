@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "NewStatusEffect", menuName = "Combat/Spells", order = 0)]
+[CreateAssetMenu(fileName = "NewSpell", menuName = "Combat/Spells", order = 0)]
 public class CardParent : ScriptableObject
 {
     #region General

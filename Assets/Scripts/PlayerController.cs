@@ -194,6 +194,11 @@ public class PlayerController : MonoBehaviour
                 if (item.CanSpeak())
                 {
                     dialogue = item;
+
+                    if (item.forceDialogue)
+                    {
+                        canMove = !dialogue.LoadScene();
+                    }
                 }
             }
 

@@ -75,6 +75,8 @@ public class Quest : ScriptableObject
         {
             objectives[0].canComplete = true;
         }
+
+        CheckCompletedObjectives();
     }
 
     public void CheckObjectives()
@@ -110,6 +112,29 @@ public class Quest : ScriptableObject
         for (int i = 0; i < objectives.Length; i++)
         {
             if (objectives[i] == objective)
+            {
+                if (!(i >= objectives.Length - 1))
+                {
+                    QuestObjective nextObjective = objectives[i + 1];
+
+                    if (nextObjective != null)
+                    {
+                        nextObjective.SetCanComplete();
+                    }
+                }
+            }
+        }
+
+        CheckObjectives();
+    }
+
+    public void CheckCompletedObjectives()
+    {
+        //Debug.Log("Completed Objective: " + objective.title);
+
+        for (int i = 0; i < objectives.Length; i++)
+        {
+            if (objectives[i].completed)
             {
                 if (!(i >= objectives.Length - 1))
                 {
