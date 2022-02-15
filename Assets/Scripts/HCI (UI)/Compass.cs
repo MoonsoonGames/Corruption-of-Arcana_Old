@@ -7,6 +7,7 @@ public class Compass : MonoBehaviour
 {
     public GameObject IconPrefab;
     List<QuestMarkers> questMarkers = new List<QuestMarkers>();
+    List<GameObject> icons = new List<GameObject>();
 
     public float Offset = 90f;
     public RawImage compassImage;
@@ -14,40 +15,104 @@ public class Compass : MonoBehaviour
 
     float compassUnit;
 
+    bool updateIcons = false;
+
     private void Start()
     {
         compassUnit = compassImage.rectTransform.rect.width / 360f;
 
-        SetupQuestMarkers();
+        ChangeQuestMarkers();
+    }
+
+    bool alreadyCalled = false;
+
+    public void ResetMarkersOnce()
+    {
+        if (!alreadyCalled)
+        {
+            alreadyCalled = true;
+            Invoke("ChangeQuestMarkers", 1f);
+        }
+    }
+
+    private void ChangeQuestMarkers()
+    {
+        updateIcons = false;
+
+        ShowQuestMarker[] markers = GameObject.FindObjectsOfType<ShowQuestMarker>();
+
+        foreach (var item in markers)
+        {
+            item.CheckObjective();
+        }
+
+        foreach (var item in icons)
+        {
+            Destroy(item);
+        }
+
+        Invoke("ResetQuestMarkers", 0.2f);
+
+        Invoke("SetupQuestMarkers", 0.6f);
+    }
+
+    private void ResetQuestMarkers()
+    {
+        questMarkers.Clear();
+
+        for (int i = 0; i < icons.Count; i++)
+        {
+            Destroy(icons[i]);
+        }
+
+        icons.Clear();
     }
 
     private void SetupQuestMarkers()
     {
         QuestMarkers[] questMarkersScripts = GameObject.FindObjectsOfType<QuestMarkers>();
 
+        questMarkers.Clear();
+
         foreach (var item in questMarkersScripts)
         {
             AddQuestMarker(item);
         }
+
+        updateIcons = true;
+
+        alreadyCalled = false;
     }
 
     private void Update()
     {
-        compassImage.uvRect = new Rect((player.localEulerAngles.y / 360f) + Offset, 0f, 1f, 1f);
-
-        foreach (QuestMarkers marker in questMarkers)
+        if (updateIcons)
         {
-            marker.image.rectTransform.anchoredPosition = GetPosOnCompass(marker);
+            compassImage.uvRect = new Rect((player.localEulerAngles.y / 360f) + Offset, 0f, 1f, 1f);
+
+            foreach (QuestMarkers marker in questMarkers)
+            {
+                if (marker != null && marker.gameObject.activeSelf && marker.showMarker)
+                {
+                    marker.image.rectTransform.anchoredPosition = GetPosOnCompass(marker);
+                }
+            }
         }
     }
 
     public void AddQuestMarker(QuestMarkers marker)
     {
-        GameObject newMarker = Instantiate(IconPrefab, compassImage.transform);
-        marker.image = newMarker.GetComponent<Image>();
-        marker.image.sprite = marker.icon;
+        if (marker.showMarker)
+        {
+            GameObject newMarker = Instantiate(IconPrefab, compassImage.transform);
 
-        questMarkers.Add(marker);
+            marker.image = newMarker.GetComponent<Image>();
+            marker.image.sprite = marker.icon;
+
+            questMarkers.Add(marker);
+
+            icons.Add(newMarker);
+        }
     }
 
     Vector2 GetPosOnCompass(QuestMarkers marker)

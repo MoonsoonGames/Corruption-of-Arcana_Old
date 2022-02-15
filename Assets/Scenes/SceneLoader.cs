@@ -19,7 +19,7 @@ public class SceneLoader : MonoBehaviour
 
         currentScene = SceneManager.GetActiveScene();
 
-        loadSettings = GameObject.FindObjectOfType<LoadSettings>();
+        loadSettings = LoadSettings.instance;
     }
 
     void LoadScene(string scene)
@@ -36,13 +36,6 @@ public class SceneLoader : MonoBehaviour
                 loadSettings.SetPlayerInput(true);
                 contains = true;
                 index = i;
-
-                DestroyDialogue[] destroyArray = GameObject.FindObjectsOfType<DestroyDialogue>();
-
-                foreach (var item in destroyArray)
-                {
-                    item.CheckDialogue();
-                }
             }
         }
 

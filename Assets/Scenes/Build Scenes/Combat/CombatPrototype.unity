@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1342,7 +1342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: a302d1839bb259945a7def5ca9d1ec4d, type: 3}
   m_Color: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -2127,7 +2127,8 @@ PrefabInstance:
         type: 3}
       propertyPath: enemies.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 6783367526062023706, guid: 38b26ff1cc832374cb1ae2f24362fe40,
+        type: 3}
     - target: {fileID: 5564511172518815125, guid: e6f554e9aa4ad204d8a5050df75cd470,
         type: 3}
       propertyPath: enemies.Array.data[1]
@@ -2138,7 +2139,8 @@ PrefabInstance:
         type: 3}
       propertyPath: enemies.Array.data[2]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 6783367526062023706, guid: c94e1b6f559b9c94da106f0607c3293b,
+        type: 3}
     - target: {fileID: 5564511172518815125, guid: e6f554e9aa4ad204d8a5050df75cd470,
         type: 3}
       propertyPath: revealedEntries.Array.size
@@ -4452,7 +4454,7 @@ MonoBehaviour:
   enemyManager: {fileID: 1545539925}
   combatDeckManager: {fileID: 1986827124}
   maxActions: 5
-  arcanaRegen: 60
+  arcanaRegen: 50
 --- !u!4 &1294213171
 Transform:
   m_ObjectHideFlags: 0
@@ -6351,15 +6353,15 @@ RectTransform:
   m_GameObject: {fileID: 1963956197}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.18317188, y: 0.18317188, z: 0.18317188}
   m_Children: []
   m_Father: {fileID: 698511424}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 2.6000004}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 1.9000015, y: 1.1000004}
+  m_SizeDelta: {x: 473.86, y: 133.27}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1963956199
 MonoBehaviour:
@@ -6373,7 +6375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: a302d1839bb259945a7def5ca9d1ec4d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -6383,11 +6385,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: a302d1839bb259945a7def5ca9d1ec4d, type: 3}
-    m_FontSize: 28
+    m_FontSize: 136
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 143
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -7276,7 +7278,7 @@ PrefabInstance:
     - target: {fileID: 1134788731484253932, guid: a17f93d18d5953541b1bdd5c8843c68f,
         type: 3}
       propertyPath: deckChances.Array.data[0]
-      value: 0.4
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a17f93d18d5953541b1bdd5c8843c68f, type: 3}
@@ -7802,6 +7804,11 @@ PrefabInstance:
     - target: {fileID: 7551587578028801529, guid: d73e8b11f8c16a54ba36322b12638999,
         type: 3}
       propertyPath: maxMana
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 7551587578028801529, guid: d73e8b11f8c16a54ba36322b12638999,
+        type: 3}
+      propertyPath: maxHealth
       value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 7551587578028801529, guid: d73e8b11f8c16a54ba36322b12638999,
