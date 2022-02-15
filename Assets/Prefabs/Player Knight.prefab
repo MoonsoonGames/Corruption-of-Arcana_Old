@@ -49,6 +49,12 @@ MonoBehaviour:
   target: {fileID: 8728596811231204816}
   player: {fileID: 0}
   disableCursor: 0
+  controller: {fileID: 0}
+  virtualCamRef: {fileID: 0}
+  zoomValue: 60
+  zoomInterval: 0.6
+  zoomMin: 50
+  zoomMax: 70
 --- !u!1 &3676628558075147670
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,9 +258,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8365246805222681659}
-  m_LocalRotation: {x: 0.08551114, y: -0.7019174, z: 0.08551117, w: 0.7019172}
-  m_LocalPosition: {x: 0, y: -1.02, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalRotation: {x: 0.04940459, y: -0.9486683, z: 0.18767676, w: 0.24973027}
+  m_LocalPosition: {x: -0.166, y: -0.2, z: -0.294}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 8365246805222465705}
   m_RootOrder: 0
@@ -299,7 +305,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300026, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 899abcafe0c76c5418d1e3b9f08f0740, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -348,16 +354,16 @@ MonoBehaviour:
     directions:
     - direction: 1
       frames:
-      - {fileID: 21300008, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
+      - {fileID: 21300000, guid: 8ba3cdcdc3260f84db3c4cf0d5840376, type: 3}
     - direction: 5
       frames:
-      - {fileID: 21300026, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
+      - {fileID: 21300000, guid: bbb79a4fb5ad0b442b8478ec47fcb3b4, type: 3}
     - direction: 9
       frames:
-      - {fileID: 21300038, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
+      - {fileID: 21300000, guid: 899abcafe0c76c5418d1e3b9f08f0740, type: 3}
     - direction: 13
       frames:
-      - {fileID: 21300020, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
+      - {fileID: 21300000, guid: 61600d2e1ef52c84dad003885ca961da, type: 3}
   - stateName: Run
     frameCount: 4
     directions:
@@ -454,7 +460,7 @@ Transform:
   m_GameObject: {fileID: 8365246805222847487}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000016292068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8365246805222372311}
   - {fileID: 2634299853402879291}
@@ -559,6 +565,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52cce36001b46b849890d0970772e773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  Location: {fileID: 0}
+  interactImage: {fileID: 0}
+  canMove: 0
   baseSneakSpeed: 20
   baseMoveSpeed: 50
   baseSprintSpeed: 80
@@ -571,10 +581,7 @@ MonoBehaviour:
   arcana: 0
   healthBar: {fileID: 0}
   arcanaBar: {fileID: 0}
-  Player: {fileID: 0}
-  Location: {fileID: 0}
   maxPotions: 5
-  interactImage: {fileID: 0}
 --- !u!1 &8906252387327763053
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,7 +606,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8906252387327763053}
-  m_LocalRotation: {x: 0.120930985, y: 0.00000008940696, z: -0.000000014901159, w: 0.9926609}
+  m_LocalRotation: {x: 0.09181441, y: 0.00000011920929, z: -0.0000000037252903, w: 0.9957762}
   m_LocalPosition: {x: -0.000003814698, y: 3.0000038, z: -8.130008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
