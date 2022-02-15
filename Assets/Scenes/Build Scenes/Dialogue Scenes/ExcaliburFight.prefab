@@ -25,7 +25,6 @@ GameObject:
   - component: {fileID: 8052595513141617218}
   - component: {fileID: 8052595513141617247}
   - component: {fileID: 8052595513141617217}
-  - component: {fileID: 5368942385580772174}
   - component: {fileID: 2684919792142466538}
   - component: {fileID: 2684919792142466539}
   - component: {fileID: 2684919792142466543}
@@ -39,6 +38,7 @@ GameObject:
   - component: {fileID: 2684919792142466551}
   - component: {fileID: 2684919792142466552}
   - component: {fileID: 2684919792142466553}
+  - component: {fileID: 231094695732761642}
   m_Layer: 0
   m_Name: ExcaliburFight
   m_TagString: Untagged
@@ -146,7 +146,7 @@ MonoBehaviour:
   staticEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5368942385580772174}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: EnemyController, Assembly-CSharp
         m_MethodName: LoadCombat
         m_Mode: 2
@@ -182,28 +182,6 @@ MonoBehaviour:
   stringEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &5368942385580772174
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8052595513141617221}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c8a244e344d8e846b1a664b311a0a07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boss: 1
-  enemies:
-  - {fileID: 0}
-  - {fileID: 879057485591003285, guid: 79e4aed78d437eb498a51c0aeb093e44, type: 3}
-  - {fileID: 0}
-  combatScene: 2
-  goldReward: {x: 80, y: 100}
-  potionReward: 1.4
-  itemReward: Excalibur
-  enemyName: 
 --- !u!114 &2684919792142466538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -561,6 +539,29 @@ MonoBehaviour:
   - {fileID: 2684919792142466552}
   - {fileID: 2684919792142466551}
   suppressAllAutoSelections: 0
+--- !u!114 &231094695732761642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8052595513141617221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c8a244e344d8e846b1a664b311a0a07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss: 1
+  enemies:
+  - {fileID: 0}
+  - {fileID: 879057485591003285, guid: 79e4aed78d437eb498a51c0aeb093e44, type: 3}
+  - {fileID: 0}
+  objective: {fileID: 11400000, guid: 5b64d884ac3966f4c8b3dd90ca33e8c0, type: 2}
+  combatScene: 2
+  goldReward: {x: 80, y: 100}
+  potionReward: 1.4
+  itemReward: Excalibur
+  enemyName: 
 --- !u!1001 &5368942384125990544
 PrefabInstance:
   m_ObjectHideFlags: 0
