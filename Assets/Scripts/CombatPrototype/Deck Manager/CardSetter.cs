@@ -16,8 +16,11 @@ public class CardSetter : MonoBehaviour
 
     public GameObject parent;
 
+    private Button button;
+
     private void Start()
     {
+        button = GetComponent<Button>();
         abilityManager = GameObject.FindObjectOfType<AbilityManager>();
         DrawCards();
     }
@@ -31,6 +34,11 @@ public class CardSetter : MonoBehaviour
         if (cardText != null)
         {
             cardText.text = currentCard.cardName;
+        }
+
+        if (button != null && currentCard.cardImage != null)
+        {
+            button.image.sprite = currentCard.cardImage;
         }
     }
 

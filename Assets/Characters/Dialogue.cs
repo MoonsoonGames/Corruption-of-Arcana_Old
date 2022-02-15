@@ -9,6 +9,8 @@ public class Dialogue : MonoBehaviour
     string sceneString;
     Scene currentScene;
 
+    public bool forceDialogue = false;
+
     SceneLoader sceneLoader;
 
     LoadSettings loadSettings;
@@ -98,7 +100,7 @@ public class Dialogue : MonoBehaviour
 
         foreach (var item in requireQuests)
         {
-            if (item.isComplete)
+            if (item.isActive)
             {
                 contains1 = true;
             }
@@ -110,7 +112,7 @@ public class Dialogue : MonoBehaviour
 
         foreach (var item in requireObjectives)
         {
-            if (item.completed)
+            if (item.canComplete)
             {
                 contains1 = true;
             }
