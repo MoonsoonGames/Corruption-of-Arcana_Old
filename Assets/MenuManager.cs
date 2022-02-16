@@ -59,10 +59,10 @@ public class MenuManager : MonoBehaviour
             PauseMenuUI.SetActive(true);
 
             //Freeze player and camera
-            /*if (Player != null)
+            if (Player != null)
             {
                 Player.GetComponent<PlayerController>().canMove = false;
-            }*/
+            }
 
             //unlock mouse - not confined
             Cursor.visible = true;
@@ -115,12 +115,10 @@ public class MenuManager : MonoBehaviour
             ExplorationUI.SetActive(true);
             //turn off Quest Menu UI
             QuestMenuUI.SetActive(false);
-
-            /*
+         
             //Unfreeze player and camera
             Player.GetComponent<PlayerController>().canMove = true;
-            */
-
+            
             //hide mouse/locked in place
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
