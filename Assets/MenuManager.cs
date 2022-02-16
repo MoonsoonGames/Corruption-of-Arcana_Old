@@ -25,6 +25,7 @@ public class MenuManager : MonoBehaviour
     public GameObject SettingsMenu;
     public GameObject HelpMenu;
     public GameObject QuestMenuUI;
+    public GameObject GuideBook;
 
     public GameObject MainMenuConfirmScreen;
     public GameObject QuitConfirmScreen;
@@ -221,6 +222,7 @@ public class MenuManager : MonoBehaviour
     {
         //close settings/guidebook menus
         SettingsMenu.SetActive(false);
+        GuideBook.SetActive(false);
         //open pausemenu UI
         PauseMenuUI.SetActive(true);
         //debug

@@ -49,6 +49,12 @@ MonoBehaviour:
   target: {fileID: 8728596811231204816}
   player: {fileID: 0}
   disableCursor: 0
+  controller: {fileID: 0}
+  virtualCamRef: {fileID: 0}
+  zoomValue: 60
+  zoomInterval: 0.6
+  zoomMin: 50
+  zoomMax: 70
 --- !u!1 &3676628558075147670
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,9 +258,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8365246805222681659}
-  m_LocalRotation: {x: 0.08551114, y: -0.7019174, z: 0.08551117, w: 0.7019172}
-  m_LocalPosition: {x: 0, y: -1.02, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalRotation: {x: -0, y: -0.077620536, z: -0, w: 0.996983}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 8365246805222465705}
   m_RootOrder: 0
@@ -299,7 +305,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300026, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8ba3cdcdc3260f84db3c4cf0d5840376, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -322,8 +328,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27a0300ce0a1fbc43a7ae57b5dc5add4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  billboardV: 1
-  pointAtCamera: 0
+  billboardV: 0
+  pointAtCamera: 1
 --- !u!114 &8365246805216608377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,81 +354,43 @@ MonoBehaviour:
     directions:
     - direction: 1
       frames:
-      - {fileID: 21300008, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
+      - {fileID: 21300000, guid: 8ba3cdcdc3260f84db3c4cf0d5840376, type: 3}
     - direction: 5
       frames:
-      - {fileID: 21300026, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
+      - {fileID: 21300000, guid: bbb79a4fb5ad0b442b8478ec47fcb3b4, type: 3}
     - direction: 9
       frames:
-      - {fileID: 21300038, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
+      - {fileID: 21300000, guid: 899abcafe0c76c5418d1e3b9f08f0740, type: 3}
     - direction: 13
       frames:
-      - {fileID: 21300020, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
+      - {fileID: 21300000, guid: 61600d2e1ef52c84dad003885ca961da, type: 3}
   - stateName: Run
     frameCount: 4
     directions:
     - direction: 1
       frames:
       - {fileID: 21300006, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
-      - {fileID: 21300008, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
+      - {fileID: 21300000, guid: 8ba3cdcdc3260f84db3c4cf0d5840376, type: 3}
       - {fileID: 21300010, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
-      - {fileID: 21300008, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
+      - {fileID: 21300000, guid: 8ba3cdcdc3260f84db3c4cf0d5840376, type: 3}
     - direction: 5
       frames:
       - {fileID: 21300024, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
-      - {fileID: 21300026, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
+      - {fileID: 21300000, guid: bbb79a4fb5ad0b442b8478ec47fcb3b4, type: 3}
       - {fileID: 21300028, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
-      - {fileID: 21300026, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
+      - {fileID: 21300000, guid: bbb79a4fb5ad0b442b8478ec47fcb3b4, type: 3}
     - direction: 9
       frames:
       - {fileID: 21300040, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
-      - {fileID: 21300038, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
+      - {fileID: 21300000, guid: 899abcafe0c76c5418d1e3b9f08f0740, type: 3}
       - {fileID: 21300036, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
-      - {fileID: 21300038, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
+      - {fileID: 21300000, guid: 899abcafe0c76c5418d1e3b9f08f0740, type: 3}
     - direction: 13
       frames:
       - {fileID: 21300018, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
-      - {fileID: 21300020, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
+      - {fileID: 21300000, guid: 61600d2e1ef52c84dad003885ca961da, type: 3}
       - {fileID: 21300022, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
-      - {fileID: 21300020, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
-  - stateName: Attack
-    frameCount: 3
-    directions:
-    - direction: 1
-      frames:
-      - {fileID: 21300058, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
-      - {fileID: 21300060, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
-      - {fileID: 21300100, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
-    - direction: 5
-      frames:
-      - {fileID: 21300082, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
-      - {fileID: 21300084, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
-      - {fileID: 21300076, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
-    - direction: 9
-      frames:
-      - {fileID: 21300094, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
-      - {fileID: 21300110, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
-      - {fileID: 21300112, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
-    - direction: 13
-      frames:
-      - {fileID: 21300070, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
-      - {fileID: 21300072, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
-      - {fileID: 21300104, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
-  - stateName: Jump
-    frameCount: 1
-    directions:
-    - direction: 1
-      frames:
-      - {fileID: 21300006, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
-    - direction: 5
-      frames:
-      - {fileID: 21300024, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
-    - direction: 9
-      frames:
-      - {fileID: 21300040, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
-    - direction: 13
-      frames:
-      - {fileID: 21300018, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
+      - {fileID: 21300000, guid: 61600d2e1ef52c84dad003885ca961da, type: 3}
 --- !u!1 &8365246805222847487
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,7 +403,6 @@ GameObject:
   - component: {fileID: 8365246805219549097}
   - component: {fileID: 8365246805216601741}
   - component: {fileID: 8365246805215327739}
-  - component: {fileID: 8365246805211273005}
   - component: {fileID: 8365246805071525006}
   - component: {fileID: 4481717301683041213}
   m_Layer: 0
@@ -452,16 +419,16 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8365246805222847487}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000016292068}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_Children:
   - {fileID: 8365246805222372311}
   - {fileID: 2634299853402879291}
   - {fileID: 8728596811231204816}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!54 &8365246805219549097
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -495,10 +462,11 @@ MonoBehaviour:
   runSpeed: 3
   jumpVelocity: 90
   groundDistanceOffset: 0.1
-  attackCollider: {fileID: 8365246805211273005}
+  attackCollider: {fileID: 8365246805211273005, guid: 6c37411a1cdab5f4c9533ab333bb7d52,
+    type: 3}
   canMove: 1
-  canJump: 1
-  canAttack: 1
+  canJump: 0
+  canAttack: 0
   attackCooldown: 0.2
 --- !u!95 &8365246805215327739
 Animator:
@@ -519,20 +487,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!136 &8365246805211273005
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8365246805222847487}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 1.05}
 --- !u!136 &8365246805071525006
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -543,10 +497,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1.4903812
+  m_Radius: 1
+  m_Height: 4.25
   m_Direction: 1
-  m_Center: {x: 0, y: -0.24519062, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4481717301683041213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -559,6 +513,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52cce36001b46b849890d0970772e773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  Location: {fileID: 0}
+  interactImage: {fileID: 0}
+  canMove: 0
   baseSneakSpeed: 20
   baseMoveSpeed: 50
   baseSprintSpeed: 80
@@ -571,10 +529,7 @@ MonoBehaviour:
   arcana: 0
   healthBar: {fileID: 0}
   arcanaBar: {fileID: 0}
-  Player: {fileID: 0}
-  Location: {fileID: 0}
   maxPotions: 5
-  interactImage: {fileID: 0}
 --- !u!1 &8906252387327763053
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,7 +554,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8906252387327763053}
-  m_LocalRotation: {x: 0.120930985, y: 0.00000008940696, z: -0.000000014901159, w: 0.9926609}
+  m_LocalRotation: {x: 0.0790515, y: -0.00000008940696, z: -0.0000000074505797, w: 0.9968705}
   m_LocalPosition: {x: -0.000003814698, y: 3.0000038, z: -8.130008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
