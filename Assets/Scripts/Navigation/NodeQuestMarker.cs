@@ -12,7 +12,7 @@ public class NodeQuestMarker : MonoBehaviour
     {
         questMarker = GetComponent<Image>();
 
-        if (requireQuestsCompleted.Length > 1 || requireObjectivesCompleted.Length > 1 || requireQuestsInProgress.Length > 1 || requireObjectivesInProgress.Length > 1)
+        if (requireQuestsCompleted.Length > 0 || requireObjectivesCompleted.Length > 0 || requireQuestsInProgress.Length > 0 || requireObjectivesInProgress.Length > 0)
         {
             questMarker.enabled = (CheckQuestsCompleted() && CheckQuestsInProgress());
         }
