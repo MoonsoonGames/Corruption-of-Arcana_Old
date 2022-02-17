@@ -590,8 +590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 2837806035358184848, guid: 8b405f4c8d1e82c46a5a25604c6f449d,
-    type: 3}
+  selectedFlowchart: {fileID: 3321721175600744330}
 --- !u!4 &336365333
 Transform:
   m_ObjectHideFlags: 1
@@ -666,7 +665,8 @@ MonoBehaviour:
   - {fileID: 268925932}
   - {fileID: 5457298888865767486}
   - {fileID: 1719618805}
-  - {fileID: 2837806035358184855, guid: 8b405f4c8d1e82c46a5a25604c6f449d, type: 3}
+  - {fileID: 154012848825895169}
+  - {fileID: 2684919792074093846}
   - {fileID: 1415994193}
   - {fileID: 2684919792113737118}
   - {fileID: 2684919790855303314}
@@ -5846,6 +5846,7 @@ Transform:
   m_Children:
   - {fileID: 1010139257}
   - {fileID: 2684919792726900095}
+  - {fileID: 2684919792074093825}
   m_Father: {fileID: 429087823}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5861,11 +5862,21 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 581645342}
+    - target: {fileID: 154012849182252181, guid: 8b405f4c8d1e82c46a5a25604c6f449d,
+        type: 3}
+      propertyPath: eventHandler
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 154012849182252182, guid: 8b405f4c8d1e82c46a5a25604c6f449d,
         type: 3}
       propertyPath: character
       value: 
       objectReference: {fileID: 581645342}
+    - target: {fileID: 154012849182252184, guid: 8b405f4c8d1e82c46a5a25604c6f449d,
+        type: 3}
+      propertyPath: eventHandler
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 154012849182252185, guid: 8b405f4c8d1e82c46a5a25604c6f449d,
         type: 3}
       propertyPath: character
@@ -5926,6 +5937,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2837806035358184848, guid: 8b405f4c8d1e82c46a5a25604c6f449d,
+        type: 3}
+      propertyPath: selectedBlocks.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2837806035358184849, guid: 8b405f4c8d1e82c46a5a25604c6f449d,
         type: 3}
       propertyPath: character
@@ -5936,8 +5952,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Harbouring a Grudge
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 2837806035358184855, guid: 8b405f4c8d1e82c46a5a25604c6f449d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2837806035358184844, guid: 8b405f4c8d1e82c46a5a25604c6f449d, type: 3}
+    - {fileID: 154012849182252183, guid: 8b405f4c8d1e82c46a5a25604c6f449d, type: 3}
+    - {fileID: 154012849182252186, guid: 8b405f4c8d1e82c46a5a25604c6f449d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8b405f4c8d1e82c46a5a25604c6f449d, type: 3}
+--- !u!1 &154012848825895169 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2837806035358184855, guid: 8b405f4c8d1e82c46a5a25604c6f449d,
+    type: 3}
+  m_PrefabInstance: {fileID: 154012848825895167}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &347849704644751170
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6844,6 +6874,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   quest: {fileID: 11400000, guid: 7802ae12753d18e4ca117a1c2485e04c, type: 2}
   questWindow: {fileID: 0}
+--- !u!4 &2684919792074093825 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 818493618446578312, guid: 7ba9d9549e9058749b2e32bca4b69c19,
+    type: 3}
+  m_PrefabInstance: {fileID: 3321721175600744329}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2684919792074093846 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 818493618446578335, guid: 7ba9d9549e9058749b2e32bca4b69c19,
+    type: 3}
+  m_PrefabInstance: {fileID: 3321721175600744329}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2684919792113737097 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1460692079197017885, guid: 2904db79b83baeb4387bfde480cc37db,
@@ -6888,6 +6930,97 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 154012848825895167}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3321721175600744329
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2133907400}
+    m_Modifications:
+    - target: {fileID: 818493618446578312, guid: 7ba9d9549e9058749b2e32bca4b69c19,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 818493618446578312, guid: 7ba9d9549e9058749b2e32bca4b69c19,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 818493618446578312, guid: 7ba9d9549e9058749b2e32bca4b69c19,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 818493618446578312, guid: 7ba9d9549e9058749b2e32bca4b69c19,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 818493618446578312, guid: 7ba9d9549e9058749b2e32bca4b69c19,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 818493618446578312, guid: 7ba9d9549e9058749b2e32bca4b69c19,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 818493618446578312, guid: 7ba9d9549e9058749b2e32bca4b69c19,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 818493618446578312, guid: 7ba9d9549e9058749b2e32bca4b69c19,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 818493618446578312, guid: 7ba9d9549e9058749b2e32bca4b69c19,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 818493618446578312, guid: 7ba9d9549e9058749b2e32bca4b69c19,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 818493618446578312, guid: 7ba9d9549e9058749b2e32bca4b69c19,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 818493618446578329, guid: 7ba9d9549e9058749b2e32bca4b69c19,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 581645342}
+    - target: {fileID: 818493618446578335, guid: 7ba9d9549e9058749b2e32bca4b69c19,
+        type: 3}
+      propertyPath: m_Name
+      value: Harbouring A Grudge Complete
+      objectReference: {fileID: 0}
+    - target: {fileID: 3321721174262537120, guid: 7ba9d9549e9058749b2e32bca4b69c19,
+        type: 3}
+      propertyPath: _targetGameObject.gameObjectVal
+      value: 
+      objectReference: {fileID: 1020455820}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7ba9d9549e9058749b2e32bca4b69c19, type: 3}
+--- !u!114 &3321721175600744330 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 818493618446578328, guid: 7ba9d9549e9058749b2e32bca4b69c19,
+    type: 3}
+  m_PrefabInstance: {fileID: 3321721175600744329}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2684919792074093846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a334fe2ffb574b3583ff3b18b4792d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3532981444032400020
 PrefabInstance:
   m_ObjectHideFlags: 0

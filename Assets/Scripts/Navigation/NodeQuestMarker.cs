@@ -3,113 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NavigationNode : MonoBehaviour
+public class NodeQuestMarker : MonoBehaviour
 {
-    NavigationManager navManager;
-    SceneLoader sceneLoader;
-    E_Levels navScene;
-    
-    public NavigationNode[] possibleNodes;
-    public NavigationEvents[] possibleEvents;
+    Image questMarker;
 
-    public Button button;
-    public GameObject marker;
-    public Color currentColour;
-    public Color availableColour;
-    public Color unavailableColour;
-    public bool canTravelTo = false;
-
-    [HideInInspector]
-    public bool stopEvents = false;
-    [HideInInspector]
-    public bool stopLevels = false;
-
-    public void Setup(NavigationManager navigationManager, E_Levels newNavScene, bool current)
+    // Start is called before the first frame update
+    void Start()
     {
-        navManager = navigationManager;
-        navScene = newNavScene;
+        questMarker = GetComponent<Image>();
 
-        sceneLoader = GetComponentInChildren<SceneLoader>();
-
-        if (current)
+        if (requireQuestsCompleted.Length > 1 || requireObjectivesCompleted.Length > 1 || requireQuestsInProgress.Length > 1 || requireObjectivesInProgress.Length > 1)
         {
-            foreach (var item in possibleNodes)
-            {
-                item.SetAvailable(true);
-            }
-
-            SetCurrent();
+            questMarker.enabled = (CheckQuestsCompleted() && CheckQuestsInProgress());
         }
-    }
-
-    public void SetCurrent()
-    {
-        button.interactable = true;
-        canTravelTo = true;
-
-        button.image.color = currentColour;
-    }
-
-    public void SetAvailable(bool available)
-    {
-        if (CheckQuestsInProgress() && CheckQuestsCompleted())
-        {
-            button.interactable = available;
-            canTravelTo = available;
-            button.image.raycastTarget = available;
-            marker.SetActive(true);
-
-            if (available)
-            {
-                button.image.color = availableColour;
-            }
-            else
-            {
-                button.image.color = unavailableColour;
-            }
-        }
-        else
-        {
-            button.image.color = new Color(0, 0, 0, 0);
-            button.interactable = false;
-            button.image.raycastTarget = false;
-            canTravelTo = false;
-            marker.SetActive(false);
-        }
-    }
-
-    public void StartTravelling()
-    {
-        navManager.StartTravelling(this);
-    }
-
-    public string GenerateNavigationEvent()
-    {
-        string generateEvent = " - ";
-
-        if (possibleEvents.Length > 0)
-        {
-            NavigationEvents navEvent = possibleEvents[Random.Range(0, possibleEvents.Length)];
-
-            generateEvent = navEvent.eventName;
-
-            if (!stopEvents)
-            {
-                navEvent.Setup(sceneLoader, navScene);
-                navEvent.StartEvent();
-            }
-        }
-        else
-        {
-            generateEvent = "Arrive";
-
-            if (!stopLevels)
-            {
-                sceneLoader.LoadDefaultScene(null);
-            }
-        }
-        
-        return generateEvent;
     }
 
     #region Quest Progress Requirements

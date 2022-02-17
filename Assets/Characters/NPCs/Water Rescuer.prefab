@@ -23,7 +23,8 @@ MonoBehaviour:
   requireQuests: []
   requireObjectives: []
   requireAll: 0
-  disableQuests: []
+  disableQuests:
+  - {fileID: 11400000, guid: e482f0482f2a16e44a629d6d348ea400, type: 2}
   disableObjectives: []
 --- !u!1001 &4535893353041494153
 PrefabInstance:
@@ -32,11 +33,49 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 158803844627514120, guid: c5fa82234e514a542a78544a9f47fb0a,
+        type: 3}
+      propertyPath: m_Name
+      value: Accept Marker
+      objectReference: {fileID: 0}
+    - target: {fileID: 432365196140364774, guid: c5fa82234e514a542a78544a9f47fb0a,
+        type: 3}
+      propertyPath: quests.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 432365196140364774, guid: c5fa82234e514a542a78544a9f47fb0a,
+        type: 3}
+      propertyPath: quests.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: e482f0482f2a16e44a629d6d348ea400,
+        type: 2}
+    - target: {fileID: 432365196140364774, guid: c5fa82234e514a542a78544a9f47fb0a,
+        type: 3}
+      propertyPath: requireQuestsCompleted.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 432365196140364774, guid: c5fa82234e514a542a78544a9f47fb0a,
+        type: 3}
+      propertyPath: requireQuestsCompleted.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0ff98976f281b3243a3d52928da78238,
+        type: 2}
     - target: {fileID: 2529777565094347757, guid: c5fa82234e514a542a78544a9f47fb0a,
         type: 3}
       propertyPath: showMarker
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2920256352847067748, guid: c5fa82234e514a542a78544a9f47fb0a,
+        type: 3}
+      propertyPath: objectives.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2920256352847067748, guid: c5fa82234e514a542a78544a9f47fb0a,
+        type: 3}
+      propertyPath: objectives.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 81fe243eecea35f49a3e5155f41e6129,
+        type: 2}
     - target: {fileID: 6837467524681156694, guid: c5fa82234e514a542a78544a9f47fb0a,
         type: 3}
       propertyPath: m_LocalRotation.w
