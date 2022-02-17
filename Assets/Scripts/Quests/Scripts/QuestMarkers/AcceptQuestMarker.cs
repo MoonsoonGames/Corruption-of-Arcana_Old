@@ -1,90 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class Dialogue : MonoBehaviour
+public class AcceptQuestMarker : MonoBehaviour
 {
-    public E_Levels sceneToLoad;
-    string sceneString;
-    Scene currentScene;
+    public Quest[] quests;
 
-    public bool forceDialogue = false;
+    public QuestMarkers marker;
 
-    SceneLoader sceneLoader;
-
-    LoadSettings loadSettings;
-
-    public bool checkpoint = false;
-
-    public Object dialogue;
-
-    public LoadSceneMode sceneMode;
-
-    public QuestObjective[] completeObjectives;
-
-    // Start is called before the first frame update
     private void Start()
     {
-        sceneString = sceneToLoad.ToString();
-
-        currentScene = SceneManager.GetActiveScene();
-
-        sceneLoader = GetComponent<SceneLoader>();
-        loadSettings = LoadSettings.instance;
+        CheckObjective();
     }
 
-    public bool LoadScene()
+    public void CheckObjective()
     {
-        if (sceneLoader != null && loadSettings != null)
+        marker.showMarker = false;
+
+        if (CheckQuestsCompleted() && CheckQuestsInProgress())
         {
-            if (CanSpeak())
+            if (marker != null)
             {
-                if (checkpoint)
+                bool contains = false;
+
+                foreach (var item in quests)
                 {
-                    loadSettings.SetCheckpoint();
-
-                    PlayerController controller = GameObject.Find("Player").GetComponent<PlayerController>();
-
-                    if (controller != null)
+                    if (item.isActive == false)
                     {
-                        Debug.Log(SceneManager.GetActiveScene());
-                        loadSettings.checkPointPotionCount = controller.GetPotions();
-                        loadSettings.checkPointPos = controller.transform.position;
-                        loadSettings.checkPointScene = SceneManager.GetActiveScene();
+                        Debug.Log(item.title);
+                        contains = true;
                     }
                 }
 
-                if (completeObjectives.Length != 0)
-                {
-                    foreach (var item in completeObjectives)
-                    {
-                        item.CompleteGoal();
-                    }
-                }
-
-                loadSettings.SetScene(SceneManager.GetActiveScene().name);
-
-                loadSettings.dialogueFlowChart = dialogue;
-                loadSettings.loadSceneMultiple = sceneMode == LoadSceneMode.Additive;
-                sceneLoader.LoadSpecifiedScene(sceneString, sceneMode, dialogue);
-
-                return true;
-            }
-            else
-            {
-                return false;
+                marker.showMarker = contains;
             }
         }
-        else
-        {
-            return false;
-        }
-    }
-
-    public bool CanSpeak()
-    {
-        return CheckQuestsInProgress() && CheckQuestsCompleted();
     }
 
     #region Quest Progress Requirements

@@ -13,6 +13,7 @@ public class NavigationNode : MonoBehaviour
     public NavigationEvents[] possibleEvents;
 
     public Button button;
+    public GameObject marker;
     public Color currentColour;
     public Color availableColour;
     public Color unavailableColour;
@@ -56,6 +57,7 @@ public class NavigationNode : MonoBehaviour
             button.interactable = available;
             canTravelTo = available;
             button.image.raycastTarget = available;
+            marker.SetActive(true);
 
             if (available)
             {
@@ -72,6 +74,7 @@ public class NavigationNode : MonoBehaviour
             button.interactable = false;
             button.image.raycastTarget = false;
             canTravelTo = false;
+            marker.SetActive(false);
         }
     }
 

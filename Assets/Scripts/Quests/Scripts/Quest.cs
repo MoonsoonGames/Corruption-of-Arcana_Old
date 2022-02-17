@@ -41,6 +41,7 @@ public class Quest : ScriptableObject
 
     [Header("Quest Info")]
     public string title;
+    public int questNumber;
     public string description;
     public bool showAllObjectives;
     public bool showFinalObjective;
@@ -53,30 +54,33 @@ public class Quest : ScriptableObject
 
     public void AcceptQuest()
     {
-        //Debug.Log("Accepted Quest: " + title);
-        isActive = true;
-
-        if (showAllObjectives)
+        if (isComplete == false)
         {
-            for (int i = 0; i < objectives.Length; i++)
+            //Debug.Log("Accepted Quest: " + title);
+            isActive = true;
+
+            if (showAllObjectives)
             {
-                if (i == objectives.Length - 1)
+                for (int i = 0; i < objectives.Length; i++)
                 {
-                    if (showFinalObjective)
+                    if (i == objectives.Length - 1)
+                    {
+                        if (showFinalObjective)
+                            objectives[i].SetCanComplete();
+                    }
+                    else
+                    {
                         objectives[i].SetCanComplete();
-                }
-                else
-                {
-                    objectives[i].SetCanComplete();
+                    }
                 }
             }
-        }
-        else
-        {
-            objectives[0].canComplete = true;
-        }
+            else
+            {
+                objectives[0].canComplete = true;
+            }
 
-        CheckCompletedObjectives();
+            CheckCompletedObjectives();
+        }
     }
 
     public void CheckObjectives()
@@ -96,18 +100,22 @@ public class Quest : ScriptableObject
         {
             //Debug.Log("Completed Quest: " + title);
             isComplete = true;
-
+            isActive = false;
             GiveRewards();
         }
         else
         {
             //Debug.Log("Not completed all objectives");
         }
+
+        ResetCompass();
     }
 
     public void CompleteObjective(QuestObjective objective)
     {
         //Debug.Log("Completed Objective: " + objective.title);
+
+        objective.canComplete = false;
 
         for (int i = 0; i < objectives.Length; i++)
         {
@@ -153,6 +161,13 @@ public class Quest : ScriptableObject
 
     public void ResetCompass()
     {
+        AcceptQuestMarker[] acceptQuestMarkers = GameObject.FindObjectsOfType<AcceptQuestMarker>();
+
+        foreach (var item in acceptQuestMarkers)
+        {
+            item.CheckObjective();
+        }
+
         Compass compass = GameObject.FindObjectOfType<Compass>();
 
         if (compass != null)
