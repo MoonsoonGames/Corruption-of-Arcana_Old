@@ -18,14 +18,20 @@ MonoBehaviour:
   dialogue: {fileID: 2837806035358184855, guid: 8b405f4c8d1e82c46a5a25604c6f449d,
     type: 3}
   sceneMode: 1
-  completeObjectives:
-  - {fileID: 11400000, guid: 489d25753c0a2e14f85eb924810724bb, type: 2}
-  requireQuests: []
-  requireObjectives: []
-  requireAll: 0
-  disableQuests:
+  completeObjectives: []
+  requireQuestsInProgress: []
+  requireObjectivesInProgress: []
+  requireAllInProgress: 1
+  disableQuestsInProgress:
   - {fileID: 11400000, guid: e482f0482f2a16e44a629d6d348ea400, type: 2}
-  disableObjectives: []
+  disableObjectivesInProgress: []
+  requireQuestsCompleted:
+  - {fileID: 11400000, guid: 0ff98976f281b3243a3d52928da78238, type: 2}
+  requireObjectivesCompleted: []
+  requireAllCompleted: 1
+  disableQuestsCompleted:
+  - {fileID: 11400000, guid: e482f0482f2a16e44a629d6d348ea400, type: 2}
+  disableObjectivesCompleted: []
 --- !u!1001 &4535893353041494153
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -76,25 +82,35 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 81fe243eecea35f49a3e5155f41e6129,
         type: 2}
+    - target: {fileID: 4361241443980430469, guid: c5fa82234e514a542a78544a9f47fb0a,
+        type: 3}
+      propertyPath: showMarker
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6002164953895968826, guid: c5fa82234e514a542a78544a9f47fb0a,
+        type: 3}
+      propertyPath: showMarker
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6837467524681156694, guid: c5fa82234e514a542a78544a9f47fb0a,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.5481996
+      value: -0.38268343
       objectReference: {fileID: 0}
     - target: {fileID: 6837467524681156694, guid: c5fa82234e514a542a78544a9f47fb0a,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.8363475
+      value: 0.92387956
       objectReference: {fileID: 0}
     - target: {fileID: 7265176582556184790, guid: c5fa82234e514a542a78544a9f47fb0a,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.5481996
+      value: -0.38268343
       objectReference: {fileID: 0}
     - target: {fileID: 7265176582556184790, guid: c5fa82234e514a542a78544a9f47fb0a,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.8363475
+      value: 0.92387956
       objectReference: {fileID: 0}
     - target: {fileID: 9216620810431011222, guid: c5fa82234e514a542a78544a9f47fb0a,
         type: 3}
@@ -102,6 +118,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2684919790725851444, guid: 0f26e8e0f64fcda46901c0f705428219,
         type: 3}
+    - target: {fileID: 9216620810431011222, guid: c5fa82234e514a542a78544a9f47fb0a,
+        type: 3}
+      propertyPath: requireQuestsCompleted.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9216620810431011222, guid: c5fa82234e514a542a78544a9f47fb0a,
+        type: 3}
+      propertyPath: requireQuestsCompleted.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0ff98976f281b3243a3d52928da78238,
+        type: 2}
     - target: {fileID: 9216620810431011224, guid: c5fa82234e514a542a78544a9f47fb0a,
         type: 3}
       propertyPath: m_RootOrder

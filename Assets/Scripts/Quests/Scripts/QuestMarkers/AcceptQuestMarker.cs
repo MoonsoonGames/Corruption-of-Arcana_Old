@@ -10,28 +10,30 @@ public class AcceptQuestMarker : MonoBehaviour
 
     private void Start()
     {
-        if (CheckQuestsCompleted() && CheckQuestsInProgress())
-        {
-            CheckObjective();
-        }
+        CheckObjective();
     }
 
     public void CheckObjective()
     {
-        if (marker != null)
+        marker.showMarker = false;
+
+        if (CheckQuestsCompleted() && CheckQuestsInProgress())
         {
-            bool contains = false;
-
-            foreach (var item in quests)
+            if (marker != null)
             {
-                if (item.isActive == false)
-                {
-                    Debug.Log(item.title);
-                    contains = true;
-                }
-            }
+                bool contains = false;
 
-            marker.showMarker = contains;
+                foreach (var item in quests)
+                {
+                    if (item.isActive == false)
+                    {
+                        Debug.Log(item.title);
+                        contains = true;
+                    }
+                }
+
+                marker.showMarker = contains;
+            }
         }
     }
 

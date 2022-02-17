@@ -160,6 +160,13 @@ public class Quest : ScriptableObject
 
     public void ResetCompass()
     {
+        AcceptQuestMarker[] acceptQuestMarkers = GameObject.FindObjectsOfType<AcceptQuestMarker>();
+
+        foreach (var item in acceptQuestMarkers)
+        {
+            item.CheckObjective();
+        }
+
         Compass compass = GameObject.FindObjectOfType<Compass>();
 
         if (compass != null)
