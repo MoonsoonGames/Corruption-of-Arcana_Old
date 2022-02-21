@@ -96,16 +96,6 @@ public class Enemy : MonoBehaviour
             {
                 //charm code here
             }
-            else if (enemyStats.silence && basicAttacks.Count > 0)
-            {
-
-                basicAttacks[currentAttack].CastSpell(player, this.gameObject, abilityManager, out bool nullify);
-                currentAttack++;
-                if (currentAttack >= basicAttacks.Count)
-                {
-                    currentAttack = 0;
-                }
-            }
             else if (enemyStats.skipTurn || enemyStats.sleepTurn)
             {
                 currentSpell++;
@@ -114,6 +104,16 @@ public class Enemy : MonoBehaviour
                     currentSpell = 0;
                 }
 
+                currentAttack++;
+                if (currentAttack >= basicAttacks.Count)
+                {
+                    currentAttack = 0;
+                }
+            }
+            else if (enemyStats.silence && basicAttacks.Count > 0)
+            {
+
+                basicAttacks[currentAttack].CastSpell(player, this.gameObject, abilityManager, out bool nullify);
                 currentAttack++;
                 if (currentAttack >= basicAttacks.Count)
                 {
@@ -164,13 +164,13 @@ public class Enemy : MonoBehaviour
             {
                 return 0;
             }
-            else if (enemyStats.silence)
-            {
-                return basicAttacks[currentAttack].targetEndTurnDelay;
-            }
             else if (enemyStats.skipTurn || enemyStats.sleepTurn)
             {
                 return 0;
+            }
+            else if (enemyStats.silence)
+            {
+                return basicAttacks[currentAttack].targetEndTurnDelay;
             }
             else
             {
@@ -214,13 +214,6 @@ public class Enemy : MonoBehaviour
             {
                 attackName = "Skipping turn";
             }
-            else if (enemyStats.silence)
-            {
-                attackName = basicAttacks[currentAttack].targetName;
-                damage = basicAttacks[currentAttack].TotalDmgRange();
-                damageType = basicAttacks[currentAttack].damageType;
-                description = basicAttacks[currentAttack].targetDescription;
-            }
             else if (enemyStats.skipTurn)
             {
                 attackName = "Skipping turn";
@@ -229,6 +222,13 @@ public class Enemy : MonoBehaviour
             {
                 attackName = "Sleeping";
                 description = "Target will awake upon taking damage";
+            }
+            else if (enemyStats.silence)
+            {
+                attackName = basicAttacks[currentAttack].targetName;
+                damage = basicAttacks[currentAttack].TotalDmgRange();
+                damageType = basicAttacks[currentAttack].damageType;
+                description = basicAttacks[currentAttack].targetDescription;
             }
             else
             {

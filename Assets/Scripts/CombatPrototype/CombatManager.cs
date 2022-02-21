@@ -34,6 +34,8 @@ public class CombatManager : MonoBehaviour
     public Text HealingValue;
     public Text HealingLeft;
 
+    public GameObject endTurnButton;
+
     #endregion
 
     public PlayerStats playerStats;
@@ -73,6 +75,7 @@ public class CombatManager : MonoBehaviour
         Ap.SetActive(false);
         Healing.SetActive(false);
         PlayableDecks.SetActive(false);
+        endTurnButton.SetActive(false);
 
         loadSettings = LoadSettings.instance;
 
@@ -111,6 +114,7 @@ public class CombatManager : MonoBehaviour
             currentTurnText.color = Color.green;
             HealingItem.SetActive(true);
             PlayableDecks.SetActive(true);
+            endTurnButton.SetActive(true);
 
             //Debug.Log("Regenerate Mana");
             playerStats.ChangeMana(arcanaRegen, false);
@@ -157,6 +161,7 @@ public class CombatManager : MonoBehaviour
         if (player)
         {
             playerStats.OnTurnEndStatus();
+            endTurnButton.SetActive(false);
         }
         else
         {

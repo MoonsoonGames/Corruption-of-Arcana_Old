@@ -82,23 +82,28 @@ public class Dialogue : MonoBehaviour
         }
     }
 
-    #region Enable/ Disable Dialogue
-
-    public Quest[] requireQuests;
-    public QuestObjective[] requireObjectives;
-    public bool requireAll = true;
-
-    public Quest[] disableQuests;
-    public QuestObjective[] disableObjectives;
-
     public bool CanSpeak()
     {
-        bool enableDialogue = false;
+        return CheckQuestsInProgress() && CheckQuestsCompleted();
+    }
+
+    #region Quest Progress Requirements
+
+    public Quest[] requireQuestsInProgress;
+    public QuestObjective[] requireObjectivesInProgress;
+    public bool requireAllInProgress = true;
+
+    public Quest[] disableQuestsInProgress;
+    public QuestObjective[] disableObjectivesInProgress;
+
+    public bool CheckQuestsInProgress()
+    {
+        bool enableNode = false;
 
         bool contains1 = false;
         bool containsAll = true;
 
-        foreach (var item in requireQuests)
+        foreach (var item in requireQuestsInProgress)
         {
             if (item.isActive)
             {
@@ -110,7 +115,7 @@ public class Dialogue : MonoBehaviour
             }
         }
 
-        foreach (var item in requireObjectives)
+        foreach (var item in requireObjectivesInProgress)
         {
             if (item.canComplete)
             {
@@ -122,25 +127,88 @@ public class Dialogue : MonoBehaviour
             }
         }
 
-        enableDialogue = (containsAll) || (!requireAll && contains1);
+        enableNode = (containsAll) || (!requireAllCompleted && contains1);
 
-        foreach (var item in disableQuests)
+        foreach (var item in disableQuestsInProgress)
+        {
+            if (item.isActive)
+            {
+                enableNode = false;
+            }
+        }
+
+        foreach (var item in disableObjectivesInProgress)
+        {
+            if (item.canComplete)
+            {
+                enableNode = false;
+            }
+        }
+
+        return enableNode;
+    }
+
+    #endregion
+
+    #region Quest Completed Requirements
+
+    public Quest[] requireQuestsCompleted;
+    public QuestObjective[] requireObjectivesCompleted;
+    public bool requireAllCompleted = true;
+
+    public Quest[] disableQuestsCompleted;
+    public QuestObjective[] disableObjectivesCompleted;
+
+    public bool CheckQuestsCompleted()
+    {
+        bool enableNode = false;
+
+        bool contains1 = false;
+        bool containsAll = true;
+
+        foreach (var item in requireQuestsCompleted)
         {
             if (item.isComplete)
             {
-                enableDialogue = false;
+                contains1 = true;
+            }
+            else
+            {
+                containsAll = false;
             }
         }
 
-        foreach (var item in disableObjectives)
+        foreach (var item in requireObjectivesCompleted)
         {
             if (item.completed)
             {
-                enableDialogue = false;
+                contains1 = true;
+            }
+            else
+            {
+                containsAll = false;
             }
         }
 
-        return enableDialogue;
+        enableNode = (containsAll) || (!requireAllCompleted && contains1);
+
+        foreach (var item in disableQuestsCompleted)
+        {
+            if (item.isComplete)
+            {
+                enableNode = false;
+            }
+        }
+
+        foreach (var item in disableObjectivesCompleted)
+        {
+            if (item.completed)
+            {
+                enableNode = false;
+            }
+        }
+
+        return enableNode;
     }
 
     #endregion
