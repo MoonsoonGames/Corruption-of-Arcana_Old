@@ -16,6 +16,9 @@ public class MenuManager : MonoBehaviour
      */
 
     #region GameObjects
+
+    PlayerController playerController;
+
     public GameObject ExplorationUI;
     public GameObject PauseMenuUI;
     public GameObject Player;
@@ -30,8 +33,8 @@ public class MenuManager : MonoBehaviour
     public GameObject MainMenuConfirmScreen;
     public GameObject QuitConfirmScreen;
 
-    //public Slider PauseHealthBar;
-    //public Slider PauseArcanaBar;
+    public Slider PauseHealthBar;
+    public Slider PauseArcanaBar;
     #endregion
 
     // Start is called before the first frame update
@@ -59,10 +62,10 @@ public class MenuManager : MonoBehaviour
             PauseMenuUI.SetActive(true);
 
             //Freeze player and camera
-            /*if (Player != null)
+            if (Player != null)
             {
                 Player.GetComponent<PlayerController>().canMove = false;
-            }*/
+            }
 
             //unlock mouse - not confined
             Cursor.visible = true;
@@ -96,8 +99,8 @@ public class MenuManager : MonoBehaviour
         #region Stats Update
         if (PauseMenuUI.activeSelf == true)
         {
-            //PauseHealthBar.value;
-            //PauseArcanaBar.value;
+            playerController.health = (int)PauseHealthBar.value;
+            playerController.arcana = (int)PauseArcanaBar.value;
         }
         #endregion
 
@@ -115,12 +118,10 @@ public class MenuManager : MonoBehaviour
             ExplorationUI.SetActive(true);
             //turn off Quest Menu UI
             QuestMenuUI.SetActive(false);
-
-            /*
+         
             //Unfreeze player and camera
             Player.GetComponent<PlayerController>().canMove = true;
-            */
-
+            
             //hide mouse/locked in place
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
