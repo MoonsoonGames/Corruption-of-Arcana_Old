@@ -5,13 +5,14 @@ using UnityEngine.UI;
 
 public class QuestMenuHandler : MonoBehaviour
 {
-    public string QuestName;
-    public string QuestStatus;
-    public string QuestDesc;
-    public string QuestObjName;
-    public string QuestObj;
+    public Text QuestName;
+    public Text QuestStatus;
+    public Text QuestDesc;
+    public Text QuestObjName;
+    public Text QuestObj;
+    public Image QuestType;
 
-    public int PotionReward;
+    public int PotionReward; //remove upon trader workings
     public int GoldReward;
 
     public Image QuestGiver;
@@ -20,6 +21,8 @@ public class QuestMenuHandler : MonoBehaviour
 
     void QuestButton()
     {
+
+        #region QuestBoard
         //SET QuestName
         //SET QuestStatus
         //SET QuestDesc
@@ -28,8 +31,20 @@ public class QuestMenuHandler : MonoBehaviour
 
         //SET Potionrewards
         //SET gold rewards
+        #endregion
 
+        #region ArtWork
         //SET quest giver sprite
         //SET quest giver location art
+        #endregion
+
+        #region Quest Buttons (selector)
+        //SET QuestName
+
+        //IF(QuestStatus == "Complete")
+        //Icon == Yellow Boarder
+        //IF (QuestStatus == "InProgress")
+        //Icon == Orange Boarder
+        #endregion
     }
 }
