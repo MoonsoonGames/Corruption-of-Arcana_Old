@@ -86,7 +86,7 @@ public class AbilityManager : MonoBehaviour
         //Debug.Log(selfType);
         if (selfType == "Healing & Arcana" || selfType == "Healing")
         {
-            sliderVarScript.ApplyPreview(-restore);
+            //sliderVarScript.ApplyPreview(-restore);
         }
         if (selfType == "Healing & Arcana" || selfType == "Arcana")
         {
@@ -175,20 +175,20 @@ public class AbilityManager : MonoBehaviour
         {
             if (ability.selfInterpretationUnlocked && ability.targetInterpretationUnlocked)
             {
-                combatManager.TargetEnemies(true);
-                targetter.SetVisibility(true);
+                combatManager.TargetEnemies(true, ability);
+                targetter.SetVisibility(true, null);
                 activeCard.ReadyCard(ability.cardName, "Two interpretations", ability.selfHeal, "Unknown", ability.selfCost, "Two interpretations active, UI issue", ability.selfCostType);
             }
             else if (ability.selfInterpretationUnlocked)
             {
-                combatManager.TargetEnemies(false);
-                targetter.SetVisibility(true);
+                combatManager.TargetEnemies(false, ability);
+                targetter.SetVisibility(true, null);
                 activeCard.ReadyCard(ability.cardName, ability.selfName, ability.RestoreValue(), ability.RestoreType(), ability.selfCost, ability.selfDescription, ability.selfCostType);
             }
             else if (ability.targetInterpretationUnlocked)
             {
-                combatManager.TargetEnemies(true);
-                targetter.SetVisibility(false);
+                combatManager.TargetEnemies(true, ability);
+                targetter.SetVisibility(false, null);
                 activeCard.ReadyCard(ability.cardName, ability.targetName, ability.TotalDmgRange(), ability.damageType.ToString(), ability.targetCost, ability.targetDescription, ability.targetCostType);
             }
         }
@@ -201,8 +201,8 @@ public class AbilityManager : MonoBehaviour
         if (activeCard != null)
             activeCard.CastCard();
 
-        combatManager.TargetEnemies(false);
-        targetter.SetVisibility(false);
+        combatManager.TargetEnemies(false, null);
+        targetter.SetVisibility(false, null);
     }
 
     #endregion

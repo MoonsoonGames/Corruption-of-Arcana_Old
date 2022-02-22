@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyButton : MonoBehaviour
 {
-    public SliderVariation sliderVarScript;
+    //public SliderVariation sliderVarScript;
 
     public void ButtonPressed(GameObject target)
     {
@@ -49,13 +49,13 @@ public class EnemyButton : MonoBehaviour
                 {
                     Vector2 trueDamageRangeExtra = item.GetComponentInParent<EnemyStats>().DamageResistanceVector(dmg, type);
 
-                    item.sliderVarScript.ApplyPreview(trueDamageRangeExtra);
+                    //item.sliderVarScript.ApplyPreview(trueDamageRangeExtra);
                 }
             }
 
             Vector2 trueDamageRange = target.GetComponent<EnemyStats>().DamageResistanceVector(dmg, type);
 
-            sliderVarScript.ApplyPreview(trueDamageRange);
+            //sliderVarScript.ApplyPreview(trueDamageRange);
         }
         else
         {
@@ -70,7 +70,7 @@ public class EnemyButton : MonoBehaviour
 
         foreach (var item in buttons)
         {
-            item.sliderVarScript.StopPreview();
+            //item.sliderVarScript.StopPreview();
         }
     }
 }

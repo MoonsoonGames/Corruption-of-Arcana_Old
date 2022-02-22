@@ -212,9 +212,9 @@ public class CombatManager : MonoBehaviour
         }
     }
 
-    public void TargetEnemies(bool visible)
+    public void TargetEnemies(bool visible, CardParent spell)
     {
-        enemyManager.TargetEnemies(visible);
+        enemyManager.TargetEnemies(visible, spell);
     }
 
     public void Rewards(int healing, int gold, int potions)

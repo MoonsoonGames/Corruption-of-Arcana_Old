@@ -221,62 +221,131 @@ public class CharacterStats : MonoBehaviour
 
     public float DamageResistance(float damageValue, E_DamageTypes damageType)
     {
-        if (damageType == E_DamageTypes.Physical)
+        switch (damageType)
         {
-            return damageValue * physicalMultiplier;
+            case E_DamageTypes.Physical:
+                return damageValue * physicalMultiplier;
+            case E_DamageTypes.Ember:
+                return damageValue * emberMultiplier;
+            case E_DamageTypes.Static:
+                return damageValue * staticMultiplier;
+            case E_DamageTypes.Bleak:
+                return damageValue * bleakMultiplier;
+            case E_DamageTypes.Septic:
+                return damageValue * septicMultiplier;
+            case E_DamageTypes.Perforation:
+                return damageValue;
+            default:
+                return damageValue;
         }
-        if (damageType == E_DamageTypes.Ember)
-        {
-            return damageValue * emberMultiplier;
-        }
-        if (damageType == E_DamageTypes.Static)
-        {
-            return damageValue * staticMultiplier;
-        }
-        if (damageType == E_DamageTypes.Bleak)
-        {
-            return damageValue * bleakMultiplier;
-        }
-        if (damageType == E_DamageTypes.Septic)
-        {
-            return damageValue * septicMultiplier;
-        }
-        if (damageType == E_DamageTypes.Perforation)
-        {
-            return damageValue * 1.5f;
-        }
-
-        return damageValue;
     }
 
     public Vector2 DamageResistanceVector(Vector2 damageValue, E_DamageTypes damageType)
     {
-        if (damageType == E_DamageTypes.Physical)
+        switch (damageType)
         {
-            return damageValue * physicalMultiplier;
+            case E_DamageTypes.Physical:
+                return damageValue * physicalMultiplier;
+            case E_DamageTypes.Ember:
+                return damageValue * emberMultiplier;
+            case E_DamageTypes.Static:
+                return damageValue * staticMultiplier;
+            case E_DamageTypes.Bleak:
+                return damageValue * bleakMultiplier;
+            case E_DamageTypes.Septic:
+                return damageValue * septicMultiplier;
+            case E_DamageTypes.Perforation:
+                return damageValue;
+            default:
+                return damageValue;
         }
-        if (damageType == E_DamageTypes.Ember)
+    }
+
+    public float CheckResistances(E_DamageTypes damageType)
+    {
+        switch (damageType)
         {
-            return damageValue * emberMultiplier;
+            case E_DamageTypes.Physical:
+                return physicalMultiplier;
+            case E_DamageTypes.Ember:
+                return emberMultiplier;
+            case E_DamageTypes.Static:
+                return staticMultiplier;
+            case E_DamageTypes.Bleak:
+                return bleakMultiplier;
+            case E_DamageTypes.Septic:
+                return septicMultiplier;
+            case E_DamageTypes.Perforation:
+                float lowestResistance = 1;
+                if (lowestResistance < lowestResistanceFloat())
+                {
+                    lowestResistance = lowestResistanceFloat();
+                }
+                return lowestResistance;
+            default:
+                return 1;
         }
-        if (damageType == E_DamageTypes.Static)
+    }
+
+    public E_DamageTypes lowestResistanceType()
+    {
+        float lowestResistance = 9999f;
+
+        if (lowestResistance < physicalMultiplier)
         {
-            return damageValue * staticMultiplier;
+            lowestResistance = physicalMultiplier;
+            return E_DamageTypes.Physical;
         }
-        if (damageType == E_DamageTypes.Bleak)
+        else if (lowestResistance < emberMultiplier)
         {
-            return damageValue * bleakMultiplier;
+            lowestResistance = emberMultiplier;
+            return E_DamageTypes.Ember;
         }
-        if (damageType == E_DamageTypes.Septic)
+        else if (lowestResistance < staticMultiplier)
         {
-            return damageValue * septicMultiplier;
+            lowestResistance = staticMultiplier;
+            return E_DamageTypes.Static;
         }
-        if (damageType == E_DamageTypes.Perforation)
+        else if (lowestResistance < bleakMultiplier)
         {
-            return damageValue * 1.5f;
+            lowestResistance = bleakMultiplier;
+            return E_DamageTypes.Bleak;
+        }
+        else if (lowestResistance < septicMultiplier)
+        {
+            lowestResistance = septicMultiplier;
+            return E_DamageTypes.Septic;
         }
 
-        return damageValue;
+        return E_DamageTypes.Perforation;
+    }
+
+    public float lowestResistanceFloat()
+    {
+        float lowestResistance = 9999f;
+
+        if (lowestResistance < physicalMultiplier)
+        {
+            lowestResistance = physicalMultiplier;
+        }
+        else if (lowestResistance < emberMultiplier)
+        {
+            lowestResistance = emberMultiplier;
+        }
+        else if (lowestResistance < staticMultiplier)
+        {
+            lowestResistance = staticMultiplier;
+        }
+        else if (lowestResistance < bleakMultiplier)
+        {
+            lowestResistance = bleakMultiplier;
+        }
+        else if (lowestResistance < septicMultiplier)
+        {
+            lowestResistance = septicMultiplier;
+        }
+
+        return lowestResistance;
     }
 
     public float HealthPercentage()
