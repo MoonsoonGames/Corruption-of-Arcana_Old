@@ -53,34 +53,8 @@ public class MenuManager : MonoBehaviour
     void Update()
     {
         #region Open Hotkeys
-        //Esc to OPEN menu
-        if (Input.GetKeyDown(KeyCode.Escape) && QuestMenuUI.activeSelf == false)
-        {
-            //turn off Exploration UI
-            ExplorationUI.SetActive(false);
-            //turn on Pause Menu UI
-            PauseMenuUI.SetActive(true);
-
-            //Freeze player and camera
-            if (Player != null)
-            {
-                Player.GetComponent<PlayerController>().canMove = false;
-            }
-
-            //unlock mouse - not confined
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-            //Debug
-            Debug.Log("Pause Menu Active");
-        }
-        //M to OPEN local map
-            //turn off Exploration UI
-            //turn on local map
-            //freeze player and camera
-            //keep mouse hidden/locked in place
-            //Debug
-        //Q to OPEN quest menu
-        if (Input.GetKeyDown(KeyCode.Q) && PauseMenuUI.activeSelf == false)
+        //J to OPEN quest menu
+        if (Input.GetKeyDown(KeyCode.J) && PauseMenuUI.activeSelf == false)
         {
             //turn off Exploration UI
             ExplorationUI.SetActive(false);
@@ -94,40 +68,47 @@ public class MenuManager : MonoBehaviour
             //debug
             Debug.Log("Quest Menu Active");
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (PauseMenuUI.activeSelf == true)
+            {
+                PauseMenuUI.SetActive(false);
+                ExplorationUI.SetActive(true);
+                //freeze player/camera
+                Player.GetComponent<PlayerController>().canMove = true;
+                //unlock mouse - confined to window
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+            else if (QuestMenuUI.activeSelf == true)
+            {
+                QuestMenuUI.SetActive(false);
+                ExplorationUI.SetActive(true);
+                //freeze player/camera
+                Player.GetComponent<PlayerController>().canMove = true;
+                //unlock mouse - confined to window
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+            else
+            {
+                PauseMenuUI.SetActive(true);
+                ExplorationUI.SetActive(false);
+                //freeze player/camera
+                Player.GetComponent<PlayerController>().canMove = false;
+                //unlock mouse - confined to window
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+            }
+        }
         #endregion
 
         #region Stats Update
         if (PauseMenuUI.activeSelf == true)
         {
-            playerController.health = (int)PauseHealthBar.value;
-            playerController.arcana = (int)PauseArcanaBar.value;
-        }
-        #endregion
-
-        #region Close Hotkeys
-        //M to close local map
-            //turn on Exploration UI
-            //turn off local map
-            //unfreeze player and camera
-            //keep mouse hidden/locked in place
-            //Debug
-
-        if (QuestMenuUI.activeSelf == true && Input.GetKeyDown(KeyCode.Escape))
-        {
-            //turn on Exploration UI
-            ExplorationUI.SetActive(true);
-            //turn off Quest Menu UI
-            QuestMenuUI.SetActive(false);
-         
-            //Unfreeze player and camera
-            Player.GetComponent<PlayerController>().canMove = true;
-            
-            //hide mouse/locked in place
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-
-            //Debug
-            Debug.Log("Quest Menu Deactive");
+            PauseHealthBar.value = playerController.healthBar.value;
+            PauseArcanaBar.value = playerController.arcanaBar.value;
         }
         #endregion
     }

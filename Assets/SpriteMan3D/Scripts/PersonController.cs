@@ -1,96 +1,93 @@
 ﻿using UnityEngine;
 
-namespace SpriteMan3D
+/// <summary>
+/// The character controller used to update an Animator.
+/// </summary>
+public class PersonController : MonoBehaviour
 {
     /// <summary>
-    /// The character controller used to update an Animator.
+    /// The sprite manager this controller updates.
     /// </summary>
-    public class PersonController : MonoBehaviour
-    {
-        /// <summary>
-        /// The sprite manager this controller updates.
-        /// </summary>
-        public Animator modelAnimator;
+    public Animator modelAnimator;
 
-        /// <summary>
-        /// Gets or sets whether an attack started in the current frame.
-        /// </summary>
-        private bool attackStarted;
-        public bool AttackStarted
+    /// <summary>
+    /// Gets or sets whether an attack started in the current frame.
+    /// </summary>
+    private bool attackStarted;
+    public bool AttackStarted
+    {
+        get
         {
-            get
-            {
-                return attackStarted;
-            }
-            set
-            {
-                attackStarted = value;
-                modelAnimator.SetBool("AttackStarted", value);
-            }
+            return attackStarted;
         }
-        /// <summary>
-        /// Gets or sets whether this character is grounded in the current frame.
-        /// </summary>
-        private bool isGrounded;
-        public bool IsGrounded
+        set
         {
-            get
-            {
-                return isGrounded;
-            }
-            set
-            {
-                isGrounded = value;
-                modelAnimator.SetBool("IsGrounded", value);
-            }
+            attackStarted = value;
+            modelAnimator.SetBool("AttackStarted", value);
         }
-        /// <summary>
-        /// Gets or sets whether a character is moving in the current frame.
-        /// </summary>
-        private bool isMoving;
-        public bool IsMoving
+    }
+    /// <summary>
+    /// Gets or sets whether this character is grounded in the current frame.
+    /// </summary>
+    private bool isGrounded;
+    public bool IsGrounded
+    {
+        get
         {
-            get
-            {
-                return isMoving;
-            }
-            set
-            {
-                isMoving = value;
-                modelAnimator.SetBool("IsMoving", value);
-            }
+            return isGrounded;
         }
-        /// <summary>
-        /// Gets or sets whether a character is running in the current frame.
-        /// </summary>
-        private bool isRunning;
-        public bool IsRunning
+        set
         {
-            get
-            {
-                return isRunning;
-            }
-            set
-            {
-                isRunning = value;
-                modelAnimator.SetBool("IsRunning", value);
-            }
+            isGrounded = value;
+            modelAnimator.SetBool("IsGrounded", value);
         }
-        /// <summary>
-        /// Gets or sets whether a jump started in the current frame.
-        /// </summary>
-        private bool jumpStarted;
-        public bool JumpStarted
+    }
+    /// <summary>
+    /// Gets or sets whether a character is moving in the current frame.
+    /// </summary>
+    private bool isMoving;
+    public bool IsMoving
+    {
+        get
         {
-            get
-            {
-                return jumpStarted;
-            }
-            set
-            {
-                jumpStarted = value;
-                modelAnimator.SetBool("JumpStarted", value);
-            }
+            return isMoving;
+        }
+        set
+        {
+            isMoving = value;
+            modelAnimator.SetBool("IsMoving", value);
+        }
+    }
+    /// <summary>
+    /// Gets or sets whether a character is running in the current frame.
+    /// </summary>
+    private bool isRunning;
+    public bool IsRunning
+    {
+        get
+        {
+            return isRunning;
+        }
+        set
+        {
+            isRunning = value;
+            modelAnimator.SetBool("IsRunning", value);
+        }
+    }
+    /// <summary>
+    /// Gets or sets whether a jump started in the current frame.
+    /// </summary>
+    private bool jumpStarted;
+    public bool JumpStarted
+    {
+        get
+        {
+            return jumpStarted;
+        }
+        set
+        {
+            jumpStarted = value;
+            modelAnimator.SetBool("JumpStarted", value);
         }
     }
 }
