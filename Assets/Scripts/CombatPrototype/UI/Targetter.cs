@@ -38,13 +38,13 @@ public class Targetter : MonoBehaviour
             if (resistance >= 1.1)
             {
                 //vulnerable to damage
-                resistanceIcon.sprite = negativeResistance;
+                resistanceIcon.sprite = positiveResistance;
                 resistanceIcon.enabled = true;
             }
             else if (resistance <= 0.9)
             {
                 //resistant to damage
-                resistanceIcon.sprite = positiveResistance;
+                resistanceIcon.sprite = negativeResistance;
                 resistanceIcon.enabled = true;
             }
             else 

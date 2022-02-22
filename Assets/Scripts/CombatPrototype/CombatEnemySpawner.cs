@@ -30,6 +30,6 @@ public class CombatEnemySpawner : MonoBehaviour
     {
         GameObject enemy = Instantiate(spawn, this.gameObject.transform) as GameObject;
 
-        enemy.name = enemy.GetComponent<Enemy>().displayName;
+        enemy.name = enemy.GetComponentInChildren<Enemy>().displayName;
     }
 }
