@@ -27,6 +27,12 @@ public class EnemyStats : CharacterStats
             healthSliderValue.slider.maxValue = maxHealth;
             healthSliderValue.slider.value = health;
         }
+
+        if (previewSliderValue != null)
+        {
+            previewSliderValue.slider.maxValue = maxHealth;
+            previewSliderValue.slider.value = health;
+        }
     }
 
     protected override void Die()

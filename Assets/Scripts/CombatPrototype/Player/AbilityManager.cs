@@ -83,22 +83,6 @@ public class AbilityManager : MonoBehaviour
         Vector2Int extradmg;
 
         GetReadyAbilityInfo(out multihit, out restore, out selfType, out dmg, out type, out cardNameSelf, out cardNameTarget, out hitsAll, out extradmg);
-        //Debug.Log(selfType);
-        if (selfType == "Healing & Arcana" || selfType == "Healing")
-        {
-            //sliderVarScript.ApplyPreview(-restore);
-        }
-        if (selfType == "Healing & Arcana" || selfType == "Arcana")
-        {
-            //newSliderVarScript for mana preview
-        }
-    }
-
-    public void MouseLeft()
-    {
-        //Debug.Log("Button stop hovering");
-        sliderVarScript.StopPreview();
-        //stop preview for mana slider too
     }
 
     public void GetReadyAbilityInfo(out bool multihit, out Vector2Int restore, out string selfType, out Vector2Int dmg, out E_DamageTypes type, out string cardNameSelf, out string cardNameTarget, out bool hitsAll, out Vector2Int extradmg)

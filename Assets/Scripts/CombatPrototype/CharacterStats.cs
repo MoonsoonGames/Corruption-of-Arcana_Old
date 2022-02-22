@@ -13,6 +13,7 @@ public class CharacterStats : MonoBehaviour
     protected int mana = 120;
 
     public SliderValue healthSliderValue;
+    public SliderValue previewSliderValue;
     public SliderValue manaSliderValue;
 
     public CombatManager combatManager;
@@ -216,6 +217,11 @@ public class CharacterStats : MonoBehaviour
         if (healthSliderValue != null)
         {
             healthSliderValue.slider.value = health;
+        }
+
+        if (previewSliderValue != null)
+        {
+            previewSliderValue.slider.value = health;
         }
     }
 

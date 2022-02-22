@@ -66,8 +66,6 @@ public class CardParent : ScriptableObject
         CharacterStats stats = target.GetComponent<CharacterStats>();
         if (stats != null && abilityManager != null)
         {
-            abilityManager.MouseLeft();
-
             if (abilityManager.playerStats.CheckMana(selfCost) && abilityManager.playerStats.CheckPotions(selfPotionCost))
             {
                 canCast = true;
@@ -180,8 +178,6 @@ public class CardParent : ScriptableObject
             if (abilityManager.playerStats.CheckMana(cost))
             {
                 canCast = true;
-
-                abilityManager.MouseLeft();
 
                 if (targetChain)
                 {
