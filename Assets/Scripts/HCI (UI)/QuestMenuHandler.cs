@@ -5,46 +5,206 @@ using UnityEngine.UI;
 
 public class QuestMenuHandler : MonoBehaviour
 {
+    Quest questScript;
+    Quest[] quests;
+    public Sprite CompleteIcon;
+    public Sprite InProgressIcon;
+    public Sprite NotFoundIcon;
+
     public Text QuestName;
     public Text QuestStatus;
     public Text QuestDesc;
     public Text QuestObjName;
     public Text QuestObj;
-    public Image QuestType;
+    public Image QuestStatusImg;
 
-    public int PotionReward; //remove upon trader workings
-    public int GoldReward;
+    public string PotionReward; //remove upon trader workings
+    public string GoldReward;
 
+    public Text QuestButtonNaming;
     public Image QuestGiver;
     public Image QuestGiverLocation;
-    
 
-    void QuestButton()
+
+    public void Start()
     {
+        quests = Resources.FindObjectsOfTypeAll<Quest>();
+    }
 
-        #region QuestBoard
-        //SET QuestName
-        //SET QuestStatus
-        //SET QuestDesc
-        //SET QuestObjName
-        //SET QuestObj
+    public void Update()
+    {
+        foreach(Quest quests in quests)
+        {
+            if (quests.isActive == true || quests.isComplete == true)
+            {
+                QuestButtonNaming.text = quests.title;
+                if (quests.isActive == true)
+                {
+                    GetComponent<Image>().sprite = InProgressIcon;
+                }
+                else
+                {
+                    GetComponent<Image>().sprite = CompleteIcon;
+                }
+            }
+            else
+            {
+                QuestButtonNaming.text = "?????";
+                GetComponent<Image>().sprite = NotFoundIcon;
+            }
+        }
+    }
 
-        //SET Potionrewards
-        //SET gold rewards
-        #endregion
+    public void QuestButton()
+    {
+        foreach (Quest quests in quests)
+        {
+            switch (quests.questNumber)
+            {
+                #region Quest 0
+                case 0:
+                    #region QuestBoard
+                    //SET QuestName
+                    QuestName.text = quests.title;
+                    //SET QuestStatus
+                    if (questScript.isActive == true)
+                    {
+                        QuestStatus.text = "In Progress";
+                    }
+                    else if (questScript.isComplete == true)
+                    {
+                        QuestStatus.text = "Completed";
+                    }
+                    else
+                    {
+                        QuestStatus.text = "Not Found";
+                    }
+                    //SET QuestDesc
+                    QuestDesc.text = quests.description;
+                    //SET QuestObjName
+                    //SET QuestObj
 
-        #region ArtWork
-        //SET quest giver sprite
-        //SET quest giver location art
-        #endregion
+                    //SET Potionrewards
+                    //PotionReward = quests.potionReward.ToString();
+                    //SET gold rewards
+                    //GoldReward = quests.goldReward.ToString();
+                    #endregion
 
-        #region Quest Buttons (selector)
-        //SET QuestName
+                    #region ArtWork
+                    //SET quest giver sprite
+                    //SET quest giver location art
+                    #endregion
+                    break;
+                #endregion
 
-        //IF(QuestStatus == "Complete")
-        //Icon == Yellow Boarder
-        //IF (QuestStatus == "InProgress")
-        //Icon == Orange Boarder
-        #endregion
+                #region Quest 1
+                case 1:
+                    #region QuestBoard
+                    //SET QuestName
+                    QuestName.text = questScript.title;
+                    //SET QuestStatus
+                    if (questScript.isActive == true)
+                    {
+                        QuestStatus.text = "In Progress";
+                    }
+                    else if (questScript.isComplete == true)
+                    {
+                        QuestStatus.text = "Completed";
+                    }
+                    else
+                    {
+                        QuestStatus.text = "Not Found";
+                    }
+                    //SET QuestDesc
+                    QuestDesc.text = questScript.description;
+                    //SET QuestObjName
+                    //SET QuestObj
+
+                    //SET Potionrewards
+                    PotionReward = questScript.potionReward.ToString();
+                    //SET gold rewards
+                    GoldReward = questScript.goldReward.ToString();
+                    #endregion
+
+                    #region ArtWork
+                    //SET quest giver sprite
+                    //SET quest giver location art
+                    #endregion
+                    break;
+                #endregion
+
+                #region Quest 2
+                case 2:
+                    #region QuestBoard
+                    //SET QuestName
+                    QuestName.text = questScript.title;
+                    //SET QuestStatus
+                    if (questScript.isActive == true)
+                    {
+                        QuestStatus.text = "In Progress";
+                    }
+                    else if (questScript.isComplete == true)
+                    {
+                        QuestStatus.text = "Completed";
+                    }
+                    else
+                    {
+                        QuestStatus.text = "Not Found";
+                    }
+                    //SET QuestDesc
+                    QuestDesc.text = questScript.description;
+                    //SET QuestObjName
+                    //SET QuestObj
+
+                    //SET Potionrewards
+                    PotionReward = questScript.potionReward.ToString();
+                    //SET gold rewards
+                    GoldReward = questScript.goldReward.ToString();
+                    #endregion
+
+                    #region ArtWork
+                    //SET quest giver sprite
+                    //SET quest giver location art
+                    #endregion
+                    break;
+                #endregion
+
+                #region Quest 3
+                case 3:
+                    #region QuestBoard
+                    //SET QuestName
+                    QuestName.text = questScript.title;
+                    //SET QuestStatus
+                    if (questScript.isActive == true)
+                    {
+                        QuestStatus.text = "In Progress";
+                    }
+                    else if (questScript.isComplete == true)
+                    {
+                        QuestStatus.text = "Completed";
+                    }
+                    else
+                    {
+                        QuestStatus.text = "Not Found";
+                    }
+                    //SET QuestDesc
+                    QuestDesc.text = questScript.description;
+                    //SET QuestObjName
+                    //SET QuestObj
+
+                    //SET Potionrewards
+                    PotionReward = questScript.potionReward.ToString();
+                    //SET gold rewards
+                    GoldReward = questScript.goldReward.ToString();
+                    #endregion
+
+                    #region ArtWork
+                    //SET quest giver sprite
+                    //SET quest giver location art
+                    #endregion
+                    break;
+                    #endregion
+            }
+        }
     }
 }

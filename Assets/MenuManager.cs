@@ -50,7 +50,7 @@ public class MenuManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         #region Open Hotkeys
         //J to OPEN quest menu
@@ -60,6 +60,7 @@ public class MenuManager : MonoBehaviour
             ExplorationUI.SetActive(false);
             //turn on Quest Menu UI
             QuestMenuUI.SetActive(true);
+
             //freeze player/camera
             Player.GetComponent<PlayerController>().canMove = false;
             //unlock mouse - confined to window
@@ -103,12 +104,13 @@ public class MenuManager : MonoBehaviour
             }
         }
         #endregion
-
+        
         #region Stats Update
         if (PauseMenuUI.activeSelf == true)
         {
-            PauseHealthBar.value = playerController.healthBar.value;
-            PauseArcanaBar.value = playerController.arcanaBar.value;
+            
+            PauseHealthBar.value = playerController.health;
+            PauseArcanaBar.value = playerController.arcana;
         }
         #endregion
     }
@@ -213,5 +215,4 @@ public class MenuManager : MonoBehaviour
     #endregion
 
     #endregion
-
 }
