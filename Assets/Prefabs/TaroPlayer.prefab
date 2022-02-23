@@ -136,7 +136,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &5140198395835923577
 MonoBehaviour:
@@ -208,7 +208,8 @@ MonoBehaviour:
   Player: {fileID: 2209253925361174902}
   Location: {fileID: 0}
   interactImage: {fileID: 0}
-  canMove: 0
+  modelAnimator: {fileID: 5045553847506650399}
+  canMove: 1
   baseSneakSpeed: 5
   baseMoveSpeed: 10
   baseSprintSpeed: 15
@@ -333,7 +334,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6602364264669351857}
-  m_LocalRotation: {x: -0, y: 0.96610963, z: -0, w: -0.2581321}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children: []
@@ -380,7 +381,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 899abcafe0c76c5418d1e3b9f08f0740, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8ba3cdcdc3260f84db3c4cf0d5840376, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -404,7 +405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   billboardV: 0
-  pointAtCamera: 1
+  pointAtCamera: 0
 --- !u!114 &7105158086274968085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -421,7 +422,7 @@ MonoBehaviour:
   reflectionMode: 0
   currentFrame: 0
   currentStateIndex: 0
-  rootManager: {fileID: 0}
+  rootManager: {fileID: 7105158086274968085}
   billboard: 0
   stateMapping:
   - stateName: Idle
@@ -440,32 +441,28 @@ MonoBehaviour:
       frames:
       - {fileID: 21300000, guid: 61600d2e1ef52c84dad003885ca961da, type: 3}
   - stateName: Run
-    frameCount: 4
+    frameCount: 3
     directions:
     - direction: 1
       frames:
-      - {fileID: 21300006, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
+      - {fileID: 21300000, guid: 2551519e04a64214fac071c0c92f9793, type: 3}
       - {fileID: 21300000, guid: 8ba3cdcdc3260f84db3c4cf0d5840376, type: 3}
-      - {fileID: 21300010, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
-      - {fileID: 21300000, guid: 8ba3cdcdc3260f84db3c4cf0d5840376, type: 3}
+      - {fileID: 21300000, guid: 5c68778a6721d934490e5c853c96fa1c, type: 3}
     - direction: 5
       frames:
       - {fileID: 21300024, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
       - {fileID: 21300000, guid: bbb79a4fb5ad0b442b8478ec47fcb3b4, type: 3}
       - {fileID: 21300028, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
-      - {fileID: 21300000, guid: bbb79a4fb5ad0b442b8478ec47fcb3b4, type: 3}
     - direction: 9
       frames:
       - {fileID: 21300040, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
       - {fileID: 21300000, guid: 899abcafe0c76c5418d1e3b9f08f0740, type: 3}
       - {fileID: 21300036, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
-      - {fileID: 21300000, guid: 899abcafe0c76c5418d1e3b9f08f0740, type: 3}
     - direction: 13
       frames:
       - {fileID: 21300018, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
       - {fileID: 21300000, guid: 61600d2e1ef52c84dad003885ca961da, type: 3}
       - {fileID: 21300022, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
-      - {fileID: 21300000, guid: 61600d2e1ef52c84dad003885ca961da, type: 3}
 --- !u!1 &7334295967113946742
 GameObject:
   m_ObjectHideFlags: 0
