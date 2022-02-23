@@ -83,22 +83,6 @@ public class AbilityManager : MonoBehaviour
         Vector2Int extradmg;
 
         GetReadyAbilityInfo(out multihit, out restore, out selfType, out dmg, out type, out cardNameSelf, out cardNameTarget, out hitsAll, out extradmg);
-        //Debug.Log(selfType);
-        if (selfType == "Healing & Arcana" || selfType == "Healing")
-        {
-            sliderVarScript.ApplyPreview(-restore);
-        }
-        if (selfType == "Healing & Arcana" || selfType == "Arcana")
-        {
-            //newSliderVarScript for mana preview
-        }
-    }
-
-    public void MouseLeft()
-    {
-        //Debug.Log("Button stop hovering");
-        sliderVarScript.StopPreview();
-        //stop preview for mana slider too
     }
 
     public void GetReadyAbilityInfo(out bool multihit, out Vector2Int restore, out string selfType, out Vector2Int dmg, out E_DamageTypes type, out string cardNameSelf, out string cardNameTarget, out bool hitsAll, out Vector2Int extradmg)
@@ -175,20 +159,20 @@ public class AbilityManager : MonoBehaviour
         {
             if (ability.selfInterpretationUnlocked && ability.targetInterpretationUnlocked)
             {
-                combatManager.TargetEnemies(true);
-                targetter.SetVisibility(true);
+                combatManager.TargetEnemies(true, ability);
+                targetter.SetVisibility(true, null);
                 activeCard.ReadyCard(ability.cardName, "Two interpretations", ability.selfHeal, "Unknown", ability.selfCost, "Two interpretations active, UI issue", ability.selfCostType);
             }
             else if (ability.selfInterpretationUnlocked)
             {
-                combatManager.TargetEnemies(false);
-                targetter.SetVisibility(true);
+                combatManager.TargetEnemies(false, ability);
+                targetter.SetVisibility(true, null);
                 activeCard.ReadyCard(ability.cardName, ability.selfName, ability.RestoreValue(), ability.RestoreType(), ability.selfCost, ability.selfDescription, ability.selfCostType);
             }
             else if (ability.targetInterpretationUnlocked)
             {
-                combatManager.TargetEnemies(true);
-                targetter.SetVisibility(false);
+                combatManager.TargetEnemies(true, ability);
+                targetter.SetVisibility(false, null);
                 activeCard.ReadyCard(ability.cardName, ability.targetName, ability.TotalDmgRange(), ability.damageType.ToString(), ability.targetCost, ability.targetDescription, ability.targetCostType);
             }
         }
@@ -201,8 +185,8 @@ public class AbilityManager : MonoBehaviour
         if (activeCard != null)
             activeCard.CastCard();
 
-        combatManager.TargetEnemies(false);
-        targetter.SetVisibility(false);
+        combatManager.TargetEnemies(false, null);
+        targetter.SetVisibility(false, null);
     }
 
     #endregion

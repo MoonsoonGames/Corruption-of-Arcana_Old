@@ -56,6 +56,7 @@ public class CombatManager : MonoBehaviour
     int actionsLeft = 0;
 
     public int arcanaRegen = 20;
+    public Image bgImage;
 
     public void Start()
     {
@@ -78,6 +79,8 @@ public class CombatManager : MonoBehaviour
         endTurnButton.SetActive(false);
 
         loadSettings = LoadSettings.instance;
+
+        SetBackground();
 
         if (loadSettings != null)
         {
@@ -212,9 +215,9 @@ public class CombatManager : MonoBehaviour
         }
     }
 
-    public void TargetEnemies(bool visible)
+    public void TargetEnemies(bool visible, CardParent spell)
     {
-        enemyManager.TargetEnemies(visible);
+        enemyManager.TargetEnemies(visible, spell);
     }
 
     public void Rewards(int healing, int gold, int potions)
@@ -233,5 +236,15 @@ public class CombatManager : MonoBehaviour
         }
 
         //Debug.Log("No current fight");
+    }
+
+    public void SetBackground()
+    {
+        if (bgImage != null && loadSettings.background != null)
+        {
+            bgImage.sprite = loadSettings.background;
+        }
+
+        loadSettings.background = null;
     }
 }

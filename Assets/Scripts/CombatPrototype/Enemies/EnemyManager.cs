@@ -102,11 +102,11 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    public void TargetEnemies(bool visible)
+    public void TargetEnemies(bool visible, CardParent spell)
     {
         foreach (var item in targetters)
         {
-            item.SetVisibility(visible);
+            item.SetVisibility(visible, spell);
         }
     }
 

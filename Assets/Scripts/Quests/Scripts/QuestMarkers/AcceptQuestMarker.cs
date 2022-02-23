@@ -25,7 +25,7 @@ public class AcceptQuestMarker : MonoBehaviour
 
                 foreach (var item in quests)
                 {
-                    if (item.isActive == false)
+                    if (item.isActive == false && item.isComplete == false)
                     {
                         Debug.Log(item.title);
                         contains = true;

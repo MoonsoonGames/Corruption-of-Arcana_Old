@@ -49,6 +49,8 @@ public class LoadSettings : MonoBehaviour
 
     public bool fightingBoss = false;
     public Object[] enemies = new Object[3];
+    public Sprite background;
+
     public List<string> enemiesKilled = new List<string>();
     public List<string> checkpointEnemies = new List<string>();
 
