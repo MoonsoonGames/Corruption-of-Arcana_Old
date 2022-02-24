@@ -23,13 +23,13 @@ MonoBehaviour:
   requireObjectivesInProgress: []
   requireAllInProgress: 1
   disableQuestsInProgress: []
-  disableObjectivesInProgress: []
+  disableObjectivesInProgress:
+  - {fileID: 11400000, guid: feeeab7f4abf0fb4498e2bcc21abeb55, type: 2}
   requireQuestsCompleted: []
   requireObjectivesCompleted: []
   requireAllCompleted: 1
   disableQuestsCompleted: []
-  disableObjectivesCompleted:
-  - {fileID: 11400000, guid: feeeab7f4abf0fb4498e2bcc21abeb55, type: 2}
+  disableObjectivesCompleted: []
 --- !u!1001 &2119128805303600193
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -104,12 +104,12 @@ PrefabInstance:
     - target: {fileID: 6837467524681156694, guid: c5fa82234e514a542a78544a9f47fb0a,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.38268346
+      value: 0.7802109
       objectReference: {fileID: 0}
     - target: {fileID: 6837467524681156694, guid: c5fa82234e514a542a78544a9f47fb0a,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.92387956
+      value: -0.62551665
       objectReference: {fileID: 0}
     - target: {fileID: 7265176582556184790, guid: c5fa82234e514a542a78544a9f47fb0a,
         type: 3}
@@ -139,12 +139,12 @@ PrefabInstance:
     - target: {fileID: 7265176582556184790, guid: c5fa82234e514a542a78544a9f47fb0a,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.37001842
+      value: 0.7824789
       objectReference: {fileID: 0}
     - target: {fileID: 7265176582556184790, guid: c5fa82234e514a542a78544a9f47fb0a,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9290244
+      value: -0.62267715
       objectReference: {fileID: 0}
     - target: {fileID: 8608708597990046677, guid: c5fa82234e514a542a78544a9f47fb0a,
         type: 3}
@@ -180,9 +180,20 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 9216620810431011222, guid: c5fa82234e514a542a78544a9f47fb0a,
         type: 3}
+      propertyPath: disableObjectivesCompleted.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9216620810431011222, guid: c5fa82234e514a542a78544a9f47fb0a,
+        type: 3}
       propertyPath: requireObjectivesInProgress.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9216620810431011222, guid: c5fa82234e514a542a78544a9f47fb0a,
+        type: 3}
+      propertyPath: disableObjectivesCompleted.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: feeeab7f4abf0fb4498e2bcc21abeb55,
+        type: 2}
     - target: {fileID: 9216620810431011222, guid: c5fa82234e514a542a78544a9f47fb0a,
         type: 3}
       propertyPath: requireObjectivesInProgress.Array.data[0]

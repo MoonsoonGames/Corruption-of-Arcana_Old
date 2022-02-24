@@ -48,7 +48,7 @@ public class NodeQuestMarker : MonoBehaviour
 
         foreach (var item in requireObjectivesInProgress)
         {
-            if (item.canComplete)
+            if (item.canComplete && item.quest.isActive)
             {
                 contains1 = true;
             }
