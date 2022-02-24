@@ -56,7 +56,10 @@ public class EnemyController : MonoBehaviour
             loadSettings.enemies[1] = enemies[1];
             loadSettings.enemies[2] = enemies[2];
 
-            loadSettings.background = background;
+            if (loadSettings.background != null && background != null)
+            {
+                loadSettings.background = background;
+            }
 
             loadSettings.goldReward = goldReward;
             loadSettings.potionReward = potionReward;
