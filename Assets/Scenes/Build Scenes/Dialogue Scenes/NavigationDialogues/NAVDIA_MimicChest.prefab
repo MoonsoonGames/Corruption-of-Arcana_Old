@@ -1,0 +1,475 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1402207640028962560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6337980435051608622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodeRect:
+    serializedVersion: 2
+    x: -237.5476
+    y: 37.990532
+    width: 178.94733
+    height: 40
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  useCustomTint: 0
+  itemId: 74
+  blockName: Open the treasure chest
+  description: 
+  eventHandler: {fileID: 0}
+  commandList:
+  - {fileID: 8686220897880544139}
+  - {fileID: 5407881699945117681}
+  - {fileID: 2490189877432494942}
+  suppressAllAutoSelections: 0
+--- !u!114 &2490189877432494942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6337980435051608622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 050fb9e6e72f442b3b883da8a965bdeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 77
+  indentLevel: 0
+  targetFlowchart: {fileID: 0}
+  targetBlock: {fileID: 6298772676114609213}
+  startLabel:
+    stringRef: {fileID: 0}
+    stringVal: 
+  startIndex: 0
+  callMode: 0
+--- !u!114 &4717889349818248341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6337980435051608622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 841589fc622bc494aa5405f416fa1301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 83
+  indentLevel: 0
+  text: Ignore the treasure chest
+  description: 
+  targetBlock: {fileID: 6644891375427322915}
+  hideIfVisited: 0
+  interactable:
+    booleanRef: {fileID: 0}
+    booleanVal: 1
+  setMenuDialog: {fileID: 0}
+  hideThisOption:
+    booleanRef: {fileID: 0}
+    booleanVal: 0
+--- !u!114 &5407881699945117681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6337980435051608622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 76
+  indentLevel: 0
+  storyText: Peering into the chest, you find a giant pile of glittering gold, glowing
+    potions and trinkets of immesurable value.
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &5512815617755651464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6337980435051608622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 050fb9e6e72f442b3b883da8a965bdeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 82
+  indentLevel: 0
+  targetFlowchart: {fileID: 0}
+  targetBlock: {fileID: 6337980435051608628}
+  startLabel:
+    stringRef: {fileID: 0}
+    stringVal: 
+  startIndex: 0
+  callMode: 0
+--- !u!114 &6443451559020364504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6337980435051608622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 71
+  indentLevel: 0
+  storyText: During your exploration, you find a set of old ruins. Within, a giant
+    treasure chest, the treasures within are yours for the taking.
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &6644891375427322915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6337980435051608622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodeRect:
+    serializedVersion: 2
+    x: -41.23202
+    y: 39.30633
+    width: 182.8947
+    height: 40
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  useCustomTint: 0
+  itemId: 74
+  blockName: Ignore the treasure chest
+  description: 
+  eventHandler: {fileID: 0}
+  commandList:
+  - {fileID: 9158901263250002064}
+  - {fileID: 5512815617755651464}
+  suppressAllAutoSelections: 0
+--- !u!114 &7180075328646180643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6337980435051608622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 841589fc622bc494aa5405f416fa1301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 73
+  indentLevel: 0
+  text: Open the treasure chest
+  description: 
+  targetBlock: {fileID: 1402207640028962560}
+  hideIfVisited: 0
+  interactable:
+    booleanRef: {fileID: 0}
+    booleanVal: 1
+  setMenuDialog: {fileID: 0}
+  hideThisOption:
+    booleanRef: {fileID: 0}
+    booleanVal: 0
+--- !u!114 &8686220897880544139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6337980435051608622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 75
+  indentLevel: 0
+  storyText: As you lift the heavy lid off the chest, it slams to the ground with
+    a thud, dust scattering into the air.
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &9158901263250002064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6337980435051608622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 80
+  indentLevel: 0
+  storyText: You ignore the treasure, and the potential valuables within.
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!1001 &906382681315918424
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2643863248224981627, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: nodeRect.x
+      value: -255.32588
+      objectReference: {fileID: 0}
+    - target: {fileID: 2643863248224981627, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: nodeRect.y
+      value: 93.14989
+      objectReference: {fileID: 0}
+    - target: {fileID: 2643863248224981627, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: commandList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2643863248224981627, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: commandList.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425263924447632516, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: nodeRect.x
+      value: -125.705536
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425263924447632516, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: nodeRect.y
+      value: -83.06206
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425263924447632516, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: commandList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425263924447632516, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: commandList.Array.data[0]
+      value: 
+      objectReference: {fileID: 6443451559020364504}
+    - target: {fileID: 6425263924447632516, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: commandList.Array.data[1]
+      value: 
+      objectReference: {fileID: 7180075328646180643}
+    - target: {fileID: 6425263924447632516, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: commandList.Array.data[2]
+      value: 
+      objectReference: {fileID: 4717889349818248341}
+    - target: {fileID: 6584572301936080993, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584572301936080993, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584572301936080993, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584572301936080993, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584572301936080993, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584572301936080993, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584572301936080993, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584572301936080993, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584572301936080993, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584572301936080993, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584572301936080993, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584572301936081004, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: nodeRect.x
+      value: -27.95704
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584572301936081004, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: nodeRect.y
+      value: 122.09734
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584572301936081009, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: scrollPos.x
+      value: 270.44244
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584572301936081009, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: scrollPos.y
+      value: 246.21974
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584572301936081009, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: selectedBlocks.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584572301936081009, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: selectedCommands.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584572301936081009, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: selectedBlocks.Array.data[0]
+      value: 
+      objectReference: {fileID: 6337980435051608628}
+    - target: {fileID: 6584572301936081009, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: selectedCommands.Array.data[0]
+      value: 
+      objectReference: {fileID: 6443451559020364504}
+    - target: {fileID: 6584572301936081014, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: m_Name
+      value: NAVDIA_MimicChest
+      objectReference: {fileID: 0}
+    - target: {fileID: 6628632757593028197, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: nodeRect.x
+      value: -203.44975
+      objectReference: {fileID: 0}
+    - target: {fileID: 6628632757593028197, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: nodeRect.y
+      value: 122.106804
+      objectReference: {fileID: 0}
+    - target: {fileID: 6667893552137524853, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: nodeRect.x
+      value: 0.68665504
+      objectReference: {fileID: 0}
+    - target: {fileID: 6667893552137524853, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: nodeRect.y
+      value: 167.71446
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6917916337197389886, guid: e5d3a98493258664998ed88687286a7a, type: 3}
+    - {fileID: 2643863248224981627, guid: e5d3a98493258664998ed88687286a7a, type: 3}
+    - {fileID: 6084014531637422091, guid: e5d3a98493258664998ed88687286a7a, type: 3}
+    - {fileID: 6667893552137524853, guid: e5d3a98493258664998ed88687286a7a, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: e5d3a98493258664998ed88687286a7a, type: 3}
+--- !u!1 &6337980435051608622 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6584572301936081014, guid: e5d3a98493258664998ed88687286a7a,
+    type: 3}
+  m_PrefabInstance: {fileID: 906382681315918424}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6337980435051608628 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6584572301936081004, guid: e5d3a98493258664998ed88687286a7a,
+    type: 3}
+  m_PrefabInstance: {fileID: 906382681315918424}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6337980435051608622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6298772676114609213 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6628632757593028197, guid: e5d3a98493258664998ed88687286a7a,
+    type: 3}
+  m_PrefabInstance: {fileID: 906382681315918424}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6337980435051608622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

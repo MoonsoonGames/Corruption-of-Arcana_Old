@@ -1,0 +1,224 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-2178140182062088483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6518525588219603378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad703943eaaa2064db4adbb13e11e40e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy1:
+  - {fileID: 6783367526062023706, guid: 38b26ff1cc832374cb1ae2f24362fe40, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  enemy2:
+  - {fileID: 6783367526062023706, guid: c94e1b6f559b9c94da106f0607c3293b, type: 3}
+  - {fileID: 6783367526062023706, guid: 38b26ff1cc832374cb1ae2f24362fe40, type: 3}
+  enemy3:
+  - {fileID: 6783367526062023706, guid: 38b26ff1cc832374cb1ae2f24362fe40, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &3106173093918036095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6518525588219603378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 76
+  indentLevel: 0
+  storyText: Before you get a chance to prepare, you come face to face with a wolf
+    as it pouces towards you with a primal fury.
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &3920771872606706797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6518525588219603378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 050fb9e6e72f442b3b883da8a965bdeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 77
+  indentLevel: 0
+  targetFlowchart: {fileID: 0}
+  targetBlock: {fileID: 6551277014878300065}
+  startLabel:
+    stringRef: {fileID: 0}
+    stringVal: 
+  startIndex: 0
+  callMode: 0
+--- !u!114 &4929942059618899887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6518525588219603378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 75
+  indentLevel: 0
+  storyText: As you travel along a dark forest path, you hear a quiet snarling; something
+    is lurking within the trees.
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!1001 &78652341835338180
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6425263924447632516, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: commandList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425263924447632516, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: commandList.Array.data[0]
+      value: 
+      objectReference: {fileID: 4929942059618899887}
+    - target: {fileID: 6425263924447632516, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: commandList.Array.data[1]
+      value: 
+      objectReference: {fileID: 3106173093918036095}
+    - target: {fileID: 6425263924447632516, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: commandList.Array.data[2]
+      value: 
+      objectReference: {fileID: 3920771872606706797}
+    - target: {fileID: 6584572301936080993, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584572301936080993, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584572301936080993, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584572301936080993, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584572301936080993, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584572301936080993, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584572301936080993, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584572301936080993, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584572301936080993, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584572301936080993, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584572301936080993, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584572301936081009, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: scrollPos.x
+      value: 245.44229
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584572301936081009, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: scrollPos.y
+      value: 252.79872
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584572301936081009, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: selectedBlocks.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584572301936081014, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: m_Name
+      value: NAVDIA_WolfAmbush
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e5d3a98493258664998ed88687286a7a, type: 3}
+--- !u!1 &6518525588219603378 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6584572301936081014, guid: e5d3a98493258664998ed88687286a7a,
+    type: 3}
+  m_PrefabInstance: {fileID: 78652341835338180}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6551277014878300065 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6628632757593028197, guid: e5d3a98493258664998ed88687286a7a,
+    type: 3}
+  m_PrefabInstance: {fileID: 78652341835338180}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6518525588219603378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

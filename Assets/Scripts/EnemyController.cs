@@ -29,6 +29,11 @@ public class EnemyController : MonoBehaviour
         loadSettings = LoadSettings.instance;
         sceneLoader = GetComponent<SceneLoader>();
 
+        if (sceneLoader == null)
+        {
+            sceneLoader = GameObject.FindObjectOfType<SceneLoader>();
+        }
+
         if (loadSettings != null)
         {
             if (loadSettings.enemiesKilled.Contains(name))
