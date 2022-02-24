@@ -115,6 +115,7 @@ public class LoadSettings : MonoBehaviour
 
             questSaver.LoadQuestData();
 
+            //Resets last position in these levels
             if (lastLevelString == E_Levels.Thoth.ToString())
             {
                 playerPosInThoth = new Vector3(-358.679993f, 38.8400002f, 288.880005f);
@@ -122,6 +123,10 @@ public class LoadSettings : MonoBehaviour
             else if (lastLevelString == E_Levels.EastForestClearing.ToString())
             {
                 playerPosInClearing = new Vector3(37f, 7.61000013f, 294.160004f);
+            }
+            else if (lastLevelString == E_Levels.Cave.ToString())
+            {
+                playerPosInCave = new Vector3(37f, 45.2999992f, 260.899994f);
             }
 
             currentNodeID = checkpointNodeID;
