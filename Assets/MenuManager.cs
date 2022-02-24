@@ -18,6 +18,7 @@ public class MenuManager : MonoBehaviour
     #region GameObjects
 
     PlayerController playerController;
+    LoadSettings loadSettings;
 
     public GameObject ExplorationUI;
     public GameObject PauseMenuUI;
@@ -35,6 +36,8 @@ public class MenuManager : MonoBehaviour
 
     public Slider PauseHealthBar;
     public Slider PauseArcanaBar;
+
+    public Text goldCount;
     #endregion
 
     // Start is called before the first frame update
@@ -101,6 +104,9 @@ public class MenuManager : MonoBehaviour
                 //unlock mouse - confined to window
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
+
+                //update gold counter when opening the menu
+                goldCount.text = loadSettings.currentGold.ToString();
             }
         }
         #endregion
