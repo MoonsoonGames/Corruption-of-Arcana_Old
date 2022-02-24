@@ -26,14 +26,18 @@ public class NavigationEvents : ScriptableObject
     public Object[] enemy1, enemy2, enemy3;
     Object[] enemies = new Object[3];
 
+    Sprite background;
+
     public Quest startQuest;
     public QuestObjective completeObjective;
 
-    public void Setup(SceneLoader newSceneLoader, E_Levels newNavScene)
+    public void Setup(SceneLoader newSceneLoader, E_Levels newNavScene, Sprite backgroundImage)
     {
         loadSettings = LoadSettings.instance;
         navScene = newNavScene;
         sceneLoader = newSceneLoader;
+
+        background = backgroundImage;
 
         enemies[0] = enemy1[Random.Range(0, enemy1.Length)];
         enemies[1] = enemy2[Random.Range(0, enemy2.Length)];
@@ -82,6 +86,8 @@ public class NavigationEvents : ScriptableObject
             loadSettings.enemies[0] = enemies[0];
             loadSettings.enemies[1] = enemies[1];
             loadSettings.enemies[2] = enemies[2];
+
+            loadSettings.background = background;
 
             loadSettings.goldReward = goldReward;
             loadSettings.potionReward = potionReward;

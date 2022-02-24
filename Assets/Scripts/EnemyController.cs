@@ -21,6 +21,7 @@ public class EnemyController : MonoBehaviour
     public string itemReward;
 
     public string enemyName;
+    public Sprite background;
 
     // Start is called before the first frame update
     void Awake()
@@ -49,6 +50,8 @@ public class EnemyController : MonoBehaviour
             loadSettings.enemies[0] = enemies[0];
             loadSettings.enemies[1] = enemies[1];
             loadSettings.enemies[2] = enemies[2];
+
+            loadSettings.background = background;
 
             loadSettings.goldReward = goldReward;
             loadSettings.potionReward = potionReward;

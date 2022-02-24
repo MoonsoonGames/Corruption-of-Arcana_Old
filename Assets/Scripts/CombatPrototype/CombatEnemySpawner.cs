@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CombatEnemySpawner : MonoBehaviour
 {
     private LoadSettings loadSettings;
     public int enemyNumber = 0;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -30,6 +32,6 @@ public class CombatEnemySpawner : MonoBehaviour
     {
         GameObject enemy = Instantiate(spawn, this.gameObject.transform) as GameObject;
 
-        enemy.name = enemy.GetComponent<Enemy>().displayName;
+        enemy.name = enemy.GetComponentInChildren<Enemy>().displayName;
     }
 }

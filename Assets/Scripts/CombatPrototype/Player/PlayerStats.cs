@@ -38,6 +38,12 @@ public class PlayerStats : CharacterStats
             healthSliderValue.slider.value = health;
         }
 
+        if (previewSliderValue != null)
+        {
+            previewSliderValue.slider.maxValue = maxHealth;
+            previewSliderValue.slider.value = health;
+        }
+
         combatManager.HealingLeft.text = potionCount.ToString();
 
         if (potionCount == 0)

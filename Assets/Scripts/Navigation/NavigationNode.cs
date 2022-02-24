@@ -24,6 +24,8 @@ public class NavigationNode : MonoBehaviour
     [HideInInspector]
     public bool stopLevels = false;
 
+    public Sprite[] backgrounds;
+
     public void Setup(NavigationManager navigationManager, E_Levels newNavScene, bool current)
     {
         navManager = navigationManager;
@@ -95,7 +97,7 @@ public class NavigationNode : MonoBehaviour
 
             if (!stopEvents)
             {
-                navEvent.Setup(sceneLoader, navScene);
+                navEvent.Setup(sceneLoader, navScene, backgrounds.Length > 0 ? ChooseBackgrounds() : null);
                 navEvent.StartEvent();
             }
         }
@@ -110,6 +112,11 @@ public class NavigationNode : MonoBehaviour
         }
         
         return generateEvent;
+    }
+
+    Sprite ChooseBackgrounds()
+    {
+        return backgrounds[Random.Range(0, backgrounds.Length)];
     }
 
     #region Quest Progress Requirements

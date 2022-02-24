@@ -46,6 +46,7 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        name = displayName;
         sprite = image.sprite;
 
         if (displayName != null)
