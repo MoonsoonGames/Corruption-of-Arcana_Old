@@ -13,6 +13,8 @@ public class EnemyStats : CharacterStats
 
     Enemy enemy;
 
+    public Text healthText;
+
     protected override void Start()
     {
         base.Start();
@@ -26,6 +28,27 @@ public class EnemyStats : CharacterStats
         {
             healthSliderValue.slider.maxValue = maxHealth;
             healthSliderValue.slider.value = health;
+        }
+
+        if (previewSliderValue != null)
+        {
+            previewSliderValue.slider.maxValue = maxHealth;
+            previewSliderValue.slider.value = health;
+        }
+
+        if (healthText != null)
+        {
+            healthText.text = health.ToString();
+        }
+    }
+
+    public override void ChangeHealth(int value, bool damage, E_DamageTypes damageType, out int damageTaken, GameObject attacker, bool canBeCountered)
+    {
+        base.ChangeHealth(value, damage, damageType, out damageTaken, attacker, canBeCountered);
+
+        if (healthText != null)
+        {
+            healthText.text = health.ToString();
         }
     }
 
@@ -65,6 +88,7 @@ public class EnemyStats : CharacterStats
         if (status.revealEntry && enemy != null)
         {
             GameObject.FindObjectOfType<LoadSettings>().AddToGuidebook(enemy.displayName);
+            GameObject.FindObjectOfType<AbilityManager>().EnemyInfo(enemy);
         }
     }
 }

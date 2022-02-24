@@ -26,11 +26,18 @@ public class NavigationEvents : ScriptableObject
     public Object[] enemy1, enemy2, enemy3;
     Object[] enemies = new Object[3];
 
-    public void Setup(SceneLoader newSceneLoader, E_Levels newNavScene)
+    Sprite background;
+
+    public Quest startQuest;
+    public QuestObjective completeObjective;
+
+    public void Setup(SceneLoader newSceneLoader, E_Levels newNavScene, Sprite backgroundImage)
     {
-        loadSettings = GameObject.FindObjectOfType<LoadSettings>();
+        loadSettings = LoadSettings.instance;
         navScene = newNavScene;
         sceneLoader = newSceneLoader;
+
+        background = backgroundImage;
 
         enemies[0] = enemy1[Random.Range(0, enemy1.Length)];
         enemies[1] = enemy2[Random.Range(0, enemy2.Length)];
@@ -39,6 +46,11 @@ public class NavigationEvents : ScriptableObject
 
     public void StartEvent()
     {
+        if (startQuest != null)
+        {
+            startQuest.AcceptQuest();
+        }
+
         bool fight = false;
 
         foreach (var item in enemies)
@@ -55,7 +67,12 @@ public class NavigationEvents : ScriptableObject
         }
         else
         {
-            //give player rewards now
+            GiveRewards();
+
+            if (completeObjective != null)
+            {
+                completeObjective.CompleteGoal();
+            }
         }
     }
 
@@ -70,15 +87,60 @@ public class NavigationEvents : ScriptableObject
             loadSettings.enemies[1] = enemies[1];
             loadSettings.enemies[2] = enemies[2];
 
+            loadSettings.background = background;
+
             loadSettings.goldReward = goldReward;
             loadSettings.potionReward = potionReward;
             //loadSettings.itemReward = itemReward;
 
+            if (completeObjective != null && completeObjective.canComplete)
+            {
+                loadSettings.currentFightObjective = completeObjective;
+            }
+
             loadSettings.lastLevel = navScene;
-            loadSettings.lastLevelString = navScene.ToString();
 
             if (sceneLoader != null)
                 sceneLoader.LoadSpecifiedScene(loadScene.ToString(), LoadSceneMode.Single, null);
         }
     }
+
+    #region Rewards
+
+    void GiveRewards()
+    {
+        Debug.Log("Give rewards");
+        if (loadSettings != null && loadSettings.currentFight != null)
+        {
+            loadSettings.currentGold += (int)Random.Range(goldReward.x, goldReward.y);
+            loadSettings.potionCount = DeterminePotions(loadSettings.potionCount);
+        }
+    }
+
+    int DeterminePotions(float potions)
+    {
+        int potionsReward = (int)potions;
+        float chance = potions % 1f;
+
+        int test = potionsReward;
+
+        if (RandomBoolWeighting(chance))
+            potionsReward++;
+
+        //Debug.Log(test + " | " + chance + " | " + potionsReward);
+
+        return Mathf.Clamp(potionsReward, 0, 5);
+    }
+
+    //From Gam140 Godsent by Andrew Scott
+    private bool RandomBoolWeighting(float weighting)
+    {
+        if (Random.value >= weighting)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    #endregion
 }

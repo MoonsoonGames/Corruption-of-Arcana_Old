@@ -9,7 +9,7 @@ public class PlayerSpawner : MonoBehaviour
     public LoadSettings loadSettings;
     public GameObject player;
     GameObject cam;
-    public UIManager UIManager;
+    public MenuManager menuManager;
     public Slider healthBar;
     public Slider arcanaBar;
     public GameObject interactImage;
@@ -22,30 +22,20 @@ public class PlayerSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        LoadSettings[] loadSettingsArray = GameObject.FindObjectsOfType<LoadSettings>();
+        loadSettings = LoadSettings.instance;
 
         if (interactImage != null)
         {
             interactImage.SetActive(false);
         }
 
-        foreach (var item in loadSettingsArray)
-        {
-            if (item.CheckMain())
-            {
-                SpawnPlayer(item);
-            }
-            else
-            {
-                Destroy(item); //There is already one in the scene, delete this one
-            }
-        }    
+        SpawnPlayer();
     }
 
-    void SpawnPlayer(LoadSettings loadSettingsRef)
+    void SpawnPlayer()
     {
-        Vector3 spawnPos = loadSettingsRef.RequestPosition(SceneManager.GetActiveScene().name);
-        Quaternion spawnRot = loadSettingsRef.RequestRotation(SceneManager.GetActiveScene().name);
+        Vector3 spawnPos = loadSettings.RequestPosition(SceneManager.GetActiveScene().name);
+        Quaternion spawnRot = loadSettings.RequestRotation(SceneManager.GetActiveScene().name);
 
         GameObject playerRef = Instantiate(player, spawnPos, spawnRot) as GameObject;
 
@@ -57,12 +47,15 @@ public class PlayerSpawner : MonoBehaviour
         controller.healthBar = healthBar;
         controller.arcanaBar = arcanaBar;
         controller.interactImage = interactImage;
-        UIManager.player = playerRef;
-        UIManager.Camera = cam.gameObject;
+        menuManager.Player = playerRef;
+        menuManager.PlayerCamera = cam.gameObject;
+        menuManager.compass.player = controller.gameObject.transform;
 
         minimap.player = playerRef.transform;
         compass.player = playerRef.transform;
 
         controller.Location = location;
+
+        controller.Setup();
     }
 }

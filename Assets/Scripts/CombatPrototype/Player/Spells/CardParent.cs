@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "NewStatusEffect", menuName = "Combat/Spells", order = 0)]
+[CreateAssetMenu(fileName = "NewSpell", menuName = "Combat/Spells", order = 0)]
 public class CardParent : ScriptableObject
 {
     #region General
@@ -65,8 +66,6 @@ public class CardParent : ScriptableObject
         CharacterStats stats = target.GetComponent<CharacterStats>();
         if (stats != null && abilityManager != null)
         {
-            abilityManager.MouseLeft();
-
             if (abilityManager.playerStats.CheckMana(selfCost) && abilityManager.playerStats.CheckPotions(selfPotionCost))
             {
                 canCast = true;
@@ -179,8 +178,6 @@ public class CardParent : ScriptableObject
             if (abilityManager.playerStats.CheckMana(cost))
             {
                 canCast = true;
-
-                abilityManager.MouseLeft();
 
                 if (targetChain)
                 {

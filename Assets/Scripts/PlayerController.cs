@@ -15,12 +15,13 @@ public class PlayerController : MonoBehaviour
     public GameObject Player;
     public Text Location;
     public static PlayerController instance;
-    private SceneLoader sceneLoader;
     private LoadSettings loadSettings;
 
     public GameObject interactImage;
     bool interact = false;
     Dialogue dialogue;
+
+    public Animator modelAnimator;
 
     #endregion
 
@@ -76,67 +77,29 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
-    void Start()
+    public void Setup()
     {
         //Load position
         moveSpeed = baseMoveSpeed;
         characterController = GetComponent<CharacterController>();
         rb = GetComponent<Rigidbody>();
 
-        sceneLoader = GameObject.FindObjectOfType<SceneLoader>();
+        loadSettings = LoadSettings.instance;
 
-        LoadSettings[] loadSettingsArray = GameObject.FindObjectsOfType<LoadSettings>();
-
-        if (interactImage != null)
+        if (loadSettings.checkPoint)
         {
-            interactImage.SetActive(false);
+            loadSettings.SaveCheckpoint(SceneManager.GetActiveScene());
         }
 
-        foreach (var item in loadSettingsArray)
-        {
-            if (item.CheckMain())
-            {
-                loadSettings = item;
+        loadSettings.died = false;
 
-                health = loadSettings.health;
-
-                if (loadSettings.died)
-                {
-                    potionCount = loadSettings.checkPointPotionCount;
-                    loadSettings.potionCount = loadSettings.checkPointPotionCount;
-                }
-                else
-                {
-                    potionCount = loadSettings.potionCount;
-                }
-                
-                Vector3 spawnPos = loadSettings.RequestPosition(SceneManager.GetActiveScene().name);
-                Quaternion spawnRot = loadSettings.RequestRotation(SceneManager.GetActiveScene().name);
-                
-                //SetupTransform(spawnPos);
-
-                StartCoroutine(IDelayStartTransform(2f, spawnPos, spawnRot));
-
-                loadSettings.died = false;
-            }
-            else
-            {
-                Destroy(item); //There is already one in the scene, delete this one
-            }
-
-        }
-
-        loadSettingsArray = GameObject.FindObjectsOfType<LoadSettings>();
-
-        //Debug.Log("Length: " + loadSettingsArray.Length);
-        //Debug.Break();
+        StartCoroutine(IDelayMovement(2f));
     }
 
-    IEnumerator IDelayStartTransform(float delay, Vector3 newSpawnPos, Quaternion newSpawnRot)
+    IEnumerator IDelayMovement(float delay)
     {
         yield return new WaitForSeconds(delay);
         //Debug.Log("Should be able to move");
-        SetupTransform(newSpawnPos, newSpawnRot);
         canMove = true;
     }
 
@@ -164,21 +127,14 @@ public class PlayerController : MonoBehaviour
                     moveDirection.y = jumpSpeed;
                 }
 
-                if (Input.GetKey(KeyCode.LeftShift))
+                isRunning = Input.GetKey(KeyCode.LeftShift);
+                if (IsRunning)
                 {
                     moveSpeed = baseSprintSpeed;
                 }
-                if (Input.GetKey(KeyCode.LeftControl))
-                {
-                    moveSpeed = baseSneakSpeed;
-                }
-                if (!Input.GetKey(KeyCode.LeftShift) & !Input.GetKey(KeyCode.LeftControl))
-                {
-                    moveSpeed = baseMoveSpeed;
-                }
+
                 if (Input.GetButton("Interact") && interact && dialogue != null)
                 {
-                    loadSettings.Checkpoint(SceneManager.GetActiveScene());
                     canMove = !dialogue.LoadScene();
                 }
             }
@@ -218,7 +174,7 @@ public class PlayerController : MonoBehaviour
 
             if (enemyController != null)
             {
-                enemyController.LoadCombat(sceneLoader);
+                enemyController.LoadCombat();
             }
         }
 
@@ -226,12 +182,26 @@ public class PlayerController : MonoBehaviour
         {
             //Debug.Log("Can Interact");
             interact = true;
-            dialogue = other.gameObject.GetComponent<Dialogue>();
+
+            Dialogue[] dialogueArray = other.gameObject.GetComponents<Dialogue>();
+
+            foreach (var item in dialogueArray)
+            {
+                if (item.CanSpeak())
+                {
+                    dialogue = item;
+
+                    if (item.forceDialogue)
+                    {
+                        canMove = !dialogue.LoadScene();
+                    }
+                }
+            }
 
             /*if (dialogue != null && dialogue.dialogue != null && loadSettings != null)
                 loadSettings.dialogueFlowChart = dialogue.dialogue;*/
 
-            if (interactImage != null && dialogue.CanSpeak())
+            if (interactImage != null && dialogue != null)
             {
                 interactImage.SetActive(true);
             }
@@ -310,6 +280,11 @@ public class PlayerController : MonoBehaviour
                 loadSettings.playerPosInClearing = transform.position;
                 loadSettings.playerRotInClearing = transform.rotation;
             }
+            else if (scene == E_Levels.Cave.ToString())
+            {
+                loadSettings.playerPosInCave = transform.position;
+                loadSettings.playerRotInCave = transform.rotation;
+            }
             else if (scene == E_Levels.Tiertarock.ToString())
             {
                 loadSettings.playerPosInTiertarock = transform.position;
@@ -367,6 +342,51 @@ public class PlayerController : MonoBehaviour
         if (loadSettings != null)
         {
             loadSettings.potionCount = potionCount;
+        }
+    }
+    private bool isGrounded;
+    public bool IsGrounded
+    {
+        get
+        {
+            return isGrounded;
+        }
+        set
+        {
+            isGrounded = value;
+            modelAnimator.SetBool("IsGrounded", value);
+        }
+    }
+    /// <summary>
+    /// Gets or sets whether a character is moving in the current frame.
+    /// </summary>
+    private bool isMoving;
+    public bool IsMoving
+    {
+        get
+        {
+            return isMoving;
+        }
+        set
+        {
+            isMoving = value;
+            modelAnimator.SetBool("IsMoving", value);
+        }
+    }
+    /// <summary>
+    /// Gets or sets whether a character is running in the current frame.
+    /// </summary>
+    private bool isRunning;
+    public bool IsRunning
+    {
+        get
+        {
+            return isRunning;
+        }
+        set
+        {
+            isRunning = value;
+            modelAnimator.SetBool("IsRunning", value);
         }
     }
 }

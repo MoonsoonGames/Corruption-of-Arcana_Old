@@ -34,6 +34,8 @@ public class CombatManager : MonoBehaviour
     public Text HealingValue;
     public Text HealingLeft;
 
+    public GameObject endTurnButton;
+
     #endregion
 
     public PlayerStats playerStats;
@@ -54,6 +56,7 @@ public class CombatManager : MonoBehaviour
     int actionsLeft = 0;
 
     public int arcanaRegen = 20;
+    public Image bgImage;
 
     public void Start()
     {
@@ -73,8 +76,11 @@ public class CombatManager : MonoBehaviour
         Ap.SetActive(false);
         Healing.SetActive(false);
         PlayableDecks.SetActive(false);
+        endTurnButton.SetActive(false);
 
-        loadSettings = GameObject.Find("LoadSettings").GetComponent<LoadSettings>();
+        loadSettings = LoadSettings.instance;
+
+        SetBackground();
 
         if (loadSettings != null)
         {
@@ -111,6 +117,7 @@ public class CombatManager : MonoBehaviour
             currentTurnText.color = Color.green;
             HealingItem.SetActive(true);
             PlayableDecks.SetActive(true);
+            endTurnButton.SetActive(true);
 
             //Debug.Log("Regenerate Mana");
             playerStats.ChangeMana(arcanaRegen, false);
@@ -157,6 +164,7 @@ public class CombatManager : MonoBehaviour
         if (player)
         {
             playerStats.OnTurnEndStatus();
+            endTurnButton.SetActive(false);
         }
         else
         {
@@ -188,8 +196,6 @@ public class CombatManager : MonoBehaviour
 
         if (victory)
         {
-            
-
             VictoryScreen.SetActive(true);
             //SceneManager.LoadLast;//Needs to load last scene and position
         }
@@ -207,9 +213,9 @@ public class CombatManager : MonoBehaviour
         }
     }
 
-    public void TargetEnemies(bool visible)
+    public void TargetEnemies(bool visible, CardParent spell)
     {
-        enemyManager.TargetEnemies(visible);
+        enemyManager.TargetEnemies(visible, spell);
     }
 
     public void Rewards(int healing, int gold, int potions)
@@ -228,5 +234,15 @@ public class CombatManager : MonoBehaviour
         }
 
         //Debug.Log("No current fight");
+    }
+
+    public void SetBackground()
+    {
+        if (bgImage != null && loadSettings.background != null)
+        {
+            bgImage.sprite = loadSettings.background;
+        }
+
+        loadSettings.background = null;
     }
 }
