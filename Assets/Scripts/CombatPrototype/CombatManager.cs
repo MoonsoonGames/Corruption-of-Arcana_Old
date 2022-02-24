@@ -196,8 +196,6 @@ public class CombatManager : MonoBehaviour
 
         if (victory)
         {
-            
-
             VictoryScreen.SetActive(true);
             //SceneManager.LoadLast;//Needs to load last scene and position
         }
