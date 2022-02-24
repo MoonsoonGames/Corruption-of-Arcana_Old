@@ -20,6 +20,8 @@ public class Rewards : MonoBehaviour
 
         if (combatManager != null && loadSettings != null)
         {
+            #region Rewards
+
             int gold = (int)Random.Range(loadSettings.goldReward.x, loadSettings.goldReward.y);
 
             int potions = DeterminePotions(loadSettings.potionReward);
@@ -54,6 +56,8 @@ public class Rewards : MonoBehaviour
                 images[3].SetActive(true);
                 count[3].text = "1";
             }
+
+            #endregion
 
             Quests();
 

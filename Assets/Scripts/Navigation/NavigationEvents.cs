@@ -99,7 +99,6 @@ public class NavigationEvents : ScriptableObject
             }
 
             loadSettings.lastLevel = navScene;
-            loadSettings.lastLevelString = navScene.ToString();
 
             if (sceneLoader != null)
                 sceneLoader.LoadSpecifiedScene(loadScene.ToString(), LoadSceneMode.Single, null);
