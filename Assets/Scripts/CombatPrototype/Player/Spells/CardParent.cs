@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "NewCard", menuName = "Combat/Spells", order = 0)]
+[CreateAssetMenu(fileName = "NewSpell", menuName = "Combat/Spells", order = 0)]
 public class CardParent : ScriptableObject
 {
     #region General
@@ -65,8 +66,6 @@ public class CardParent : ScriptableObject
         CharacterStats stats = target.GetComponent<CharacterStats>();
         if (stats != null && abilityManager != null)
         {
-            abilityManager.MouseLeft();
-
             if (abilityManager.playerStats.CheckMana(selfCost) && abilityManager.playerStats.CheckPotions(selfPotionCost))
             {
                 canCast = true;
@@ -77,8 +76,12 @@ public class CardParent : ScriptableObject
                 //Debug.Log("Cast" + selfName + "on " + target.name);
 
                 stats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int damageTaken, stats.gameObject, false);
-                abilityManager.combatManager.Healing.SetActive(true);
-                abilityManager.combatManager.HealingValue.text = heal.ToString();
+                if (heal > 0)
+                {
+                    abilityManager.combatManager.Healing.SetActive(true);
+                    abilityManager.combatManager.HealingValue.text = heal.ToString();
+                    abilityManager.RemoveHpPopup(2f);
+                }
 
                 PlayerStats playerStats = target.GetComponent<PlayerStats>();
 
@@ -93,6 +96,7 @@ public class CardParent : ScriptableObject
                     stats.ChangeMana(selfCost - mana, true);
                     abilityManager.combatManager.Ap.SetActive(true);
                     abilityManager.combatManager.ApValue.text = selfCost.ToString();
+                    abilityManager.RemoveApPopup(2f);
 
                     playerStats.ChangePotions(selfPotionCost, true);
 
@@ -102,11 +106,11 @@ public class CardParent : ScriptableObject
                     {
                         abilityManager.EndTurn(selfEndTurnDelay);
                     }
-                    else if (selfUsesAction)
+                    else if (selfUsesAction &! enemySpell)
                     {
                         CombatManager combatManager = GameObject.FindObjectOfType<CombatManager>();
 
-                        combatManager.IncrementCastCards();
+                        combatManager.UseAction();
                     }
                 }
             }
@@ -114,7 +118,7 @@ public class CardParent : ScriptableObject
             {
                 abilityManager.combatManager.noMana.SetActive(true);
                 Debug.Log("Insufficient Mana");
-                abilityManager.RemovePopup(selfEndTurnDelay + 5f);
+                abilityManager.RemoveArcanaPopup(selfEndTurnDelay + 5f);
             }
         }
         else
@@ -174,8 +178,6 @@ public class CardParent : ScriptableObject
             if (abilityManager.playerStats.CheckMana(cost))
             {
                 canCast = true;
-
-                abilityManager.MouseLeft();
 
                 if (targetChain)
                 {
@@ -336,18 +338,18 @@ public class CardParent : ScriptableObject
                     casterStats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int healNull, caster, false);
                 }
 
-                if (targetUsesAction)
+                if (targetUsesAction & !enemySpell)
                 {
                     CombatManager combatManager = GameObject.FindObjectOfType<CombatManager>();
 
-                    combatManager.IncrementCastCards();
+                    combatManager.UseAction();
                 }
             }
             else
             {
                 abilityManager.combatManager.noMana.SetActive(true);
                 //Debug.Log("Insufficient Mana");
-                abilityManager.RemovePopup(selfEndTurnDelay + 5f);
+                abilityManager.RemoveArcanaPopup(selfEndTurnDelay + 5f);
             }
         }
         else
@@ -402,12 +404,12 @@ public class CardParent : ScriptableObject
 
     public bool QuerySelf(GameObject target, GameObject caster, AbilityManager abilityManager)
     {
-        return (abilityManager.combatManager.GetCardsCast() < 2 || !selfUsesAction || caster != GameObject.Find("Player")) && (target == caster && selfInterpretationUnlocked && target.GetComponent<CharacterStats>() != null);
+        return (abilityManager.combatManager.GetCardsCast() > 0 || !selfUsesAction || caster != GameObject.Find("Player")) && (target == caster && selfInterpretationUnlocked && target.GetComponent<CharacterStats>() != null);
     }
 
     public bool QueryTarget(GameObject target, GameObject caster, AbilityManager abilityManager)
     {
-        return (abilityManager.combatManager.GetCardsCast() < 2 || !targetUsesAction || caster != GameObject.Find("Player")) && (target != caster && targetInterpretationUnlocked && target.GetComponent<CharacterStats>() != null);
+        return (abilityManager.combatManager.GetCardsCast() > 0 || !targetUsesAction || caster != GameObject.Find("Player")) && (target != caster && targetInterpretationUnlocked && target.GetComponent<CharacterStats>() != null);
     }
 
     void SpawnFX(Object FX, Transform transform)

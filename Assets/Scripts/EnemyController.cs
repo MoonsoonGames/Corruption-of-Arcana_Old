@@ -10,8 +10,10 @@ public class EnemyController : MonoBehaviour
     public bool boss = false;
 
     public Object[] enemies = new Object[3];
+    public QuestObjective objective;
 
     private LoadSettings loadSettings;
+    private SceneLoader sceneLoader;
 
     public E_Levels combatScene;
     public Vector2 goldReward;
@@ -19,11 +21,13 @@ public class EnemyController : MonoBehaviour
     public string itemReward;
 
     public string enemyName;
+    public Sprite background;
 
     // Start is called before the first frame update
     void Awake()
     {
-        loadSettings = GameObject.Find("LoadSettings").GetComponent<LoadSettings>();
+        loadSettings = LoadSettings.instance;
+        sceneLoader = GetComponent<SceneLoader>();
 
         if (loadSettings != null)
         {
@@ -35,10 +39,11 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    public void LoadCombat(SceneLoader sceneLoader)
+    public void LoadCombat()
     {
         if (loadSettings != null)
         {
+            Debug.Log("Load combat");
             loadSettings.fightingBoss = boss;
             loadSettings.currentFight = name;
 
@@ -46,12 +51,29 @@ public class EnemyController : MonoBehaviour
             loadSettings.enemies[1] = enemies[1];
             loadSettings.enemies[2] = enemies[2];
 
+            loadSettings.background = background;
+
             loadSettings.goldReward = goldReward;
             loadSettings.potionReward = potionReward;
             loadSettings.itemReward = itemReward;
 
+            if (objective != null && objective.canComplete)
+            {
+                loadSettings.currentFightObjective = objective;
+            }
+
+            loadSettings.SetScene(SceneManager.GetActiveScene().name);
+
             if (sceneLoader != null)
                 sceneLoader.LoadSpecifiedScene(combatScene.ToString(), LoadSceneMode.Single, null);
+            else
+            {
+                Debug.Log("No scene loader");
+            }
+        }
+        else
+        {
+            Debug.Log("no load settings");
         }
     }
 }

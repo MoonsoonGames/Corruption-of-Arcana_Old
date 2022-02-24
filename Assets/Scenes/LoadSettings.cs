@@ -11,9 +11,6 @@ public class LoadSettings : MonoBehaviour
 
     #region Dialogue
 
-    public bool dialogueComplete = false;
-    public bool prologueComplete = false;
-
     public Object dialogueFlowChart;
     public bool loadSceneMultiple = false;
 
@@ -24,11 +21,12 @@ public class LoadSettings : MonoBehaviour
     #region Levels
 
     public E_Levels lastLevel;
-    public string lastLevelString;
     public Vector3 playerPosInThoth;
     public Quaternion playerRotInThoth;
     public Vector3 playerPosInClearing;
     public Quaternion playerRotInClearing;
+    public Vector3 playerPosInCave;
+    public Quaternion playerRotInCave;
     public Vector3 playerPosInTiertarock;
     public Quaternion playerRotInTiertarock;
 
@@ -42,6 +40,7 @@ public class LoadSettings : MonoBehaviour
     public string checkPointString;
 
     public bool died;
+    public bool checkPoint = false;
 
     #endregion
 
@@ -49,6 +48,8 @@ public class LoadSettings : MonoBehaviour
 
     public bool fightingBoss = false;
     public Object[] enemies = new Object[3];
+    public Sprite background;
+
     public List<string> enemiesKilled = new List<string>();
     public List<string> checkpointEnemies = new List<string>();
 
@@ -72,38 +73,28 @@ public class LoadSettings : MonoBehaviour
 
     private void Awake()
     {
-        LoadSettings[] loadSettings = GameObject.FindObjectsOfType<LoadSettings>();
+        Singleton();
 
-        //Debug.Log(loadSettings.Length);
+        questSaver = GetComponent<SaveLoadQuestData>();
 
-        if (loadSettings.Length > 1)
-        {
-            //Debug.Log("destroying");
-            Destroy(this); //There is already one in the scene, delete this one
-        }
-        else
-        {
-            main = true;
-            DontDestroyOnLoad(this.gameObject);
-        }
+        DontDestroyOnLoad(this);
     }
 
     #endregion
 
     #region Singleton
 
-    bool main = false;
+    public static LoadSettings instance = null;
 
-    public bool CheckMain()
+    void Singleton()
     {
-        if (main)
+        if (instance == null)
         {
-            return true;
+            instance = this;
         }
-        else
+        else if (instance != this)
         {
-            //Debug.Log("destroying");
-            return false;
+            Destroy(gameObject);
         }
     }
 
@@ -119,20 +110,8 @@ public class LoadSettings : MonoBehaviour
 
         if (died)
         {
-            #region Reset last position
+            LoadCheckpointData();
 
-            if (lastLevelString == E_Levels.Thoth.ToString())
-            {
-                playerPosInThoth = new Vector3(-358.679993f, 38.8400002f, 288.880005f);
-            }
-            else if (lastLevelString == E_Levels.EastForestClearing.ToString())
-            {
-                playerPosInClearing = new Vector3(37f, 7.61000013f, 294.160004f);
-            }
-
-            #endregion
-
-            ResetEnemies();
             targetPos = checkPointPos;
 
             targetPos.x = checkPointPos.x;
@@ -145,11 +124,11 @@ public class LoadSettings : MonoBehaviour
         {
             targetPos = new Vector3();
             
-            lastLevelString = scene;
+            SetScene(scene);
 
             //Debug.Log(scene + " and " + lastLevelString);
 
-            if (lastLevelString == E_Levels.Thoth.ToString())
+            if (lastLevel.ToString() == E_Levels.Thoth.ToString())
             {
                 targetPos = playerPosInThoth;
 
@@ -157,18 +136,27 @@ public class LoadSettings : MonoBehaviour
                 targetPos.y = playerPosInThoth.y;
                 targetPos.z = playerPosInThoth.z;
             }
-            else if (lastLevelString == E_Levels.EastForestClearing.ToString())
+            else if (lastLevel.ToString() == E_Levels.EastForestClearing.ToString())
             {
-                Debug.Log(scene + " and " + lastLevelString);
+                Debug.Log(scene + " and " + lastLevel.ToString());
                 targetPos = playerPosInClearing;
 
                 targetPos.x = playerPosInClearing.x;
                 targetPos.y = playerPosInClearing.y;
                 targetPos.z = playerPosInClearing.z;
             }
-            else if (lastLevelString == E_Levels.Tiertarock.ToString())
+            else if (lastLevel.ToString() == E_Levels.Cave.ToString())
             {
-                Debug.Log(scene + " and " + lastLevelString);
+                Debug.Log(scene + " and " + lastLevel.ToString());
+                targetPos = playerPosInCave;
+
+                targetPos.x = playerPosInCave.x;
+                targetPos.y = playerPosInCave.y;
+                targetPos.z = playerPosInCave.z;
+            }
+            else if (lastLevel.ToString() == E_Levels.Tiertarock.ToString())
+            {
+                Debug.Log(scene + " and " + lastLevel.ToString());
                 targetPos = playerPosInTiertarock;
 
                 targetPos.x = playerPosInTiertarock.x;
@@ -203,11 +191,11 @@ public class LoadSettings : MonoBehaviour
         {
             targetRot = new Quaternion();
 
-            lastLevelString = scene;
+            SetScene(scene);
 
             //Debug.Log(scene + " and " + lastLevelString);
 
-            if (lastLevelString == E_Levels.Thoth.ToString())
+            if (lastLevel.ToString() == E_Levels.Thoth.ToString())
             {
                 targetRot = playerRotInThoth;
 
@@ -216,9 +204,9 @@ public class LoadSettings : MonoBehaviour
                 targetRot.z = playerRotInThoth.z;
                 targetRot.w = playerRotInThoth.w;
             }
-            else if (lastLevelString == E_Levels.EastForestClearing.ToString())
+            else if (lastLevel.ToString() == E_Levels.EastForestClearing.ToString())
             {
-                Debug.Log(scene + " and " + lastLevelString);
+                Debug.Log(scene + " and " + lastLevel.ToString());
                 targetRot = playerRotInClearing;
 
                 targetRot.x = playerRotInClearing.x;
@@ -226,9 +214,18 @@ public class LoadSettings : MonoBehaviour
                 targetRot.z = playerRotInClearing.z;
                 targetRot.w = playerRotInClearing.w;
             }
-            else if (lastLevelString == E_Levels.Tiertarock.ToString())
+            else if (lastLevel.ToString() == E_Levels.Cave.ToString())
             {
-                Debug.Log(scene + " and " + lastLevelString);
+                Debug.Log(scene + " and " + lastLevel.ToString());
+                targetRot = playerRotInCave;
+
+                targetRot.x = playerRotInCave.x;
+                targetRot.y = playerRotInCave.y;
+                targetRot.z = playerRotInCave.z;
+            }
+            else if (lastLevel.ToString() == E_Levels.Tiertarock.ToString())
+            {
+                Debug.Log(scene + " and " + lastLevel.ToString());
                 targetRot = playerRotInTiertarock;
 
                 targetRot.x = playerRotInTiertarock.x;
@@ -260,6 +257,16 @@ public class LoadSettings : MonoBehaviour
 
     #endregion
 
+    #region Last Level
+
+    public void SetScene(string scene)
+    {
+        //https://answers.unity.com/questions/52162/converting-a-string-to-an-enum.html
+        lastLevel = (E_Levels)System.Enum.Parse(typeof(E_Levels), scene);
+    }
+
+    #endregion
+
     #region Checkpoints
 
     public void ResetEnemies()
@@ -273,7 +280,46 @@ public class LoadSettings : MonoBehaviour
         }
     }
 
-    public void Checkpoint(Scene newCheckPoint)
+    public void SetCheckpoint()
+    {
+        checkPoint = true;
+    }
+
+    public void LoadCheckpointData()
+    {
+        #region Reset last position and quest data
+
+        questSaver.LoadQuestData();
+
+        //Resets last position in these levels
+        if (lastLevel.ToString() == E_Levels.Thoth.ToString())
+        {
+            playerPosInThoth = new Vector3(-358.679993f, 38.8400002f, 288.880005f);
+        }
+        else if (lastLevel.ToString() == E_Levels.EastForestClearing.ToString())
+        {
+            playerPosInClearing = new Vector3(37f, 7.61000013f, 294.160004f);
+        }
+        else if (lastLevel.ToString() == E_Levels.Cave.ToString())
+        {
+            Debug.Log("Cave was last scene");
+            playerPosInCave = new Vector3(37f, 45.2999992f, 260.899994f);
+        }
+        else
+        {
+            Debug.Log("Error: " + lastLevel.ToString() + " || " + E_Levels.Cave.ToString());
+        }
+
+        currentNodeID = checkpointNodeID;
+
+        potionCount = checkPointPotionCount;
+
+        #endregion
+
+        ResetEnemies();
+    }
+
+    public void SaveCheckpoint(Scene newCheckPoint)
     {
         Debug.Log("Checkpoint");
         checkpointEnemies.Clear();
@@ -283,8 +329,17 @@ public class LoadSettings : MonoBehaviour
             checkpointEnemies.Add(item);
         }
 
-        checkPointScene = newCheckPoint;
-        checkPointString = checkPointScene.name;
+        if (newCheckPoint != null)
+        {
+            checkPointScene = newCheckPoint;
+            checkPointString = checkPointScene.name;
+        }
+
+        checkpointNodeID = currentNodeID;
+
+        questSaver.SaveQuestData();
+
+        checkPoint = false;
     }
 
     #endregion
@@ -327,11 +382,20 @@ public class LoadSettings : MonoBehaviour
     #region Travelling
 
     public string currentNodeID;
+    public string checkpointNodeID;
 
     public void TravelStart(NavigationNode newNode)
     {
         currentNodeID = newNode.name;
     }
+
+    #endregion
+
+    #region Quests
+
+    public List<Quest> quests;
+    public QuestObjective currentFightObjective;
+    SaveLoadQuestData questSaver;
 
     #endregion
 }

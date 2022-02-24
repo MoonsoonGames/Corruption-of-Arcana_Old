@@ -25,6 +25,8 @@ public class AbilityManager : MonoBehaviour
 
     public SliderVariation sliderVarScript;
 
+    EndTurn endTurn;
+
 
     #region Ability Values
 
@@ -59,6 +61,7 @@ public class AbilityManager : MonoBehaviour
     {
         activeCard = GameObject.FindObjectOfType<ActiveCard>();
         targetter = GetComponentInChildren<Targetter>();
+        endTurn = GameObject.FindObjectOfType<EndTurn>();
     }
 
     #endregion
@@ -80,22 +83,6 @@ public class AbilityManager : MonoBehaviour
         Vector2Int extradmg;
 
         GetReadyAbilityInfo(out multihit, out restore, out selfType, out dmg, out type, out cardNameSelf, out cardNameTarget, out hitsAll, out extradmg);
-        //Debug.Log(selfType);
-        if (selfType == "Healing & Arcana" || selfType == "Healing")
-        {
-            sliderVarScript.ApplyPreview(-restore);
-        }
-        if (selfType == "Healing & Arcana" || selfType == "Arcana")
-        {
-            //newSliderVarScript for mana preview
-        }
-    }
-
-    public void MouseLeft()
-    {
-        //Debug.Log("Button stop hovering");
-        sliderVarScript.StopPreview();
-        //stop preview for mana slider too
     }
 
     public void GetReadyAbilityInfo(out bool multihit, out Vector2Int restore, out string selfType, out Vector2Int dmg, out E_DamageTypes type, out string cardNameSelf, out string cardNameTarget, out bool hitsAll, out Vector2Int extradmg)
@@ -119,6 +106,8 @@ public class AbilityManager : MonoBehaviour
 
     public void CastAbility(GameObject target)
     {
+        endTurn.OpenMenu(false);
+
         if (playerTurn)
         {
             if (readyAbility != null)
@@ -162,7 +151,7 @@ public class AbilityManager : MonoBehaviour
     public void SetAbility(CardParent ability, CardSetter card)
     {
         EnemyInfo(null);
-
+        endTurn.OpenMenu(false);
         readyAbility = ability;
         readiedCard = card;
 
@@ -170,20 +159,20 @@ public class AbilityManager : MonoBehaviour
         {
             if (ability.selfInterpretationUnlocked && ability.targetInterpretationUnlocked)
             {
-                combatManager.TargetEnemies(true);
-                targetter.SetVisibility(true);
+                combatManager.TargetEnemies(true, ability);
+                targetter.SetVisibility(true, null);
                 activeCard.ReadyCard(ability.cardName, "Two interpretations", ability.selfHeal, "Unknown", ability.selfCost, "Two interpretations active, UI issue", ability.selfCostType);
             }
             else if (ability.selfInterpretationUnlocked)
             {
-                combatManager.TargetEnemies(false);
-                targetter.SetVisibility(true);
+                combatManager.TargetEnemies(false, ability);
+                targetter.SetVisibility(true, null);
                 activeCard.ReadyCard(ability.cardName, ability.selfName, ability.RestoreValue(), ability.RestoreType(), ability.selfCost, ability.selfDescription, ability.selfCostType);
             }
             else if (ability.targetInterpretationUnlocked)
             {
-                combatManager.TargetEnemies(true);
-                targetter.SetVisibility(false);
+                combatManager.TargetEnemies(true, ability);
+                targetter.SetVisibility(false, null);
                 activeCard.ReadyCard(ability.cardName, ability.targetName, ability.TotalDmgRange(), ability.damageType.ToString(), ability.targetCost, ability.targetDescription, ability.targetCostType);
             }
         }
@@ -196,8 +185,8 @@ public class AbilityManager : MonoBehaviour
         if (activeCard != null)
             activeCard.CastCard();
 
-        combatManager.TargetEnemies(false);
-        targetter.SetVisibility(false);
+        combatManager.TargetEnemies(false, null);
+        targetter.SetVisibility(false, null);
     }
 
     #endregion
@@ -282,7 +271,7 @@ public class AbilityManager : MonoBehaviour
 
             combatManager.Dmg.SetActive(true);
             combatManager.DmgValue.text = multihitTally.ToString();
-
+            
             //Debug.Log(multihitCount + " hits for " + multihitTally + " points of damage (not final damage as enemy mey be vulnerable or resistant to the damage)");
 
             if (multihitCount >= multihitMax)
@@ -291,6 +280,7 @@ public class AbilityManager : MonoBehaviour
 
                 multihitCount = 0;
                 multihitTally = 0;
+                RemoveDmgPopup(2f);
             }
         }
     }
@@ -392,16 +382,52 @@ public class AbilityManager : MonoBehaviour
         }
     }
 
-    public void RemovePopup(float delay)
+    public void RemoveArcanaPopup(float delay)
     {
-        StartCoroutine(IRemovePopup(delay));
+        StartCoroutine(IRemoveArcanaPopup(delay));
     }
 
-    private IEnumerator IRemovePopup(float delay)
+    private IEnumerator IRemoveArcanaPopup(float delay)
     {
         yield return new WaitForSeconds(delay);
 
         combatManager.noMana.SetActive(false);
+    }
+
+    public void RemoveDmgPopup(float delay)
+    {
+        StartCoroutine(IRemoveDmgPopup(delay));
+    }
+
+    private IEnumerator IRemoveDmgPopup(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        combatManager.Dmg.SetActive(false);
+    }
+
+    public void RemoveHpPopup(float delay)
+    {
+        StartCoroutine(IRemoveHpPopup(delay));
+    }
+
+    private IEnumerator IRemoveHpPopup(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        combatManager.Healing.SetActive(false);
+    }
+
+    public void RemoveApPopup(float delay)
+    {
+        StartCoroutine(IRemoveApPopup(delay));
+    }
+
+    private IEnumerator IRemoveApPopup(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        combatManager.Ap.SetActive(false);
     }
 
     #endregion

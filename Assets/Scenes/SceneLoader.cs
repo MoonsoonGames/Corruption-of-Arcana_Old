@@ -19,7 +19,7 @@ public class SceneLoader : MonoBehaviour
 
         currentScene = SceneManager.GetActiveScene();
 
-        loadSettings = GameObject.FindObjectOfType<LoadSettings>();
+        loadSettings = LoadSettings.instance;
     }
 
     void LoadScene(string scene)
@@ -36,13 +36,6 @@ public class SceneLoader : MonoBehaviour
                 loadSettings.SetPlayerInput(true);
                 contains = true;
                 index = i;
-
-                DestroyDialogue[] destroyArray = GameObject.FindObjectsOfType<DestroyDialogue>();
-
-                foreach (var item in destroyArray)
-                {
-                    item.CheckDialogue();
-                }
             }
         }
 
@@ -79,6 +72,8 @@ public class SceneLoader : MonoBehaviour
 
         #endregion
 
+        SetLoadSettingsScene(SceneManager.GetActiveScene().name);
+
         LoadDialogue(dialogueFlowChart);
 
         LoadScene(sceneString);
@@ -88,18 +83,23 @@ public class SceneLoader : MonoBehaviour
     {
         //Set load settings level to new level
         LoadDialogue(dialogueFlowChart);
-        LoadScene(loadSettings.lastLevelString);
+        LoadScene(loadSettings.lastLevel.ToString());
     }
     
     public void LoadCheckpointScene(Object dialogueFlowChart)
     {
         //Set load settings level to new level
+        loadSettings.died = true;
+        loadSettings.LoadCheckpointData();
+
         LoadDialogue(dialogueFlowChart);
         LoadScene(loadSettings.checkPointString);
     }
 
     public void LoadSpecifiedScene(string scene, LoadSceneMode sceneMode, Object dialogueFlowChart)
     {
+        SetLoadSettingsScene(SceneManager.GetActiveScene().name);
+
         //Set load settings level to new level
         LoadDialogue(dialogueFlowChart);
         SceneManager.LoadScene(scene, sceneMode);
@@ -112,6 +112,18 @@ public class SceneLoader : MonoBehaviour
         {
             loadSettings.dialogueFlowChart = dialogueFlowChart;
             //Debug.Log(loadSettings.dialogueFlowChart);
+        }
+    }
+
+    void SetLoadSettingsScene(string newScene)
+    {
+        if (SceneManager.GetActiveScene().name == E_Levels.CombatPrototype.ToString() || SceneManager.GetActiveScene().name == E_Levels.Dialogue.ToString())
+        {
+            //Do nothing
+        }
+        else
+        {
+            loadSettings.lastLevel = (E_Levels)System.Enum.Parse(typeof(E_Levels), newScene);
         }
     }
 }

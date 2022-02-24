@@ -15,7 +15,8 @@ MonoBehaviour:
   cardName: Backstab
   cardNumber: 5
   flavourDescription: 
-  cardImage: {fileID: 0}
+  cardImage: {fileID: -4448962368760175236, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
+    type: 3}
   enemySpell: 0
   selfInterpretationUnlocked: 0
   selfName: 
@@ -33,15 +34,20 @@ MonoBehaviour:
   selfStatusDuration: 
   targetInterpretationUnlocked: 1
   targetName: Backstab
-  targetDescription: Bypass your opponent's defenses with a strike that ignores damage
-    resistances
+  targetDescription: 'Bypass your opponent''s defenses with a strike that ignores
+    damage resistances and has a chance to expose your target, reducing their resistances
+    and revealing their log entry in the journal
+
+
+    Also allows to to click on
+    the enemy to view their stats in combat'
   targetEndTurn: 0
   targetUsesAction: 1
-  targetCost: 0
-  targetCostType: 
+  targetCost: 10
+  targetCostType: AP
   damageType: 6
   targetCanBeCountered: 0
-  targetDmg: {x: 12, y: 24}
+  targetDmg: {x: 18, y: 28}
   hits: 1
   hitInterval: 0
   finalHitInterval: 0
@@ -54,9 +60,11 @@ MonoBehaviour:
   lifeLeach: {x: 0, y: 0}
   healOnKill: {x: 0, y: 0}
   executeThreshold: 0
-  targetStatus: []
-  targetStatusDuration: 
-  targetStatusChance: []
+  targetStatus:
+  - {fileID: 11400000, guid: a71ba48d9e31518499d97057b673a672, type: 2}
+  targetStatusDuration: 02000000
+  targetStatusChance:
+  - 0.6
   spawnPosition: 4
   summonAlly: {fileID: 0}
   summonCount: 0

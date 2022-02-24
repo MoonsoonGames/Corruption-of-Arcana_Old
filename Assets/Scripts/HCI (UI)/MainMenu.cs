@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour
 {
     public GameObject mainMenu;
     public GameObject creditsScreen;
+    public GameObject thanksScreen;
 
     public E_Levels sceneToLoad;
     string sceneString;
@@ -29,6 +30,16 @@ public class MainMenu : MonoBehaviour
     {
         mainMenu.SetActive(false);
         creditsScreen.SetActive(true);
+    }
+    public void Thanks()
+    {
+        mainMenu.SetActive(false);
+        thanksScreen.SetActive(true);
+    }
+    public void Menu()
+    {
+        mainMenu.SetActive(true);
+        thanksScreen.SetActive(false);
     }
     public void back()
     {

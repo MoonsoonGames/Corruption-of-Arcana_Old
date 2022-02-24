@@ -34,14 +34,14 @@ public class CombatManager : MonoBehaviour
     public Text HealingValue;
     public Text HealingLeft;
 
+    public GameObject endTurnButton;
+
     #endregion
 
     public PlayerStats playerStats;
     public EnemyStats enemyStats;
-
-    public int turnCounter = 1;
     public bool battleActive = false;
-    public Text turnCountText;
+    public Text actionsCountText;
     public Text currentTurnText;
 
     public AbilityManager abilityManager;
@@ -52,7 +52,11 @@ public class CombatManager : MonoBehaviour
 
     bool boss = false;
 
-    int cardsCast = 0;
+    public int maxActions;
+    int actionsLeft = 0;
+
+    public int arcanaRegen = 20;
+    public Image bgImage;
 
     public void Start()
     {
@@ -72,8 +76,11 @@ public class CombatManager : MonoBehaviour
         Ap.SetActive(false);
         Healing.SetActive(false);
         PlayableDecks.SetActive(false);
+        endTurnButton.SetActive(false);
 
-        loadSettings = GameObject.Find("LoadSettings").GetComponent<LoadSettings>();
+        loadSettings = LoadSettings.instance;
+
+        SetBackground();
 
         if (loadSettings != null)
         {
@@ -92,8 +99,6 @@ public class CombatManager : MonoBehaviour
 
     public void StartTurn(bool player)
     {
-        cardsCast = 0;
-
         abilityManager.playerTurn = player;
 
         /*
@@ -103,17 +108,19 @@ public class CombatManager : MonoBehaviour
 
         if (player)
         {
+            actionsLeft = maxActions;
+
+            if (actionsCountText != null)
+                actionsCountText.text = actionsLeft.ToString();
+
             currentTurnText.text = "Player";
             currentTurnText.color = Color.green;
             HealingItem.SetActive(true);
             PlayableDecks.SetActive(true);
+            endTurnButton.SetActive(true);
 
             //Debug.Log("Regenerate Mana");
-            playerStats.ChangeMana(20, false);
-
-            Dmg.SetActive(false);
-            Ap.SetActive(false);
-            Healing.SetActive(false);
+            playerStats.ChangeMana(arcanaRegen, false);
 
             if (combatDeckManager != null)
             {
@@ -148,13 +155,16 @@ public class CombatManager : MonoBehaviour
 
     public void EndTurn(bool player)
     {
-        cardsCast = 0;
+        actionsLeft = 0;
 
         abilityManager.playerTurn = !player;
+
+        abilityManager.ResetAbility();
         
         if (player)
         {
             playerStats.OnTurnEndStatus();
+            endTurnButton.SetActive(false);
         }
         else
         {
@@ -165,21 +175,19 @@ public class CombatManager : MonoBehaviour
         }
 
         StartTurn(!player);
-
-        turnCounter++;
-
-        if (turnCountText != null)
-            turnCountText.text = turnCounter.ToString();
     }
 
-    public void IncrementCastCards()
+    public void UseAction()
     {
-        cardsCast++;
+        actionsLeft--;
+
+        if (actionsCountText != null)
+            actionsCountText.text = actionsLeft.ToString();
     }
 
     public int GetCardsCast()
     {
-        return cardsCast;
+        return actionsLeft;
     }
 
     public void ShowEndScreen(bool victory)
@@ -188,8 +196,6 @@ public class CombatManager : MonoBehaviour
 
         if (victory)
         {
-            
-
             VictoryScreen.SetActive(true);
             //SceneManager.LoadLast;//Needs to load last scene and position
         }
@@ -207,9 +213,9 @@ public class CombatManager : MonoBehaviour
         }
     }
 
-    public void TargetEnemies(bool visible)
+    public void TargetEnemies(bool visible, CardParent spell)
     {
-        enemyManager.TargetEnemies(visible);
+        enemyManager.TargetEnemies(visible, spell);
     }
 
     public void Rewards(int healing, int gold, int potions)
@@ -228,5 +234,15 @@ public class CombatManager : MonoBehaviour
         }
 
         //Debug.Log("No current fight");
+    }
+
+    public void SetBackground()
+    {
+        if (bgImage != null && loadSettings.background != null)
+        {
+            bgImage.sprite = loadSettings.background;
+        }
+
+        loadSettings.background = null;
     }
 }

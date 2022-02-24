@@ -15,7 +15,8 @@ MonoBehaviour:
   cardName: Flurry
   cardNumber: 4
   flavourDescription: 
-  cardImage: {fileID: 0}
+  cardImage: {fileID: -3056297102037108793, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
+    type: 3}
   enemySpell: 0
   selfInterpretationUnlocked: 0
   selfName: 
@@ -33,11 +34,12 @@ MonoBehaviour:
   selfStatusDuration: 
   targetInterpretationUnlocked: 1
   targetName: Flurry
-  targetDescription: Hit your opponent with five times in quick succession
+  targetDescription: Hit your opponent with five times in quick succession, each
+    with a small chance to bleed
   targetEndTurn: 0
   targetUsesAction: 1
-  targetCost: 0
-  targetCostType: 
+  targetCost: 22
+  targetCostType: AP
   damageType: 0
   targetCanBeCountered: 1
   targetDmg: {x: 4, y: 8}
@@ -53,9 +55,11 @@ MonoBehaviour:
   lifeLeach: {x: 0, y: 0}
   healOnKill: {x: 0, y: 0}
   executeThreshold: 0
-  targetStatus: []
-  targetStatusDuration: 
-  targetStatusChance: []
+  targetStatus:
+  - {fileID: 11400000, guid: 0aa56a9e5ce959e4b96c703989b64011, type: 2}
+  targetStatusDuration: 01000000
+  targetStatusChance:
+  - 0.2
   spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0

@@ -38,6 +38,12 @@ public class PlayerStats : CharacterStats
             healthSliderValue.slider.value = health;
         }
 
+        if (previewSliderValue != null)
+        {
+            previewSliderValue.slider.maxValue = maxHealth;
+            previewSliderValue.slider.value = health;
+        }
+
         combatManager.HealingLeft.text = potionCount.ToString();
 
         if (potionCount == 0)
@@ -57,6 +63,7 @@ public class PlayerStats : CharacterStats
         {
             mana = Mathf.Clamp(mana - value, 0, maxMana);
             combatManager.ArcanaPointsValue.text = mana.ToString();
+            combatManager.abilityManager.RemoveApPopup(2f);
         }
         else
         {

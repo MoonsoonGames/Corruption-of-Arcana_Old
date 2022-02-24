@@ -13,6 +13,7 @@ public class NavigationNode : MonoBehaviour
     public NavigationEvents[] possibleEvents;
 
     public Button button;
+    public GameObject marker;
     public Color currentColour;
     public Color availableColour;
     public Color unavailableColour;
@@ -22,6 +23,8 @@ public class NavigationNode : MonoBehaviour
     public bool stopEvents = false;
     [HideInInspector]
     public bool stopLevels = false;
+
+    public Sprite[] backgrounds;
 
     public void Setup(NavigationManager navigationManager, E_Levels newNavScene, bool current)
     {
@@ -51,16 +54,29 @@ public class NavigationNode : MonoBehaviour
 
     public void SetAvailable(bool available)
     {
-        button.interactable = available;
-        canTravelTo = available;
-
-        if (available)
+        if (CheckQuestsInProgress() && CheckQuestsCompleted())
         {
-            button.image.color = availableColour;
+            button.interactable = available;
+            canTravelTo = available;
+            button.image.raycastTarget = available;
+            marker.SetActive(true);
+
+            if (available)
+            {
+                button.image.color = availableColour;
+            }
+            else
+            {
+                button.image.color = unavailableColour;
+            }
         }
         else
         {
-            button.image.color = unavailableColour;
+            button.image.color = new Color(0, 0, 0, 0);
+            button.interactable = false;
+            button.image.raycastTarget = false;
+            canTravelTo = false;
+            marker.SetActive(false);
         }
     }
 
@@ -81,7 +97,7 @@ public class NavigationNode : MonoBehaviour
 
             if (!stopEvents)
             {
-                navEvent.Setup(sceneLoader, navScene);
+                navEvent.Setup(sceneLoader, navScene, backgrounds.Length > 0 ? ChooseBackgrounds() : null);
                 navEvent.StartEvent();
             }
         }
@@ -97,4 +113,135 @@ public class NavigationNode : MonoBehaviour
         
         return generateEvent;
     }
+
+    Sprite ChooseBackgrounds()
+    {
+        return backgrounds[Random.Range(0, backgrounds.Length)];
+    }
+
+    #region Quest Progress Requirements
+
+    public Quest[] requireQuestsInProgress;
+    public QuestObjective[] requireObjectivesInProgress;
+    public bool requireAllInProgress = true;
+
+    public Quest[] disableQuestsInProgress;
+    public QuestObjective[] disableObjectivesInProgress;
+
+    public bool CheckQuestsInProgress()
+    {
+        bool enableNode = false;
+
+        bool contains1 = false;
+        bool containsAll = true;
+
+        foreach (var item in requireQuestsInProgress)
+        {
+            if (item.isActive)
+            {
+                contains1 = true;
+            }
+            else
+            {
+                containsAll = false;
+            }
+        }
+
+        foreach (var item in requireObjectivesInProgress)
+        {
+            if (item.canComplete)
+            {
+                contains1 = true;
+            }
+            else
+            {
+                containsAll = false;
+            }
+        }
+
+        enableNode = (containsAll) || (!requireAllCompleted && contains1);
+
+        foreach (var item in disableQuestsInProgress)
+        {
+            if (item.isActive)
+            {
+                enableNode = false;
+            }
+        }
+
+        foreach (var item in disableObjectivesInProgress)
+        {
+            if (item.canComplete)
+            {
+                enableNode = false;
+            }
+        }
+
+        return enableNode;
+    }
+
+    #endregion
+
+    #region Quest Completed Requirements
+
+    public Quest[] requireQuestsCompleted;
+    public QuestObjective[] requireObjectivesCompleted;
+    public bool requireAllCompleted = true;
+
+    public Quest[] disableQuestsCompleted;
+    public QuestObjective[] disableObjectivesCompleted;
+
+    public bool CheckQuestsCompleted()
+    {
+        bool enableNode = false;
+
+        bool contains1 = false;
+        bool containsAll = true;
+
+        foreach (var item in requireQuestsCompleted)
+        {
+            if (item.isComplete)
+            {
+                contains1 = true;
+            }
+            else
+            {
+                containsAll = false;
+            }
+        }
+
+        foreach (var item in requireObjectivesCompleted)
+        {
+            if (item.completed)
+            {
+                contains1 = true;
+            }
+            else
+            {
+                containsAll = false;
+            }
+        }
+
+        enableNode = (containsAll) || (!requireAllCompleted && contains1);
+
+        foreach (var item in disableQuestsCompleted)
+        {
+            if (item.isComplete)
+            {
+                enableNode = false;
+            }
+        }
+
+        foreach (var item in disableObjectivesCompleted)
+        {
+            if (item.completed)
+            {
+                enableNode = false;
+            }
+        }
+
+        return enableNode;
+    }
+
+    #endregion
 }

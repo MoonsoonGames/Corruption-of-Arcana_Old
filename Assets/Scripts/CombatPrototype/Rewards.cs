@@ -16,10 +16,12 @@ public class Rewards : MonoBehaviour
 
     public void GiveRewards()
     {
-        loadSettings = GameObject.FindObjectOfType<LoadSettings>();
+        loadSettings = LoadSettings.instance;
 
         if (combatManager != null && loadSettings != null)
         {
+            #region Rewards
+
             int gold = (int)Random.Range(loadSettings.goldReward.x, loadSettings.goldReward.y);
 
             int potions = DeterminePotions(loadSettings.potionReward);
@@ -55,6 +57,10 @@ public class Rewards : MonoBehaviour
                 count[3].text = "1";
             }
 
+            #endregion
+
+            Quests();
+
             combatManager.Rewards(healing, gold, potions);
         }
     }
@@ -82,5 +88,14 @@ public class Rewards : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    private void Quests()
+    {
+        if (loadSettings.currentFightObjective != null)
+        {
+            loadSettings.currentFightObjective.CompleteGoal();
+            loadSettings.currentFightObjective = null;
+        }
     }
 }
