@@ -98,7 +98,7 @@ public class NavigationEvents : ScriptableObject
                 loadSettings.currentFightObjective = completeObjective;
             }
 
-            loadSettings.lastLevel = navScene;
+            //loadSettings.lastLevel = navScene;
 
             if (sceneLoader != null)
                 sceneLoader.LoadSpecifiedScene(loadScene.ToString(), LoadSceneMode.Single, null);

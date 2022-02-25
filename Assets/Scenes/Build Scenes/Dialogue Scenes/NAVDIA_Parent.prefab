@@ -69,6 +69,9 @@ GameObject:
   - component: {fileID: 7326043992507716152}
   - component: {fileID: 6068211016577766774}
   - component: {fileID: 545505911299039581}
+  - component: {fileID: 3395483243730542658}
+  - component: {fileID: 913068207222925897}
+  - component: {fileID: 1872985684753177737}
   m_Layer: 0
   m_Name: NAVDIA_Parent
   m_TagString: Untagged
@@ -117,8 +120,7 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 6628632757593028197}
-  selectedCommands:
-  - {fileID: 3621427290557646428}
+  selectedCommands: []
   variables: []
   description: 
   stepPause: 0
@@ -1316,7 +1318,7 @@ MonoBehaviour:
   nodeRect:
     serializedVersion: 2
     x: -103.746414
-    y: 170.78145
+    y: 169.46565
     width: 111.84209
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
@@ -1396,6 +1398,101 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ee7614beacb8470ea7b51740476f43c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3395483243730542658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6584572301936081014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 692900648f2ecb44486380e10e7378be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &913068207222925897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6584572301936081014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodeRect:
+    serializedVersion: 2
+    x: 28.241814
+    y: 170.8851
+    width: 146.05261
+    height: 40
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  useCustomTint: 0
+  itemId: 75
+  blockName: Change Backdrop
+  description: 
+  eventHandler: {fileID: 0}
+  commandList:
+  - {fileID: 1872985684753177737}
+  suppressAllAutoSelections: 0
+--- !u!114 &1872985684753177737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6584572301936081014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95d9ff288f3904c05ada7ac9c9a075bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 76
+  indentLevel: 0
+  description: 
+  delay: 0
+  invokeType: 0
+  staticEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3395483243730542658}
+        m_TargetAssemblyTypeName: DialogueBackdrop, Assembly-CSharp
+        m_MethodName: LoadSpecificBG
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  booleanParameter:
+    booleanRef: {fileID: 0}
+    booleanVal: 0
+  booleanEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  integerParameter:
+    integerRef: {fileID: 0}
+    integerVal: 0
+  integerEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  floatParameter:
+    floatRef: {fileID: 0}
+    floatVal: 0
+  floatEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  stringParameter:
+    stringRef: {fileID: 0}
+    stringVal: 
+  stringEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &808288501727304502
 PrefabInstance:
   m_ObjectHideFlags: 0
