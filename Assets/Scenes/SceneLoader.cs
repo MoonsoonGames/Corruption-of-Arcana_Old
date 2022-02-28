@@ -62,7 +62,7 @@ public class SceneLoader : MonoBehaviour
             if (level == sceneToLoad)
             {
                 //Debug.Log(level + " is the same");
-                loadSettings.lastLevel = level;
+                SetLoadSettingsScene(level.ToString());
 
                 LoadDialogue(dialogueFlowChart);
                 LoadScene(sceneString);
@@ -117,13 +117,20 @@ public class SceneLoader : MonoBehaviour
 
     void SetLoadSettingsScene(string newScene)
     {
-        if (SceneManager.GetActiveScene().name == E_Levels.CombatPrototype.ToString() || SceneManager.GetActiveScene().name == E_Levels.Dialogue.ToString())
+        if (GetCurrentSceneEnum() == E_Levels.CombatPrototype || (GetCurrentSceneEnum() == E_Levels.Dialogue))
         {
             //Do nothing
+            Debug.Log(GetCurrentSceneEnum().ToString() + " Scene is: " + E_Levels.CombatPrototype + " or " + E_Levels.Dialogue);
         }
         else
         {
+            Debug.Log(GetCurrentSceneEnum().ToString() + " Scene is not: " + E_Levels.CombatPrototype + " or " + E_Levels.Dialogue);
             loadSettings.lastLevel = (E_Levels)System.Enum.Parse(typeof(E_Levels), newScene);
         }
+    }
+
+    E_Levels GetCurrentSceneEnum()
+    {
+        return (E_Levels)System.Enum.Parse(typeof(E_Levels), SceneManager.GetActiveScene().name);
     }
 }

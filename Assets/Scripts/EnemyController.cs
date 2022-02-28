@@ -29,6 +29,11 @@ public class EnemyController : MonoBehaviour
         loadSettings = LoadSettings.instance;
         sceneLoader = GetComponent<SceneLoader>();
 
+        if (sceneLoader == null)
+        {
+            sceneLoader = GameObject.FindObjectOfType<SceneLoader>();
+        }
+
         if (loadSettings != null)
         {
             if (loadSettings.enemiesKilled.Contains(name))
@@ -51,7 +56,10 @@ public class EnemyController : MonoBehaviour
             loadSettings.enemies[1] = enemies[1];
             loadSettings.enemies[2] = enemies[2];
 
-            loadSettings.background = background;
+            if (loadSettings.background == null && background != null)
+            {
+                loadSettings.background = background;
+            }
 
             loadSettings.goldReward = goldReward;
             loadSettings.potionReward = potionReward;
@@ -62,10 +70,12 @@ public class EnemyController : MonoBehaviour
                 loadSettings.currentFightObjective = objective;
             }
 
-            loadSettings.SetScene(SceneManager.GetActiveScene().name);
+            //loadSettings.SetScene(SceneManager.GetActiveScene().name);
 
             if (sceneLoader != null)
+            {
                 sceneLoader.LoadSpecifiedScene(combatScene.ToString(), LoadSceneMode.Single, null);
+            }
             else
             {
                 Debug.Log("No scene loader");
