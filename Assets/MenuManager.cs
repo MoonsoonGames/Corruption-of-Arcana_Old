@@ -36,6 +36,10 @@ public class MenuManager : MonoBehaviour
 
     public Slider PauseHealthBar;
     public Slider PauseArcanaBar;
+    public Text HPPotionCount;
+    public Text APPotionCount;
+    public Text RPotionCount;
+    public Text SPotionCount;
 
     public Text goldCount;
     #endregion
@@ -50,6 +54,8 @@ public class MenuManager : MonoBehaviour
         //hide/lock mouse
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
+        loadSettings = LoadSettings.instance;
     }
 
     // Update is called once per frame
@@ -104,19 +110,26 @@ public class MenuManager : MonoBehaviour
                 //unlock mouse - confined to window
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
-
-                //update gold counter when opening the menu
-                goldCount.text = loadSettings.currentGold.ToString();
             }
         }
         #endregion
-        
+
         #region Stats Update
-        if (PauseMenuUI.activeSelf == true)
+        if(PauseMenuUI.activeSelf == true)
         {
-            
-            PauseHealthBar.value = playerController.health;
-            PauseArcanaBar.value = playerController.arcana;
+            //update the HP and AP bars
+            PauseHealthBar.value = loadSettings.health;
+            Debug.Log(PauseHealthBar.value + "||" + loadSettings.health);
+            //PauseArcanaBar.value = loadSettings.arcana;
+
+            //update gold counter
+            goldCount.text = loadSettings.currentGold.ToString();
+
+            //update the number of all the potions
+            HPPotionCount.text = loadSettings.potionCount.ToString();
+            APPotionCount.text = loadSettings.potionCount.ToString();
+            RPotionCount.text = loadSettings.potionCount.ToString();
+            SPotionCount.text = loadSettings.potionCount.ToString();
         }
         #endregion
     }
