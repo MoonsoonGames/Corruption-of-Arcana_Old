@@ -6,7 +6,7 @@ using System.Text;
 
 public class CardSetter : MonoBehaviour
 {
-    public CardParent[] combatCards;
+    public CardParent combatCard;
 
     private CardParent currentCard;
 
@@ -18,19 +18,16 @@ public class CardSetter : MonoBehaviour
 
     private Button button;
 
-    private void Start()
+    public void Setup(CardParent spell)
     {
         button = GetComponent<Button>();
         abilityManager = GameObject.FindObjectOfType<AbilityManager>();
+        currentCard = spell;
         DrawCards();
     }
 
     public void DrawCards()
     {
-        int rInt = Random.Range(0, combatCards.Length);
-        //Debug.Log(rInt);
-        currentCard = combatCards[rInt];
-
         if (cardText != null)
         {
             cardText.text = currentCard.cardName;
