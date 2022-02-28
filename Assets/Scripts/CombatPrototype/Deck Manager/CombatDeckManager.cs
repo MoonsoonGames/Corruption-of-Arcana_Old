@@ -7,32 +7,35 @@ public class CombatDeckManager : MonoBehaviour
     List<CardSetter> cards = new List<CardSetter>();
 
     public Object card;
-    public CardParent[] basicArcana, majourArcana, corruptedArcana;
-    public List<CardParent> deck;
+    List<CardParent> deck = new List<CardParent>();
 
     public Vector3Int cardsCount;
 
     public float offsetInterval = 0.5f;
 
-    private void Start()
+    public void Setup()
     {
         CombineDecks();
     }
 
     void CombineDecks()
     {
-        Debug.Log("Combining Decks");
-        foreach (var item in basicArcana)
+        LoadSettings loadSettings = LoadSettings.instance;
+
+        if (loadSettings != null)
         {
-            deck.Add(item);
-        }
-        foreach (var item in majourArcana)
-        {
-            deck.Add(item);
-        }
-        foreach (var item in corruptedArcana)
-        {
-            deck.Add(item);
+            foreach (var item in loadSettings.basicArcana)
+            {
+                deck.Add(item);
+            }
+            foreach (var item in loadSettings.majourArcana)
+            {
+                deck.Add(item);
+            }
+            foreach (var item in loadSettings.corruptedArcana)
+            {
+                deck.Add(item);
+            }
         }
     }
 

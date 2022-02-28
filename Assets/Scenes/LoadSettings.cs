@@ -317,6 +317,8 @@ public class LoadSettings : MonoBehaviour
         #endregion
 
         ResetEnemies();
+
+        ResetCards();
     }
 
     public void SaveCheckpoint(Scene newCheckPoint)
@@ -340,6 +342,8 @@ public class LoadSettings : MonoBehaviour
         questSaver.SaveQuestData();
 
         checkPoint = false;
+
+        ResetCards();
     }
 
     #endregion
@@ -396,6 +400,20 @@ public class LoadSettings : MonoBehaviour
     public List<Quest> quests;
     public QuestObjective currentFightObjective;
     SaveLoadQuestData questSaver;
+
+    #endregion
+
+    #region Deckbuilding
+
+    public List<CardParent> basicArcana;
+    public List<CardParent> majourArcana;
+    public List<CardParent> corruptedArcana;
+
+    void ResetCards()
+    {
+        Debug.Log("Reset cards");
+        majourArcana.Clear();
+    }
 
     #endregion
 }
