@@ -49,7 +49,7 @@ public class Dialogue : MonoBehaviour
                     if (controller != null)
                     {
                         Debug.Log(SceneManager.GetActiveScene());
-                        loadSettings.checkPointPotionCount = controller.GetPotions();
+                        loadSettings.checkPointHealingPotionCount = controller.GetPotions();
                         loadSettings.checkPointPos = controller.transform.position;
                         loadSettings.checkPointScene = SceneManager.GetActiveScene();
                     }

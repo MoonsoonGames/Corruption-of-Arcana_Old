@@ -50,7 +50,9 @@ public class NavigationManager : MonoBehaviour
     {
         loadSettings.TravelStart(newNode);
 
-        Debug.Log(newNode.GenerateNavigationEvent());
+        //Debug.Log(newNode.GenerateNavigationEvent());
+
+        newNode.GenerateNavigationEvent();
 
         ResetNodes();
         SetNodes();

@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Fungus;
 
 public class SpawnDialogue : MonoBehaviour
 {
     public GameObject[] flowCharts;
+    Flowchart[] flowChartArrays;
     public GameObject backupFlowChart;
     LoadSettings loadSettings;
 
@@ -15,7 +17,10 @@ public class SpawnDialogue : MonoBehaviour
 
     private void Start()
     {
-        loadSettings = LoadSettings.instance;
+        if (LoadSettings.instance != null)
+        {
+            loadSettings = LoadSettings.instance;
+        }
 
         SetBGColour();
         BeginDialogue(loadSettings.dialogueFlowChart);
@@ -25,7 +30,7 @@ public class SpawnDialogue : MonoBehaviour
 
     void SetBGColour()
     {
-        if (loadSettings.loadSceneMultiple)
+        if (loadSettings != null && loadSettings.loadSceneMultiple)
         {
             background.color = multipleBGColour;
         }

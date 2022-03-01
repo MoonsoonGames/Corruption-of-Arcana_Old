@@ -344,7 +344,7 @@ public class PlayerController : MonoBehaviour
 
         if (loadSettings != null)
         {
-            loadSettings.potionCount = potionCount;
+            loadSettings.healingPotionCount = potionCount;
         }
     }
     private bool isGrounded;

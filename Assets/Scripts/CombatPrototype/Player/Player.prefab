@@ -355,6 +355,9 @@ MonoBehaviour:
   - {fileID: 4151990609013843852}
   - {fileID: 1831232799863650937}
   arrows: []
+  resistanceIcon: {fileID: 0}
+  positiveResistance: {fileID: 0}
+  negativeResistance: {fileID: 0}
   ally: 0
 --- !u!1 &3620284864101889492
 GameObject:
@@ -2408,8 +2411,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 120
-  maxMana: 12000
+  maxMana: 50
   healthSliderValue: {fileID: 6677293646742279964}
+  previewSliderValue: {fileID: 0}
   manaSliderValue: {fileID: 7551587576675593065}
   combatManager: {fileID: 0}
   killFX: {fileID: 0}
@@ -7626,7 +7630,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f94c122215b60c14e8a8a0152e0021d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  combatCards: []
+  combatCard: {fileID: 0}
   cardText: {fileID: 0}
   abilityManager: {fileID: 0}
   parent: {fileID: 0}

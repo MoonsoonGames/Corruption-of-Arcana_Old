@@ -54,8 +54,10 @@ public class LoadSettings : MonoBehaviour
     public List<string> checkpointEnemies = new List<string>();
 
     public int health = 1;
-    public int checkPointPotionCount;
-    public int potionCount;
+    public int checkPointHealingPotionCount;
+    public int healingPotionCount;
+    public int checkPointArcanaPotionCount;
+    public int arcanaPotionCount;
 
     public int currentGold;
     public int checkPointGold;
@@ -312,7 +314,7 @@ public class LoadSettings : MonoBehaviour
 
         currentNodeID = checkpointNodeID;
 
-        potionCount = checkPointPotionCount;
+        healingPotionCount = checkPointHealingPotionCount;
 
         #endregion
 
@@ -396,6 +398,20 @@ public class LoadSettings : MonoBehaviour
     public List<Quest> quests;
     public QuestObjective currentFightObjective;
     SaveLoadQuestData questSaver;
+
+    #endregion
+
+    #region Deckbuilding
+
+    public List<CardParent> basicArcana;
+    public List<CardParent> majourArcana;
+    public List<CardParent> corruptedArcana;
+
+    public void ResetCards()
+    {
+        Debug.Log("Reset cards");
+        majourArcana.Clear();
+    }
 
     #endregion
 }
