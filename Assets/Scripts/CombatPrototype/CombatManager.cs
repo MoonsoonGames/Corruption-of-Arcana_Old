@@ -75,8 +75,9 @@ public class CombatManager : MonoBehaviour
         Dmg.SetActive(false);
         Ap.SetActive(false);
         Healing.SetActive(false);
-        PlayableDecks.SetActive(false);
         endTurnButton.SetActive(false);
+
+        combatDeckManager.Setup();
 
         loadSettings = LoadSettings.instance;
 

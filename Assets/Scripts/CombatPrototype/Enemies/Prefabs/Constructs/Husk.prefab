@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 2319308776232433183, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: maxHealth
-      value: 80
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 2319308776232433183, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
@@ -27,51 +27,37 @@ PrefabInstance:
       propertyPath: basePhysicalMultiplier
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 2536844223079629241, guid: 24c6b79283add374eb3a4c0e1395b423,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2536844223079629241, guid: 24c6b79283add374eb3a4c0e1395b423,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2536844223079629241, guid: 24c6b79283add374eb3a4c0e1395b423,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3203386632741314580, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: desciption
-      value: Sculpters are not threatening alone, but they can restore their allies'
-        health and summon thralls to their aid.
+      value: Thrall are feeble and weak they can overpower you in large numbers,
+        so make sure to deal with them quickly.
       objectReference: {fileID: 0}
     - target: {fileID: 3203386632741314580, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: displayName
-      value: Sculptor
+      value: Husk
       objectReference: {fileID: 0}
     - target: {fileID: 3203386632741314580, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: guidebookOrder
-      value: 9
+      value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 3203386632741314580, guid: 24c6b79283add374eb3a4c0e1395b423,
-        type: 3}
-      propertyPath: spells.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3203386632741314580, guid: 24c6b79283add374eb3a4c0e1395b423,
-        type: 3}
-      propertyPath: spells.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 67a47940916d71448aa852559873a91b,
-        type: 2}
-    - target: {fileID: 3203386632741314580, guid: 24c6b79283add374eb3a4c0e1395b423,
-        type: 3}
-      propertyPath: spells.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: 101ddff1453b3a44dac248fe0454ca0c,
-        type: 2}
-    - target: {fileID: 3203386632741314580, guid: 24c6b79283add374eb3a4c0e1395b423,
-        type: 3}
-      propertyPath: spells.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: 67a47940916d71448aa852559873a91b,
-        type: 2}
-    - target: {fileID: 3203386632741314580, guid: 24c6b79283add374eb3a4c0e1395b423,
-        type: 3}
-      propertyPath: spells.Array.data[3]
-      value: 
-      objectReference: {fileID: 11400000, guid: 5f7e49da911f4fb41a403a1666c6d384,
-        type: 2}
     - target: {fileID: 3203386632741314580, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: basicAttacks.Array.size
@@ -81,12 +67,12 @@ PrefabInstance:
         type: 3}
       propertyPath: basicAttacks.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 5f7e49da911f4fb41a403a1666c6d384,
+      objectReference: {fileID: 11400000, guid: a64d449e73e6c3e42b3ec71adf5b9a78,
         type: 2}
     - target: {fileID: 3555124278669708756, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 200.8372
+      value: 196.4545
       objectReference: {fileID: 0}
     - target: {fileID: 3555124278669708756, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
@@ -96,23 +82,18 @@ PrefabInstance:
     - target: {fileID: 3555124278669708756, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 14.818594
+      value: 15.2272
       objectReference: {fileID: 0}
     - target: {fileID: 3555124278701396920, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3555124278701396920, guid: 24c6b79283add374eb3a4c0e1395b423,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -10.5
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 3555124278701396923, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: a358616ddda77b04bafb56dc57ddd29a,
+      objectReference: {fileID: 21300000, guid: 3e0a197e7d0af7c45a7c143a5453cddb,
         type: 3}
     - target: {fileID: 3555124278825360684, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
@@ -122,7 +103,7 @@ PrefabInstance:
     - target: {fileID: 3555124278825360684, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 150.1
+      value: 136
       objectReference: {fileID: 0}
     - target: {fileID: 3555124280068035572, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
@@ -132,12 +113,12 @@ PrefabInstance:
     - target: {fileID: 3555124280068035572, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 7
+      value: 8.97
       objectReference: {fileID: 0}
     - target: {fileID: 3555124280068035575, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: m_Text
-      value: Sculptor
+      value: Husk
       objectReference: {fileID: 0}
     - target: {fileID: 3555124280068035575, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
@@ -167,7 +148,7 @@ PrefabInstance:
     - target: {fileID: 3555124280263677705, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.27
       objectReference: {fileID: 0}
     - target: {fileID: 3555124280383455488, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
@@ -227,7 +208,7 @@ PrefabInstance:
     - target: {fileID: 3555124280383455489, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: m_Name
-      value: Sculptor
+      value: Husk
       objectReference: {fileID: 0}
     - target: {fileID: 3555124280383455490, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
@@ -252,43 +233,14 @@ PrefabInstance:
     - target: {fileID: 3555124280383455490, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: desciption
-      value: Sculpters are not threatening alone, but they can restore their allie's
-        health and summon allies to their aid.
+      value: Thrall are feeble and weak they can overpower you in large numbers,
+        so make sure to deal with them quickly.
       objectReference: {fileID: 0}
     - target: {fileID: 3555124280383455490, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: displayName
-      value: Sculptor
+      value: Thrall
       objectReference: {fileID: 0}
-    - target: {fileID: 3555124280383455490, guid: 24c6b79283add374eb3a4c0e1395b423,
-        type: 3}
-      propertyPath: spells.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3555124280383455490, guid: 24c6b79283add374eb3a4c0e1395b423,
-        type: 3}
-      propertyPath: spells.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 67a47940916d71448aa852559873a91b,
-        type: 2}
-    - target: {fileID: 3555124280383455490, guid: 24c6b79283add374eb3a4c0e1395b423,
-        type: 3}
-      propertyPath: spells.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: 101ddff1453b3a44dac248fe0454ca0c,
-        type: 2}
-    - target: {fileID: 3555124280383455490, guid: 24c6b79283add374eb3a4c0e1395b423,
-        type: 3}
-      propertyPath: spells.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: 67a47940916d71448aa852559873a91b,
-        type: 2}
-    - target: {fileID: 3555124280383455490, guid: 24c6b79283add374eb3a4c0e1395b423,
-        type: 3}
-      propertyPath: spells.Array.data[3]
-      value: 
-      objectReference: {fileID: 11400000, guid: 5f7e49da911f4fb41a403a1666c6d384,
-        type: 2}
     - target: {fileID: 3555124280383455490, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: basicAttacks.Array.size
@@ -298,7 +250,7 @@ PrefabInstance:
         type: 3}
       propertyPath: basicAttacks.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 5f7e49da911f4fb41a403a1666c6d384,
+      objectReference: {fileID: 11400000, guid: a64d449e73e6c3e42b3ec71adf5b9a78,
         type: 2}
     - target: {fileID: 3555124280383455491, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
@@ -308,7 +260,7 @@ PrefabInstance:
     - target: {fileID: 3555124280383455491, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
       propertyPath: maxHealth
-      value: 120
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 3555124280383455491, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
@@ -394,11 +346,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 23.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8451134415871556251, guid: 24c6b79283add374eb3a4c0e1395b423,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -147.5
       objectReference: {fileID: 0}
     - target: {fileID: 8625367558381792165, guid: 24c6b79283add374eb3a4c0e1395b423,
         type: 3}
