@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class InventoryItems : MonoBehaviour
 {
     LoadSettings loadSettings;
+    MenuManager menuManager;
 
-    public Text healthPotionText;
     int healthPotionCount;
 
     PlayerController controller;
@@ -27,13 +27,14 @@ public class InventoryItems : MonoBehaviour
         //heal
         if (controller != null)
         {
-            if (controller.health < controller.maxHealth && healthPotionCount > 0)
+            if (loadSettings.health < controller.maxHealth && healthPotionCount > 0)
             {
                 int heal = Random.Range(30, 46);
-                controller.health += heal;
+                loadSettings.health += heal;
+                Debug.Log(heal + "Health healed");
 
-                healthPotionCount--;
-                healthPotionText.text = healthPotionCount.ToString();
+                healthPotionCount = healthPotionCount - 1;
+                menuManager.HPPotionCount.text = healthPotionCount.ToString();
 
                 if (loadSettings != null)
                 {
