@@ -350,7 +350,7 @@ MonoBehaviour:
           colorVal: {r: 0, g: 0, b: 0, a: 0}
         floatData:
           floatRef: {fileID: 0}
-          floatVal: 0.6
+          floatVal: 0.4
         gameObjectData:
           gameObjectRef: {fileID: 0}
           gameObjectVal: {fileID: 0}
@@ -1301,7 +1301,7 @@ MonoBehaviour:
           colorVal: {r: 0, g: 0, b: 0, a: 0}
         floatData:
           floatRef: {fileID: 0}
-          floatVal: 0.6
+          floatVal: 0.5
         gameObjectData:
           gameObjectRef: {fileID: 0}
           gameObjectVal: {fileID: 0}
@@ -1530,7 +1530,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 196
   indentLevel: 0
-  text: '{Flee 60%} Run away'
+  text: '{Flee 50%} Run away'
   description: 
   targetBlock: {fileID: 168516224}
   hideIfVisited: 0
@@ -1932,7 +1932,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 1462667897}
+  selectedFlowchart: {fileID: 8730285601018825274}
 --- !u!4 &336365333
 Transform:
   m_ObjectHideFlags: 1
@@ -1985,6 +1985,7 @@ Transform:
   - {fileID: 3904641859779355610}
   - {fileID: 1153630273}
   - {fileID: 586113653}
+  - {fileID: 9218685394999254701}
   m_Father: {fileID: 495685936}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2130,6 +2131,7 @@ MonoBehaviour:
   - {fileID: 5457298888865767486}
   - {fileID: 1212633825084253085}
   - {fileID: 1010666507}
+  - {fileID: 1043920701}
   - {fileID: 168516222}
   - {fileID: 5677415179731317845}
   - {fileID: 3904641859779355611}
@@ -2140,7 +2142,7 @@ MonoBehaviour:
   - {fileID: 369504027}
   - {fileID: 943736471}
   - {fileID: 8966624037615893333}
-  - {fileID: 1043920701}
+  - {fileID: 9218685394999254702}
   backupFlowChart: {fileID: 1462667901}
   singleBGColour: {r: 0, g: 0, b: 0, a: 1}
   multipleBGColour: {r: 1, g: 1, b: 0.89411765, a: 0.3882353}
@@ -3506,7 +3508,7 @@ PrefabInstance:
     - target: {fileID: 501286144918964541, guid: 243febd78a2d0af47b137467b0432ddc,
         type: 3}
       propertyPath: text
-      value: '{Intimidate 60%} I won''t hand over what''s mine. You''ll have to collect
+      value: '{Intimidate 40%} I won''t hand over what''s mine. You''ll have to collect
         it from my corpse.'
       objectReference: {fileID: 0}
     - target: {fileID: 501286144918964541, guid: 243febd78a2d0af47b137467b0432ddc,
@@ -4283,7 +4285,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: -317.86185
     y: 87.904205
-    width: 102.17386
+    width: 104.54541
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -4361,7 +4363,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: -313.0584
     y: 191.31528
-    width: 141.30426
+    width: 146.36356
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -6635,18 +6637,6 @@ PrefabInstance:
     - {fileID: 1445309647007539673, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
     - {fileID: 570620674, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
---- !u!114 &1462667897 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5788963369338986568, guid: 5e44c1da357e9554e9892f17692c2d11,
-    type: 3}
-  m_PrefabInstance: {fileID: 1462667896}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1462667901}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a334fe2ffb574b3583ff3b18b4792d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1462667898 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5788963369338986581, guid: 5e44c1da357e9554e9892f17692c2d11,
@@ -11654,6 +11644,11 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1876431071}
+    - target: {fileID: 1167092303850023638, guid: 1f6fdd8835b60794bb05028c3874fe2e,
+        type: 3}
+      propertyPath: text
+      value: '{Flee 25%} Run away'
+      objectReference: {fileID: 0}
     - target: {fileID: 6518525588219603365, guid: 1f6fdd8835b60794bb05028c3874fe2e,
         type: 3}
       propertyPath: m_RootOrder
@@ -11718,6 +11713,11 @@ PrefabInstance:
         type: 3}
       propertyPath: selectedBlocks.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6741902933553776962, guid: 1f6fdd8835b60794bb05028c3874fe2e,
+        type: 3}
+      propertyPath: conditions.Array.data[0].anyVar.data.floatData.floatVal
+      value: 0.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f6fdd8835b60794bb05028c3874fe2e, type: 3}
@@ -12089,6 +12089,16 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1876431071}
+    - target: {fileID: 932370013037707195, guid: dc279755e2c406d4dbc8f7ed615e8769,
+        type: 3}
+      propertyPath: conditions.Array.data[0].anyVar.data.floatData.floatVal
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4706865437737425967, guid: dc279755e2c406d4dbc8f7ed615e8769,
+        type: 3}
+      propertyPath: text
+      value: '{Flee 40%} Run away'
+      objectReference: {fileID: 0}
     - target: {fileID: 6518525588219603365, guid: dc279755e2c406d4dbc8f7ed615e8769,
         type: 3}
       propertyPath: m_RootOrder
@@ -12175,6 +12185,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 340297886}
     m_Modifications:
+    - target: {fileID: 1729483686, guid: 04f769a0e0ddaed4bb2229af3cc522c3, type: 3}
+      propertyPath: value
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 1729483690, guid: 04f769a0e0ddaed4bb2229af3cc522c3, type: 3}
       propertyPath: staticEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -12187,6 +12201,14 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1876431071}
+    - target: {fileID: 1729483692, guid: 04f769a0e0ddaed4bb2229af3cc522c3, type: 3}
+      propertyPath: anyVar.data.floatData.floatVal
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729483693, guid: 04f769a0e0ddaed4bb2229af3cc522c3, type: 3}
+      propertyPath: text
+      value: '{Flee 50%} Sail away'
+      objectReference: {fileID: 0}
     - target: {fileID: 1729483698, guid: 04f769a0e0ddaed4bb2229af3cc522c3, type: 3}
       propertyPath: targetBlock
       value: 
@@ -12223,6 +12245,10 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1876431071}
+    - target: {fileID: 1729483754, guid: 04f769a0e0ddaed4bb2229af3cc522c3, type: 3}
+      propertyPath: text
+      value: '{Flee 75%} Sail away'
+      objectReference: {fileID: 0}
     - target: {fileID: 1729483756, guid: 04f769a0e0ddaed4bb2229af3cc522c3, type: 3}
       propertyPath: character
       value: 
@@ -12382,6 +12408,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02efb632ea380cd4bb2bdc15d8f4e029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8730285601018825274 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2892920138249984057, guid: 04f769a0e0ddaed4bb2229af3cc522c3,
+    type: 3}
+  m_PrefabInstance: {fileID: 8730285601018825272}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 943736471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a334fe2ffb574b3583ff3b18b4792d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8762164861981427743
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12496,6 +12534,10 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1876431071}
+    - target: {fileID: 67217852, guid: 8ccc2ff4a0c0c9547b83fb593615bb74, type: 3}
+      propertyPath: text
+      value: '{Flee 75%} Sail away'
+      objectReference: {fileID: 0}
     - target: {fileID: 67217854, guid: 8ccc2ff4a0c0c9547b83fb593615bb74, type: 3}
       propertyPath: character
       value: 
@@ -12614,3 +12656,109 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02efb632ea380cd4bb2bdc15d8f4e029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &9218685394999254700
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 340297886}
+    m_Modifications:
+    - target: {fileID: 67873208948646122, guid: 727211e586fe5db41b3a547d1cae7745,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 67873208948646122, guid: 727211e586fe5db41b3a547d1cae7745,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 67873208948646122, guid: 727211e586fe5db41b3a547d1cae7745,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 67873208948646122, guid: 727211e586fe5db41b3a547d1cae7745,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 67873208948646122, guid: 727211e586fe5db41b3a547d1cae7745,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 67873208948646122, guid: 727211e586fe5db41b3a547d1cae7745,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 67873208948646122, guid: 727211e586fe5db41b3a547d1cae7745,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 67873208948646122, guid: 727211e586fe5db41b3a547d1cae7745,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 67873208948646122, guid: 727211e586fe5db41b3a547d1cae7745,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 67873208948646122, guid: 727211e586fe5db41b3a547d1cae7745,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 67873208948646122, guid: 727211e586fe5db41b3a547d1cae7745,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 67873208948646138, guid: 727211e586fe5db41b3a547d1cae7745,
+        type: 3}
+      propertyPath: selectedCommands.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 67873208948646141, guid: 727211e586fe5db41b3a547d1cae7745,
+        type: 3}
+      propertyPath: m_Name
+      value: NAVDIA_SkeletonAmbush
+      objectReference: {fileID: 0}
+    - target: {fileID: 3407250571803321606, guid: 727211e586fe5db41b3a547d1cae7745,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1876431071}
+    - target: {fileID: 3407250571803321611, guid: 727211e586fe5db41b3a547d1cae7745,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1876431071}
+    - target: {fileID: 3407250571803321621, guid: 727211e586fe5db41b3a547d1cae7745,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1876431071}
+    - target: {fileID: 3407250571803321627, guid: 727211e586fe5db41b3a547d1cae7745,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1876431071}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 727211e586fe5db41b3a547d1cae7745, type: 3}
+--- !u!4 &9218685394999254701 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 67873208948646122, guid: 727211e586fe5db41b3a547d1cae7745,
+    type: 3}
+  m_PrefabInstance: {fileID: 9218685394999254700}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &9218685394999254702 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 67873208948646141, guid: 727211e586fe5db41b3a547d1cae7745,
+    type: 3}
+  m_PrefabInstance: {fileID: 9218685394999254700}
+  m_PrefabAsset: {fileID: 0}
