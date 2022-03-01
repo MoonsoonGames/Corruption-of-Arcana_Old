@@ -72,6 +72,7 @@ public class CombatDeckManager : MonoBehaviour
 
         CardSetter cardSetter = newCard.GetComponentInChildren<CardSetter>();
         cardSetter.Setup(DetermineCard());
+        //cardSetter.DrawCards();
         cards.Add(cardSetter);
     }
 

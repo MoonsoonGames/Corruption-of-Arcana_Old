@@ -6,8 +6,7 @@ using System.Text;
 
 public class CardSetter : MonoBehaviour
 {
-    public CardParent combatCard;
-
+    public CardParent cardOverride;
     private CardParent currentCard;
 
     public Text cardText;
@@ -18,12 +17,25 @@ public class CardSetter : MonoBehaviour
 
     private Button button;
 
+    private void Start()
+    {
+        if (cardOverride != null)
+        {
+            currentCard = cardOverride;
+        }
+    }
+
     public void Setup(CardParent spell)
     {
         button = GetComponent<Button>();
         abilityManager = GameObject.FindObjectOfType<AbilityManager>();
         currentCard = spell;
         DrawCards();
+    }
+
+    public CardParent GetCard()
+    {
+        return currentCard;
     }
 
     public void DrawCards()
