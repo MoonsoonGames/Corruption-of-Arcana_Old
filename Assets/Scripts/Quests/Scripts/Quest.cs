@@ -186,7 +186,7 @@ public class Quest : ScriptableObject
         if (loadSettings != null && loadSettings.currentFight != null)
         {
             loadSettings.currentGold += goldReward;
-            loadSettings.potionCount = DeterminePotions(loadSettings.potionCount);
+            loadSettings.healingPotionCount = DeterminePotions(loadSettings.healingPotionCount);
         }
     }
 

@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 2837806035358184846}
   - component: {fileID: 2837806035358184845}
   - component: {fileID: 2837806035358184851}
-  - component: {fileID: 2837806035358184844}
   - component: {fileID: 154012849182252188}
   - component: {fileID: 154012849182252187}
   - component: {fileID: 154012849182252186}
@@ -29,6 +28,7 @@ GameObject:
   - component: {fileID: 154012849182252178}
   - component: {fileID: 154012849182252177}
   - component: {fileID: 154012849182252176}
+  - component: {fileID: 7764371621678523404}
   m_Layer: 0
   m_Name: Harbouring a Grudge
   m_TagString: Untagged
@@ -245,27 +245,6 @@ MonoBehaviour:
   stringEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &2837806035358184844
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2837806035358184855}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 050fb9e6e72f442b3b883da8a965bdeb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 5
-  indentLevel: 0
-  targetFlowchart: {fileID: 0}
-  targetBlock: {fileID: 2837806035358184845}
-  startLabel:
-    stringRef: {fileID: 0}
-    stringVal: 
-  startIndex: 0
-  callMode: 0
 --- !u!114 &154012849182252188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -370,7 +349,7 @@ MonoBehaviour:
     height: 40
   tint: {r: 1, g: 0, b: 0, a: 1}
   useCustomTint: 1
-  itemId: 0
+  itemId: 21
   blockName: Decline
   description: 
   eventHandler: {fileID: 154012849182252186}
@@ -441,7 +420,7 @@ MonoBehaviour:
     height: 40
   tint: {r: 0.008939505, g: 1, b: 0, a: 1}
   useCustomTint: 1
-  itemId: 0
+  itemId: 22
   blockName: Accept
   description: 
   eventHandler: {fileID: 154012849182252183}
@@ -599,6 +578,20 @@ MonoBehaviour:
   stringEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7764371621678523404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2837806035358184855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61646c41915427c4a800633a5605964f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rewards: {fileID: 0}
+  disablerewards: {fileID: 0}
 --- !u!114 &154012849209850804
 MonoBehaviour:
   m_ObjectHideFlags: 0

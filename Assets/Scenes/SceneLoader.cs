@@ -105,6 +105,12 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene(scene, sceneMode);
     }
 
+    public void LoadMainMenu()
+    {
+        //Set load settings level to new level
+        SceneManager.LoadScene(E_Levels.SplashScreen.ToString(), LoadSceneMode.Single);
+    }
+
     void LoadDialogue(Object dialogueFlowChart)
     {
         //Debug.Log(dialogueFlowChart);
