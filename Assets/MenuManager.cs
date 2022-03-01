@@ -38,8 +38,8 @@ public class MenuManager : MonoBehaviour
     public Slider PauseArcanaBar;
     public Text HPPotionCount;
     public Text APPotionCount;
-    public Text RPotionCount;
-    public Text SPotionCount;
+    //public Text RPotionCount;
+    //public Text SPotionCount;
 
     public Text goldCount;
     #endregion
@@ -126,10 +126,10 @@ public class MenuManager : MonoBehaviour
             goldCount.text = loadSettings.currentGold.ToString();
 
             //update the number of all the potions
-            HPPotionCount.text = loadSettings.potionCount.ToString();
-            APPotionCount.text = loadSettings.potionCount.ToString();
-            RPotionCount.text = loadSettings.potionCount.ToString();
-            SPotionCount.text = loadSettings.potionCount.ToString();
+            HPPotionCount.text = loadSettings.healingPotionCount.ToString();
+            APPotionCount.text = loadSettings.arcanaPotionCount.ToString();
+            //RPotionCount.text = loadSettings.potionCount.ToString();
+            //SPotionCount.text = loadSettings.potionCount.ToString();
         }
         #endregion
     }
