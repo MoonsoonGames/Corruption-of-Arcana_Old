@@ -7,7 +7,6 @@ using Fungus;
 public class SpawnDialogue : MonoBehaviour
 {
     public GameObject[] flowCharts;
-    Flowchart[] flowChartArrays;
     public GameObject backupFlowChart;
     LoadSettings loadSettings;
 
@@ -22,8 +21,10 @@ public class SpawnDialogue : MonoBehaviour
             loadSettings = LoadSettings.instance;
         }
 
+        Object flowChart = loadSettings.dialogueFlowChart;
+
         SetBGColour();
-        BeginDialogue(loadSettings.dialogueFlowChart);
+        BeginDialogue(flowChart);
 
         loadSettings.dialogueFlowChart = null;
     }
@@ -55,11 +56,10 @@ public class SpawnDialogue : MonoBehaviour
                 }
             }
         }
-        /*
-        if (spawned! && backupFlowChart != null)
+        
+        if (spawned == false && backupFlowChart != null)
         {
             backupFlowChart.SetActive(true);
         }
-        */
     }
 }
