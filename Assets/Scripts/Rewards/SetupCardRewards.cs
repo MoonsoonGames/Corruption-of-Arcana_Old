@@ -40,14 +40,27 @@ public class SetupCardRewards : MonoBehaviour
 
         loadSettings.majourArcana.Add(card);
 
+        
+    }
+
+    public void LoadScene(bool loadCheckpointScene)
+    {
         //Load last scene
         if (sceneLoader != null)
         {
-            sceneLoader.LoadLastScene(null);
+            if (loadCheckpointScene)
+            {
+                sceneLoader.LoadCheckpointScene(null);
+            }
+            else
+            {
+                sceneLoader.LoadLastScene(null);
+            }
         }
         else
         {
             Debug.LogError("No scene loader");
+            gameObject.SetActive(false);
         }
     }
 
@@ -55,6 +68,7 @@ public class SetupCardRewards : MonoBehaviour
 
     public void ShowCard(CardSetter cardSetter)
     {
+        Debug.Log("Hover");
         CardParent ability = cardSetter.GetCard();
 
         if (activeCard != null)

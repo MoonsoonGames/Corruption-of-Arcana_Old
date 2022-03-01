@@ -113,7 +113,7 @@ public class NavigationEvents : ScriptableObject
         if (loadSettings != null && loadSettings.currentFight != null)
         {
             loadSettings.currentGold += (int)Random.Range(goldReward.x, goldReward.y);
-            loadSettings.potionCount = DeterminePotions(loadSettings.potionCount);
+            loadSettings.healingPotionCount = DeterminePotions(loadSettings.healingPotionCount);
         }
     }
 

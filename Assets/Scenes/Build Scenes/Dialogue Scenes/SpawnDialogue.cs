@@ -30,7 +30,7 @@ public class SpawnDialogue : MonoBehaviour
 
     void SetBGColour()
     {
-        if (loadSettings.loadSceneMultiple)
+        if (loadSettings != null && loadSettings.loadSceneMultiple)
         {
             background.color = multipleBGColour;
         }

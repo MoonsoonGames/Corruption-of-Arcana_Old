@@ -18,7 +18,7 @@ public class InventoryItems : MonoBehaviour
 
         loadSettings = LoadSettings.instance;
 
-        healthPotionCount = loadSettings.potionCount;
+        healthPotionCount = loadSettings.healingPotionCount;
         healthPotionText.text = healthPotionCount.ToString();
     }
 
@@ -37,7 +37,7 @@ public class InventoryItems : MonoBehaviour
 
                 if (loadSettings != null)
                 {
-                    loadSettings.potionCount = healthPotionCount;
+                    loadSettings.healingPotionCount = healthPotionCount;
                     loadSettings.health = controller.health;
                 }
             }
