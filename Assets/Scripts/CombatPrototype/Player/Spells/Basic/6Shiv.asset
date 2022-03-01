@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d042955bf60bea84b9273684d78676b5, type: 3}
-  m_Name: 4Flurry
+  m_Name: 6Shiv
   m_EditorClassIdentifier: 
-  cardName: Flurry
-  cardNumber: 4
+  cardName: Strike
+  cardNumber: 1
   flavourDescription: 
-  cardImage: {fileID: -3056297102037108793, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
+  cardImage: {fileID: -1636742031616846006, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
     type: 3}
   enemySpell: 0
   selfInterpretationUnlocked: 0
@@ -33,21 +33,20 @@ MonoBehaviour:
   selfStatus: []
   selfStatusDuration: 
   targetInterpretationUnlocked: 1
-  targetName: Flurry
-  targetDescription: Hit your opponent with five times in quick succession, each
-    with a small chance to apply bleed.
+  targetName: Shiv
+  targetDescription: Hit your opponent with a swift weapon attack
   targetEndTurn: 0
   targetUsesAction: 1
-  targetCost: 15
+  targetCost: 5
   targetCostType: AP
   damageType: 0
   targetCanBeCountered: 1
-  targetDmg: {x: 4, y: 8}
-  hits: 5
-  hitInterval: 0.1
-  finalHitInterval: 0.35
-  targetFinalDmg: {x: 8, y: 12}
-  targetEndTurnDelay: 1
+  targetDmg: {x: 14, y: 24}
+  hits: 1
+  hitInterval: 0
+  finalHitInterval: 0
+  targetFinalDmg: {x: 0, y: 0}
+  targetEndTurnDelay: 0.2
   targetCleave: 0
   targetChain: 0
   extraDmg: {x: 0, y: 0}
@@ -55,11 +54,9 @@ MonoBehaviour:
   lifeLeach: {x: 0, y: 0}
   healOnKill: {x: 0, y: 0}
   executeThreshold: 0
-  targetStatus:
-  - {fileID: 11400000, guid: 0aa56a9e5ce959e4b96c703989b64011, type: 2}
-  targetStatusDuration: 01000000
-  targetStatusChance:
-  - 0.35
+  targetStatus: []
+  targetStatusDuration: 
+  targetStatusChance: []
   spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0

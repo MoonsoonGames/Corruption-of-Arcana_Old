@@ -23,6 +23,8 @@ public class EnemyController : MonoBehaviour
     public string enemyName;
     public Sprite background;
 
+    public bool destroy = true;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -34,7 +36,7 @@ public class EnemyController : MonoBehaviour
             sceneLoader = GameObject.FindObjectOfType<SceneLoader>();
         }
 
-        if (loadSettings != null)
+        if (loadSettings != null && destroy)
         {
             if (loadSettings.enemiesKilled.Contains(name))
             {
