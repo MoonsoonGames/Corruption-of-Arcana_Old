@@ -78,7 +78,7 @@ public class CombatDeckManager : MonoBehaviour
 
     CardParent DetermineCard()
     {
-        int rInt = Random.Range(0, deck.Count - 1);
+        int rInt = Random.Range(0, deck.Count);
         //Debug.Log(rInt);
         return deck[rInt];
     }

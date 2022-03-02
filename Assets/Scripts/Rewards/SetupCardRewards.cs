@@ -39,8 +39,6 @@ public class SetupCardRewards : MonoBehaviour
         LoadSettings loadSettings = LoadSettings.instance;
 
         loadSettings.majourArcana.Add(card);
-
-        
     }
 
     public void LoadScene(bool loadCheckpointScene)

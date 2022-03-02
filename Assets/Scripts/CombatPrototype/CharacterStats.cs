@@ -399,6 +399,8 @@ public class CharacterStats : MonoBehaviour
 
     #region Statuses
 
+    public StatusIconSpawner iconSpawner;
+
     public virtual void ApplyStatus(StatusParent status, GameObject caster, int statusDuration)
     {
         //Debug.Log("Applied " + status.effectName);
@@ -425,6 +427,8 @@ public class CharacterStats : MonoBehaviour
                 statuses[status] = duration;
             }
         }
+
+        SetupStatusIcons();
     }
 
     public void OnTurnStartStatus()
@@ -433,6 +437,8 @@ public class CharacterStats : MonoBehaviour
         {
             item.Key.OnTurnStart(this.gameObject, this.gameObject);
         }
+
+        SetupStatusIcons();
     }
 
     public void OnTurnEndStatus()
@@ -462,6 +468,8 @@ public class CharacterStats : MonoBehaviour
         {
             statuses.Add(item.Key, item.Value);
         }
+
+        SetupStatusIcons();
     }
 
     public void OnTakeDamageStatus(GameObject attacker)
@@ -470,6 +478,8 @@ public class CharacterStats : MonoBehaviour
         {
             item.Key.OnTakeDamage(attacker, this.gameObject, GameObject.FindObjectOfType<AbilityManager>());
         }
+
+        SetupStatusIcons();
     }
 
     public void RemoveSleepStatus()
@@ -494,6 +504,16 @@ public class CharacterStats : MonoBehaviour
         foreach (var item in statusesCopy)
         {
             statuses.Add(item.Key, item.Value);
+        }
+
+        SetupStatusIcons();
+    }
+
+    void SetupStatusIcons()
+    {
+        if (iconSpawner != null)
+        {
+            iconSpawner.SetupIcons(statuses);
         }
     }
 

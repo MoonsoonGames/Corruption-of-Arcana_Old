@@ -361,8 +361,9 @@ public class Enemy : MonoBehaviour
 
     public void DisplayCard(bool display)
     {
-        if (loadSettings.CheckExposed(displayName) && display)
+        if (CheckRevealed() && display)
         {
+            //Should display more info when UI is ready, but only displays the basic info right now
             string attackName = "";
             Vector2Int damage = new Vector2Int(0, 0);
             E_DamageTypes damageType = E_DamageTypes.Physical;
@@ -373,6 +374,21 @@ public class Enemy : MonoBehaviour
             descriptionInfo.ReadyCard(displayName, attackName, damage, damageType, abilityDescription, sprite);
         }
         else
-            descriptionInfo.RemoveCard();
+        {
+            //Displays only the basic info on the enemy
+            string attackName = "";
+            Vector2Int damage = new Vector2Int(0, 0);
+            E_DamageTypes damageType = E_DamageTypes.Physical;
+            string abilityDescription = "";
+
+            GetAbilityInfo(out attackName, out damage, out damageType, out abilityDescription);
+
+            descriptionInfo.ReadyCard(displayName, attackName, damage, damageType, abilityDescription, sprite);
+        }
+    }
+
+    public bool CheckRevealed()
+    {
+        return loadSettings.CheckExposed(displayName);
     }
 }
