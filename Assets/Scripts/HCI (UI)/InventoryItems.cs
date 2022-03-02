@@ -9,6 +9,7 @@ public class InventoryItems : MonoBehaviour
     MenuManager menuManager;
 
     int healthPotionCount;
+    int arcanaPotionCount;
 
     PlayerController controller;
 
@@ -19,28 +20,25 @@ public class InventoryItems : MonoBehaviour
         loadSettings = LoadSettings.instance;
 
         healthPotionCount = loadSettings.healingPotionCount;
-        healthPotionText.text = healthPotionCount.ToString();
+        arcanaPotionCount = loadSettings.arcanaPotionCount;
     }
 
     public void HealthPotion()
     {
         //heal
-        if (controller != null)
+        if (loadSettings.health < controller.maxHealth && healthPotionCount > 0)
         {
-            if (loadSettings.health < controller.maxHealth && healthPotionCount > 0)
+            int heal = Random.Range(30, 46);
+            loadSettings.health += heal;
+            Debug.Log(heal + "Health healed");
+
+            healthPotionCount -= 1;
+            menuManager.HPPotionCount.text = healthPotionCount.ToString();
+
+            if (loadSettings != null)
             {
-                int heal = Random.Range(30, 46);
-                loadSettings.health += heal;
-                Debug.Log(heal + "Health healed");
-
-                healthPotionCount = healthPotionCount - 1;
-                menuManager.HPPotionCount.text = healthPotionCount.ToString();
-
-                if (loadSettings != null)
-                {
-                    loadSettings.healingPotionCount = healthPotionCount;
-                    loadSettings.health = controller.health;
-                }
+                loadSettings.healingPotionCount = healthPotionCount;
+                loadSettings.health = controller.health;
             }
         }
     }
