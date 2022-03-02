@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75704bd692ffc4d4ba9ac1f041adfd7f, type: 3}
   m_Name: EnthrallingGaze
   m_EditorClassIdentifier: 
-  effectName: Entrhalling Gaze
-  effectDescription: 
-  effectIcon: {fileID: 0}
+  effectName: Enthralling Gaze
+  effectDescription: You silence all of your opponents with this gaze
+  effectIcon: {fileID: -7595291569644891804, guid: d3fbbd00df91514448343072bb05074b,
+    type: 3}
   alsoApply: []
   alsoApplyOthers: []
   alsoApplyOthersOnHit: []
@@ -36,6 +37,14 @@ MonoBehaviour:
   applyArcana: {x: 0, y: 0}
   turnHealing: {x: 0, y: 0}
   turnArcana: {x: 0, y: 0}
+  applyHealingOther: {x: 0, y: 0}
+  applyArcanaOther: {x: 0, y: 0}
+  turnHealingOther: {x: 0, y: 0}
+  turnArcanaOther: {x: 0, y: 0}
+  applyHealingOpponents: {x: 0, y: 0}
+  applyArcanaOpponents: {x: 0, y: 0}
+  turnHealingOpponents: {x: 0, y: 0}
+  turnArcanaOpponents: {x: 0, y: 0}
   adjustPhysMultiplier: 0
   adjustEmberMultiplier: 0
   adjustStaticMultiplier: 0
@@ -49,13 +58,16 @@ MonoBehaviour:
   skipTurn: 0
   sleepTurn: 0
   silence: 0
+  slow: 0
   charmOther: 0
   revealEntryOther: 0
   skipTurnOther: 0
   sleepTurnOther: 0
   silenceOther: 0
+  slowOther: 0
   charmOpponents: 0
   revealEntryOpponents: 0
   skipTurnOpponents: 0
   sleepTurnOpponents: 0
   silenceOpponents: 1
+  slowOpponents: 0
