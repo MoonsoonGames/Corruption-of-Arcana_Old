@@ -93,7 +93,8 @@ public class PlayerController : MonoBehaviour
 
         loadSettings.died = false;
 
-        health = loadSettings.health;
+        health = loadSettings.maxHealth;
+        loadSettings.health = loadSettings.maxHealth;
         //arcana = loadSettings.arcana;
 
         StartCoroutine(IDelayMovement(2f));

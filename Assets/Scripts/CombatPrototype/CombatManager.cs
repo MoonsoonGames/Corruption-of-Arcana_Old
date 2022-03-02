@@ -238,6 +238,11 @@ public class CombatManager : MonoBehaviour
             loadSettings.health = playerStats.GetHealth();
 
             loadSettings.enemiesKilled.Add(loadSettings.currentFight);
+
+            if (loadSettings.fightingBoss)
+            {
+                loadSettings.checkpointEnemies.Add(loadSettings.currentFight);
+            }
         }
     }
 }

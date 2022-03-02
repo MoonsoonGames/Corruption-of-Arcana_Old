@@ -34,7 +34,7 @@ public class LoadSettings : MonoBehaviour
 
     #region Checkpoints
 
-    public Vector3 checkPointPos;
+    public Vector3 checkpointPos;
     public Quaternion checkPointRot;
     public Scene checkPointScene;
     public string checkPointString;
@@ -53,10 +53,12 @@ public class LoadSettings : MonoBehaviour
     public List<string> enemiesKilled = new List<string>();
     public List<string> checkpointEnemies = new List<string>();
 
-    public int health = 1;
-    public int checkPointHealingPotionCount;
+    public int health = 120;
+    public int maxHealth = 120;
+
+    public int maxHealingPotionCount;
     public int healingPotionCount;
-    public int checkPointArcanaPotionCount;
+    public int checkpointArcanaPotionCount;
     public int arcanaPotionCount;
 
     public int currentGold;
@@ -114,11 +116,11 @@ public class LoadSettings : MonoBehaviour
         {
             LoadCheckpointData();
 
-            targetPos = checkPointPos;
+            targetPos = checkpointPos;
 
-            targetPos.x = checkPointPos.x;
-            targetPos.y = checkPointPos.y;
-            targetPos.z = checkPointPos.z;
+            targetPos.x = checkpointPos.x;
+            targetPos.y = checkpointPos.y;
+            targetPos.z = checkpointPos.z;
 
             //Debug.Log("Loading respawn position | " + checkPointPos + " || " + targetPos);
         }
@@ -314,7 +316,7 @@ public class LoadSettings : MonoBehaviour
 
         currentNodeID = checkpointNodeID;
 
-        healingPotionCount = checkPointHealingPotionCount;
+        healingPotionCount = maxHealingPotionCount;
 
         #endregion
 
@@ -324,11 +326,11 @@ public class LoadSettings : MonoBehaviour
     public void SaveCheckpoint(Scene newCheckPoint)
     {
         Debug.Log("Checkpoint");
-        checkpointEnemies.Clear();
+        enemiesKilled.Clear();
 
-        foreach (var item in enemiesKilled)
+        foreach (var item in checkpointEnemies)
         {
-            checkpointEnemies.Add(item);
+            enemiesKilled.Add(item);
         }
 
         if (newCheckPoint != null)
