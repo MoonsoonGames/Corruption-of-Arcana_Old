@@ -43,7 +43,7 @@ public class Dialogue : MonoBehaviour
                 if (checkpoint)
                 {
                     loadSettings.SetCheckpoint();
-                    loadSettings.ResetCards();
+                    loadSettings.ResetCards(true);
                     PlayerController controller = GameObject.Find("Player").GetComponent<PlayerController>();
 
                     if (controller != null)

@@ -13,7 +13,9 @@ public class StatusIcon : MonoBehaviour
     public Text desciptionText;
     public Text durationText;
 
-    public void Setup(StatusParent status, int duration)
+    public Transform belowAnchor, aboveAnchor;
+
+    public void Setup(StatusParent status, int duration, bool appearAbove)
     {
         if (status != null)
         {
@@ -21,6 +23,15 @@ public class StatusIcon : MonoBehaviour
             nameText.text = status.effectName;
             desciptionText.text = status.effectDescription;
             durationText.text = duration.ToString();
+        }
+
+        if (appearAbove)
+        {
+            panel.transform.position = aboveAnchor.position;
+        }
+        else
+        {
+            panel.transform.position = belowAnchor.position;
         }
 
         PanelDisplay(false);

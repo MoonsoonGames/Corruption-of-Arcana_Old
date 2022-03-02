@@ -8,6 +8,8 @@ public class StatusIconSpawner : MonoBehaviour
 
     public Object statusIconObject;
 
+    public bool appearAbove = false;
+
     public void SetupIcons(Dictionary<StatusParent, int> statusDictionary)
     {
         ClearStatuses();
@@ -38,7 +40,7 @@ public class StatusIconSpawner : MonoBehaviour
 
         StatusIcon statusIcon = icon.GetComponent<StatusIcon>();
 
-        statusIcon.Setup(statusEffect, duration);
+        statusIcon.Setup(statusEffect, duration, appearAbove);
         icons.Add(statusIcon);
     }
 

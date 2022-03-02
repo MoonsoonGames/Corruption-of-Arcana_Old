@@ -407,9 +407,21 @@ public class LoadSettings : MonoBehaviour
     public List<CardParent> majourArcana;
     public List<CardParent> corruptedArcana;
 
-    public void ResetCards()
+    public int goldPerCard = 20;
+
+    public void ResetCards(bool cache)
     {
-        Debug.Log("Reset cards");
+        if (cache)
+        {
+            Debug.Log("Cache cards");
+            currentGold += majourArcana.Count * goldPerCard;
+            checkPointGold = currentGold;
+        }
+        else
+        {
+            Debug.Log("Reset cards");
+        }
+
         majourArcana.Clear();
     }
 
