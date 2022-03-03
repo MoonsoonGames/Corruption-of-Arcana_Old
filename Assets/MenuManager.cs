@@ -30,6 +30,7 @@ public class MenuManager : MonoBehaviour
     public GameObject HelpMenu;
     public GameObject QuestMenuUI;
     public GameObject GuideBook;
+    public GameObject CardsMenu;
 
     public GameObject MainMenuConfirmScreen;
     public GameObject QuitConfirmScreen;
@@ -90,6 +91,7 @@ public class MenuManager : MonoBehaviour
                 //unlock mouse - confined to window
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
+                Debug.Log("closed pause menu");
             }
             else if (QuestMenuUI.activeSelf == true)
             {
@@ -101,10 +103,12 @@ public class MenuManager : MonoBehaviour
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
             }
-            else if (playerController.canMove)
+            else
             {
                 PauseMenuUI.SetActive(true);
                 ExplorationUI.SetActive(false);
+                SettingsMenu.SetActive(false);
+                CardsMenu.SetActive(false);
                 //freeze player/camera
                 Player.GetComponent<PlayerController>().canMove = false;
                 //unlock mouse - confined to window
@@ -213,11 +217,13 @@ public class MenuManager : MonoBehaviour
     }
     #endregion
 
-    #region DeckBuilder Button
+    #region Card Menu Button
     public void DeckBuilder()
     {
         //turn off pause menu UI
+        PauseMenuUI.SetActive(false);
         //turn on deck builder UI
+        CardsMenu.SetActive(true);
     }
     #endregion
 
@@ -227,6 +233,8 @@ public class MenuManager : MonoBehaviour
         //close settings/guidebook menus
         SettingsMenu.SetActive(false);
         GuideBook.SetActive(false);
+        CardsMenu.SetActive(false);
+
         //open pausemenu UI
         PauseMenuUI.SetActive(true);
         //debug
