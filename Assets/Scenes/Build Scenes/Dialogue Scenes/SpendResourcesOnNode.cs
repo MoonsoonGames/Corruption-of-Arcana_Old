@@ -16,7 +16,7 @@ public class SpendResourcesOnNode : MonoBehaviour
     {
         if (loadSettings != null)
         {
-            int cost = flowchart.GetIntegerVariable("BribeCost");
+            int cost = flowchart.GetIntegerVariable("Cost");
 
             loadSettings.currentGold -= cost;
         }
@@ -47,6 +47,30 @@ public class SpendResourcesOnNode : MonoBehaviour
                 //Insufficient gold
                 flowchart.SetIntegerVariable("BribeCost", loadSettings.currentGold);
             }
+        }
+        else
+        {
+            Debug.LogError("No load settings!");
+        }
+    }
+
+    public void GetPlayergold(Flowchart flowchart)
+    {
+        if (loadSettings != null)
+        {
+            flowchart.SetIntegerVariable("PlayerGold", loadSettings.currentGold);
+        }
+        else
+        {
+            Debug.LogError("No load settings!");
+        }
+    }
+
+    public void GetIncreaseMaxHPCost(Flowchart flowchart)
+    {
+        if (loadSettings != null)
+        {
+            flowchart.SetIntegerVariable("IncreaseHealthCost", loadSettings.GetHeathIncreaseCost());
         }
         else
         {

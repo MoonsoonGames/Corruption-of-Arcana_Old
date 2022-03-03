@@ -54,9 +54,6 @@ public class LoadSettings : MonoBehaviour
     public List<string> bossesKilled = new List<string>();
     public List<string> bossesKilledSaved = new List<string>();
 
-    public int health = 120;
-    public int maxHealth = 120;
-
     public int maxHealingPotionCount;
     public int healingPotionCount;
     public int checkpointArcanaPotionCount;
@@ -320,6 +317,8 @@ public class LoadSettings : MonoBehaviour
 
         healingPotionCount = maxHealingPotionCount;
 
+        maxHealth = maxHealthCheckpoint;
+
         #endregion
 
         ResetEnemies();
@@ -352,6 +351,7 @@ public class LoadSettings : MonoBehaviour
             checkPointScene = SceneManager.GetActiveScene();
         }
 
+        maxHealthCheckpoint = maxHealth;
         health = maxHealth;
         healingPotionCount = maxHealingPotionCount;
 
@@ -446,6 +446,24 @@ public class LoadSettings : MonoBehaviour
     public int DetermineGoldFromCards()
     {
         return majourArcana.Count * goldPerCard;
+    }
+
+    #endregion
+
+    #region Upgrades
+
+    public int health = 100;
+    public int maxHealth = 100;
+    public int maxHealthCheckpoint = 100;
+
+    public void IncreaseMaxHealth(int increase)
+    {
+        maxHealth += increase;
+    }
+
+    public int GetHeathIncreaseCost()
+    {
+        return maxHealth;
     }
 
     #endregion
