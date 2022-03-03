@@ -16,9 +16,6 @@ public class EnemyController : MonoBehaviour
     private SceneLoader sceneLoader;
 
     public E_Levels combatScene;
-    public Vector2 goldReward;
-    public float potionReward;
-    public string itemReward;
 
     public string enemyName;
     public Sprite background;
@@ -62,10 +59,6 @@ public class EnemyController : MonoBehaviour
             {
                 loadSettings.background = background;
             }
-
-            loadSettings.goldReward = goldReward;
-            loadSettings.potionReward = potionReward;
-            loadSettings.itemReward = itemReward;
 
             if (objective != null && objective.canComplete)
             {

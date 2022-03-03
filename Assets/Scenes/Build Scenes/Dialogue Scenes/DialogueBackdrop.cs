@@ -9,6 +9,8 @@ public class DialogueBackdrop : MonoBehaviour
 
     Image image;
 
+    public Sprite overrideBG;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +19,11 @@ public class DialogueBackdrop : MonoBehaviour
         image = GetComponentInParent<SpawnDialogue>().background;
 
         SetBGToLoadBG();
+
+        if (overrideBG != null)
+        {
+            LoadSpecificBG(overrideBG);
+        }
     }
 
     public void SetBGToLoadBG()
@@ -38,6 +45,14 @@ public class DialogueBackdrop : MonoBehaviour
 
             //set image colour to white
             image.color = Color.white;
+        }
+    }
+
+    public void ResetLoadSettingsBG()
+    {
+        if (loadSettings != null)
+        {
+            loadSettings.background = null;
         }
     }
 }

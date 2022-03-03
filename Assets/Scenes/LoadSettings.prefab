@@ -56,7 +56,7 @@ MonoBehaviour:
   playerRotInCave: {x: 0, y: 0, z: 0, w: 0}
   playerPosInTiertarock: {x: 168.83, y: 4.25, z: 26.04}
   playerRotInTiertarock: {x: 0, y: 0, z: 0, w: 0}
-  checkPointPos: {x: -339.45, y: 32.02, z: 353.46}
+  checkpointPos: {x: 0, y: 0, z: 0}
   checkPointRot: {x: 0, y: 0, z: 0, w: 0}
   checkPointScene:
     m_Handle: 0
@@ -70,10 +70,12 @@ MonoBehaviour:
   - {fileID: 0}
   background: {fileID: 0}
   enemiesKilled: []
-  checkpointEnemies: []
-  health: 120
-  checkPointPotionCount: 3
-  potionCount: 3
+  bossesKilled: []
+  bossesKilledSaved: []
+  maxHealingPotionCount: 0
+  healingPotionCount: 3
+  checkpointArcanaPotionCount: 0
+  arcanaPotionCount: 0
   currentGold: 0
   checkPointGold: 0
   currentFight: 
@@ -91,8 +93,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6bd1335480a7f754cb51f229a108c6cc, type: 2}
   - {fileID: 11400000, guid: eaa0fa9c7224ad741bf189b989628694, type: 2}
   - {fileID: 11400000, guid: af89ff48f79a6dd4e88996f7325d33f6, type: 2}
+  - {fileID: 11400000, guid: 52e42dcb010f635469d33b07b9ce174d, type: 2}
   majourArcana: []
   corruptedArcana: []
+  goldPerCard: 20
+  health: 100
+  maxHealth: 100
+  maxHealthCheckpoint: 100
 --- !u!114 &-4060218025482095409
 MonoBehaviour:
   m_ObjectHideFlags: 0

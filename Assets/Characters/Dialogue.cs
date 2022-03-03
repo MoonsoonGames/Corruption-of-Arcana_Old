@@ -15,8 +15,6 @@ public class Dialogue : MonoBehaviour
 
     LoadSettings loadSettings;
 
-    public bool checkpoint = false;
-
     public Object dialogue;
 
     public LoadSceneMode sceneMode;
@@ -40,21 +38,6 @@ public class Dialogue : MonoBehaviour
         {
             if (CanSpeak())
             {
-                if (checkpoint)
-                {
-                    loadSettings.SetCheckpoint();
-                    loadSettings.ResetCards();
-                    PlayerController controller = GameObject.Find("Player").GetComponent<PlayerController>();
-
-                    if (controller != null)
-                    {
-                        Debug.Log(SceneManager.GetActiveScene());
-                        loadSettings.checkPointHealingPotionCount = controller.GetPotions();
-                        loadSettings.checkPointPos = controller.transform.position;
-                        loadSettings.checkPointScene = SceneManager.GetActiveScene();
-                    }
-                }
-
                 if (completeObjectives.Length != 0)
                 {
                     foreach (var item in completeObjectives)
@@ -66,6 +49,7 @@ public class Dialogue : MonoBehaviour
                 loadSettings.SetScene(SceneManager.GetActiveScene().name);
 
                 loadSettings.dialogueFlowChart = dialogue;
+                Debug.Log(loadSettings.dialogueFlowChart);
                 loadSettings.loadSceneMultiple = sceneMode == LoadSceneMode.Additive;
                 sceneLoader.LoadSpecifiedScene(sceneString, sceneMode, dialogue);
 
