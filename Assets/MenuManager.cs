@@ -101,7 +101,7 @@ public class MenuManager : MonoBehaviour
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
             }
-            else
+            else if (playerController.canMove)
             {
                 PauseMenuUI.SetActive(true);
                 ExplorationUI.SetActive(false);
@@ -119,6 +119,7 @@ public class MenuManager : MonoBehaviour
         {
             //update the HP and AP bars
             PauseHealthBar.value = loadSettings.health;
+            PauseHealthBar.maxValue = loadSettings.maxHealth;
             Debug.Log(PauseHealthBar.value + "||" + loadSettings.health);
             //PauseArcanaBar.value = loadSettings.arcana;
 
