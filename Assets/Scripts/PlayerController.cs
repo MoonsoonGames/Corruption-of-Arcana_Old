@@ -88,13 +88,13 @@ public class PlayerController : MonoBehaviour
 
         if (loadSettings.checkPoint)
         {
-            loadSettings.SaveCheckpoint(SceneManager.GetActiveScene());
+            loadSettings.SaveCheckpoint(SceneManager.GetActiveScene(), this);
         }
 
         loadSettings.died = false;
 
-        health = loadSettings.maxHealth;
-        loadSettings.health = loadSettings.maxHealth;
+        health = loadSettings.health;
+        maxHealth = loadSettings.maxHealth;
         //arcana = loadSettings.arcana;
 
         StartCoroutine(IDelayMovement(2f));
@@ -193,12 +193,17 @@ public class PlayerController : MonoBehaviour
             {
                 if (item.CanSpeak())
                 {
+                    //Debug.Log(item.dialogue.ToString() + " can speak");
                     dialogue = item;
 
                     if (item.forceDialogue)
                     {
                         canMove = !dialogue.LoadScene();
                     }
+                }
+                else
+                {
+                    //Debug.Log(item.dialogue.ToString() + " can't speak");
                 }
             }
 

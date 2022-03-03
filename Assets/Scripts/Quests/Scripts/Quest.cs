@@ -93,7 +93,7 @@ public class Quest : ScriptableObject
         {
             if (item.completed == false)
             {
-                Debug.Log(item.title + " is " + item.completed);
+                //Debug.Log(item.title + " is " + item.completed);
                 allComplete = false;
             }
         }
