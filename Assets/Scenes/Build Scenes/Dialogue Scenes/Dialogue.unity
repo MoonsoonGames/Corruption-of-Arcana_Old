@@ -308,6 +308,57 @@ MonoBehaviour:
   vector3Data:
     vector3Ref: {fileID: 0}
     vector3Val: {x: 0, y: 0, z: 0}
+--- !u!114 &15999613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15999609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 134
+  indentLevel: 0
+  storyText: Uuhh... right. C'mon guys, he ain't worth our time.
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &15999621 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2678563513337020206, guid: 243febd78a2d0af47b137467b0432ddc,
+    type: 3}
+  m_PrefabInstance: {fileID: 869774525}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15999609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 050fb9e6e72f442b3b883da8a965bdeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &15999623 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2630239702581918149, guid: 243febd78a2d0af47b137467b0432ddc,
+    type: 3}
+  m_PrefabInstance: {fileID: 869774525}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15999609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &15999643 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2698698978928986738, guid: 243febd78a2d0af47b137467b0432ddc,
@@ -318,6 +369,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 692900648f2ecb44486380e10e7378be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &15999656 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5877540793597926485, guid: 243febd78a2d0af47b137467b0432ddc,
+    type: 3}
+  m_PrefabInstance: {fileID: 869774525}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15999609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &62960587
@@ -1657,7 +1720,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 1767726121}
+  selectedFlowchart: {fileID: 1570171991}
 --- !u!4 &336365333
 Transform:
   m_ObjectHideFlags: 1
@@ -2182,7 +2245,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &570620674
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -3132,16 +3195,53 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 340297886}
     m_Modifications:
+    - target: {fileID: 15999615, guid: 243febd78a2d0af47b137467b0432ddc, type: 3}
+      propertyPath: nodeRect.width
+      value: 158.65666
+      objectReference: {fileID: 0}
+    - target: {fileID: 15999615, guid: 243febd78a2d0af47b137467b0432ddc, type: 3}
+      propertyPath: commandList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 15999615, guid: 243febd78a2d0af47b137467b0432ddc, type: 3}
+      propertyPath: commandList.Array.data[0]
+      value: 
+      objectReference: {fileID: 15999613}
+    - target: {fileID: 15999615, guid: 243febd78a2d0af47b137467b0432ddc, type: 3}
+      propertyPath: commandList.Array.data[1]
+      value: 
+      objectReference: {fileID: 15999623}
+    - target: {fileID: 15999615, guid: 243febd78a2d0af47b137467b0432ddc, type: 3}
+      propertyPath: commandList.Array.data[2]
+      value: 
+      objectReference: {fileID: 15999621}
     - target: {fileID: 97676718255016204, guid: 243febd78a2d0af47b137467b0432ddc,
         type: 3}
       propertyPath: character
       value: 
       objectReference: {fileID: 1876431071}
+    - target: {fileID: 97676718255016212, guid: 243febd78a2d0af47b137467b0432ddc,
+        type: 3}
+      propertyPath: storyText
+      value: You don't wanna end up a corpse now, do you? 'And over ye coin and nobody
+        gets hurt.
+      objectReference: {fileID: 0}
+    - target: {fileID: 97676718255016220, guid: 243febd78a2d0af47b137467b0432ddc,
+        type: 3}
+      propertyPath: storyText
+      value: Lookie 'ere lads, we got ourselves a lost little lamb.
+      objectReference: {fileID: 0}
     - target: {fileID: 97676718255016233, guid: 243febd78a2d0af47b137467b0432ddc,
         type: 3}
       propertyPath: character
       value: 
       objectReference: {fileID: 1876431071}
+    - target: {fileID: 134079675375923295, guid: 243febd78a2d0af47b137467b0432ddc,
+        type: 3}
+      propertyPath: text
+      value: My journey is protected by the Tellers and Wanderers, clear off, you
+        don't want this fight.
+      objectReference: {fileID: 0}
     - target: {fileID: 2553404653097491115, guid: 243febd78a2d0af47b137467b0432ddc,
         type: 3}
       propertyPath: character
@@ -3152,6 +3252,17 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1876431071}
+    - target: {fileID: 3930380889119304989, guid: 243febd78a2d0af47b137467b0432ddc,
+        type: 3}
+      propertyPath: storyText
+      value: Well then, if you don't have the gold? We will just have to rip your
+        corpse of anything you own!
+      objectReference: {fileID: 0}
+    - target: {fileID: 4613116756370053208, guid: 243febd78a2d0af47b137467b0432ddc,
+        type: 3}
+      propertyPath: targetBlock
+      value: 
+      objectReference: {fileID: 15999656}
     - target: {fileID: 4648093197378864473, guid: 243febd78a2d0af47b137467b0432ddc,
         type: 3}
       propertyPath: nodeRect.y
@@ -3172,6 +3283,11 @@ PrefabInstance:
       propertyPath: commandList.Array.data[2]
       value: 
       objectReference: {fileID: 869774530}
+    - target: {fileID: 5653230802087446432, guid: 243febd78a2d0af47b137467b0432ddc,
+        type: 3}
+      propertyPath: text
+      value: Here's {$BribeCost} gold. Now leave me alone.
+      objectReference: {fileID: 0}
     - target: {fileID: 5840469385753039425, guid: 243febd78a2d0af47b137467b0432ddc,
         type: 3}
       propertyPath: variables.Array.size
@@ -3987,6 +4103,13 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 581645342}
+    - target: {fileID: 2684919790725851442, guid: 0f26e8e0f64fcda46901c0f705428219,
+        type: 3}
+      propertyPath: storyText
+      value: Morning Taro, I think {color=red}Mamma Rheinfeld{/color} was lookin
+        for you. {wc}I think she's over by her trailer just {color=red}under the
+        arch here{/color}.
+      objectReference: {fileID: 0}
     - target: {fileID: 2684919790725851443, guid: 0f26e8e0f64fcda46901c0f705428219,
         type: 3}
       propertyPath: selectedCommands.Array.size
@@ -7120,7 +7243,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 6
   indentLevel: 0
-  storyText: Maybe this will help you.
+  storyText: Aha! Maybe this would help?
   description: 
   character: {fileID: 1672618227}
   portrait: {fileID: 21300000, guid: cc6d6ce2fd1c5cd40a6de8f42b7a9920, type: 3}
@@ -7267,6 +7390,11 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1672618227}
+    - target: {fileID: 5788963369338986568, guid: 5e44c1da357e9554e9892f17692c2d11,
+        type: 3}
+      propertyPath: selectedBlocks.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5788963369338986575, guid: 5e44c1da357e9554e9892f17692c2d11,
         type: 3}
       propertyPath: m_Name
@@ -7352,6 +7480,15 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1672618227}
+    - target: {fileID: 8772702896357605692, guid: 5e44c1da357e9554e9892f17692c2d11,
+        type: 3}
+      propertyPath: storyText
+      value: "However, rumour has it that one day, the corrupted Arcana will return
+        stronger than ever, and the Arcana Knights will be truly put to the test!
+        But that is just a rumour... {wc} Are you still not tired, my child? Well
+        then, let me treat you to one of Momma Rheinfeld\u2019s special fortune telling's.
+        {wc} Are you ready? Your first card is..."
+      objectReference: {fileID: 0}
     - target: {fileID: 9085622012017106156, guid: 5e44c1da357e9554e9892f17692c2d11,
         type: 3}
       propertyPath: _targetGameObject.gameObjectVal
@@ -7366,6 +7503,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1570171989}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1570171991 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5788963369338986568, guid: 5e44c1da357e9554e9892f17692c2d11,
+    type: 3}
+  m_PrefabInstance: {fileID: 1570171989}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570620673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a334fe2ffb574b3583ff3b18b4792d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1570171992 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5788963369338986581, guid: 5e44c1da357e9554e9892f17692c2d11,
@@ -8438,18 +8587,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1767726121 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6333189798414483471, guid: 09ad4ff9bfed78f44a9c4e23020e5e5f,
-    type: 3}
-  m_PrefabInstance: {fileID: 2118633815}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1767726074}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a334fe2ffb574b3583ff3b18b4792d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1794723763
 GameObject:
   m_ObjectHideFlags: 0
@@ -9221,8 +9358,8 @@ PrefabInstance:
     - target: {fileID: 5713057263882540931, guid: d9953154406f06b4395095760e117c44,
         type: 3}
       propertyPath: storyText
-      value: Well that one did not go as planned. It's a good thing that I read your
-        future. Let's try that again.
+      value: Well, that's what would've happened if you chose to do things that way.
+        Let's see...
       objectReference: {fileID: 0}
     - target: {fileID: 5713057263882540933, guid: d9953154406f06b4395095760e117c44,
         type: 3}
@@ -10368,6 +10505,12 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 581645342}
+    - target: {fileID: 154012849182252182, guid: 8b405f4c8d1e82c46a5a25604c6f449d,
+        type: 3}
+      propertyPath: storyText
+      value: Thank you Taro. Head to Tiertarock and clear these thieves from the
+        port. Best of luck out there and please, come back safe, lad.
+      objectReference: {fileID: 0}
     - target: {fileID: 154012849182252184, guid: 8b405f4c8d1e82c46a5a25604c6f449d,
         type: 3}
       propertyPath: eventHandler
@@ -10378,6 +10521,12 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 581645342}
+    - target: {fileID: 154012849182252185, guid: 8b405f4c8d1e82c46a5a25604c6f449d,
+        type: 3}
+      propertyPath: storyText
+      value: I can't blame you. It is quite dangerous over there. If you change your
+        mind, let me know. {wc} Be seeing you!
+      objectReference: {fileID: 0}
     - target: {fileID: 2837806035358184832, guid: 8b405f4c8d1e82c46a5a25604c6f449d,
         type: 3}
       propertyPath: m_RootOrder
@@ -13445,6 +13594,12 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 273937819}
+    - target: {fileID: 8762164863031217210, guid: 0c390cd16ec0dd8449b5a35913c42eee,
+        type: 3}
+      propertyPath: storyText
+      value: This place... It has a terrifying aura in the air. Keep your wits about
+        you, kid.
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8762164863031217204, guid: 0c390cd16ec0dd8449b5a35913c42eee, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0c390cd16ec0dd8449b5a35913c42eee, type: 3}
@@ -13649,6 +13804,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 67873208948646138, guid: 727211e586fe5db41b3a547d1cae7745,
         type: 3}
+      propertyPath: selectedBlocks.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 67873208948646138, guid: 727211e586fe5db41b3a547d1cae7745,
+        type: 3}
       propertyPath: selectedCommands.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -13656,6 +13816,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NAVDIA_SkeletonAmbush
+      objectReference: {fileID: 0}
+    - target: {fileID: 1307532848718781647, guid: 727211e586fe5db41b3a547d1cae7745,
+        type: 3}
+      propertyPath: nodeRect.x
+      value: 191.49588
+      objectReference: {fileID: 0}
+    - target: {fileID: 1307532848718781647, guid: 727211e586fe5db41b3a547d1cae7745,
+        type: 3}
+      propertyPath: nodeRect.y
+      value: 186.45221
       objectReference: {fileID: 0}
     - target: {fileID: 3407250571803321606, guid: 727211e586fe5db41b3a547d1cae7745,
         type: 3}
