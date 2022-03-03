@@ -1657,7 +1657,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 5457298888865767488}
+  selectedFlowchart: {fileID: 1767726121}
 --- !u!4 &336365333
 Transform:
   m_ObjectHideFlags: 1
@@ -5093,6 +5093,14 @@ PrefabInstance:
       propertyPath: conditions.Array.data[0].anyVar.data.integerData.integerRef
       value: 
       objectReference: {fileID: 1278662148}
+    - target: {fileID: 1278662174, guid: 05f89d2696b2bd54a80aff872fa16a1e, type: 3}
+      propertyPath: storyText
+      value: See you next time.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1278662178, guid: 05f89d2696b2bd54a80aff872fa16a1e, type: 3}
+      propertyPath: storyText
+      value: Welcome in, what can I do you for?
+      objectReference: {fileID: 0}
     - target: {fileID: 1278662179, guid: 05f89d2696b2bd54a80aff872fa16a1e, type: 3}
       propertyPath: character
       value: 
@@ -5175,6 +5183,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4909477475917434157, guid: 05f89d2696b2bd54a80aff872fa16a1e,
+        type: 3}
+      propertyPath: storyText
+      value: Your coin pouch looks a little light for this one, mate. Come back with
+        a bit more gold.
       objectReference: {fileID: 0}
     - target: {fileID: 8702039899258754591, guid: 05f89d2696b2bd54a80aff872fa16a1e,
         type: 3}
@@ -8132,7 +8146,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 260.88434
     y: 48.694374
-    width: 149.99997
+    width: 147.56096
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -8334,7 +8348,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 92.286865
     y: 280.59683
-    width: 148.78046
+    width: 144.63412
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -8422,6 +8436,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1767726121 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6333189798414483471, guid: 09ad4ff9bfed78f44a9c4e23020e5e5f,
+    type: 3}
+  m_PrefabInstance: {fileID: 2118633815}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1767726074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a334fe2ffb574b3583ff3b18b4792d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1794723763
@@ -10129,6 +10155,16 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1672618227}
+    - target: {fileID: 6333189798414483493, guid: 09ad4ff9bfed78f44a9c4e23020e5e5f,
+        type: 3}
+      propertyPath: storyText
+      value: '{color=red}Arcana Knights{/color} fight using magical cards. Choose
+        a card on your turn and target an enemy, you will see who you can target
+        with an outline. {wc}Don''t worry, you can''t harm yourself or heal enemies,
+        so no need to worry about that! {wc}Remember, the cards are magic so each
+        turn, for every card you use, you will gain a new card and random card from
+        your current deck.'
+      objectReference: {fileID: 0}
     - target: {fileID: 6333189798414483494, guid: 09ad4ff9bfed78f44a9c4e23020e5e5f,
         type: 3}
       propertyPath: portrait
@@ -10823,7 +10859,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 14
   indentLevel: 0
-  storyText: '[TARO enters the cave]'
+  storyText: '[Taro enters the cave]'
   description: 
   character: {fileID: 1876431071}
   portrait: {fileID: 0}
@@ -10981,7 +11017,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: -127.079605
     y: 208.06161
-    width: 159.41174
+    width: 159.83392
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -11831,7 +11867,7 @@ PrefabInstance:
     - target: {fileID: 19678828905987051, guid: 28518259d4710024c87cb928db07ebf8,
         type: 3}
       propertyPath: nodeRect.width
-      value: 75.88235
+      value: 75.91587
       objectReference: {fileID: 0}
     - target: {fileID: 19678828905987051, guid: 28518259d4710024c87cb928db07ebf8,
         type: 3}
@@ -11862,27 +11898,27 @@ PrefabInstance:
         type: 3}
       propertyPath: commandList.Array.data[5]
       value: 
-      objectReference: {fileID: 1212633825084253090}
+      objectReference: {fileID: 1212633825084253089}
     - target: {fileID: 19678828905987051, guid: 28518259d4710024c87cb928db07ebf8,
         type: 3}
       propertyPath: commandList.Array.data[6]
       value: 
-      objectReference: {fileID: 1212633825084253089}
+      objectReference: {fileID: 1212633825084253086}
     - target: {fileID: 19678828905987051, guid: 28518259d4710024c87cb928db07ebf8,
         type: 3}
       propertyPath: commandList.Array.data[7]
       value: 
-      objectReference: {fileID: 1212633825084253086}
+      objectReference: {fileID: 1212633825084253088}
     - target: {fileID: 19678828905987051, guid: 28518259d4710024c87cb928db07ebf8,
         type: 3}
       propertyPath: commandList.Array.data[8]
       value: 
-      objectReference: {fileID: 1212633825084253088}
+      objectReference: {fileID: 1212633825084253087}
     - target: {fileID: 19678828905987051, guid: 28518259d4710024c87cb928db07ebf8,
         type: 3}
       propertyPath: commandList.Array.data[9]
       value: 
-      objectReference: {fileID: 1212633825084253087}
+      objectReference: {fileID: 1212633825084253090}
     - target: {fileID: 19678828905987051, guid: 28518259d4710024c87cb928db07ebf8,
         type: 3}
       propertyPath: commandList.Array.data[10]
@@ -13017,18 +13053,6 @@ MonoBehaviour:
     stringVal: 
   startIndex: 0
   callMode: 0
---- !u!114 &5457298888865767488 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5724065343650484076, guid: 873cc27365370b443ac78e1b63cd8d6f,
-    type: 3}
-  m_PrefabInstance: {fileID: 347849704644751170}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5457298888865767486}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a334fe2ffb574b3583ff3b18b4792d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &5677415179731317843
 PrefabInstance:
   m_ObjectHideFlags: 0
