@@ -40,4 +40,12 @@ public class DialogueBackdrop : MonoBehaviour
             image.color = Color.white;
         }
     }
+
+    public void ResetLoadSettingsBG()
+    {
+        if (loadSettings != null)
+        {
+            loadSettings.background = null;
+        }
+    }
 }
