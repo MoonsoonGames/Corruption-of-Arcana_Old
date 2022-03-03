@@ -19,10 +19,41 @@ public class SceneLoader : MonoBehaviour
 
         currentScene = SceneManager.GetActiveScene();
 
-        loadSettings = GameObject.FindObjectOfType<LoadSettings>();
+        loadSettings = LoadSettings.instance;
     }
 
-    public void LoadDefaultScene()
+    void LoadScene(string scene)
+    {
+        bool contains = false;
+
+        int index = 9999999;
+
+        for (int i = 0; i < SceneManager.sceneCount; i++)
+        {
+            if (scene == SceneManager.GetSceneAt(i).name)
+            {
+                Debug.Log(scene + " || " + SceneManager.GetSceneAt(i).name);
+                loadSettings.SetPlayerInput(true);
+                contains = true;
+                index = i;
+            }
+        }
+
+        for (int i = 0; i < SceneManager.sceneCount; i++)
+        {
+            if (i != index)
+            {
+                SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(i));
+            }
+        }
+
+        if (!contains)
+        {
+            SceneManager.LoadScene(scene);
+        }
+    }
+
+    public void LoadDefaultScene(Object dialogueFlowChart)
     {
         #region Check Navigation Scenes
         //Debug.Log(sceneToLoad);
@@ -31,34 +62,81 @@ public class SceneLoader : MonoBehaviour
             if (level == sceneToLoad)
             {
                 //Debug.Log(level + " is the same");
-                loadSettings.lastLevel = level;
-                
-                SceneManager.LoadScene(sceneString);
+                SetLoadSettingsScene(level.ToString());
+
+                LoadDialogue(dialogueFlowChart);
+                LoadScene(sceneString);
                 return;
             }
         }
 
         #endregion
 
-        SceneManager.LoadScene(sceneString);
+        SetLoadSettingsScene(SceneManager.GetActiveScene().name);
+
+        LoadDialogue(dialogueFlowChart);
+
+        LoadScene(sceneString);
     }
 
-    public void LoadLastScene()
+    public void LoadLastScene(Object dialogueFlowChart)
     {
         //Set load settings level to new level
-        SceneManager.LoadScene(loadSettings.lastLevelString);
+        LoadDialogue(dialogueFlowChart);
+        LoadScene(loadSettings.lastLevel.ToString());
+    }
+    
+    public void LoadCheckpointScene(Object dialogueFlowChart)
+    {
+        //Set load settings level to new level
+        loadSettings.died = true;
+        loadSettings.LoadCheckpointData();
+
+        LoadDialogue(dialogueFlowChart);
+        LoadScene(loadSettings.checkPointString);
     }
 
-    public void LoadCheckpointScene()
+    public void LoadSpecifiedScene(string scene, LoadSceneMode sceneMode, Object dialogueFlowChart)
     {
-        //Set load settings level to new level
-        SceneManager.LoadScene(loadSettings.checkPointString);
-    }
+        SetLoadSettingsScene(SceneManager.GetActiveScene().name);
 
-    public void LoadSpecifiedScene(string scene, LoadSceneMode sceneMode)
-    {
         //Set load settings level to new level
-
+        LoadDialogue(dialogueFlowChart);
         SceneManager.LoadScene(scene, sceneMode);
+    }
+
+    public void LoadMainMenu()
+    {
+        //Set load settings level to new level
+        SceneManager.LoadScene(E_Levels.SplashScreen.ToString(), LoadSceneMode.Single);
+    }
+
+    void LoadDialogue(Object dialogueFlowChart)
+    {
+        //Debug.Log(dialogueFlowChart);
+        if (dialogueFlowChart != null)
+        {
+            loadSettings.dialogueFlowChart = dialogueFlowChart;
+            //Debug.Log(loadSettings.dialogueFlowChart);
+        }
+    }
+
+    void SetLoadSettingsScene(string newScene)
+    {
+        if (GetCurrentSceneEnum() == E_Levels.CombatPrototype || (GetCurrentSceneEnum() == E_Levels.Dialogue))
+        {
+            //Do nothing
+            Debug.Log(GetCurrentSceneEnum().ToString() + " Scene is: " + E_Levels.CombatPrototype + " or " + E_Levels.Dialogue);
+        }
+        else
+        {
+            Debug.Log(GetCurrentSceneEnum().ToString() + " Scene is not: " + E_Levels.CombatPrototype + " or " + E_Levels.Dialogue);
+            loadSettings.lastLevel = (E_Levels)System.Enum.Parse(typeof(E_Levels), newScene);
+        }
+    }
+
+    E_Levels GetCurrentSceneEnum()
+    {
+        return (E_Levels)System.Enum.Parse(typeof(E_Levels), SceneManager.GetActiveScene().name);
     }
 }

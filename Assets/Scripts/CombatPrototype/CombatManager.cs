@@ -11,6 +11,8 @@ public class CombatManager : MonoBehaviour
     */
     public static CombatManager instance;
 
+    #region UI
+
     public Button attackDeck;
     public Button spellDeck;
     public Button classDeck;
@@ -32,22 +34,29 @@ public class CombatManager : MonoBehaviour
     public Text HealingValue;
     public Text HealingLeft;
 
+    public GameObject endTurnButton;
+
+    #endregion
+
     public PlayerStats playerStats;
     public EnemyStats enemyStats;
-
-    public int turnCounter = 1;
     public bool battleActive = false;
-    public Text turnCountText;
+    public Text actionsCountText;
     public Text currentTurnText;
 
     public AbilityManager abilityManager;
     public EnemyManager enemyManager;
 
-    public CardSetter[] cardSetters;
-
+    public CombatDeckManager combatDeckManager;
     private LoadSettings loadSettings;
 
     bool boss = false;
+
+    public int maxActions;
+    int actionsLeft = 0;
+
+    public int arcanaRegen = 20;
+    public Image bgImage;
 
     public void Start()
     {
@@ -66,8 +75,13 @@ public class CombatManager : MonoBehaviour
         Dmg.SetActive(false);
         Ap.SetActive(false);
         Healing.SetActive(false);
+        endTurnButton.SetActive(false);
 
-        loadSettings = GameObject.Find("LoadSettings").GetComponent<LoadSettings>();
+        combatDeckManager.Setup();
+
+        loadSettings = LoadSettings.instance;
+
+        SetBackground();
 
         if (loadSettings != null)
         {
@@ -76,7 +90,7 @@ public class CombatManager : MonoBehaviour
 
         battleActive = true;
 
-        Invoke("DelayStart", 0.5f);
+        Invoke("DelayStart", 3f);
     }
 
     void DelayStart()
@@ -88,27 +102,33 @@ public class CombatManager : MonoBehaviour
     {
         abilityManager.playerTurn = player;
 
+        /*
         if (enemyManager.enemies.Count <= 0)
             ShowEndScreen(true);
+        */
 
         if (player)
         {
+            actionsLeft = maxActions;
+
+            if (actionsCountText != null)
+                actionsCountText.text = actionsLeft.ToString();
+
             currentTurnText.text = "Player";
             currentTurnText.color = Color.green;
-            PlayableDecks.SetActive(true);
             HealingItem.SetActive(true);
+            PlayableDecks.SetActive(true);
+            endTurnButton.SetActive(true);
 
-            Debug.Log("Regenerate Mana");
-            playerStats.ChangeMana(15, false);
+            //Debug.Log("Regenerate Mana");
+            playerStats.ChangeMana(arcanaRegen, false);
 
-            Dmg.SetActive(false);
-            Ap.SetActive(false);
-            Healing.SetActive(false);
-
-            foreach (var item in cardSetters)
+            if (combatDeckManager != null)
             {
-                item.DrawCards();
+                combatDeckManager.DrawCards();
             }
+
+            playerStats.OnTurnStartStatus();
         }
         else
         {
@@ -126,19 +146,49 @@ public class CombatManager : MonoBehaviour
             {
                 EndTurn(false);
             }
+
+            foreach (var item in enemyManager.enemies)
+            {
+                item.GetComponent<EnemyStats>().OnTurnStartStatus();
+            }
         }
     }
 
     public void EndTurn(bool player)
     {
+        actionsLeft = 0;
+
         abilityManager.playerTurn = !player;
 
+        abilityManager.ResetAbility();
+
+        if (player)
+        {
+            playerStats.OnTurnEndStatus();
+            endTurnButton.SetActive(false);
+        }
+        else
+        {
+            foreach (var item in enemyManager.enemies)
+            {
+                item.GetComponent<EnemyStats>().OnTurnEndStatus();
+            }
+        }
+
         StartTurn(!player);
+    }
 
-        turnCounter++;
+    public void UseAction()
+    {
+        actionsLeft--;
 
-        if (turnCountText != null)
-            turnCountText.text = turnCounter.ToString();
+        if (actionsCountText != null)
+            actionsCountText.text = actionsLeft.ToString();
+    }
+
+    public int GetCardsCast()
+    {
+        return actionsLeft;
     }
 
     public void ShowEndScreen(bool victory)
@@ -147,18 +197,6 @@ public class CombatManager : MonoBehaviour
 
         if (victory)
         {
-            if (loadSettings != null && loadSettings.currentFight != null)
-            {
-                playerStats.ChangeHeath(20, false);
-
-                playerStats.ChangePotions(1, false);
-
-                loadSettings.health = playerStats.GetHealth();
-
-                loadSettings.enemiesKilled[loadSettings.currentFight] = true;
-            }
-
-
             VictoryScreen.SetActive(true);
             //SceneManager.LoadLast;//Needs to load last scene and position
         }
@@ -166,10 +204,6 @@ public class CombatManager : MonoBehaviour
         {
             if (loadSettings != null)
             {
-                loadSettings.enemiesKilled = loadSettings.checkpointEnemies;
-
-                loadSettings.enemiesKilled[loadSettings.currentFight] = false;
-
                 loadSettings.died = true;
                 loadSettings.health = 120;
             }
@@ -180,8 +214,35 @@ public class CombatManager : MonoBehaviour
         }
     }
 
-    public void TargetEnemies(bool visible)
+    public void TargetEnemies(bool visible, CardParent spell)
     {
-        enemyManager.TargetEnemies(visible);
+        enemyManager.TargetEnemies(visible, spell);
+    }
+
+    public void SetBackground()
+    {
+        if (bgImage != null && loadSettings.background != null)
+        {
+            bgImage.sprite = loadSettings.background;
+        }
+
+        loadSettings.background = null;
+    }
+
+    public void Rewards(int healing)
+    {
+        if (loadSettings != null && loadSettings.currentFight != null)
+        {
+            playerStats.ChangeHealth(healing, false, E_DamageTypes.Physical, out int damageTaken, this.gameObject, false);
+
+            loadSettings.health = playerStats.GetHealth();
+
+            loadSettings.enemiesKilled.Add(loadSettings.currentFight);
+
+            if (loadSettings.fightingBoss)
+            {
+                loadSettings.checkpointEnemies.Add(loadSettings.currentFight);
+            }
+        }
     }
 }

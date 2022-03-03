@@ -10,46 +10,44 @@ public class EnemyController : MonoBehaviour
     public bool boss = false;
 
     public Object[] enemies = new Object[3];
+    public QuestObjective objective;
 
     private LoadSettings loadSettings;
+    private SceneLoader sceneLoader;
 
     public E_Levels combatScene;
 
     public string enemyName;
+    public Sprite background;
+
+    public bool destroy = true;
 
     // Start is called before the first frame update
     void Awake()
     {
-        loadSettings = GameObject.Find("LoadSettings").GetComponent<LoadSettings>();
+        loadSettings = LoadSettings.instance;
+        sceneLoader = GetComponent<SceneLoader>();
 
-        if (loadSettings != null)
+        if (sceneLoader == null)
         {
-            if (loadSettings.enemiesKilled.ContainsKey(name))
-            {
-                if (loadSettings.enemiesKilled[name])
-                {
-                    Debug.Log("Despawning " + name);
-                    Destroy(this.gameObject);
-                }
-            }
-            else
-            {
-                loadSettings.enemiesKilled.Add(name, false);
+            sceneLoader = GameObject.FindObjectOfType<SceneLoader>();
+        }
 
-                /*
-                foreach (var item in loadSettings.enemiesKilled)
-                {
-                    Debug.Log(item);
-                }
-                */
+        if (loadSettings != null && destroy)
+        {
+            if (loadSettings.enemiesKilled.Contains(name))
+            {
+                Debug.Log("Despawning " + name);
+                Destroy(this.gameObject);
             }
         }
     }
 
-    public void LoadCombat(SceneLoader sceneLoader)
+    public void LoadCombat()
     {
         if (loadSettings != null)
         {
+            Debug.Log("Load combat");
             loadSettings.fightingBoss = boss;
             loadSettings.currentFight = name;
 
@@ -57,8 +55,30 @@ public class EnemyController : MonoBehaviour
             loadSettings.enemies[1] = enemies[1];
             loadSettings.enemies[2] = enemies[2];
 
+            if (loadSettings.background == null && background != null)
+            {
+                loadSettings.background = background;
+            }
+
+            if (objective != null && objective.canComplete)
+            {
+                loadSettings.currentFightObjective = objective;
+            }
+
+            //loadSettings.SetScene(SceneManager.GetActiveScene().name);
+
             if (sceneLoader != null)
-                sceneLoader.LoadSpecifiedScene(combatScene.ToString(), LoadSceneMode.Single);
+            {
+                sceneLoader.LoadSpecifiedScene(combatScene.ToString(), LoadSceneMode.Single, null);
+            }
+            else
+            {
+                Debug.Log("No scene loader");
+            }
+        }
+        else
+        {
+            Debug.Log("no load settings");
         }
     }
 }

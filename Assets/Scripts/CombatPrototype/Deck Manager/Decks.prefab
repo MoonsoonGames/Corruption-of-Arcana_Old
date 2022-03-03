@@ -1,0 +1,118 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1134788730500950437
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1134788730500950438}
+  m_Layer: 5
+  m_Name: Decks
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1134788730500950438
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134788730500950437}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1134788731484253931}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1134788731484253930
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1134788731484253931}
+  - component: {fileID: 1134788731484253932}
+  m_Layer: 5
+  m_Name: Deck Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1134788731484253931
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134788731484253930}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1134788730500950438}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -99, y: -414}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1134788731484253932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134788731484253930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3065b8e690dcca943b77686d296132ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  card: {fileID: 7978782399096148075, guid: 8245547df31a2ef49813019490905eff, type: 3}
+  basicArcana:
+  - {fileID: 11400000, guid: a48dc9199156577478bae5f018251083, type: 2}
+  - {fileID: 11400000, guid: 418dd24db35e0614882f380ad6210dfd, type: 2}
+  - {fileID: 11400000, guid: 6bd1335480a7f754cb51f229a108c6cc, type: 2}
+  - {fileID: 11400000, guid: eaa0fa9c7224ad741bf189b989628694, type: 2}
+  - {fileID: 11400000, guid: af89ff48f79a6dd4e88996f7325d33f6, type: 2}
+  majourArcana:
+  - {fileID: 11400000, guid: cf02f49a0f8baee4a85a87815ad0e605, type: 2}
+  - {fileID: 11400000, guid: 7cc4db331eb08374d81db6261e960368, type: 2}
+  - {fileID: 11400000, guid: bde3b204b35776647bf26cf143f91944, type: 2}
+  - {fileID: 11400000, guid: 9da7b0d1cbfc49e418894ecf7d7f585e, type: 2}
+  - {fileID: 11400000, guid: f18bda0d13077f547a9e680ad0b0d78d, type: 2}
+  - {fileID: 11400000, guid: fd7c61f37517a1148b6a0f033ddd9493, type: 2}
+  - {fileID: 11400000, guid: 692bd351edbe44048baeac888dc310be, type: 2}
+  - {fileID: 11400000, guid: cff4c22774a92ef4085a274b804b13bf, type: 2}
+  - {fileID: 11400000, guid: 63077370fac946d49bf5ec9e80df158b, type: 2}
+  - {fileID: 11400000, guid: c9a49456e95a0824db6f22cd363913c2, type: 2}
+  - {fileID: 11400000, guid: a1b4a808eef48b04aa997bca52b3b8db, type: 2}
+  - {fileID: 11400000, guid: 403f276b546379c468d9e6554eb0e1fd, type: 2}
+  - {fileID: 11400000, guid: 19e9c965a890aea41a3ce37f0af217fc, type: 2}
+  - {fileID: 11400000, guid: e5d16d008b75db24bae5ccdfa6250f41, type: 2}
+  - {fileID: 11400000, guid: 298c3e6b052f21a4da94f053939307c7, type: 2}
+  - {fileID: 11400000, guid: 35bfc4962eec5374184f8a691963338c, type: 2}
+  - {fileID: 11400000, guid: 0eb6637484302864d9480d5f4c57c9f3, type: 2}
+  - {fileID: 11400000, guid: 96f8dfd7b9ab6fd4cb8141216e38c863, type: 2}
+  - {fileID: 11400000, guid: 7ee1880e172b65942ba00f4d2ab0029d, type: 2}
+  - {fileID: 11400000, guid: 8f961b064484e214d9d25849b3d6c993, type: 2}
+  corruptedArcana: []
+  deck: []
+  cardsCount: {x: 3, y: 5, z: 6}
+  offsetInterval: 1

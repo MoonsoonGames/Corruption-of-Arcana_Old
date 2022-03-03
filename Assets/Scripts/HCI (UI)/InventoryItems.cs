@@ -6,9 +6,10 @@ using UnityEngine.UI;
 public class InventoryItems : MonoBehaviour
 {
     LoadSettings loadSettings;
+    MenuManager menuManager;
 
-    public Text healthPotionText;
     int healthPotionCount;
+    int arcanaPotionCount;
 
     PlayerController controller;
 
@@ -16,47 +17,28 @@ public class InventoryItems : MonoBehaviour
     {
         controller = GameObject.FindObjectOfType<PlayerController>();
 
-        LoadSettings[] loadSettingsArray = GameObject.FindObjectsOfType<LoadSettings>();
+        loadSettings = LoadSettings.instance;
 
-        foreach (var item in loadSettingsArray)
-        {
-            if (item.CheckMain())
-            {
-                loadSettings = item;
-                healthPotionCount = loadSettings.potionCount;
-                healthPotionText.text = healthPotionCount.ToString();
-            }
-            else
-            {
-                Destroy(item); //There is already one in the scene, delete this one
-            }
-
-        }
-
-        loadSettingsArray = GameObject.FindObjectsOfType<LoadSettings>();
-
-        //Debug.Log("Length: " + loadSettingsArray.Length);
-        //Debug.Break();
+        healthPotionCount = loadSettings.healingPotionCount;
+        arcanaPotionCount = loadSettings.arcanaPotionCount;
     }
 
     public void HealthPotion()
     {
         //heal
-        if (controller != null)
+        if (loadSettings.health < controller.maxHealth && healthPotionCount > 0)
         {
-            if (controller.health < controller.maxHealth && healthPotionCount > 0)
+            int heal = Random.Range(30, 46);
+            loadSettings.health += heal;
+            Debug.Log(heal + "Health healed");
+
+            healthPotionCount -= 1;
+            menuManager.HPPotionCount.text = healthPotionCount.ToString();
+
+            if (loadSettings != null)
             {
-                int heal = Random.Range(30, 46);
-                controller.health += heal;
-
-                healthPotionCount--;
-                healthPotionText.text = healthPotionCount.ToString();
-
-                if (loadSettings != null)
-                {
-                    loadSettings.potionCount = healthPotionCount;
-                    loadSettings.health = controller.health;
-                }
+                loadSettings.healingPotionCount = healthPotionCount;
+                loadSettings.health = controller.health;
             }
         }
     }
