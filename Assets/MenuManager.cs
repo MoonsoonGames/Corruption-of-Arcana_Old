@@ -111,7 +111,7 @@ public class MenuManager : MonoBehaviour
                 CardsMenu.SetActive(false);
                 //freeze player/camera
                 Player.GetComponent<PlayerController>().canMove = false;
-                //unlock mouse - confined to window
+                //unlock mouse
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
             }
@@ -119,7 +119,7 @@ public class MenuManager : MonoBehaviour
         #endregion
 
         #region Stats Update
-        if(PauseMenuUI.activeSelf == true)
+        if (PauseMenuUI.activeSelf == true)
         {
             //update the HP and AP bars
             PauseHealthBar.value = loadSettings.health;
