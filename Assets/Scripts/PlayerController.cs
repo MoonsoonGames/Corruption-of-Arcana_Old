@@ -289,7 +289,7 @@ public class PlayerController : MonoBehaviour
                 loadSettings.playerPosInClearing = transform.position;
                 loadSettings.playerRotInClearing = transform.rotation;
             }
-            else if (scene == E_Levels.Cave.ToString())
+            else if (scene == E_Levels.EasternCave.ToString())
             {
                 loadSettings.playerPosInCave = transform.position;
                 loadSettings.playerRotInCave = transform.rotation;
