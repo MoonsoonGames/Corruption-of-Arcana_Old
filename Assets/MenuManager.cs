@@ -74,9 +74,9 @@ public class MenuManager : MonoBehaviour
                 //freeze player
                 Player.GetComponent<PlayerController>().canMove = false;
 
-                //unlock mouse - unlocked
+                //unlock mouse - confined to window
                 Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
+                Cursor.lockState = CursorLockMode.Confined;
 
                 //debug
                 Debug.Log("Open Pause menu");
@@ -93,16 +93,15 @@ public class MenuManager : MonoBehaviour
 
                 //freeze player/camera
                 Player.GetComponent<PlayerController>().canMove = false;
+
                 //unlock mouse - confined to window
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.Confined;
+
                 //debug
                 Debug.Log("Open Quest menu");
             }
             #endregion
-
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.Confined;
         }
         else if(Player.GetComponent<PlayerController>().canMove == false)
         {
