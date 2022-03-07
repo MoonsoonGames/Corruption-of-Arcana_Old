@@ -101,8 +101,8 @@ public class MenuManager : MonoBehaviour
             }
             #endregion
 
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
         else if(Player.GetComponent<PlayerController>().canMove == false)
         {
