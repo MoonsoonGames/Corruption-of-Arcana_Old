@@ -33,7 +33,7 @@ public class Dialogue : MonoBehaviour
         loadSettings = LoadSettings.instance;
     }
 
-    public bool LoadScene()
+    public bool LoadDialogueScene(PlayerController controller)
     {
         if (sceneLoader != null && loadSettings != null)
         {
@@ -56,6 +56,10 @@ public class Dialogue : MonoBehaviour
 
                 if (destroyOnSpeak)
                 {
+                    if (controller != null)
+                    {
+                        controller.interactImage.SetActive(false);
+                    }
                     Destroy(this.gameObject);
                 }
 
