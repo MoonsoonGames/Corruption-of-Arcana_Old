@@ -1720,7 +1720,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 4157904644285437538}
+  selectedFlowchart: {fileID: 1570171991}
 --- !u!4 &336365333
 Transform:
   m_ObjectHideFlags: 1
@@ -7323,10 +7323,25 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1672618227}
+    - target: {fileID: 5410255482640988632, guid: 5e44c1da357e9554e9892f17692c2d11,
+        type: 3}
+      propertyPath: targetObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 1297130335}
     - target: {fileID: 5788963369338986568, guid: 5e44c1da357e9554e9892f17692c2d11,
         type: 3}
       propertyPath: selectedBlocks.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5788963369338986570, guid: 5e44c1da357e9554e9892f17692c2d11,
+        type: 3}
+      propertyPath: nodeRect.x
+      value: -17.599998
+      objectReference: {fileID: 0}
+    - target: {fileID: 5788963369338986570, guid: 5e44c1da357e9554e9892f17692c2d11,
+        type: 3}
+      propertyPath: nodeRect.y
+      value: -85.100006
       objectReference: {fileID: 0}
     - target: {fileID: 5788963369338986575, guid: 5e44c1da357e9554e9892f17692c2d11,
         type: 3}
@@ -7436,6 +7451,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1570171989}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1570171991 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5788963369338986568, guid: 5e44c1da357e9554e9892f17692c2d11,
+    type: 3}
+  m_PrefabInstance: {fileID: 1570171989}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570620673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a334fe2ffb574b3583ff3b18b4792d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1570171992 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5788963369338986581, guid: 5e44c1da357e9554e9892f17692c2d11,
@@ -12920,10 +12947,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 911216634}
     m_Modifications:
-    - target: {fileID: 0}
-      propertyPath: staticEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 429087825}
     - target: {fileID: 1325706773460531939, guid: 859cc17615d79ea4c878a87d4a07a93f,
         type: 3}
       propertyPath: character
