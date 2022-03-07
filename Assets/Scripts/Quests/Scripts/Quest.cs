@@ -83,6 +83,8 @@ public class Quest : ScriptableObject
 
             CheckCompletedObjectives();
         }
+
+        SaveProgress();
     }
 
     public void CheckObjectives()
@@ -109,6 +111,8 @@ public class Quest : ScriptableObject
         {
             //Debug.Log("Not completed all objectives");
         }
+
+        SaveProgress();
 
         ResetCompass();
     }
