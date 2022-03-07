@@ -43,14 +43,16 @@ public class Dialogue : MonoBehaviour
                 if (checkpoint)
                 {
                     loadSettings.SetCheckpoint();
-                    loadSettings.ResetCards();
+                    loadSettings.ResetCards(true);
                     PlayerController controller = GameObject.Find("Player").GetComponent<PlayerController>();
 
                     if (controller != null)
                     {
                         Debug.Log(SceneManager.GetActiveScene());
-                        loadSettings.checkPointHealingPotionCount = controller.GetPotions();
-                        loadSettings.checkPointPos = controller.transform.position;
+
+                        loadSettings.healingPotionCount = loadSettings.maxHealingPotionCount;
+
+                        loadSettings.checkpointPos = controller.transform.position;
                         loadSettings.checkPointScene = SceneManager.GetActiveScene();
                     }
                 }

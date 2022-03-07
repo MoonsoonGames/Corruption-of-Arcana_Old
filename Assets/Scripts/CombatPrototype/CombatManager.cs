@@ -161,7 +161,7 @@ public class CombatManager : MonoBehaviour
         abilityManager.playerTurn = !player;
 
         abilityManager.ResetAbility();
-        
+
         if (player)
         {
             playerStats.OnTurnEndStatus();
@@ -219,24 +219,6 @@ public class CombatManager : MonoBehaviour
         enemyManager.TargetEnemies(visible, spell);
     }
 
-    public void Rewards(int healing, int gold, int potions)
-    {
-        if (loadSettings != null && loadSettings.currentFight != null)
-        {
-            playerStats.ChangeHealth(healing, false, E_DamageTypes.Physical, out int damageTaken, this.gameObject, false);
-
-            playerStats.ChangePotions(potions, false);
-
-            loadSettings.health = playerStats.GetHealth();
-
-            loadSettings.currentGold += gold; 
-
-            loadSettings.enemiesKilled.Add(loadSettings.currentFight);
-        }
-
-        //Debug.Log("No current fight");
-    }
-
     public void SetBackground()
     {
         if (bgImage != null && loadSettings.background != null)
@@ -245,5 +227,22 @@ public class CombatManager : MonoBehaviour
         }
 
         loadSettings.background = null;
+    }
+
+    public void Rewards(int healing)
+    {
+        if (loadSettings != null && loadSettings.currentFight != null)
+        {
+            playerStats.ChangeHealth(healing, false, E_DamageTypes.Physical, out int damageTaken, this.gameObject, false);
+
+            loadSettings.health = playerStats.GetHealth();
+
+            loadSettings.enemiesKilled.Add(loadSettings.currentFight);
+
+            if (loadSettings.fightingBoss)
+            {
+                loadSettings.checkpointEnemies.Add(loadSettings.currentFight);
+            }
+        }
     }
 }

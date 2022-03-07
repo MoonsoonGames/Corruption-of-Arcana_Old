@@ -49,8 +49,10 @@ public class Quest : ScriptableObject
 
     [Header("Rewards")]
     public int goldReward;
+
+    //delete
     public int potionReward;
-    public string itemReward;
+    public int itemReward;
 
     public void AcceptQuest()
     {
@@ -186,33 +188,7 @@ public class Quest : ScriptableObject
         if (loadSettings != null && loadSettings.currentFight != null)
         {
             loadSettings.currentGold += goldReward;
-            loadSettings.healingPotionCount = DeterminePotions(loadSettings.healingPotionCount);
         }
-    }
-
-    int DeterminePotions(float potions)
-    {
-        int potionsReward = (int)potions;
-        float chance = potions % 1f;
-
-        int test = potionsReward;
-
-        if (RandomBoolWeighting(chance))
-            potionsReward++;
-
-        //Debug.Log(test + " | " + chance + " | " + potionsReward);
-
-        return Mathf.Clamp(potionsReward, 0, 5);
-    }
-
-    //From Gam140 Godsent by Andrew Scott
-    private bool RandomBoolWeighting(float weighting)
-    {
-        if (Random.value >= weighting)
-        {
-            return true;
-        }
-        return false;
     }
 
     #endregion

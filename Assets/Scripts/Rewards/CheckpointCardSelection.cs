@@ -16,7 +16,7 @@ public class CheckpointCardSelection : MonoBehaviour
     {
         LoadSettings loadSettings = LoadSettings.instance;
 
-        loadSettings.ResetCards();
+        loadSettings.ResetCards(false);
         rewards.SetActive(true);
     }
 }
