@@ -42,4 +42,24 @@ public class InventoryItems : MonoBehaviour
             }
         }
     }
+
+    /*
+     * (Repeat again for Arcana Potion)
+     * ON button press
+     * - IF PotionCount > 0 && current(x) < max(x)
+     * -- int (x)Restore = random(30, 45)
+     * -- current(x) += (x)Restore
+     * -- PotionCount -= 1
+     * -- PotionAmount text = PotionCount string
+     * 
+     * - ELSE IF PotionCount = 0
+     * -- DISPLAY 'Not Enough Potions' (y)
+     * -- WAIT FOR 2 secs
+     * -- UNDISPLAY (y)
+     * 
+     * - ELSE IF current(x) = max(x)
+     * -- DISPLAY 'Max (x) Reached' (z)
+     * -- WAIT FOR 2 secs
+     * -- UNDISPLAY (z)
+     */
 }
