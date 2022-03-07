@@ -72,6 +72,10 @@ GameObject:
   - component: {fileID: 3395483243730542658}
   - component: {fileID: 913068207222925897}
   - component: {fileID: 1872985684753177737}
+  - component: {fileID: 1462484584340511}
+  - component: {fileID: 5311276675985130564}
+  - component: {fileID: 4388510383848851245}
+  - component: {fileID: 5361974434369041000}
   m_Layer: 0
   m_Name: NAVDIA_Parent
   m_TagString: Untagged
@@ -119,7 +123,7 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 2643863248224981627}
+  - {fileID: 5311276675985130564}
   selectedCommands: []
   variables: []
   description: 
@@ -200,6 +204,7 @@ MonoBehaviour:
   eventHandler: {fileID: 0}
   commandList:
   - {fileID: 6584572301936081010}
+  - {fileID: 1462484584340511}
   suppressAllAutoSelections: 0
 --- !u!114 &6584572301936081010
 MonoBehaviour:
@@ -221,10 +226,10 @@ MonoBehaviour:
   staticEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2796563882706352535}
-        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
-        m_MethodName: LoadLastScene
-        m_Mode: 2
+      - m_Target: {fileID: 3395483243730542658}
+        m_TargetAssemblyTypeName: DialogueBackdrop, Assembly-CSharp
+        m_MethodName: ResetLoadSettingsBG
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -976,9 +981,6 @@ MonoBehaviour:
   - {fileID: 0}
   objective: {fileID: 0}
   combatScene: 2
-  goldReward: {x: 0, y: 0}
-  potionReward: 0
-  itemReward: 0
   enemyName: 
   background: {fileID: 0}
   destroy: 0
@@ -1316,8 +1318,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: -103.746414
-    y: 169.46565
+    x: -99.948944
+    y: 174.52895
     width: 117.08859
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
@@ -1352,10 +1354,10 @@ MonoBehaviour:
       - m_Target: {fileID: 3230632622408878515}
         m_TargetAssemblyTypeName: SpendResourcesOnNode, Assembly-CSharp
         m_MethodName: SpendGold
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 6584572301936081009}
+          m_ObjectArgumentAssemblyTypeName: Fungus.Flowchart, Fungus
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1492,6 +1494,138 @@ MonoBehaviour:
   stringEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1462484584340511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6584572301936081014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95d9ff288f3904c05ada7ac9c9a075bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 77
+  indentLevel: 0
+  description: 
+  delay: 0
+  invokeType: 0
+  staticEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2796563882706352535}
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+        m_MethodName: LoadLastScene
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  booleanParameter:
+    booleanRef: {fileID: 0}
+    booleanVal: 0
+  booleanEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  integerParameter:
+    integerRef: {fileID: 0}
+    integerVal: 0
+  integerEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  floatParameter:
+    floatRef: {fileID: 0}
+    floatVal: 0
+  floatEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  stringParameter:
+    stringRef: {fileID: 0}
+    stringVal: 
+  stringEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &5311276675985130564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6584572301936081014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodeRect:
+    serializedVersion: 2
+    x: -247.30998
+    y: 55.108917
+    width: 142.40503
+    height: 40
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  useCustomTint: 0
+  itemId: 78
+  blockName: Insufficient Gold
+  description: 
+  eventHandler: {fileID: 0}
+  commandList:
+  - {fileID: 4388510383848851245}
+  - {fileID: 5361974434369041000}
+  suppressAllAutoSelections: 0
+--- !u!114 &4388510383848851245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6584572301936081014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 114
+  indentLevel: 0
+  storyText: Well in that case, seems we've got no more business here.
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &5361974434369041000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6584572301936081014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 050fb9e6e72f442b3b883da8a965bdeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 115
+  indentLevel: 0
+  targetFlowchart: {fileID: 0}
+  targetBlock: {fileID: 6584572301936081004}
+  startLabel:
+    stringRef: {fileID: 0}
+    stringVal: 
+  startIndex: 0
+  callMode: 0
 --- !u!1001 &808288501727304502
 PrefabInstance:
   m_ObjectHideFlags: 0

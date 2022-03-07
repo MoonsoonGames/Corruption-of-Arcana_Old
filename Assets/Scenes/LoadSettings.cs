@@ -51,10 +51,8 @@ public class LoadSettings : MonoBehaviour
     public Sprite background;
 
     public List<string> enemiesKilled = new List<string>();
-    public List<string> checkpointEnemies = new List<string>();
-
-    public int health = 120;
-    public int maxHealth = 120;
+    public List<string> bossesKilled = new List<string>();
+    public List<string> bossesKilledSaved = new List<string>();
 
     public int maxHealingPotionCount;
     public int healingPotionCount;
@@ -149,7 +147,7 @@ public class LoadSettings : MonoBehaviour
                 targetPos.y = playerPosInClearing.y;
                 targetPos.z = playerPosInClearing.z;
             }
-            else if (lastLevel.ToString() == E_Levels.Cave.ToString())
+            else if (lastLevel.ToString() == E_Levels.EasternCave.ToString())
             {
                 Debug.Log(scene + " and " + lastLevel.ToString());
                 targetPos = playerPosInCave;
@@ -218,7 +216,7 @@ public class LoadSettings : MonoBehaviour
                 targetRot.z = playerRotInClearing.z;
                 targetRot.w = playerRotInClearing.w;
             }
-            else if (lastLevel.ToString() == E_Levels.Cave.ToString())
+            else if (lastLevel.ToString() == E_Levels.EasternCave.ToString())
             {
                 Debug.Log(scene + " and " + lastLevel.ToString());
                 targetRot = playerRotInCave;
@@ -277,8 +275,9 @@ public class LoadSettings : MonoBehaviour
     {
         Debug.Log("Reset Enemies");
         enemiesKilled.Clear();
+        bossesKilled.Clear();
 
-        foreach (var item in checkpointEnemies)
+        foreach (var item in bossesKilledSaved)
         {
             enemiesKilled.Add(item);
         }
@@ -304,40 +303,57 @@ public class LoadSettings : MonoBehaviour
         {
             playerPosInClearing = new Vector3(37f, 7.61000013f, 294.160004f);
         }
-        else if (lastLevel.ToString() == E_Levels.Cave.ToString())
+        else if (lastLevel.ToString() == E_Levels.EasternCave.ToString())
         {
             Debug.Log("Cave was last scene");
             playerPosInCave = new Vector3(37f, 45.2999992f, 260.899994f);
         }
         else
         {
-            Debug.Log("Error: " + lastLevel.ToString() + " || " + E_Levels.Cave.ToString());
+            Debug.Log("Error: " + lastLevel.ToString() + " || " + E_Levels.EasternCave.ToString());
         }
 
         currentNodeID = checkpointNodeID;
 
         healingPotionCount = maxHealingPotionCount;
 
+        maxHealth = maxHealthCheckpoint;
+
         #endregion
 
         ResetEnemies();
     }
 
-    public void SaveCheckpoint(Scene newCheckPoint)
+    public void SaveCheckpoint(Scene newCheckPoint, PlayerController controller)
     {
         Debug.Log("Checkpoint");
-        enemiesKilled.Clear();
 
-        foreach (var item in checkpointEnemies)
+        foreach (var item in bossesKilled)
         {
-            enemiesKilled.Add(item);
+            bossesKilledSaved.Add(item);
         }
+
+        ResetEnemies();
 
         if (newCheckPoint != null)
         {
             checkPointScene = newCheckPoint;
             checkPointString = checkPointScene.name;
         }
+
+        ResetCards(true);
+
+        if (controller != null)
+        {
+            Debug.Log(SceneManager.GetActiveScene());
+
+            checkpointPos = controller.transform.position;
+            checkPointScene = SceneManager.GetActiveScene();
+        }
+
+        maxHealthCheckpoint = maxHealth;
+        health = maxHealth;
+        healingPotionCount = maxHealingPotionCount;
 
         checkpointNodeID = currentNodeID;
 
@@ -416,7 +432,7 @@ public class LoadSettings : MonoBehaviour
         if (cache)
         {
             Debug.Log("Cache cards");
-            currentGold += majourArcana.Count * goldPerCard;
+            currentGold += DetermineGoldFromCards();
             checkPointGold = currentGold;
         }
         else
@@ -425,6 +441,29 @@ public class LoadSettings : MonoBehaviour
         }
 
         majourArcana.Clear();
+    }
+
+    public int DetermineGoldFromCards()
+    {
+        return majourArcana.Count * goldPerCard;
+    }
+
+    #endregion
+
+    #region Upgrades
+
+    public int health = 100;
+    public int maxHealth = 100;
+    public int maxHealthCheckpoint = 100;
+
+    public void IncreaseMaxHealth(int increase)
+    {
+        maxHealth += increase;
+    }
+
+    public int GetHeathIncreaseCost()
+    {
+        return maxHealth;
     }
 
     #endregion

@@ -126,11 +126,11 @@ public class SceneLoader : MonoBehaviour
         if (GetCurrentSceneEnum() == E_Levels.CombatPrototype || (GetCurrentSceneEnum() == E_Levels.Dialogue))
         {
             //Do nothing
-            Debug.Log(GetCurrentSceneEnum().ToString() + " Scene is: " + E_Levels.CombatPrototype + " or " + E_Levels.Dialogue);
+            //Debug.Log(GetCurrentSceneEnum().ToString() + " Scene is: " + E_Levels.CombatPrototype + " or " + E_Levels.Dialogue);
         }
         else
         {
-            Debug.Log(GetCurrentSceneEnum().ToString() + " Scene is not: " + E_Levels.CombatPrototype + " or " + E_Levels.Dialogue);
+            //Debug.Log(GetCurrentSceneEnum().ToString() + " Scene is not: " + E_Levels.CombatPrototype + " or " + E_Levels.Dialogue);
             loadSettings.lastLevel = (E_Levels)System.Enum.Parse(typeof(E_Levels), newScene);
         }
     }

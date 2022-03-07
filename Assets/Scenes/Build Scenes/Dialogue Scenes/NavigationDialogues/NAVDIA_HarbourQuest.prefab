@@ -50,6 +50,32 @@ MonoBehaviour:
   hideThisOption:
     booleanRef: {fileID: 0}
     booleanVal: 0
+--- !u!114 &945560285515870205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5840469385753039430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodeRect:
+    serializedVersion: 2
+    x: 108.7589
+    y: 29.592255
+    width: 121.05261
+    height: 40
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  useCustomTint: 0
+  itemId: 88
+  blockName: Bribe Bandits
+  description: 
+  eventHandler: {fileID: 0}
+  commandList: []
+  suppressAllAutoSelections: 0
 --- !u!114 &1157555517144398452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,6 +282,27 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 913068207222925897, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: nodeRect.x
+      value: -19.126589
+      objectReference: {fileID: 0}
+    - target: {fileID: 913068207222925897, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: nodeRect.y
+      value: 210.35883
+      objectReference: {fileID: 0}
+    - target: {fileID: 913068207222925897, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: nodeRect.width
+      value: 146.05261
+      objectReference: {fileID: 0}
+    - target: {fileID: 1489685052098560366, guid: e5d3a98493258664998ed88687286a7a,
+        type: 3}
+      propertyPath: objective
+      value: 
+      objectReference: {fileID: 11400000, guid: 7d71354cdb6f07a40ab2ebab8becb687,
+        type: 2}
     - target: {fileID: 2643863248224981627, guid: e5d3a98493258664998ed88687286a7a,
         type: 3}
       propertyPath: nodeRect.x
@@ -399,22 +446,22 @@ PrefabInstance:
     - target: {fileID: 6584572301936081009, guid: e5d3a98493258664998ed88687286a7a,
         type: 3}
       propertyPath: scrollPos.x
-      value: 238.60934
+      value: 333.34622
       objectReference: {fileID: 0}
     - target: {fileID: 6584572301936081009, guid: e5d3a98493258664998ed88687286a7a,
         type: 3}
       propertyPath: scrollPos.y
-      value: 296.72348
+      value: 274.355
       objectReference: {fileID: 0}
     - target: {fileID: 6584572301936081009, guid: e5d3a98493258664998ed88687286a7a,
         type: 3}
       propertyPath: selectedBlocks.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6584572301936081009, guid: e5d3a98493258664998ed88687286a7a,
         type: 3}
       propertyPath: selectedCommands.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6584572301936081009, guid: e5d3a98493258664998ed88687286a7a,
         type: 3}
@@ -469,12 +516,12 @@ PrefabInstance:
     - target: {fileID: 7326043992507716152, guid: e5d3a98493258664998ed88687286a7a,
         type: 3}
       propertyPath: nodeRect.x
-      value: -121.21323
+      value: 101.155106
       objectReference: {fileID: 0}
     - target: {fileID: 7326043992507716152, guid: e5d3a98493258664998ed88687286a7a,
         type: 3}
       propertyPath: nodeRect.y
-      value: 201.9415
+      value: 78.257355
       objectReference: {fileID: 0}
     - target: {fileID: 7326043992507716152, guid: e5d3a98493258664998ed88687286a7a,
         type: 3}
