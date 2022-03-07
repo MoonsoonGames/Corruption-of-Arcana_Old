@@ -1,5 +1,34 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &4931909735529784781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 595748310801618158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed6416ce628326043976b601c4d11834, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToLoad: 3
+  forceDialogue: 0
+  dialogue: {fileID: 3028617137681382603, guid: d846add05c037224fad3196322b6bde9,
+    type: 3}
+  sceneMode: 0
+  completeObjectives: []
+  requireQuestsInProgress: []
+  requireObjectivesInProgress: []
+  requireAllInProgress: 1
+  disableQuestsInProgress: []
+  disableObjectivesInProgress:
+  - {fileID: 11400000, guid: 5b29b3e09c0a69a4b8be7012996008a6, type: 2}
+  requireQuestsCompleted: []
+  requireObjectivesCompleted: []
+  requireAllCompleted: 1
+  disableQuestsCompleted: []
+  disableObjectivesCompleted: []
 --- !u!1001 &8623414880850414967
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -84,12 +113,12 @@ PrefabInstance:
     - target: {fileID: 6837467524681156694, guid: c5fa82234e514a542a78544a9f47fb0a,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.78163993
       objectReference: {fileID: 0}
     - target: {fileID: 6837467524681156694, guid: c5fa82234e514a542a78544a9f47fb0a,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.62372994
       objectReference: {fileID: 0}
     - target: {fileID: 7265176582556184790, guid: c5fa82234e514a542a78544a9f47fb0a,
         type: 3}
@@ -114,12 +143,12 @@ PrefabInstance:
     - target: {fileID: 7265176582556184790, guid: c5fa82234e514a542a78544a9f47fb0a,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.78163993
       objectReference: {fileID: 0}
     - target: {fileID: 7265176582556184790, guid: c5fa82234e514a542a78544a9f47fb0a,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.62372994
       objectReference: {fileID: 0}
     - target: {fileID: 8608708597990046677, guid: c5fa82234e514a542a78544a9f47fb0a,
         type: 3}
@@ -142,6 +171,28 @@ PrefabInstance:
       propertyPath: checkpoint
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9216620810431011222, guid: c5fa82234e514a542a78544a9f47fb0a,
+        type: 3}
+      propertyPath: disableObjectivesCompleted.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9216620810431011222, guid: c5fa82234e514a542a78544a9f47fb0a,
+        type: 3}
+      propertyPath: requireObjectivesInProgress.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9216620810431011222, guid: c5fa82234e514a542a78544a9f47fb0a,
+        type: 3}
+      propertyPath: disableObjectivesCompleted.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 5b29b3e09c0a69a4b8be7012996008a6,
+        type: 2}
+    - target: {fileID: 9216620810431011222, guid: c5fa82234e514a542a78544a9f47fb0a,
+        type: 3}
+      propertyPath: requireObjectivesInProgress.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 5b29b3e09c0a69a4b8be7012996008a6,
+        type: 2}
     - target: {fileID: 9216620810431011224, guid: c5fa82234e514a542a78544a9f47fb0a,
         type: 3}
       propertyPath: m_RootOrder
@@ -204,6 +255,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5fa82234e514a542a78544a9f47fb0a, type: 3}
+--- !u!1 &595748310801618158 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9216620810431011225, guid: c5fa82234e514a542a78544a9f47fb0a,
+    type: 3}
+  m_PrefabInstance: {fileID: 8623414880850414967}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2659233866370035021 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6002164953895968826, guid: c5fa82234e514a542a78544a9f47fb0a,

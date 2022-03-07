@@ -241,7 +241,7 @@ public class CombatManager : MonoBehaviour
 
             if (loadSettings.fightingBoss)
             {
-                loadSettings.checkpointEnemies.Add(loadSettings.currentFight);
+                loadSettings.bossesKilled.Add(loadSettings.currentFight);
             }
         }
     }
