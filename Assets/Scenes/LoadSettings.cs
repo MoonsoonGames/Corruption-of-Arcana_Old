@@ -52,7 +52,6 @@ public class LoadSettings : MonoBehaviour
 
     public List<string> enemiesKilled = new List<string>();
     public List<string> bossesKilled = new List<string>();
-    public List<string> bossesKilledSaved = new List<string>();
 
     public int maxHealingPotionCount;
     public int healingPotionCount;
@@ -60,7 +59,6 @@ public class LoadSettings : MonoBehaviour
     public int arcanaPotionCount;
 
     public int currentGold;
-    public int checkPointGold;
 
     public string currentFight;
     public Vector2 goldReward;
@@ -275,9 +273,8 @@ public class LoadSettings : MonoBehaviour
     {
         Debug.Log("Reset Enemies");
         enemiesKilled.Clear();
-        bossesKilled.Clear();
 
-        foreach (var item in bossesKilledSaved)
+        foreach (var item in bossesKilled)
         {
             enemiesKilled.Add(item);
         }
@@ -315,9 +312,8 @@ public class LoadSettings : MonoBehaviour
 
         currentNodeID = checkpointNodeID;
 
+        health = maxHealth;
         healingPotionCount = maxHealingPotionCount;
-
-        maxHealth = maxHealthCheckpoint;
 
         #endregion
 
@@ -328,20 +324,11 @@ public class LoadSettings : MonoBehaviour
     {
         Debug.Log("Checkpoint");
 
-        foreach (var item in bossesKilled)
-        {
-            bossesKilledSaved.Add(item);
-        }
-
-        ResetEnemies();
-
         if (newCheckPoint != null)
         {
             checkPointScene = newCheckPoint;
             checkPointString = checkPointScene.name;
         }
-
-        ResetCards(true);
 
         if (controller != null)
         {
@@ -350,10 +337,6 @@ public class LoadSettings : MonoBehaviour
             checkpointPos = controller.transform.position;
             checkPointScene = SceneManager.GetActiveScene();
         }
-
-        maxHealthCheckpoint = maxHealth;
-        health = maxHealth;
-        healingPotionCount = maxHealingPotionCount;
 
         checkpointNodeID = currentNodeID;
 
@@ -433,7 +416,6 @@ public class LoadSettings : MonoBehaviour
         {
             Debug.Log("Cache cards");
             currentGold += DetermineGoldFromCards();
-            checkPointGold = currentGold;
         }
         else
         {
@@ -454,7 +436,6 @@ public class LoadSettings : MonoBehaviour
 
     public int health = 100;
     public int maxHealth = 100;
-    public int maxHealthCheckpoint = 100;
 
     public void IncreaseMaxHealth(int increase)
     {

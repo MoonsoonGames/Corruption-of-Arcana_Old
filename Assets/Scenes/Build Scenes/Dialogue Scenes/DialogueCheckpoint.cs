@@ -31,6 +31,8 @@ public class DialogueCheckpoint : MonoBehaviour
         if (loadSettings != null)
         {
              gold = loadSettings.DetermineGoldFromCards();
+
+            loadSettings.ResetCards(true);
         }
         else
         {

@@ -83,6 +83,8 @@ public class QuestObjective : ScriptableObject
                 CompleteObjective();
             }
         }
+
+        SaveProgress();
     }
 
     void CompleteObjective()
@@ -94,6 +96,8 @@ public class QuestObjective : ScriptableObject
             quest.CompleteObjective(this);
             quest.CheckObjectives();
         }
+
+        SaveProgress();
 
         quest.ResetCompass();
     }
