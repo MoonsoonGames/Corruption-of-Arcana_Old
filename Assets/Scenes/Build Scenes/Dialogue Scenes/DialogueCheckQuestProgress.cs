@@ -1,82 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using Fungus;
 
-public class Dialogue : MonoBehaviour
+public class DialogueCheckQuestProgress : MonoBehaviour
 {
-    public E_Levels sceneToLoad;
-    string sceneString;
-    Scene currentScene;
-
-    public bool forceDialogue = false;
-    public bool destroyOnSpeak = false;
-
-    SceneLoader sceneLoader;
-
     LoadSettings loadSettings;
 
-    public Object dialogue;
-
-    public LoadSceneMode sceneMode;
-
-    public QuestObjective[] completeObjectives;
-
-    // Start is called before the first frame update
     private void Start()
     {
-        sceneString = sceneToLoad.ToString();
-
-        currentScene = SceneManager.GetActiveScene();
-
-        sceneLoader = GetComponent<SceneLoader>();
         loadSettings = LoadSettings.instance;
     }
 
-    public bool LoadDialogueScene(PlayerController controller)
+    public void CheckQuestProgress(Flowchart flowchart)
     {
-        if (sceneLoader != null && loadSettings != null)
+        if (loadSettings != null)
         {
-            if (CanSpeak())
-            {
-                if (completeObjectives.Length != 0)
-                {
-                    foreach (var item in completeObjectives)
-                    {
-                        item.CompleteGoal();
-                    }
-                }
-
-                loadSettings.SetScene(SceneManager.GetActiveScene().name);
-
-                loadSettings.dialogueFlowChart = dialogue;
-                Debug.Log(loadSettings.dialogueFlowChart);
-                loadSettings.loadSceneMultiple = sceneMode == LoadSceneMode.Additive;
-                sceneLoader.LoadSpecifiedScene(sceneString, sceneMode, dialogue);
-
-                if (destroyOnSpeak)
-                {
-                    if (controller != null)
-                    {
-                        controller.interactImage.SetActive(false);
-                    }
-                    Destroy(this.gameObject);
-                }
-
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            flowchart.SetBooleanVariable("QuestProgress", CheckQuests());
         }
         else
         {
-            return false;
+            Debug.LogError("No load settings!");
         }
     }
 
-    public bool CanSpeak()
+    public bool CheckQuests()
     {
         return CheckQuestsInProgress() && CheckQuestsCompleted();
     }

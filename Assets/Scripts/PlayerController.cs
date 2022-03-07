@@ -139,7 +139,7 @@ public class PlayerController : MonoBehaviour
 
                 if (Input.GetButton("Interact") && interact && dialogue != null)
                 {
-                    canMove = !dialogue.LoadScene();
+                    canMove = !dialogue.LoadDialogueScene(this);
                 }
             }
 
@@ -198,7 +198,7 @@ public class PlayerController : MonoBehaviour
 
                     if (item.forceDialogue)
                     {
-                        canMove = !dialogue.LoadScene();
+                        canMove = !dialogue.LoadDialogueScene(this);
                     }
                 }
                 else
