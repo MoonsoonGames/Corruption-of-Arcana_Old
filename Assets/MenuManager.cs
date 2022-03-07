@@ -27,7 +27,6 @@ public class MenuManager : MonoBehaviour
     public Compass compass;
 
     public GameObject SettingsMenu;
-    public GameObject HelpMenu;
     public GameObject QuestMenuUI;
     public GameObject GuideBook;
     public GameObject CardsMenu;
@@ -62,80 +61,116 @@ public class MenuManager : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
-        #region Open Hotkeys
-        //J to OPEN quest menu
-        if (Input.GetKeyDown(KeyCode.J) && PauseMenuUI.activeSelf == false)
+        if (Player.GetComponent<PlayerController>().canMove == true)
         {
-            //turn off Exploration UI
-            ExplorationUI.SetActive(false);
-            //turn on Quest Menu UI
-            QuestMenuUI.SetActive(true);
-
-            //freeze player/camera
-            Player.GetComponent<PlayerController>().canMove = false;
-            //unlock mouse - confined to window
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.Confined;
-            //debug
-            Debug.Log("Quest Menu Active");
-        }
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (PauseMenuUI.activeSelf == true)
+            #region Esc open
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                PauseMenuUI.SetActive(false);
-                ExplorationUI.SetActive(true);
-                //freeze player/camera
-                Player.GetComponent<PlayerController>().canMove = true;
-                //unlock mouse - confined to window
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
-                Debug.Log("closed pause menu");
-            }
-            else if (QuestMenuUI.activeSelf == true)
-            {
-                QuestMenuUI.SetActive(false);
-                ExplorationUI.SetActive(true);
-                //freeze player/camera
-                Player.GetComponent<PlayerController>().canMove = true;
-                //unlock mouse - confined to window
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
-            }
-            else
-            {
+                //open pause
                 PauseMenuUI.SetActive(true);
+                //close explore
                 ExplorationUI.SetActive(false);
-                SettingsMenu.SetActive(false);
-                CardsMenu.SetActive(false);
+
+                //freeze player
+                Player.GetComponent<PlayerController>().canMove = false;
+
+                //unlock mouse - unlocked
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+
+                //debug
+                Debug.Log("Open Pause menu");
+            }
+            #endregion
+
+            #region J open
+            if (Input.GetKeyDown(KeyCode.J) && PauseMenuUI.activeSelf == false)
+            {
+                //open quest
+                QuestMenuUI.SetActive(true);
+                //close explore
+                ExplorationUI.SetActive(false);
+
                 //freeze player/camera
                 Player.GetComponent<PlayerController>().canMove = false;
                 //unlock mouse - confined to window
                 Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
+                Cursor.lockState = CursorLockMode.Confined;
+                //debug
+                Debug.Log("Open Quest menu");
             }
+            #endregion
+
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
-        #endregion
+        else if(Player.GetComponent<PlayerController>().canMove == false)
+        {
+            #region Esc close
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (PauseMenuUI.activeSelf == true || QuestMenuUI.activeSelf == true)
+                {
+                    //close pause
+                    PauseMenuUI.SetActive(false);
+                    //close quests
+                    QuestMenuUI.SetActive(false);
+                    //close submenus
+                    MainMenuConfirmScreen.SetActive(false);
+                    QuitConfirmScreen.SetActive(false);
+                    //open explore
+                    ExplorationUI.SetActive(true);
+
+                    //unfreeze player/camera
+                    Player.GetComponent<PlayerController>().canMove = true;
+                    //hide mouse - lock to centre
+                    Cursor.visible = false;
+                    Cursor.lockState = CursorLockMode.Locked;
+
+                    //debug
+                    Debug.Log("Close Pause menu");
+                }
+                else if (SettingsMenu.activeSelf == true || GuideBook.activeSelf == true || CardsMenu.activeSelf == true)
+                {
+                    //close settings
+                    SettingsMenu.SetActive(false);
+                    //close guide book
+                    GuideBook.SetActive(false);
+                    //close cards
+                    CardsMenu.SetActive(false);
+                    //open pause
+                    PauseMenuUI.SetActive(true);
+
+                    //unfreeze player/camera
+                    Player.GetComponent<PlayerController>().canMove = false;
+                    //hide mouse - unlocked
+                    Cursor.visible = true;
+                    Cursor.lockState = CursorLockMode.None;
+
+                    //debug
+                    Debug.Log("Close Quest menu");
+                }
+            }
+            #endregion
+        }
 
         #region Stats Update
-        if(PauseMenuUI.activeSelf == true)
-        {
-            //update the HP and AP bars
-            PauseHealthBar.value = loadSettings.health;
-            PauseHealthBar.maxValue = loadSettings.maxHealth;
-            Debug.Log(PauseHealthBar.value + "||" + loadSettings.health);
-            //PauseArcanaBar.value = loadSettings.arcana;
+        //update the HP and AP bars
+        PauseHealthBar.value = loadSettings.health;
+        PauseHealthBar.maxValue = loadSettings.maxHealth;
+        //PauseArcanaBar.value = loadSettings.arcana;
+        //PauseArcanaBar.maxValue = loadSettings.maxArcana;
 
-            //update gold counter
-            goldCount.text = loadSettings.currentGold.ToString();
+        Debug.Log(PauseHealthBar.value + "||" + loadSettings.health);
 
-            //update the number of all the potions
-            HPPotionCount.text = loadSettings.healingPotionCount.ToString();
-            APPotionCount.text = loadSettings.arcanaPotionCount.ToString();
-            //RPotionCount.text = loadSettings.potionCount.ToString();
-            //SPotionCount.text = loadSettings.potionCount.ToString();
-        }
+        //update gold counter
+        goldCount.text = loadSettings.currentGold.ToString();
+
+        //update the number of all the potions
+        HPPotionCount.text = loadSettings.healingPotionCount.ToString();
+        APPotionCount.text = loadSettings.arcanaPotionCount.ToString();
+        //RPotionCount.text = loadSettings.potionCount.ToString();
+        //SPotionCount.text = loadSettings.potionCount.ToString();
         #endregion
     }
 
@@ -172,7 +207,7 @@ public class MenuManager : MonoBehaviour
         //turn off pause menu UI
         PauseMenuUI.SetActive(false);
         //turn on GuideBook UI
-        HelpMenu.SetActive(true);
+        GuideBook.SetActive(true);
     }
     #endregion
 
@@ -186,7 +221,7 @@ public class MenuManager : MonoBehaviour
     public void MainMenuConfirm()
     {
         //Return to main menu
-        SceneManager.LoadScene("Splash Screen");
+        SceneManager.LoadScene("SplashScreen");
     }
     public void MainMenuDeny()
     {

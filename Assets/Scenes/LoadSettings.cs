@@ -145,7 +145,7 @@ public class LoadSettings : MonoBehaviour
                 targetPos.y = playerPosInClearing.y;
                 targetPos.z = playerPosInClearing.z;
             }
-            else if (lastLevel.ToString() == E_Levels.Cave.ToString())
+            else if (lastLevel.ToString() == E_Levels.EasternCave.ToString())
             {
                 Debug.Log(scene + " and " + lastLevel.ToString());
                 targetPos = playerPosInCave;
@@ -214,7 +214,7 @@ public class LoadSettings : MonoBehaviour
                 targetRot.z = playerRotInClearing.z;
                 targetRot.w = playerRotInClearing.w;
             }
-            else if (lastLevel.ToString() == E_Levels.Cave.ToString())
+            else if (lastLevel.ToString() == E_Levels.EasternCave.ToString())
             {
                 Debug.Log(scene + " and " + lastLevel.ToString());
                 targetRot = playerRotInCave;
@@ -300,14 +300,14 @@ public class LoadSettings : MonoBehaviour
         {
             playerPosInClearing = new Vector3(37f, 7.61000013f, 294.160004f);
         }
-        else if (lastLevel.ToString() == E_Levels.Cave.ToString())
+        else if (lastLevel.ToString() == E_Levels.EasternCave.ToString())
         {
             Debug.Log("Cave was last scene");
             playerPosInCave = new Vector3(37f, 45.2999992f, 260.899994f);
         }
         else
         {
-            Debug.Log("Error: " + lastLevel.ToString() + " || " + E_Levels.Cave.ToString());
+            Debug.Log("Error: " + lastLevel.ToString() + " || " + E_Levels.EasternCave.ToString());
         }
 
         currentNodeID = checkpointNodeID;

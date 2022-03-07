@@ -31,8 +31,8 @@ public enum E_Levels
     [InspectorName("Tiertarock")]
     Tiertarock,
 
-    [InspectorName("East Forest Cave")]
-    Cave
+    [InspectorName("Eastern Cave")]
+    EasternCave
 }
 
 public enum E_Suits
