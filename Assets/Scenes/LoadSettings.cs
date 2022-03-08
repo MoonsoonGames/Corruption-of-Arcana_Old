@@ -67,6 +67,8 @@ public class LoadSettings : MonoBehaviour
 
     #endregion
 
+    SceneTransitionAnim transitionAnimScript;
+
     #endregion
 
     #endregion
@@ -76,6 +78,7 @@ public class LoadSettings : MonoBehaviour
         Singleton();
 
         questSaver = GetComponent<SaveLoadQuestData>();
+        transitionAnimScript = GetComponent<SceneTransitionAnim>();
 
         DontDestroyOnLoad(this);
     }
@@ -445,6 +448,15 @@ public class LoadSettings : MonoBehaviour
     public int GetHeathIncreaseCost()
     {
         return maxHealth;
+    }
+
+    #endregion
+
+    #region Scene Transition Anim
+
+    public void SceneTransitionAnim()
+    {
+        transitionAnimScript.PlayAnim();
     }
 
     #endregion

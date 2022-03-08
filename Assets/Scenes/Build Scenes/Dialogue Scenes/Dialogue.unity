@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.35872698, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2374,6 +2374,27 @@ MonoBehaviour:
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
+--- !u!114 &570620680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570620673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 050fb9e6e72f442b3b883da8a965bdeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 75
+  indentLevel: 0
+  targetFlowchart: {fileID: 0}
+  targetBlock: {fileID: 1570171993}
+  startLabel:
+    stringRef: {fileID: 0}
+    stringVal: 
+  startIndex: 0
+  callMode: 0
 --- !u!114 &570620681 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1445309647007539673, guid: 5e44c1da357e9554e9892f17692c2d11,
@@ -6458,6 +6479,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8089154501935342602, guid: d5851c901d2efff429f8baac791c126d,
+        type: 3}
+      propertyPath: audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 231045a5b8499be4aaff51098a9437f6, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5851c901d2efff429f8baac791c126d, type: 3}
 --- !u!4 &1043920700 stripped
@@ -7350,11 +7376,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1278662153, guid: 05f89d2696b2bd54a80aff872fa16a1e, type: 3}
       propertyPath: nodeRect.width
-      value: 86.842094
+      value: 90.50632
       objectReference: {fileID: 0}
     - target: {fileID: 1278662153, guid: 05f89d2696b2bd54a80aff872fa16a1e, type: 3}
       propertyPath: commandList.Array.size
-      value: 18
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 1278662153, guid: 05f89d2696b2bd54a80aff872fa16a1e, type: 3}
       propertyPath: commandList.Array.data[1]
@@ -7422,6 +7448,10 @@ PrefabInstance:
       objectReference: {fileID: 1278662168}
     - target: {fileID: 1278662153, guid: 05f89d2696b2bd54a80aff872fa16a1e, type: 3}
       propertyPath: commandList.Array.data[17]
+      value: 
+      objectReference: {fileID: 1278662180}
+    - target: {fileID: 1278662153, guid: 05f89d2696b2bd54a80aff872fa16a1e, type: 3}
+      propertyPath: commandList.Array.data[18]
       value: 
       objectReference: {fileID: 1278662152}
     - target: {fileID: 1278662155, guid: 05f89d2696b2bd54a80aff872fa16a1e, type: 3}
@@ -8535,7 +8565,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: -153.02069
     y: 166.16669
-    width: 99.999985
+    width: 105.69619
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -8872,7 +8902,7 @@ MonoBehaviour:
   disableObjectivesCompleted: []
 --- !u!114 &1278662177
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -8897,7 +8927,7 @@ MonoBehaviour:
     booleanVal: 0
 --- !u!114 &1278662178
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -8911,7 +8941,7 @@ MonoBehaviour:
   indentLevel: 1
 --- !u!114 &1278662179
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -9152,6 +9182,20 @@ MonoBehaviour:
   vector3Data:
     vector3Ref: {fileID: 0}
     vector3Val: {x: 0, y: 0, z: 0}
+--- !u!114 &1278662180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278662143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93cb9773f2ca04e2bbf7a68ccfc23267, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 167
+  indentLevel: 0
 --- !u!1 &1297130335
 GameObject:
   m_ObjectHideFlags: 0
@@ -10769,12 +10813,12 @@ PrefabInstance:
     - target: {fileID: 5788963369338986570, guid: 5e44c1da357e9554e9892f17692c2d11,
         type: 3}
       propertyPath: nodeRect.x
-      value: -17.599998
+      value: -16.599998
       objectReference: {fileID: 0}
     - target: {fileID: 5788963369338986570, guid: 5e44c1da357e9554e9892f17692c2d11,
         type: 3}
       propertyPath: nodeRect.y
-      value: -85.100006
+      value: -86.100006
       objectReference: {fileID: 0}
     - target: {fileID: 5788963369338986570, guid: 5e44c1da357e9554e9892f17692c2d11,
         type: 3}
@@ -10910,7 +10954,7 @@ PrefabInstance:
         type: 3}
       propertyPath: commandList.Array.data[26]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 570620680}
     - target: {fileID: 5788963369338986575, guid: 5e44c1da357e9554e9892f17692c2d11,
         type: 3}
       propertyPath: m_Name
@@ -11025,6 +11069,18 @@ Transform:
 --- !u!114 &1570171992 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5788963369338986581, guid: 5e44c1da357e9554e9892f17692c2d11,
+    type: 3}
+  m_PrefabInstance: {fileID: 1570171989}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570620673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1570171993 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 570620676, guid: 5e44c1da357e9554e9892f17692c2d11,
     type: 3}
   m_PrefabInstance: {fileID: 1570171989}
   m_PrefabAsset: {fileID: 0}
