@@ -23,17 +23,20 @@ public class RandomFights : MonoBehaviour
 
         SpriteRenderer spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
-        GameObject enemy = controller.enemies[1] as GameObject;
-
-        Image[] images = enemy.GetComponentsInChildren<Image>();
-
-        foreach (var item in images)
+        if (spriteRenderer != null)
         {
-            if (item.gameObject.name == "EnemySprite")
-            {
-                spriteRenderer.sprite = item.sprite;
+            GameObject enemy = controller.enemies[1] as GameObject;
 
-                break;
+            Image[] images = enemy.GetComponentsInChildren<Image>();
+
+            foreach (var item in images)
+            {
+                if (item.gameObject.name == "EnemySprite")
+                {
+                    spriteRenderer.sprite = item.sprite;
+
+                    break;
+                }
             }
         }
     }

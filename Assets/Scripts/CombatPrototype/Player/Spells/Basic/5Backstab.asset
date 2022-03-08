@@ -35,12 +35,11 @@ MonoBehaviour:
   targetInterpretationUnlocked: 1
   targetName: Backstab
   targetDescription: 'Bypass your opponent''s defenses with a strike that ignores
-    damage resistances and has a chance to expose your target, reducing their resistances
-    and revealing their log entry in the journal
+    damage resistances.
 
 
-    Also allows to to click on
-    the enemy to view their stats in combat'
+    Also has a chance to knock your target off balance
+    and cause them to bleed.'
   targetEndTurn: 0
   targetUsesAction: 1
   targetCost: 10
@@ -61,9 +60,11 @@ MonoBehaviour:
   healOnKill: {x: 0, y: 0}
   executeThreshold: 0
   targetStatus:
-  - {fileID: 11400000, guid: a71ba48d9e31518499d97057b673a672, type: 2}
-  targetStatusDuration: 02000000
+  - {fileID: 11400000, guid: 248186047f0223649a1003cedd41cb2e, type: 2}
+  - {fileID: 11400000, guid: 0aa56a9e5ce959e4b96c703989b64011, type: 2}
+  targetStatusDuration: 0300000003000000
   targetStatusChance:
+  - 0.8
   - 0.6
   spawnPosition: 4
   summonAlly: {fileID: 0}

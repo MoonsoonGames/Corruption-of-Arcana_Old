@@ -49,8 +49,10 @@ public class Quest : ScriptableObject
 
     [Header("Rewards")]
     public int goldReward;
+
+    //delete
     public int potionReward;
-    public string itemReward;
+    public int itemReward;
 
     public void AcceptQuest()
     {
@@ -81,6 +83,8 @@ public class Quest : ScriptableObject
 
             CheckCompletedObjectives();
         }
+
+        SaveProgress();
     }
 
     public void CheckObjectives()
@@ -91,7 +95,7 @@ public class Quest : ScriptableObject
         {
             if (item.completed == false)
             {
-                Debug.Log(item.title + " is " + item.completed);
+                //Debug.Log(item.title + " is " + item.completed);
                 allComplete = false;
             }
         }
@@ -107,6 +111,8 @@ public class Quest : ScriptableObject
         {
             //Debug.Log("Not completed all objectives");
         }
+
+        SaveProgress();
 
         ResetCompass();
     }
@@ -186,33 +192,7 @@ public class Quest : ScriptableObject
         if (loadSettings != null && loadSettings.currentFight != null)
         {
             loadSettings.currentGold += goldReward;
-            loadSettings.potionCount = DeterminePotions(loadSettings.potionCount);
         }
-    }
-
-    int DeterminePotions(float potions)
-    {
-        int potionsReward = (int)potions;
-        float chance = potions % 1f;
-
-        int test = potionsReward;
-
-        if (RandomBoolWeighting(chance))
-            potionsReward++;
-
-        //Debug.Log(test + " | " + chance + " | " + potionsReward);
-
-        return Mathf.Clamp(potionsReward, 0, 5);
-    }
-
-    //From Gam140 Godsent by Andrew Scott
-    private bool RandomBoolWeighting(float weighting)
-    {
-        if (Random.value >= weighting)
-        {
-            return true;
-        }
-        return false;
     }
 
     #endregion

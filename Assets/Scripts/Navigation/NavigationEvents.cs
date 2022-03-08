@@ -98,7 +98,7 @@ public class NavigationEvents : ScriptableObject
                 loadSettings.currentFightObjective = completeObjective;
             }
 
-            loadSettings.lastLevel = navScene;
+            //loadSettings.lastLevel = navScene;
 
             if (sceneLoader != null)
                 sceneLoader.LoadSpecifiedScene(loadScene.ToString(), LoadSceneMode.Single, null);
@@ -113,7 +113,7 @@ public class NavigationEvents : ScriptableObject
         if (loadSettings != null && loadSettings.currentFight != null)
         {
             loadSettings.currentGold += (int)Random.Range(goldReward.x, goldReward.y);
-            loadSettings.potionCount = DeterminePotions(loadSettings.potionCount);
+            loadSettings.healingPotionCount = DeterminePotions(loadSettings.healingPotionCount);
         }
     }
 

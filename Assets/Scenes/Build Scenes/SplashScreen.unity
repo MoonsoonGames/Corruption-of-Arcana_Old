@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.35872698, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1595,7 +1595,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &563992485
 GameObject:
@@ -1719,7 +1719,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &588834516 stripped
 MonoBehaviour:
@@ -4127,7 +4127,7 @@ PrefabInstance:
     - target: {fileID: 2262760569770562732, guid: d5851c901d2efff429f8baac791c126d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2262760569770562732, guid: d5851c901d2efff429f8baac791c126d,
         type: 3}
@@ -5495,7 +5495,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 284, y: -173}
+  m_AnchoredPosition: {x: -322, y: -849}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1902992976
@@ -5520,18 +5520,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 58b647c5b2ec4184e9a07a561cdf0644, type: 3}
-    m_FontSize: 100
+    m_FontSize: 75
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 100
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Demo
+  m_Text: Version 0.9.1
 --- !u!222 &1902992977
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6079,7 +6079,7 @@ PrefabInstance:
     - target: {fileID: 5564511172518815122, guid: e6f554e9aa4ad204d8a5050df75cd470,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5564511172518815122, guid: e6f554e9aa4ad204d8a5050df75cd470,
         type: 3}
@@ -6158,6 +6158,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5564511172518815125, guid: e6f554e9aa4ad204d8a5050df75cd470,
         type: 3}
+      propertyPath: maxHealingPotionCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5564511172518815125, guid: e6f554e9aa4ad204d8a5050df75cd470,
+        type: 3}
       propertyPath: enemiesKilled.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -6170,6 +6175,11 @@ PrefabInstance:
         type: 3}
       propertyPath: enemiesKilled.Array.data[1]
       value: DeathKnight
+      objectReference: {fileID: 0}
+    - target: {fileID: 5564511172518815125, guid: e6f554e9aa4ad204d8a5050df75cd470,
+        type: 3}
+      propertyPath: checkpointHealingPotionCount
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6f554e9aa4ad204d8a5050df75cd470, type: 3}

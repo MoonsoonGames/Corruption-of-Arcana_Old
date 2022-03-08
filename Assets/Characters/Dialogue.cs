@@ -10,12 +10,11 @@ public class Dialogue : MonoBehaviour
     Scene currentScene;
 
     public bool forceDialogue = false;
+    public bool destroyOnSpeak = false;
 
     SceneLoader sceneLoader;
 
     LoadSettings loadSettings;
-
-    public bool checkpoint = false;
 
     public Object dialogue;
 
@@ -34,27 +33,12 @@ public class Dialogue : MonoBehaviour
         loadSettings = LoadSettings.instance;
     }
 
-    public bool LoadScene()
+    public bool LoadDialogueScene(PlayerController controller)
     {
         if (sceneLoader != null && loadSettings != null)
         {
             if (CanSpeak())
             {
-                if (checkpoint)
-                {
-                    loadSettings.SetCheckpoint();
-
-                    PlayerController controller = GameObject.Find("Player").GetComponent<PlayerController>();
-
-                    if (controller != null)
-                    {
-                        Debug.Log(SceneManager.GetActiveScene());
-                        loadSettings.checkPointPotionCount = controller.GetPotions();
-                        loadSettings.checkPointPos = controller.transform.position;
-                        loadSettings.checkPointScene = SceneManager.GetActiveScene();
-                    }
-                }
-
                 if (completeObjectives.Length != 0)
                 {
                     foreach (var item in completeObjectives)
@@ -66,8 +50,18 @@ public class Dialogue : MonoBehaviour
                 loadSettings.SetScene(SceneManager.GetActiveScene().name);
 
                 loadSettings.dialogueFlowChart = dialogue;
+                Debug.Log(loadSettings.dialogueFlowChart);
                 loadSettings.loadSceneMultiple = sceneMode == LoadSceneMode.Additive;
                 sceneLoader.LoadSpecifiedScene(sceneString, sceneMode, dialogue);
+
+                if (destroyOnSpeak)
+                {
+                    if (controller != null)
+                    {
+                        controller.interactImage.SetActive(false);
+                    }
+                    Destroy(this.gameObject);
+                }
 
                 return true;
             }

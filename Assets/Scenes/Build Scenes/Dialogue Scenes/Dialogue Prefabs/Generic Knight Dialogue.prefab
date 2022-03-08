@@ -30,10 +30,10 @@ GameObject:
   - component: {fileID: 8762164863031217207}
   - component: {fileID: 8762164863031217206}
   - component: {fileID: 8762164863031217204}
-  - component: {fileID: 8762164863031217205}
   - component: {fileID: 8762164863031217209}
   - component: {fileID: 8762164863031217208}
   - component: {fileID: 8762164863031217210}
+  - component: {fileID: 871433888971710169}
   m_Layer: 0
   m_Name: Generic Knight Dialogue
   m_TagString: Untagged
@@ -83,7 +83,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 8762164863031217209}
   selectedCommands:
-  - {fileID: 8762164863031217210}
+  - {fileID: 0}
   variables: []
   description: 
   stepPause: 0
@@ -196,7 +196,7 @@ MonoBehaviour:
   description: 
   eventHandler: {fileID: 8762164863031217204}
   commandList:
-  - {fileID: 8762164863031217205}
+  - {fileID: 0}
   - {fileID: 8762164863031217206}
   suppressAllAutoSelections: 0
 --- !u!114 &8762164863031217206
@@ -271,62 +271,6 @@ MonoBehaviour:
   suppressBlockAutoSelect: 0
   keyPressType: 0
   keyCode: 8
---- !u!114 &8762164863031217205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6673876278959578827}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95d9ff288f3904c05ada7ac9c9a075bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 26
-  indentLevel: 0
-  description: 
-  delay: 0
-  invokeType: 0
-  staticEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2015368678390629857}
-        m_TargetAssemblyTypeName: CompleteObjective, Assembly-CSharp
-        m_MethodName: CompleteGoal
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  booleanParameter:
-    booleanRef: {fileID: 0}
-    booleanVal: 0
-  booleanEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  integerParameter:
-    integerRef: {fileID: 0}
-    integerVal: 0
-  integerEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  floatParameter:
-    floatRef: {fileID: 0}
-    floatVal: 0
-  floatEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  stringParameter:
-    stringRef: {fileID: 0}
-    stringVal: 
-  stringEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &8762164863031217209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -403,6 +347,20 @@ MonoBehaviour:
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
+--- !u!114 &871433888971710169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6673876278959578827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61646c41915427c4a800633a5605964f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rewards: {fileID: 0}
+  disablerewards: {fileID: 0}
 --- !u!1001 &8781068534825903593
 PrefabInstance:
   m_ObjectHideFlags: 0

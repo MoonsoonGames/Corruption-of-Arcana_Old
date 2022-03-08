@@ -16,12 +16,11 @@ public class EnemyController : MonoBehaviour
     private SceneLoader sceneLoader;
 
     public E_Levels combatScene;
-    public Vector2 goldReward;
-    public float potionReward;
-    public string itemReward;
 
     public string enemyName;
     public Sprite background;
+
+    public bool destroy = true;
 
     // Start is called before the first frame update
     void Awake()
@@ -29,7 +28,12 @@ public class EnemyController : MonoBehaviour
         loadSettings = LoadSettings.instance;
         sceneLoader = GetComponent<SceneLoader>();
 
-        if (loadSettings != null)
+        if (sceneLoader == null)
+        {
+            sceneLoader = GameObject.FindObjectOfType<SceneLoader>();
+        }
+
+        if (loadSettings != null && destroy)
         {
             if (loadSettings.enemiesKilled.Contains(name))
             {
@@ -51,21 +55,22 @@ public class EnemyController : MonoBehaviour
             loadSettings.enemies[1] = enemies[1];
             loadSettings.enemies[2] = enemies[2];
 
-            loadSettings.background = background;
-
-            loadSettings.goldReward = goldReward;
-            loadSettings.potionReward = potionReward;
-            loadSettings.itemReward = itemReward;
+            if (loadSettings.background == null && background != null)
+            {
+                loadSettings.background = background;
+            }
 
             if (objective != null && objective.canComplete)
             {
                 loadSettings.currentFightObjective = objective;
             }
 
-            loadSettings.SetScene(SceneManager.GetActiveScene().name);
+            //loadSettings.SetScene(SceneManager.GetActiveScene().name);
 
             if (sceneLoader != null)
+            {
                 sceneLoader.LoadSpecifiedScene(combatScene.ToString(), LoadSceneMode.Single, null);
+            }
             else
             {
                 Debug.Log("No scene loader");

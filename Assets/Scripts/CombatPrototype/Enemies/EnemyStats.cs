@@ -89,6 +89,13 @@ public class EnemyStats : CharacterStats
         {
             GameObject.FindObjectOfType<LoadSettings>().AddToGuidebook(enemy.displayName);
             GameObject.FindObjectOfType<AbilityManager>().EnemyInfo(enemy);
+
+            ShowStatsButton[] statsButtons = GameObject.FindObjectsOfType<ShowStatsButton>();
+
+            foreach (var item in statsButtons)
+            {
+                item.CheckReveal();
+            }
         }
     }
 }

@@ -66,6 +66,10 @@ public class EnemyManager : MonoBehaviour
             description.image = image;
             description.descriptionText = descriptionText;
             description.disable = disable;
+
+            ShowStatsButton statsButton = item.GetComponentInChildren<ShowStatsButton>();
+
+            statsButton.manager = this;
         }
     }
 

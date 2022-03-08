@@ -57,7 +57,7 @@ public class QuestObjective : ScriptableObject
     public void SetCanComplete()
     {
         canComplete = true;
-        Debug.Log("Current Objective: " + title);
+        //Debug.Log("Current Objective: " + title);
 
         //ShowMarkers()
     }
@@ -83,6 +83,8 @@ public class QuestObjective : ScriptableObject
                 CompleteObjective();
             }
         }
+
+        SaveProgress();
     }
 
     void CompleteObjective()
@@ -94,6 +96,8 @@ public class QuestObjective : ScriptableObject
             quest.CompleteObjective(this);
             quest.CheckObjectives();
         }
+
+        SaveProgress();
 
         quest.ResetCompass();
     }

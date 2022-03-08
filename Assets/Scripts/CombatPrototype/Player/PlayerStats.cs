@@ -18,10 +18,12 @@ public class PlayerStats : CharacterStats
 
         if (loadSettings != null)
         {
+            maxHealth = loadSettings.maxHealth;
             health = loadSettings.health;
             combatManager.HealthPointsValue.text = health.ToString();
+            healthSliderValue.slider.maxValue = maxHealth;
 
-            potionCount = loadSettings.potionCount;
+            potionCount = loadSettings.healingPotionCount;
         }
         else
         {
@@ -114,7 +116,7 @@ public class PlayerStats : CharacterStats
 
         if (loadSettings != null)
         {
-            loadSettings.potionCount = potionCount;
+            loadSettings.healingPotionCount = potionCount;
         }
     }
 }

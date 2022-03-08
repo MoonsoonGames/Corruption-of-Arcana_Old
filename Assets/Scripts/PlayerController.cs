@@ -96,10 +96,14 @@ public class PlayerController : MonoBehaviour
 
         if (loadSettings.checkPoint)
         {
-            loadSettings.SaveCheckpoint(SceneManager.GetActiveScene());
+            loadSettings.SaveCheckpoint(SceneManager.GetActiveScene(), this);
         }
 
         loadSettings.died = false;
+
+        health = loadSettings.health;
+        maxHealth = loadSettings.maxHealth;
+        //arcana = loadSettings.arcana;
 
         StartCoroutine(IDelayMovement(2f));
     }
@@ -143,7 +147,7 @@ public class PlayerController : MonoBehaviour
 
                 if (Input.GetButton("Interact") && interact && dialogue != null)
                 {
-                    canMove = !dialogue.LoadScene();
+                    canMove = !dialogue.LoadDialogueScene(this);
                 }
             }
 
@@ -197,12 +201,17 @@ public class PlayerController : MonoBehaviour
             {
                 if (item.CanSpeak())
                 {
+                    //Debug.Log(item.dialogue.ToString() + " can speak");
                     dialogue = item;
 
                     if (item.forceDialogue)
                     {
-                        canMove = !dialogue.LoadScene();
+                        canMove = !dialogue.LoadDialogueScene(this);
                     }
+                }
+                else
+                {
+                    //Debug.Log(item.dialogue.ToString() + " can't speak");
                 }
             }
 
@@ -288,7 +297,7 @@ public class PlayerController : MonoBehaviour
                 loadSettings.playerPosInClearing = transform.position;
                 loadSettings.playerRotInClearing = transform.rotation;
             }
-            else if (scene == E_Levels.Cave.ToString())
+            else if (scene == E_Levels.EasternCave.ToString())
             {
                 loadSettings.playerPosInCave = transform.position;
                 loadSettings.playerRotInCave = transform.rotation;
@@ -349,7 +358,7 @@ public class PlayerController : MonoBehaviour
 
         if (loadSettings != null)
         {
-            loadSettings.potionCount = potionCount;
+            loadSettings.healingPotionCount = potionCount;
         }
     }
     private bool isGrounded;
