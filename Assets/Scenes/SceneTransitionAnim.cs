@@ -25,6 +25,7 @@ public class SceneTransitionAnim : MonoBehaviour
         animator.SetTrigger("Open");
     }
 
+    /*
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.X))
@@ -32,4 +33,5 @@ public class SceneTransitionAnim : MonoBehaviour
             PlayAnim();
         }
     }
+    */
 }
