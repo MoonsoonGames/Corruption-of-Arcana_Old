@@ -10,6 +10,7 @@ public class Dialogue : MonoBehaviour
     Scene currentScene;
 
     public bool forceDialogue = false;
+    public bool destroyOnSpeak = false;
 
     SceneLoader sceneLoader;
 
@@ -32,7 +33,7 @@ public class Dialogue : MonoBehaviour
         loadSettings = LoadSettings.instance;
     }
 
-    public bool LoadScene()
+    public bool LoadDialogueScene(PlayerController controller)
     {
         if (sceneLoader != null && loadSettings != null)
         {
@@ -52,6 +53,15 @@ public class Dialogue : MonoBehaviour
                 Debug.Log(loadSettings.dialogueFlowChart);
                 loadSettings.loadSceneMultiple = sceneMode == LoadSceneMode.Additive;
                 sceneLoader.LoadSpecifiedScene(sceneString, sceneMode, dialogue);
+
+                if (destroyOnSpeak)
+                {
+                    if (controller != null)
+                    {
+                        controller.interactImage.SetActive(false);
+                    }
+                    Destroy(this.gameObject);
+                }
 
                 return true;
             }
