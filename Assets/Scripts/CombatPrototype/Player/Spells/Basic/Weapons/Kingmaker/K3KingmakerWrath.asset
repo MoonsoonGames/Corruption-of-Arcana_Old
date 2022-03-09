@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d042955bf60bea84b9273684d78676b5, type: 3}
-  m_Name: H2GroundPound
+  m_Name: K3KingmakerWrath
   m_EditorClassIdentifier: 
-  cardName: Ground Pound
-  cardNumber: 2
+  cardName: Kingmaker's Wrath
+  cardNumber: 1
   flavourDescription: 
-  cardImage: {fileID: -811591575975729860, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
+  cardImage: {fileID: -9006234362928969064, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
     type: 3}
   enemySpell: 0
   selfInterpretationUnlocked: 0
@@ -35,36 +35,38 @@ MonoBehaviour:
   selfDrawCards: 0
   selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 1
-  targetName: Ground Pound
-  targetDescription: Strike the ground twice with your weapon, dealing perforation
-    damage to all targets and knocking them off balance
+  targetName: Kingmaker's Wrath
+  targetDescription: Hit your opponent with five times in quick succession, each
+    with a small chance to apply bleed and frostbite.
   targetEndTurn: 0
   targetUsesAction: 1
   targetCost: 15
   targetCostType: AP
-  damageType: 6
+  damageType: 0
   targetCanBeCountered: 1
-  targetDmg: {x: 15, y: 24}
-  hits: 2
-  hitInterval: 0.3
-  finalHitInterval: 0.3
-  targetFinalDmg: {x: 15, y: 24}
-  targetEndTurnDelay: 0.2
-  targetCleave: 1
+  targetDmg: {x: 6, y: 10}
+  hits: 5
+  hitInterval: 0.1
+  finalHitInterval: 0.35
+  targetFinalDmg: {x: 12, y: 18}
+  targetEndTurnDelay: 1
+  targetCleave: 0
   targetChain: 0
-  extraDmg: {x: 15, y: 24}
+  extraDmg: {x: 0, y: 0}
   randomTargets: 0
   lifeLeach: {x: 0, y: 0}
   healOnKill: {x: 0, y: 0}
   executeThreshold: 0
   targetStatus:
-  - {fileID: 11400000, guid: 248186047f0223649a1003cedd41cb2e, type: 2}
-  targetStatusDuration: 03000000
+  - {fileID: 11400000, guid: 0aa56a9e5ce959e4b96c703989b64011, type: 2}
+  - {fileID: 11400000, guid: 2f9b50aa5cb5d0748ae72e465f1125c1, type: 2}
+  targetStatusDuration: 0200000002000000
   targetStatusChance:
-  - 0.6
+  - 0.4
+  - 0.35
   targetDrawCards: 0
   targetDrawSpecificCard: {fileID: 0}
-  spawnPosition: 1
+  spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0
   summonFX: {fileID: 0}
