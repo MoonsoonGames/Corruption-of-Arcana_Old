@@ -145,7 +145,7 @@ public class SceneLoader : MonoBehaviour
     {
         if (sceneMode == LoadSceneMode.Single)
         {
-            StartCoroutine(ILoadDelay(scene, sceneMode, 1f));
+            StartCoroutine(ILoadDelay(scene, sceneMode, delay));
         }
         else if (sceneMode == LoadSceneMode.Additive)
         {
