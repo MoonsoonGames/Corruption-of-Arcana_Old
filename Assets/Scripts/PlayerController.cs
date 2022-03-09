@@ -77,14 +77,6 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
-    private void Start()
-    {
-        if (canMove)
-        {
-            Setup();
-        }
-    }
-
     public void Setup()
     {
         //Load position
