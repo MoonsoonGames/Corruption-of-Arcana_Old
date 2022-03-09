@@ -49,7 +49,7 @@ public class SceneLoader : MonoBehaviour
 
         if (!contains)
         {
-            StartCoroutine(ILoadDelay(scene, LoadSceneMode.Single, 1f));
+            LoadDelay(scene, LoadSceneMode.Single, 1f);
         }
     }
 
@@ -102,7 +102,8 @@ public class SceneLoader : MonoBehaviour
 
         //Set load settings level to new level
         LoadDialogue(dialogueFlowChart);
-        StartCoroutine(ILoadDelay(scene, sceneMode, 1f));
+
+        LoadDelay(scene, sceneMode, 1f);
     }
 
     public void LoadMainMenu()
@@ -138,6 +139,18 @@ public class SceneLoader : MonoBehaviour
     E_Levels GetCurrentSceneEnum()
     {
         return (E_Levels)System.Enum.Parse(typeof(E_Levels), SceneManager.GetActiveScene().name);
+    }
+
+    void LoadDelay(string scene, LoadSceneMode sceneMode, float delay)
+    {
+        if (sceneMode == LoadSceneMode.Single)
+        {
+            StartCoroutine(ILoadDelay(scene, sceneMode, 1f));
+        }
+        else if (sceneMode == LoadSceneMode.Additive)
+        {
+            SceneManager.LoadScene(scene, sceneMode);
+        }
     }
 
     IEnumerator ILoadDelay(string scene, LoadSceneMode sceneMode, float delay)
