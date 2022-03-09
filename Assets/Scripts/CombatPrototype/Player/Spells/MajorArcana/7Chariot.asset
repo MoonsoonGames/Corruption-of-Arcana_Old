@@ -32,10 +32,15 @@ MonoBehaviour:
   selfEndTurnDelay: 0.2
   selfStatus: []
   selfStatusDuration: 
+  selfDrawCards: 0
+  selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 1
   targetName: On the Warpath
-  targetDescription: Let out a horrifying battle cry, which has a chance to Terrify
+  targetDescription: 'Let out a horrifying battle cry, which has a chance to Terrify
     your targets, causing them to miss their turns.
+
+
+    Also draws a justice card'
   targetEndTurn: 0
   targetUsesAction: 1
   targetCost: 20
@@ -60,6 +65,9 @@ MonoBehaviour:
   targetStatusDuration: 02000000
   targetStatusChance:
   - 0.7
+  targetDrawCards: 1
+  targetDrawSpecificCard: {fileID: 11400000, guid: cff4c22774a92ef4085a274b804b13bf,
+    type: 2}
   spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0

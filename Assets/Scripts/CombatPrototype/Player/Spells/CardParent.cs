@@ -61,6 +61,7 @@ public class CardParent : ScriptableObject
     //public GameObject selfCastEffect;
 
     public int selfDrawCards;
+    public CardParent selfDrawSpecificCard;
 
     public void OnSelfCast(GameObject target, GameObject caster, AbilityManager abilityManager, out bool canCast)
     {
@@ -109,7 +110,7 @@ public class CardParent : ScriptableObject
                         abilityManager.EndTurn(selfEndTurnDelay);
                     }
 
-                    DrawCards(abilityManager, selfDrawCards);
+                    DrawCards(abilityManager, selfDrawCards, selfDrawSpecificCard);
                 }
             }
             else
@@ -163,6 +164,7 @@ public class CardParent : ScriptableObject
     //public GameObject targetCastEffect;
 
     public int targetDrawCards;
+    public CardParent targetDrawSpecificCard;
 
     public E_CombatEffectSpawn spawnPosition;
 
@@ -213,20 +215,67 @@ public class CardParent : ScriptableObject
                     string message = "Cast " + targetName + " on ";
                     abilityManager.multihitMax = abilityManager.combatManager.enemyManager.enemies.Count;
 
-                    foreach (var item in abilityManager.combatManager.enemyManager.enemies)
+                    if (hits > 1)
                     {
-                        CharacterStats itemHealth = item.gameObject.GetComponent<CharacterStats>();
-                        message += item.gameObject.name + ", ";
+                        for (int i = 1; i < hits; i++)
+                        {
+                            float hitTime = i * hitInterval;
 
-                        if (item.gameObject == target)
-                        {
-                            abilityManager.DelayDamage(targetDmg, damageType, 0f, spawnPos, item.gameObject, caster, itemHealth, executeThreshold, healOnKill, targetCanBeCountered);
-                            TargetApplyStatus(itemHealth, caster);
+                            foreach (var item in abilityManager.combatManager.enemyManager.enemies)
+                            {
+                                CharacterStats itemHealth = item.gameObject.GetComponent<CharacterStats>();
+                                message += item.gameObject.name + ", ";
+
+                                if (item.gameObject == target)
+                                {
+                                    abilityManager.DelayDamage(targetDmg, damageType, hitTime, spawnPos, item.gameObject, caster, itemHealth, executeThreshold, healOnKill, targetCanBeCountered);
+                                    TargetApplyStatus(itemHealth, caster);
+                                }
+                                else
+                                {
+                                    abilityManager.DelayDamage(extraDmg, damageType, hitTime + 0.1f, spawnPos, item.gameObject, caster, itemHealth, executeThreshold, healOnKill, targetCanBeCountered);
+                                    TargetApplyStatus(itemHealth, caster);
+                                }
+                            }
                         }
-                        else
+
+                        Vector2 dmgVectorFinal = targetFinalDmg;
+                        float hitTimeFinal = (hits * hitInterval) + finalHitInterval;
+
+                        foreach (var item in abilityManager.combatManager.enemyManager.enemies)
                         {
-                            abilityManager.DelayDamage(extraDmg, damageType, 0.1f, spawnPos, item.gameObject, caster, itemHealth, executeThreshold, healOnKill, targetCanBeCountered);
-                            TargetApplyStatus(itemHealth, caster);
+                            CharacterStats itemHealth = item.gameObject.GetComponent<CharacterStats>();
+                            message += item.gameObject.name + ", ";
+
+                            if (item.gameObject == target)
+                            {
+                                abilityManager.DelayDamage(targetDmg, damageType, hitTimeFinal, spawnPos, item.gameObject, caster, itemHealth, executeThreshold, healOnKill, targetCanBeCountered);
+                                TargetApplyStatus(itemHealth, caster);
+                            }
+                            else
+                            {
+                                abilityManager.DelayDamage(extraDmg, damageType, hitTimeFinal + 0.1f, spawnPos, item.gameObject, caster, itemHealth, executeThreshold, healOnKill, targetCanBeCountered);
+                                TargetApplyStatus(itemHealth, caster);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        foreach (var item in abilityManager.combatManager.enemyManager.enemies)
+                        {
+                            CharacterStats itemHealth = item.gameObject.GetComponent<CharacterStats>();
+                            message += item.gameObject.name + ", ";
+
+                            if (item.gameObject == target)
+                            {
+                                abilityManager.DelayDamage(targetDmg, damageType, 0f, spawnPos, item.gameObject, caster, itemHealth, executeThreshold, healOnKill, targetCanBeCountered);
+                                TargetApplyStatus(itemHealth, caster);
+                            }
+                            else
+                            {
+                                abilityManager.DelayDamage(extraDmg, damageType, 0.1f, spawnPos, item.gameObject, caster, itemHealth, executeThreshold, healOnKill, targetCanBeCountered);
+                                TargetApplyStatus(itemHealth, caster);
+                            }
                         }
                     }
 
@@ -338,7 +387,7 @@ public class CardParent : ScriptableObject
                     casterStats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int healNull, caster, false);
                 }
 
-                DrawCards(abilityManager, targetDrawCards);
+                DrawCards(abilityManager, targetDrawCards, targetDrawSpecificCard);
             }
             else
             {
@@ -397,9 +446,9 @@ public class CardParent : ScriptableObject
 
     #region Helper Functions
 
-    void DrawCards(AbilityManager abilityManager, int count)
+    void DrawCards(AbilityManager abilityManager, int count, CardParent specificCard)
     {
-        abilityManager.combatDeckManager.DrawCards(count);
+        abilityManager.combatDeckManager.DrawCards(count, specificCard);
     }
 
     public bool QuerySelf(GameObject target, GameObject caster, AbilityManager abilityManager)

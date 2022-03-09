@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d042955bf60bea84b9273684d78676b5, type: 3}
-  m_Name: 5Backstab
+  m_Name: B4Flurry
   m_EditorClassIdentifier: 
-  cardName: Backstab
-  cardNumber: 5
+  cardName: Flurry
+  cardNumber: 4
   flavourDescription: 
-  cardImage: {fileID: -4448962368760175236, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
+  cardImage: {fileID: -3056297102037108793, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
     type: 3}
   enemySpell: 0
   selfInterpretationUnlocked: 0
@@ -33,25 +33,21 @@ MonoBehaviour:
   selfStatus: []
   selfStatusDuration: 
   targetInterpretationUnlocked: 1
-  targetName: Backstab
-  targetDescription: 'Bypass your opponent''s defenses with a strike that ignores
-    damage resistances.
-
-
-    Also has a chance to knock your target off balance
-    and cause them to bleed.'
+  targetName: Flurry
+  targetDescription: Hit your opponent with five times in quick succession, each
+    with a small chance to apply bleed.
   targetEndTurn: 0
   targetUsesAction: 1
-  targetCost: 10
+  targetCost: 15
   targetCostType: AP
-  damageType: 6
-  targetCanBeCountered: 0
-  targetDmg: {x: 18, y: 28}
-  hits: 1
-  hitInterval: 0
-  finalHitInterval: 0
-  targetFinalDmg: {x: 0, y: 0}
-  targetEndTurnDelay: 0.2
+  damageType: 0
+  targetCanBeCountered: 1
+  targetDmg: {x: 4, y: 8}
+  hits: 5
+  hitInterval: 0.1
+  finalHitInterval: 0.35
+  targetFinalDmg: {x: 8, y: 12}
+  targetEndTurnDelay: 1
   targetCleave: 0
   targetChain: 0
   extraDmg: {x: 0, y: 0}
@@ -60,13 +56,11 @@ MonoBehaviour:
   healOnKill: {x: 0, y: 0}
   executeThreshold: 0
   targetStatus:
-  - {fileID: 11400000, guid: 248186047f0223649a1003cedd41cb2e, type: 2}
   - {fileID: 11400000, guid: 0aa56a9e5ce959e4b96c703989b64011, type: 2}
-  targetStatusDuration: 0300000003000000
+  targetStatusDuration: 01000000
   targetStatusChance:
-  - 0.8
-  - 0.6
-  spawnPosition: 4
+  - 0.35
+  spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0
   summonFX: {fileID: 0}

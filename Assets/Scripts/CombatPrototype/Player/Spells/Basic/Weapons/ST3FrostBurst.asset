@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d042955bf60bea84b9273684d78676b5, type: 3}
-  m_Name: 3Cleave
+  m_Name: ST3FrostBurst
   m_EditorClassIdentifier: 
-  cardName: Cleave
-  cardNumber: 3
+  cardName: Firebolt
+  cardNumber: 1
   flavourDescription: 
-  cardImage: {fileID: -1636742031616846006, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
+  cardImage: {fileID: -6663811380663864060, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
     type: 3}
   enemySpell: 0
   selfInterpretationUnlocked: 0
@@ -29,34 +29,44 @@ MonoBehaviour:
   selfHeal: {x: 0, y: 0}
   selfAP: {x: 0, y: 0}
   restoreType: 0
-  selfEndTurnDelay: 0
+  selfEndTurnDelay: 0.2
   selfStatus: []
   selfStatusDuration: 
+  selfDrawCards: 0
+  selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 1
-  targetName: Cleave
-  targetDescription: With a sweeping strike, you hit all opponents in your way
+  targetName: Firebolt
+  targetDescription: 'Hurl a searing blast of fire at a single target
+
+
+    Also
+    has a high chance to apply burn to the target'
   targetEndTurn: 0
   targetUsesAction: 1
-  targetCost: 15
+  targetCost: 10
   targetCostType: AP
-  damageType: 0
+  damageType: 1
   targetCanBeCountered: 1
-  targetDmg: {x: 15, y: 26}
+  targetDmg: {x: 26, y: 38}
   hits: 1
   hitInterval: 0
   finalHitInterval: 0
   targetFinalDmg: {x: 0, y: 0}
-  targetEndTurnDelay: 0.3
-  targetCleave: 1
+  targetEndTurnDelay: 0.2
+  targetCleave: 0
   targetChain: 0
-  extraDmg: {x: 6, y: 12}
+  extraDmg: {x: 0, y: 0}
   randomTargets: 0
   lifeLeach: {x: 0, y: 0}
   healOnKill: {x: 0, y: 0}
   executeThreshold: 0
-  targetStatus: []
-  targetStatusDuration: 
-  targetStatusChance: []
+  targetStatus:
+  - {fileID: 11400000, guid: 857605ed69fe8ae4e994947dd3d52f69, type: 2}
+  targetStatusDuration: 02000000
+  targetStatusChance:
+  - 0.8
+  targetDrawCards: 0
+  targetDrawSpecificCard: {fileID: 0}
   spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0

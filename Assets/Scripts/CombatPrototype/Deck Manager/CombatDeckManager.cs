@@ -45,13 +45,13 @@ public class CombatDeckManager : MonoBehaviour
         {
             for (int i = cards.Count; i < cardsCount.x; i++)
             {
-                SpawnCard();
+                SpawnCard(null);
             }
         }
         else if (cards.Count < cardsCount.y)
         {
-            SpawnCard();
-            SpawnCard();
+            SpawnCard(null);
+            SpawnCard(null);
         }
         else if (cards.Count >= cardsCount.z)
         {
@@ -59,31 +59,50 @@ public class CombatDeckManager : MonoBehaviour
         }
         else
         {
-            SpawnCard();
+            SpawnCard(null);
         }
 
         //reorganize cards
         OffsetTransform();
     }
 
-    public void DrawCards(int count)
+    public void DrawCards(int count, CardParent specificCard)
     {
         for (int i = 0; i < count; i++)
         {
-            SpawnCard();
+            if (cards.Count < cardsCount.z)
+            {
+                SpawnCard(specificCard);
+            }
+            else
+            {
+                break;
+            }
         }
 
-        //reorganize cards
-        OffsetTransform();
-        Invoke("OffsetTransform", 0.5f);
+        if (count > 0)
+        {
+            //reorganize cards
+            OffsetTransform();
+            Invoke("OffsetTransform", 0.5f);
+        }
     }
 
-    void SpawnCard()
+    void SpawnCard(CardParent specificCard)
     {
         GameObject newCard = Instantiate(card, this.transform) as GameObject;
 
         CardSetter cardSetter = newCard.GetComponentInChildren<CardSetter>();
-        cardSetter.Setup(DetermineCard());
+
+        if (specificCard != null)
+        {
+            cardSetter.Setup(specificCard);
+        }
+        else
+        {
+            cardSetter.Setup(DetermineCard());
+        }
+        
         //cardSetter.DrawCards();
         cards.Add(cardSetter);
     }

@@ -10,49 +10,48 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d042955bf60bea84b9273684d78676b5, type: 3}
-  m_Name: 1Magician
+  m_Name: SW1ComboStrike
   m_EditorClassIdentifier: 
-  cardName: The Magician
+  cardName: Combo Strike
   cardNumber: 1
-  flavourDescription: As Above, so below
-  cardImage: {fileID: 4936984840038467387, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
+  flavourDescription: 
+  cardImage: {fileID: -9006234362928969064, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
     type: 3}
   enemySpell: 0
-  selfInterpretationUnlocked: 1
-  selfName: Adept Arcana
-  selfDescription: Drink from the occult wellspring of magic to restore your arcana
+  selfInterpretationUnlocked: 0
+  selfName: 
+  selfDescription: 
   selfEndTurn: 0
   selfUsesAction: 1
   selfCost: 0
   selfPotionCost: 0
   selfCostType: 
   selfHeal: {x: 0, y: 0}
-  selfAP: {x: 20, y: 20}
-  restoreType: 8
-  selfEndTurnDelay: 0.2
+  selfAP: {x: 0, y: 0}
+  restoreType: 0
+  selfEndTurnDelay: 0
   selfStatus: []
   selfStatusDuration: 
-  selfDrawCards: 2
+  selfDrawCards: 0
   selfDrawSpecificCard: {fileID: 0}
-  targetInterpretationUnlocked: 0
-  targetName: Chain Lightning
-  targetDescription: Unleash your arcana as a storm of lightning that arcs between
-    multiple enemies
+  targetInterpretationUnlocked: 1
+  targetName: Combo Strike
+  targetDescription: Hit your opponent with a weapon strike and draw a strike card
   targetEndTurn: 0
   targetUsesAction: 1
-  targetCost: 25
+  targetCost: 10
   targetCostType: AP
-  damageType: 2
+  damageType: 0
   targetCanBeCountered: 1
-  targetDmg: {x: 24, y: 36}
-  hits: 1
-  hitInterval: 0
-  finalHitInterval: 0
-  targetFinalDmg: {x: 0, y: 0}
+  targetDmg: {x: 12, y: 16}
+  hits: 2
+  hitInterval: 0.1
+  finalHitInterval: 0.1
+  targetFinalDmg: {x: 12, y: 16}
   targetEndTurnDelay: 0.2
   targetCleave: 0
-  targetChain: 1
-  extraDmg: {x: 18, y: 30}
+  targetChain: 0
+  extraDmg: {x: 0, y: 0}
   randomTargets: 0
   lifeLeach: {x: 0, y: 0}
   healOnKill: {x: 0, y: 0}
@@ -60,8 +59,9 @@ MonoBehaviour:
   targetStatus: []
   targetStatusDuration: 
   targetStatusChance: []
-  targetDrawCards: 0
-  targetDrawSpecificCard: {fileID: 0}
+  targetDrawCards: 1
+  targetDrawSpecificCard: {fileID: 11400000, guid: a48dc9199156577478bae5f018251083,
+    type: 2}
   spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0
