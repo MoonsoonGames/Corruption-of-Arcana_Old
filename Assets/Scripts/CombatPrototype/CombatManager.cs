@@ -52,9 +52,6 @@ public class CombatManager : MonoBehaviour
 
     bool boss = false;
 
-    public int maxActions;
-    int actionsLeft = 0;
-
     public int arcanaRegen = 20;
     public Image bgImage;
 
@@ -98,6 +95,14 @@ public class CombatManager : MonoBehaviour
         StartTurn(true);
     }
 
+    public void DrawCards()
+    {
+        if (combatDeckManager != null)
+        {
+            combatDeckManager.DrawTurnCards();
+        }
+    }
+
     public void StartTurn(bool player)
     {
         abilityManager.playerTurn = player;
@@ -109,10 +114,6 @@ public class CombatManager : MonoBehaviour
 
         if (player)
         {
-            actionsLeft = maxActions;
-
-            if (actionsCountText != null)
-                actionsCountText.text = actionsLeft.ToString();
 
             currentTurnText.text = "Player";
             currentTurnText.color = Color.green;
@@ -123,10 +124,7 @@ public class CombatManager : MonoBehaviour
             //Debug.Log("Regenerate Mana");
             playerStats.ChangeMana(arcanaRegen, false);
 
-            if (combatDeckManager != null)
-            {
-                combatDeckManager.DrawCards();
-            }
+            DrawCards();
 
             playerStats.OnTurnStartStatus();
         }
@@ -156,8 +154,6 @@ public class CombatManager : MonoBehaviour
 
     public void EndTurn(bool player)
     {
-        actionsLeft = 0;
-
         abilityManager.playerTurn = !player;
 
         abilityManager.ResetAbility();
@@ -176,19 +172,6 @@ public class CombatManager : MonoBehaviour
         }
 
         StartTurn(!player);
-    }
-
-    public void UseAction()
-    {
-        actionsLeft--;
-
-        if (actionsCountText != null)
-            actionsCountText.text = actionsLeft.ToString();
-    }
-
-    public int GetCardsCast()
-    {
-        return actionsLeft;
     }
 
     public void ShowEndScreen(bool victory)

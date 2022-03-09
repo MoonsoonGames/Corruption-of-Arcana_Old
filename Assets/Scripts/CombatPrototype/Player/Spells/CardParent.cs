@@ -60,6 +60,8 @@ public class CardParent : ScriptableObject
     //public GameObject selfPrepareEffect;
     //public GameObject selfCastEffect;
 
+    public int selfDrawCards;
+
     public void OnSelfCast(GameObject target, GameObject caster, AbilityManager abilityManager, out bool canCast)
     {
         canCast = false;
@@ -106,12 +108,8 @@ public class CardParent : ScriptableObject
                     {
                         abilityManager.EndTurn(selfEndTurnDelay);
                     }
-                    else if (selfUsesAction &! enemySpell)
-                    {
-                        CombatManager combatManager = GameObject.FindObjectOfType<CombatManager>();
 
-                        combatManager.UseAction();
-                    }
+                    DrawCards(abilityManager, selfDrawCards);
                 }
             }
             else
@@ -163,6 +161,8 @@ public class CardParent : ScriptableObject
     public float[] targetStatusChance;
     //public GameObject targetPrepareEffect;
     //public GameObject targetCastEffect;
+
+    public int targetDrawCards;
 
     public E_CombatEffectSpawn spawnPosition;
 
@@ -338,12 +338,7 @@ public class CardParent : ScriptableObject
                     casterStats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int healNull, caster, false);
                 }
 
-                if (targetUsesAction & !enemySpell)
-                {
-                    CombatManager combatManager = GameObject.FindObjectOfType<CombatManager>();
-
-                    combatManager.UseAction();
-                }
+                DrawCards(abilityManager, targetDrawCards);
             }
             else
             {
@@ -402,14 +397,19 @@ public class CardParent : ScriptableObject
 
     #region Helper Functions
 
+    void DrawCards(AbilityManager abilityManager, int count)
+    {
+        abilityManager.combatDeckManager.DrawCards(count);
+    }
+
     public bool QuerySelf(GameObject target, GameObject caster, AbilityManager abilityManager)
     {
-        return (abilityManager.combatManager.GetCardsCast() > 0 || !selfUsesAction || caster != GameObject.Find("Player")) && (target == caster && selfInterpretationUnlocked && target.GetComponent<CharacterStats>() != null);
+        return (caster == GameObject.Find("Player") || caster != GameObject.Find("Player")) && (target == caster && selfInterpretationUnlocked && target.GetComponent<CharacterStats>() != null);
     }
 
     public bool QueryTarget(GameObject target, GameObject caster, AbilityManager abilityManager)
     {
-        return (abilityManager.combatManager.GetCardsCast() > 0 || !targetUsesAction || caster != GameObject.Find("Player")) && (target != caster && targetInterpretationUnlocked && target.GetComponent<CharacterStats>() != null);
+        return (caster == GameObject.Find("Player") || caster != GameObject.Find("Player")) && (target != caster && targetInterpretationUnlocked && target.GetComponent<CharacterStats>() != null);
     }
 
     void SpawnFX(Object FX, Transform transform)

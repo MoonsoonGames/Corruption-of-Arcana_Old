@@ -39,7 +39,7 @@ public class CombatDeckManager : MonoBehaviour
         }
     }
 
-    public void DrawCards()
+    public void DrawTurnCards()
     {
         if (cards.Count < cardsCount.x - 2)
         {
@@ -64,6 +64,18 @@ public class CombatDeckManager : MonoBehaviour
 
         //reorganize cards
         OffsetTransform();
+    }
+
+    public void DrawCards(int count)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            SpawnCard();
+        }
+
+        //reorganize cards
+        OffsetTransform();
+        Invoke("OffsetTransform", 0.5f);
     }
 
     void SpawnCard()
