@@ -14,6 +14,8 @@ public class QuestButtons : MonoBehaviour
     public Text descriptionText;
     public Text objNameText;
     public Text objDescText;
+    public Text objProgressCountText;
+    public Text objProgressMaxText;
     public Text goldText;
 
     public Quest quest;
@@ -51,14 +53,32 @@ public class QuestButtons : MonoBehaviour
             if (quest.isComplete == true)
             {
                 statusText.text = "Completed";
+
+                objNameText.text = "You have finished this quest";
+                objDescText.text = "You have finished this quest";
+
+                objProgressCountText.text = quest.currentObjective.currentAmount.ToString();
+                objProgressMaxText.text = quest.currentObjective.requiredAmount.ToString();
             }
             else if (quest.isActive == true)
             {
                 statusText.text = "In Progress";
+
+                objNameText.text = quest.currentObjective.title;
+                objDescText.text = quest.currentObjective.description;
+
+                objProgressCountText.text = quest.currentObjective.currentAmount.ToString();
+                objProgressMaxText.text = quest.currentObjective.requiredAmount.ToString();
             }
             else
             {
                 statusText.text = "Not Started";
+
+                objNameText.text = "You have yet to start this quest";
+                objDescText.text = "You have yet to start this quest";
+
+                objProgressCountText.text = "0";
+                objProgressMaxText.text = "1";
             }
         }
 
