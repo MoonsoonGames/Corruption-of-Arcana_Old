@@ -32,14 +32,16 @@ MonoBehaviour:
   selfEndTurnDelay: 0.2
   selfStatus: []
   selfStatusDuration: 
+  selfDrawCards: 0
+  selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 1
   targetName: Slow
   targetDescription: 'You cause a wave of lethargy to wash over your target, dealing
-    a small amount of Bleak damage
+    a small amount of Bleak damage and applies slow to the target for 3 turns
 
 
-    Also applies slow to the target for 3 turns,
-    which has a chance on each of the turns to prevent them from taking their action'
+    Also
+    draws a frost burst card'
   targetEndTurn: 0
   targetUsesAction: 1
   targetCost: 15
@@ -64,6 +66,9 @@ MonoBehaviour:
   targetStatusDuration: 03000000
   targetStatusChance:
   - 1
+  targetDrawCards: 1
+  targetDrawSpecificCard: {fileID: 11400000, guid: 4cbc96349b965e648b06c674bd00522a,
+    type: 2}
   spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0

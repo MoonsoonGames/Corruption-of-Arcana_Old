@@ -26,7 +26,7 @@ public class SpellMenu : MonoBehaviour
 
         if (loadSettings != null)
         {
-            if (loadSettings.basicArcana.Contains(spell))
+            if (loadSettings.weapon.basicDeck.Contains(spell))
             {
                 contains = true;
             }

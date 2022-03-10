@@ -407,7 +407,7 @@ public class LoadSettings : MonoBehaviour
 
     #region Deckbuilding
 
-    public List<CardParent> basicArcana;
+    public Weapon weapon;
     public List<CardParent> majourArcana;
     public List<CardParent> corruptedArcana;
 

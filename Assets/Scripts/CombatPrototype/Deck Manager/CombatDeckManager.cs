@@ -24,7 +24,7 @@ public class CombatDeckManager : MonoBehaviour
 
         if (loadSettings != null)
         {
-            foreach (var item in loadSettings.basicArcana)
+            foreach (var item in loadSettings.weapon.basicDeck)
             {
                 deck.Add(item);
             }
@@ -39,19 +39,19 @@ public class CombatDeckManager : MonoBehaviour
         }
     }
 
-    public void DrawCards()
+    public void DrawTurnCards()
     {
         if (cards.Count < cardsCount.x - 2)
         {
             for (int i = cards.Count; i < cardsCount.x; i++)
             {
-                SpawnCard();
+                SpawnCard(null);
             }
         }
         else if (cards.Count < cardsCount.y)
         {
-            SpawnCard();
-            SpawnCard();
+            SpawnCard(null);
+            SpawnCard(null);
         }
         else if (cards.Count >= cardsCount.z)
         {
@@ -59,19 +59,50 @@ public class CombatDeckManager : MonoBehaviour
         }
         else
         {
-            SpawnCard();
+            SpawnCard(null);
         }
 
         //reorganize cards
         OffsetTransform();
     }
 
-    void SpawnCard()
+    public void DrawCards(int count, CardParent specificCard)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            if (cards.Count < cardsCount.z)
+            {
+                SpawnCard(specificCard);
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        if (count > 0)
+        {
+            //reorganize cards
+            OffsetTransform();
+            Invoke("OffsetTransform", 0.5f);
+        }
+    }
+
+    void SpawnCard(CardParent specificCard)
     {
         GameObject newCard = Instantiate(card, this.transform) as GameObject;
 
         CardSetter cardSetter = newCard.GetComponentInChildren<CardSetter>();
-        cardSetter.Setup(DetermineCard());
+
+        if (specificCard != null)
+        {
+            cardSetter.Setup(specificCard);
+        }
+        else
+        {
+            cardSetter.Setup(DetermineCard());
+        }
+        
         //cardSetter.DrawCards();
         cards.Add(cardSetter);
     }

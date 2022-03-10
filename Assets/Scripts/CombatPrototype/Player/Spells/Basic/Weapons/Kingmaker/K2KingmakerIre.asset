@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d042955bf60bea84b9273684d78676b5, type: 3}
-  m_Name: 4Flurry
+  m_Name: K2KingmakerIre
   m_EditorClassIdentifier: 
-  cardName: Flurry
-  cardNumber: 4
+  cardName: Kingmaker's Ire
+  cardNumber: 1
   flavourDescription: 
-  cardImage: {fileID: -3056297102037108793, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
+  cardImage: {fileID: -2613411450045547498, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
     type: 3}
   enemySpell: 0
   selfInterpretationUnlocked: 0
@@ -29,37 +29,48 @@ MonoBehaviour:
   selfHeal: {x: 0, y: 0}
   selfAP: {x: 0, y: 0}
   restoreType: 0
-  selfEndTurnDelay: 0
+  selfEndTurnDelay: 0.2
   selfStatus: []
   selfStatusDuration: 
+  selfDrawCards: 0
+  selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 1
-  targetName: Flurry
-  targetDescription: Hit your opponent with five times in quick succession, each
-    with a small chance to apply bleed.
+  targetName: Kingmaker's Ire
+  targetDescription: 'With a weapon wreathed in frost, you smite your targets, which
+    has a low chance to apply frostbite and chilled to targets
+
+
+    Also draws a
+    frost burst card'
   targetEndTurn: 0
   targetUsesAction: 1
   targetCost: 15
   targetCostType: AP
-  damageType: 0
+  damageType: 3
   targetCanBeCountered: 1
-  targetDmg: {x: 4, y: 8}
-  hits: 5
-  hitInterval: 0.1
-  finalHitInterval: 0.35
-  targetFinalDmg: {x: 8, y: 12}
-  targetEndTurnDelay: 1
-  targetCleave: 0
+  targetDmg: {x: 22, y: 38}
+  hits: 1
+  hitInterval: 0
+  finalHitInterval: 0
+  targetFinalDmg: {x: 0, y: 0}
+  targetEndTurnDelay: 0.2
+  targetCleave: 1
   targetChain: 0
-  extraDmg: {x: 0, y: 0}
+  extraDmg: {x: 22, y: 38}
   randomTargets: 0
   lifeLeach: {x: 0, y: 0}
   healOnKill: {x: 0, y: 0}
   executeThreshold: 0
   targetStatus:
-  - {fileID: 11400000, guid: 0aa56a9e5ce959e4b96c703989b64011, type: 2}
-  targetStatusDuration: 01000000
+  - {fileID: 11400000, guid: 2f9b50aa5cb5d0748ae72e465f1125c1, type: 2}
+  - {fileID: 11400000, guid: 601231da9ba2edf48822b6272ff9ca43, type: 2}
+  targetStatusDuration: 0300000003000000
   targetStatusChance:
-  - 0.35
+  - 0.4
+  - 0.85
+  targetDrawCards: 0
+  targetDrawSpecificCard: {fileID: 11400000, guid: 4cbc96349b965e648b06c674bd00522a,
+    type: 2}
   spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0

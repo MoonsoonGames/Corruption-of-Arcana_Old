@@ -32,13 +32,16 @@ MonoBehaviour:
   selfEndTurnDelay: 0
   selfStatus: []
   selfStatusDuration: 
+  selfDrawCards: 0
+  selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 1
   targetName: Overpower
   targetDescription: 'With a great hew, you carve into your target and cripple their
-    defenses
+    defenses, causing a high chance to knock the target off balance and bleed them
 
 
-    Also has a high chance to knock target off balance and bleed them'
+    Also
+    draws the ground pound card'
   targetEndTurn: 0
   targetUsesAction: 1
   targetCost: 10
@@ -65,6 +68,9 @@ MonoBehaviour:
   targetStatusChance:
   - 0.75
   - 0.75
+  targetDrawCards: 1
+  targetDrawSpecificCard: {fileID: 11400000, guid: 3ccfde52e320d6141844b6aa0c7f146e,
+    type: 2}
   spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0

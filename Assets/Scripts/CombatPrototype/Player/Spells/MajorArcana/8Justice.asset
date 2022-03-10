@@ -32,20 +32,22 @@ MonoBehaviour:
   selfEndTurnDelay: 0.2
   selfStatus: []
   selfStatusDuration: 
+  selfDrawCards: 0
+  selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 1
   targetName: Tip the Scales
-  targetDescription: 'With a weapon wreathed in flame, you smite your targets
+  targetDescription: 'With a weapon wreathed in flame, you smite your targets, which
+    has a low chance to burn targets
 
 
-    Also
-    has a low chance to burn targets'
+    Also draws a combo strike card'
   targetEndTurn: 0
   targetUsesAction: 1
   targetCost: 15
   targetCostType: AP
   damageType: 1
   targetCanBeCountered: 1
-  targetDmg: {x: 16, y: 28}
+  targetDmg: {x: 22, y: 38}
   hits: 1
   hitInterval: 0
   finalHitInterval: 0
@@ -53,7 +55,7 @@ MonoBehaviour:
   targetEndTurnDelay: 0.2
   targetCleave: 1
   targetChain: 0
-  extraDmg: {x: 16, y: 28}
+  extraDmg: {x: 22, y: 38}
   randomTargets: 0
   lifeLeach: {x: 0, y: 0}
   healOnKill: {x: 0, y: 0}
@@ -63,6 +65,9 @@ MonoBehaviour:
   targetStatusDuration: 03000000
   targetStatusChance:
   - 0.3
+  targetDrawCards: 1
+  targetDrawSpecificCard: {fileID: 11400000, guid: af5c877470ceed643b823ef70e66e43f,
+    type: 2}
   spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0

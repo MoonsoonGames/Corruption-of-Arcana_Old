@@ -21,17 +21,20 @@ MonoBehaviour:
   selfInterpretationUnlocked: 1
   selfName: Adept Arcana
   selfDescription: Drink from the occult wellspring of magic to restore your arcana
+    and draw 2 additional cards
   selfEndTurn: 0
   selfUsesAction: 1
   selfCost: 0
   selfPotionCost: 0
   selfCostType: 
   selfHeal: {x: 0, y: 0}
-  selfAP: {x: 15, y: 20}
+  selfAP: {x: 20, y: 20}
   restoreType: 8
   selfEndTurnDelay: 0.2
   selfStatus: []
   selfStatusDuration: 
+  selfDrawCards: 2
+  selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 0
   targetName: Chain Lightning
   targetDescription: Unleash your arcana as a storm of lightning that arcs between
@@ -58,6 +61,8 @@ MonoBehaviour:
   targetStatus: []
   targetStatusDuration: 
   targetStatusChance: []
+  targetDrawCards: 0
+  targetDrawSpecificCard: {fileID: 0}
   spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0

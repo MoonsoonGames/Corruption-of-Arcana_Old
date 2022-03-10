@@ -34,20 +34,23 @@ MonoBehaviour:
   selfStatus:
   - {fileID: 11400000, guid: ecbaf2dda0943bd4898ca1344d6b1822, type: 2}
   selfStatusDuration: 02000000
+  selfDrawCards: 0
+  selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 1
   targetName: Calamity
   targetDescription: 'With a blast of searing flame and smoke, you deal X Ember damage
-    to all your enemies
+    to all your enemies and has a chance to burn targets
 
 
-    Also has a chance to burn targets'
+    Also draws a firebolt
+    card'
   targetEndTurn: 0
   targetUsesAction: 1
   targetCost: 20
   targetCostType: AP
   damageType: 1
   targetCanBeCountered: 1
-  targetDmg: {x: 22, y: 34}
+  targetDmg: {x: 26, y: 40}
   hits: 1
   hitInterval: 0
   finalHitInterval: 0
@@ -55,7 +58,7 @@ MonoBehaviour:
   targetEndTurnDelay: 0.2
   targetCleave: 1
   targetChain: 0
-  extraDmg: {x: 22, y: 34}
+  extraDmg: {x: 26, y: 40}
   randomTargets: 0
   lifeLeach: {x: 0, y: 0}
   healOnKill: {x: 0, y: 0}
@@ -65,6 +68,9 @@ MonoBehaviour:
   targetStatusDuration: 03000000
   targetStatusChance:
   - 0.5
+  targetDrawCards: 1
+  targetDrawSpecificCard: {fileID: 11400000, guid: 76ee96ca4a1df5a40ba614f27e1c1fed,
+    type: 2}
   spawnPosition: 3
   summonAlly: {fileID: 0}
   summonCount: 0
