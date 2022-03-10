@@ -12,6 +12,7 @@ public class Quest : ScriptableObject
     [Header("Quest Info")]
     public string title;
     public int questNumber;
+    [TextArea(3, 10)]
     public string description;
     public bool showAllObjectives;
     public bool showFinalObjective;
