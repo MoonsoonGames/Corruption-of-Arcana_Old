@@ -62,6 +62,7 @@ public class QuestObjective : ScriptableObject
     public void SetCanComplete()
     {
         canComplete = true;
+        SaveProgress();
         //Debug.Log("Current Objective: " + title);
 
         //ShowMarkers()

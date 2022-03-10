@@ -31,6 +31,7 @@ public class Quest : ScriptableObject
     public bool isActiveReset;
     public bool isActiveCheckpoint;
     public bool isActive;
+    public bool isRevealled;
 
     public bool isCompleteReset;
     public bool isCompleteCheckpoint;
@@ -78,6 +79,7 @@ public class Quest : ScriptableObject
         {
             //Debug.Log("Accepted Quest: " + title);
             isActive = true;
+            isRevealled = true;
 
             if (showAllObjectives)
             {
@@ -159,6 +161,8 @@ public class Quest : ScriptableObject
             }
         }
 
+        SaveProgress();
+
         CheckObjectives();
     }
 
@@ -182,6 +186,8 @@ public class Quest : ScriptableObject
                 }
             }
         }
+
+        SaveProgress();
 
         CheckObjectives();
     }
