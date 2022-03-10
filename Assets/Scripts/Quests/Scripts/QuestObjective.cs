@@ -8,6 +8,7 @@ public class QuestObjective : ScriptableObject
     [Header("Objective Info")]
     public Quest quest;
     public string title;
+    [TextArea(3, 10)]
     public string description;
 
     public bool showObjective = true;

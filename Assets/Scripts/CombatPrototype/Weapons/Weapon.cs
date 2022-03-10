@@ -7,6 +7,7 @@ using UnityEngine;
 public class Weapon : ScriptableObject
 {
     public string weaponName;
+    [TextArea(3, 10)]
     public string weaponDescription;
 
     public Sprite weaponIcon;
