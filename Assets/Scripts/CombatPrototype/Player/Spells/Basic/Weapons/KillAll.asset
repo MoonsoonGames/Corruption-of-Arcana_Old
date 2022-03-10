@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d042955bf60bea84b9273684d78676b5, type: 3}
-  m_Name: 10WheelOfFortune
+  m_Name: KillAll
   m_EditorClassIdentifier: 
-  cardName: Wheel of Fortune
-  cardNumber: 10
-  flavourDescription: Fortune Favours the Bold
-  cardImage: {fileID: -769374233221200952, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
+  cardName: KillAll
+  cardNumber: 1
+  flavourDescription: 
+  cardImage: {fileID: -1636742031616846006, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
     type: 3}
   enemySpell: 0
   selfInterpretationUnlocked: 0
@@ -29,43 +29,39 @@ MonoBehaviour:
   selfHeal: {x: 0, y: 0}
   selfAP: {x: 0, y: 0}
   restoreType: 0
-  selfEndTurnDelay: 0.2
+  selfEndTurnDelay: 0
   selfStatus: []
   selfStatusDuration: 
   selfDrawCards: 0
   selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 1
-  targetName: Four Seasons
-  targetDescription: 'Conjure an elemental storm, causing 16 bolts of elemental energy
-    to hit random enemies with a random damage
-
-
-    Also draws 2 random cards'
+  targetName: Strike
+  targetDescription: Hit your opponent with a weapon attack
   targetEndTurn: 0
   targetUsesAction: 1
-  targetCost: 20
+  targetCost: 5
   targetCostType: AP
-  damageType: 5
+  damageType: 0
   targetCanBeCountered: 1
-  targetDmg: {x: 4, y: 6}
-  hits: 16
-  hitInterval: 0.1
-  finalHitInterval: 0.1
-  targetFinalDmg: {x: 4, y: 6}
-  targetEndTurnDelay: 3
-  targetCleave: 0
+  targetDmg: {x: 10000000, y: 10000000}
+  hits: 1
+  hitInterval: 0
+  finalHitInterval: 0
+  targetFinalDmg: {x: 0, y: 0}
+  targetEndTurnDelay: 0.2
+  targetCleave: 1
   targetChain: 0
-  extraDmg: {x: 0, y: 0}
-  randomTargets: 1
-  lifeLeach: {x: 0, y: 0}
-  healOnKill: {x: 0, y: 0}
-  executeThreshold: 0
+  extraDmg: {x: 2147483647, y: 10000000}
+  randomTargets: 0
+  lifeLeach: {x: 10000000, y: 10000000}
+  healOnKill: {x: 10000000, y: 10000000}
+  executeThreshold: 1
   targetStatus: []
   targetStatusDuration: 
   targetStatusChance: []
-  targetDrawCards: 1
+  targetDrawCards: 0
   targetDrawSpecificCard: {fileID: 0}
-  spawnPosition: 2
+  spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0
   summonFX: {fileID: 0}

@@ -31,7 +31,7 @@ public class QuestButtons : MonoBehaviour
         {
             questStatus.sprite = CompleteIcon;
         }
-        else if (quest.isActive == true)
+        else if (quest.isRevealled == true)
         {
             questStatus.sprite = InProgressIcon;
         }
@@ -61,7 +61,7 @@ public class QuestButtons : MonoBehaviour
                 objProgressMaxText.text = quest.currentObjective.requiredAmount.ToString();
                 */
             }
-            else if (quest.isActive == true)
+            else if (quest.isRevealled == true)
             {
                 statusText.text = "In Progress";
 
