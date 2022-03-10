@@ -21,8 +21,11 @@ MonoBehaviour:
   enemySpell: 0
   selfInterpretationUnlocked: 1
   selfName: Cloak of Discretion
-  selfDescription: Disguise your form, hiding from your opponents and causing them
+  selfDescription: 'Disguise your form, hiding from your opponents and causing them
     to be unable to target you with their abilities
+
+
+    Also draws a backstab card'
   selfEndTurn: 0
   selfUsesAction: 1
   selfCost: 20
@@ -35,6 +38,9 @@ MonoBehaviour:
   selfStatus:
   - {fileID: 11400000, guid: d8d4bb0d002a04c49a5b898acd885737, type: 2}
   selfStatusDuration: 01000000
+  selfDrawCards: 1
+  selfDrawSpecificCard: {fileID: 11400000, guid: af89ff48f79a6dd4e88996f7325d33f6,
+    type: 2}
   targetInterpretationUnlocked: 0
   targetName: 
   targetDescription: 
@@ -60,6 +66,8 @@ MonoBehaviour:
   targetStatus: []
   targetStatusDuration: 
   targetStatusChance: []
+  targetDrawCards: 0
+  targetDrawSpecificCard: {fileID: 0}
   spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0
