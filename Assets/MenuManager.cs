@@ -76,7 +76,7 @@ public class MenuManager : MonoBehaviour
 
                 //unlock mouse - confined to window
                 Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.lockState = CursorLockMode.None;
 
                 //debug
                 Debug.Log("Open Pause menu");
