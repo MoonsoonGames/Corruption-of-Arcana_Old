@@ -33,14 +33,15 @@ MonoBehaviour:
   selfEndTurnDelay: 0.2
   selfStatus: []
   selfStatusDuration: 
+  selfDrawCards: 0
+  selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 1
   targetName: Revelation
   targetDescription: 'The moon''s light reveals your opponents, reducing their resistances
     and revealing their log entry in the journal
 
 
-    Also allows to to click on
-    the enemy to view their stats in combat'
+    Also draws a frost burst card'
   targetEndTurn: 0
   targetUsesAction: 1
   targetCost: 5
@@ -65,6 +66,9 @@ MonoBehaviour:
   targetStatusDuration: 05000000
   targetStatusChance:
   - 1
+  targetDrawCards: 1
+  targetDrawSpecificCard: {fileID: 11400000, guid: 4cbc96349b965e648b06c674bd00522a,
+    type: 2}
   spawnPosition: 2
   summonAlly: {fileID: 0}
   summonCount: 0

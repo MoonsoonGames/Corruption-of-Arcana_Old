@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d042955bf60bea84b9273684d78676b5, type: 3}
-  m_Name: 2CriticalStrike
+  m_Name: H2GroundPound
   m_EditorClassIdentifier: 
-  cardName: Critical Strike
+  cardName: Ground Pound
   cardNumber: 2
   flavourDescription: 
-  cardImage: {fileID: -3056297102037108793, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
+  cardImage: {fileID: -811591575975729860, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
     type: 3}
   enemySpell: 0
   selfInterpretationUnlocked: 0
@@ -32,38 +32,39 @@ MonoBehaviour:
   selfEndTurnDelay: 0
   selfStatus: []
   selfStatusDuration: 
+  selfDrawCards: 0
+  selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 1
-  targetName: Critical Strike
-  targetDescription: 'Hit your opponent with a critical attack
-
-
-    Also has a low
-    chance to bleed targets'
+  targetName: Ground Pound
+  targetDescription: Strike the ground twice with your weapon, dealing perforation
+    damage to all targets and knocking them off balance
   targetEndTurn: 0
   targetUsesAction: 1
-  targetCost: 10
+  targetCost: 15
   targetCostType: AP
-  damageType: 0
+  damageType: 6
   targetCanBeCountered: 1
-  targetDmg: {x: 22, y: 35}
-  hits: 1
-  hitInterval: 0
-  finalHitInterval: 0
-  targetFinalDmg: {x: 0, y: 0}
+  targetDmg: {x: 15, y: 24}
+  hits: 2
+  hitInterval: 0.3
+  finalHitInterval: 0.3
+  targetFinalDmg: {x: 15, y: 24}
   targetEndTurnDelay: 0.2
-  targetCleave: 0
+  targetCleave: 1
   targetChain: 0
-  extraDmg: {x: 0, y: 0}
+  extraDmg: {x: 15, y: 24}
   randomTargets: 0
   lifeLeach: {x: 0, y: 0}
   healOnKill: {x: 0, y: 0}
   executeThreshold: 0
   targetStatus:
-  - {fileID: 11400000, guid: 0aa56a9e5ce959e4b96c703989b64011, type: 2}
+  - {fileID: 11400000, guid: 248186047f0223649a1003cedd41cb2e, type: 2}
   targetStatusDuration: 03000000
   targetStatusChance:
   - 0.6
-  spawnPosition: 0
+  targetDrawCards: 0
+  targetDrawSpecificCard: {fileID: 0}
+  spawnPosition: 1
   summonAlly: {fileID: 0}
   summonCount: 0
   summonFX: {fileID: 0}

@@ -5,6 +5,29 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewQuest", menuName = "Quests/Quest", order = 0)]
 public class Quest : ScriptableObject
 {
+    #region Setup
+
+    #region Variables
+
+    [Header("Quest Info")]
+    public string title;
+    public int questNumber;
+    [TextArea(3, 10)]
+    public string description;
+    public bool showAllObjectives;
+    public bool showFinalObjective;
+    public QuestObjective[] objectives;
+
+    [Header("Rewards")]
+    public int goldReward;
+
+    //delete
+    public int potionReward;
+    public int itemReward;
+
+    [Header("Progress")]
+    public QuestObjective currentObjective;
+
     public bool isActiveReset;
     public bool isActiveCheckpoint;
     public bool isActive;
@@ -12,6 +35,10 @@ public class Quest : ScriptableObject
     public bool isCompleteReset;
     public bool isCompleteCheckpoint;
     public bool isComplete;
+
+    #endregion
+
+    #region Saving and Loading
 
     private void Awake()
     {
@@ -39,20 +66,11 @@ public class Quest : ScriptableObject
         isComplete = isCompleteCheckpoint;
     }
 
-    [Header("Quest Info")]
-    public string title;
-    public int questNumber;
-    public string description;
-    public bool showAllObjectives;
-    public bool showFinalObjective;
-    public QuestObjective[] objectives;
+    #endregion
 
-    [Header("Rewards")]
-    public int goldReward;
+    #endregion
 
-    //delete
-    public int potionReward;
-    public int itemReward;
+    #region Progress
 
     public void AcceptQuest()
     {
@@ -80,6 +98,8 @@ public class Quest : ScriptableObject
             {
                 objectives[0].canComplete = true;
             }
+
+            currentObjective = objectives[0];
 
             CheckCompletedObjectives();
         }
@@ -157,6 +177,7 @@ public class Quest : ScriptableObject
                     if (nextObjective != null)
                     {
                         nextObjective.SetCanComplete();
+                        currentObjective = nextObjective;
                     }
                 }
             }
@@ -164,6 +185,10 @@ public class Quest : ScriptableObject
 
         CheckObjectives();
     }
+
+    #endregion
+
+    #region Helper Functions
 
     public void ResetCompass()
     {
@@ -181,8 +206,6 @@ public class Quest : ScriptableObject
             compass.ResetMarkersOnce();
         }
     }
-
-    #region Rewards
 
     void GiveRewards()
     {

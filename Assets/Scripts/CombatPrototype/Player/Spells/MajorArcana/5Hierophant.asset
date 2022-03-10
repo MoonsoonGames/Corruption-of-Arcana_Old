@@ -32,14 +32,16 @@ MonoBehaviour:
   selfEndTurnDelay: 0.2
   selfStatus: []
   selfStatusDuration: 
+  selfDrawCards: 0
+  selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 1
   targetName: Radiant Arc
-  targetDescription: 'Strike a target with a searing blast of lightning
+  targetDescription: 'Strike a target with a searing blast of lightning which has
+    a high chance to apply conductive to the target, which deals Static damage to
+    them and their allies each turn
 
 
-    Also
-    has a high chance to apply conductive to the target, which deals Static damage
-    to them and their allies each turn'
+    Also draws an aftershock card'
   targetEndTurn: 0
   targetUsesAction: 1
   targetCost: 15
@@ -64,6 +66,9 @@ MonoBehaviour:
   targetStatusDuration: 04000000
   targetStatusChance:
   - 0.8
+  targetDrawCards: 1
+  targetDrawSpecificCard: {fileID: 11400000, guid: 2853cec8cdf527e4d915848db33ef28e,
+    type: 2}
   spawnPosition: 2
   summonAlly: {fileID: 0}
   summonCount: 0

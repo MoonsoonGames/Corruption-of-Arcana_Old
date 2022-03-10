@@ -34,16 +34,18 @@ MonoBehaviour:
   selfEndTurnDelay: 0.2
   selfStatus: []
   selfStatusDuration: 
+  selfDrawCards: 0
+  selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 1
   targetName: Living Lash
   targetDescription: 'Conjure a vine and lash out at a single target, poisoning them
     with its enfeebling thorns
 
 
-    Also has a chance to poison targets'
+    Also draws the death card'
   targetEndTurn: 0
   targetUsesAction: 1
-  targetCost: 10
+  targetCost: 5
   targetCostType: AP
   damageType: 4
   targetCanBeCountered: 1
@@ -65,6 +67,9 @@ MonoBehaviour:
   targetStatusDuration: 03000000
   targetStatusChance:
   - 0.6
+  targetDrawCards: 1
+  targetDrawSpecificCard: {fileID: 11400000, guid: 19e9c965a890aea41a3ce37f0af217fc,
+    type: 2}
   spawnPosition: 1
   summonAlly: {fileID: 0}
   summonCount: 0

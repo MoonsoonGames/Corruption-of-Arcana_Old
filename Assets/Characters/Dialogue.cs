@@ -54,14 +54,12 @@ public class Dialogue : MonoBehaviour
                 loadSettings.loadSceneMultiple = sceneMode == LoadSceneMode.Additive;
                 sceneLoader.LoadSpecifiedScene(sceneString, sceneMode, dialogue);
 
-                if (destroyOnSpeak)
+                if (controller != null)
                 {
-                    if (controller != null)
-                    {
-                        controller.interactImage.SetActive(false);
-                    }
-                    Destroy(this.gameObject);
+                    controller.interactImage.SetActive(false);
                 }
+
+                Invoke("DestroyOnSpeak", 1.2f);
 
                 return true;
             }
@@ -73,6 +71,14 @@ public class Dialogue : MonoBehaviour
         else
         {
             return false;
+        }
+    }
+
+    public void DestroyOnSpeak()
+    {
+        if (destroyOnSpeak)
+        {
+            Destroy(this.gameObject);
         }
     }
 

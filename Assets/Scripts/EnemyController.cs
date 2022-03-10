@@ -30,6 +30,11 @@ public class EnemyController : MonoBehaviour
 
         if (sceneLoader == null)
         {
+            sceneLoader = GetComponentInChildren<SceneLoader>();
+        }
+
+        if (sceneLoader == null)
+        {
             sceneLoader = GameObject.FindObjectOfType<SceneLoader>();
         }
 
@@ -67,7 +72,7 @@ public class EnemyController : MonoBehaviour
 
             //loadSettings.SetScene(SceneManager.GetActiveScene().name);
 
-            if (sceneLoader != null)
+            if (sceneLoader != null && sceneLoader.isActiveAndEnabled)
             {
                 sceneLoader.LoadSpecifiedScene(combatScene.ToString(), LoadSceneMode.Single, null);
             }
