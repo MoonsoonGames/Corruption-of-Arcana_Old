@@ -5,9 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewQuest", menuName = "Quests/Objective", order = 1)]
 public class QuestObjective : ScriptableObject
 {
-    public bool completedReset;
-    public bool completedCheckpoint;
-    public bool completed;
+    [Header("Objective Info")]
     public Quest quest;
     public string title;
     public string description;
@@ -15,6 +13,7 @@ public class QuestObjective : ScriptableObject
     public bool showObjective = true;
     Object questMarkerPosition;
 
+    [Header("Progress")]
     public int requiredAmount = 1;
     public int currentAmountReset = 0;
     public int currentAmountCheckpoint = 0;
@@ -23,6 +22,11 @@ public class QuestObjective : ScriptableObject
     public bool canCompleteReset = false;
     public bool canCompleteCheckpoint = false;
     public bool canComplete = false;
+
+    public bool completedReset;
+    public bool completedCheckpoint;
+    public bool completed;
+
 
     private void Awake()
     {
