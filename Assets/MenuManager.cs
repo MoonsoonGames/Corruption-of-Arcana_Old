@@ -171,6 +171,30 @@ public class MenuManager : MonoBehaviour
         //RPotionCount.text = loadSettings.potionCount.ToString();
         //SPotionCount.text = loadSettings.potionCount.ToString();
         #endregion
+
+        #region CardsMenu Subpage button on/off
+        //if (CardsMenu.activeSelf == true && BAtk.activeSelf == true)
+        //{
+        //    NextMiArc.setActive(false);
+        //    LastMiArc.setActive(false);
+        //}
+
+        //if (CardsMenu.activeSelf == true && MiArc1.activeSelf == true)
+        //{
+        //    NextMiArc.setActive(true);
+        //    LastMiArc.setActive(false);
+        //}
+        //else if (CardsMenu.activeSelf == true && MiArc2.activeSelf == true)
+        //{
+        //    NextMiArc.setActive(true);
+        //    LastMiArc.setActive(true);
+        //}
+        //else if (CardsMenu.activeSelf == true && MiArc3.activeSelf == true)
+        //{
+        //    NextMiArc.setActive(false);
+        //    LastMiArc.setActive(true);
+        //}
+        #endregion
     }
 
     #region Pause Menu Buttons
@@ -251,14 +275,112 @@ public class MenuManager : MonoBehaviour
     }
     #endregion
 
-    #region Card Menu Button
+    #region Card Menu Buttons
     public void DeckBuilder()
     {
         //turn off pause menu UI
         PauseMenuUI.SetActive(false);
         //turn on deck builder UI
         CardsMenu.SetActive(true);
+
+        //MiArcCards on
+        //MjArcCards off
+        //CorArcCards off
+
+        //CardTypeName = Minor Arcana Cards
+        //Current Page = 1(x)
+        //Total Pages = 1(y)
+
+        //nextMiArc off
+        //lastMiArc off
     }
+
+    #region Submenu for cards
+    public void MiArcCards()
+    {
+        //MiArcCards on
+        //MjArcCards off
+        //CorArcCards off
+
+        //CardTypeName = Minor Arcana Cards
+        //Current Page = 1(x)
+        //Total Pages = 1(y)
+
+        //nextMjArc off
+        //lastMjArc off
+    }
+    public void MjArcCards()
+    {
+        //MiArcCards off
+        //MjArcCards on
+        //CorArcCards off
+
+        //MjArc1 on
+        //MjArc2/3 off
+
+        //CardTypeName = Major Arcana Cards
+        //Current Page = 1(x)
+        //Total Pages = 3(y)
+
+        //nextMjArc on
+        //lastMjArc off
+    }
+    #region MjArc Page buttons
+    public void NextMjArc()
+    {
+        //if (currentOpenCards = MjArc1)
+        //{ 
+        //    MjArc1 off
+        //    MjArc2 on
+        //
+        //    Current Page = 2(x)
+        //    Total Pages = 3(y)
+        //}
+        //else if (currentOpenCards = mjArc2)
+        //{
+        //    MjArc2 off
+        //    MjArc3 on
+        //
+        //    Current Page = 3(x)
+        //    Total Pages = 3(y)
+        //}
+    }
+    public void LastMjArc()
+    {
+        //if (currentOpenCards = MjArc3)
+        //{ 
+        //    MjArc3 off
+        //    MjArc2 on
+        //
+        //    Current Page = 2(x)
+        //    Total Pages = 3(y)
+        //}
+        //else if (currentOpenCards = mjArc2)
+        //{
+        //    MjArc2 off
+        //    MjArc1 on
+        //
+        //    Current Page = 1(x)
+        //    Total Pages = 3(y)
+        //}
+    }
+    #endregion
+
+    public void CorArcCards()
+    {
+        //MiArcCards off
+        //MjArcCards off
+        //CorArcCards on
+
+        //CardTypeName = Corrupted Arcana Cards
+        //Current Page = 1(x)
+        //Total Pages = 1(y)
+
+        //nextMjArc off
+        //lastMjArc off
+    }
+    #endregion
+
     #endregion
 
     #region Close Sub-Menu Button
