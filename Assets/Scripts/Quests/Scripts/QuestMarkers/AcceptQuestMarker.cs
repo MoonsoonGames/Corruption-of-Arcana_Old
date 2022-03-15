@@ -25,7 +25,7 @@ public class AcceptQuestMarker : MonoBehaviour
 
                 foreach (var item in quests)
                 {
-                    if (item.isActive == false && item.isComplete == false)
+                    if (item.isRevealled == false && item.isComplete == false)
                     {
                         Debug.Log(item.title);
                         contains = true;
@@ -55,7 +55,7 @@ public class AcceptQuestMarker : MonoBehaviour
 
         foreach (var item in requireQuestsInProgress)
         {
-            if (item.isActive)
+            if (item.isRevealled)
             {
                 contains1 = true;
             }
