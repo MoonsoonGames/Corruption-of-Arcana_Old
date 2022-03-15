@@ -13,11 +13,12 @@ public class Rewards : MonoBehaviour
     {
         loadSettings = LoadSettings.instance;
 
-        if (loadSettings.currentFightObjective != null)
+        foreach (var item in loadSettings.currentFightObjectives)
         {
-            loadSettings.currentFightObjective.CompleteGoal();
-            loadSettings.currentFightObjective = null;
+            item.CompleteGoal();
         }
+
+        loadSettings.currentFightObjectives.Clear();
 
         if (combatManager != null)
         {

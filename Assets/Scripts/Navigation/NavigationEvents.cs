@@ -29,7 +29,7 @@ public class NavigationEvents : ScriptableObject
     Sprite background;
 
     public Quest startQuest;
-    public QuestObjective completeObjective;
+    public QuestObjective[] completeObjectives;
 
     public void Setup(SceneLoader newSceneLoader, E_Levels newNavScene, Sprite backgroundImage)
     {
@@ -69,9 +69,12 @@ public class NavigationEvents : ScriptableObject
         {
             GiveRewards();
 
-            if (completeObjective != null)
+            foreach (var item in completeObjectives)
             {
-                completeObjective.CompleteGoal();
+                if (item.canComplete)
+                {
+                    item.CompleteGoal();
+                }
             }
         }
     }
@@ -93,9 +96,12 @@ public class NavigationEvents : ScriptableObject
             loadSettings.potionReward = potionReward;
             //loadSettings.itemReward = itemReward;
 
-            if (completeObjective != null && completeObjective.canComplete)
+            foreach (var item in completeObjectives)
             {
-                loadSettings.currentFightObjective = completeObjective;
+                if (item.canComplete)
+                {
+                    loadSettings.currentFightObjectives.Add(item);
+                }
             }
 
             //loadSettings.lastLevel = navScene;

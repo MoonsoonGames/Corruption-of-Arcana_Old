@@ -10,7 +10,7 @@ public class EnemyController : MonoBehaviour
     public bool boss = false;
 
     public Object[] enemies = new Object[3];
-    public QuestObjective objective;
+    public QuestObjective[] objectives;
 
     private LoadSettings loadSettings;
     private SceneLoader sceneLoader;
@@ -65,9 +65,12 @@ public class EnemyController : MonoBehaviour
                 loadSettings.background = background;
             }
 
-            if (objective != null && objective.canComplete)
+            foreach (var item in objectives)
             {
-                loadSettings.currentFightObjective = objective;
+                if (item.canComplete)
+                {
+                    loadSettings.currentFightObjectives.Add(item);
+                }
             }
 
             //loadSettings.SetScene(SceneManager.GetActiveScene().name);
