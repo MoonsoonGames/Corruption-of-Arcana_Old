@@ -45678,8 +45678,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8355406584986984426}
   - component: {fileID: 8355406584986984425}
-  - component: {fileID: 8355406584986984424}
   - component: {fileID: 8355406584986984427}
+  - component: {fileID: 8355406584986984424}
   m_Layer: 0
   m_Name: Compass
   m_TagString: Untagged
@@ -45714,6 +45714,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8355406584986984405}
   m_CullTransparentMesh: 1
+--- !u!114 &8355406584986984427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8355406584986984405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 616598daadd4bf746abe8bd988c2efd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IconPrefab: {fileID: 2503173030962127800, guid: f3a78a104ce625e4d9eee954d53f3b4b,
+    type: 3}
+  Offset: -0.25
+  compassImage: {fileID: 8355406584986984424}
+  player: {fileID: 0}
 --- !u!114 &8355406584986984424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45741,23 +45758,6 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
---- !u!114 &8355406584986984427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8355406584986984405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 616598daadd4bf746abe8bd988c2efd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IconPrefab: {fileID: 2503173030962127800, guid: f3a78a104ce625e4d9eee954d53f3b4b,
-    type: 3}
-  Offset: -0.25
-  compassImage: {fileID: 8355406584986984424}
-  player: {fileID: 0}
 --- !u!1 &8355406585194923929
 GameObject:
   m_ObjectHideFlags: 0
