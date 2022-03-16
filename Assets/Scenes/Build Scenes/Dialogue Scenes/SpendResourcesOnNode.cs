@@ -77,4 +77,16 @@ public class SpendResourcesOnNode : MonoBehaviour
             Debug.LogError("No load settings!");
         }
     }
+
+    public void GetIncreaseMaxPotionsCost(Flowchart flowchart)
+    {
+        if (loadSettings != null)
+        {
+            flowchart.SetIntegerVariable("IncreasePotionCost", loadSettings.GetHeathPotionIncreaseCost());
+        }
+        else
+        {
+            Debug.LogError("No load settings!");
+        }
+    }
 }

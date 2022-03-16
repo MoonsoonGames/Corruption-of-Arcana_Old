@@ -53,11 +53,6 @@ public class LoadSettings : MonoBehaviour
     public List<string> enemiesKilled = new List<string>();
     public List<string> bossesKilled = new List<string>();
 
-    public int maxHealingPotionCount;
-    public int healingPotionCount;
-    public int checkpointArcanaPotionCount;
-    public int arcanaPotionCount;
-
     public int currentGold;
 
     public string currentFight;
@@ -400,7 +395,7 @@ public class LoadSettings : MonoBehaviour
     #region Quests
 
     public List<Quest> quests;
-    public QuestObjective currentFightObjective;
+    public List<QuestObjective> currentFightObjectives;
     SaveLoadQuestData questSaver;
 
     #endregion
@@ -448,6 +443,21 @@ public class LoadSettings : MonoBehaviour
     public int GetHeathIncreaseCost()
     {
         return maxHealth;
+    }
+
+    public int maxHealingPotionCount;
+    public int healingPotionCount;
+    public int checkpointArcanaPotionCount;
+    public int arcanaPotionCount;
+
+    public void IncreaseMaxHealthPotions(int increase)
+    {
+        maxHealingPotionCount += increase;
+    }
+
+    public int GetHeathPotionIncreaseCost()
+    {
+        return maxHealingPotionCount * 25;
     }
 
     #endregion

@@ -10,6 +10,10 @@ public class CombatUIController : MonoBehaviour
     public GameObject SettingsMenu;
     public GameObject QuitConfirm;
 
+    public GameObject PotionOpenBtn;
+    public GameObject PotionCloseBtn;
+    public GameObject PotionBar;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +22,10 @@ public class CombatUIController : MonoBehaviour
         CardMenu.SetActive(false);
         SettingsMenu.SetActive(false);
         QuitConfirm.SetActive(false);
+
+        PotionOpenBtn.SetActive(true);
+        PotionCloseBtn.SetActive(false);
+        PotionBar.SetActive(false);
     }
 
     // Update is called once per frame
@@ -58,6 +66,22 @@ public class CombatUIController : MonoBehaviour
     {
         PauseMenu.SetActive(false);
         SettingsMenu.SetActive(true);
+    }
+
+    public void PotionOpen()
+    {
+        PotionBar.SetActive(true);
+        PotionCloseBtn.SetActive(true);
+
+        PotionOpenBtn.SetActive(false);
+    }
+
+    public void PotionClose()
+    {
+        PotionBar.SetActive(false);
+        PotionCloseBtn.SetActive(false);
+
+        PotionOpenBtn.SetActive(true);
     }
 
     #region Quit Stuff
