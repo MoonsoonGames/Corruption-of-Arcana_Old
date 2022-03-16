@@ -82,6 +82,7 @@ public class QuestObjective : ScriptableObject
     {
         if (canComplete)
         {
+            Debug.Log("Complete");
             currentAmount++;
 
             if (currentAmount >= requiredAmount)
