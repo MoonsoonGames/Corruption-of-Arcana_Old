@@ -37,11 +37,27 @@ public class MenuManager : MonoBehaviour
     public Slider PauseHealthBar;
     public Slider PauseArcanaBar;
     public Text HPPotionCount;
-    public Text APPotionCount;
+    //public Text APPotionCount;
     //public Text RPotionCount;
     //public Text SPotionCount;
 
     public Text goldCount;
+
+    #region DeckBuilder GameObjects
+    public GameObject MiArc;
+    public GameObject MjArcCardsPage;
+    public GameObject MjArc1;
+    public GameObject MjArc2;
+    public GameObject MjArc3;
+    //public GameObject CorArcCardsPage;
+    public GameObject NextMjArcBtn;
+    public GameObject LastMjArcBtn;
+
+    public Text CardTypeTitle;
+    public Text PageX;
+    public Text PageY;
+    #endregion
+
     #endregion
 
     // Start is called before the first frame update
@@ -63,6 +79,9 @@ public class MenuManager : MonoBehaviour
     {
         if (Player.GetComponent<PlayerController>().canMove == true)
         {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+
             #region Esc open
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -103,7 +122,7 @@ public class MenuManager : MonoBehaviour
             }
             #endregion
         }
-        else if(Player.GetComponent<PlayerController>().canMove == false)
+        else if (Player.GetComponent<PlayerController>().canMove == false)
         {
             #region Esc close
             if (Input.GetKeyDown(KeyCode.Escape))
@@ -151,6 +170,28 @@ public class MenuManager : MonoBehaviour
                 }
             }
             #endregion
+
+            #region J close
+            if (Input.GetKeyDown(KeyCode.J) 
+                && PauseMenuUI.activeSelf == false 
+                && QuestMenuUI.activeSelf == true)
+            {
+                //close quest
+                QuestMenuUI.SetActive(false);
+                //open explore
+                ExplorationUI.SetActive(true);
+
+                //unfreeze player/camera
+                Player.GetComponent<PlayerController>().canMove = true;
+
+                //lock mouse - confined to window
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+
+                //debug
+                Debug.Log("Close Quest menu");
+            }
+            #endregion
         }
 
         #region Stats Update
@@ -167,9 +208,33 @@ public class MenuManager : MonoBehaviour
 
         //update the number of all the potions
         HPPotionCount.text = loadSettings.healingPotionCount.ToString();
-        APPotionCount.text = loadSettings.arcanaPotionCount.ToString();
+        //APPotionCount.text = loadSettings.arcanaPotionCount.ToString();
         //RPotionCount.text = loadSettings.potionCount.ToString();
         //SPotionCount.text = loadSettings.potionCount.ToString();
+        #endregion
+
+        #region CardsMenu Subpage button on/off
+        if (CardsMenu.activeSelf == true && MiArc.activeSelf == true)
+        {
+            NextMjArcBtn.SetActive(false);
+            LastMjArcBtn.SetActive(false);
+        }
+
+        if (CardsMenu.activeSelf == true && MjArc1.activeSelf == true)
+        {
+            NextMjArcBtn.SetActive(true);
+            LastMjArcBtn.SetActive(false);
+        }
+        else if (CardsMenu.activeSelf == true && MjArc2.activeSelf == true)
+        {
+            NextMjArcBtn.SetActive(true);
+            LastMjArcBtn.SetActive(true);
+        }
+        else if (CardsMenu.activeSelf == true && MjArc3.activeSelf == true)
+        {
+            NextMjArcBtn.SetActive(false);
+            LastMjArcBtn.SetActive(true);
+        }
         #endregion
     }
 
@@ -251,14 +316,142 @@ public class MenuManager : MonoBehaviour
     }
     #endregion
 
-    #region Card Menu Button
+    #region Card Menu Buttons
     public void DeckBuilder()
     {
         //turn off pause menu UI
         PauseMenuUI.SetActive(false);
         //turn on deck builder UI
         CardsMenu.SetActive(true);
+
+        //MiArcCards on
+        MiArc.SetActive(true);
+        //MjArcCards off
+        MjArcCardsPage.SetActive(false);
+        //CorArcCards off
+
+        //CardTypeName = Minor Arcana Cards
+        CardTypeTitle.text = "Minor Arcana Cards";
+        //Current Page = 1(x)
+        PageX.text = "1";
+        //Total Pages = 1(y)
+        PageY.text = "1";
+
+        //nextMiArc off
+        NextMjArcBtn.SetActive(false);
+        //lastMiArc off
+        LastMjArcBtn.SetActive(false);
     }
+
+    #region Submenu for cards
+    public void MiArcCards()
+    {
+        //MiArcCards on
+        MiArc.SetActive(true);
+        //MjArcCards off
+        MjArcCardsPage.SetActive(false);
+        //CorArcCards off
+
+        //CardTypeName = Minor Arcana Cards
+        CardTypeTitle.text = "Minor Arcana Cards";
+
+        //Current Page = 1(x)
+        PageX.text = "1";
+        //Total Pages = 1(y)
+        PageY.text = "1";
+
+        //nextMiArc off
+        NextMjArcBtn.SetActive(false);
+        //lastMiArc off
+        LastMjArcBtn.SetActive(false);
+    }
+    public void MjArcCards()
+    {
+        //MiArcCards off
+        MiArc.SetActive(false);
+        //MjArcCards on
+        MjArcCardsPage.SetActive(true);
+        //CorArcCards off
+
+        //MjArc1 on
+        MjArc1.SetActive(true);
+        //MjArc2/3 off
+        MjArc2.SetActive(false);
+        MjArc3.SetActive(false);
+
+        //CardTypeName = Major Arcana Cards
+        CardTypeTitle.text = "Major Arcana Cards";
+        //Current Page = 1(x)
+        PageX.text = "1";
+        //Total Pages = 3(y)
+        PageY.text = "3";
+
+        //nextMiArc on
+        NextMjArcBtn.SetActive(true);
+        //lastMiArc off
+        LastMjArcBtn.SetActive(false);
+    }
+
+    #region MjArc Page buttons
+    public void NextMjArc()
+    {
+        if (MjArc1.activeSelf == true)
+        {
+            MjArc1.SetActive(false);
+            MjArc2.SetActive(true);
+
+            PageX.text = "2";
+            PageY.text = "3";
+        }
+        else if (MjArc2.activeSelf == true)
+        {
+            MjArc2.SetActive(false);
+            MjArc3.SetActive(true);
+
+            PageX.text = "3";
+            PageY.text = "3";
+        }
+    }
+    public void LastMjArc()
+    {
+        if (MjArc3.activeSelf == true)
+        {
+            MjArc3.SetActive(false);
+            MjArc2.SetActive(true);
+
+            //Current Page = 2(x)
+            PageX.text = "2";
+            //Total Pages = 3(y)
+            PageY.text = "3";
+        }
+        else if (MjArc2.activeSelf == true)
+        {
+            MjArc2.SetActive(false);
+            MjArc1.SetActive(true);
+
+            //Current Page = 1(x)
+            PageX.text = "1";
+            //Total Pages = 3(y)
+            PageY.text = "3";
+        }
+    }
+    #endregion
+
+    public void CorArcCards()
+    {
+        //MiArcCards off
+        //MjArcCards off
+        //CorArcCards on
+
+        //CardTypeName = Corrupted Arcana Cards
+        //Current Page = 1(x)
+        //Total Pages = 1(y)
+
+        //nextMjArc off
+        //lastMjArc off
+    }
+    #endregion
+
     #endregion
 
     #region Close Sub-Menu Button

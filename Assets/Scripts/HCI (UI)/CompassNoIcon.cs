@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Compass : MonoBehaviour
+public class CompassNoIcon : MonoBehaviour
 {
-    public GameObject IconPrefab;
     List<QuestMarkers> questMarkers = new List<QuestMarkers>();
     List<GameObject> icons = new List<GameObject>();
 
@@ -68,22 +67,6 @@ public class Compass : MonoBehaviour
         icons.Clear();
     }
 
-    private void SetupQuestMarkers()
-    {
-        QuestMarkers[] questMarkersScripts = GameObject.FindObjectsOfType<QuestMarkers>();
-
-        questMarkers.Clear();
-
-        foreach (var item in questMarkersScripts)
-        {
-            AddQuestMarker(item);
-        }
-
-        updateIcons = true;
-
-        alreadyCalled = false;
-    }
-
     private void Update()
     {
         if (updateIcons)
@@ -97,21 +80,6 @@ public class Compass : MonoBehaviour
                     marker.image.rectTransform.anchoredPosition = GetPosOnCompass(marker);
                 }
             }
-        }
-    }
-
-    public void AddQuestMarker(QuestMarkers marker)
-    {
-        if (marker.showMarker)
-        {
-            GameObject newMarker = Instantiate(IconPrefab, compassImage.transform);
-
-            marker.image = newMarker.GetComponent<Image>();
-            marker.image.sprite = marker.icon;
-
-            questMarkers.Add(marker);
-
-            icons.Add(newMarker);
         }
     }
 
