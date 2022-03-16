@@ -395,7 +395,7 @@ public class LoadSettings : MonoBehaviour
     #region Quests
 
     public List<Quest> quests;
-    public QuestObjective currentFightObjective;
+    public List<QuestObjective> currentFightObjectives;
     SaveLoadQuestData questSaver;
 
     #endregion
