@@ -193,7 +193,7 @@ public class AbilityManager : MonoBehaviour
 
     #region Helper Functions
 
-    public void DelayDamage(Vector2 damageRange, E_DamageTypes damageType, float delay, Transform origin, GameObject target, GameObject caster, CharacterStats targetHealth, float executeThreshold, Vector2Int healOnKill, bool canBeCountered)
+    public void DelayDamage(Vector2 damageRange, E_DamageTypes damageType, float delay, Transform origin, GameObject target, GameObject caster, CharacterStats targetHealth, float executeThreshold, Vector2Int healOnKill, bool canBeCountered, Object hitFX)
     {
         if (damageType == E_DamageTypes.Random)
         {
@@ -202,32 +202,32 @@ public class AbilityManager : MonoBehaviour
             switch (randDamage)
             {
                 case 1:
-                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Physical, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered));
+                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Physical, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered, hitFX));
                     break;
                 case 2:
-                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Ember, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered));
+                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Ember, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered, hitFX));
                     break;
                 case 3:
-                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Static, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered));
+                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Static, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered, hitFX));
                     break;
                 case 4:
-                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Bleak, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered));
+                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Bleak, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered, hitFX));
                     break;
                 case 5:
-                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Septic, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered));
+                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Septic, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered, hitFX));
                     break;
                 default:
-                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Physical, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered));
+                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Physical, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered, hitFX));
                     break;
             }
         }
         else
         {
-            StartCoroutine(IDelayDamage(damageRange, damageType, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered));
+            StartCoroutine(IDelayDamage(damageRange, damageType, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered, hitFX));
         }
     }
 
-    private IEnumerator IDelayDamage(Vector2 damageRange, E_DamageTypes damageType, float delay, Transform origin, GameObject target, GameObject caster, CharacterStats targetHealth, float executeThreshold, Vector2Int healOnKill, bool canBeCountered)
+    private IEnumerator IDelayDamage(Vector2 damageRange, E_DamageTypes damageType, float delay, Transform origin, GameObject target, GameObject caster, CharacterStats targetHealth, float executeThreshold, Vector2Int healOnKill, bool canBeCountered, Object hitFX)
     {
         Vector3 originRef = new Vector3(999999, 999999, 999999);
 
@@ -242,6 +242,7 @@ public class AbilityManager : MonoBehaviour
         {
             if (originRef != new Vector3(999999, 999999, 999999))
             {
+                originRef.z = -978.8f;
                 SpawnAttackEffect(originRef, target, damageType);
             }
 
@@ -249,20 +250,20 @@ public class AbilityManager : MonoBehaviour
 
             int damageTaken;
 
-            targetHealth.ChangeHealth(damage, true, damageType, out damageTaken, caster, canBeCountered);
+            targetHealth.ChangeHealth(damage, true, damageType, out damageTaken, caster, canBeCountered,hitFX);
 
             //execute enemy
             if (targetHealth.HealthPercentage() < executeThreshold)
             {
                 //execute anim and delay
-                targetHealth.ChangeHealth(999999999, true, damageType, out int nullDamageTaken, caster, canBeCountered);
+                targetHealth.ChangeHealth(999999999, true, damageType, out int nullDamageTaken, caster, canBeCountered, hitFX);
                 //Debug.Log("Executed");
             }
 
             if (targetHealth == null || targetHealth.GetHealth() == 0)
             {
                 //killed enemy
-                playerStats.ChangeHealth(Random.Range(healOnKill.x, healOnKill.y), false, E_DamageTypes.Physical, out int damageTakenNull, caster, canBeCountered);
+                playerStats.ChangeHealth(Random.Range(healOnKill.x, healOnKill.y), false, E_DamageTypes.Physical, out int damageTakenNull, caster, canBeCountered, hitFX);
                 //Debug.Log("Heal on Kill");
             }
 

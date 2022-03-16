@@ -1700,6 +1700,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -40.87
       objectReference: {fileID: 0}
+    - target: {fileID: 6953992992098460930, guid: 9e286974c3c57e5479356677027983aa,
+        type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6953992992098460930, guid: 9e286974c3c57e5479356677027983aa,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7186040481879226636, guid: 9e286974c3c57e5479356677027983aa,
         type: 3}
       propertyPath: appearAbove
@@ -1921,7 +1931,7 @@ Canvas:
   m_GameObject: {fileID: 856049587}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 1540989759}
   m_PlaneDistance: 100
   m_PixelPerfect: 1
@@ -1931,7 +1941,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!224 &856049591
 RectTransform:
@@ -2225,7 +2235,7 @@ RectTransform:
   - {fileID: 839512398}
   - {fileID: 1512671155}
   m_Father: {fileID: 1532432239}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2876,8 +2886,8 @@ RectTransform:
   - {fileID: 1774090739}
   - {fileID: 598569667}
   - {fileID: 1545539924}
-  - {fileID: 1352952698}
   - {fileID: 947729005}
+  - {fileID: 1352952698}
   - {fileID: 198033640}
   - {fileID: 954175699}
   - {fileID: 405606963}
@@ -4215,11 +4225,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7551587578028801528, guid: d73e8b11f8c16a54ba36322b12638999,
         type: 3}
-      propertyPath: sliderVarScript
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7551587578028801528, guid: d73e8b11f8c16a54ba36322b12638999,
-        type: 3}
       propertyPath: fireboltDamage.x
       value: 28
       objectReference: {fileID: 0}
@@ -4288,7 +4293,7 @@ PrefabInstance:
     - target: {fileID: 7551587578028801531, guid: d73e8b11f8c16a54ba36322b12638999,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7551587578028801531, guid: d73e8b11f8c16a54ba36322b12638999,
         type: 3}

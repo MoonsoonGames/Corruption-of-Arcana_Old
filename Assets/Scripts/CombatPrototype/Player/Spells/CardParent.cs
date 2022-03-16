@@ -78,7 +78,7 @@ public class CardParent : ScriptableObject
 
                 //Debug.Log("Cast" + selfName + "on " + target.name);
 
-                stats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int damageTaken, stats.gameObject, false);
+                stats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int damageTaken, stats.gameObject, false, null);
                 if (heal > 0)
                 {
                     abilityManager.RemoveHpPopup(2f);
@@ -132,6 +132,7 @@ public class CardParent : ScriptableObject
     public string targetName;
     [TextArea(3, 10)]
     public string targetDescription;
+    public Object HitFX;
     public bool targetEndTurn = false;
     public bool targetUsesAction = true;
     public int targetCost;
@@ -189,12 +190,12 @@ public class CardParent : ScriptableObject
 
                         if (item.gameObject == target)
                         {
-                            abilityManager.DelayDamage(targetDmg, damageType, 0f, spawnPos, target, caster, itemHealth, executeThreshold, healOnKill, targetCanBeCountered);
+                            abilityManager.DelayDamage(targetDmg, damageType, 0f, spawnPos, target, caster, itemHealth, executeThreshold, healOnKill, targetCanBeCountered, HitFX);
                             TargetApplyStatus(itemHealth, caster);
                         }
                         else
                         {
-                            abilityManager.DelayDamage(extraDmg, damageType, 0.25f, target.transform, item.gameObject, caster, itemHealth, executeThreshold, healOnKill, targetCanBeCountered);
+                            abilityManager.DelayDamage(extraDmg, damageType, 0.25f, target.transform, item.gameObject, caster, itemHealth, executeThreshold, healOnKill, targetCanBeCountered, HitFX);
                             TargetApplyStatus(itemHealth, caster);
                         }
                     }
@@ -221,12 +222,12 @@ public class CardParent : ScriptableObject
 
                                 if (item.gameObject == target)
                                 {
-                                    abilityManager.DelayDamage(targetDmg, damageType, hitTime, spawnPos, item.gameObject, caster, itemHealth, executeThreshold, healOnKill, targetCanBeCountered);
+                                    abilityManager.DelayDamage(targetDmg, damageType, hitTime, spawnPos, item.gameObject, caster, itemHealth, executeThreshold, healOnKill, targetCanBeCountered, HitFX);
                                     TargetApplyStatus(itemHealth, caster);
                                 }
                                 else
                                 {
-                                    abilityManager.DelayDamage(extraDmg, damageType, hitTime + 0.1f, spawnPos, item.gameObject, caster, itemHealth, executeThreshold, healOnKill, targetCanBeCountered);
+                                    abilityManager.DelayDamage(extraDmg, damageType, hitTime + 0.1f, spawnPos, item.gameObject, caster, itemHealth, executeThreshold, healOnKill, targetCanBeCountered, HitFX);
                                     TargetApplyStatus(itemHealth, caster);
                                 }
                             }
@@ -242,12 +243,12 @@ public class CardParent : ScriptableObject
 
                             if (item.gameObject == target)
                             {
-                                abilityManager.DelayDamage(targetDmg, damageType, hitTimeFinal, spawnPos, item.gameObject, caster, itemHealth, executeThreshold, healOnKill, targetCanBeCountered);
+                                abilityManager.DelayDamage(targetDmg, damageType, hitTimeFinal, spawnPos, item.gameObject, caster, itemHealth, executeThreshold, healOnKill, targetCanBeCountered, HitFX);
                                 TargetApplyStatus(itemHealth, caster);
                             }
                             else
                             {
-                                abilityManager.DelayDamage(extraDmg, damageType, hitTimeFinal + 0.1f, spawnPos, item.gameObject, caster, itemHealth, executeThreshold, healOnKill, targetCanBeCountered);
+                                abilityManager.DelayDamage(extraDmg, damageType, hitTimeFinal + 0.1f, spawnPos, item.gameObject, caster, itemHealth, executeThreshold, healOnKill, targetCanBeCountered, HitFX);
                                 TargetApplyStatus(itemHealth, caster);
                             }
                         }
@@ -261,12 +262,12 @@ public class CardParent : ScriptableObject
 
                             if (item.gameObject == target)
                             {
-                                abilityManager.DelayDamage(targetDmg, damageType, 0f, spawnPos, item.gameObject, caster, itemHealth, executeThreshold, healOnKill, targetCanBeCountered);
+                                abilityManager.DelayDamage(targetDmg, damageType, 0f, spawnPos, item.gameObject, caster, itemHealth, executeThreshold, healOnKill, targetCanBeCountered, HitFX);
                                 TargetApplyStatus(itemHealth, caster);
                             }
                             else
                             {
-                                abilityManager.DelayDamage(extraDmg, damageType, 0.1f, spawnPos, item.gameObject, caster, itemHealth, executeThreshold, healOnKill, targetCanBeCountered);
+                                abilityManager.DelayDamage(extraDmg, damageType, 0.1f, spawnPos, item.gameObject, caster, itemHealth, executeThreshold, healOnKill, targetCanBeCountered, HitFX);
                                 TargetApplyStatus(itemHealth, caster);
                             }
                         }
@@ -293,7 +294,9 @@ public class CardParent : ScriptableObject
                             Vector2 dmgVector = targetDmg;
                             float hitTime = i * hitInterval;
 
-                            abilityManager.DelayDamage(dmgVector, damageType, hitTime, spawnPos, enemyStatsArray[randTarget].gameObject, caster, enemyStatsArray[randTarget], executeThreshold, healOnKill, targetCanBeCountered);
+                            GameObject hitTarget = enemyStatsArray[randTarget].gameObject;
+
+                            abilityManager.DelayDamage(dmgVector, damageType, hitTime, spawnPos, hitTarget, caster, enemyStatsArray[randTarget], executeThreshold, healOnKill, targetCanBeCountered, HitFX);
                             TargetApplyStatus(enemyStatsArray[randTarget], caster);
 
                             int nextRandTarget = Random.Range(0, enemyStatsArray.Length);
@@ -312,14 +315,14 @@ public class CardParent : ScriptableObject
                         Vector2 dmgVectorFinal = targetFinalDmg;
                         float hitTimeFinal = (hits * hitInterval) + finalHitInterval;
 
-                        abilityManager.DelayDamage(dmgVectorFinal, damageType, hitTimeFinal, spawnPos, target, caster, stats, executeThreshold, healOnKill, targetCanBeCountered);
+                        abilityManager.DelayDamage(dmgVectorFinal, damageType, hitTimeFinal, spawnPos, target, caster, stats, executeThreshold, healOnKill, targetCanBeCountered, HitFX);
                         TargetApplyStatus(stats, caster);
                     }
                     else
                     {
                         Vector2 dmgVector = targetDmg;
 
-                        abilityManager.DelayDamage(dmgVector, damageType, 0f, spawnPos, target, caster, stats, executeThreshold, healOnKill, targetCanBeCountered);
+                        abilityManager.DelayDamage(dmgVector, damageType, 0f, spawnPos, target, caster, stats, executeThreshold, healOnKill, targetCanBeCountered, HitFX);
                         TargetApplyStatus(stats, caster);
                     }
                 } //random targets
@@ -334,21 +337,21 @@ public class CardParent : ScriptableObject
                             Vector2 dmgVector = targetDmg;
                             float hitTime = i * hitInterval;
 
-                            abilityManager.DelayDamage(dmgVector, damageType, hitTime, spawnPos, target, caster, stats, executeThreshold, healOnKill, targetCanBeCountered);
+                            abilityManager.DelayDamage(dmgVector, damageType, hitTime, spawnPos, target, caster, stats, executeThreshold, healOnKill, targetCanBeCountered, HitFX);
                             TargetApplyStatus(stats, caster);
                         }
 
                         Vector2 dmgVectorFinal = targetFinalDmg;
                         float hitTimeFinal = (hits * hitInterval) + finalHitInterval;
 
-                        abilityManager.DelayDamage(dmgVectorFinal, damageType, hitTimeFinal, spawnPos, target, caster, stats, executeThreshold, healOnKill, targetCanBeCountered);
+                        abilityManager.DelayDamage(dmgVectorFinal, damageType, hitTimeFinal, spawnPos, target, caster, stats, executeThreshold, healOnKill, targetCanBeCountered, HitFX);
                         TargetApplyStatus(stats, caster);
                     }
                     else
                     {
                         Vector2 dmgVector = targetDmg;
 
-                        abilityManager.DelayDamage(dmgVector, damageType, 0f, spawnPos, target, caster, stats, executeThreshold, healOnKill, targetCanBeCountered);
+                        abilityManager.DelayDamage(dmgVector, damageType, 0f, spawnPos, target, caster, stats, executeThreshold, healOnKill, targetCanBeCountered, HitFX);
                         TargetApplyStatus(stats, caster);
                     }
                 } //single target attack
@@ -370,7 +373,7 @@ public class CardParent : ScriptableObject
                 if (casterStats != null)
                 {
                     int heal = Random.Range(lifeLeach.x, lifeLeach.y);
-                    casterStats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int healNull, caster, false);
+                    casterStats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int healNull, caster, false, null);
                 }
 
                 DrawCards(abilityManager, targetDrawCards, targetDrawSpecificCard);
