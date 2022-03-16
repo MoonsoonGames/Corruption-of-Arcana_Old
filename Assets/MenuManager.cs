@@ -43,6 +43,7 @@ public class MenuManager : MonoBehaviour
 
     public Text goldCount;
 
+    #region DeckBuilder GameObjects
     public GameObject MiArc;
     public GameObject MjArcCardsPage;
     public GameObject MjArc1;
@@ -55,6 +56,8 @@ public class MenuManager : MonoBehaviour
     public Text CardTypeTitle;
     public Text PageX;
     public Text PageY;
+    #endregion
+
     #endregion
 
     // Start is called before the first frame update
@@ -76,6 +79,9 @@ public class MenuManager : MonoBehaviour
     {
         if (Player.GetComponent<PlayerController>().canMove == true)
         {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+
             #region Esc open
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -116,7 +122,7 @@ public class MenuManager : MonoBehaviour
             }
             #endregion
         }
-        else if(Player.GetComponent<PlayerController>().canMove == false)
+        else if (Player.GetComponent<PlayerController>().canMove == false)
         {
             #region Esc close
             if (Input.GetKeyDown(KeyCode.Escape))
@@ -162,6 +168,28 @@ public class MenuManager : MonoBehaviour
                     //debug
                     Debug.Log("Close Quest menu");
                 }
+            }
+            #endregion
+
+            #region J close
+            if (Input.GetKeyDown(KeyCode.J) 
+                && PauseMenuUI.activeSelf == false 
+                && QuestMenuUI.activeSelf == true)
+            {
+                //close quest
+                QuestMenuUI.SetActive(false);
+                //open explore
+                ExplorationUI.SetActive(true);
+
+                //unfreeze player/camera
+                Player.GetComponent<PlayerController>().canMove = true;
+
+                //lock mouse - confined to window
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+
+                //debug
+                Debug.Log("Close Quest menu");
             }
             #endregion
         }
