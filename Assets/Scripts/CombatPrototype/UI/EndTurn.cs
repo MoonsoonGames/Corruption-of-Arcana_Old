@@ -21,6 +21,7 @@ public class EndTurn : MonoBehaviour
             if (menuOpen)
             {
                 ConfirmEndTurn();
+                OpenMenu(false);
             }
             else
             {
