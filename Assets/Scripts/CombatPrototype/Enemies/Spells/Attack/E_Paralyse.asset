@@ -31,10 +31,13 @@ MonoBehaviour:
   selfEndTurnDelay: 0.2
   selfStatus: []
   selfStatusDuration: 
+  selfDrawCards: 0
+  selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 1
   targetName: Paralyse
   targetDescription: The enemy makes a venemous bite attack, which has a chance to
     apply a crippling poison that paralyses the target
+  HitFX: {fileID: 6727453174112786923, guid: 9b68bdcf8d233e3418504dae117ce7ee, type: 3}
   targetEndTurn: 1
   targetUsesAction: 1
   targetCost: 0
@@ -61,6 +64,8 @@ MonoBehaviour:
   targetStatusChance:
   - 0.6
   - 0.3
+  targetDrawCards: 0
+  targetDrawSpecificCard: {fileID: 0}
   spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0

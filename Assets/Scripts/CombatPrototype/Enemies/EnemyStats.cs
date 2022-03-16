@@ -42,9 +42,9 @@ public class EnemyStats : CharacterStats
         }
     }
 
-    public override void ChangeHealth(int value, bool damage, E_DamageTypes damageType, out int damageTaken, GameObject attacker, bool canBeCountered)
+    public override void ChangeHealth(int value, bool damage, E_DamageTypes damageType, out int damageTaken, GameObject attacker, bool canBeCountered, Object attackHitFX)
     {
-        base.ChangeHealth(value, damage, damageType, out damageTaken, attacker, canBeCountered);
+        base.ChangeHealth(value, damage, damageType, out damageTaken, attacker, canBeCountered, attackHitFX);
 
         if (healthText != null)
         {
