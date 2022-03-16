@@ -81,8 +81,6 @@ public class CardParent : ScriptableObject
                 stats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int damageTaken, stats.gameObject, false);
                 if (heal > 0)
                 {
-                    abilityManager.combatManager.Healing.SetActive(true);
-                    abilityManager.combatManager.HealingValue.text = heal.ToString();
                     abilityManager.RemoveHpPopup(2f);
                 }
 
@@ -97,8 +95,6 @@ public class CardParent : ScriptableObject
                 else
                 {
                     stats.ChangeMana(selfCost - mana, true);
-                    abilityManager.combatManager.Ap.SetActive(true);
-                    abilityManager.combatManager.ApValue.text = selfCost.ToString();
                     abilityManager.RemoveApPopup(2f);
 
                     playerStats.ChangePotions(selfPotionCost, true);
@@ -203,9 +199,6 @@ public class CardParent : ScriptableObject
                         }
                     }
 
-                    abilityManager.combatManager.Dmg.SetActive(true);
-                    abilityManager.combatManager.DmgValue.text = abilityManager.multihitTally.ToString();
-
                     abilityManager.multihitTally = 0;
 
                     //Debug.Log(message);
@@ -279,9 +272,6 @@ public class CardParent : ScriptableObject
                         }
                     }
 
-                    abilityManager.combatManager.Dmg.SetActive(true);
-                    abilityManager.combatManager.DmgValue.text = abilityManager.multihitTally.ToString();
-
                     abilityManager.multihitTally = 0;
 
                     //Debug.Log(message);
@@ -289,7 +279,6 @@ public class CardParent : ScriptableObject
                 else if (randomTargets)
                 {
                     abilityManager.multihitMax = hits;
-                    abilityManager.combatManager.Dmg.SetActive(true);
 
                     if (hits > 1)
                     {
@@ -337,7 +326,6 @@ public class CardParent : ScriptableObject
                 else
                 {
                     abilityManager.multihitMax = hits;
-                    abilityManager.combatManager.Dmg.SetActive(true);
 
                     if (hits > 1)
                     {
@@ -368,8 +356,6 @@ public class CardParent : ScriptableObject
                 if (!enemySpell)
                 {
                     abilityManager.playerStats.ChangeMana(cost, true);
-                    abilityManager.combatManager.Ap.SetActive(true);
-                    abilityManager.combatManager.ApValue.text = cost.ToString();
 
                     abilityManager.ResetAbility();
 

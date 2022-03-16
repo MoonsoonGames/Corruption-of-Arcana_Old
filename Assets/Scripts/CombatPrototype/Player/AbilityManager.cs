@@ -268,9 +268,6 @@ public class AbilityManager : MonoBehaviour
 
             multihitTally += damageTaken;
             multihitCount++;
-
-            combatManager.Dmg.SetActive(true);
-            combatManager.DmgValue.text = multihitTally.ToString();
             
             //Debug.Log(multihitCount + " hits for " + multihitTally + " points of damage (not final damage as enemy mey be vulnerable or resistant to the damage)");
 
@@ -402,8 +399,6 @@ public class AbilityManager : MonoBehaviour
     private IEnumerator IRemoveDmgPopup(float delay)
     {
         yield return new WaitForSeconds(delay);
-
-        combatManager.Dmg.SetActive(false);
     }
 
     public void RemoveHpPopup(float delay)
@@ -414,8 +409,6 @@ public class AbilityManager : MonoBehaviour
     private IEnumerator IRemoveHpPopup(float delay)
     {
         yield return new WaitForSeconds(delay);
-
-        combatManager.Healing.SetActive(false);
     }
 
     public void RemoveApPopup(float delay)
@@ -426,8 +419,6 @@ public class AbilityManager : MonoBehaviour
     private IEnumerator IRemoveApPopup(float delay)
     {
         yield return new WaitForSeconds(delay);
-
-        combatManager.Ap.SetActive(false);
     }
 
     #endregion

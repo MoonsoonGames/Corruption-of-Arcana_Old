@@ -13,25 +13,21 @@ public class CombatManager : MonoBehaviour
 
     #region UI
 
-    public Button attackDeck;
-    public Button spellDeck;
-    public Button classDeck;
-    public Button HealthPotions;
     public GameObject VictoryScreen;
     public GameObject DefeatScreen;
     public GameObject PlayableDecks;
     public GameObject noMana;
-    public GameObject Dmg;
-    public GameObject Ap;
-    public GameObject Healing;
+    //public GameObject Dmg;
+    //public GameObject Ap;
+    //public GameObject Healing;
     public GameObject HealingItem;
     public string playingCard;
     public Text enemyName;
     public Text ArcanaPointsValue;
     public Text HealthPointsValue;
-    public Text DmgValue;
-    public Text ApValue;
-    public Text HealingValue;
+    //public Text DmgValue;
+    //public Text ApValue;
+    //public Text HealingValue;
     public Text HealingLeft;
 
     public GameObject endTurnButton;
@@ -40,9 +36,6 @@ public class CombatManager : MonoBehaviour
 
     public PlayerStats playerStats;
     public EnemyStats enemyStats;
-    public bool battleActive = false;
-    public Text actionsCountText;
-    public Text currentTurnText;
 
     public AbilityManager abilityManager;
     public EnemyManager enemyManager;
@@ -69,9 +62,6 @@ public class CombatManager : MonoBehaviour
         VictoryScreen.SetActive(false);
         noMana.SetActive(false);
 
-        Dmg.SetActive(false);
-        Ap.SetActive(false);
-        Healing.SetActive(false);
         endTurnButton.SetActive(false);
 
         combatDeckManager.Setup();
@@ -84,8 +74,6 @@ public class CombatManager : MonoBehaviour
         {
             boss = loadSettings.fightingBoss;
         }
-
-        battleActive = true;
 
         Invoke("DelayStart", 3f);
     }
@@ -114,9 +102,6 @@ public class CombatManager : MonoBehaviour
 
         if (player)
         {
-
-            currentTurnText.text = "Player";
-            currentTurnText.color = Color.green;
             HealingItem.SetActive(true);
             PlayableDecks.SetActive(true);
             endTurnButton.SetActive(true);
@@ -130,8 +115,6 @@ public class CombatManager : MonoBehaviour
         }
         else
         {
-            currentTurnText.text = "Enemy";
-            currentTurnText.color = Color.red;
             PlayableDecks.SetActive(false);
             HealingItem.SetActive(false);
             noMana.SetActive(false);
@@ -176,8 +159,6 @@ public class CombatManager : MonoBehaviour
 
     public void ShowEndScreen(bool victory)
     {
-        battleActive = false;
-
         if (victory)
         {
             VictoryScreen.SetActive(true);
