@@ -376,7 +376,7 @@ public class AbilityManager : MonoBehaviour
     {
         if (audioManager != null && soundEffect != null)
         {
-            audioManager.PlaySoundEffect(soundEffect, volume);
+            audioManager.PlaySoundEffect(soundEffect, volume * 4);
         }
     }
 

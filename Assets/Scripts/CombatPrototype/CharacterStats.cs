@@ -26,6 +26,7 @@ public class CharacterStats : MonoBehaviour
     protected virtual void Start()
     {
         ResetDamageMultipliers();
+        audioManager = GameObject.FindObjectOfType<BGMManager>();
     }
 
     #endregion
@@ -46,6 +47,8 @@ public class CharacterStats : MonoBehaviour
     public bool slow;
 
     #endregion
+
+    #region Feedback
 
     #region Visual Feedback
 
@@ -152,6 +155,22 @@ public class CharacterStats : MonoBehaviour
 
     #endregion
 
+    #region Audio Feedback
+
+    BGMManager audioManager;
+    public AudioClip[] hitSounds;
+    public AudioClip[] deathSounds;
+
+    void PlaySoundEffect(AudioClip[] audioClips)
+    {
+        if (audioClips.Length > 0 && audioManager != null)
+            audioManager.PlaySoundEffect(audioClips[Random.Range(0, audioClips.Length)], 4f);
+    }
+
+    #endregion
+
+    #endregion
+
     #region Received Damage Multipliers
 
     [Header("Received Damage Multipliers")]
@@ -225,6 +244,7 @@ public class CharacterStats : MonoBehaviour
             CharacterShake(duration, intensityMultiplier * value);
             HitFX(hitFX);
             HitFX(attackHitFX);
+            PlaySoundEffect(hitSounds);
 
             damageTaken = (int)DamageResistance(value, damageType);
 
@@ -253,6 +273,7 @@ public class CharacterStats : MonoBehaviour
 
             if (health <= 0)
             {
+                PlaySoundEffect(deathSounds);
                 Die();
             }
         }
