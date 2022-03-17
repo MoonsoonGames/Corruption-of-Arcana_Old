@@ -31,6 +31,7 @@ public class MenuManager : MonoBehaviour
     public GameObject QuestMenuUI;
     public GameObject GuideBook;
     public GameObject CardsMenu;
+    public GameObject WeaponsMenu;
 
     public GameObject MainMenuConfirmScreen;
     public GameObject QuitConfirmScreen;
@@ -523,6 +524,18 @@ public class MenuManager : MonoBehaviour
 
         //nextMjArc off
         //lastMjArc off
+    }
+
+    public void Weapons()
+    {
+        WeaponsMenu.SetActive(true);
+        CardsMenu.SetActive(false);
+    }
+
+    public void CloseWeapons()
+    {
+        WeaponsMenu.SetActive(false);
+        CardsMenu.SetActive(true);
     }
     #endregion
 
