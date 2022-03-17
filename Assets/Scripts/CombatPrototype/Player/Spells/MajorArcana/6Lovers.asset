@@ -26,6 +26,8 @@ MonoBehaviour:
 
     Silence
     prevents the target from casting spells, forcing them to use basic attacks'
+  selfCastSounds:
+  - {fileID: 8300000, guid: ce909c5302981e347ade506002b069ce, type: 3}
   selfEndTurn: 0
   selfUsesAction: 1
   selfCost: 15
@@ -38,9 +40,14 @@ MonoBehaviour:
   selfStatus:
   - {fileID: 11400000, guid: 30d7d54c4e9fb974dabf48061e061fe4, type: 2}
   selfStatusDuration: 03000000
+  selfDrawCards: 0
+  selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 0
   targetName: 
   targetDescription: 
+  HitFX: {fileID: 0}
+  targetCastSounds: []
+  targetHitSounds: []
   targetEndTurn: 0
   targetUsesAction: 1
   targetCost: 0
@@ -63,6 +70,8 @@ MonoBehaviour:
   targetStatus: []
   targetStatusDuration: 
   targetStatusChance: []
+  targetDrawCards: 0
+  targetDrawSpecificCard: {fileID: 0}
   spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0

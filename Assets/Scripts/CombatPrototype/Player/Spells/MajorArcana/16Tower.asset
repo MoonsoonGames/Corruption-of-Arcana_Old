@@ -22,6 +22,7 @@ MonoBehaviour:
   selfName: Catastrophe
   selfDescription: Engulf yourself in an aura of flame, becoming immune to fire damage
     and burning while also dealing damage to enemies that attack you
+  selfCastSounds: []
   selfEndTurn: 0
   selfUsesAction: 1
   selfCost: 20
@@ -45,6 +46,12 @@ MonoBehaviour:
     Also draws a firebolt
     card'
   HitFX: {fileID: 6727453174112786923, guid: c878f3a856728fd4eb235e50030cfd65, type: 3}
+  targetCastSounds:
+  - {fileID: 8300000, guid: 163c710f2e38671419aa566e72ada45f, type: 3}
+  - {fileID: 8300000, guid: 511907f4b1ddf1f4c848fbbeee6bce44, type: 3}
+  - {fileID: 8300000, guid: e2dee84e074ced14bbdc44b0e3386fae, type: 3}
+  targetHitSounds:
+  - {fileID: 8300000, guid: b914be771cc241241a4a4ed8b6b3758b, type: 3}
   targetEndTurn: 0
   targetUsesAction: 1
   targetCost: 20

@@ -29,12 +29,11 @@ public class Quest : ScriptableObject
     public QuestObjective currentObjective;
 
     public bool isActiveReset;
-    public bool isActiveCheckpoint;
     public bool isActive;
     public bool isRevealled;
+    public bool isRevealledReset;
 
     public bool isCompleteReset;
-    public bool isCompleteCheckpoint;
     public bool isComplete;
 
     #endregion
@@ -50,21 +49,7 @@ public class Quest : ScriptableObject
     {
         isActive = isActiveReset;
         isComplete = isCompleteReset;
-
-        isActiveCheckpoint = isActiveReset;
-        isCompleteCheckpoint = isCompleteReset;
-    }
-
-    public void SaveProgress()
-    {
-        isActiveCheckpoint = isActive;
-        isCompleteCheckpoint = isComplete;
-    }
-
-    public void LoadProgress()
-    {
-        isActive = isActiveCheckpoint;
-        isComplete = isCompleteCheckpoint;
+        isRevealled = isRevealledReset;
     }
 
     #endregion
@@ -106,7 +91,7 @@ public class Quest : ScriptableObject
             CheckCompletedObjectives();
         }
 
-        SaveProgress();
+        //SaveProgress();
     }
 
     public void CheckObjectives()
@@ -134,7 +119,7 @@ public class Quest : ScriptableObject
             //Debug.Log("Not completed all objectives");
         }
 
-        SaveProgress();
+        //SaveProgress();
 
         ResetCompass();
     }
@@ -161,7 +146,7 @@ public class Quest : ScriptableObject
             }
         }
 
-        SaveProgress();
+        //SaveProgress();
 
         CheckObjectives();
     }
@@ -187,7 +172,7 @@ public class Quest : ScriptableObject
             }
         }
 
-        SaveProgress();
+        //SaveProgress();
 
         CheckObjectives();
     }

@@ -69,7 +69,10 @@ public class EnemyController : MonoBehaviour
             {
                 if (item.canComplete)
                 {
-                    loadSettings.currentFightObjectives.Add(item);
+                    if (loadSettings.currentFightObjectives.Contains(item) == false)
+                    {
+                        loadSettings.currentFightObjectives.Add(item);
+                    }
                 }
             }
 

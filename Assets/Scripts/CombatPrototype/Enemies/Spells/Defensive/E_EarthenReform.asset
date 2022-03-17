@@ -21,6 +21,8 @@ MonoBehaviour:
   selfName: Earthen Reform
   selfDescription: The enemy will reform the earth around them into armour, healing
     them and increasing their resistances for 2 turns
+  selfCastSounds:
+  - {fileID: 8300000, guid: 77b6be86e70989544aad86859a2aa44e, type: 3}
   selfEndTurn: 0
   selfUsesAction: 1
   selfCost: 0
@@ -33,9 +35,14 @@ MonoBehaviour:
   selfStatus:
   - {fileID: 11400000, guid: 6166346aa005d984eb083c1a9422efa2, type: 2}
   selfStatusDuration: 02000000
+  selfDrawCards: 0
+  selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 0
   targetName: 
   targetDescription: 
+  HitFX: {fileID: 0}
+  targetCastSounds: []
+  targetHitSounds: []
   targetEndTurn: 0
   targetUsesAction: 1
   targetCost: 0
@@ -58,6 +65,8 @@ MonoBehaviour:
   targetStatus: []
   targetStatusDuration: 
   targetStatusChance: []
+  targetDrawCards: 0
+  targetDrawSpecificCard: {fileID: 0}
   spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0

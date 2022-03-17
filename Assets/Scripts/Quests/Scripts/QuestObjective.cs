@@ -17,15 +17,12 @@ public class QuestObjective : ScriptableObject
     [Header("Progress")]
     public int requiredAmount = 1;
     public int currentAmountReset = 0;
-    public int currentAmountCheckpoint = 0;
     public int currentAmount = 0;
 
     public bool canCompleteReset = false;
-    public bool canCompleteCheckpoint = false;
     public bool canComplete = false;
 
     public bool completedReset;
-    public bool completedCheckpoint;
     public bool completed;
 
 
@@ -39,30 +36,12 @@ public class QuestObjective : ScriptableObject
         completed = completedReset;
         currentAmount = currentAmountReset;
         canComplete = canCompleteReset;
-
-        completedCheckpoint = completedReset;
-        currentAmountCheckpoint = currentAmountReset;
-        canCompleteCheckpoint = canCompleteReset;
-    }
-
-    public void SaveProgress()
-    {
-        completedCheckpoint = completed;
-        currentAmountCheckpoint = currentAmount;
-        canCompleteCheckpoint = canComplete;
-    }
-
-    public void LoadProgress()
-    {
-        completed = completedCheckpoint;
-        currentAmount = currentAmountCheckpoint;
-        canComplete = canCompleteCheckpoint;
     }
 
     public void SetCanComplete()
     {
         canComplete = true;
-        SaveProgress();
+        //SaveProgress();
         //Debug.Log("Current Objective: " + title);
 
         //ShowMarkers()
@@ -91,7 +70,7 @@ public class QuestObjective : ScriptableObject
             }
         }
 
-        SaveProgress();
+        //SaveProgress();
     }
 
     void CompleteObjective()
@@ -104,7 +83,7 @@ public class QuestObjective : ScriptableObject
             quest.CheckObjectives();
         }
 
-        SaveProgress();
+        //SaveProgress();
 
         quest.ResetCompass();
     }

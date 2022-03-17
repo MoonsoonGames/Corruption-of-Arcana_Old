@@ -23,6 +23,8 @@ MonoBehaviour:
   selfName: Iron Guard
   selfDescription: Sets Iron guard, increasing your physical defence and reflect
     damage to your opponents
+  selfCastSounds:
+  - {fileID: 8300000, guid: b948b74b0d50f3c4a8e6af19b0f1c556, type: 3}
   selfEndTurn: 0
   selfUsesAction: 1
   selfCost: 10
@@ -36,9 +38,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a28af90e3b13b90469f29ca13d7edc6c, type: 2}
   selfStatusDuration: 02000000
   selfDrawCards: 0
+  selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 0
   targetName: 
   targetDescription: 
+  HitFX: {fileID: 0}
+  targetCastSounds: []
+  targetHitSounds: []
   targetEndTurn: 0
   targetUsesAction: 1
   targetCost: 0
@@ -62,6 +68,7 @@ MonoBehaviour:
   targetStatusDuration: 
   targetStatusChance: []
   targetDrawCards: 0
+  targetDrawSpecificCard: {fileID: 0}
   spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0
