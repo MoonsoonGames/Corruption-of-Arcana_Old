@@ -20,6 +20,7 @@ MonoBehaviour:
   selfInterpretationUnlocked: 0
   selfName: 
   selfDescription: 
+  selfCastSounds: []
   selfEndTurn: 1
   selfUsesAction: 1
   selfCost: 0
@@ -31,10 +32,17 @@ MonoBehaviour:
   selfEndTurnDelay: 0.2
   selfStatus: []
   selfStatusDuration: 
+  selfDrawCards: 0
+  selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 1
   targetName: Cruel Infection
   targetDescription: The enemy makes a vicious bite attack, which has a chance to
     apply poison
+  HitFX: {fileID: 6727453174112786923, guid: 9b68bdcf8d233e3418504dae117ce7ee, type: 3}
+  targetCastSounds: []
+  targetHitSounds:
+  - {fileID: 8300000, guid: add3024e19106c740a56a4b9c5d2336e, type: 3}
+  - {fileID: 8300000, guid: 9fb76b825a3e2ec4b9ab5a88bb7098e9, type: 3}
   targetEndTurn: 1
   targetUsesAction: 1
   targetCost: 0
@@ -59,6 +67,8 @@ MonoBehaviour:
   targetStatusDuration: 02000000
   targetStatusChance:
   - 0.6
+  targetDrawCards: 0
+  targetDrawSpecificCard: {fileID: 0}
   spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0

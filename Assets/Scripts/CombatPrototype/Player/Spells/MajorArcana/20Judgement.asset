@@ -22,6 +22,7 @@ MonoBehaviour:
   selfInterpretationUnlocked: 0
   selfName: 
   selfDescription: 
+  selfCastSounds: []
   selfEndTurn: 0
   selfUsesAction: 1
   selfCost: 0
@@ -33,6 +34,8 @@ MonoBehaviour:
   selfEndTurnDelay: 0.2
   selfStatus: []
   selfStatusDuration: 
+  selfDrawCards: 0
+  selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 1
   targetName: Lullaby
   targetDescription: 'Lull a target to a supernatural slumber, causing them to fall
@@ -41,6 +44,10 @@ MonoBehaviour:
 
     If the creature takes damage, they will be
     woken up from their slumber'
+  HitFX: {fileID: 6727453174112786923, guid: e2dc8a0ecf90a864da6a8006e686425d, type: 3}
+  targetCastSounds:
+  - {fileID: 8300000, guid: ce909c5302981e347ade506002b069ce, type: 3}
+  targetHitSounds: []
   targetEndTurn: 0
   targetUsesAction: 1
   targetCost: 15
@@ -65,6 +72,8 @@ MonoBehaviour:
   targetStatusDuration: 03000000
   targetStatusChance:
   - 1
+  targetDrawCards: 0
+  targetDrawSpecificCard: {fileID: 0}
   spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0

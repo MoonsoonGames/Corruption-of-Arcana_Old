@@ -14,6 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectName: Acid
   effectDescription: Doused in Acid, the target takes 5-8 Ember damage every turn
+    and has 15% reduced physical resistance
+  applySounds:
+  - {fileID: 8300000, guid: 37c83c11e480d3e469b70d3da85728bc, type: 3}
+  - {fileID: 8300000, guid: 382f0a71227d1a34486ed3748b9f7cce, type: 3}
+  turnSounds:
+  - {fileID: 8300000, guid: 37c83c11e480d3e469b70d3da85728bc, type: 3}
+  - {fileID: 8300000, guid: 382f0a71227d1a34486ed3748b9f7cce, type: 3}
+  endSounds: []
   effectIcon: {fileID: 4815525640069369876, guid: df20acf3f76d8c744a467922e153cc83,
     type: 3}
   alsoApply: []
@@ -47,7 +55,7 @@ MonoBehaviour:
   turnHealingOpponents: {x: 0, y: 0}
   turnArcanaOpponents: {x: 0, y: 0}
   adjustPhysMultiplier: 0.15
-  adjustEmberMultiplier: 0.15
+  adjustEmberMultiplier: 0
   adjustStaticMultiplier: 0
   adjustBleakMultiplier: 0
   adjustSepticMultiplier: 0

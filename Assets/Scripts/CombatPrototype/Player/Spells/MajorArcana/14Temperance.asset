@@ -22,6 +22,8 @@ MonoBehaviour:
   selfName: Cleanse
   selfDescription: Cleanse yourself of infection and become immune to septic damage
     and infection for Y turns
+  selfCastSounds:
+  - {fileID: 8300000, guid: b948b74b0d50f3c4a8e6af19b0f1c556, type: 3}
   selfEndTurn: 0
   selfUsesAction: 1
   selfCost: 10
@@ -34,10 +36,15 @@ MonoBehaviour:
   selfStatus:
   - {fileID: 11400000, guid: 40677b4c91ba48441951916eb69ab764, type: 2}
   selfStatusDuration: 03000000
+  selfDrawCards: 0
+  selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 0
   targetName: Restraint
   targetDescription: "Shackle your target\u2019s mind, causing them to miss their
     next turns"
+  HitFX: {fileID: 0}
+  targetCastSounds: []
+  targetHitSounds: []
   targetEndTurn: 0
   targetUsesAction: 1
   targetCost: 15
@@ -62,6 +69,8 @@ MonoBehaviour:
   targetStatusDuration: 02000000
   targetStatusChance:
   - 0.7
+  targetDrawCards: 0
+  targetDrawSpecificCard: {fileID: 0}
   spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0

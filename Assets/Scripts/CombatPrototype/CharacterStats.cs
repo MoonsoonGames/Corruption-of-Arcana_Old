@@ -26,6 +26,7 @@ public class CharacterStats : MonoBehaviour
     protected virtual void Start()
     {
         ResetDamageMultipliers();
+        audioManager = GameObject.FindObjectOfType<BGMManager>();
     }
 
     #endregion
@@ -46,6 +47,10 @@ public class CharacterStats : MonoBehaviour
     public bool slow;
 
     #endregion
+
+    #region Feedback
+
+    #region Visual Feedback
 
     #region Flash
 
@@ -91,6 +96,78 @@ public class CharacterStats : MonoBehaviour
 
         return lerpColour;
     }
+
+    #endregion
+
+    #region Hit Shake
+
+    //apply screen shake - if player
+    //apply character shake - preferred
+
+    public float duration = 0.1f;
+    public float intensityMultiplier = 0.005f;
+
+    void CharacterShake(float duration, float intensity)
+    {
+        Debug.Log("Character shake");
+        Vector3 originalPos = gameObject.transform.position;
+
+        float randx = transform.position.x + Random.Range(-intensity, intensity);
+        float randy = transform.position.y + Random.Range(-intensity, intensity);
+
+        Vector3 newPos = new Vector3(randx, randy, transform.position.z);
+
+        Debug.Log(name + " shakes from " + transform.position + " to " + newPos);
+        transform.position = newPos;
+
+        StartCoroutine(ResetShake(originalPos, duration));
+    }
+
+    IEnumerator ResetShake(Vector3 originalPosition, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Debug.Log(name + " returns from " + transform.position + " to " + originalPosition);
+        transform.position = originalPosition;
+    }
+
+    #endregion
+
+    #region Hit Particles
+
+    public Object hitFX;
+
+    void HitFX(Object FX)
+    {
+        if (FX != null)
+        {
+            Vector3 spawnPos = new Vector3(0, 0, 0);
+            Quaternion spawnRot = new Quaternion(0, 0, 0, 0);
+
+            spawnPos.x = transform.position.x;
+            spawnPos.y = transform.position.y;
+            spawnPos.z = transform.position.z - 5f;
+
+            Instantiate(FX, spawnPos, spawnRot);
+        }
+    }
+
+    #endregion
+
+    #endregion
+
+    #region Audio Feedback
+
+    BGMManager audioManager;
+    public AudioClip[] hitSounds;
+    public AudioClip[] deathSounds;
+
+    void PlaySoundEffect(AudioClip[] audioClips)
+    {
+        if (audioClips.Length > 0 && audioManager != null)
+            audioManager.PlaySoundEffect(audioClips[Random.Range(0, audioClips.Length)], 4f);
+    }
+
+    #endregion
 
     #endregion
 
@@ -158,12 +235,16 @@ public class CharacterStats : MonoBehaviour
         return health;
     }
 
-    public virtual void ChangeHealth(int value, bool damage, E_DamageTypes damageType, out int damageTaken, GameObject attacker, bool canBeCountered)
+    public virtual void ChangeHealth(int value, bool damage, E_DamageTypes damageType, out int damageTaken, GameObject attacker, bool canBeCountered, Object attackHitFX)
     {
         damageTaken = 0;
         if (damage && value > 0)
         {
             Flash(hitColour);
+            CharacterShake(duration, intensityMultiplier * value);
+            HitFX(hitFX);
+            HitFX(attackHitFX);
+            PlaySoundEffect(hitSounds);
 
             damageTaken = (int)DamageResistance(value, damageType);
 
@@ -192,6 +273,7 @@ public class CharacterStats : MonoBehaviour
 
             if (health <= 0)
             {
+                PlaySoundEffect(deathSounds);
                 Die();
             }
         }

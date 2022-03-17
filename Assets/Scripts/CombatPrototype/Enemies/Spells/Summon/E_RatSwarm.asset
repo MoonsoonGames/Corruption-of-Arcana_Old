@@ -20,6 +20,9 @@ MonoBehaviour:
   selfInterpretationUnlocked: 1
   selfName: Rat Swarm
   selfDescription: The enemy will summon rats to aid them
+  selfCastSounds:
+  - {fileID: 8300000, guid: 156349b211ab0ae4b9a3e2092d9c2c79, type: 3}
+  - {fileID: 8300000, guid: 8fe35f590809e8047adb4fed00361c20, type: 3}
   selfEndTurn: 0
   selfUsesAction: 1
   selfCost: 0
@@ -31,9 +34,14 @@ MonoBehaviour:
   selfEndTurnDelay: 0.2
   selfStatus: []
   selfStatusDuration: 
+  selfDrawCards: 0
+  selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 0
   targetName: 
   targetDescription: 
+  HitFX: {fileID: 0}
+  targetCastSounds: []
+  targetHitSounds: []
   targetEndTurn: 0
   targetUsesAction: 1
   targetCost: 0
@@ -56,6 +64,8 @@ MonoBehaviour:
   targetStatus: []
   targetStatusDuration: 
   targetStatusChance: []
+  targetDrawCards: 0
+  targetDrawSpecificCard: {fileID: 0}
   spawnPosition: 0
   summonAlly: {fileID: 6783367526062023706, guid: a530ba9bdcc13b646bdc3b63c566bdf3,
     type: 3}

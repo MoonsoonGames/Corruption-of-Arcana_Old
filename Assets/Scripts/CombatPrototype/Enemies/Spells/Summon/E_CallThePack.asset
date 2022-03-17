@@ -20,6 +20,8 @@ MonoBehaviour:
   selfInterpretationUnlocked: 1
   selfName: Call the Pack
   selfDescription: The enemy will howl, summoning wolves to its aid
+  selfCastSounds:
+  - {fileID: 8300000, guid: 0f5246d244b36384194d9ecdf78d81d3, type: 3}
   selfEndTurn: 0
   selfUsesAction: 1
   selfCost: 0
@@ -31,9 +33,14 @@ MonoBehaviour:
   selfEndTurnDelay: 0.2
   selfStatus: []
   selfStatusDuration: 
+  selfDrawCards: 0
+  selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 0
   targetName: 
   targetDescription: 
+  HitFX: {fileID: 0}
+  targetCastSounds: []
+  targetHitSounds: []
   targetEndTurn: 0
   targetUsesAction: 1
   targetCost: 0
@@ -56,6 +63,8 @@ MonoBehaviour:
   targetStatus: []
   targetStatusDuration: 
   targetStatusChance: []
+  targetDrawCards: 0
+  targetDrawSpecificCard: {fileID: 0}
   spawnPosition: 0
   summonAlly: {fileID: 6783367526062023706, guid: 38b26ff1cc832374cb1ae2f24362fe40,
     type: 3}

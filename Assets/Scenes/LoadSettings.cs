@@ -287,7 +287,7 @@ public class LoadSettings : MonoBehaviour
     {
         #region Reset last position and quest data
 
-        questSaver.LoadQuestData();
+        //questSaver.LoadQuestData();
 
         //Resets last position in these levels
         if (lastLevel.ToString() == E_Levels.Thoth.ToString())
@@ -338,7 +338,7 @@ public class LoadSettings : MonoBehaviour
 
         checkpointNodeID = currentNodeID;
 
-        questSaver.SaveQuestData();
+        //questSaver.SaveQuestData();
 
         checkPoint = false;
     }

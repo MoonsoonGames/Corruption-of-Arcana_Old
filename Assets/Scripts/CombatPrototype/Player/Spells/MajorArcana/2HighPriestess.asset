@@ -21,6 +21,8 @@ MonoBehaviour:
   selfInterpretationUnlocked: 1
   selfName: Cure Wounds
   selfDescription: With a cleansing surge, you mend your body of wounds
+  selfCastSounds:
+  - {fileID: 8300000, guid: b948b74b0d50f3c4a8e6af19b0f1c556, type: 3}
   selfEndTurn: 0
   selfUsesAction: 1
   selfCost: 10
@@ -33,9 +35,13 @@ MonoBehaviour:
   selfStatus: []
   selfStatusDuration: 
   selfDrawCards: 0
+  selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 0
   targetName: Storm Barrage
   targetDescription: Unleash a devastating ray of lightning at your target
+  HitFX: {fileID: 0}
+  targetCastSounds: []
+  targetHitSounds: []
   targetEndTurn: 0
   targetUsesAction: 1
   targetCost: 25
@@ -59,6 +65,7 @@ MonoBehaviour:
   targetStatusDuration: 
   targetStatusChance: []
   targetDrawCards: 0
+  targetDrawSpecificCard: {fileID: 0}
   spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0
