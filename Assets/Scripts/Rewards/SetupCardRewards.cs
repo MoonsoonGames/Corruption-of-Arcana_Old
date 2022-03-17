@@ -12,6 +12,8 @@ public class SetupCardRewards : MonoBehaviour
 
     SceneLoader sceneLoader;
 
+    bool canChoose = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,12 +35,17 @@ public class SetupCardRewards : MonoBehaviour
 
     public void ConfirmCardChoice(CardSetter cardSetter)
     {
-        CardParent card = cardSetter.GetCard();
+        if (canChoose)
+        {
+            canChoose = false;
 
-        //Add card to load settings
-        LoadSettings loadSettings = LoadSettings.instance;
+            CardParent card = cardSetter.GetCard();
 
-        loadSettings.majourArcana.Add(card);
+            //Add card to load settings
+            LoadSettings loadSettings = LoadSettings.instance;
+
+            loadSettings.majourArcana.Add(card);
+        }
     }
 
     public void LoadScene(bool loadCheckpointScene)

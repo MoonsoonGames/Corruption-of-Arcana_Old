@@ -13,6 +13,7 @@ public class SaveLoadQuestData : MonoBehaviour
         objectives = Resources.FindObjectsOfTypeAll<QuestObjective>();
     }
 
+    /*
     public void SaveQuestData()
     {
         foreach (var item in quests)
@@ -36,4 +37,5 @@ public class SaveLoadQuestData : MonoBehaviour
             item.LoadProgress();
         }
     }
+    */
 }
