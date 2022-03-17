@@ -13,6 +13,11 @@ public class StatusParent : ScriptableObject
     public string effectName;
     [TextArea(3, 10)]
     public string effectDescription;
+
+    public AudioClip[] applySounds;
+    public AudioClip[] turnSounds;
+    public AudioClip[] endSounds;
+
     public Sprite effectIcon;
     public StatusParent[] alsoApply;
     public StatusParent[] alsoApplyOthers;
@@ -148,6 +153,8 @@ public class StatusParent : ScriptableObject
 
         RemoveStatAdjustments(target);
         TurnInhibitors(target, abilityManager, false);
+
+        abilityManager.SoundEffect(GetSoundEffect(endSounds), 1f);
     }
 
     #endregion
@@ -180,7 +187,7 @@ public class StatusParent : ScriptableObject
 
             if (stats != null)
             {
-                abilityManager.DelayDamage(reflectDamage, reflectDamageType, 0.2f, GetSpawnLocation(abilityManager, caster.transform), attacker, caster, stats, 0f, new Vector2Int(0, 0), false, damageFX);
+                abilityManager.DelayDamage(reflectDamage, reflectDamageType, 0.2f, GetSpawnLocation(abilityManager, caster.transform), attacker, caster, stats, 0f, new Vector2Int(0, 0), false, damageFX, null, GetSoundEffect(turnSounds));
             }
         }
     }
@@ -195,7 +202,7 @@ public class StatusParent : ScriptableObject
 
         if (applyDamage.y > 0f)
         {
-            abilityManager.DelayDamage(applyDamage, applyDamageType, 0.2f, null, stats.gameObject, caster, stats, 0f, new Vector2Int(0, 0), false, damageFX);
+            abilityManager.DelayDamage(applyDamage, applyDamageType, 0.2f, null, stats.gameObject, caster, stats, 0f, new Vector2Int(0, 0), false, damageFX, null, GetSoundEffect(applySounds));
         }
 
         if (target.GetComponent<EnemyStats>())
@@ -208,14 +215,14 @@ public class StatusParent : ScriptableObject
                 {
                     if (applyDamageOther.y > 0f)
                     {
-                        abilityManager.DelayDamage(applyDamageOther, applyDamageTypeOther, 0.2f, null, testStats.gameObject, caster, testStats, 0f, new Vector2Int(0, 0), false, damageFX);
+                        abilityManager.DelayDamage(applyDamageOther, applyDamageTypeOther, 0.2f, null, testStats.gameObject, caster, testStats, 0f, new Vector2Int(0, 0), false, damageFX, null, GetSoundEffect(applySounds));
                     }
                 }
             }
 
             if (applyDamageOpponents.y > 0f)
             {
-                abilityManager.DelayDamage(applyDamageOpponents, applyDamageTypeOpponents, 0.2f, null, abilityManager.combatManager.playerStats.gameObject, caster, abilityManager.combatManager.playerStats, 0f, new Vector2Int(0, 0), false, damageFX);
+                abilityManager.DelayDamage(applyDamageOpponents, applyDamageTypeOpponents, 0.2f, null, abilityManager.combatManager.playerStats.gameObject, caster, abilityManager.combatManager.playerStats, 0f, new Vector2Int(0, 0), false, damageFX, null, GetSoundEffect(applySounds));
             }
         }
         else if (target.GetComponent<PlayerStats>())
@@ -228,7 +235,7 @@ public class StatusParent : ScriptableObject
                 {
                     if (applyDamageOpponents.y > 0f)
                     {
-                        abilityManager.DelayDamage(applyDamageOpponents, applyDamageTypeOpponents, 0.2f, null, testStats.gameObject, caster, testStats, 0f, new Vector2Int(0, 0), false, damageFX);
+                        abilityManager.DelayDamage(applyDamageOpponents, applyDamageTypeOpponents, 0.2f, null, testStats.gameObject, caster, testStats, 0f, new Vector2Int(0, 0), false, damageFX, null, GetSoundEffect(applySounds));
                     }
                 }
             }
@@ -241,7 +248,7 @@ public class StatusParent : ScriptableObject
 
         if (turnDamage.y > 0f)
         {
-            abilityManager.DelayDamage(turnDamage, turnDamageType, 0.2f, null, stats.gameObject, caster, stats, 0f, new Vector2Int(0, 0), false, damageFX);
+            abilityManager.DelayDamage(turnDamage, turnDamageType, 0.2f, null, stats.gameObject, caster, stats, 0f, new Vector2Int(0, 0), false, damageFX, null, GetSoundEffect(turnSounds));
         }
 
         if (target.GetComponent<EnemyStats>())
@@ -254,14 +261,14 @@ public class StatusParent : ScriptableObject
                 {
                     if (turnDamageOther.y > 0f)
                     {
-                        abilityManager.DelayDamage(turnDamageOther, turnDamageTypeOther, 0.2f, null, testStats.gameObject, caster, testStats, 0f, new Vector2Int(0, 0), false, damageFX);
+                        abilityManager.DelayDamage(turnDamageOther, turnDamageTypeOther, 0.2f, null, testStats.gameObject, caster, testStats, 0f, new Vector2Int(0, 0), false, damageFX, null, GetSoundEffect(turnSounds));
                     }
                 }
             }
 
             if (turnDamageOpponents.y > 0f)
             {
-                abilityManager.DelayDamage(turnDamageOpponents, turnDamageTypeOpponents, 0.2f, null, abilityManager.combatManager.playerStats.gameObject, caster, abilityManager.combatManager.playerStats, 0f, new Vector2Int(0, 0), false, damageFX);
+                abilityManager.DelayDamage(turnDamageOpponents, turnDamageTypeOpponents, 0.2f, null, abilityManager.combatManager.playerStats.gameObject, caster, abilityManager.combatManager.playerStats, 0f, new Vector2Int(0, 0), false, damageFX, null, GetSoundEffect(turnSounds));
             }
         }
         else if (target.GetComponent<PlayerStats>())
@@ -276,7 +283,7 @@ public class StatusParent : ScriptableObject
                     {
                         if (turnDamageOpponents.y > 0f)
                         {
-                            abilityManager.DelayDamage(turnDamageOpponents, turnDamageTypeOpponents, 0.2f, null, testStats.gameObject, caster, testStats, 0f, new Vector2Int(0, 0), false, damageFX);
+                            abilityManager.DelayDamage(turnDamageOpponents, turnDamageTypeOpponents, 0.2f, null, testStats.gameObject, caster, testStats, 0f, new Vector2Int(0, 0), false, damageFX, null, GetSoundEffect(turnSounds));
                         }
                     }
                 }
@@ -287,6 +294,8 @@ public class StatusParent : ScriptableObject
     void ApplyHealing(GameObject target, GameObject caster, AbilityManager abilityManager)
     {
         CharacterStats stats = target.GetComponent<CharacterStats>();
+
+        abilityManager.SoundEffect(GetSoundEffect(applySounds), 1f);
 
         if (applyHealing.y > 0f)
         {
@@ -338,6 +347,8 @@ public class StatusParent : ScriptableObject
     void TurnStartHealing(GameObject target, GameObject caster, AbilityManager abilityManager)
     {
         CharacterStats stats = target.GetComponent<CharacterStats>();
+
+        abilityManager.SoundEffect(GetSoundEffect(turnSounds), 1f);
 
         if (turnHealing.y > 0f)
         {
@@ -669,4 +680,14 @@ public class StatusParent : ScriptableObject
     #endregion
 
     #endregion
+
+    AudioClip GetSoundEffect(AudioClip[] soundArray)
+    {
+        if (soundArray.Length > 0)
+            return soundArray[Random.Range(0, soundArray.Length)];
+        else
+        {
+            return null;
+        }
+    }
 }

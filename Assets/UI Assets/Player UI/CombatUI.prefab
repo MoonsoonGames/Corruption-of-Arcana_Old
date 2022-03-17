@@ -6287,6 +6287,9 @@ MonoBehaviour:
   CardMenu: {fileID: 959858416520673926}
   SettingsMenu: {fileID: 6147237256637663112}
   QuitConfirm: {fileID: 784163702773167379}
+  PotionOpenBtn: {fileID: 5549835041279959560}
+  PotionCloseBtn: {fileID: 3230796903205447693}
+  PotionBar: {fileID: 2379453423348785877}
 --- !u!1 &1177809659138692387
 GameObject:
   m_ObjectHideFlags: 0
@@ -15428,7 +15431,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 671320008132181492}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 296773820985629620}
+        m_TargetAssemblyTypeName: CombatUIController, Assembly-CSharp
+        m_MethodName: PotionClose
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3241718078398071420
 GameObject:
   m_ObjectHideFlags: 0
@@ -30651,7 +30666,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7435877971411783693}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 296773820985629620}
+        m_TargetAssemblyTypeName: CombatUIController, Assembly-CSharp
+        m_MethodName: PotionOpen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5641771235582733072
 GameObject:
   m_ObjectHideFlags: 0

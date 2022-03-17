@@ -27,6 +27,8 @@ public class AbilityManager : MonoBehaviour
 
     EndTurn endTurn;
 
+    BGMManager audioManager;
+
 
     #region Ability Values
 
@@ -62,6 +64,7 @@ public class AbilityManager : MonoBehaviour
         activeCard = GameObject.FindObjectOfType<ActiveCard>();
         targetter = GetComponentInChildren<Targetter>();
         endTurn = GameObject.FindObjectOfType<EndTurn>();
+        audioManager = GameObject.FindObjectOfType<BGMManager>();
     }
 
     #endregion
@@ -193,7 +196,7 @@ public class AbilityManager : MonoBehaviour
 
     #region Helper Functions
 
-    public void DelayDamage(Vector2 damageRange, E_DamageTypes damageType, float delay, Transform origin, GameObject target, GameObject caster, CharacterStats targetHealth, float executeThreshold, Vector2Int healOnKill, bool canBeCountered, Object hitFX)
+    public void DelayDamage(Vector2 damageRange, E_DamageTypes damageType, float delay, Transform origin, GameObject target, GameObject caster, CharacterStats targetHealth, float executeThreshold, Vector2Int healOnKill, bool canBeCountered, Object hitFX, AudioClip castSound, AudioClip hitSound)
     {
         if (damageType == E_DamageTypes.Random)
         {
@@ -202,32 +205,32 @@ public class AbilityManager : MonoBehaviour
             switch (randDamage)
             {
                 case 1:
-                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Physical, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered, hitFX));
+                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Physical, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered, hitFX, castSound, hitSound));
                     break;
                 case 2:
-                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Ember, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered, hitFX));
+                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Ember, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered, hitFX, castSound, hitSound));
                     break;
                 case 3:
-                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Static, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered, hitFX));
+                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Static, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered, hitFX, castSound, hitSound));
                     break;
                 case 4:
-                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Bleak, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered, hitFX));
+                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Bleak, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered, hitFX, castSound, hitSound));
                     break;
                 case 5:
-                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Septic, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered, hitFX));
+                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Septic, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered, hitFX, castSound, hitSound));
                     break;
                 default:
-                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Physical, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered, hitFX));
+                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Physical, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered, hitFX, castSound, hitSound));
                     break;
             }
         }
         else
         {
-            StartCoroutine(IDelayDamage(damageRange, damageType, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered, hitFX));
+            StartCoroutine(IDelayDamage(damageRange, damageType, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered, hitFX, castSound, hitSound));
         }
     }
 
-    private IEnumerator IDelayDamage(Vector2 damageRange, E_DamageTypes damageType, float delay, Transform origin, GameObject target, GameObject caster, CharacterStats targetHealth, float executeThreshold, Vector2Int healOnKill, bool canBeCountered, Object hitFX)
+    private IEnumerator IDelayDamage(Vector2 damageRange, E_DamageTypes damageType, float delay, Transform origin, GameObject target, GameObject caster, CharacterStats targetHealth, float executeThreshold, Vector2Int healOnKill, bool canBeCountered, Object hitFX, AudioClip castSound, AudioClip hitSound)
     {
         Vector3 originRef = new Vector3(999999, 999999, 999999);
 
@@ -236,7 +239,11 @@ public class AbilityManager : MonoBehaviour
             originRef = origin.position;
         }
 
+        SoundEffect(castSound, 1f);
+
         yield return new WaitForSeconds(delay);
+
+        SoundEffect(hitSound, 1f);
 
         if (targetHealth != null)
         {
@@ -362,6 +369,14 @@ public class AbilityManager : MonoBehaviour
             }
 
             //Debug.Break();
+        }
+    }
+
+    public void SoundEffect(AudioClip soundEffect, float volume)
+    {
+        if (audioManager != null && soundEffect != null)
+        {
+            audioManager.PlaySoundEffect(soundEffect, volume);
         }
     }
 
