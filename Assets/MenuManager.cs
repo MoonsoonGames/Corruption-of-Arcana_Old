@@ -25,11 +25,13 @@ public class MenuManager : MonoBehaviour
     public GameObject Player;
     public GameObject PlayerCamera;
     public Compass compass;
+    public CompassNoIcon compass2;
 
     public GameObject SettingsMenu;
     public GameObject QuestMenuUI;
     public GameObject GuideBook;
     public GameObject CardsMenu;
+    public GameObject WeaponsMenu;
 
     public GameObject MainMenuConfirmScreen;
     public GameObject QuitConfirmScreen;
@@ -56,6 +58,16 @@ public class MenuManager : MonoBehaviour
     public Text CardTypeTitle;
     public Text PageX;
     public Text PageY;
+    #endregion
+
+    #region HelpGuide
+    public GameObject ConstructsList;
+    public GameObject UndeadList;
+    public GameObject BeastsList;
+    public GameObject HumanoidList;
+    public GameObject SecretsList;
+
+    public Text SpeciesText;
     #endregion
 
     #endregion
@@ -273,6 +285,69 @@ public class MenuManager : MonoBehaviour
         //turn on GuideBook UI
         GuideBook.SetActive(true);
     }
+
+    #region HelpGuide Buttons
+    public void Constructs()
+    {
+        //1 list on all others off
+        ConstructsList.SetActive(true);
+        UndeadList.SetActive(false);
+        BeastsList.SetActive(false);
+        HumanoidList.SetActive(false);
+        SecretsList.SetActive(false);
+
+        SpeciesText.text = "Constructs";
+    }
+
+    public void Undead()
+    {
+        //1 list on all others off
+        ConstructsList.SetActive(false);
+        UndeadList.SetActive(true);
+        BeastsList.SetActive(false);
+        HumanoidList.SetActive(false);
+        SecretsList.SetActive(false);
+
+        SpeciesText.text = "Undead";
+    }
+
+    public void Beasts()
+    {
+        //1 list on all others off
+        ConstructsList.SetActive(false);
+        UndeadList.SetActive(false);
+        BeastsList.SetActive(true);
+        HumanoidList.SetActive(false);
+        SecretsList.SetActive(false);
+
+        SpeciesText.text = "Beasts";
+    }
+
+    public void Humanoid()
+    {
+        //1 list on all others off
+        ConstructsList.SetActive(false);
+        UndeadList.SetActive(false);
+        BeastsList.SetActive(false);
+        HumanoidList.SetActive(true);
+        SecretsList.SetActive(false);
+
+        SpeciesText.text = "Humanoids";
+    }
+
+    public void Secrets()
+    {
+        //1 list on all others off
+        ConstructsList.SetActive(false);
+        UndeadList.SetActive(false);
+        BeastsList.SetActive(false);
+        HumanoidList.SetActive(false);
+        SecretsList.SetActive(true);
+
+        SpeciesText.text = "Secrets";
+    }
+    #endregion
+
     #endregion
 
     #region MainMenu Button
@@ -449,6 +524,18 @@ public class MenuManager : MonoBehaviour
 
         //nextMjArc off
         //lastMjArc off
+    }
+
+    public void Weapons()
+    {
+        WeaponsMenu.SetActive(true);
+        CardsMenu.SetActive(false);
+    }
+
+    public void CloseWeapons()
+    {
+        WeaponsMenu.SetActive(false);
+        CardsMenu.SetActive(true);
     }
     #endregion
 
