@@ -21,6 +21,8 @@ MonoBehaviour:
   selfName: Healing Potion
   selfDescription: By imbibing a healing potion, you restore your vitality... tastes
     grim though
+  selfCastSounds:
+  - {fileID: 8300000, guid: b948b74b0d50f3c4a8e6af19b0f1c556, type: 3}
   selfEndTurn: 0
   selfUsesAction: 0
   selfCost: 0
@@ -32,14 +34,20 @@ MonoBehaviour:
   selfEndTurnDelay: 0.2
   selfStatus: []
   selfStatusDuration: 
+  selfDrawCards: 0
+  selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 0
   targetName: 
   targetDescription: 
+  HitFX: {fileID: 0}
+  targetCastSounds: []
+  targetHitSounds: []
   targetEndTurn: 0
   targetUsesAction: 0
   targetCost: 0
   targetCostType: 
   damageType: 0
+  targetCanBeCountered: 1
   targetDmg: {x: 0, y: 0}
   hits: 0
   hitInterval: 0
@@ -56,6 +64,8 @@ MonoBehaviour:
   targetStatus: []
   targetStatusDuration: 
   targetStatusChance: []
+  targetDrawCards: 0
+  targetDrawSpecificCard: {fileID: 0}
   spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0

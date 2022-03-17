@@ -21,6 +21,7 @@ MonoBehaviour:
   selfInterpretationUnlocked: 0
   selfName: 
   selfDescription: 
+  selfCastSounds: []
   selfEndTurn: 0
   selfUsesAction: 1
   selfCost: 0
@@ -38,6 +39,12 @@ MonoBehaviour:
   targetName: Shield Bash
   targetDescription: Hit your opponent with a shield strike that has a chance to
     knock your target off balance and stun them
+  HitFX: {fileID: 0}
+  targetCastSounds: []
+  targetHitSounds:
+  - {fileID: 8300000, guid: 06350f32e3d494f44a7861e02286d976, type: 3}
+  - {fileID: 8300000, guid: 549945f9b7cd5a940bd5d6854343109a, type: 3}
+  - {fileID: 8300000, guid: ad9ecf0d3d7eac740888213e1964df8b, type: 3}
   targetEndTurn: 0
   targetUsesAction: 1
   targetCost: 10

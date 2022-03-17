@@ -22,6 +22,8 @@ MonoBehaviour:
   selfName: Adept Arcana
   selfDescription: Drink from the occult wellspring of magic to restore your arcana
     and draw 2 additional cards
+  selfCastSounds:
+  - {fileID: 8300000, guid: 9d0d25bbe88ed754d9af0996c39f6396, type: 3}
   selfEndTurn: 0
   selfUsesAction: 1
   selfCost: 0
@@ -39,6 +41,9 @@ MonoBehaviour:
   targetName: Chain Lightning
   targetDescription: Unleash your arcana as a storm of lightning that arcs between
     multiple enemies
+  HitFX: {fileID: 0}
+  targetCastSounds: []
+  targetHitSounds: []
   targetEndTurn: 0
   targetUsesAction: 1
   targetCost: 25

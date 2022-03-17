@@ -22,6 +22,8 @@ MonoBehaviour:
   selfName: Gorge on Misery
   selfDescription: Generate a life draining aura, which drains the vigour from your
     enemies each turn and heals you
+  selfCastSounds:
+  - {fileID: 8300000, guid: add3024e19106c740a56a4b9c5d2336e, type: 3}
   selfEndTurn: 0
   selfUsesAction: 1
   selfCost: 15
@@ -44,6 +46,9 @@ MonoBehaviour:
 
     Also
     has a chance to poison targets'
+  HitFX: {fileID: 0}
+  targetCastSounds: []
+  targetHitSounds: []
   targetEndTurn: 0
   targetUsesAction: 1
   targetCost: 60
