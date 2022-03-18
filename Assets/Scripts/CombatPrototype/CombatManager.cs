@@ -15,6 +15,7 @@ public class CombatManager : MonoBehaviour
 
     public GameObject VictoryScreen;
     public GameObject DefeatScreen;
+    public GameObject CombatCanvas;
     public GameObject PlayableDecks;
     public GameObject noMana;
     //public GameObject Dmg;
@@ -159,6 +160,15 @@ public class CombatManager : MonoBehaviour
 
     public void ShowEndScreen(bool victory)
     {
+        if (CombatCanvas != null)
+        {
+            CombatCanvas.SetActive(false);
+        }
+        else
+        {
+            Debug.LogError("No Combat Canvas");
+        }
+
         if (victory)
         {
             VictoryScreen.SetActive(true);
