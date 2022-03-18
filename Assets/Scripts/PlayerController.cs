@@ -257,7 +257,7 @@ public class PlayerController : MonoBehaviour
 
         #endregion
 
-        #region East Clearing location triggers
+        #region East Forest Clearing location triggers
 
         if (other.gameObject.CompareTag("EC Camp"))
         {
@@ -278,6 +278,13 @@ public class PlayerController : MonoBehaviour
         else if (other.gameObject.CompareTag("EC Cave"))
         {
             Location.text = "Cave Enterance".ToString();
+        }
+        #endregion
+
+        #region Eastern Cave location triggers
+        if (other.gameObject.CompareTag("Eastern Cave"))
+        {
+            Location.text = "Eastern Cave".ToString();
         }
         #endregion
     }
