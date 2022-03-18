@@ -224,6 +224,14 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        if (Location != null)
+        {
+            LocationTrigger(other);
+        }
+    }
+
+    void LocationTrigger(Collider other)
+    {
         #region Thoth location triggers
 
         if (other.gameObject.CompareTag("Thoth Mid City"))
