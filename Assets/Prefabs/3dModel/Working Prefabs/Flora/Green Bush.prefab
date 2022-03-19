@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3062956464169778126}
   - component: {fileID: 6131699403449299386}
-  - component: {fileID: -7308594575907750124}
   m_Layer: 0
   m_Name: Green Bush
   m_TagString: Untagged
@@ -61,19 +60,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 6250907565481929969}
   m_Enabled: 1
---- !u!135 &-7308594575907750124
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2434791540672110964}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.0206642
-  m_Center: {x: 0, y: 1.08, z: 0.71}
 --- !u!1 &4141819489088545935
 GameObject:
   m_ObjectHideFlags: 0
@@ -115,6 +101,7 @@ GameObject:
   - component: {fileID: 5663873470288118623}
   - component: {fileID: 172734315103450139}
   - component: {fileID: 6250907565481929969}
+  - component: {fileID: 9105372193566588934}
   m_Layer: 0
   m_Name: polySurface16
   m_TagString: Untagged
@@ -185,3 +172,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &9105372193566588934
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5382845881943310223}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -1116444134294172880, guid: e91393fa6d04bc548a10509aed7d7b1a, type: 3}
