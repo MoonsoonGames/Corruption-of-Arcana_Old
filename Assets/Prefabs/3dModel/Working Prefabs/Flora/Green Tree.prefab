@@ -152,7 +152,7 @@ MeshCollider:
   m_GameObject: {fileID: 2836782312957241016}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -565,6 +565,7 @@ GameObject:
   - component: {fileID: 8139890398443270904}
   - component: {fileID: 3923556708426767363}
   - component: {fileID: 7043425288333719094}
+  - component: {fileID: 8127086006295233857}
   m_Layer: 0
   m_Name: Green Tree
   m_TagString: Untagged
@@ -580,7 +581,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8916392359590275138}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.234058, y: -0, z: 131.80493}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 9170906205109876602}
@@ -667,6 +668,20 @@ LODGroup:
     - renderer: {fileID: 3923556708426767363}
     - renderer: {fileID: 2700743028838572422}
   m_Enabled: 1
+--- !u!136 &8127086006295233857
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8916392359590275138}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.14
+  m_Height: 4.32
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.81, z: 0.99}
 --- !u!1 &9047343355079199372
 GameObject:
   m_ObjectHideFlags: 0
