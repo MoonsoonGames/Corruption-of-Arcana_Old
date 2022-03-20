@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class CombatUIController : MonoBehaviour
 {
+    LoadSettings loadSettings;
     public GameObject MainCombatUI;
     public GameObject PauseMenu;
     public GameObject HelpMenu;
@@ -41,6 +42,8 @@ public class CombatUIController : MonoBehaviour
     public Text SpeciesText;
     #endregion
 
+    public Slider HPBar;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,6 +56,8 @@ public class CombatUIController : MonoBehaviour
         PotionOpenBtn.SetActive(true);
         PotionCloseBtn.SetActive(false);
         PotionBar.SetActive(false);
+
+        HPBar.maxValue = loadSettings.maxHealth;
     }
 
     // Update is called once per frame

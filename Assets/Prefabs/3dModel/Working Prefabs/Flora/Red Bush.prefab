@@ -40,7 +40,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1701222273860525623}
   - component: {fileID: 4699334627537332968}
-  - component: {fileID: 8204402339110898224}
   m_Layer: 0
   m_Name: Red Bush
   m_TagString: Untagged
@@ -91,19 +90,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 7756770069291010312}
   m_Enabled: 1
---- !u!135 &8204402339110898224
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2076199051971265677}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.0206642
-  m_Center: {x: 0, y: 1.08, z: 0.71}
 --- !u!1 &8622581048280390262
 GameObject:
   m_ObjectHideFlags: 0
@@ -115,6 +101,7 @@ GameObject:
   - component: {fileID: 8322692662942197414}
   - component: {fileID: 4575541745984590306}
   - component: {fileID: 7756770069291010312}
+  - component: {fileID: 8642698876093000148}
   m_Layer: 0
   m_Name: polySurface16
   m_TagString: Untagged
@@ -185,3 +172,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!135 &8642698876093000148
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8622581048280390262}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.89
+  m_Center: {x: -0.030789137, y: 3, z: 0.6893817}
