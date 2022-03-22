@@ -29,11 +29,11 @@ public class InventoryItems : MonoBehaviour
         if (loadSettings.health < controller.maxHealth && healthPotionCount > 0)
         {
             int heal = Random.Range(30, 46);
-            loadSettings.health += heal;
             Debug.Log(heal + "Health healed");
-
+            controller.health = Mathf.Clamp(controller.health + heal, 0, controller.maxHealth);
+            
             healthPotionCount -= 1;
-            menuManager.HPPotionCount.text = healthPotionCount.ToString();
+            loadSettings.healingPotionCount = healthPotionCount;
 
             if (loadSettings != null)
             {
