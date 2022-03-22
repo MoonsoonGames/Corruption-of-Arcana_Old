@@ -12,6 +12,8 @@ public class NavigationManager : MonoBehaviour
     public bool stopEvents = false;
     public bool stopLevels = false;
 
+    bool alreadyTravelling = false;
+
     private void Start()
     {
         loadSettings = LoadSettings.instance;
@@ -48,14 +50,19 @@ public class NavigationManager : MonoBehaviour
 
     public void StartTravelling(NavigationNode newNode)
     {
-        loadSettings.TravelStart(newNode);
+        if (alreadyTravelling == false)
+        {
+            loadSettings.TravelStart(newNode);
 
-        //Debug.Log(newNode.GenerateNavigationEvent());
+            //Debug.Log(newNode.GenerateNavigationEvent());
 
-        newNode.GenerateNavigationEvent();
+            newNode.GenerateNavigationEvent();
 
-        ResetNodes();
-        SetNodes();
+            ResetNodes();
+            SetNodes();
+
+            alreadyTravelling = true;
+        }
     }
 
     public List<string> GenerateEvents(List<string> possibleEvents, int eventsCount)
