@@ -43,6 +43,10 @@ public class MenuManager : MonoBehaviour
     //public Text RPotionCount;
     //public Text SPotionCount;
 
+    public Text HPTextCount;
+    public Text PauseHPTextCount;
+    public Slider MainHPBar;
+
     public Text goldCount;
 
     #region DeckBuilder GameObjects
@@ -89,6 +93,15 @@ public class MenuManager : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
+        //update the main HP Bars
+        MainHPBar.value = loadSettings.health;
+        MainHPBar.maxValue = loadSettings.maxHealth;
+        HPTextCount.text = loadSettings.health.ToString();
+        //update the inventory HP bars
+        PauseHealthBar.value = loadSettings.health;
+        PauseHealthBar.maxValue = loadSettings.maxHealth;
+        PauseHPTextCount.text = loadSettings.health.ToString();
+
         if (Player.GetComponent<PlayerController>().canMove == true)
         {
             Cursor.visible = false;
@@ -207,12 +220,6 @@ public class MenuManager : MonoBehaviour
         }
 
         #region Stats Update
-        //update the HP and AP bars
-        PauseHealthBar.value = loadSettings.health;
-        PauseHealthBar.maxValue = loadSettings.maxHealth;
-        //PauseArcanaBar.value = loadSettings.arcana;
-        //PauseArcanaBar.maxValue = loadSettings.maxArcana;
-
         Debug.Log(PauseHealthBar.value + "||" + loadSettings.health);
 
         //update gold counter
