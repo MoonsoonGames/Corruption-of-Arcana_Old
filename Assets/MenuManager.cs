@@ -88,21 +88,23 @@ public class MenuManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         loadSettings = LoadSettings.instance;
+
+        playerController = GameObject.FindObjectOfType<PlayerController>();
     }
 
     // Update is called once per frame
     public void Update()
     {
         //update the main HP Bars
-        MainHPBar.value = loadSettings.health;
-        MainHPBar.maxValue = loadSettings.maxHealth;
-        HPTextCount.text = loadSettings.health.ToString();
+        MainHPBar.value = playerController.health;
+        MainHPBar.maxValue = playerController.maxHealth;
+        HPTextCount.text = playerController.health.ToString();
         //update the inventory HP bars
-        PauseHealthBar.value = loadSettings.health;
-        PauseHealthBar.maxValue = loadSettings.maxHealth;
-        PauseHPTextCount.text = loadSettings.health.ToString();
+        PauseHealthBar.value = playerController.health;
+        PauseHealthBar.maxValue = playerController.maxHealth;
+        PauseHPTextCount.text = playerController.health.ToString();
 
-        if (Player.GetComponent<PlayerController>().canMove == true)
+        if (playerController.canMove == true)
         {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
@@ -147,7 +149,7 @@ public class MenuManager : MonoBehaviour
             }
             #endregion
         }
-        else if (Player.GetComponent<PlayerController>().canMove == false)
+        else if (playerController.canMove == false)
         {
             #region Esc close
             if (Input.GetKeyDown(KeyCode.Escape))
