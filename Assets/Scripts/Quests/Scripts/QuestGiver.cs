@@ -33,7 +33,10 @@ public class QuestGiver : MonoBehaviour
 
             LoadSettings loadSettings = LoadSettings.instance;
 
-            loadSettings.quests.Add(quest);
+            if (loadSettings.quests.Contains(quest) == false)
+            {
+                loadSettings.quests.Add(quest);
+            }
         }
     }
 }
