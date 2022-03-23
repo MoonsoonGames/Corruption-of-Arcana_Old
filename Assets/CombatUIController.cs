@@ -17,6 +17,8 @@ public class CombatUIController : MonoBehaviour
     public GameObject PotionCloseBtn;
     public GameObject PotionBar;
 
+    public bool Fighting;
+
     #region DeckBuilder GameObjects
     public GameObject MiArc;
     public GameObject MjArcCardsPage;
@@ -56,21 +58,48 @@ public class CombatUIController : MonoBehaviour
         PotionOpenBtn.SetActive(true);
         PotionCloseBtn.SetActive(false);
         PotionBar.SetActive(false);
-
+        Fighting = true;
         HPBar.maxValue = loadSettings.maxHealth;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Fighting == true)
         {
-            MainCombatUI.SetActive(false);
-            PauseMenu.SetActive(true);
-            CardsMenu.SetActive(false);
-            HelpMenu.SetActive(false);
-            SettingsMenu.SetActive(false);
-            QuitConfirm.SetActive(false);
+            #region Combat Pause open
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                MainCombatUI.SetActive(false);
+                PauseMenu.SetActive(true);
+                CardsMenu.SetActive(false);
+                HelpMenu.SetActive(false);
+                SettingsMenu.SetActive(false);
+                QuitConfirm.SetActive(false);
+
+                Fighting = false;
+            }
+            #endregion
+        }
+
+        else if (Fighting == false)
+        {
+            #region Combat Pause close
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (PauseMenu.activeSelf == true)
+                {
+                    MainCombatUI.SetActive(true);
+                    PauseMenu.SetActive(false);
+                    CardsMenu.SetActive(false);
+                    HelpMenu.SetActive(false);
+                    SettingsMenu.SetActive(false);
+                    QuitConfirm.SetActive(false);
+
+                    Fighting = true;
+                }
+            }
+            #endregion
         }
 
         #region CardsMenu Subpage button on/off
