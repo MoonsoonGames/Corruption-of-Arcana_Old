@@ -93,8 +93,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2209253925361174898}
   - component: {fileID: 2209253925361174911}
-  - component: {fileID: 5140198395835923577}
-  - component: {fileID: 5045553847506650399}
   - component: {fileID: 2209253925361174901}
   - component: {fileID: 2209253925361174897}
   - component: {fileID: 2805122873914234030}
@@ -139,47 +137,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &5140198395835923577
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2209253925361174902}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d345c04df54e6c438302f61486683f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  modelAnimator: {fileID: 5045553847506650399}
-  walkSpeed: 2
-  runSpeed: 3
-  jumpVelocity: 90
-  groundDistanceOffset: 0.1
-  attackCollider: {fileID: 2209253925361174901}
-  canMove: 1
-  canJump: 0
-  canAttack: 0
-  attackCooldown: 0.2
---- !u!95 &5045553847506650399
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2209253925361174902}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: edbdebe9073e44143b53f350d514adb6, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!136 &2209253925361174901
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -209,7 +166,7 @@ MonoBehaviour:
   Player: {fileID: 2209253925361174902}
   Location: {fileID: 0}
   interactImage: {fileID: 0}
-  modelAnimator: {fileID: 5045553847506650399}
+  modelAnimator: {fileID: 3053240398149318766}
   canMove: 0
   baseSneakSpeed: 5
   baseMoveSpeed: 10
@@ -320,7 +277,7 @@ GameObject:
   - component: {fileID: 127840565675246404}
   - component: {fileID: 2282378414717777120}
   - component: {fileID: 1881192104081682068}
-  - component: {fileID: 7105158086274968085}
+  - component: {fileID: 3053240398149318766}
   m_Layer: 0
   m_Name: Managed Sprite
   m_TagString: Untagged
@@ -335,7 +292,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6602364264669351857}
-  m_LocalRotation: {x: -0, y: 0.8684649, z: -0, w: -0.4957507}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children: []
@@ -382,7 +339,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 899abcafe0c76c5418d1e3b9f08f0740, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8ba3cdcdc3260f84db3c4cf0d5840376, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -407,63 +364,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   billboardV: 0
   pointAtCamera: 0
---- !u!114 &7105158086274968085
-MonoBehaviour:
+--- !u!95 &3053240398149318766
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6602364264669351857}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f962ef387b590f44dac51a6d0a986329, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  directionMode: 1
-  reflectionMode: 0
-  currentFrame: 0
-  currentStateIndex: 0
-  rootManager: {fileID: 7105158086274968085}
-  billboard: 0
-  stateMapping:
-  - stateName: Idle
-    frameCount: 1
-    directions:
-    - direction: 1
-      frames:
-      - {fileID: 21300000, guid: 8ba3cdcdc3260f84db3c4cf0d5840376, type: 3}
-    - direction: 5
-      frames:
-      - {fileID: 21300000, guid: bbb79a4fb5ad0b442b8478ec47fcb3b4, type: 3}
-    - direction: 9
-      frames:
-      - {fileID: 21300000, guid: 899abcafe0c76c5418d1e3b9f08f0740, type: 3}
-    - direction: 13
-      frames:
-      - {fileID: 21300000, guid: 61600d2e1ef52c84dad003885ca961da, type: 3}
-  - stateName: Run
-    frameCount: 3
-    directions:
-    - direction: 1
-      frames:
-      - {fileID: 21300000, guid: 2551519e04a64214fac071c0c92f9793, type: 3}
-      - {fileID: 21300000, guid: 8ba3cdcdc3260f84db3c4cf0d5840376, type: 3}
-      - {fileID: 21300000, guid: 5c68778a6721d934490e5c853c96fa1c, type: 3}
-    - direction: 5
-      frames:
-      - {fileID: 21300024, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
-      - {fileID: 21300000, guid: bbb79a4fb5ad0b442b8478ec47fcb3b4, type: 3}
-      - {fileID: 21300028, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
-    - direction: 9
-      frames:
-      - {fileID: 21300040, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
-      - {fileID: 21300000, guid: 899abcafe0c76c5418d1e3b9f08f0740, type: 3}
-      - {fileID: 21300036, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
-    - direction: 13
-      frames:
-      - {fileID: 21300018, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
-      - {fileID: 21300000, guid: 61600d2e1ef52c84dad003885ca961da, type: 3}
-      - {fileID: 21300022, guid: 2074c57bbb65b9b44a37c2e7bf41b852, type: 3}
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b7b73c5e5ab272f48ade32f4ec976da6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6660609721720559044
 GameObject:
   m_ObjectHideFlags: 0

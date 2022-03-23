@@ -130,19 +130,47 @@ public class PlayerController : MonoBehaviour
                 // We are grounded, so recalculate
                 // move direction directly from axes
 
-                moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
-                moveDirection = transform.TransformDirection(moveDirection);
+                Vector3 inputDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
+
+                moveDirection = transform.TransformDirection(inputDirection);
                 moveDirection *= moveSpeed;
+
+                modelAnimator.SetBool("Moving", moveDirection != new Vector3(0, 0, 0));
+
+                Debug.Log(inputDirection);
+
+                //up 001, right 100, down 00-1, left -100
+                if (inputDirection.x > 0)
+                {
+                    modelAnimator.SetInteger("Direction", 1);
+                }
+                else if (inputDirection.x < 0)
+                {
+                    modelAnimator.SetInteger("Direction", 3);
+                }
+                else if (inputDirection.z > 0)
+                {
+                    modelAnimator.SetInteger("Direction", 0);
+                }
+                else if (inputDirection.z < 0)
+                {
+                    modelAnimator.SetInteger("Direction", 2);
+                }
+                
 
                 if (Input.GetButton("Jump"))
                 {
                     moveDirection.y = jumpSpeed;
                 }
 
-                isRunning = Input.GetKey(KeyCode.LeftShift);
+                isRunning = Input.GetButton("Sprint");
                 if (IsRunning)
                 {
                     moveSpeed = baseSprintSpeed;
+                }
+                else
+                {
+                    moveSpeed = baseMoveSpeed;
                 }
 
                 if (Input.GetButton("Interact") && interact && dialogue != null)
@@ -158,14 +186,6 @@ public class PlayerController : MonoBehaviour
 
             // Move the controller
             characterController.Move(moveDirection * Time.deltaTime);
-            //rb.velocity += moveDirection;
-
-            //turnCamera = Input.GetAxis("Mouse X") * sensitivity;
-            //if (turnCamera != 0)
-            //{
-            //    //Code for action on mouse moving horizontally
-            //    transform.eulerAngles += new Vector3(0, turnCamera, 0);
-            //}
         }
 
         //Sets the values of the healthbars to their specific values
@@ -386,7 +406,7 @@ public class PlayerController : MonoBehaviour
         set
         {
             isGrounded = value;
-            modelAnimator.SetBool("IsGrounded", value);
+            //modelAnimator.SetBool("Grounded", value);
         }
     }
     /// <summary>
@@ -402,7 +422,7 @@ public class PlayerController : MonoBehaviour
         set
         {
             isMoving = value;
-            modelAnimator.SetBool("IsMoving", value);
+            modelAnimator.SetBool("Moving", value);
         }
     }
     /// <summary>
@@ -418,7 +438,7 @@ public class PlayerController : MonoBehaviour
         set
         {
             isRunning = value;
-            modelAnimator.SetBool("IsRunning", value);
+            //modelAnimator.SetBool("IsRunning", value);
         }
     }
 }
