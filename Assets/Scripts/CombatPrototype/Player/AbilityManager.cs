@@ -12,6 +12,7 @@ public class AbilityManager : MonoBehaviour
     public PlayerStats playerStats;
 
     public CombatDeckManager combatDeckManager;
+    public SpreadScript spreadScript;
     private CardParent readyAbility;
     private CardSetter readiedCard;
     private ActiveCard activeCard;
@@ -65,6 +66,8 @@ public class AbilityManager : MonoBehaviour
         targetter = GetComponentInChildren<Targetter>();
         endTurn = GameObject.FindObjectOfType<EndTurn>();
         audioManager = GameObject.FindObjectOfType<BGMManager>();
+
+        spreadScript.Setup(combatDeckManager);
     }
 
     #endregion
@@ -116,6 +119,19 @@ public class AbilityManager : MonoBehaviour
             if (readyAbility != null)
             {
                 string cardName = readyAbility.cardName;
+
+                if (readyAbility.countsCombo)
+                {
+                    if (spreadScript.cardsUsed + 1 == 1)
+                    {
+                        if (readyAbility.comboCard != null)
+                        {
+                            spreadScript.drawCard = readyAbility.comboCard;
+                        }
+                    }
+
+                    spreadScript.CardCast();
+                }
 
                 readyAbility.CastSpell(target, this.gameObject, this, out bool canCast);
 

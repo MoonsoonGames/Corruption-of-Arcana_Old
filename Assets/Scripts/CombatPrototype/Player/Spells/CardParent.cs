@@ -17,6 +17,9 @@ public class CardParent : ScriptableObject
 
     public bool enemySpell;
 
+    public bool countsCombo = true;
+    public CardParent comboCard;
+
     public void CastSpell(GameObject target, GameObject caster, AbilityManager abilityManager, out bool canCast)
     {
         canCast = false;

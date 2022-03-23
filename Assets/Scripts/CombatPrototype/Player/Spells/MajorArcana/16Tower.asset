@@ -18,6 +18,8 @@ MonoBehaviour:
   cardImage: {fileID: -6663811380663864060, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
     type: 3}
   enemySpell: 0
+  countsCombo: 1
+  comboCard: {fileID: 11400000, guid: 76ee96ca4a1df5a40ba614f27e1c1fed, type: 2}
   selfInterpretationUnlocked: 0
   selfName: Catastrophe
   selfDescription: Engulf yourself in an aura of flame, becoming immune to fire damage
@@ -44,7 +46,7 @@ MonoBehaviour:
 
 
     Also draws a firebolt
-    card'
+    card if this card is drawn as the first card in a spread'
   HitFX: {fileID: 6727453174112786923, guid: c878f3a856728fd4eb235e50030cfd65, type: 3}
   targetCastSounds:
   - {fileID: 8300000, guid: 163c710f2e38671419aa566e72ada45f, type: 3}
@@ -76,7 +78,7 @@ MonoBehaviour:
   targetStatusDuration: 03000000
   targetStatusChance:
   - 0.5
-  targetDrawCards: 1
+  targetDrawCards: 0
   targetDrawSpecificCard: {fileID: 11400000, guid: 76ee96ca4a1df5a40ba614f27e1c1fed,
     type: 2}
   spawnPosition: 3

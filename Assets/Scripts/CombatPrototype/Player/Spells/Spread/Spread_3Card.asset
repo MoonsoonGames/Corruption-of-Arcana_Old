@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d042955bf60bea84b9273684d78676b5, type: 3}
-  m_Name: D1Shiv
+  m_Name: Spread_3Card
   m_EditorClassIdentifier: 
-  cardName: Shiv
-  cardNumber: 1
+  cardName: 3 Card Spread
+  cardNumber: 3
   flavourDescription: 
-  cardImage: {fileID: -4448962368760175236, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
+  cardImage: {fileID: -1636742031616846006, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
     type: 3}
   enemySpell: 0
   countsCombo: 1
-  comboCard: {fileID: 11400000, guid: af89ff48f79a6dd4e88996f7325d33f6, type: 2}
+  comboCard: {fileID: 0}
   selfInterpretationUnlocked: 0
   selfName: 
   selfDescription: 
@@ -38,33 +38,32 @@ MonoBehaviour:
   selfDrawCards: 0
   selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 1
-  targetName: Shiv
-  targetDescription: Hit your opponent with a swift weapon attack and draw a backstab
-    card
+  targetName: Cleave
+  targetDescription: With a sweeping strike, you hit all opponents in your way
   HitFX: {fileID: 6727453174112786923, guid: 420809e2f798084488e3873f43ce61a8, type: 3}
   targetCastSounds:
-  - {fileID: 8300000, guid: b16462f012f72c94da86510873799590, type: 3}
-  - {fileID: 8300000, guid: 9599e171cc7ea294aa2c60d85665ba58, type: 3}
   - {fileID: 8300000, guid: 0ab3ff83ad1d15b429949a2b267a1f2d, type: 3}
+  - {fileID: 8300000, guid: 9aa131b717a9fea44b5e08d9adddec43, type: 3}
+  - {fileID: 8300000, guid: 7b222495cb022e14c8594f5ce2bdfa55, type: 3}
   targetHitSounds:
   - {fileID: 8300000, guid: 10291597900e30c4bb4cb5503b488dd1, type: 3}
   - {fileID: 8300000, guid: 438b51af28372884497702a23d4886dd, type: 3}
   - {fileID: 8300000, guid: 22b6ec8f3ce0cd14c9e833b0f6126e05, type: 3}
   targetEndTurn: 0
   targetUsesAction: 1
-  targetCost: 5
+  targetCost: 0
   targetCostType: AP
   damageType: 0
   targetCanBeCountered: 1
-  targetDmg: {x: 14, y: 24}
+  targetDmg: {x: 18, y: 30}
   hits: 1
   hitInterval: 0
   finalHitInterval: 0
   targetFinalDmg: {x: 0, y: 0}
-  targetEndTurnDelay: 0.2
-  targetCleave: 0
+  targetEndTurnDelay: 0.3
+  targetCleave: 1
   targetChain: 0
-  extraDmg: {x: 0, y: 0}
+  extraDmg: {x: 18, y: 30}
   randomTargets: 0
   lifeLeach: {x: 0, y: 0}
   healOnKill: {x: 0, y: 0}
@@ -72,9 +71,8 @@ MonoBehaviour:
   targetStatus: []
   targetStatusDuration: 
   targetStatusChance: []
-  targetDrawCards: 1
-  targetDrawSpecificCard: {fileID: 11400000, guid: af89ff48f79a6dd4e88996f7325d33f6,
-    type: 2}
+  targetDrawCards: 0
+  targetDrawSpecificCard: {fileID: 0}
   spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0
