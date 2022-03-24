@@ -19,7 +19,7 @@ MonoBehaviour:
     type: 3}
   enemySpell: 0
   countsCombo: 1
-  comboCard: {fileID: 11400000, guid: 550915e34212c9a418cfa0f48a0e184e, type: 2}
+  comboCard: {fileID: 11400000, guid: 3ea97a24020c2664e860e50c28a2ac7d, type: 2}
   selfInterpretationUnlocked: 0
   selfName: 
   selfDescription: 
@@ -43,7 +43,8 @@ MonoBehaviour:
     to hit random enemies with a random damage
 
 
-    Also draws 1 random card'
+    Also draws a world card if this
+    card is drawn as the first card in a spread'
   HitFX: {fileID: 6727453174112786923, guid: e2dc8a0ecf90a864da6a8006e686425d, type: 3}
   targetCastSounds:
   - {fileID: 8300000, guid: b948b74b0d50f3c4a8e6af19b0f1c556, type: 3}
@@ -85,7 +86,7 @@ MonoBehaviour:
   targetStatus: []
   targetStatusDuration: 
   targetStatusChance: []
-  targetDrawCards: 1
+  targetDrawCards: 0
   targetDrawSpecificCard: {fileID: 0}
   spawnPosition: 2
   summonAlly: {fileID: 0}

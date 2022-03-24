@@ -34,7 +34,7 @@ public class CardParent : ScriptableObject
         }
         else
         {
-            Debug.Log("Too many spells cast");
+            Debug.Log("Issue with targetting");
         }
         
     }
@@ -76,6 +76,8 @@ public class CardParent : ScriptableObject
             if (abilityManager.playerStats.CheckMana(selfCost) && abilityManager.playerStats.CheckPotions(selfPotionCost))
             {
                 canCast = true;
+
+                abilityManager.CheckCombo(this);
 
                 int heal = (int)Random.Range(selfHeal.x, selfHeal.y);
                 int mana = (int)Random.Range(selfAP.x, selfAP.y);
@@ -185,6 +187,8 @@ public class CardParent : ScriptableObject
             if (abilityManager.playerStats.CheckMana(cost))
             {
                 canCast = true;
+
+                abilityManager.CheckCombo(this);
 
                 if (targetChain)
                 {

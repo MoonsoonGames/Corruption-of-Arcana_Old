@@ -70,6 +70,15 @@ public class AbilityManager : MonoBehaviour
         spreadScript.Setup(combatDeckManager);
     }
 
+    private void Update()
+    {
+        if (Input.GetButtonDown("CancelCard"))
+        {
+            //Debug.Log("Cancel card");
+            ResetAbility();
+        }
+    }
+
     #endregion
 
     #region Selecting Abilities
@@ -120,34 +129,11 @@ public class AbilityManager : MonoBehaviour
             {
                 string cardName = readyAbility.cardName;
 
-                if (readyAbility.countsCombo)
-                {
-                    if (spreadScript.cardsUsed + 1 == 1)
-                    {
-                        if (readyAbility.comboCard != null)
-                        {
-                            spreadScript.drawCard = readyAbility.comboCard;
-                        }
-                    }
-
-                    spreadScript.CardCast();
-                }
-
                 readyAbility.CastSpell(target, this.gameObject, this, out bool canCast);
 
                 if (canCast)
                 {
-                    if (cardName != "End Turn")
-                    {
-                        combatDeckManager.RemoveCard(readiedCard);
-                    }
-
-                    if (cardName != "End Turn")
-                    {
-                        combatDeckManager.RemoveCard(readiedCard);
-                    }
-
-                    readiedCard = null;
+                    DiscardCard();
                 }
             }
             else
@@ -156,6 +142,29 @@ public class AbilityManager : MonoBehaviour
                 
                 EnemyInfo(target.GetComponent<Enemy>());
             }
+        }
+    }
+
+    public void DiscardCard()
+    {
+        combatDeckManager.RemoveCard(readiedCard);
+
+        ResetAbility();
+    }
+
+    public void CheckCombo(CardParent ability)
+    {
+        if (ability.countsCombo)
+        {
+            if (spreadScript.cardsUsed + 1 == 1)
+            {
+                if (ability.comboCard != null)
+                {
+                    spreadScript.drawCard = ability.comboCard;
+                }
+            }
+
+            spreadScript.CardCast();
         }
     }
 

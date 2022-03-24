@@ -10,25 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d042955bf60bea84b9273684d78676b5, type: 3}
-  m_Name: A1Eclipse
+  m_Name: SDeath
   m_EditorClassIdentifier: 
-  cardName: Eclipse
-  cardNumber: 1
-  flavourDescription: 
-  cardImage: {fileID: -2613411450045547498, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
+  cardName: Death (Spread)
+  cardNumber: 13
+  flavourDescription: The Card with no name
+  cardImage: {fileID: -4448962368760175236, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
     type: 3}
   enemySpell: 0
+  countsCombo: 0
+  comboCard: {fileID: 0}
   selfInterpretationUnlocked: 0
-  selfName: Spore Growth
-  selfDescription: "This growth of healing plants will restore your vitality over
-    Y turns\r"
+  selfName: 
+  selfDescription: 
   selfCastSounds: []
   selfEndTurn: 0
   selfUsesAction: 1
-  selfCost: 15
+  selfCost: 0
   selfPotionCost: 0
-  selfCostType: AP
-  selfHeal: {x: 20, y: 30}
+  selfCostType: 
+  selfHeal: {x: 0, y: 0}
   selfAP: {x: 0, y: 0}
   restoreType: 0
   selfEndTurnDelay: 0.2
@@ -37,22 +38,23 @@ MonoBehaviour:
   selfDrawCards: 0
   selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 1
-  targetName: Eclipse
-  targetDescription: Close the gate to Sol, dealing a small amount of bleak damage
-    and having a chance to freeze the enemy
-  HitFX: {fileID: 6727453174112786923, guid: 556929575e076a24791a4c2a8e90fac1, type: 3}
+  targetName: Cycle of Death
+  targetDescription: With a grim scythe, you strike one of your opponents, executing
+    them if they are below 20% of their maximum HP, and healing from the kill
+  HitFX: {fileID: 6727453174112786923, guid: 420809e2f798084488e3873f43ce61a8, type: 3}
   targetCastSounds:
-  - {fileID: 8300000, guid: 9f8e7a4e4ef0593469698c552dcdd47d, type: 3}
+  - {fileID: 8300000, guid: 22b6ec8f3ce0cd14c9e833b0f6126e05, type: 3}
+  - {fileID: 8300000, guid: 15605f103ff58e1479fb0d9a1f0d4156, type: 3}
   targetHitSounds:
-  - {fileID: 8300000, guid: 94f805525b541a144911c86fe8e245cc, type: 3}
-  - {fileID: 8300000, guid: dced2fa0e14868c4fab11e9cdae5b6e9, type: 3}
+  - {fileID: 8300000, guid: 2c9b2d869742d85449e20d606fddff38, type: 3}
+  - {fileID: 8300000, guid: 9936d9bea49c36e479a6be4e3cee6402, type: 3}
   targetEndTurn: 0
   targetUsesAction: 1
-  targetCost: 10
+  targetCost: 0
   targetCostType: AP
-  damageType: 3
+  damageType: 6
   targetCanBeCountered: 1
-  targetDmg: {x: 14, y: 18}
+  targetDmg: {x: 16, y: 28}
   hits: 1
   hitInterval: 0
   finalHitInterval: 0
@@ -63,16 +65,14 @@ MonoBehaviour:
   extraDmg: {x: 0, y: 0}
   randomTargets: 0
   lifeLeach: {x: 0, y: 0}
-  healOnKill: {x: 0, y: 0}
-  executeThreshold: 0
-  targetStatus:
-  - {fileID: 11400000, guid: bb87ede0383cd714aa84299c05027d92, type: 2}
-  targetStatusDuration: 01000000
-  targetStatusChance:
-  - 0.6
+  healOnKill: {x: 16, y: 30}
+  executeThreshold: 0.2
+  targetStatus: []
+  targetStatusDuration: 
+  targetStatusChance: []
   targetDrawCards: 0
   targetDrawSpecificCard: {fileID: 0}
-  spawnPosition: 2
+  spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0
   summonFX: {fileID: 0}
