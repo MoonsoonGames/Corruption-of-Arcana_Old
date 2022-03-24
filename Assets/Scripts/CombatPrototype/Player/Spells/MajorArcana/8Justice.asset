@@ -18,6 +18,8 @@ MonoBehaviour:
   cardImage: {fileID: 4800566814532983255, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
     type: 3}
   enemySpell: 0
+  countsCombo: 1
+  comboCard: {fileID: 11400000, guid: 00f54d93c46772e428912e5385c70951, type: 2}
   selfInterpretationUnlocked: 0
   selfName: 
   selfDescription: 
@@ -41,7 +43,8 @@ MonoBehaviour:
     has a low chance to burn targets
 
 
-    Also draws a combo strike card'
+    Also draws a combo strike card if this
+    card is drawn as the first card in a spread'
   HitFX: {fileID: 6727453174112786923, guid: c878f3a856728fd4eb235e50030cfd65, type: 3}
   targetCastSounds:
   - {fileID: 8300000, guid: dc79ffca7833b804e94a1ce7f66c49e0, type: 3}
@@ -74,7 +77,7 @@ MonoBehaviour:
   targetStatusDuration: 03000000
   targetStatusChance:
   - 0.3
-  targetDrawCards: 1
+  targetDrawCards: 0
   targetDrawSpecificCard: {fileID: 11400000, guid: af5c877470ceed643b823ef70e66e43f,
     type: 2}
   spawnPosition: 0

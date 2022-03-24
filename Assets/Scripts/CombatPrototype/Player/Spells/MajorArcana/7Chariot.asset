@@ -18,6 +18,8 @@ MonoBehaviour:
   cardImage: {fileID: 369821036217798017, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
     type: 3}
   enemySpell: 0
+  countsCombo: 1
+  comboCard: {fileID: 11400000, guid: 7fbb3bf71e93ade4bbcf0ce766904273, type: 2}
   selfInterpretationUnlocked: 0
   selfName: 
   selfDescription: 
@@ -41,7 +43,8 @@ MonoBehaviour:
     your targets, causing them to miss their turns.
 
 
-    Also draws a justice card'
+    Also draws a justice card
+    if this card is drawn as the first card in a spread'
   HitFX: {fileID: 6727453174112786923, guid: 420809e2f798084488e3873f43ce61a8, type: 3}
   targetCastSounds:
   - {fileID: 8300000, guid: 91f81415f60bdc34aae87d68d05650da, type: 3}
@@ -72,7 +75,7 @@ MonoBehaviour:
   targetStatusDuration: 02000000
   targetStatusChance:
   - 0.7
-  targetDrawCards: 1
+  targetDrawCards: 0
   targetDrawSpecificCard: {fileID: 11400000, guid: cff4c22774a92ef4085a274b804b13bf,
     type: 2}
   spawnPosition: 0

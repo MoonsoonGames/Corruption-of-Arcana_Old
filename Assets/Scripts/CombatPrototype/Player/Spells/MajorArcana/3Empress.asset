@@ -19,6 +19,8 @@ MonoBehaviour:
   cardImage: {fileID: -4596500826337777618, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
     type: 3}
   enemySpell: 0
+  countsCombo: 1
+  comboCard: {fileID: 11400000, guid: bb5931b293d73c445bead3714901c908, type: 2}
   selfInterpretationUnlocked: 0
   selfName: Spore Growth
   selfDescription: "This growth of healing plants will restore your vitality over
@@ -43,7 +45,8 @@ MonoBehaviour:
     with its enfeebling thorns
 
 
-    Also draws the death card'
+    Also draws the death card if this card is drawn
+    as the first card in a spread'
   HitFX: {fileID: 6727453174112786923, guid: 9b68bdcf8d233e3418504dae117ce7ee, type: 3}
   targetCastSounds:
   - {fileID: 8300000, guid: add3024e19106c740a56a4b9c5d2336e, type: 3}
@@ -76,8 +79,8 @@ MonoBehaviour:
   targetStatusDuration: 03000000
   targetStatusChance:
   - 0.6
-  targetDrawCards: 1
-  targetDrawSpecificCard: {fileID: 11400000, guid: 19e9c965a890aea41a3ce37f0af217fc,
+  targetDrawCards: 0
+  targetDrawSpecificCard: {fileID: 11400000, guid: bb5931b293d73c445bead3714901c908,
     type: 2}
   spawnPosition: 1
   summonAlly: {fileID: 0}

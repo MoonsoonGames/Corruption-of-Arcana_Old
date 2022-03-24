@@ -19,6 +19,8 @@ MonoBehaviour:
   cardImage: {fileID: 6220208007999549204, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
     type: 3}
   enemySpell: 0
+  countsCombo: 1
+  comboCard: {fileID: 11400000, guid: c3808dad7ce69f24683bf016f30ffa29, type: 2}
   selfInterpretationUnlocked: 0
   selfName: 
   selfDescription: 
@@ -42,7 +44,8 @@ MonoBehaviour:
     next 2 turns
 
 
-    Also draws a backstab card'
+    Also draws a backstab card if this card is drawn as the first
+    card in a spread'
   HitFX: {fileID: 6727453174112786923, guid: e2dc8a0ecf90a864da6a8006e686425d, type: 3}
   targetCastSounds:
   - {fileID: 8300000, guid: 0bc8ef1efa6f0264095b18e9a39d87de, type: 3}
@@ -71,7 +74,7 @@ MonoBehaviour:
   targetStatusDuration: 02000000
   targetStatusChance:
   - 0.7
-  targetDrawCards: 1
+  targetDrawCards: 0
   targetDrawSpecificCard: {fileID: 11400000, guid: af89ff48f79a6dd4e88996f7325d33f6,
     type: 2}
   spawnPosition: 0

@@ -402,7 +402,23 @@ public class LoadSettings : MonoBehaviour
 
     #region Deckbuilding
 
-    public Weapon weapon;
+    public Weapon equippedWeapon;
+    public List<Weapon> earnedWeapons;
+    public Weapon rewardWeapon;
+
+    public void AddWeapon(Weapon weapon)
+    {
+        if (earnedWeapons.Contains(weapon) == false)
+        {
+            earnedWeapons.Add(weapon);
+        }
+
+        if (equippedWeapon == null && weapon != null)
+        {
+            equippedWeapon = weapon;
+        }
+    }
+
     public List<CardParent> majourArcana;
     public List<CardParent> corruptedArcana;
 
