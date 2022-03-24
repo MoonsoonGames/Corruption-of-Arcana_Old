@@ -18,6 +18,8 @@ MonoBehaviour:
   cardImage: {fileID: 6034864100499761545, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
     type: 3}
   enemySpell: 0
+  countsCombo: 1
+  comboCard: {fileID: 11400000, guid: 199b214ab52c10246a7ae3bdd0d86440, type: 2}
   selfInterpretationUnlocked: 0
   selfName: Radiant Form
   selfDescription: "Invoke a blinding aura, which has a chance to blind your targets\r"
@@ -42,7 +44,8 @@ MonoBehaviour:
     them and their allies each turn
 
 
-    Also draws an aftershock card'
+    Also draws an aftershock card if this card
+    is drawn as the first card in a spread'
   HitFX: {fileID: 6727453174112786923, guid: d4521daa311ea5142a733f284dd24744, type: 3}
   targetCastSounds:
   - {fileID: 8300000, guid: 54f29612fc80a464cab0b358158937aa, type: 3}
@@ -74,7 +77,7 @@ MonoBehaviour:
   targetStatusDuration: 04000000
   targetStatusChance:
   - 0.8
-  targetDrawCards: 1
+  targetDrawCards: 0
   targetDrawSpecificCard: {fileID: 11400000, guid: 2853cec8cdf527e4d915848db33ef28e,
     type: 2}
   spawnPosition: 2

@@ -12,6 +12,7 @@ public class AbilityManager : MonoBehaviour
     public PlayerStats playerStats;
 
     public CombatDeckManager combatDeckManager;
+    public SpreadScript spreadScript;
     private CardParent readyAbility;
     private CardSetter readiedCard;
     private ActiveCard activeCard;
@@ -65,6 +66,17 @@ public class AbilityManager : MonoBehaviour
         targetter = GetComponentInChildren<Targetter>();
         endTurn = GameObject.FindObjectOfType<EndTurn>();
         audioManager = GameObject.FindObjectOfType<BGMManager>();
+
+        spreadScript.Setup(combatDeckManager);
+    }
+
+    private void Update()
+    {
+        if (Input.GetButtonDown("CancelCard"))
+        {
+            //Debug.Log("Cancel card");
+            ResetAbility();
+        }
     }
 
     #endregion
@@ -121,17 +133,7 @@ public class AbilityManager : MonoBehaviour
 
                 if (canCast)
                 {
-                    if (cardName != "End Turn")
-                    {
-                        combatDeckManager.RemoveCard(readiedCard);
-                    }
-
-                    if (cardName != "End Turn")
-                    {
-                        combatDeckManager.RemoveCard(readiedCard);
-                    }
-
-                    readiedCard = null;
+                    DiscardCard();
                 }
             }
             else
@@ -140,6 +142,29 @@ public class AbilityManager : MonoBehaviour
                 
                 EnemyInfo(target.GetComponent<Enemy>());
             }
+        }
+    }
+
+    public void DiscardCard()
+    {
+        combatDeckManager.RemoveCard(readiedCard);
+
+        ResetAbility();
+    }
+
+    public void CheckCombo(CardParent ability)
+    {
+        if (ability.countsCombo)
+        {
+            if (spreadScript.cardsUsed + 1 == 1)
+            {
+                if (ability.comboCard != null)
+                {
+                    spreadScript.drawCard = ability.comboCard;
+                }
+            }
+
+            spreadScript.CardCast();
         }
     }
 

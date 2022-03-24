@@ -18,6 +18,8 @@ MonoBehaviour:
   cardImage: {fileID: -2613411450045547498, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
     type: 3}
   enemySpell: 0
+  countsCombo: 1
+  comboCard: {fileID: 11400000, guid: 9289c630e491c444384c320ca6bae642, type: 2}
   selfInterpretationUnlocked: 0
   selfName: 
   selfDescription: 
@@ -42,7 +44,7 @@ MonoBehaviour:
 
 
     Also
-    draws a frost burst card'
+    draws a frost burst card if this card is drawn as the first card in a spread'
   HitFX: {fileID: 6727453174112786923, guid: 556929575e076a24791a4c2a8e90fac1, type: 3}
   targetCastSounds:
   - {fileID: 8300000, guid: 9f8e7a4e4ef0593469698c552dcdd47d, type: 3}
@@ -73,7 +75,7 @@ MonoBehaviour:
   targetStatusDuration: 03000000
   targetStatusChance:
   - 1
-  targetDrawCards: 1
+  targetDrawCards: 0
   targetDrawSpecificCard: {fileID: 11400000, guid: 4cbc96349b965e648b06c674bd00522a,
     type: 2}
   spawnPosition: 0

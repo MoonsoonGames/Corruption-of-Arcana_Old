@@ -117,7 +117,7 @@ public class CharacterStats : MonoBehaviour
 
         Vector3 newPos = new Vector3(randx, randy, transform.position.z);
 
-        Debug.Log(name + " shakes from " + transform.position + " to " + newPos);
+        //Debug.Log(name + " shakes from " + transform.position + " to " + newPos);
         transform.position = newPos;
 
         StartCoroutine(ResetShake(originalPos, duration));
@@ -126,7 +126,7 @@ public class CharacterStats : MonoBehaviour
     IEnumerator ResetShake(Vector3 originalPosition, float delay)
     {
         yield return new WaitForSeconds(delay);
-        Debug.Log(name + " returns from " + transform.position + " to " + originalPosition);
+        //Debug.Log(name + " returns from " + transform.position + " to " + originalPosition);
         transform.position = originalPosition;
     }
 

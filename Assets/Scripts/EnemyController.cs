@@ -11,6 +11,8 @@ public class EnemyController : MonoBehaviour
 
     public Object[] enemies = new Object[3];
     public QuestObjective[] objectives;
+    public Vector2 goldReward;
+    public Weapon weaponReward;
 
     private LoadSettings loadSettings;
     private SceneLoader sceneLoader;
@@ -64,6 +66,9 @@ public class EnemyController : MonoBehaviour
             {
                 loadSettings.background = background;
             }
+
+            loadSettings.goldReward = goldReward;
+            loadSettings.rewardWeapon = weaponReward;
 
             foreach (var item in objectives)
             {

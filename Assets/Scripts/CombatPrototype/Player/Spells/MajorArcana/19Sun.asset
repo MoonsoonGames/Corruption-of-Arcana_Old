@@ -19,6 +19,8 @@ MonoBehaviour:
   cardImage: {fileID: -6663811380663864060, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
     type: 3}
   enemySpell: 0
+  countsCombo: 1
+  comboCard: {fileID: 11400000, guid: f1b6525800bdd124ca5fcbe0f4ea5725, type: 2}
   selfInterpretationUnlocked: 0
   selfName: 
   selfDescription: 
@@ -43,7 +45,7 @@ MonoBehaviour:
 
 
     Also draws
-    an eclipse card'
+    an eclipse card if this card is drawn as the first card in a spread'
   HitFX: {fileID: 6727453174112786923, guid: c878f3a856728fd4eb235e50030cfd65, type: 3}
   targetCastSounds:
   - {fileID: 8300000, guid: 6bc35f50815663146aad26a15b4e006f, type: 3}
@@ -76,7 +78,7 @@ MonoBehaviour:
   targetStatusDuration: 04000000
   targetStatusChance:
   - 0.8
-  targetDrawCards: 1
+  targetDrawCards: 0
   targetDrawSpecificCard: {fileID: 11400000, guid: f1b6525800bdd124ca5fcbe0f4ea5725,
     type: 2}
   spawnPosition: 2
