@@ -142,6 +142,8 @@ public class CombatManager : MonoBehaviour
 
         abilityManager.ResetAbility();
 
+        //abilityManager.spreadScript.ResetSpread();
+
         if (player)
         {
             playerStats.OnTurnEndStatus();

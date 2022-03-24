@@ -18,10 +18,16 @@ MonoBehaviour:
   cardImage: {fileID: 4936984840038467387, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
     type: 3}
   enemySpell: 0
+  countsCombo: 1
+  comboCard: {fileID: 11400000, guid: 199b214ab52c10246a7ae3bdd0d86440, type: 2}
   selfInterpretationUnlocked: 1
   selfName: Adept Arcana
-  selfDescription: Drink from the occult wellspring of magic to restore your arcana
-    and draw 2 additional cards
+  selfDescription: 'Drink from the occult wellspring of magic to restore your arcana
+    and draw 1 additional card
+
+
+    Also draws the aftershock card if this card
+    is drawn as the first card in a spread'
   selfCastSounds:
   - {fileID: 8300000, guid: 9d0d25bbe88ed754d9af0996c39f6396, type: 3}
   selfEndTurn: 0
@@ -35,7 +41,7 @@ MonoBehaviour:
   selfEndTurnDelay: 0.2
   selfStatus: []
   selfStatusDuration: 
-  selfDrawCards: 2
+  selfDrawCards: 1
   selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 0
   targetName: Chain Lightning

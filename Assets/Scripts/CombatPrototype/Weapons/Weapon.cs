@@ -16,6 +16,6 @@ public class Weapon : ScriptableObject
 
     public void EquipWeapon(LoadSettings loadSettings)
     {
-        loadSettings.weapon = this;
+        loadSettings.equippedWeapon = this;
     }
 }
