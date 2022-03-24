@@ -18,6 +18,9 @@ public class Rewards : MonoBehaviour
             item.CompleteGoal();
         }
 
+        loadSettings.currentGold += (int)Random.Range(loadSettings.goldReward.x, loadSettings.goldReward.y);
+        loadSettings.AddWeapon(loadSettings.rewardWeapon);
+
         loadSettings.currentFightObjectives.Clear();
 
         if (combatManager != null)

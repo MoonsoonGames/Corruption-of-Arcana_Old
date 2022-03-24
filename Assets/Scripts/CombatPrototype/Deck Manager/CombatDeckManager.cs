@@ -24,7 +24,7 @@ public class CombatDeckManager : MonoBehaviour
 
         if (loadSettings != null)
         {
-            foreach (var item in loadSettings.weapon.basicDeck)
+            foreach (var item in loadSettings.equippedWeapon.basicDeck)
             {
                 deck.Add(item);
             }

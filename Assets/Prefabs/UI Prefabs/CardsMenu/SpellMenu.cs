@@ -26,7 +26,7 @@ public class SpellMenu : MonoBehaviour
 
         if (loadSettings != null)
         {
-            if (loadSettings.weapon.basicDeck.Contains(spell))
+            if (loadSettings.equippedWeapon.basicDeck.Contains(spell))
             {
                 contains = true;
             }
