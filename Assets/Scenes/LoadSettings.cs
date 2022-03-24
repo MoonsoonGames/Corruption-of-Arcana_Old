@@ -408,14 +408,17 @@ public class LoadSettings : MonoBehaviour
 
     public void AddWeapon(Weapon weapon)
     {
-        if (earnedWeapons.Contains(weapon) == false)
+        if (weapon != null)
         {
-            earnedWeapons.Add(weapon);
-        }
+            if (earnedWeapons.Contains(weapon) == false)
+            {
+                earnedWeapons.Add(weapon);
+            }
 
-        if (equippedWeapon == null && weapon != null)
-        {
-            equippedWeapon = weapon;
+            if (equippedWeapon == null && weapon != null)
+            {
+                equippedWeapon = weapon;
+            }
         }
     }
 
