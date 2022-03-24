@@ -148,6 +148,24 @@ public class MenuManager : MonoBehaviour
                 Debug.Log("Open Quest menu");
             }
             #endregion
+
+            #region C open
+            if (Input.GetKeyDown(KeyCode.C) && PauseMenuUI.activeSelf == false && QuestMenuUI.activeSelf == false)
+            {
+                CardsMenu.SetActive(true);
+                ExplorationUI.SetActive(false);
+
+                //freeze player/camera
+                Player.GetComponent<PlayerController>().canMove = false;
+
+                //unlock mouse - confined to window
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.Confined;
+
+                //debug
+                Debug.Log("Open Card menu");
+            }
+            #endregion
         }
         else if (playerController.canMove == false)
         {
@@ -219,6 +237,29 @@ public class MenuManager : MonoBehaviour
                 Debug.Log("Close Quest menu");
             }
             #endregion
+
+            #region C close
+            if (Input.GetKeyDown(KeyCode.C)
+                && PauseMenuUI.activeSelf == false
+                && QuestMenuUI.activeSelf == false
+                && CardsMenu.activeSelf == true)
+            {
+                //close card
+                CardsMenu.SetActive(false);
+                //open explore
+                ExplorationUI.SetActive(true);
+
+                //unfreeze player/camera
+                Player.GetComponent<PlayerController>().canMove = true;
+
+                //lock mouse - confined to window
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+
+                //debug
+                Debug.Log("Close card menu");
+            }
+            #endregion
         }
 
         #region Stats Update
@@ -257,6 +298,15 @@ public class MenuManager : MonoBehaviour
             LastMjArcBtn.SetActive(true);
         }
         #endregion
+
+        while (PauseMenuUI.activeSelf == false
+            && QuestMenuUI.activeSelf == false
+            && CardsMenu == false)
+        {
+            //unlock mouse - confined to window
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 
     #region Pause Menu Buttons
