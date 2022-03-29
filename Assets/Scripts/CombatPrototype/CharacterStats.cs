@@ -164,8 +164,18 @@ public class CharacterStats : MonoBehaviour
     void PlaySoundEffect(AudioClip[] audioClips)
     {
         if (audioClips.Length > 0 && audioManager != null)
-            audioManager.PlaySoundEffect(audioClips[Random.Range(0, audioClips.Length)], 4f);
+            audioManager.PlaySoundEffect(GetSoundEffect(audioClips), 4f);
     }
+
+    AudioClip GetSoundEffect(AudioClip[] soundArray)
+    {
+        if (soundArray.Length > 1)
+            return soundArray[Random.Range(0, soundArray.Length)];
+        else if (soundArray.Length == 1)
+            return soundArray[0];
+        else
+            return null;
+    } 
 
     #endregion
 

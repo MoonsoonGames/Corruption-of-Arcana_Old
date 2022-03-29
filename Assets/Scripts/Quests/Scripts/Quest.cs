@@ -62,29 +62,32 @@ public class Quest : ScriptableObject
     {
         if (isComplete == false)
         {
-            //Debug.Log("Accepted Quest: " + title);
-            isActive = true;
-            isRevealled = true;
-
-            if (showAllObjectives)
+            if (isActive == false)
             {
-                for (int i = 0; i < objectives.Length; i++)
+                if (showAllObjectives)
                 {
-                    if (i == objectives.Length - 1)
+                    for (int i = 0; i < objectives.Length; i++)
                     {
-                        if (showFinalObjective)
+                        if (i == objectives.Length - 1)
+                        {
+                            if (showFinalObjective)
+                                objectives[i].SetCanComplete();
+                        }
+                        else
+                        {
                             objectives[i].SetCanComplete();
-                    }
-                    else
-                    {
-                        objectives[i].SetCanComplete();
+                        }
                     }
                 }
+                else
+                {
+                    objectives[0].canComplete = true;
+                }
             }
-            else
-            {
-                objectives[0].canComplete = true;
-            }
+
+            //Debug.Log("Accepted Quest: " + title);
+            isRevealled = true;
+            isActive = true;
 
             currentObjective = objectives[0];
 
