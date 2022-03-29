@@ -80,15 +80,15 @@ public class SetupCardRewards : MonoBehaviour
         {
             if (ability.selfInterpretationUnlocked && ability.targetInterpretationUnlocked)
             {
-                activeCard.ReadyCard(ability.cardName, "Two interpretations", ability.selfHeal, "Unknown", ability.selfCost, "Two interpretations active, UI issue", ability.selfCostType);
+                activeCard.ReadyCard(ability.cardName, ability.comboCard != null ? ability.comboCard.cardName : "None", ability.selfHeal, "Unknown", ability.selfCost, "Two interpretations active, UI issue", ability.selfCostType);
             }
             else if (ability.selfInterpretationUnlocked)
             {
-                activeCard.ReadyCard(ability.cardName, ability.selfName, ability.RestoreValue(), ability.RestoreType(), ability.selfCost, ability.selfDescription, ability.selfCostType);
+                activeCard.ReadyCard(ability.cardName, ability.comboCard != null ? ability.comboCard.cardName : "None", ability.RestoreValue(), ability.RestoreType(), ability.selfCost, ability.selfDescription, ability.selfCostType);
             }
             else if (ability.targetInterpretationUnlocked)
             {
-                activeCard.ReadyCard(ability.cardName, ability.targetName, ability.TotalDmgRange(), ability.damageType.ToString(), ability.targetCost, ability.targetDescription, ability.targetCostType);
+                activeCard.ReadyCard(ability.cardName, ability.comboCard != null ? ability.comboCard.cardName : "None", ability.TotalDmgRange(), ability.damageType.ToString(), ability.targetCost, ability.targetDescription, ability.targetCostType);
             }
         }
     }
