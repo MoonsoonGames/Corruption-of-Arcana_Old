@@ -7,35 +7,15 @@ public class SaveLoadQuestData : MonoBehaviour
     Quest[] quests;
     QuestObjective[] objectives;
 
+    LoadSettings loadSettings;
+    //saved data that gets reset
+
+
     private void Start()
     {
         quests = Resources.FindObjectsOfTypeAll<Quest>();
         objectives = Resources.FindObjectsOfTypeAll<QuestObjective>();
-    }
 
-    /*
-    public void SaveQuestData()
-    {
-        foreach (var item in quests)
-        {
-            item.SaveProgress();
-        }
-        foreach (var item in objectives)
-        {
-            item.SaveProgress();
-        }
+        loadSettings = GetComponent<LoadSettings>();
     }
-
-    public void LoadQuestData()
-    {
-        foreach (var item in quests)
-        {
-            item.LoadProgress();
-        }
-        foreach (var item in objectives)
-        {
-            item.LoadProgress();
-        }
-    }
-    */
 }

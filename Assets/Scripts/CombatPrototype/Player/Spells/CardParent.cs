@@ -449,12 +449,12 @@ public class CardParent : ScriptableObject
 
     AudioClip GetSoundEffect(AudioClip[] soundArray)
     {
-        if (soundArray.Length > 0)
-            return soundArray[Random.Range(0, soundArray.Length)];
+        if (soundArray.Length > 1)
+            return soundArray[Random.Range(0, soundArray.Length - 1)];
+        else if (soundArray.Length == 1)
+            return soundArray[0];
         else
-        {
             return null;
-        }
     }
 
     void DrawCards(AbilityManager abilityManager, int count, CardParent specificCard)

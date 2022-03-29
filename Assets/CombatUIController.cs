@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class CombatUIController : MonoBehaviour
 {
     LoadSettings loadSettings;
+    AbilityManager abilityManager;
     public GameObject MainCombatUI;
     public GameObject PauseMenu;
     public GameObject HelpMenu;
@@ -49,6 +50,8 @@ public class CombatUIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        loadSettings = LoadSettings.instance;
+        abilityManager = GameObject.FindObjectOfType<AbilityManager>();
         MainCombatUI.SetActive(true);
         PauseMenu.SetActive(false);
         CardsMenu.SetActive(false);
@@ -353,7 +356,11 @@ public class CombatUIController : MonoBehaviour
         PotionBar.SetActive(true);
         PotionCloseBtn.SetActive(true);
 
+        abilityManager.endTurn.OpenMenu(false);
+
         PotionOpenBtn.SetActive(false);
+
+        abilityManager.ResetAbility();
     }
 
     public void PotionClose()
@@ -362,6 +369,8 @@ public class CombatUIController : MonoBehaviour
         PotionCloseBtn.SetActive(false);
 
         PotionOpenBtn.SetActive(true);
+
+        abilityManager.ResetAbility();
     }
 
     public void CloseSubMenu()

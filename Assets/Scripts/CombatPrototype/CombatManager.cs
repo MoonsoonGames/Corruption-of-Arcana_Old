@@ -13,6 +13,7 @@ public class CombatManager : MonoBehaviour
 
     #region UI
 
+    CombatUIController UIController;
     public GameObject VictoryScreen;
     public GameObject DefeatScreen;
     public GameObject CombatCanvas;
@@ -58,6 +59,8 @@ public class CombatManager : MonoBehaviour
         {
             enemyStats.gameObject.name = enemyName.text;
         }
+
+        UIController = GameObject.FindObjectOfType<CombatUIController>();
 
         DefeatScreen.SetActive(false);
         VictoryScreen.SetActive(false);
@@ -113,6 +116,8 @@ public class CombatManager : MonoBehaviour
             DrawCards();
 
             playerStats.OnTurnStartStatus();
+
+            PotionBar(false);
         }
         else
         {
@@ -148,6 +153,8 @@ public class CombatManager : MonoBehaviour
         {
             playerStats.OnTurnEndStatus();
             endTurnButton.SetActive(false);
+
+            PotionBar(false);
         }
         else
         {
@@ -219,6 +226,25 @@ public class CombatManager : MonoBehaviour
             {
                 loadSettings.bossesKilled.Add(loadSettings.currentFight);
             }
+        }
+    }
+
+    public void PotionBar(bool open)
+    {
+        if (UIController != null)
+        {
+            if (open)
+            {
+                UIController.PotionOpen();
+            }
+            else
+            {
+                UIController.PotionClose();
+            }
+        }
+        else
+        {
+            Debug.LogError("no combatUIController");
         }
     }
 }
