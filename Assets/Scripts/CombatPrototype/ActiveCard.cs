@@ -6,12 +6,14 @@ using UnityEngine.UI;
 public class ActiveCard : MonoBehaviour
 {
     public Text cardText;
-    public Text spellText;
+    public Text spreadText;
     public Text valueText;
     public Text typeText;
     public Text costText;
     public Text costTypeText;
     public Text descriptionText;
+
+    public Image image;
 
     bool cardReadied = false;
 
@@ -26,13 +28,13 @@ public class ActiveCard : MonoBehaviour
         cam = GameObject.FindObjectOfType<Camera>();
     }
 
-    public void ReadyCard(string cardName, string spellName, Vector2Int dmg, string type, int cost, string description, string costType)
+    public void ReadyCard(string cardName, string spreadCard, Vector2Int dmg, string type, int cost, string description, string costType)
     {
         if (cardText != null)
             cardText.text = cardName;
 
-        if (spellText != null)
-            spellText.text = spellName;
+        if (spreadText != null)
+            spreadText.text = spreadCard;
 
         if (valueText != null)
             valueText.text = (dmg.x + "-" + dmg.y);

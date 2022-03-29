@@ -26,7 +26,8 @@ public class AbilityManager : MonoBehaviour
 
     public SliderVariation sliderVarScript;
 
-    EndTurn endTurn;
+    [HideInInspector]
+    public EndTurn endTurn;
 
     BGMManager audioManager;
 
@@ -102,7 +103,6 @@ public class AbilityManager : MonoBehaviour
 
     public void GetReadyAbilityInfo(out bool multihit, out Vector2Int restore, out string selfType, out Vector2Int dmg, out E_DamageTypes type, out string cardNameSelf, out string cardNameTarget, out bool hitsAll, out Vector2Int extradmg)
     {
-
         multihit = false;
         restore = new Vector2Int(0, 0);
         selfType = "none";
@@ -121,8 +121,6 @@ public class AbilityManager : MonoBehaviour
 
     public void CastAbility(GameObject target)
     {
-        endTurn.OpenMenu(false);
-
         if (playerTurn)
         {
             if (readyAbility != null)
@@ -143,12 +141,15 @@ public class AbilityManager : MonoBehaviour
                 EnemyInfo(target.GetComponent<Enemy>());
             }
         }
+
+        endTurn.OpenMenu(false);
+        combatManager.PotionBar(false);
     }
 
     public void DiscardCard()
     {
         combatDeckManager.RemoveCard(readiedCard);
-
+        combatManager.PotionBar(false);
         ResetAbility();
     }
 
@@ -171,7 +172,11 @@ public class AbilityManager : MonoBehaviour
     public void EnemyInfo(Enemy target)
     {
         if (target != null)
+        {
+            combatManager.PotionBar(false);
+
             combatManager.enemyManager.EnemyInfo(target);
+        }
         else
             combatManager.enemyManager.EnemyInfo(null);
     }
@@ -180,6 +185,7 @@ public class AbilityManager : MonoBehaviour
     {
         EnemyInfo(null);
         endTurn.OpenMenu(false);
+        combatManager.PotionBar(false);
         readyAbility = ability;
         readiedCard = card;
 
@@ -189,19 +195,19 @@ public class AbilityManager : MonoBehaviour
             {
                 combatManager.TargetEnemies(true, ability);
                 targetter.SetVisibility(true, null);
-                activeCard.ReadyCard(ability.cardName, "Two interpretations", ability.selfHeal, "Unknown", ability.selfCost, "Two interpretations active, UI issue", ability.selfCostType);
+                activeCard.ReadyCard(ability.cardName, ability.comboCard != null ? ability.comboCard.cardName : "None", ability.selfHeal, "Unknown", ability.selfCost, "Two interpretations active, UI issue", ability.selfCostType);
             }
             else if (ability.selfInterpretationUnlocked)
             {
                 combatManager.TargetEnemies(false, ability);
                 targetter.SetVisibility(true, null);
-                activeCard.ReadyCard(ability.cardName, ability.selfName, ability.RestoreValue(), ability.RestoreType(), ability.selfCost, ability.selfDescription, ability.selfCostType);
+                activeCard.ReadyCard(ability.cardName, ability.comboCard != null ? ability.comboCard.cardName : "None", ability.RestoreValue(), ability.RestoreType(), ability.selfCost, ability.selfDescription, ability.selfCostType);
             }
             else if (ability.targetInterpretationUnlocked)
             {
                 combatManager.TargetEnemies(true, ability);
                 targetter.SetVisibility(false, null);
-                activeCard.ReadyCard(ability.cardName, ability.targetName, ability.TotalDmgRange(), ability.damageType.ToString(), ability.targetCost, ability.targetDescription, ability.targetCostType);
+                activeCard.ReadyCard(ability.cardName, ability.comboCard != null ? ability.comboCard.cardName : "None", ability.TotalDmgRange(), ability.damageType.ToString(), ability.targetCost, ability.targetDescription, ability.targetCostType);
             }
         }
     }

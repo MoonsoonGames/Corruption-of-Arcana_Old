@@ -10,73 +10,78 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d042955bf60bea84b9273684d78676b5, type: 3}
-  m_Name: SFrostBurst
+  m_Name: SChainsOfRot
   m_EditorClassIdentifier: 
-  cardName: Frost Burst
-  cardNumber: 3
-  flavourDescription: 
+  cardName: Chains of Rot
+  cardNumber: 1
+  flavourDescription: Two creatures are bound to his round pedestal
   cardImage: {fileID: -2613411450045547498, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
     type: 3}
   enemySpell: 0
   countsCombo: 0
   comboCard: {fileID: 0}
   selfInterpretationUnlocked: 0
-  selfName: 
-  selfDescription: 
+  selfName: Gorge on Misery
+  selfDescription: Generate a life draining aura, which drains the vigour from your
+    enemies each turn and heals you
   selfCastSounds: []
   selfEndTurn: 0
   selfUsesAction: 1
-  selfCost: 0
+  selfCost: 15
   selfPotionCost: 0
-  selfCostType: 
+  selfCostType: AP
   selfHeal: {x: 0, y: 0}
   selfAP: {x: 0, y: 0}
   restoreType: 0
   selfEndTurnDelay: 0.2
-  selfStatus: []
-  selfStatusDuration: 
+  selfStatus:
+  - {fileID: 11400000, guid: ca78733804eabdb4a8fc7392ad606344, type: 2}
+  selfStatusDuration: 03000000
   selfDrawCards: 0
   selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 1
-  targetName: Frost Burst
-  targetDescription: 'Deal a small amount of bleak damage to the target
+  targetName: Chains of Rot
+  targetDescription: 'Imbue your targets with a debilitating plague, dealing a high
+    amount of septic damage and spreads to nearby target with a lesser effect
 
 
     Also
-    has a chance to apply frostbite to the target'
-  HitFX: {fileID: 6727453174112786923, guid: 556929575e076a24791a4c2a8e90fac1, type: 3}
+    has a chance to poison targets'
+  HitFX: {fileID: 0}
   targetCastSounds:
-  - {fileID: 8300000, guid: 9f8e7a4e4ef0593469698c552dcdd47d, type: 3}
+  - {fileID: 8300000, guid: add3024e19106c740a56a4b9c5d2336e, type: 3}
+  - {fileID: 8300000, guid: 9fb76b825a3e2ec4b9ab5a88bb7098e9, type: 3}
   targetHitSounds:
-  - {fileID: 8300000, guid: 94f805525b541a144911c86fe8e245cc, type: 3}
-  - {fileID: 8300000, guid: 8f81b31c970bd274db76acfca1fd2dcf, type: 3}
+  - {fileID: 8300000, guid: b925c13f4e0a0fe468955978044be913, type: 3}
+  - {fileID: 8300000, guid: 88e2dbb981b6876449cbc4d827ad03d4, type: 3}
+  - {fileID: 8300000, guid: d0b030e3a55cb1c4d85ca3be0c7541d4, type: 3}
   targetEndTurn: 0
   targetUsesAction: 1
   targetCost: 0
   targetCostType: AP
-  damageType: 1
+  damageType: 4
   targetCanBeCountered: 1
-  targetDmg: {x: 24, y: 32}
+  targetDmg: {x: 24, y: 36}
   hits: 1
   hitInterval: 0
   finalHitInterval: 0
   targetFinalDmg: {x: 0, y: 0}
   targetEndTurnDelay: 0.2
   targetCleave: 0
-  targetChain: 0
-  extraDmg: {x: 0, y: 0}
+  targetChain: 1
+  extraDmg: {x: 20, y: 30}
   randomTargets: 0
   lifeLeach: {x: 0, y: 0}
   healOnKill: {x: 0, y: 0}
   executeThreshold: 0
   targetStatus:
-  - {fileID: 11400000, guid: 2f9b50aa5cb5d0748ae72e465f1125c1, type: 2}
+  - {fileID: 11400000, guid: fac4e7676c5c0b44fb5d0d8c67c6ed80, type: 2}
   targetStatusDuration: 02000000
   targetStatusChance:
-  - 0.6
+  - 0.3
   targetDrawCards: 0
   targetDrawSpecificCard: {fileID: 0}
-  spawnPosition: 0
+  spawnPosition: 1
   summonAlly: {fileID: 0}
   summonCount: 0
   summonFX: {fileID: 0}
