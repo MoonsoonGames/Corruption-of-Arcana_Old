@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bcb8024cf64c4644a89ed366b0284cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemiesRequired: []
+  requireAll: 1
+  destroyIfContains: 1
 --- !u!1001 &1673044216023161419
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19,6 +22,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2857202605994932743, guid: 8fdff89034f7ffa44bf94c1d5628b64b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8d408c7a175c4534ab7648c243cccd60, type: 2}
+    - target: {fileID: 2857202605994932743, guid: 8fdff89034f7ffa44bf94c1d5628b64b,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8d408c7a175c4534ab7648c243cccd60, type: 2}
     - target: {fileID: 6802922963501812421, guid: 8fdff89034f7ffa44bf94c1d5628b64b,
         type: 3}
       propertyPath: m_RootOrder
