@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneToLoad: 3
   forceDialogue: 0
+  destroyOnSpeak: 0
   dialogue: {fileID: 1871557957045672675, guid: 859cc17615d79ea4c878a87d4a07a93f,
     type: 3}
   sceneMode: 0
@@ -21,9 +22,9 @@ MonoBehaviour:
   requireQuestsInProgress: []
   requireObjectivesInProgress: []
   requireAllInProgress: 1
-  disableQuestsInProgress: []
-  disableObjectivesInProgress:
-  - {fileID: 11400000, guid: feeeab7f4abf0fb4498e2bcc21abeb55, type: 2}
+  disableQuestsInProgress:
+  - {fileID: 11400000, guid: 71c46a20a32941d4d93df721b09f798c, type: 2}
+  disableObjectivesInProgress: []
   requireQuestsCompleted: []
   requireObjectivesCompleted: []
   requireAllCompleted: 1
@@ -103,12 +104,12 @@ PrefabInstance:
     - target: {fileID: 6837467524681156694, guid: c5fa82234e514a542a78544a9f47fb0a,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7802109
+      value: 0.9033288
       objectReference: {fileID: 0}
     - target: {fileID: 6837467524681156694, guid: c5fa82234e514a542a78544a9f47fb0a,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.62551665
+      value: 0.42894885
       objectReference: {fileID: 0}
     - target: {fileID: 7265176582556184790, guid: c5fa82234e514a542a78544a9f47fb0a,
         type: 3}
@@ -138,12 +139,12 @@ PrefabInstance:
     - target: {fileID: 7265176582556184790, guid: c5fa82234e514a542a78544a9f47fb0a,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7824789
+      value: 0.9030578
       objectReference: {fileID: 0}
     - target: {fileID: 7265176582556184790, guid: c5fa82234e514a542a78544a9f47fb0a,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.62267715
+      value: 0.4295191
       objectReference: {fileID: 0}
     - target: {fileID: 8608708597990046677, guid: c5fa82234e514a542a78544a9f47fb0a,
         type: 3}
@@ -179,13 +180,24 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 9216620810431011222, guid: c5fa82234e514a542a78544a9f47fb0a,
         type: 3}
+      propertyPath: requireQuestsCompleted.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9216620810431011222, guid: c5fa82234e514a542a78544a9f47fb0a,
+        type: 3}
+      propertyPath: requireQuestsCompleted.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 71c46a20a32941d4d93df721b09f798c,
+        type: 2}
+    - target: {fileID: 9216620810431011222, guid: c5fa82234e514a542a78544a9f47fb0a,
+        type: 3}
       propertyPath: disableObjectivesCompleted.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9216620810431011222, guid: c5fa82234e514a542a78544a9f47fb0a,
         type: 3}
       propertyPath: requireObjectivesInProgress.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9216620810431011222, guid: c5fa82234e514a542a78544a9f47fb0a,
         type: 3}
