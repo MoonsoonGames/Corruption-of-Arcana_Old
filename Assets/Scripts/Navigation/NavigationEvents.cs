@@ -50,7 +50,7 @@ public class NavigationEvents : ScriptableObject
     {
         if (startQuest != null)
         {
-            startQuest.AcceptQuest(questGiverName, questGiverSprite);
+            startQuest.AcceptQuest(questGiverName);
 
             if (loadSettings.quests.Contains(startQuest) == false)
             {
