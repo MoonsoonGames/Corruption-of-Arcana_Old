@@ -30,6 +30,8 @@ public class NavigationEvents : ScriptableObject
 
     public Quest startQuest;
     public QuestObjective[] completeObjectives;
+    public string questGiverName;
+    public Sprite questGiverSprite;
 
     public void Setup(SceneLoader newSceneLoader, E_Levels newNavScene, Sprite backgroundImage)
     {
@@ -48,7 +50,12 @@ public class NavigationEvents : ScriptableObject
     {
         if (startQuest != null)
         {
-            startQuest.AcceptQuest();
+            startQuest.AcceptQuest(questGiverName, questGiverSprite);
+
+            if (loadSettings.quests.Contains(startQuest) == false)
+            {
+                loadSettings.quests.Add(startQuest);
+            }
         }
 
         bool fight = false;
