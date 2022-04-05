@@ -92,7 +92,7 @@ public class QuestButtons : MonoBehaviour
             goldText.text = quest.goldReward.ToString();
 
         objLocation.sprite = quest.objectiveLocation;
-        objPerson.sprite = quest.questGiverSprite;
+        objPerson.sprite = quest.objectiveSprite;
             
     }
 }
