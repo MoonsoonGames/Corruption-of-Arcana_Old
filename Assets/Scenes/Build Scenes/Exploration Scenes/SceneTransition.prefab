@@ -197,15 +197,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: 4
-  checkpoint: 1
+  forceDialogue: 0
+  destroyOnSpeak: 0
   dialogue: {fileID: 0}
   sceneMode: 0
   completeObjectives: []
-  requireQuests: []
-  requireObjectives: []
-  requireAll: 1
-  disableQuests: []
-  disableObjectives: []
+  requireQuestsInProgress: []
+  requireObjectivesInProgress: []
+  requireAllInProgress: 1
+  disableQuestsInProgress: []
+  disableObjectivesInProgress: []
+  requireQuestsCompleted: []
+  requireObjectivesCompleted: []
+  requireAllCompleted: 1
+  disableQuestsCompleted: []
+  disableObjectivesCompleted: []
 --- !u!114 &5563018236788365777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,6 +248,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7149297018063148464}
     m_Modifications:
+    - target: {fileID: 1890534054537535938, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 21300000, guid: a854d69751eb05447bb2271ad032d47f,
+        type: 3}
     - target: {fileID: 3471886681103204412, guid: feceddc3c64c65b499b909203d7d5124,
         type: 3}
       propertyPath: m_RootOrder

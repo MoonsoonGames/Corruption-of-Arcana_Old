@@ -162,10 +162,13 @@ public class AbilityManager : MonoBehaviour
                 if (ability.comboCard != null)
                 {
                     spreadScript.drawCard = ability.comboCard;
+                    spreadScript.CardCast();
                 }
             }
-
-            spreadScript.CardCast();
+            else
+            {
+                spreadScript.CardCast();
+            }
         }
     }
 
