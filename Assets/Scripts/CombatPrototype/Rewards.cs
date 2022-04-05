@@ -7,91 +7,25 @@ public class Rewards : MonoBehaviour
 {
     LoadSettings loadSettings;
 
-    public GameObject[] images;
-
-    public Text[] itemName;
-    public Text[] count;
-
     public CombatManager combatManager;
 
     public void GiveRewards()
     {
         loadSettings = LoadSettings.instance;
 
-        if (combatManager != null && loadSettings != null)
+        foreach (var item in loadSettings.currentFightObjectives)
         {
-            int gold = (int)Random.Range(loadSettings.goldReward.x, loadSettings.goldReward.y);
-
-            int potions = DeterminePotions(loadSettings.potionReward);
-
-            int healing = 15;
-
-            string item = loadSettings.itemReward;
-
-            if (healing > 0)
-            {
-                images[0].SetActive(true);
-
-                itemName[0].text = "Health";
-                count[0].text = healing.ToString();
-            }
-
-            if (gold > 0)
-            {
-                images[1].SetActive(true);
-
-                count[1].text = gold.ToString();
-            }
-
-            if (potions > 0)
-            {
-                images[2].SetActive(true);
-                count[2].text = potions.ToString();
-            }
-
-            if (item != "")
-            {
-                images[3].SetActive(true);
-                count[3].text = "1";
-            }
-
-            Quests();
-
-            combatManager.Rewards(healing, gold, potions);
+            item.CompleteGoal();
         }
-    }
 
-    int DeterminePotions(float potions)
-    {
-        int potionsReward = (int)potions;
-        float chance = potions % 1f;
+        loadSettings.currentGold += (int)Random.Range(loadSettings.goldReward.x, loadSettings.goldReward.y);
+        loadSettings.AddWeapon(loadSettings.rewardWeapon);
 
-        int test = potionsReward;
+        loadSettings.currentFightObjectives.Clear();
 
-        if (RandomBoolWeighting(chance))
-            potionsReward++;
-
-        //Debug.Log(test + " | " + chance + " | " + potionsReward);
-
-        return potionsReward;
-    }
-
-    //From Gam140 Godsent by Andrew Scott
-    private bool RandomBoolWeighting(float weighting)
-    {
-        if (Random.value >= weighting)
+        if (combatManager != null)
         {
-            return true;
-        }
-        return false;
-    }
-
-    private void Quests()
-    {
-        if (loadSettings.currentFightObjective != null)
-        {
-            loadSettings.currentFightObjective.CompleteGoal();
-            loadSettings.currentFightObjective = null;
+            combatManager.Rewards(15);
         }
     }
 }

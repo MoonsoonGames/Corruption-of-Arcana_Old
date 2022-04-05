@@ -15,15 +15,20 @@ MonoBehaviour:
   cardName: The Devil
   cardNumber: 1
   flavourDescription: Two creatures are bound to his round pedestal
-  cardImage: {fileID: 0}
+  cardImage: {fileID: -2613411450045547498, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
+    type: 3}
   enemySpell: 0
+  countsCombo: 1
+  comboCard: {fileID: 11400000, guid: a63a97d3a23bcf0478098a05ffadd05c, type: 2}
   selfInterpretationUnlocked: 1
   selfName: Gorge on Misery
   selfDescription: Generate a life draining aura, which drains the vigour from your
     enemies each turn and heals you
+  selfCastSounds:
+  - {fileID: 8300000, guid: 2c9b2d869742d85449e20d606fddff38, type: 3}
   selfEndTurn: 0
   selfUsesAction: 1
-  selfCost: 55
+  selfCost: 15
   selfPotionCost: 0
   selfCostType: AP
   selfHeal: {x: 0, y: 0}
@@ -33,6 +38,8 @@ MonoBehaviour:
   selfStatus:
   - {fileID: 11400000, guid: ca78733804eabdb4a8fc7392ad606344, type: 2}
   selfStatusDuration: 03000000
+  selfDrawCards: 0
+  selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 0
   targetName: Chains of Rot
   targetDescription: 'Imbue your targets with a debilitating plague, dealing a high
@@ -41,6 +48,9 @@ MonoBehaviour:
 
     Also
     has a chance to poison targets'
+  HitFX: {fileID: 0}
+  targetCastSounds: []
+  targetHitSounds: []
   targetEndTurn: 0
   targetUsesAction: 1
   targetCost: 60
@@ -65,6 +75,8 @@ MonoBehaviour:
   targetStatusDuration: 04000000
   targetStatusChance:
   - 0.5
+  targetDrawCards: 0
+  targetDrawSpecificCard: {fileID: 0}
   spawnPosition: 1
   summonAlly: {fileID: 0}
   summonCount: 0

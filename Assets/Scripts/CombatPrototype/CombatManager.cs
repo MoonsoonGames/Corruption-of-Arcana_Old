@@ -13,34 +13,31 @@ public class CombatManager : MonoBehaviour
 
     #region UI
 
-    public Button attackDeck;
-    public Button spellDeck;
-    public Button classDeck;
-    public Button HealthPotions;
+    CombatUIController UIController;
     public GameObject VictoryScreen;
     public GameObject DefeatScreen;
+    public GameObject CombatCanvas;
     public GameObject PlayableDecks;
     public GameObject noMana;
-    public GameObject Dmg;
-    public GameObject Ap;
-    public GameObject Healing;
+    //public GameObject Dmg;
+    //public GameObject Ap;
+    //public GameObject Healing;
     public GameObject HealingItem;
     public string playingCard;
     public Text enemyName;
     public Text ArcanaPointsValue;
     public Text HealthPointsValue;
-    public Text DmgValue;
-    public Text ApValue;
-    public Text HealingValue;
+    //public Text DmgValue;
+    //public Text ApValue;
+    //public Text HealingValue;
     public Text HealingLeft;
+
+    public GameObject endTurnButton;
 
     #endregion
 
     public PlayerStats playerStats;
     public EnemyStats enemyStats;
-    public bool battleActive = false;
-    public Text actionsCountText;
-    public Text currentTurnText;
 
     public AbilityManager abilityManager;
     public EnemyManager enemyManager;
@@ -50,10 +47,8 @@ public class CombatManager : MonoBehaviour
 
     bool boss = false;
 
-    public int maxActions;
-    int actionsLeft = 0;
-
     public int arcanaRegen = 20;
+    public Image bgImage;
 
     public void Start()
     {
@@ -65,23 +60,24 @@ public class CombatManager : MonoBehaviour
             enemyStats.gameObject.name = enemyName.text;
         }
 
+        UIController = GameObject.FindObjectOfType<CombatUIController>();
+
         DefeatScreen.SetActive(false);
         VictoryScreen.SetActive(false);
         noMana.SetActive(false);
 
-        Dmg.SetActive(false);
-        Ap.SetActive(false);
-        Healing.SetActive(false);
-        PlayableDecks.SetActive(false);
+        endTurnButton.SetActive(false);
+
+        combatDeckManager.Setup();
 
         loadSettings = LoadSettings.instance;
+
+        SetBackground();
 
         if (loadSettings != null)
         {
             boss = loadSettings.fightingBoss;
         }
-
-        battleActive = true;
 
         Invoke("DelayStart", 3f);
     }
@@ -89,6 +85,14 @@ public class CombatManager : MonoBehaviour
     void DelayStart()
     {
         StartTurn(true);
+    }
+
+    public void DrawCards()
+    {
+        if (combatDeckManager != null)
+        {
+            combatDeckManager.DrawTurnCards();
+        }
     }
 
     public void StartTurn(bool player)
@@ -102,30 +106,21 @@ public class CombatManager : MonoBehaviour
 
         if (player)
         {
-            actionsLeft = maxActions;
-
-            if (actionsCountText != null)
-                actionsCountText.text = actionsLeft.ToString();
-
-            currentTurnText.text = "Player";
-            currentTurnText.color = Color.green;
             HealingItem.SetActive(true);
             PlayableDecks.SetActive(true);
+            endTurnButton.SetActive(true);
 
             //Debug.Log("Regenerate Mana");
             playerStats.ChangeMana(arcanaRegen, false);
 
-            if (combatDeckManager != null)
-            {
-                combatDeckManager.DrawCards();
-            }
+            DrawCards();
 
             playerStats.OnTurnStartStatus();
+
+            PotionBar(false);
         }
         else
         {
-            currentTurnText.text = "Enemy";
-            currentTurnText.color = Color.red;
             PlayableDecks.SetActive(false);
             HealingItem.SetActive(false);
             noMana.SetActive(false);
@@ -148,15 +143,18 @@ public class CombatManager : MonoBehaviour
 
     public void EndTurn(bool player)
     {
-        actionsLeft = 0;
-
         abilityManager.playerTurn = !player;
 
         abilityManager.ResetAbility();
-        
+
+        //abilityManager.spreadScript.ResetSpread();
+
         if (player)
         {
             playerStats.OnTurnEndStatus();
+            endTurnButton.SetActive(false);
+
+            PotionBar(false);
         }
         else
         {
@@ -169,27 +167,19 @@ public class CombatManager : MonoBehaviour
         StartTurn(!player);
     }
 
-    public void UseAction()
-    {
-        actionsLeft--;
-
-        if (actionsCountText != null)
-            actionsCountText.text = actionsLeft.ToString();
-    }
-
-    public int GetCardsCast()
-    {
-        return actionsLeft;
-    }
-
     public void ShowEndScreen(bool victory)
     {
-        battleActive = false;
+        if (CombatCanvas != null)
+        {
+            CombatCanvas.SetActive(false);
+        }
+        else
+        {
+            Debug.LogError("No Combat Canvas");
+        }
 
         if (victory)
         {
-            
-
             VictoryScreen.SetActive(true);
             //SceneManager.LoadLast;//Needs to load last scene and position
         }
@@ -207,26 +197,54 @@ public class CombatManager : MonoBehaviour
         }
     }
 
-    public void TargetEnemies(bool visible)
+    public void TargetEnemies(bool visible, CardParent spell)
     {
-        enemyManager.TargetEnemies(visible);
+        enemyManager.TargetEnemies(visible, spell);
     }
 
-    public void Rewards(int healing, int gold, int potions)
+    public void SetBackground()
+    {
+        if (bgImage != null && loadSettings.background != null)
+        {
+            bgImage.sprite = loadSettings.background;
+        }
+
+        loadSettings.background = null;
+    }
+
+    public void Rewards(int healing)
     {
         if (loadSettings != null && loadSettings.currentFight != null)
         {
-            playerStats.ChangeHealth(healing, false, E_DamageTypes.Physical, out int damageTaken, this.gameObject, false);
-
-            playerStats.ChangePotions(potions, false);
+            playerStats.ChangeHealth(healing, false, E_DamageTypes.Physical, out int damageTaken, this.gameObject, false, null);
 
             loadSettings.health = playerStats.GetHealth();
 
-            loadSettings.currentGold += gold; 
-
             loadSettings.enemiesKilled.Add(loadSettings.currentFight);
-        }
 
-        //Debug.Log("No current fight");
+            if (loadSettings.fightingBoss)
+            {
+                loadSettings.bossesKilled.Add(loadSettings.currentFight);
+            }
+        }
+    }
+
+    public void PotionBar(bool open)
+    {
+        if (UIController != null)
+        {
+            if (open)
+            {
+                UIController.PotionOpen();
+            }
+            else
+            {
+                UIController.PotionClose();
+            }
+        }
+        else
+        {
+            Debug.LogError("no combatUIController");
+        }
     }
 }

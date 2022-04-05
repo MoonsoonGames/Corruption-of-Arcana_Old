@@ -17,10 +17,14 @@ MonoBehaviour:
   flavourDescription: 
   cardImage: {fileID: 0}
   enemySpell: 1
+  countsCombo: 0
+  comboCard: {fileID: 0}
   selfInterpretationUnlocked: 1
   selfName: Counter Stance
   selfDescription: The enemy enters a riposting stance, allowing them to make a reactionary
     attack when you hit them
+  selfCastSounds:
+  - {fileID: 8300000, guid: 0bc8ef1efa6f0264095b18e9a39d87de, type: 3}
   selfEndTurn: 0
   selfUsesAction: 1
   selfCost: 0
@@ -33,9 +37,14 @@ MonoBehaviour:
   selfStatus:
   - {fileID: 11400000, guid: 4daa8e3702ea3b240bdc3d03d159ccdd, type: 2}
   selfStatusDuration: 02000000
+  selfDrawCards: 0
+  selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 0
   targetName: 
   targetDescription: 
+  HitFX: {fileID: 0}
+  targetCastSounds: []
+  targetHitSounds: []
   targetEndTurn: 0
   targetUsesAction: 1
   targetCost: 0
@@ -58,6 +67,8 @@ MonoBehaviour:
   targetStatus: []
   targetStatusDuration: 
   targetStatusChance: []
+  targetDrawCards: 0
+  targetDrawSpecificCard: {fileID: 0}
   spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0

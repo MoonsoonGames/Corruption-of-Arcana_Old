@@ -13,6 +13,7 @@ public class CharacterStats : MonoBehaviour
     protected int mana = 120;
 
     public SliderValue healthSliderValue;
+    public SliderValue previewSliderValue;
     public SliderValue manaSliderValue;
 
     public CombatManager combatManager;
@@ -25,6 +26,7 @@ public class CharacterStats : MonoBehaviour
     protected virtual void Start()
     {
         ResetDamageMultipliers();
+        audioManager = GameObject.FindObjectOfType<BGMManager>();
     }
 
     #endregion
@@ -45,6 +47,10 @@ public class CharacterStats : MonoBehaviour
     public bool slow;
 
     #endregion
+
+    #region Feedback
+
+    #region Visual Feedback
 
     #region Flash
 
@@ -90,6 +96,88 @@ public class CharacterStats : MonoBehaviour
 
         return lerpColour;
     }
+
+    #endregion
+
+    #region Hit Shake
+
+    //apply screen shake - if player
+    //apply character shake - preferred
+
+    public float duration = 0.1f;
+    public float intensityMultiplier = 0.005f;
+
+    void CharacterShake(float duration, float intensity)
+    {
+        Debug.Log("Character shake");
+        Vector3 originalPos = gameObject.transform.position;
+
+        float randx = transform.position.x + Random.Range(-intensity, intensity);
+        float randy = transform.position.y + Random.Range(-intensity, intensity);
+
+        Vector3 newPos = new Vector3(randx, randy, transform.position.z);
+
+        //Debug.Log(name + " shakes from " + transform.position + " to " + newPos);
+        transform.position = newPos;
+
+        StartCoroutine(ResetShake(originalPos, duration));
+    }
+
+    IEnumerator ResetShake(Vector3 originalPosition, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        //Debug.Log(name + " returns from " + transform.position + " to " + originalPosition);
+        transform.position = originalPosition;
+    }
+
+    #endregion
+
+    #region Hit Particles
+
+    public Object hitFX;
+
+    void HitFX(Object FX)
+    {
+        if (FX != null)
+        {
+            Vector3 spawnPos = new Vector3(0, 0, 0);
+            Quaternion spawnRot = new Quaternion(0, 0, 0, 0);
+
+            spawnPos.x = transform.position.x;
+            spawnPos.y = transform.position.y;
+            spawnPos.z = transform.position.z - 5f;
+
+            Instantiate(FX, spawnPos, spawnRot);
+        }
+    }
+
+    #endregion
+
+    #endregion
+
+    #region Audio Feedback
+
+    BGMManager audioManager;
+    public AudioClip[] hitSounds;
+    public AudioClip[] deathSounds;
+
+    void PlaySoundEffect(AudioClip[] audioClips)
+    {
+        if (audioClips.Length > 0 && audioManager != null)
+            audioManager.PlaySoundEffect(GetSoundEffect(audioClips), 4f);
+    }
+
+    AudioClip GetSoundEffect(AudioClip[] soundArray)
+    {
+        if (soundArray.Length > 1)
+            return soundArray[Random.Range(0, soundArray.Length)];
+        else if (soundArray.Length == 1)
+            return soundArray[0];
+        else
+            return null;
+    } 
+
+    #endregion
 
     #endregion
 
@@ -157,12 +245,16 @@ public class CharacterStats : MonoBehaviour
         return health;
     }
 
-    public virtual void ChangeHealth(int value, bool damage, E_DamageTypes damageType, out int damageTaken, GameObject attacker, bool canBeCountered)
+    public virtual void ChangeHealth(int value, bool damage, E_DamageTypes damageType, out int damageTaken, GameObject attacker, bool canBeCountered, Object attackHitFX)
     {
         damageTaken = 0;
         if (damage && value > 0)
         {
             Flash(hitColour);
+            CharacterShake(duration, intensityMultiplier * value);
+            HitFX(hitFX);
+            HitFX(attackHitFX);
+            PlaySoundEffect(hitSounds);
 
             damageTaken = (int)DamageResistance(value, damageType);
 
@@ -191,6 +283,7 @@ public class CharacterStats : MonoBehaviour
 
             if (health <= 0)
             {
+                PlaySoundEffect(deathSounds);
                 Die();
             }
         }
@@ -217,66 +310,140 @@ public class CharacterStats : MonoBehaviour
         {
             healthSliderValue.slider.value = health;
         }
+
+        if (previewSliderValue != null)
+        {
+            previewSliderValue.slider.value = health;
+        }
     }
 
     public float DamageResistance(float damageValue, E_DamageTypes damageType)
     {
-        if (damageType == E_DamageTypes.Physical)
+        switch (damageType)
         {
-            return damageValue * physicalMultiplier;
+            case E_DamageTypes.Physical:
+                return damageValue * physicalMultiplier;
+            case E_DamageTypes.Ember:
+                return damageValue * emberMultiplier;
+            case E_DamageTypes.Static:
+                return damageValue * staticMultiplier;
+            case E_DamageTypes.Bleak:
+                return damageValue * bleakMultiplier;
+            case E_DamageTypes.Septic:
+                return damageValue * septicMultiplier;
+            case E_DamageTypes.Perforation:
+                return damageValue;
+            default:
+                return damageValue;
         }
-        if (damageType == E_DamageTypes.Ember)
-        {
-            return damageValue * emberMultiplier;
-        }
-        if (damageType == E_DamageTypes.Static)
-        {
-            return damageValue * staticMultiplier;
-        }
-        if (damageType == E_DamageTypes.Bleak)
-        {
-            return damageValue * bleakMultiplier;
-        }
-        if (damageType == E_DamageTypes.Septic)
-        {
-            return damageValue * septicMultiplier;
-        }
-        if (damageType == E_DamageTypes.Perforation)
-        {
-            return damageValue * 1.5f;
-        }
-
-        return damageValue;
     }
 
     public Vector2 DamageResistanceVector(Vector2 damageValue, E_DamageTypes damageType)
     {
-        if (damageType == E_DamageTypes.Physical)
+        switch (damageType)
         {
-            return damageValue * physicalMultiplier;
+            case E_DamageTypes.Physical:
+                return damageValue * physicalMultiplier;
+            case E_DamageTypes.Ember:
+                return damageValue * emberMultiplier;
+            case E_DamageTypes.Static:
+                return damageValue * staticMultiplier;
+            case E_DamageTypes.Bleak:
+                return damageValue * bleakMultiplier;
+            case E_DamageTypes.Septic:
+                return damageValue * septicMultiplier;
+            case E_DamageTypes.Perforation:
+                return damageValue;
+            default:
+                return damageValue;
         }
-        if (damageType == E_DamageTypes.Ember)
+    }
+
+    public float CheckResistances(E_DamageTypes damageType)
+    {
+        switch (damageType)
         {
-            return damageValue * emberMultiplier;
+            case E_DamageTypes.Physical:
+                return physicalMultiplier;
+            case E_DamageTypes.Ember:
+                return emberMultiplier;
+            case E_DamageTypes.Static:
+                return staticMultiplier;
+            case E_DamageTypes.Bleak:
+                return bleakMultiplier;
+            case E_DamageTypes.Septic:
+                return septicMultiplier;
+            case E_DamageTypes.Perforation:
+                float lowestResistance = 1;
+                if (lowestResistance < lowestResistanceFloat())
+                {
+                    lowestResistance = lowestResistanceFloat();
+                }
+                return lowestResistance;
+            default:
+                return 1;
         }
-        if (damageType == E_DamageTypes.Static)
+    }
+
+    public E_DamageTypes lowestResistanceType()
+    {
+        float lowestResistance = 9999f;
+
+        if (lowestResistance < physicalMultiplier)
         {
-            return damageValue * staticMultiplier;
+            lowestResistance = physicalMultiplier;
+            return E_DamageTypes.Physical;
         }
-        if (damageType == E_DamageTypes.Bleak)
+        else if (lowestResistance < emberMultiplier)
         {
-            return damageValue * bleakMultiplier;
+            lowestResistance = emberMultiplier;
+            return E_DamageTypes.Ember;
         }
-        if (damageType == E_DamageTypes.Septic)
+        else if (lowestResistance < staticMultiplier)
         {
-            return damageValue * septicMultiplier;
+            lowestResistance = staticMultiplier;
+            return E_DamageTypes.Static;
         }
-        if (damageType == E_DamageTypes.Perforation)
+        else if (lowestResistance < bleakMultiplier)
         {
-            return damageValue * 1.5f;
+            lowestResistance = bleakMultiplier;
+            return E_DamageTypes.Bleak;
+        }
+        else if (lowestResistance < septicMultiplier)
+        {
+            lowestResistance = septicMultiplier;
+            return E_DamageTypes.Septic;
         }
 
-        return damageValue;
+        return E_DamageTypes.Perforation;
+    }
+
+    public float lowestResistanceFloat()
+    {
+        float lowestResistance = 9999f;
+
+        if (lowestResistance < physicalMultiplier)
+        {
+            lowestResistance = physicalMultiplier;
+        }
+        else if (lowestResistance < emberMultiplier)
+        {
+            lowestResistance = emberMultiplier;
+        }
+        else if (lowestResistance < staticMultiplier)
+        {
+            lowestResistance = staticMultiplier;
+        }
+        else if (lowestResistance < bleakMultiplier)
+        {
+            lowestResistance = bleakMultiplier;
+        }
+        else if (lowestResistance < septicMultiplier)
+        {
+            lowestResistance = septicMultiplier;
+        }
+
+        return lowestResistance;
     }
 
     public float HealthPercentage()
@@ -324,6 +491,8 @@ public class CharacterStats : MonoBehaviour
 
     #region Statuses
 
+    public StatusIconSpawner iconSpawner;
+
     public virtual void ApplyStatus(StatusParent status, GameObject caster, int statusDuration)
     {
         //Debug.Log("Applied " + status.effectName);
@@ -350,6 +519,8 @@ public class CharacterStats : MonoBehaviour
                 statuses[status] = duration;
             }
         }
+
+        SetupStatusIcons();
     }
 
     public void OnTurnStartStatus()
@@ -358,6 +529,8 @@ public class CharacterStats : MonoBehaviour
         {
             item.Key.OnTurnStart(this.gameObject, this.gameObject);
         }
+
+        SetupStatusIcons();
     }
 
     public void OnTurnEndStatus()
@@ -387,6 +560,8 @@ public class CharacterStats : MonoBehaviour
         {
             statuses.Add(item.Key, item.Value);
         }
+
+        SetupStatusIcons();
     }
 
     public void OnTakeDamageStatus(GameObject attacker)
@@ -395,6 +570,8 @@ public class CharacterStats : MonoBehaviour
         {
             item.Key.OnTakeDamage(attacker, this.gameObject, GameObject.FindObjectOfType<AbilityManager>());
         }
+
+        SetupStatusIcons();
     }
 
     public void RemoveSleepStatus()
@@ -419,6 +596,16 @@ public class CharacterStats : MonoBehaviour
         foreach (var item in statusesCopy)
         {
             statuses.Add(item.Key, item.Value);
+        }
+
+        SetupStatusIcons();
+    }
+
+    void SetupStatusIcons()
+    {
+        if (iconSpawner != null)
+        {
+            iconSpawner.SetupIcons(statuses);
         }
     }
 

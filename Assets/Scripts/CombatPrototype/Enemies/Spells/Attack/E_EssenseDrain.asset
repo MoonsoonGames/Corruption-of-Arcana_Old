@@ -17,9 +17,12 @@ MonoBehaviour:
   flavourDescription: 
   cardImage: {fileID: 0}
   enemySpell: 1
+  countsCombo: 0
+  comboCard: {fileID: 0}
   selfInterpretationUnlocked: 0
   selfName: 
   selfDescription: 
+  selfCastSounds: []
   selfEndTurn: 1
   selfUsesAction: 1
   selfCost: 0
@@ -31,17 +34,24 @@ MonoBehaviour:
   selfEndTurnDelay: 0.2
   selfStatus: []
   selfStatusDuration: 
+  selfDrawCards: 0
+  selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 1
   targetName: Essense Drain
   targetDescription: The enemy assails Taro with an enfeebling attack, applying frostbite
     to the player
+  HitFX: {fileID: 6727453174112786923, guid: 556929575e076a24791a4c2a8e90fac1, type: 3}
+  targetCastSounds: []
+  targetHitSounds:
+  - {fileID: 8300000, guid: 2c9b2d869742d85449e20d606fddff38, type: 3}
+  - {fileID: 8300000, guid: 9936d9bea49c36e479a6be4e3cee6402, type: 3}
   targetEndTurn: 1
   targetUsesAction: 1
   targetCost: 0
   targetCostType: 
   damageType: 3
   targetCanBeCountered: 1
-  targetDmg: {x: 7, y: 14}
+  targetDmg: {x: 6, y: 10}
   hits: 1
   hitInterval: 0.15
   finalHitInterval: 0.35
@@ -59,6 +69,8 @@ MonoBehaviour:
   targetStatusDuration: 02000000
   targetStatusChance:
   - 0.25
+  targetDrawCards: 0
+  targetDrawSpecificCard: {fileID: 0}
   spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0

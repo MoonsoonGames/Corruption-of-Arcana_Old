@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyButton : MonoBehaviour
 {
-    public SliderVariation sliderVarScript;
+    //public SliderVariation sliderVarScript;
 
     public void ButtonPressed(GameObject target)
     {
@@ -41,21 +41,23 @@ public class EnemyButton : MonoBehaviour
 
             ability.GetReadyAbilityInfo(out multihit, out restore, out selfType, out dmg, out type, out cardNameSelf, out cardNameTarget, out hitsAll, out extradmg);
 
+            /*
             if (hitsAll)
             {
                 EnemyButton[] buttons = GameObject.FindObjectsOfType<EnemyButton>();
 
                 foreach (var item in buttons)
                 {
-                    Vector2 trueDamageRangeExtra = item.GetComponentInParent<EnemyStats>().DamageResistanceVector(dmg, type);
+                    int trueDamageRangeExtra = (int)item.GetComponentInParent<EnemyStats>().DamageResistanceVector(dmg, type).y;
 
                     item.sliderVarScript.ApplyPreview(trueDamageRangeExtra);
                 }
             }
 
-            Vector2 trueDamageRange = target.GetComponent<EnemyStats>().DamageResistanceVector(dmg, type);
+            int trueDamageRange = (int)target.GetComponent<EnemyStats>().DamageResistanceVector(dmg, type).y;
 
             sliderVarScript.ApplyPreview(trueDamageRange);
+            */
         }
         else
         {
@@ -65,12 +67,15 @@ public class EnemyButton : MonoBehaviour
 
     public void MouseLeft()
     {
+        /*
         //Debug.Log("Button stop hovering");
         EnemyButton[] buttons = GameObject.FindObjectsOfType<EnemyButton>();
+        CharacterStats enemy = GetComponentInParent<CharacterStats>();
 
         foreach (var item in buttons)
         {
-            item.sliderVarScript.StopPreview();
+            item.sliderVarScript.StopPreview(enemy.GetHealth());
         }
+        */
     }
 }

@@ -18,10 +18,12 @@ public class PlayerStats : CharacterStats
 
         if (loadSettings != null)
         {
+            maxHealth = loadSettings.maxHealth;
             health = loadSettings.health;
             combatManager.HealthPointsValue.text = health.ToString();
+            healthSliderValue.slider.maxValue = maxHealth;
 
-            potionCount = loadSettings.potionCount;
+            potionCount = loadSettings.healingPotionCount;
         }
         else
         {
@@ -36,6 +38,12 @@ public class PlayerStats : CharacterStats
         {
             healthSliderValue.slider.maxValue = maxHealth;
             healthSliderValue.slider.value = health;
+        }
+
+        if (previewSliderValue != null)
+        {
+            previewSliderValue.slider.maxValue = maxHealth;
+            previewSliderValue.slider.value = health;
         }
 
         combatManager.HealingLeft.text = potionCount.ToString();
@@ -76,9 +84,9 @@ public class PlayerStats : CharacterStats
         return potionCount;
     }
 
-    public override void ChangeHealth(int value, bool damage, E_DamageTypes damageType, out int damageTaken, GameObject attacker, bool canBeCountered)
+    public override void ChangeHealth(int value, bool damage, E_DamageTypes damageType, out int damageTaken, GameObject attacker, bool canBeCountered, Object attackHitFX)
     {
-        base.ChangeHealth(value, damage, damageType, out damageTaken, attacker, canBeCountered);
+        base.ChangeHealth(value, damage, damageType, out damageTaken, attacker, canBeCountered, attackHitFX);
 
         combatManager.HealthPointsValue.text = health.ToString();
     }
@@ -108,7 +116,7 @@ public class PlayerStats : CharacterStats
 
         if (loadSettings != null)
         {
-            loadSettings.potionCount = potionCount;
+            loadSettings.healingPotionCount = potionCount;
         }
     }
 }

@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 9216620810431011226}
   - component: {fileID: 9216620810431011227}
   - component: {fileID: 9216620810431011228}
-  - component: {fileID: 9216620810431011222}
+  - component: {fileID: 2201303135942197265}
   - component: {fileID: 8659085368928631126}
   - component: {fileID: 6435733521936544711}
   m_Layer: 0
@@ -229,7 +229,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 3.53
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &9216620810431011222
+--- !u!114 &2201303135942197265
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -242,17 +242,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: 3
-  checkpoint: 0
+  forceDialogue: 0
+  destroyOnSpeak: 0
   dialogue: {fileID: 3687597253407275092, guid: 2c0b2227930638042824499d913e6e32,
     type: 3}
   sceneMode: 0
   completeObjectives: []
-  requireQuests: []
-  requireObjectives: []
-  requireAll: 0
-  disableQuests: []
-  disableObjectives:
-  - {fileID: 11400000, guid: 9602018115db68c43a1b18b264164618, type: 2}
+  requireQuestsInProgress: []
+  requireObjectivesInProgress: []
+  requireAllInProgress: 1
+  disableQuestsInProgress: []
+  disableObjectivesInProgress:
+  - {fileID: 11400000, guid: 5b64d884ac3966f4c8b3dd90ca33e8c0, type: 2}
+  requireQuestsCompleted: []
+  requireObjectivesCompleted: []
+  requireAllCompleted: 1
+  disableQuestsCompleted:
+  - {fileID: 11400000, guid: 45ff0337f43c2ec4a8869f6177a07d46, type: 2}
+  - {fileID: 11400000, guid: 1122348fae471424e8d8fc6154225f62, type: 2}
+  - {fileID: 11400000, guid: 7802ae12753d18e4ca117a1c2485e04c, type: 2}
+  disableObjectivesCompleted: []
 --- !u!114 &8659085368928631126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,17 +289,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: 3
-  checkpoint: 0
+  forceDialogue: 0
+  destroyOnSpeak: 0
   dialogue: {fileID: 8052595513141617221, guid: 231f1225157f1ee46a86abdfa3c06ca0,
     type: 3}
   sceneMode: 0
   completeObjectives: []
-  requireQuests: []
-  requireObjectives:
-  - {fileID: 11400000, guid: 9602018115db68c43a1b18b264164618, type: 2}
-  requireAll: 0
-  disableQuests: []
-  disableObjectives: []
+  requireQuestsInProgress: []
+  requireObjectivesInProgress:
+  - {fileID: 11400000, guid: 5b64d884ac3966f4c8b3dd90ca33e8c0, type: 2}
+  requireAllInProgress: 1
+  disableQuestsInProgress: []
+  disableObjectivesInProgress: []
+  requireQuestsCompleted: []
+  requireObjectivesCompleted: []
+  requireAllCompleted: 1
+  disableQuestsCompleted:
+  - {fileID: 11400000, guid: 7802ae12753d18e4ca117a1c2485e04c, type: 2}
+  disableObjectivesCompleted: []
 --- !u!1001 &2557344913927518068
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -298,6 +314,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9216620810431011224}
     m_Modifications:
+    - target: {fileID: 1890534054537535938, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 21300000, guid: 38d71acec18483c40962a9decc2ccef6,
+        type: 3}
     - target: {fileID: 3471886681103204412, guid: feceddc3c64c65b499b909203d7d5124,
         type: 3}
       propertyPath: m_RootOrder
@@ -344,6 +366,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 5b64d884ac3966f4c8b3dd90ca33e8c0,
         type: 2}
+    - target: {fileID: 8498647028213206397, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 21300000, guid: cabface0a79d8dd40a5f7a0cbed41cc5,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: feceddc3c64c65b499b909203d7d5124, type: 3}
 --- !u!4 &1392488788854060872 stripped

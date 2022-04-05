@@ -46,6 +46,7 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        name = displayName;
         sprite = image.sprite;
 
         if (displayName != null)
@@ -96,16 +97,6 @@ public class Enemy : MonoBehaviour
             {
                 //charm code here
             }
-            else if (enemyStats.silence && basicAttacks.Count > 0)
-            {
-
-                basicAttacks[currentAttack].CastSpell(player, this.gameObject, abilityManager, out bool nullify);
-                currentAttack++;
-                if (currentAttack >= basicAttacks.Count)
-                {
-                    currentAttack = 0;
-                }
-            }
             else if (enemyStats.skipTurn || enemyStats.sleepTurn)
             {
                 currentSpell++;
@@ -114,6 +105,16 @@ public class Enemy : MonoBehaviour
                     currentSpell = 0;
                 }
 
+                currentAttack++;
+                if (currentAttack >= basicAttacks.Count)
+                {
+                    currentAttack = 0;
+                }
+            }
+            else if (enemyStats.silence && basicAttacks.Count > 0)
+            {
+
+                basicAttacks[currentAttack].CastSpell(player, this.gameObject, abilityManager, out bool nullify);
                 currentAttack++;
                 if (currentAttack >= basicAttacks.Count)
                 {
@@ -164,13 +165,13 @@ public class Enemy : MonoBehaviour
             {
                 return 0;
             }
-            else if (enemyStats.silence)
-            {
-                return basicAttacks[currentAttack].targetEndTurnDelay;
-            }
             else if (enemyStats.skipTurn || enemyStats.sleepTurn)
             {
                 return 0;
+            }
+            else if (enemyStats.silence)
+            {
+                return basicAttacks[currentAttack].targetEndTurnDelay;
             }
             else
             {
@@ -214,13 +215,6 @@ public class Enemy : MonoBehaviour
             {
                 attackName = "Skipping turn";
             }
-            else if (enemyStats.silence)
-            {
-                attackName = basicAttacks[currentAttack].targetName;
-                damage = basicAttacks[currentAttack].TotalDmgRange();
-                damageType = basicAttacks[currentAttack].damageType;
-                description = basicAttacks[currentAttack].targetDescription;
-            }
             else if (enemyStats.skipTurn)
             {
                 attackName = "Skipping turn";
@@ -229,6 +223,13 @@ public class Enemy : MonoBehaviour
             {
                 attackName = "Sleeping";
                 description = "Target will awake upon taking damage";
+            }
+            else if (enemyStats.silence)
+            {
+                attackName = basicAttacks[currentAttack].targetName;
+                damage = basicAttacks[currentAttack].TotalDmgRange();
+                damageType = basicAttacks[currentAttack].damageType;
+                description = basicAttacks[currentAttack].targetDescription;
             }
             else
             {
@@ -360,8 +361,9 @@ public class Enemy : MonoBehaviour
 
     public void DisplayCard(bool display)
     {
-        if (loadSettings.CheckExposed(displayName) && display)
+        if (CheckRevealed() && display)
         {
+            //Should display more info when UI is ready, but only displays the basic info right now
             string attackName = "";
             Vector2Int damage = new Vector2Int(0, 0);
             E_DamageTypes damageType = E_DamageTypes.Physical;
@@ -372,6 +374,21 @@ public class Enemy : MonoBehaviour
             descriptionInfo.ReadyCard(displayName, attackName, damage, damageType, abilityDescription, sprite);
         }
         else
-            descriptionInfo.RemoveCard();
+        {
+            //Displays only the basic info on the enemy
+            string attackName = "";
+            Vector2Int damage = new Vector2Int(0, 0);
+            E_DamageTypes damageType = E_DamageTypes.Physical;
+            string abilityDescription = "";
+
+            GetAbilityInfo(out attackName, out damage, out damageType, out abilityDescription);
+
+            descriptionInfo.ReadyCard(displayName, attackName, damage, damageType, abilityDescription, sprite);
+        }
+    }
+
+    public bool CheckRevealed()
+    {
+        return loadSettings.CheckExposed(displayName);
     }
 }

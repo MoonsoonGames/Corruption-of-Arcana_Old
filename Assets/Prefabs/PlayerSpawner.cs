@@ -9,13 +9,14 @@ public class PlayerSpawner : MonoBehaviour
     public LoadSettings loadSettings;
     public GameObject player;
     GameObject cam;
-    public UIManager UIManager;
+    public MenuManager menuManager;
     public Slider healthBar;
     public Slider arcanaBar;
     public GameObject interactImage;
 
     public MinimapScript minimap;
     public Compass compass;
+    public CompassNoIcon compass2;
 
     public Text location;
 
@@ -47,11 +48,14 @@ public class PlayerSpawner : MonoBehaviour
         controller.healthBar = healthBar;
         controller.arcanaBar = arcanaBar;
         controller.interactImage = interactImage;
-        UIManager.player = playerRef;
-        UIManager.Camera = cam.gameObject;
+        menuManager.Player = playerRef;
+        menuManager.PlayerCamera = cam.gameObject;
+        menuManager.compass.player = controller.gameObject.transform;
+        menuManager.compass2.player = controller.gameObject.transform;
 
         minimap.player = playerRef.transform;
         compass.player = playerRef.transform;
+        compass2.player = playerRef.transform;
 
         controller.Location = location;
 

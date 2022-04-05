@@ -16,11 +16,15 @@ MonoBehaviour:
   cardNumber: 5
   flavourDescription: Innocence is renewed through discovery, bringing hope for the
     future
-  cardImage: {fileID: 0}
+  cardImage: {fileID: -6663811380663864060, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
+    type: 3}
   enemySpell: 0
+  countsCombo: 1
+  comboCard: {fileID: 11400000, guid: f1b6525800bdd124ca5fcbe0f4ea5725, type: 2}
   selfInterpretationUnlocked: 0
   selfName: 
   selfDescription: 
+  selfCastSounds: []
   selfEndTurn: 0
   selfUsesAction: 1
   selfCost: 0
@@ -32,16 +36,23 @@ MonoBehaviour:
   selfEndTurnDelay: 0.2
   selfStatus: []
   selfStatusDuration: 
+  selfDrawCards: 0
+  selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 1
   targetName: Sunbeam
-  targetDescription: 'Open the gate to Sol, searing a single target with a blast
-    of fire
-
-
-    Also has a high chance to apply burn to the target'
+  targetDescription: Open the gate to Sol, searing a single target with a blast of
+    fire which has a high chance to apply burn to the target
+  HitFX: {fileID: 6727453174112786923, guid: c878f3a856728fd4eb235e50030cfd65, type: 3}
+  targetCastSounds:
+  - {fileID: 8300000, guid: 6bc35f50815663146aad26a15b4e006f, type: 3}
+  - {fileID: 8300000, guid: 3614c7fa9b745c64d8f773f3b7692869, type: 3}
+  - {fileID: 8300000, guid: 0c59e558fb537724e8827e34d06f6920, type: 3}
+  targetHitSounds:
+  - {fileID: 8300000, guid: 844feb0ce60dab34aa4cc30365748322, type: 3}
+  - {fileID: 8300000, guid: 6cf6dd8b840323e4ea14759f083f8e23, type: 3}
   targetEndTurn: 0
   targetUsesAction: 1
-  targetCost: 35
+  targetCost: 10
   targetCostType: AP
   damageType: 1
   targetCanBeCountered: 1
@@ -63,6 +74,9 @@ MonoBehaviour:
   targetStatusDuration: 04000000
   targetStatusChance:
   - 0.8
+  targetDrawCards: 0
+  targetDrawSpecificCard: {fileID: 11400000, guid: f1b6525800bdd124ca5fcbe0f4ea5725,
+    type: 2}
   spawnPosition: 2
   summonAlly: {fileID: 0}
   summonCount: 0

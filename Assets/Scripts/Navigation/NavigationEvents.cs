@@ -26,14 +26,18 @@ public class NavigationEvents : ScriptableObject
     public Object[] enemy1, enemy2, enemy3;
     Object[] enemies = new Object[3];
 
-    public Quest startQuest;
-    public QuestObjective completeObjective;
+    Sprite background;
 
-    public void Setup(SceneLoader newSceneLoader, E_Levels newNavScene)
+    public Quest startQuest;
+    public QuestObjective[] completeObjectives;
+
+    public void Setup(SceneLoader newSceneLoader, E_Levels newNavScene, Sprite backgroundImage)
     {
         loadSettings = LoadSettings.instance;
         navScene = newNavScene;
         sceneLoader = newSceneLoader;
+
+        background = backgroundImage;
 
         enemies[0] = enemy1[Random.Range(0, enemy1.Length)];
         enemies[1] = enemy2[Random.Range(0, enemy2.Length)];
@@ -65,9 +69,12 @@ public class NavigationEvents : ScriptableObject
         {
             GiveRewards();
 
-            if (completeObjective != null)
+            foreach (var item in completeObjectives)
             {
-                completeObjective.CompleteGoal();
+                if (item.canComplete)
+                {
+                    item.CompleteGoal();
+                }
             }
         }
     }
@@ -83,17 +90,21 @@ public class NavigationEvents : ScriptableObject
             loadSettings.enemies[1] = enemies[1];
             loadSettings.enemies[2] = enemies[2];
 
+            loadSettings.background = background;
+
             loadSettings.goldReward = goldReward;
             loadSettings.potionReward = potionReward;
             //loadSettings.itemReward = itemReward;
 
-            if (completeObjective != null && completeObjective.canComplete)
+            foreach (var item in completeObjectives)
             {
-                loadSettings.currentFightObjective = completeObjective;
+                if (item.canComplete)
+                {
+                    loadSettings.currentFightObjectives.Add(item);
+                }
             }
 
-            loadSettings.lastLevel = navScene;
-            loadSettings.lastLevelString = navScene.ToString();
+            //loadSettings.lastLevel = navScene;
 
             if (sceneLoader != null)
                 sceneLoader.LoadSpecifiedScene(loadScene.ToString(), LoadSceneMode.Single, null);
@@ -108,7 +119,7 @@ public class NavigationEvents : ScriptableObject
         if (loadSettings != null && loadSettings.currentFight != null)
         {
             loadSettings.currentGold += (int)Random.Range(goldReward.x, goldReward.y);
-            loadSettings.potionCount = DeterminePotions(loadSettings.potionCount);
+            loadSettings.healingPotionCount = DeterminePotions(loadSettings.healingPotionCount);
         }
     }
 

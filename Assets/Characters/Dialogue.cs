@@ -9,11 +9,12 @@ public class Dialogue : MonoBehaviour
     string sceneString;
     Scene currentScene;
 
+    public bool forceDialogue = false;
+    public bool destroyOnSpeak = false;
+
     SceneLoader sceneLoader;
 
     LoadSettings loadSettings;
-
-    public bool checkpoint = false;
 
     public Object dialogue;
 
@@ -32,31 +33,12 @@ public class Dialogue : MonoBehaviour
         loadSettings = LoadSettings.instance;
     }
 
-    public bool LoadScene()
+    public bool LoadDialogueScene(PlayerController controller)
     {
         if (sceneLoader != null && loadSettings != null)
         {
             if (CanSpeak())
             {
-                if (checkpoint)
-                {
-                    loadSettings.SetCheckpoint();
-
-                    PlayerController controller = GameObject.Find("Player").GetComponent<PlayerController>();
-
-                    if (controller != null)
-                    {
-                        Debug.Log(SceneManager.GetActiveScene());
-                        loadSettings.checkPointPotionCount = controller.GetPotions();
-                        loadSettings.checkPointPos = controller.transform.position;
-                        loadSettings.checkPointScene = SceneManager.GetActiveScene();
-                    }
-                }
-
-                loadSettings.dialogueFlowChart = dialogue;
-                loadSettings.loadSceneMultiple = sceneMode == LoadSceneMode.Additive;
-                sceneLoader.LoadSpecifiedScene(sceneString, sceneMode, dialogue);
-
                 if (completeObjectives.Length != 0)
                 {
                     foreach (var item in completeObjectives)
@@ -64,6 +46,20 @@ public class Dialogue : MonoBehaviour
                         item.CompleteGoal();
                     }
                 }
+
+                loadSettings.SetScene(SceneManager.GetActiveScene().name);
+
+                loadSettings.dialogueFlowChart = dialogue;
+                Debug.Log(loadSettings.dialogueFlowChart);
+                loadSettings.loadSceneMultiple = sceneMode == LoadSceneMode.Additive;
+                sceneLoader.LoadSpecifiedScene(sceneString, sceneMode, dialogue);
+
+                if (controller != null)
+                {
+                    controller.interactImage.SetActive(false);
+                }
+
+                Invoke("DestroyOnSpeak", 1.2f);
 
                 return true;
             }
@@ -78,23 +74,99 @@ public class Dialogue : MonoBehaviour
         }
     }
 
-    #region Enable/ Disable Dialogue
-
-    public Quest[] requireQuests;
-    public QuestObjective[] requireObjectives;
-    public bool requireAll = true;
-
-    public Quest[] disableQuests;
-    public QuestObjective[] disableObjectives;
+    public void DestroyOnSpeak()
+    {
+        if (destroyOnSpeak)
+        {
+            Destroy(this.gameObject);
+        }
+    }
 
     public bool CanSpeak()
     {
-        bool enableDialogue = false;
+        return CheckQuestsInProgress() && CheckQuestsCompleted();
+    }
+
+    #region Quest Progress Requirements
+
+    public Quest[] requireQuestsInProgress;
+    public QuestObjective[] requireObjectivesInProgress;
+    public bool requireAllInProgress = true;
+
+    public Quest[] disableQuestsInProgress;
+    public QuestObjective[] disableObjectivesInProgress;
+
+    public bool CheckQuestsInProgress()
+    {
+        bool enableNode = false;
 
         bool contains1 = false;
         bool containsAll = true;
 
-        foreach (var item in requireQuests)
+        foreach (var item in requireQuestsInProgress)
+        {
+            if (item.isActive)
+            {
+                contains1 = true;
+            }
+            else
+            {
+                containsAll = false;
+            }
+        }
+
+        foreach (var item in requireObjectivesInProgress)
+        {
+            if (item.canComplete)
+            {
+                contains1 = true;
+            }
+            else
+            {
+                containsAll = false;
+            }
+        }
+
+        enableNode = (containsAll) || (!requireAllCompleted && contains1);
+
+        foreach (var item in disableQuestsInProgress)
+        {
+            if (item.isActive)
+            {
+                enableNode = false;
+            }
+        }
+
+        foreach (var item in disableObjectivesInProgress)
+        {
+            if (item.canComplete)
+            {
+                enableNode = false;
+            }
+        }
+
+        return enableNode;
+    }
+
+    #endregion
+
+    #region Quest Completed Requirements
+
+    public Quest[] requireQuestsCompleted;
+    public QuestObjective[] requireObjectivesCompleted;
+    public bool requireAllCompleted = true;
+
+    public Quest[] disableQuestsCompleted;
+    public QuestObjective[] disableObjectivesCompleted;
+
+    public bool CheckQuestsCompleted()
+    {
+        bool enableNode = false;
+
+        bool contains1 = false;
+        bool containsAll = true;
+
+        foreach (var item in requireQuestsCompleted)
         {
             if (item.isComplete)
             {
@@ -106,7 +178,7 @@ public class Dialogue : MonoBehaviour
             }
         }
 
-        foreach (var item in requireObjectives)
+        foreach (var item in requireObjectivesCompleted)
         {
             if (item.completed)
             {
@@ -118,25 +190,25 @@ public class Dialogue : MonoBehaviour
             }
         }
 
-        enableDialogue = (containsAll) || (!requireAll && contains1);
+        enableNode = (containsAll) || (!requireAllCompleted && contains1);
 
-        foreach (var item in disableQuests)
+        foreach (var item in disableQuestsCompleted)
         {
             if (item.isComplete)
             {
-                enableDialogue = false;
+                enableNode = false;
             }
         }
 
-        foreach (var item in disableObjectives)
+        foreach (var item in disableObjectivesCompleted)
         {
             if (item.completed)
             {
-                enableDialogue = false;
+                enableNode = false;
             }
         }
 
-        return enableDialogue;
+        return enableNode;
     }
 
     #endregion

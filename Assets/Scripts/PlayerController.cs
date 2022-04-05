@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     bool interact = false;
     Dialogue dialogue;
 
+    public Animator modelAnimator;
+
     #endregion
 
     #region Stats
@@ -75,6 +77,14 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
+    private void Start()
+    {
+        if (canMove)
+        {
+            Setup();
+        }
+    }
+
     public void Setup()
     {
         //Load position
@@ -86,10 +96,14 @@ public class PlayerController : MonoBehaviour
 
         if (loadSettings.checkPoint)
         {
-            loadSettings.SaveCheckpoint(SceneManager.GetActiveScene());
+            loadSettings.SaveCheckpoint(SceneManager.GetActiveScene(), this);
         }
 
         loadSettings.died = false;
+
+        health = loadSettings.health;
+        maxHealth = loadSettings.maxHealth;
+        //arcana = loadSettings.arcana;
 
         StartCoroutine(IDelayMovement(2f));
     }
@@ -116,30 +130,55 @@ public class PlayerController : MonoBehaviour
                 // We are grounded, so recalculate
                 // move direction directly from axes
 
-                moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
-                moveDirection = transform.TransformDirection(moveDirection);
+                Vector3 inputDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
+
+                moveDirection = transform.TransformDirection(inputDirection);
                 moveDirection *= moveSpeed;
+
+                modelAnimator.SetBool("Moving", moveDirection != new Vector3(0, 0, 0));
+
+                Debug.Log(inputDirection);
+
+                //up 001, right 100, down 00-1, left -100
+                if (inputDirection.x > 0)
+                {
+                    modelAnimator.SetInteger("Direction", 1);
+                }
+                else if (inputDirection.x < 0)
+                {
+                    modelAnimator.SetInteger("Direction", 3);
+                }
+                else if (inputDirection.z > 0)
+                {
+                    modelAnimator.SetInteger("Direction", 0);
+                }
+                else if (inputDirection.z < 0)
+                {
+                    modelAnimator.SetInteger("Direction", 2);
+                }
+                
 
                 if (Input.GetButton("Jump"))
                 {
                     moveDirection.y = jumpSpeed;
                 }
 
-                if (Input.GetKey(KeyCode.LeftShift))
+                isRunning = Input.GetButton("Sprint");
+                modelAnimator.SetBool("Sprinting", isRunning);
+
+                if (IsRunning)
                 {
                     moveSpeed = baseSprintSpeed;
                 }
-                if (Input.GetKey(KeyCode.LeftControl))
-                {
-                    moveSpeed = baseSneakSpeed;
-                }
-                if (!Input.GetKey(KeyCode.LeftShift) & !Input.GetKey(KeyCode.LeftControl))
+                else
                 {
                     moveSpeed = baseMoveSpeed;
+
                 }
+
                 if (Input.GetButton("Interact") && interact && dialogue != null)
                 {
-                    canMove = !dialogue.LoadScene();
+                    canMove = !dialogue.LoadDialogueScene(this);
                 }
             }
 
@@ -150,14 +189,6 @@ public class PlayerController : MonoBehaviour
 
             // Move the controller
             characterController.Move(moveDirection * Time.deltaTime);
-            //rb.velocity += moveDirection;
-
-            //turnCamera = Input.GetAxis("Mouse X") * sensitivity;
-            //if (turnCamera != 0)
-            //{
-            //    //Code for action on mouse moving horizontally
-            //    transform.eulerAngles += new Vector3(0, turnCamera, 0);
-            //}
         }
 
         //Sets the values of the healthbars to their specific values
@@ -193,7 +224,17 @@ public class PlayerController : MonoBehaviour
             {
                 if (item.CanSpeak())
                 {
+                    //Debug.Log(item.dialogue.ToString() + " can speak");
                     dialogue = item;
+
+                    if (item.forceDialogue)
+                    {
+                        canMove = !dialogue.LoadDialogueScene(this);
+                    }
+                }
+                else
+                {
+                    //Debug.Log(item.dialogue.ToString() + " can't speak");
                 }
             }
 
@@ -206,6 +247,14 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        if (Location != null)
+        {
+            LocationTrigger(other);
+        }
+    }
+
+    void LocationTrigger(Collider other)
+    {
         #region Thoth location triggers
 
         if (other.gameObject.CompareTag("Thoth Mid City"))
@@ -239,7 +288,7 @@ public class PlayerController : MonoBehaviour
 
         #endregion
 
-        #region East Clearing location triggers
+        #region East Forest Clearing location triggers
 
         if (other.gameObject.CompareTag("EC Camp"))
         {
@@ -262,6 +311,13 @@ public class PlayerController : MonoBehaviour
             Location.text = "Cave Enterance".ToString();
         }
         #endregion
+
+        #region Eastern Cave location triggers
+        if (other.gameObject.CompareTag("Eastern Cave"))
+        {
+            Location.text = "Eastern Cave".ToString();
+        }
+        #endregion
     }
 
     public void SavePlayerPos()
@@ -279,7 +335,7 @@ public class PlayerController : MonoBehaviour
                 loadSettings.playerPosInClearing = transform.position;
                 loadSettings.playerRotInClearing = transform.rotation;
             }
-            else if (scene == E_Levels.Cave.ToString())
+            else if (scene == E_Levels.EasternCave.ToString())
             {
                 loadSettings.playerPosInCave = transform.position;
                 loadSettings.playerRotInCave = transform.rotation;
@@ -340,7 +396,52 @@ public class PlayerController : MonoBehaviour
 
         if (loadSettings != null)
         {
-            loadSettings.potionCount = potionCount;
+            loadSettings.healingPotionCount = potionCount;
+        }
+    }
+    private bool isGrounded;
+    public bool IsGrounded
+    {
+        get
+        {
+            return isGrounded;
+        }
+        set
+        {
+            isGrounded = value;
+            //modelAnimator.SetBool("Grounded", value);
+        }
+    }
+    /// <summary>
+    /// Gets or sets whether a character is moving in the current frame.
+    /// </summary>
+    private bool isMoving;
+    public bool IsMoving
+    {
+        get
+        {
+            return isMoving;
+        }
+        set
+        {
+            isMoving = value;
+            modelAnimator.SetBool("Moving", value);
+        }
+    }
+    /// <summary>
+    /// Gets or sets whether a character is running in the current frame.
+    /// </summary>
+    private bool isRunning;
+    public bool IsRunning
+    {
+        get
+        {
+            return isRunning;
+        }
+        set
+        {
+            isRunning = value;
+            //modelAnimator.SetBool("IsRunning", value);
         }
     }
 }

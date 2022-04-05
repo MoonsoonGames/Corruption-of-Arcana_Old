@@ -12,6 +12,7 @@ public class AbilityManager : MonoBehaviour
     public PlayerStats playerStats;
 
     public CombatDeckManager combatDeckManager;
+    public SpreadScript spreadScript;
     private CardParent readyAbility;
     private CardSetter readiedCard;
     private ActiveCard activeCard;
@@ -25,7 +26,10 @@ public class AbilityManager : MonoBehaviour
 
     public SliderVariation sliderVarScript;
 
-    EndTurn endTurn;
+    [HideInInspector]
+    public EndTurn endTurn;
+
+    BGMManager audioManager;
 
 
     #region Ability Values
@@ -62,6 +66,18 @@ public class AbilityManager : MonoBehaviour
         activeCard = GameObject.FindObjectOfType<ActiveCard>();
         targetter = GetComponentInChildren<Targetter>();
         endTurn = GameObject.FindObjectOfType<EndTurn>();
+        audioManager = GameObject.FindObjectOfType<BGMManager>();
+
+        spreadScript.Setup(combatDeckManager);
+    }
+
+    private void Update()
+    {
+        if (Input.GetButtonDown("CancelCard"))
+        {
+            //Debug.Log("Cancel card");
+            ResetAbility();
+        }
     }
 
     #endregion
@@ -83,27 +99,10 @@ public class AbilityManager : MonoBehaviour
         Vector2Int extradmg;
 
         GetReadyAbilityInfo(out multihit, out restore, out selfType, out dmg, out type, out cardNameSelf, out cardNameTarget, out hitsAll, out extradmg);
-        //Debug.Log(selfType);
-        if (selfType == "Healing & Arcana" || selfType == "Healing")
-        {
-            sliderVarScript.ApplyPreview(-restore);
-        }
-        if (selfType == "Healing & Arcana" || selfType == "Arcana")
-        {
-            //newSliderVarScript for mana preview
-        }
-    }
-
-    public void MouseLeft()
-    {
-        //Debug.Log("Button stop hovering");
-        sliderVarScript.StopPreview();
-        //stop preview for mana slider too
     }
 
     public void GetReadyAbilityInfo(out bool multihit, out Vector2Int restore, out string selfType, out Vector2Int dmg, out E_DamageTypes type, out string cardNameSelf, out string cardNameTarget, out bool hitsAll, out Vector2Int extradmg)
     {
-
         multihit = false;
         restore = new Vector2Int(0, 0);
         selfType = "none";
@@ -122,8 +121,6 @@ public class AbilityManager : MonoBehaviour
 
     public void CastAbility(GameObject target)
     {
-        endTurn.OpenMenu(false);
-
         if (playerTurn)
         {
             if (readyAbility != null)
@@ -134,17 +131,7 @@ public class AbilityManager : MonoBehaviour
 
                 if (canCast)
                 {
-                    if (cardName != "End Turn")
-                    {
-                        combatDeckManager.RemoveCard(readiedCard);
-                    }
-
-                    if (cardName != "End Turn")
-                    {
-                        combatDeckManager.RemoveCard(readiedCard);
-                    }
-
-                    readiedCard = null;
+                    DiscardCard();
                 }
             }
             else
@@ -154,12 +141,45 @@ public class AbilityManager : MonoBehaviour
                 EnemyInfo(target.GetComponent<Enemy>());
             }
         }
+
+        endTurn.OpenMenu(false);
+        combatManager.PotionBar(false);
+    }
+
+    public void DiscardCard()
+    {
+        combatDeckManager.RemoveCard(readiedCard);
+        combatManager.PotionBar(false);
+        ResetAbility();
+    }
+
+    public void CheckCombo(CardParent ability)
+    {
+        if (ability.countsCombo)
+        {
+            if (spreadScript.cardsUsed + 1 == 1)
+            {
+                if (ability.comboCard != null)
+                {
+                    spreadScript.drawCard = ability.comboCard;
+                    spreadScript.CardCast();
+                }
+            }
+            else
+            {
+                spreadScript.CardCast();
+            }
+        }
     }
 
     public void EnemyInfo(Enemy target)
     {
         if (target != null)
+        {
+            combatManager.PotionBar(false);
+
             combatManager.enemyManager.EnemyInfo(target);
+        }
         else
             combatManager.enemyManager.EnemyInfo(null);
     }
@@ -168,6 +188,7 @@ public class AbilityManager : MonoBehaviour
     {
         EnemyInfo(null);
         endTurn.OpenMenu(false);
+        combatManager.PotionBar(false);
         readyAbility = ability;
         readiedCard = card;
 
@@ -175,21 +196,21 @@ public class AbilityManager : MonoBehaviour
         {
             if (ability.selfInterpretationUnlocked && ability.targetInterpretationUnlocked)
             {
-                combatManager.TargetEnemies(true);
-                targetter.SetVisibility(true);
-                activeCard.ReadyCard(ability.cardName, "Two interpretations", ability.selfHeal, "Unknown", ability.selfCost, "Two interpretations active, UI issue", ability.selfCostType);
+                combatManager.TargetEnemies(true, ability);
+                targetter.SetVisibility(true, null);
+                activeCard.ReadyCard(ability.cardName, ability.comboCard != null ? ability.comboCard.cardName : "None", ability.selfHeal, "Unknown", ability.selfCost, "Two interpretations active, UI issue", ability.selfCostType);
             }
             else if (ability.selfInterpretationUnlocked)
             {
-                combatManager.TargetEnemies(false);
-                targetter.SetVisibility(true);
-                activeCard.ReadyCard(ability.cardName, ability.selfName, ability.RestoreValue(), ability.RestoreType(), ability.selfCost, ability.selfDescription, ability.selfCostType);
+                combatManager.TargetEnemies(false, ability);
+                targetter.SetVisibility(true, null);
+                activeCard.ReadyCard(ability.cardName, ability.comboCard != null ? ability.comboCard.cardName : "None", ability.RestoreValue(), ability.RestoreType(), ability.selfCost, ability.selfDescription, ability.selfCostType);
             }
             else if (ability.targetInterpretationUnlocked)
             {
-                combatManager.TargetEnemies(true);
-                targetter.SetVisibility(false);
-                activeCard.ReadyCard(ability.cardName, ability.targetName, ability.TotalDmgRange(), ability.damageType.ToString(), ability.targetCost, ability.targetDescription, ability.targetCostType);
+                combatManager.TargetEnemies(true, ability);
+                targetter.SetVisibility(false, null);
+                activeCard.ReadyCard(ability.cardName, ability.comboCard != null ? ability.comboCard.cardName : "None", ability.TotalDmgRange(), ability.damageType.ToString(), ability.targetCost, ability.targetDescription, ability.targetCostType);
             }
         }
     }
@@ -201,15 +222,15 @@ public class AbilityManager : MonoBehaviour
         if (activeCard != null)
             activeCard.CastCard();
 
-        combatManager.TargetEnemies(false);
-        targetter.SetVisibility(false);
+        combatManager.TargetEnemies(false, null);
+        targetter.SetVisibility(false, null);
     }
 
     #endregion
 
     #region Helper Functions
 
-    public void DelayDamage(Vector2 damageRange, E_DamageTypes damageType, float delay, Transform origin, GameObject target, GameObject caster, CharacterStats targetHealth, float executeThreshold, Vector2Int healOnKill, bool canBeCountered)
+    public void DelayDamage(Vector2 damageRange, E_DamageTypes damageType, float delay, Transform origin, GameObject target, GameObject caster, CharacterStats targetHealth, float executeThreshold, Vector2Int healOnKill, bool canBeCountered, Object hitFX, AudioClip castSound, AudioClip hitSound)
     {
         if (damageType == E_DamageTypes.Random)
         {
@@ -218,32 +239,32 @@ public class AbilityManager : MonoBehaviour
             switch (randDamage)
             {
                 case 1:
-                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Physical, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered));
+                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Physical, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered, hitFX, castSound, hitSound));
                     break;
                 case 2:
-                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Ember, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered));
+                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Ember, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered, hitFX, castSound, hitSound));
                     break;
                 case 3:
-                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Static, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered));
+                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Static, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered, hitFX, castSound, hitSound));
                     break;
                 case 4:
-                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Bleak, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered));
+                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Bleak, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered, hitFX, castSound, hitSound));
                     break;
                 case 5:
-                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Septic, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered));
+                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Septic, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered, hitFX, castSound, hitSound));
                     break;
                 default:
-                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Physical, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered));
+                    StartCoroutine(IDelayDamage(damageRange, E_DamageTypes.Physical, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered, hitFX, castSound, hitSound));
                     break;
             }
         }
         else
         {
-            StartCoroutine(IDelayDamage(damageRange, damageType, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered));
+            StartCoroutine(IDelayDamage(damageRange, damageType, delay, origin, target, caster, targetHealth, executeThreshold, healOnKill, canBeCountered, hitFX, castSound, hitSound));
         }
     }
 
-    private IEnumerator IDelayDamage(Vector2 damageRange, E_DamageTypes damageType, float delay, Transform origin, GameObject target, GameObject caster, CharacterStats targetHealth, float executeThreshold, Vector2Int healOnKill, bool canBeCountered)
+    private IEnumerator IDelayDamage(Vector2 damageRange, E_DamageTypes damageType, float delay, Transform origin, GameObject target, GameObject caster, CharacterStats targetHealth, float executeThreshold, Vector2Int healOnKill, bool canBeCountered, Object hitFX, AudioClip castSound, AudioClip hitSound)
     {
         Vector3 originRef = new Vector3(999999, 999999, 999999);
 
@@ -252,12 +273,17 @@ public class AbilityManager : MonoBehaviour
             originRef = origin.position;
         }
 
+        SoundEffect(castSound, 1f);
+
         yield return new WaitForSeconds(delay);
+
+        SoundEffect(hitSound, 1f);
 
         if (targetHealth != null)
         {
             if (originRef != new Vector3(999999, 999999, 999999))
             {
+                originRef.z = -978.8f;
                 SpawnAttackEffect(originRef, target, damageType);
             }
 
@@ -265,28 +291,25 @@ public class AbilityManager : MonoBehaviour
 
             int damageTaken;
 
-            targetHealth.ChangeHealth(damage, true, damageType, out damageTaken, caster, canBeCountered);
+            targetHealth.ChangeHealth(damage, true, damageType, out damageTaken, caster, canBeCountered,hitFX);
 
             //execute enemy
             if (targetHealth.HealthPercentage() < executeThreshold)
             {
                 //execute anim and delay
-                targetHealth.ChangeHealth(999999999, true, damageType, out int nullDamageTaken, caster, canBeCountered);
+                targetHealth.ChangeHealth(999999999, true, damageType, out int nullDamageTaken, caster, canBeCountered, hitFX);
                 //Debug.Log("Executed");
             }
 
             if (targetHealth == null || targetHealth.GetHealth() == 0)
             {
                 //killed enemy
-                playerStats.ChangeHealth(Random.Range(healOnKill.x, healOnKill.y), false, E_DamageTypes.Physical, out int damageTakenNull, caster, canBeCountered);
+                playerStats.ChangeHealth(Random.Range(healOnKill.x, healOnKill.y), false, E_DamageTypes.Physical, out int damageTakenNull, caster, canBeCountered, hitFX);
                 //Debug.Log("Heal on Kill");
             }
 
             multihitTally += damageTaken;
             multihitCount++;
-
-            combatManager.Dmg.SetActive(true);
-            combatManager.DmgValue.text = multihitTally.ToString();
             
             //Debug.Log(multihitCount + " hits for " + multihitTally + " points of damage (not final damage as enemy mey be vulnerable or resistant to the damage)");
 
@@ -383,6 +406,14 @@ public class AbilityManager : MonoBehaviour
         }
     }
 
+    public void SoundEffect(AudioClip soundEffect, float volume)
+    {
+        if (audioManager != null && soundEffect != null)
+        {
+            audioManager.PlaySoundEffect(soundEffect, volume * 4);
+        }
+    }
+
     public void EndTurn(float delay)
     {
         StartCoroutine(IEndTurn(delay));
@@ -418,8 +449,6 @@ public class AbilityManager : MonoBehaviour
     private IEnumerator IRemoveDmgPopup(float delay)
     {
         yield return new WaitForSeconds(delay);
-
-        combatManager.Dmg.SetActive(false);
     }
 
     public void RemoveHpPopup(float delay)
@@ -430,8 +459,6 @@ public class AbilityManager : MonoBehaviour
     private IEnumerator IRemoveHpPopup(float delay)
     {
         yield return new WaitForSeconds(delay);
-
-        combatManager.Healing.SetActive(false);
     }
 
     public void RemoveApPopup(float delay)
@@ -442,8 +469,6 @@ public class AbilityManager : MonoBehaviour
     private IEnumerator IRemoveApPopup(float delay)
     {
         yield return new WaitForSeconds(delay);
-
-        combatManager.Ap.SetActive(false);
     }
 
     #endregion

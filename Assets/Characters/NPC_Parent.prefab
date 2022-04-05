@@ -25,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1701295043681805665}
-  m_LocalRotation: {x: -0, y: -0.024901167, z: -0, w: 0.99968994}
+  m_LocalRotation: {x: -0, y: 0.92387956, z: -0, w: -0.38268343}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.34489}
   m_Children: []
@@ -264,7 +264,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7201361624075441643}
-  m_LocalRotation: {x: -0, y: -0.024901167, z: -0, w: 0.99968994}
+  m_LocalRotation: {x: -0, y: 0.92387956, z: -0, w: -0.38268343}
   m_LocalPosition: {x: 0, y: 2.84, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children: []
@@ -546,15 +546,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: 3
-  checkpoint: 0
+  forceDialogue: 0
+  destroyOnSpeak: 0
   dialogue: {fileID: 0}
   sceneMode: 1
   completeObjectives: []
-  requireQuests: []
-  requireObjectives: []
-  requireAll: 0
-  disableQuests: []
-  disableObjectives: []
+  requireQuestsInProgress: []
+  requireObjectivesInProgress: []
+  requireAllInProgress: 1
+  disableQuestsInProgress: []
+  disableObjectivesInProgress: []
+  requireQuestsCompleted: []
+  requireObjectivesCompleted: []
+  requireAllCompleted: 1
+  disableQuestsCompleted: []
+  disableObjectivesCompleted: []
 --- !u!114 &4773528585675423120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -576,6 +582,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9216620810431011224}
     m_Modifications:
+    - target: {fileID: 338253630085102969, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: m_Name
+      value: Quest Marker
+      objectReference: {fileID: 0}
+    - target: {fileID: 1890534054537535938, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 21300000, guid: a854d69751eb05447bb2271ad032d47f,
+        type: 3}
     - target: {fileID: 3471886681103204412, guid: feceddc3c64c65b499b909203d7d5124,
         type: 3}
       propertyPath: m_RootOrder
@@ -611,6 +628,27 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
+    - target: {fileID: 5423267213786530544, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: m_Name
+      value: Accept Marker
+      objectReference: {fileID: 0}
+    - target: {fileID: 5726166773934965278, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: requireAllCompleted
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5726166773934965278, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: requireAllInProgress
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8498647028213206397, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: icon
+      value: 
+      objectReference: {fileID: 21300000, guid: cabface0a79d8dd40a5f7a0cbed41cc5,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: feceddc3c64c65b499b909203d7d5124, type: 3}
 --- !u!4 &8744267575651238340 stripped

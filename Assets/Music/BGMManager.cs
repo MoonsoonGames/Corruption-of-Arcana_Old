@@ -66,4 +66,9 @@ public class BGMManager : MonoBehaviour
 
         audioSource.volume = currentVolume;
     }
+
+    public void PlaySoundEffect(AudioClip soundEffect, float volume)
+    {
+        audioSource.PlayOneShot(soundEffect, volume);
+    }
 }

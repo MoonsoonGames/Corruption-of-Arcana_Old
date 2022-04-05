@@ -13,9 +13,15 @@ MonoBehaviour:
   m_Name: Shock
   m_EditorClassIdentifier: 
   effectName: Shock
-  effectDescription: Engulfed in lightning, the target takes Static damage every
+  effectDescription: Engulfed in lightning, the target takes 5-8 Static damage every
     turn
-  effectIcon: {fileID: 0}
+  applySounds:
+  - {fileID: 8300000, guid: 54f29612fc80a464cab0b358158937aa, type: 3}
+  turnSounds:
+  - {fileID: 8300000, guid: 54f29612fc80a464cab0b358158937aa, type: 3}
+  endSounds: []
+  effectIcon: {fileID: 1545184125862773577, guid: d3fbbd00df91514448343072bb05074b,
+    type: 3}
   alsoApply: []
   alsoApplyOthers: []
   alsoApplyOthersOnHit: []
@@ -38,6 +44,14 @@ MonoBehaviour:
   applyArcana: {x: 0, y: 0}
   turnHealing: {x: 0, y: 0}
   turnArcana: {x: 0, y: 0}
+  applyHealingOther: {x: 0, y: 0}
+  applyArcanaOther: {x: 0, y: 0}
+  turnHealingOther: {x: 0, y: 0}
+  turnArcanaOther: {x: 0, y: 0}
+  applyHealingOpponents: {x: 0, y: 0}
+  applyArcanaOpponents: {x: 0, y: 0}
+  turnHealingOpponents: {x: 0, y: 0}
+  turnArcanaOpponents: {x: 0, y: 0}
   adjustPhysMultiplier: 0
   adjustEmberMultiplier: 0
   adjustStaticMultiplier: 0.15
@@ -51,3 +65,16 @@ MonoBehaviour:
   skipTurn: 0
   sleepTurn: 0
   silence: 0
+  slow: 0
+  charmOther: 0
+  revealEntryOther: 0
+  skipTurnOther: 0
+  sleepTurnOther: 0
+  silenceOther: 0
+  slowOther: 0
+  charmOpponents: 0
+  revealEntryOpponents: 0
+  skipTurnOpponents: 0
+  sleepTurnOpponents: 0
+  silenceOpponents: 0
+  slowOpponents: 0

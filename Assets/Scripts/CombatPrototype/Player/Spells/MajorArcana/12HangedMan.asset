@@ -14,12 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: The Hanged Man
   cardNumber: 14
-  flavourDescription: Representing the dilution of wine with water
-  cardImage: {fileID: 0}
+  flavourDescription: The solemn expression on his face suggests that he is there
+    by his own accord
+  cardImage: {fileID: 6220208007999549204, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
+    type: 3}
   enemySpell: 0
+  countsCombo: 1
+  comboCard: {fileID: 11400000, guid: c3808dad7ce69f24683bf016f30ffa29, type: 2}
   selfInterpretationUnlocked: 0
   selfName: 
   selfDescription: 
+  selfCastSounds: []
   selfEndTurn: 0
   selfUsesAction: 1
   selfCost: 0
@@ -31,13 +36,19 @@ MonoBehaviour:
   selfEndTurnDelay: 0.2
   selfStatus: []
   selfStatusDuration: 
+  selfDrawCards: 0
+  selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 1
   targetName: Trickery
   targetDescription: Cause your opponent to fumble, having a chance to skip their
     next 2 turns
+  HitFX: {fileID: 6727453174112786923, guid: e2dc8a0ecf90a864da6a8006e686425d, type: 3}
+  targetCastSounds:
+  - {fileID: 8300000, guid: 0bc8ef1efa6f0264095b18e9a39d87de, type: 3}
+  targetHitSounds: []
   targetEndTurn: 0
   targetUsesAction: 1
-  targetCost: 30
+  targetCost: 15
   targetCostType: AP
   damageType: 0
   targetCanBeCountered: 0
@@ -59,6 +70,9 @@ MonoBehaviour:
   targetStatusDuration: 02000000
   targetStatusChance:
   - 0.7
+  targetDrawCards: 0
+  targetDrawSpecificCard: {fileID: 11400000, guid: af89ff48f79a6dd4e88996f7325d33f6,
+    type: 2}
   spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0

@@ -16,15 +16,20 @@ MonoBehaviour:
   cardNumber: 4
   flavourDescription: The Emperor sits atop a stark, barren mountain, a sign of sterility
     of regulation and unyielding power
-  cardImage: {fileID: 0}
+  cardImage: {fileID: -9006234362928969064, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
+    type: 3}
   enemySpell: 0
+  countsCombo: 1
+  comboCard: {fileID: 11400000, guid: 5c2d36e40ee277c4fbc423a340405e20, type: 2}
   selfInterpretationUnlocked: 1
   selfName: Iron Guard
-  selfDescription: Become an archon of stability and protection, increasing your
-    defence and reflecting damage to your opponents
+  selfDescription: Sets Iron guard, increasing your physical defence and reflect
+    damage to your opponents
+  selfCastSounds:
+  - {fileID: 8300000, guid: b948b74b0d50f3c4a8e6af19b0f1c556, type: 3}
   selfEndTurn: 0
   selfUsesAction: 1
-  selfCost: 35
+  selfCost: 10
   selfPotionCost: 0
   selfCostType: AP
   selfHeal: {x: 0, y: 0}
@@ -34,9 +39,14 @@ MonoBehaviour:
   selfStatus:
   - {fileID: 11400000, guid: a28af90e3b13b90469f29ca13d7edc6c, type: 2}
   selfStatusDuration: 02000000
+  selfDrawCards: 0
+  selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 0
   targetName: 
   targetDescription: 
+  HitFX: {fileID: 0}
+  targetCastSounds: []
+  targetHitSounds: []
   targetEndTurn: 0
   targetUsesAction: 1
   targetCost: 0
@@ -59,6 +69,8 @@ MonoBehaviour:
   targetStatus: []
   targetStatusDuration: 
   targetStatusChance: []
+  targetDrawCards: 0
+  targetDrawSpecificCard: {fileID: 0}
   spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0

@@ -15,11 +15,15 @@ MonoBehaviour:
   cardName: The World
   cardNumber: 21
   flavourDescription: Wherever it comes up, this card represents what is truly desired
-  cardImage: {fileID: 0}
+  cardImage: {fileID: -2613411450045547498, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
+    type: 3}
   enemySpell: 0
+  countsCombo: 1
+  comboCard: {fileID: 11400000, guid: 9289c630e491c444384c320ca6bae642, type: 2}
   selfInterpretationUnlocked: 0
   selfName: 
   selfDescription: 
+  selfCastSounds: []
   selfEndTurn: 0
   selfUsesAction: 1
   selfCost: 0
@@ -31,17 +35,21 @@ MonoBehaviour:
   selfEndTurnDelay: 0.2
   selfStatus: []
   selfStatusDuration: 
+  selfDrawCards: 0
+  selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 1
   targetName: Slow
-  targetDescription: 'You cause a wave of lethargy to wash over your target, dealing
-    a small amount of Bleak damage
-
-
-    Also applies slow to the target for 3 turns,
-    which has a chance on each of the turns to prevent them from taking their action'
+  targetDescription: You cause a wave of lethargy to wash over your target, dealing
+    a small amount of Bleak damage and applies slow to the target for 3 turns
+  HitFX: {fileID: 6727453174112786923, guid: 556929575e076a24791a4c2a8e90fac1, type: 3}
+  targetCastSounds:
+  - {fileID: 8300000, guid: 9f8e7a4e4ef0593469698c552dcdd47d, type: 3}
+  targetHitSounds:
+  - {fileID: 8300000, guid: 94f805525b541a144911c86fe8e245cc, type: 3}
+  - {fileID: 8300000, guid: dced2fa0e14868c4fab11e9cdae5b6e9, type: 3}
   targetEndTurn: 0
   targetUsesAction: 1
-  targetCost: 30
+  targetCost: 15
   targetCostType: AP
   damageType: 3
   targetCanBeCountered: 1
@@ -63,6 +71,9 @@ MonoBehaviour:
   targetStatusDuration: 03000000
   targetStatusChance:
   - 1
+  targetDrawCards: 0
+  targetDrawSpecificCard: {fileID: 11400000, guid: 4cbc96349b965e648b06c674bd00522a,
+    type: 2}
   spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0

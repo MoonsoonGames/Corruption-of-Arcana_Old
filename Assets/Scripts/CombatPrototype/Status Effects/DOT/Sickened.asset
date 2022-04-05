@@ -13,9 +13,17 @@ MonoBehaviour:
   m_Name: Sickened
   m_EditorClassIdentifier: 
   effectName: Sickened
-  effectDescription: With a minor blood-born plague, the target takes Septic damage
-    every turn and deals reduced damage
-  effectIcon: {fileID: 0}
+  effectDescription: With a minor blood-born plague, the target takes 1-3 Septic
+    damage every turn
+  applySounds:
+  - {fileID: 8300000, guid: aef5d34da85bc15448e75c3b250e2fd4, type: 3}
+  - {fileID: 8300000, guid: add3024e19106c740a56a4b9c5d2336e, type: 3}
+  turnSounds:
+  - {fileID: 8300000, guid: aef5d34da85bc15448e75c3b250e2fd4, type: 3}
+  - {fileID: 8300000, guid: add3024e19106c740a56a4b9c5d2336e, type: 3}
+  endSounds: []
+  effectIcon: {fileID: 4815525640069369876, guid: df20acf3f76d8c744a467922e153cc83,
+    type: 3}
   alsoApply: []
   alsoApplyOthers: []
   alsoApplyOthersOnHit: []

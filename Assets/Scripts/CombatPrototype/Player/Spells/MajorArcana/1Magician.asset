@@ -15,29 +15,40 @@ MonoBehaviour:
   cardName: The Magician
   cardNumber: 1
   flavourDescription: As Above, so below
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 4936984840038467387, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
+    type: 3}
   enemySpell: 0
-  selfInterpretationUnlocked: 0
+  countsCombo: 1
+  comboCard: {fileID: 11400000, guid: 199b214ab52c10246a7ae3bdd0d86440, type: 2}
+  selfInterpretationUnlocked: 1
   selfName: Adept Arcana
-  selfDescription: Drink from the occult wellspring of magic to restore your potential
+  selfDescription: Drink from the occult wellspring of magic to restore your arcana
+    and draw 1 additional card
+  selfCastSounds:
+  - {fileID: 8300000, guid: 9d0d25bbe88ed754d9af0996c39f6396, type: 3}
   selfEndTurn: 0
   selfUsesAction: 1
   selfCost: 0
   selfPotionCost: 0
   selfCostType: 
   selfHeal: {x: 0, y: 0}
-  selfAP: {x: 60, y: 80}
+  selfAP: {x: 20, y: 20}
   restoreType: 8
   selfEndTurnDelay: 0.2
   selfStatus: []
   selfStatusDuration: 
-  targetInterpretationUnlocked: 1
+  selfDrawCards: 1
+  selfDrawSpecificCard: {fileID: 0}
+  targetInterpretationUnlocked: 0
   targetName: Chain Lightning
   targetDescription: Unleash your arcana as a storm of lightning that arcs between
     multiple enemies
+  HitFX: {fileID: 0}
+  targetCastSounds: []
+  targetHitSounds: []
   targetEndTurn: 0
   targetUsesAction: 1
-  targetCost: 55
+  targetCost: 25
   targetCostType: AP
   damageType: 2
   targetCanBeCountered: 1
@@ -57,6 +68,8 @@ MonoBehaviour:
   targetStatus: []
   targetStatusDuration: 
   targetStatusChance: []
+  targetDrawCards: 0
+  targetDrawSpecificCard: {fileID: 0}
   spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0

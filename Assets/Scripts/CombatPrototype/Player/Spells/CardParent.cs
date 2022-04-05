@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "NewStatusEffect", menuName = "Combat/Spells", order = 0)]
+[CreateAssetMenu(fileName = "NewSpell", menuName = "Combat/Spells", order = 0)]
 public class CardParent : ScriptableObject
 {
     #region General
@@ -15,6 +16,9 @@ public class CardParent : ScriptableObject
     public Sprite cardImage;
 
     public bool enemySpell;
+
+    public bool countsCombo = true;
+    public CardParent comboCard;
 
     public void CastSpell(GameObject target, GameObject caster, AbilityManager abilityManager, out bool canCast)
     {
@@ -30,7 +34,7 @@ public class CardParent : ScriptableObject
         }
         else
         {
-            Debug.Log("Too many spells cast");
+            Debug.Log("Issue with targetting");
         }
         
     }
@@ -45,6 +49,7 @@ public class CardParent : ScriptableObject
     public string selfName;
     [TextArea(3, 10)]
     public string selfDescription;
+    public AudioClip[] selfCastSounds;
     public bool selfEndTurn = false;
     public bool selfUsesAction = true;
     public int selfCost;
@@ -59,28 +64,30 @@ public class CardParent : ScriptableObject
     //public GameObject selfPrepareEffect;
     //public GameObject selfCastEffect;
 
+    public int selfDrawCards;
+    public CardParent selfDrawSpecificCard;
+
     public void OnSelfCast(GameObject target, GameObject caster, AbilityManager abilityManager, out bool canCast)
     {
         canCast = false;
         CharacterStats stats = target.GetComponent<CharacterStats>();
         if (stats != null && abilityManager != null)
         {
-            abilityManager.MouseLeft();
-
             if (abilityManager.playerStats.CheckMana(selfCost) && abilityManager.playerStats.CheckPotions(selfPotionCost))
             {
                 canCast = true;
+
+                abilityManager.CheckCombo(this);
 
                 int heal = (int)Random.Range(selfHeal.x, selfHeal.y);
                 int mana = (int)Random.Range(selfAP.x, selfAP.y);
 
                 //Debug.Log("Cast" + selfName + "on " + target.name);
 
-                stats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int damageTaken, stats.gameObject, false);
+                stats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int damageTaken, stats.gameObject, false, null);
+                abilityManager.SoundEffect(GetSoundEffect(selfCastSounds), 1f);
                 if (heal > 0)
                 {
-                    abilityManager.combatManager.Healing.SetActive(true);
-                    abilityManager.combatManager.HealingValue.text = heal.ToString();
                     abilityManager.RemoveHpPopup(2f);
                 }
 
@@ -95,8 +102,6 @@ public class CardParent : ScriptableObject
                 else
                 {
                     stats.ChangeMana(selfCost - mana, true);
-                    abilityManager.combatManager.Ap.SetActive(true);
-                    abilityManager.combatManager.ApValue.text = selfCost.ToString();
                     abilityManager.RemoveApPopup(2f);
 
                     playerStats.ChangePotions(selfPotionCost, true);
@@ -107,12 +112,8 @@ public class CardParent : ScriptableObject
                     {
                         abilityManager.EndTurn(selfEndTurnDelay);
                     }
-                    else if (selfUsesAction &! enemySpell)
-                    {
-                        CombatManager combatManager = GameObject.FindObjectOfType<CombatManager>();
 
-                        combatManager.UseAction();
-                    }
+                    DrawCards(abilityManager, selfDrawCards, selfDrawSpecificCard);
                 }
             }
             else
@@ -138,6 +139,10 @@ public class CardParent : ScriptableObject
     public string targetName;
     [TextArea(3, 10)]
     public string targetDescription;
+    public Object HitFX;
+    public AudioClip[] targetCastSounds;
+    public AudioClip[] targetHitSounds;
+
     public bool targetEndTurn = false;
     public bool targetUsesAction = true;
     public int targetCost;
@@ -165,6 +170,9 @@ public class CardParent : ScriptableObject
     //public GameObject targetPrepareEffect;
     //public GameObject targetCastEffect;
 
+    public int targetDrawCards;
+    public CardParent targetDrawSpecificCard;
+
     public E_CombatEffectSpawn spawnPosition;
 
     public void OnTargetCast(GameObject target, GameObject caster, AbilityManager abilityManager, out bool canCast)
@@ -180,7 +188,7 @@ public class CardParent : ScriptableObject
             {
                 canCast = true;
 
-                abilityManager.MouseLeft();
+                abilityManager.CheckCombo(this);
 
                 if (targetChain)
                 {
@@ -194,18 +202,15 @@ public class CardParent : ScriptableObject
 
                         if (item.gameObject == target)
                         {
-                            abilityManager.DelayDamage(targetDmg, damageType, 0f, spawnPos, target, caster, itemHealth, executeThreshold, healOnKill, targetCanBeCountered);
+                            abilityManager.DelayDamage(targetDmg, damageType, 0f, spawnPos, target, caster, itemHealth, executeThreshold, healOnKill, targetCanBeCountered, HitFX, GetSoundEffect(targetCastSounds), GetSoundEffect(targetHitSounds));
                             TargetApplyStatus(itemHealth, caster);
                         }
                         else
                         {
-                            abilityManager.DelayDamage(extraDmg, damageType, 0.25f, target.transform, item.gameObject, caster, itemHealth, executeThreshold, healOnKill, targetCanBeCountered);
+                            abilityManager.DelayDamage(extraDmg, damageType, 0.25f, target.transform, item.gameObject, caster, itemHealth, executeThreshold, healOnKill, targetCanBeCountered, HitFX, GetSoundEffect(targetCastSounds), GetSoundEffect(targetHitSounds));
                             TargetApplyStatus(itemHealth, caster);
                         }
                     }
-
-                    abilityManager.combatManager.Dmg.SetActive(true);
-                    abilityManager.combatManager.DmgValue.text = abilityManager.multihitTally.ToString();
 
                     abilityManager.multihitTally = 0;
 
@@ -216,25 +221,69 @@ public class CardParent : ScriptableObject
                     string message = "Cast " + targetName + " on ";
                     abilityManager.multihitMax = abilityManager.combatManager.enemyManager.enemies.Count;
 
-                    foreach (var item in abilityManager.combatManager.enemyManager.enemies)
+                    if (hits > 1)
                     {
-                        CharacterStats itemHealth = item.gameObject.GetComponent<CharacterStats>();
-                        message += item.gameObject.name + ", ";
+                        for (int i = 1; i < hits; i++)
+                        {
+                            float hitTime = i * hitInterval;
 
-                        if (item.gameObject == target)
-                        {
-                            abilityManager.DelayDamage(targetDmg, damageType, 0f, spawnPos, item.gameObject, caster, itemHealth, executeThreshold, healOnKill, targetCanBeCountered);
-                            TargetApplyStatus(itemHealth, caster);
+                            foreach (var item in abilityManager.combatManager.enemyManager.enemies)
+                            {
+                                CharacterStats itemHealth = item.gameObject.GetComponent<CharacterStats>();
+                                message += item.gameObject.name + ", ";
+
+                                if (item.gameObject == target)
+                                {
+                                    abilityManager.DelayDamage(targetDmg, damageType, hitTime, spawnPos, item.gameObject, caster, itemHealth, executeThreshold, healOnKill, targetCanBeCountered, HitFX, GetSoundEffect(targetCastSounds), GetSoundEffect(targetHitSounds));
+                                    TargetApplyStatus(itemHealth, caster);
+                                }
+                                else
+                                {
+                                    abilityManager.DelayDamage(extraDmg, damageType, hitTime + 0.1f, spawnPos, item.gameObject, caster, itemHealth, executeThreshold, healOnKill, targetCanBeCountered, HitFX, GetSoundEffect(targetCastSounds), GetSoundEffect(targetHitSounds));
+                                    TargetApplyStatus(itemHealth, caster);
+                                }
+                            }
                         }
-                        else
+
+                        Vector2 dmgVectorFinal = targetFinalDmg;
+                        float hitTimeFinal = (hits * hitInterval) + finalHitInterval;
+
+                        foreach (var item in abilityManager.combatManager.enemyManager.enemies)
                         {
-                            abilityManager.DelayDamage(extraDmg, damageType, 0.1f, spawnPos, item.gameObject, caster, itemHealth, executeThreshold, healOnKill, targetCanBeCountered);
-                            TargetApplyStatus(itemHealth, caster);
+                            CharacterStats itemHealth = item.gameObject.GetComponent<CharacterStats>();
+                            message += item.gameObject.name + ", ";
+
+                            if (item.gameObject == target)
+                            {
+                                abilityManager.DelayDamage(targetDmg, damageType, hitTimeFinal, spawnPos, item.gameObject, caster, itemHealth, executeThreshold, healOnKill, targetCanBeCountered, HitFX, GetSoundEffect(targetCastSounds), GetSoundEffect(targetHitSounds));
+                                TargetApplyStatus(itemHealth, caster);
+                            }
+                            else
+                            {
+                                abilityManager.DelayDamage(extraDmg, damageType, hitTimeFinal + 0.1f, spawnPos, item.gameObject, caster, itemHealth, executeThreshold, healOnKill, targetCanBeCountered, HitFX, GetSoundEffect(targetCastSounds), GetSoundEffect(targetHitSounds));
+                                TargetApplyStatus(itemHealth, caster);
+                            }
                         }
                     }
+                    else
+                    {
+                        foreach (var item in abilityManager.combatManager.enemyManager.enemies)
+                        {
+                            CharacterStats itemHealth = item.gameObject.GetComponent<CharacterStats>();
+                            message += item.gameObject.name + ", ";
 
-                    abilityManager.combatManager.Dmg.SetActive(true);
-                    abilityManager.combatManager.DmgValue.text = abilityManager.multihitTally.ToString();
+                            if (item.gameObject == target)
+                            {
+                                abilityManager.DelayDamage(targetDmg, damageType, 0f, spawnPos, item.gameObject, caster, itemHealth, executeThreshold, healOnKill, targetCanBeCountered, HitFX, GetSoundEffect(targetCastSounds), GetSoundEffect(targetHitSounds));
+                                TargetApplyStatus(itemHealth, caster);
+                            }
+                            else
+                            {
+                                abilityManager.DelayDamage(extraDmg, damageType, 0.1f, spawnPos, item.gameObject, caster, itemHealth, executeThreshold, healOnKill, targetCanBeCountered, HitFX, GetSoundEffect(targetCastSounds), GetSoundEffect(targetHitSounds));
+                                TargetApplyStatus(itemHealth, caster);
+                            }
+                        }
+                    }
 
                     abilityManager.multihitTally = 0;
 
@@ -243,7 +292,6 @@ public class CardParent : ScriptableObject
                 else if (randomTargets)
                 {
                     abilityManager.multihitMax = hits;
-                    abilityManager.combatManager.Dmg.SetActive(true);
 
                     if (hits > 1)
                     {
@@ -258,7 +306,9 @@ public class CardParent : ScriptableObject
                             Vector2 dmgVector = targetDmg;
                             float hitTime = i * hitInterval;
 
-                            abilityManager.DelayDamage(dmgVector, damageType, hitTime, spawnPos, enemyStatsArray[randTarget].gameObject, caster, enemyStatsArray[randTarget], executeThreshold, healOnKill, targetCanBeCountered);
+                            GameObject hitTarget = enemyStatsArray[randTarget].gameObject;
+
+                            abilityManager.DelayDamage(dmgVector, damageType, hitTime, spawnPos, hitTarget, caster, enemyStatsArray[randTarget], executeThreshold, healOnKill, targetCanBeCountered, HitFX, GetSoundEffect(targetCastSounds), GetSoundEffect(targetHitSounds));
                             TargetApplyStatus(enemyStatsArray[randTarget], caster);
 
                             int nextRandTarget = Random.Range(0, enemyStatsArray.Length);
@@ -277,21 +327,20 @@ public class CardParent : ScriptableObject
                         Vector2 dmgVectorFinal = targetFinalDmg;
                         float hitTimeFinal = (hits * hitInterval) + finalHitInterval;
 
-                        abilityManager.DelayDamage(dmgVectorFinal, damageType, hitTimeFinal, spawnPos, target, caster, stats, executeThreshold, healOnKill, targetCanBeCountered);
+                        abilityManager.DelayDamage(dmgVectorFinal, damageType, hitTimeFinal, spawnPos, target, caster, stats, executeThreshold, healOnKill, targetCanBeCountered, HitFX, GetSoundEffect(targetCastSounds), GetSoundEffect(targetHitSounds));
                         TargetApplyStatus(stats, caster);
                     }
                     else
                     {
                         Vector2 dmgVector = targetDmg;
 
-                        abilityManager.DelayDamage(dmgVector, damageType, 0f, spawnPos, target, caster, stats, executeThreshold, healOnKill, targetCanBeCountered);
+                        abilityManager.DelayDamage(dmgVector, damageType, 0f, spawnPos, target, caster, stats, executeThreshold, healOnKill, targetCanBeCountered, HitFX, GetSoundEffect(targetCastSounds), GetSoundEffect(targetHitSounds));
                         TargetApplyStatus(stats, caster);
                     }
                 } //random targets
                 else
                 {
                     abilityManager.multihitMax = hits;
-                    abilityManager.combatManager.Dmg.SetActive(true);
 
                     if (hits > 1)
                     {
@@ -300,21 +349,21 @@ public class CardParent : ScriptableObject
                             Vector2 dmgVector = targetDmg;
                             float hitTime = i * hitInterval;
 
-                            abilityManager.DelayDamage(dmgVector, damageType, hitTime, spawnPos, target, caster, stats, executeThreshold, healOnKill, targetCanBeCountered);
+                            abilityManager.DelayDamage(dmgVector, damageType, hitTime, spawnPos, target, caster, stats, executeThreshold, healOnKill, targetCanBeCountered, HitFX, GetSoundEffect(targetCastSounds), GetSoundEffect(targetHitSounds));
                             TargetApplyStatus(stats, caster);
                         }
 
                         Vector2 dmgVectorFinal = targetFinalDmg;
                         float hitTimeFinal = (hits * hitInterval) + finalHitInterval;
 
-                        abilityManager.DelayDamage(dmgVectorFinal, damageType, hitTimeFinal, spawnPos, target, caster, stats, executeThreshold, healOnKill, targetCanBeCountered);
+                        abilityManager.DelayDamage(dmgVectorFinal, damageType, hitTimeFinal, spawnPos, target, caster, stats, executeThreshold, healOnKill, targetCanBeCountered, HitFX, GetSoundEffect(targetCastSounds), GetSoundEffect(targetHitSounds));
                         TargetApplyStatus(stats, caster);
                     }
                     else
                     {
                         Vector2 dmgVector = targetDmg;
 
-                        abilityManager.DelayDamage(dmgVector, damageType, 0f, spawnPos, target, caster, stats, executeThreshold, healOnKill, targetCanBeCountered);
+                        abilityManager.DelayDamage(dmgVector, damageType, 0f, spawnPos, target, caster, stats, executeThreshold, healOnKill, targetCanBeCountered, HitFX, GetSoundEffect(targetCastSounds), GetSoundEffect(targetHitSounds));
                         TargetApplyStatus(stats, caster);
                     }
                 } //single target attack
@@ -322,8 +371,6 @@ public class CardParent : ScriptableObject
                 if (!enemySpell)
                 {
                     abilityManager.playerStats.ChangeMana(cost, true);
-                    abilityManager.combatManager.Ap.SetActive(true);
-                    abilityManager.combatManager.ApValue.text = cost.ToString();
 
                     abilityManager.ResetAbility();
 
@@ -338,15 +385,10 @@ public class CardParent : ScriptableObject
                 if (casterStats != null)
                 {
                     int heal = Random.Range(lifeLeach.x, lifeLeach.y);
-                    casterStats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int healNull, caster, false);
+                    casterStats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int healNull, caster, false, null);
                 }
 
-                if (targetUsesAction & !enemySpell)
-                {
-                    CombatManager combatManager = GameObject.FindObjectOfType<CombatManager>();
-
-                    combatManager.UseAction();
-                }
+                DrawCards(abilityManager, targetDrawCards, targetDrawSpecificCard);
             }
             else
             {
@@ -405,14 +447,29 @@ public class CardParent : ScriptableObject
 
     #region Helper Functions
 
+    AudioClip GetSoundEffect(AudioClip[] soundArray)
+    {
+        if (soundArray.Length > 1)
+            return soundArray[Random.Range(0, soundArray.Length - 1)];
+        else if (soundArray.Length == 1)
+            return soundArray[0];
+        else
+            return null;
+    }
+
+    void DrawCards(AbilityManager abilityManager, int count, CardParent specificCard)
+    {
+        abilityManager.combatDeckManager.DrawCards(count, specificCard);
+    }
+
     public bool QuerySelf(GameObject target, GameObject caster, AbilityManager abilityManager)
     {
-        return (abilityManager.combatManager.GetCardsCast() > 0 || !selfUsesAction || caster != GameObject.Find("Player")) && (target == caster && selfInterpretationUnlocked && target.GetComponent<CharacterStats>() != null);
+        return (caster == GameObject.Find("Player") || caster != GameObject.Find("Player")) && (target == caster && selfInterpretationUnlocked && target.GetComponent<CharacterStats>() != null);
     }
 
     public bool QueryTarget(GameObject target, GameObject caster, AbilityManager abilityManager)
     {
-        return (abilityManager.combatManager.GetCardsCast() > 0 || !targetUsesAction || caster != GameObject.Find("Player")) && (target != caster && targetInterpretationUnlocked && target.GetComponent<CharacterStats>() != null);
+        return (caster == GameObject.Find("Player") || caster != GameObject.Find("Player")) && (target != caster && targetInterpretationUnlocked && target.GetComponent<CharacterStats>() != null);
     }
 
     void SpawnFX(Object FX, Transform transform)

@@ -10,17 +10,19 @@ public class EnemyController : MonoBehaviour
     public bool boss = false;
 
     public Object[] enemies = new Object[3];
-    public QuestObjective objective;
+    public QuestObjective[] objectives;
+    public Vector2 goldReward;
+    public Weapon weaponReward;
 
     private LoadSettings loadSettings;
     private SceneLoader sceneLoader;
 
     public E_Levels combatScene;
-    public Vector2 goldReward;
-    public float potionReward;
-    public string itemReward;
 
     public string enemyName;
+    public Sprite background;
+
+    public bool destroy = true;
 
     // Start is called before the first frame update
     void Awake()
@@ -28,7 +30,17 @@ public class EnemyController : MonoBehaviour
         loadSettings = LoadSettings.instance;
         sceneLoader = GetComponent<SceneLoader>();
 
-        if (loadSettings != null)
+        if (sceneLoader == null)
+        {
+            sceneLoader = GetComponentInChildren<SceneLoader>();
+        }
+
+        if (sceneLoader == null)
+        {
+            sceneLoader = GameObject.FindObjectOfType<SceneLoader>();
+        }
+
+        if (loadSettings != null && destroy)
         {
             if (loadSettings.enemiesKilled.Contains(name))
             {
@@ -50,17 +62,31 @@ public class EnemyController : MonoBehaviour
             loadSettings.enemies[1] = enemies[1];
             loadSettings.enemies[2] = enemies[2];
 
-            loadSettings.goldReward = goldReward;
-            loadSettings.potionReward = potionReward;
-            loadSettings.itemReward = itemReward;
-
-            if (objective != null && objective.canComplete)
+            if (loadSettings.background == null && background != null)
             {
-                loadSettings.currentFightObjective = objective;
+                loadSettings.background = background;
             }
 
-            if (sceneLoader != null)
+            loadSettings.goldReward = goldReward;
+            loadSettings.rewardWeapon = weaponReward;
+
+            foreach (var item in objectives)
+            {
+                if (item.canComplete)
+                {
+                    if (loadSettings.currentFightObjectives.Contains(item) == false)
+                    {
+                        loadSettings.currentFightObjectives.Add(item);
+                    }
+                }
+            }
+
+            //loadSettings.SetScene(SceneManager.GetActiveScene().name);
+
+            if (sceneLoader != null && sceneLoader.isActiveAndEnabled)
+            {
                 sceneLoader.LoadSpecifiedScene(combatScene.ToString(), LoadSceneMode.Single, null);
+            }
             else
             {
                 Debug.Log("No scene loader");

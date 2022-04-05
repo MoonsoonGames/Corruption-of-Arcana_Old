@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Fungus;
 
 public class SpawnDialogue : MonoBehaviour
 {
@@ -15,17 +16,22 @@ public class SpawnDialogue : MonoBehaviour
 
     private void Start()
     {
-        loadSettings = LoadSettings.instance;
+        if (LoadSettings.instance != null)
+        {
+            loadSettings = LoadSettings.instance;
+        }
+
+        Object flowChart = loadSettings.dialogueFlowChart;
 
         SetBGColour();
-        BeginDialogue(loadSettings.dialogueFlowChart);
+        BeginDialogue(flowChart);
 
         loadSettings.dialogueFlowChart = null;
     }
 
     void SetBGColour()
     {
-        if (loadSettings.loadSceneMultiple)
+        if (loadSettings != null && loadSettings.loadSceneMultiple)
         {
             background.color = multipleBGColour;
         }
@@ -50,11 +56,10 @@ public class SpawnDialogue : MonoBehaviour
                 }
             }
         }
-        /*
-        if (spawned! && backupFlowChart != null)
+        
+        if (spawned == false && backupFlowChart != null)
         {
             backupFlowChart.SetActive(true);
         }
-        */
     }
 }

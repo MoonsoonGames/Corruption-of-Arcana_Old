@@ -66,6 +66,10 @@ public class EnemyManager : MonoBehaviour
             description.image = image;
             description.descriptionText = descriptionText;
             description.disable = disable;
+
+            ShowStatsButton statsButton = item.GetComponentInChildren<ShowStatsButton>();
+
+            statsButton.manager = this;
         }
     }
 
@@ -102,11 +106,11 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    public void TargetEnemies(bool visible)
+    public void TargetEnemies(bool visible, CardParent spell)
     {
         foreach (var item in targetters)
         {
-            item.SetVisibility(visible);
+            item.SetVisibility(visible, spell);
         }
     }
 

@@ -16,8 +16,11 @@ MonoBehaviour:
   cardNumber: 6
   flavourDescription: Whatever the choice, it should not be made lightly, as the
     ramifications will be lasting
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 6084249756908604392, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
+    type: 3}
   enemySpell: 0
+  countsCombo: 1
+  comboCard: {fileID: 11400000, guid: a63a97d3a23bcf0478098a05ffadd05c, type: 2}
   selfInterpretationUnlocked: 1
   selfName: Enthralling Gaze
   selfDescription: 'With an alluring gaze, you enthrall your targets, silencing them
@@ -25,9 +28,11 @@ MonoBehaviour:
 
     Silence
     prevents the target from casting spells, forcing them to use basic attacks'
+  selfCastSounds:
+  - {fileID: 8300000, guid: ce909c5302981e347ade506002b069ce, type: 3}
   selfEndTurn: 0
   selfUsesAction: 1
-  selfCost: 45
+  selfCost: 15
   selfPotionCost: 0
   selfCostType: AP
   selfHeal: {x: 0, y: 0}
@@ -37,9 +42,14 @@ MonoBehaviour:
   selfStatus:
   - {fileID: 11400000, guid: 30d7d54c4e9fb974dabf48061e061fe4, type: 2}
   selfStatusDuration: 03000000
+  selfDrawCards: 0
+  selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 0
   targetName: 
   targetDescription: 
+  HitFX: {fileID: 0}
+  targetCastSounds: []
+  targetHitSounds: []
   targetEndTurn: 0
   targetUsesAction: 1
   targetCost: 0
@@ -62,6 +72,8 @@ MonoBehaviour:
   targetStatus: []
   targetStatusDuration: 
   targetStatusChance: []
+  targetDrawCards: 0
+  targetDrawSpecificCard: {fileID: 0}
   spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0

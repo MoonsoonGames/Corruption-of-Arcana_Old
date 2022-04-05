@@ -6,44 +6,52 @@ public class CombatDeckManager : MonoBehaviour
 {
     List<CardSetter> cards = new List<CardSetter>();
 
-    public Object[] deckObjects; //Arrange in order of chance from lowest to highest, highest must be 1
-    public float[] deckChances; //Arrange in order of chance from lowest to highest, highest must be 1
-    Dictionary<Object, float> decks;
+    public Object card;
+    List<CardParent> deck = new List<CardParent>();
 
     public Vector3Int cardsCount;
 
     public float offsetInterval = 0.5f;
 
-    private void Awake()
+    public void Setup()
     {
-        decks = new Dictionary<Object, float>();
-
-        for (int i = 0; i < deckObjects.Length; i++)
-        {
-            decks.Add(deckObjects[i], deckChances[i]);
-        }
-
-        /*
-        foreach (var item in decks)
-        {
-            Debug.Log(item.Key + " || " + item.Value);
-        }
-        */
+        CombineDecks();
     }
 
-    public void DrawCards()
+    void CombineDecks()
+    {
+        LoadSettings loadSettings = LoadSettings.instance;
+
+        if (loadSettings != null)
+        {
+            foreach (var item in loadSettings.equippedWeapon.basicDeck)
+            {
+                deck.Add(item);
+            }
+            foreach (var item in loadSettings.majourArcana)
+            {
+                deck.Add(item);
+            }
+            foreach (var item in loadSettings.corruptedArcana)
+            {
+                deck.Add(item);
+            }
+        }
+    }
+
+    public void DrawTurnCards()
     {
         if (cards.Count < cardsCount.x - 2)
         {
             for (int i = cards.Count; i < cardsCount.x; i++)
             {
-                SpawnCard();
+                SpawnCard(null);
             }
         }
         else if (cards.Count < cardsCount.y)
         {
-            SpawnCard();
-            SpawnCard();
+            SpawnCard(null);
+            SpawnCard(null);
         }
         else if (cards.Count >= cardsCount.z)
         {
@@ -51,45 +59,59 @@ public class CombatDeckManager : MonoBehaviour
         }
         else
         {
-            SpawnCard();
+            SpawnCard(null);
         }
 
         //reorganize cards
         OffsetTransform();
     }
 
-    void SpawnCard()
+    public void DrawCards(int count, CardParent specificCard)
     {
-        Object test = DetermineDeck();
-
-        if (test != null)
+        for (int i = 0; i < count; i++)
         {
-            GameObject newCard = Instantiate(DetermineDeck(), this.transform) as GameObject;
-            CardSetter cardSetter = newCard.GetComponentInChildren<CardSetter>();
-            cardSetter.DrawCards();
-            cards.Add(cardSetter);
-        }
-        else
-        {
-            Debug.LogError("Issue with getting a deck");
-        }
-    }
-
-    Object DetermineDeck()
-    {
-        float rFloat = Random.Range(0f, 1f);
-        //Debug.Log(rFloat);
-
-        foreach (var item in decks)
-        {
-            if (rFloat <= item.Value)
+            if (cards.Count < cardsCount.z)
             {
-                //Debug.Log(item.Key);
-                return item.Key;
+                SpawnCard(specificCard);
+            }
+            else
+            {
+                break;
             }
         }
 
-        return null;
+        if (count > 0)
+        {
+            //reorganize cards
+            OffsetTransform();
+            Invoke("OffsetTransform", 0.5f);
+        }
+    }
+
+    void SpawnCard(CardParent specificCard)
+    {
+        GameObject newCard = Instantiate(card, this.transform) as GameObject;
+
+        CardSetter cardSetter = newCard.GetComponentInChildren<CardSetter>();
+
+        if (specificCard != null)
+        {
+            cardSetter.Setup(specificCard);
+        }
+        else
+        {
+            cardSetter.Setup(DetermineCard());
+        }
+        
+        //cardSetter.DrawCards();
+        cards.Add(cardSetter);
+    }
+
+    CardParent DetermineCard()
+    {
+        int rInt = Random.Range(0, deck.Count);
+        //Debug.Log(rInt);
+        return deck[rInt];
     }
 
     void OffsetTransform()

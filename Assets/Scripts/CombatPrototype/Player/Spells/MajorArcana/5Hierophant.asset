@@ -15,11 +15,15 @@ MonoBehaviour:
   cardName: The Hierophant
   cardNumber: 5
   flavourDescription: He is the builder of the bridge between Heaven and Earth
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 6034864100499761545, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
+    type: 3}
   enemySpell: 0
+  countsCombo: 1
+  comboCard: {fileID: 11400000, guid: 199b214ab52c10246a7ae3bdd0d86440, type: 2}
   selfInterpretationUnlocked: 0
   selfName: Radiant Form
   selfDescription: "Invoke a blinding aura, which has a chance to blind your targets\r"
+  selfCastSounds: []
   selfEndTurn: 0
   selfUsesAction: 1
   selfCost: 0
@@ -31,17 +35,23 @@ MonoBehaviour:
   selfEndTurnDelay: 0.2
   selfStatus: []
   selfStatusDuration: 
+  selfDrawCards: 0
+  selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 1
   targetName: Radiant Arc
-  targetDescription: 'Strike a target with a searing blast of lightning
-
-
-    Also
-    has a high chance to apply conductive to the target, which deals Static damage
-    to them and their allies each turn'
+  targetDescription: Strike a target with a searing blast of lightning which has
+    a high chance to apply conductive to the target, which deals Static damage to
+    them and their allies each turn
+  HitFX: {fileID: 6727453174112786923, guid: d4521daa311ea5142a733f284dd24744, type: 3}
+  targetCastSounds:
+  - {fileID: 8300000, guid: 54f29612fc80a464cab0b358158937aa, type: 3}
+  targetHitSounds:
+  - {fileID: 8300000, guid: 141aa0a641375ae4a874c00c5e4be746, type: 3}
+  - {fileID: 8300000, guid: 407fcaa7c40c68d4d92ace9f23c419e1, type: 3}
+  - {fileID: 8300000, guid: 9f957d738d6589341988e75e9eb2a0df, type: 3}
   targetEndTurn: 0
   targetUsesAction: 1
-  targetCost: 45
+  targetCost: 15
   targetCostType: AP
   damageType: 2
   targetCanBeCountered: 1
@@ -63,6 +73,9 @@ MonoBehaviour:
   targetStatusDuration: 04000000
   targetStatusChance:
   - 0.8
+  targetDrawCards: 0
+  targetDrawSpecificCard: {fileID: 11400000, guid: 2853cec8cdf527e4d915848db33ef28e,
+    type: 2}
   spawnPosition: 2
   summonAlly: {fileID: 0}
   summonCount: 0

@@ -42,9 +42,9 @@ PlayerSettings:
   m_SplashScreenLogos:
   - logo: {fileID: 10404, guid: 0000000000000000e000000000000000, type: 0}
     duration: 2
-  - logo: {fileID: 21300000, guid: fffef8d6e3b857f4b955a05d5f882315, type: 3}
+  - logo: {fileID: 21300000, guid: b412bafec5a98e045a4de392d68732c0, type: 3}
     duration: 3
-  m_VirtualRealitySplashScreen: {fileID: 2800000, guid: fffef8d6e3b857f4b955a05d5f882315,
+  m_VirtualRealitySplashScreen: {fileID: 2800000, guid: b412bafec5a98e045a4de392d68732c0,
     type: 3}
   m_HolographicTrackingLossScreen: {fileID: 0}
   defaultScreenWidth: 1600
@@ -151,7 +151,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Standalone: com.210Studos.CorruptionofArcana
+    Standalone: com.NecropandaGames.CorruptionofArcana
   buildNumber:
     Standalone: 0
     iPhone: 0
@@ -534,7 +534,10 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
   scriptingDefineSymbols:
-    1: MAPMAGIC2;MM_NATIVE
+    1: MAPMAGIC2;MM_NATIVE;CROSS_PLATFORM_INPUT
+    4: CROSS_PLATFORM_INPUT;MOBILE_INPUT
+    7: CROSS_PLATFORM_INPUT;MOBILE_INPUT
+    14: MOBILE_INPUT
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}

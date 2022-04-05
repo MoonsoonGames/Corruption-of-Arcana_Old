@@ -88,7 +88,7 @@ public class Compass : MonoBehaviour
     {
         if (updateIcons)
         {
-            compassImage.uvRect = new Rect((player.localEulerAngles.y / 360f) + Offset, 0f, 1f, 1f);
+            compassImage.uvRect = new Rect((player.localEulerAngles.y / 360f) + Offset, 1f, 1f, 1f);
 
             foreach (QuestMarkers marker in questMarkers)
             {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class NavigationNode : MonoBehaviour
@@ -8,11 +9,13 @@ public class NavigationNode : MonoBehaviour
     NavigationManager navManager;
     SceneLoader sceneLoader;
     E_Levels navScene;
+    public E_Levels dialogueScene;
     
     public NavigationNode[] possibleNodes;
-    public NavigationEvents[] possibleEvents;
+    public Object[] possibleEvents;
 
     public Button button;
+    public GameObject marker;
     public Color currentColour;
     public Color availableColour;
     public Color unavailableColour;
@@ -22,6 +25,8 @@ public class NavigationNode : MonoBehaviour
     public bool stopEvents = false;
     [HideInInspector]
     public bool stopLevels = false;
+
+    public Sprite[] backgrounds;
 
     public void Setup(NavigationManager navigationManager, E_Levels newNavScene, bool current)
     {
@@ -55,6 +60,8 @@ public class NavigationNode : MonoBehaviour
         {
             button.interactable = available;
             canTravelTo = available;
+            button.image.raycastTarget = available;
+            marker.SetActive(true);
 
             if (available)
             {
@@ -69,7 +76,9 @@ public class NavigationNode : MonoBehaviour
         {
             button.image.color = new Color(0, 0, 0, 0);
             button.interactable = false;
+            button.image.raycastTarget = false;
             canTravelTo = false;
+            marker.SetActive(false);
         }
     }
 
@@ -84,14 +93,13 @@ public class NavigationNode : MonoBehaviour
 
         if (possibleEvents.Length > 0)
         {
-            NavigationEvents navEvent = possibleEvents[Random.Range(0, possibleEvents.Length)];
+            Object navEvent = possibleEvents[Random.Range(0, possibleEvents.Length)];
 
-            generateEvent = navEvent.eventName;
+            generateEvent = navEvent.name;
 
             if (!stopEvents)
             {
-                navEvent.Setup(sceneLoader, navScene);
-                navEvent.StartEvent();
+                StartEvent(navEvent);
             }
         }
         else
@@ -105,6 +113,27 @@ public class NavigationNode : MonoBehaviour
         }
         
         return generateEvent;
+    }
+
+    #region Load Navigation Event
+
+    void StartEvent(Object navEvent)
+    {
+        LoadSettings loadSettings = LoadSettings.instance;
+
+        if (sceneLoader != null && loadSettings != null)
+        {
+            loadSettings.background = (backgrounds.Length > 0 ? ChooseBackgrounds() : null);
+            loadSettings.dialogueFlowChart = navEvent;
+            sceneLoader.LoadSpecifiedScene(dialogueScene.ToString(), LoadSceneMode.Single, null);
+        }
+    }
+
+    #endregion
+
+    Sprite ChooseBackgrounds()
+    {
+        return backgrounds[Random.Range(0, backgrounds.Length)];
     }
 
     #region Quest Progress Requirements

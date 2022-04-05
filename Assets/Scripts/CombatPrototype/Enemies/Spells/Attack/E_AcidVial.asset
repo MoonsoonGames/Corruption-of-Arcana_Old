@@ -17,9 +17,12 @@ MonoBehaviour:
   flavourDescription: 
   cardImage: {fileID: 0}
   enemySpell: 1
+  countsCombo: 0
+  comboCard: {fileID: 0}
   selfInterpretationUnlocked: 0
   selfName: 
   selfDescription: 
+  selfCastSounds: []
   selfEndTurn: 1
   selfUsesAction: 1
   selfCost: 0
@@ -31,17 +34,25 @@ MonoBehaviour:
   selfEndTurnDelay: 0.2
   selfStatus: []
   selfStatusDuration: 
+  selfDrawCards: 0
+  selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 1
   targetName: Acid Vial
   targetDescription: The enemy throws a vial of acid, which has a chance to apply
     poison
+  HitFX: {fileID: 6727453174112786923, guid: 9b68bdcf8d233e3418504dae117ce7ee, type: 3}
+  targetCastSounds: []
+  targetHitSounds:
+  - {fileID: 8300000, guid: 5cf9a7f3d60a83f46a4bd1d6360f363c, type: 3}
+  - {fileID: 8300000, guid: 740439fa0e1587f449b3d083605746d4, type: 3}
+  - {fileID: 8300000, guid: fb6ffa714f8962449b29e3ac21cd7cd7, type: 3}
   targetEndTurn: 1
   targetUsesAction: 1
   targetCost: 0
   targetCostType: 
   damageType: 4
   targetCanBeCountered: 1
-  targetDmg: {x: 14, y: 22}
+  targetDmg: {x: 16, y: 22}
   hits: 1
   hitInterval: 0
   finalHitInterval: 0
@@ -59,6 +70,8 @@ MonoBehaviour:
   targetStatusDuration: 02000000
   targetStatusChance:
   - 0.6
+  targetDrawCards: 0
+  targetDrawSpecificCard: {fileID: 0}
   spawnPosition: 0
   summonAlly: {fileID: 0}
   summonCount: 0
