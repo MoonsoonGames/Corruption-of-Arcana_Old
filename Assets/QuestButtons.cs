@@ -22,6 +22,8 @@ public class QuestButtons : MonoBehaviour
 
     public Text questName;
     public Image questStatus;
+    public Image objPerson;
+    public Image objLocation;
 
     public void Start()
     {
@@ -86,21 +88,11 @@ public class QuestButtons : MonoBehaviour
         if (descriptionText != null)
             descriptionText.text = quest.description;
 
-        //if (objNameText != null)
-        //    objNameText.text = objname;
-
-        //if (objDescText != null)
-        //    objDescText.text = objdesc;
-
         if (goldText != null)
             goldText.text = quest.goldReward.ToString();
 
-        /* 
-        if (questGiver != null)
-            questGiver.sprite = questgiver;
-
-        if (questLocat != null)
-            questLocat.sprite = questlocation;
-        */
+        objLocation.sprite = quest.objectiveLocation;
+        objPerson.sprite = quest.objectiveSprite;
+            
     }
 }
