@@ -164,6 +164,8 @@ public class PlayerController : MonoBehaviour
                 }
 
                 isRunning = Input.GetButton("Sprint");
+                modelAnimator.SetBool("Sprinting", isRunning);
+
                 if (IsRunning)
                 {
                     moveSpeed = baseSprintSpeed;
@@ -171,6 +173,7 @@ public class PlayerController : MonoBehaviour
                 else
                 {
                     moveSpeed = baseMoveSpeed;
+
                 }
 
                 if (Input.GetButton("Interact") && interact && dialogue != null)

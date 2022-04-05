@@ -29,6 +29,7 @@ GameObject:
   - component: {fileID: 6584572301936081010}
   - component: {fileID: 808288502372803388}
   - component: {fileID: 808288502372803377}
+  - component: {fileID: 1822587261340174292}
   - component: {fileID: 808288502372803379}
   - component: {fileID: 808288502372803378}
   - component: {fileID: 808288502372803368}
@@ -304,6 +305,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   quest: {fileID: 0}
   questWindow: {fileID: 0}
+--- !u!114 &1822587261340174292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6584572301936081014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4da18298f35a494ca66013ad0ab6e9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &808288502372803379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -980,7 +993,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  objective: {fileID: 0}
+  objectives: []
+  goldReward: {x: 0, y: 0}
+  weaponReward: {fileID: 0}
   combatScene: 2
   enemyName: 
   background: {fileID: 0}
