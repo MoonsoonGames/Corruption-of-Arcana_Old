@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 2213016477547051056}
   - component: {fileID: 2213016477547051057}
   - component: {fileID: 2213016477547051214}
+  - component: {fileID: 6085624559063335351}
   m_Layer: 0
   m_Name: ExcaliburComplete1
   m_TagString: Untagged
@@ -70,7 +71,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 4320349048395924784}
   selectedCommands:
-  - {fileID: 2213016477547051057}
+  - {fileID: 6085624559063335351}
   variables: []
   description: 
   stepPause: 0
@@ -247,8 +248,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: -21.898857
-    y: -219.0628
+    x: -23.898857
+    y: -218.0628
     width: 78
     height: 40
   tint: {r: 0.7311321, g: 0.82633495, b: 1, a: 1}
@@ -260,6 +261,7 @@ MonoBehaviour:
   commandList:
   - {fileID: 2213016477547051056}
   - {fileID: 4320349048395924788}
+  - {fileID: 6085624559063335351}
   - {fileID: 2213016477547051057}
   suppressAllAutoSelections: 0
 --- !u!114 &4485456573901327425
@@ -391,6 +393,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4da18298f35a494ca66013ad0ab6e9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6085624559063335351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8175904926727330435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95d9ff288f3904c05ada7ac9c9a075bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 30
+  indentLevel: 0
+  description: 
+  delay: 0
+  invokeType: 0
+  staticEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2213016477547051214}
+        m_TargetAssemblyTypeName: GiveWeapon, Assembly-CSharp
+        m_MethodName: GiveSpecifiedWeapon
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 1cb0e7241fc7de245b49d9626139d287,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: Weapon, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  booleanParameter:
+    booleanRef: {fileID: 0}
+    booleanVal: 0
+  booleanEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  integerParameter:
+    integerRef: {fileID: 0}
+    integerVal: 0
+  integerEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  floatParameter:
+    floatRef: {fileID: 0}
+    floatVal: 0
+  floatEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  stringParameter:
+    stringRef: {fileID: 0}
+    stringVal: 
+  stringEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &6067587185896943188
 MonoBehaviour:
   m_ObjectHideFlags: 0
