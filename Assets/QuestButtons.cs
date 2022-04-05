@@ -43,6 +43,8 @@ public class QuestButtons : MonoBehaviour
             questStatus.sprite = NotFoundIcon;
             GetComponent<Button>().interactable = false;
         }
+
+        objPerson.enabled = false;
     }
 
     public void ButtonPressed()
@@ -92,7 +94,16 @@ public class QuestButtons : MonoBehaviour
             goldText.text = quest.goldReward.ToString();
 
         objLocation.sprite = quest.objectiveLocation;
-        objPerson.sprite = quest.objectiveSprite;
+
+        if (quest.objectiveSprite != null)
+        {
+            objPerson.enabled = true;
+            objPerson.sprite = quest.objectiveSprite;
+        }
+        else
+        {
+            objPerson.enabled = false;
+        }
             
     }
 }

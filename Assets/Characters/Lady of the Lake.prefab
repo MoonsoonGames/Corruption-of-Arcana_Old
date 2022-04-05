@@ -129,6 +129,8 @@ GameObject:
   - component: {fileID: 2201303135942197265}
   - component: {fileID: 8659085368928631126}
   - component: {fileID: 6435733521936544711}
+  - component: {fileID: 4040032413328311072}
+  - component: {fileID: 6426329584813405526}
   m_Layer: 0
   m_Name: Lady of the Lake
   m_TagString: NPC
@@ -307,6 +309,66 @@ MonoBehaviour:
   disableQuestsCompleted:
   - {fileID: 11400000, guid: 7802ae12753d18e4ca117a1c2485e04c, type: 2}
   disableObjectivesCompleted: []
+--- !u!114 &4040032413328311072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9216620810431011225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed6416ce628326043976b601c4d11834, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToLoad: 3
+  forceDialogue: 0
+  destroyOnSpeak: 0
+  dialogue: {fileID: 8175904926727330435, guid: 13f5a83e54be68c47b940b64bdf581fb,
+    type: 3}
+  sceneMode: 0
+  completeObjectives: []
+  requireQuestsInProgress: []
+  requireObjectivesInProgress: []
+  requireAllInProgress: 1
+  disableQuestsInProgress: []
+  disableObjectivesInProgress:
+  - {fileID: 11400000, guid: 8f52ad0f69637b146bef5c1f8628478d, type: 2}
+  requireQuestsCompleted: []
+  requireObjectivesCompleted: []
+  requireAllCompleted: 1
+  disableQuestsCompleted: []
+  disableObjectivesCompleted: []
+--- !u!114 &6426329584813405526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9216620810431011225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed6416ce628326043976b601c4d11834, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToLoad: 3
+  forceDialogue: 0
+  destroyOnSpeak: 0
+  dialogue: {fileID: 8175904926727330435, guid: ada5490476b00cb44baca6a1e4b3af78,
+    type: 3}
+  sceneMode: 0
+  completeObjectives: []
+  requireQuestsInProgress: []
+  requireObjectivesInProgress: []
+  requireAllInProgress: 1
+  disableQuestsInProgress: []
+  disableObjectivesInProgress: []
+  requireQuestsCompleted:
+  - {fileID: 11400000, guid: 7802ae12753d18e4ca117a1c2485e04c, type: 2}
+  requireObjectivesCompleted: []
+  requireAllCompleted: 1
+  disableQuestsCompleted: []
+  disableObjectivesCompleted: []
 --- !u!1001 &2557344913927518068
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -358,13 +420,19 @@ PrefabInstance:
     - target: {fileID: 7057609158513621916, guid: feceddc3c64c65b499b909203d7d5124,
         type: 3}
       propertyPath: objectives.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7057609158513621916, guid: feceddc3c64c65b499b909203d7d5124,
         type: 3}
       propertyPath: objectives.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: 5b64d884ac3966f4c8b3dd90ca33e8c0,
+        type: 2}
+    - target: {fileID: 7057609158513621916, guid: feceddc3c64c65b499b909203d7d5124,
+        type: 3}
+      propertyPath: objectives.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f52ad0f69637b146bef5c1f8628478d,
         type: 2}
     - target: {fileID: 8498647028213206397, guid: feceddc3c64c65b499b909203d7d5124,
         type: 3}
