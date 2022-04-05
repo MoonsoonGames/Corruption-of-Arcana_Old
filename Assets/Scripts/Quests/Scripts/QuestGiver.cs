@@ -9,7 +9,6 @@ public class QuestGiver : MonoBehaviour
     public GameObject questWindow;
 
     public string questGiverName;
-    public Sprite questGiverSprite;
 
     public void QuestWindow(bool open)
     {
@@ -32,7 +31,7 @@ public class QuestGiver : MonoBehaviour
         //Check Objectives
         if (quest != null)
         {
-            quest.AcceptQuest(questGiverName, questGiverSprite);
+            quest.AcceptQuest(questGiverName);
 
             LoadSettings loadSettings = LoadSettings.instance;
 

@@ -15,7 +15,7 @@ public class Quest : ScriptableObject
     [TextArea(3, 10)]
     public string description;
     public string questGiverName;
-    public Sprite questGiverSprite;
+    public Sprite objectiveSprite;
     public Sprite objectiveLocation;
 
     [Header("Quest Objective Rules")]
@@ -63,7 +63,7 @@ public class Quest : ScriptableObject
 
     #region Progress
 
-    public void AcceptQuest(string questName, Sprite questSprite)
+    public void AcceptQuest(string questName)
     {
         if (isComplete == false)
         {
@@ -95,7 +95,6 @@ public class Quest : ScriptableObject
             isActive = true;
 
             questGiverName = questName;
-            questGiverSprite = questSprite;
 
             currentObjective = objectives[0];
 
