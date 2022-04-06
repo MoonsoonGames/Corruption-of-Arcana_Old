@@ -61,7 +61,8 @@ public class NavigationManager : MonoBehaviour
             ResetNodes();
             SetNodes();
 
-            alreadyTravelling = true;
+            if (stopEvents == false && stopLevels == false)
+                alreadyTravelling = true;
         }
     }
 
