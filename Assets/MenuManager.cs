@@ -20,22 +20,30 @@ public class MenuManager : MonoBehaviour
     PlayerController playerController;
     LoadSettings loadSettings;
 
+    [Header("Main UI")]
     public GameObject ExplorationUI;
     public GameObject PauseMenuUI;
     public GameObject Player;
     public GameObject PlayerCamera;
     public Compass compass;
     public CompassNoIcon compass2;
+    public Text HPTextCount;
+    public Text PauseHPTextCount;
+    public Slider MainHPBar;
+    public Text goldCount;
 
+    [Header("PauseMenu")]
     public GameObject SettingsMenu;
     public GameObject QuestMenuUI;
     public GameObject GuideBook;
     public GameObject CardsMenu;
     public GameObject WeaponsMenu;
 
+    [Header("Confirm Screens")]
     public GameObject MainMenuConfirmScreen;
     public GameObject QuitConfirmScreen;
 
+    [Header("Pause Menu Stats")]
     public Slider PauseHealthBar;
     public Slider PauseArcanaBar;
     public Text HPPotionCount;
@@ -43,14 +51,9 @@ public class MenuManager : MonoBehaviour
     //public Text RPotionCount;
     //public Text SPotionCount;
 
-    public Text HPTextCount;
-    public Text PauseHPTextCount;
-    public Slider MainHPBar;
-
-    public Text goldCount;
-
     #region DeckBuilder GameObjects
-    public GameObject MiArc;
+    [Header("DeckBuilder Menu")]
+    public GameObject BaAtk;
     public GameObject MjArcCardsPage;
     public GameObject MjArc1;
     public GameObject MjArc2;
@@ -65,13 +68,21 @@ public class MenuManager : MonoBehaviour
     #endregion
 
     #region HelpGuide
-    public GameObject ConstructsList;
-    public GameObject UndeadList;
-    public GameObject BeastsList;
-    public GameObject HumanoidList;
-    public GameObject SecretsList;
+    [Header("Help Guide Menu")]
+    public bool activeSubPage;
 
-    public Text SpeciesText;
+    public GameObject ConstructsPage;
+    public GameObject UndeadPage;
+    public GameObject BeastsPage;
+    public GameObject HumanoidPage;
+    public GameObject SecretsPage;
+
+    public GameObject HelpMainPage;
+    public GameObject CompassIconPage;
+    public GameObject EnemyCategory;
+    public GameObject EnemyMainPage;
+    public GameObject SpreadCardsHelp;
+    public GameObject ReturnButton;
     #endregion
 
     #endregion
@@ -276,7 +287,7 @@ public class MenuManager : MonoBehaviour
         #endregion
 
         #region CardsMenu Subpage button on/off
-        if (CardsMenu.activeSelf == true && MiArc.activeSelf == true)
+        if (CardsMenu.activeSelf == true && BaAtk.activeSelf == true)
         {
             NextMjArcBtn.SetActive(false);
             LastMjArcBtn.SetActive(false);
@@ -306,6 +317,15 @@ public class MenuManager : MonoBehaviour
             //unlock mouse - confined to window
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
+        }
+
+        if (activeSubPage == true)
+        {
+            ReturnButton.SetActive(true);
+        }
+        else
+        {
+            ReturnButton.SetActive(false);
         }
     }
 
@@ -343,67 +363,70 @@ public class MenuManager : MonoBehaviour
         PauseMenuUI.SetActive(false);
         //turn on GuideBook UI
         GuideBook.SetActive(true);
+        activeSubPage = false;
     }
 
-    #region HelpGuide Buttons
+    public void CompassIcons()
+    {
+        CompassIconPage.SetActive(true);
+        HelpMainPage.SetActive(false);
+        activeSubPage = true;
+    }
+
+    public void Enemies()
+    {
+        EnemyCategory.SetActive(true);
+        EnemyMainPage.SetActive(true);
+        HelpMainPage.SetActive(false);
+        activeSubPage = true;
+    }
+
+    public void SpreadCards()
+    {
+        SpreadCardsHelp.SetActive(true);
+        HelpMainPage.SetActive(false);
+        activeSubPage = true;
+    }
+
+    #region Enemy Buttons
     public void Constructs()
     {
         //1 list on all others off
-        ConstructsList.SetActive(true);
-        UndeadList.SetActive(false);
-        BeastsList.SetActive(false);
-        HumanoidList.SetActive(false);
-        SecretsList.SetActive(false);
-
-        SpeciesText.text = "Constructs";
+        ConstructsPage.SetActive(true);
+        EnemyMainPage.SetActive(false);
+        activeSubPage = true;
     }
 
     public void Undead()
     {
         //1 list on all others off
-        ConstructsList.SetActive(false);
-        UndeadList.SetActive(true);
-        BeastsList.SetActive(false);
-        HumanoidList.SetActive(false);
-        SecretsList.SetActive(false);
-
-        SpeciesText.text = "Undead";
+        UndeadPage.SetActive(true);
+        EnemyMainPage.SetActive(false);
+        activeSubPage = true;
     }
 
     public void Beasts()
     {
         //1 list on all others off
-        ConstructsList.SetActive(false);
-        UndeadList.SetActive(false);
-        BeastsList.SetActive(true);
-        HumanoidList.SetActive(false);
-        SecretsList.SetActive(false);
-
-        SpeciesText.text = "Beasts";
+        BeastsPage.SetActive(true);
+        EnemyMainPage.SetActive(false);
+        activeSubPage = true;
     }
 
     public void Humanoid()
     {
         //1 list on all others off
-        ConstructsList.SetActive(false);
-        UndeadList.SetActive(false);
-        BeastsList.SetActive(false);
-        HumanoidList.SetActive(true);
-        SecretsList.SetActive(false);
-
-        SpeciesText.text = "Humanoids";
+        HumanoidPage.SetActive(true);
+        EnemyMainPage.SetActive(false);
+        activeSubPage = true;
     }
 
     public void Secrets()
     {
         //1 list on all others off
-        ConstructsList.SetActive(false);
-        UndeadList.SetActive(false);
-        BeastsList.SetActive(false);
-        HumanoidList.SetActive(false);
-        SecretsList.SetActive(true);
-
-        SpeciesText.text = "Secrets";
+        SecretsPage.SetActive(true);
+        EnemyMainPage.SetActive(false);
+        activeSubPage = true;
     }
     #endregion
 
@@ -459,7 +482,7 @@ public class MenuManager : MonoBehaviour
         CardsMenu.SetActive(true);
 
         //MiArcCards on
-        MiArc.SetActive(true);
+        BaAtk.SetActive(true);
         //MjArcCards off
         MjArcCardsPage.SetActive(false);
         //CorArcCards off
@@ -481,7 +504,7 @@ public class MenuManager : MonoBehaviour
     public void MiArcCards()
     {
         //MiArcCards on
-        MiArc.SetActive(true);
+        BaAtk.SetActive(true);
         //MjArcCards off
         MjArcCardsPage.SetActive(false);
         //CorArcCards off
@@ -502,7 +525,7 @@ public class MenuManager : MonoBehaviour
     public void MjArcCards()
     {
         //MiArcCards off
-        MiArc.SetActive(false);
+        BaAtk.SetActive(false);
         //MjArcCards on
         MjArcCardsPage.SetActive(true);
         //CorArcCards off
@@ -612,6 +635,31 @@ public class MenuManager : MonoBehaviour
         PauseMenuUI.SetActive(true);
         //debug
         Debug.Log("Closed Sub Menu");
+    }
+
+    public void HelpReturn()
+    {
+        if (ConstructsPage.activeSelf == true || UndeadPage.activeSelf == true || BeastsPage.activeSelf == true ||
+        HumanoidPage.activeSelf == true || SecretsPage.activeSelf == true)
+        {
+            EnemyMainPage.SetActive(true);
+
+            ConstructsPage.SetActive(false);
+            UndeadPage.SetActive(false);
+            BeastsPage.SetActive(false);
+            HumanoidPage.SetActive(false);
+            SecretsPage.SetActive(false);
+            activeSubPage = true;
+        }
+        else
+        {
+            HelpMainPage.SetActive(true);
+
+            CompassIconPage.SetActive(false);
+            EnemyMainPage.SetActive(false);
+            SpreadCardsHelp.SetActive(false);
+            activeSubPage = false;
+        }
     }
     #endregion
 
