@@ -8,6 +8,8 @@ public class QuestObjective : ScriptableObject
     [Header("Objective Info")]
     public Quest quest;
     public string title;
+    public Sprite objectiveSprite;
+    public Sprite locationSprite;
     [TextArea(3, 10)]
     public string description;
 
@@ -25,7 +27,6 @@ public class QuestObjective : ScriptableObject
     public bool completedReset;
     public bool completed;
 
-
     private void Awake()
     {
         ResetValues();
@@ -41,6 +42,9 @@ public class QuestObjective : ScriptableObject
     public void SetCanComplete()
     {
         canComplete = true;
+        quest.objectiveLocation = locationSprite;
+        quest.objectiveSprite = objectiveSprite;
+        quest.currentObjective = this;
         //SaveProgress();
         //Debug.Log("Current Objective: " + title);
 

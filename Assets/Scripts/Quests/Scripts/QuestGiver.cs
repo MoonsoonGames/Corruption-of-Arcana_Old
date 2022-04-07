@@ -8,6 +8,8 @@ public class QuestGiver : MonoBehaviour
 
     public GameObject questWindow;
 
+    public string questGiverName;
+
     public void QuestWindow(bool open)
     {
         if (quest != null && questWindow != null)
@@ -29,7 +31,7 @@ public class QuestGiver : MonoBehaviour
         //Check Objectives
         if (quest != null)
         {
-            quest.AcceptQuest();
+            quest.AcceptQuest(questGiverName);
 
             LoadSettings loadSettings = LoadSettings.instance;
 

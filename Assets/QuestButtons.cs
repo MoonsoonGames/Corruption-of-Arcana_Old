@@ -22,6 +22,8 @@ public class QuestButtons : MonoBehaviour
 
     public Text questName;
     public Image questStatus;
+    public Image objPerson;
+    public Image objLocation;
 
     public void Start()
     {
@@ -41,6 +43,8 @@ public class QuestButtons : MonoBehaviour
             questStatus.sprite = NotFoundIcon;
             GetComponent<Button>().interactable = false;
         }
+
+        objPerson.enabled = false;
     }
 
     public void ButtonPressed()
@@ -86,21 +90,20 @@ public class QuestButtons : MonoBehaviour
         if (descriptionText != null)
             descriptionText.text = quest.description;
 
-        //if (objNameText != null)
-        //    objNameText.text = objname;
-
-        //if (objDescText != null)
-        //    objDescText.text = objdesc;
-
         if (goldText != null)
             goldText.text = quest.goldReward.ToString();
 
-        /* 
-        if (questGiver != null)
-            questGiver.sprite = questgiver;
+        objLocation.sprite = quest.objectiveLocation;
 
-        if (questLocat != null)
-            questLocat.sprite = questlocation;
-        */
+        if (quest.objectiveSprite != null)
+        {
+            objPerson.enabled = true;
+            objPerson.sprite = quest.objectiveSprite;
+        }
+        else
+        {
+            objPerson.enabled = false;
+        }
+            
     }
 }

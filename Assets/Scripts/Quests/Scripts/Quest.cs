@@ -14,6 +14,11 @@ public class Quest : ScriptableObject
     public int questNumber;
     [TextArea(3, 10)]
     public string description;
+    public string questGiverName;
+    public Sprite objectiveSprite;
+    public Sprite objectiveLocation;
+
+    [Header("Quest Objective Rules")]
     public bool showAllObjectives;
     public bool showFinalObjective;
     public QuestObjective[] objectives;
@@ -58,7 +63,7 @@ public class Quest : ScriptableObject
 
     #region Progress
 
-    public void AcceptQuest()
+    public void AcceptQuest(string questName)
     {
         if (isComplete == false)
         {
@@ -81,13 +86,15 @@ public class Quest : ScriptableObject
                 }
                 else
                 {
-                    objectives[0].canComplete = true;
+                    objectives[0].SetCanComplete();
                 }
             }
 
             //Debug.Log("Accepted Quest: " + title);
             isRevealled = true;
             isActive = true;
+
+            questGiverName = questName;
 
             currentObjective = objectives[0];
 
