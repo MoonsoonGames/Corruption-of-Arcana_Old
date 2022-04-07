@@ -12,8 +12,19 @@ public class SpreadScript : MonoBehaviour
 
     public int cardsUsed = 0;
 
+    public GameObject SpreadUI;
+    public Object SpreadFX;
+
+    BGMManager audioManager;
+    public AudioClip SpreadSound;
+
     public Text countText;
     public Text comboText;
+
+    private void Start()
+    {
+        audioManager = GameObject.FindObjectOfType<BGMManager>();
+    }
 
     public void Setup(CombatDeckManager newCombatDeckManager)
     {
@@ -34,6 +45,7 @@ public class SpreadScript : MonoBehaviour
     {
         cardsUsed = 0;
         countText.text = cardsUsed.ToString();
+        SpawnFX();
 
         if (drawCard != null)
         {
@@ -74,5 +86,25 @@ public class SpreadScript : MonoBehaviour
             drawCard = null;
         }
         ResetSpread();
+    }
+
+    public void SpawnFX()
+    {
+        if (SpreadFX != null)
+        {
+            Vector3 spawnPos = new Vector3(0, 0, 0);
+            Quaternion spawnRot = new Quaternion(0, 0, 0, 0);
+
+            spawnPos.x = SpreadUI.transform.position.x;
+            spawnPos.y = SpreadUI.transform.position.y;
+            spawnPos.z = SpreadUI.transform.position.z - 5f;
+
+            Instantiate(SpreadFX, spawnPos, spawnRot);
+        }
+
+        if (SpreadSound)
+        {
+            audioManager.PlaySoundEffect(SpreadSound, 4f);
+        }
     }
 }
