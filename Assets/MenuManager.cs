@@ -70,6 +70,8 @@ public class MenuManager : MonoBehaviour
     #region HelpGuide
     [Header("Help Guide Menu")]
     public bool activeSubPage;
+    public bool firstSpreadPage;
+    public bool lastSpreadPage;
 
     public GameObject ConstructsPage;
     public GameObject UndeadPage;
@@ -83,6 +85,15 @@ public class MenuManager : MonoBehaviour
     public GameObject EnemyMainPage;
     public GameObject SpreadCardsHelp;
     public GameObject ReturnButton;
+
+    public GameObject MainSpreadPage;
+    public GameObject SpreadPage2;
+    public GameObject SpreadPage3;
+    public GameObject SpreadPage4;
+    public GameObject SpreadPage5;
+    public GameObject SpreadPage6;
+    public GameObject spreadLastBtn;
+    public GameObject spreadNextBtn;
     #endregion
 
     #endregion
@@ -310,6 +321,10 @@ public class MenuManager : MonoBehaviour
         }
         #endregion
 
+        #region SpreadCard next/last on/off
+
+        #endregion
+
         while (PauseMenuUI.activeSelf == false
             && QuestMenuUI.activeSelf == false
             && CardsMenu == false)
@@ -364,6 +379,8 @@ public class MenuManager : MonoBehaviour
         //turn on GuideBook UI
         GuideBook.SetActive(true);
         activeSubPage = false;
+        spreadLastBtn.SetActive(false);
+        spreadNextBtn.SetActive(false);
     }
 
     public void CompassIcons()
@@ -384,8 +401,11 @@ public class MenuManager : MonoBehaviour
     public void SpreadCards()
     {
         SpreadCardsHelp.SetActive(true);
+        MainSpreadPage.SetActive(true);
         HelpMainPage.SetActive(false);
         activeSubPage = true;
+        spreadLastBtn.SetActive(false);
+        spreadNextBtn.SetActive(true);
     }
 
     #region Enemy Buttons
@@ -429,6 +449,72 @@ public class MenuManager : MonoBehaviour
         activeSubPage = true;
     }
     #endregion
+
+    public void SpreadNext()
+    {
+        if (MainSpreadPage.activeSelf == true)
+        {
+            MainSpreadPage.SetActive(false);
+            SpreadPage2.SetActive(true);
+            spreadLastBtn.SetActive(true);
+        }
+        else if (SpreadPage2.activeSelf == true)
+        {
+            SpreadPage2.SetActive(false);
+            SpreadPage3.SetActive(true);
+            spreadLastBtn.SetActive(true);
+        }
+        else if (SpreadPage3.activeSelf == true)
+        {
+            SpreadPage3.SetActive(false);
+            SpreadPage4.SetActive(true);
+            spreadLastBtn.SetActive(true);
+        }
+        else if (SpreadPage4.activeSelf == true)
+        {
+            SpreadPage4.SetActive(false);
+            SpreadPage5.SetActive(true);
+            spreadLastBtn.SetActive(true);
+        }
+        else if (SpreadPage5.activeSelf == true)
+        {
+            SpreadPage5.SetActive(false);
+            SpreadPage6.SetActive(true);
+            spreadNextBtn.SetActive(false);
+            spreadLastBtn.SetActive(true);
+        }
+    }
+
+    public void SpreadLast()
+    {
+        if (SpreadPage6.activeSelf == true)
+        {
+            SpreadPage6.SetActive(false);
+            SpreadPage5.SetActive(true);
+            spreadNextBtn.SetActive(true);
+        }
+        else if (SpreadPage5.activeSelf == true)
+        {
+            SpreadPage5.SetActive(false);
+            SpreadPage4.SetActive(true);
+        }
+        else if (SpreadPage4.activeSelf == true)
+        {
+            SpreadPage4.SetActive(false);
+            SpreadPage3.SetActive(true);
+        }
+        else if (SpreadPage3.activeSelf == true)
+        {
+            SpreadPage3.SetActive(false);
+            SpreadPage2.SetActive(true);
+        }
+        else if (SpreadPage2.activeSelf == true)
+        {
+            SpreadPage2.SetActive(false);
+            MainSpreadPage.SetActive(true);
+            spreadLastBtn.SetActive(false);
+        }
+    }
 
     #endregion
 
@@ -650,6 +736,19 @@ public class MenuManager : MonoBehaviour
             HumanoidPage.SetActive(false);
             SecretsPage.SetActive(false);
             activeSubPage = true;
+        }
+        else if (SpreadPage2.activeSelf == true || SpreadPage3.activeSelf == true || SpreadPage4.activeSelf == true ||
+            SpreadPage5.activeSelf == true || SpreadPage6.activeSelf == true)
+        {
+            HelpMainPage.SetActive(true);
+
+            SpreadPage2.SetActive(false);
+            SpreadPage3.SetActive(false);
+            SpreadPage4.SetActive(false);
+            SpreadPage5.SetActive(false);
+            SpreadPage6.SetActive(false);
+            spreadLastBtn.SetActive(false);
+            spreadNextBtn.SetActive(false);
         }
         else
         {
