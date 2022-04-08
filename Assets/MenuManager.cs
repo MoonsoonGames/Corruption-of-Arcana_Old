@@ -585,29 +585,29 @@ public class MenuManager : MonoBehaviour
         //turn on deck builder UI
         CardsMenu.SetActive(true);
 
-        //MiArcCards on
+        //BaAtk on
         BaAtk.SetActive(true);
         //MjArcCards off
         MjArcCardsPage.SetActive(false);
         //CorArcCards off
 
-        //CardTypeName = Minor Arcana Cards
-        CardTypeTitle.text = "Minor Arcana Cards";
+        //CardTypeName = basic atk Cards
+        CardTypeTitle.text = "Basic Attack Cards";
         //Current Page = 1(x)
         PageX.text = "1";
         //Total Pages = 1(y)
         PageY.text = "1";
 
-        //nextMiArc off
+        //nextMjArc off
         NextMjArcBtn.SetActive(false);
-        //lastMiArc off
+        //lastMjArc off
         LastMjArcBtn.SetActive(false);
     }
 
     #region Submenu for cards
-    public void MiArcCards()
+    public void BaAtkCards()
     {
-        //MiArcCards on
+        //BaAtkCards on
         BaAtk.SetActive(true);
         //MjArcCards off
         MjArcCardsPage.SetActive(false);
@@ -621,14 +621,14 @@ public class MenuManager : MonoBehaviour
         //Total Pages = 1(y)
         PageY.text = "1";
 
-        //nextMiArc off
+        //nextMjArc off
         NextMjArcBtn.SetActive(false);
-        //lastMiArc off
+        //lastMjArc off
         LastMjArcBtn.SetActive(false);
     }
     public void MjArcCards()
     {
-        //MiArcCards off
+        //BaAtkCards off
         BaAtk.SetActive(false);
         //MjArcCards on
         MjArcCardsPage.SetActive(true);
@@ -647,9 +647,9 @@ public class MenuManager : MonoBehaviour
         //Total Pages = 3(y)
         PageY.text = "3";
 
-        //nextMiArc on
+        //nextMjArc on
         NextMjArcBtn.SetActive(true);
-        //lastMiArc off
+        //lastMjArc off
         LastMjArcBtn.SetActive(false);
     }
 
@@ -700,7 +700,7 @@ public class MenuManager : MonoBehaviour
 
     public void CorArcCards()
     {
-        //MiArcCards off
+        //BaAtkCards off
         //MjArcCards off
         //CorArcCards on
 
