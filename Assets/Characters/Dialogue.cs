@@ -105,7 +105,7 @@ public class Dialogue : MonoBehaviour
 
         foreach (var item in requireQuestsInProgress)
         {
-            if (item.isActive)
+            if (item.isRevealled)
             {
                 contains1 = true;
             }
@@ -131,7 +131,7 @@ public class Dialogue : MonoBehaviour
 
         foreach (var item in disableQuestsInProgress)
         {
-            if (item.isActive)
+            if (item.isRevealled)
             {
                 enableNode = false;
             }

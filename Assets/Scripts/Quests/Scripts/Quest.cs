@@ -86,7 +86,7 @@ public class Quest : ScriptableObject
                 }
                 else
                 {
-                    objectives[0].canComplete = true;
+                    objectives[0].SetCanComplete();
                 }
             }
 
