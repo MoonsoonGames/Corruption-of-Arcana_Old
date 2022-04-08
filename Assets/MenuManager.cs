@@ -322,10 +322,6 @@ public class MenuManager : MonoBehaviour
         }
         #endregion
 
-        #region SpreadCard next/last on/off
-
-        #endregion
-
         while (PauseMenuUI.activeSelf == false
             && QuestMenuUI.activeSelf == false
             && CardsMenu == false)
@@ -349,6 +345,19 @@ public class MenuManager : MonoBehaviour
             CompassIconPage.SetActive(false);
             EnemyCategory.SetActive(false);
             SpreadCardsHelp.SetActive(false);
+            
+            ConstructsPage.SetActive(false);
+            UndeadPage.SetActive(false);
+            BeastsPage.SetActive(false);
+            HumanoidPage.SetActive(false);
+            SecretsPage.SetActive(false);
+
+            MainSpreadPage.SetActive(false);
+            SpreadPage2.SetActive(false);
+            SpreadPage3.SetActive(false);
+            SpreadPage4.SetActive(false);
+            SpreadPage5.SetActive(false);
+            SpreadPage6.SetActive(false);
         }
     }
 
@@ -749,7 +758,7 @@ public class MenuManager : MonoBehaviour
         else if (SpreadPage2.activeSelf == true || SpreadPage3.activeSelf == true || SpreadPage4.activeSelf == true ||
             SpreadPage5.activeSelf == true || SpreadPage6.activeSelf == true)
         {
-            HelpMainPage.SetActive(true);
+            MainSpreadPage.SetActive(true);
 
             SpreadPage2.SetActive(false);
             SpreadPage3.SetActive(false);
@@ -757,7 +766,7 @@ public class MenuManager : MonoBehaviour
             SpreadPage5.SetActive(false);
             SpreadPage6.SetActive(false);
             spreadLastBtn.SetActive(false);
-            spreadNextBtn.SetActive(false);
+            spreadNextBtn.SetActive(true);
         }
         else
         {
@@ -766,6 +775,8 @@ public class MenuManager : MonoBehaviour
             CompassIconPage.SetActive(false);
             EnemyMainPage.SetActive(false);
             SpreadCardsHelp.SetActive(false);
+            spreadLastBtn.SetActive(false);
+            spreadNextBtn.SetActive(false);
             activeSubPage = false;
         }
     }
