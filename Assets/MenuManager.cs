@@ -86,6 +86,7 @@ public class MenuManager : MonoBehaviour
     public GameObject SpreadCardsHelp;
     public GameObject ReturnButton;
 
+    [Header("Spread Cards")]
     public GameObject MainSpreadPage;
     public GameObject SpreadPage2;
     public GameObject SpreadPage3;
@@ -342,6 +343,13 @@ public class MenuManager : MonoBehaviour
         {
             ReturnButton.SetActive(false);
         }
+
+        if (HelpMainPage.activeSelf == true)
+        {
+            CompassIconPage.SetActive(false);
+            EnemyCategory.SetActive(false);
+            SpreadCardsHelp.SetActive(false);
+        }
     }
 
     #region Pause Menu Buttons
@@ -378,6 +386,7 @@ public class MenuManager : MonoBehaviour
         PauseMenuUI.SetActive(false);
         //turn on GuideBook UI
         GuideBook.SetActive(true);
+        HelpMainPage.SetActive(true);
         activeSubPage = false;
         spreadLastBtn.SetActive(false);
         spreadNextBtn.SetActive(false);
