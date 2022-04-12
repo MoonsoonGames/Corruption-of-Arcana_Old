@@ -161,6 +161,7 @@ public class AbilityManager : MonoBehaviour
             {
                 if (ability.comboCard != null)
                 {
+                    spreadScript.SpawnFX();
                     spreadScript.drawCard = ability.comboCard;
                     spreadScript.CardCast();
                 }
