@@ -38,6 +38,8 @@ public class PlayerStats : CharacterStats
         {
             healthSliderValue.slider.maxValue = maxHealth;
             healthSliderValue.slider.value = health;
+
+            healthSliderValue.HealthFlash(HealthPercentage());
         }
 
         if (previewSliderValue != null)
@@ -89,6 +91,8 @@ public class PlayerStats : CharacterStats
         base.ChangeHealth(value, damage, damageType, out damageTaken, attacker, canBeCountered, attackHitFX);
 
         combatManager.HealthPointsValue.text = health.ToString();
+
+        healthSliderValue.HealthFlash(HealthPercentage());
     }
 
     public bool CheckPotions(int value)
