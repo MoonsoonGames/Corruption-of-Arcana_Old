@@ -10,26 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d042955bf60bea84b9273684d78676b5, type: 3}
-  m_Name: 9Hermit
+  m_Name: SRadiantForm
   m_EditorClassIdentifier: 
-  cardName: The Hermit
-  cardNumber: 9
-  flavourDescription: "The Lamp of Truth guides the unknowing, the patriarch\u2019s
-    staff helps him navigate narrow paths and his cloak is a form of discretion"
-  cardImage: {fileID: -8855467159889313431, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
+  cardName: Radiant Form
+  cardNumber: 1
+  flavourDescription: 
+  cardImage: {fileID: 6034864100499761545, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
     type: 3}
   enemySpell: 0
-  countsCombo: 1
-  comboCard: {fileID: 11400000, guid: 502b0408ae5f43e4ea0c074316b6744e, type: 2}
+  countsCombo: 0
+  comboCard: {fileID: 0}
   selfInterpretationUnlocked: 1
-  selfName: Cloak of Discretion
-  selfDescription: Disguise your form, hiding from your opponents and causing them
-    to be unable to target you with their abilities
+  selfName: Radiant Form
+  selfDescription: Invoke a bright aura of light, which deals static damage to your
+    enemies each turn
   selfCastSounds:
-  - {fileID: 8300000, guid: 0bc8ef1efa6f0264095b18e9a39d87de, type: 3}
+  - {fileID: 8300000, guid: 141aa0a641375ae4a874c00c5e4be746, type: 3}
   selfEndTurn: 0
   selfUsesAction: 1
-  selfCost: 20
+  selfCost: 0
   selfPotionCost: 0
   selfCostType: AP
   selfHeal: {x: 0, y: 0}
@@ -37,42 +36,48 @@ MonoBehaviour:
   restoreType: 0
   selfEndTurnDelay: 0.2
   selfStatus:
-  - {fileID: 11400000, guid: d8d4bb0d002a04c49a5b898acd885737, type: 2}
-  selfStatusDuration: 01000000
+  - {fileID: 11400000, guid: 1d762e043a7ce9a4abea5cbf1b26ee23, type: 2}
+  selfStatusDuration: 03000000
   selfDrawCards: 0
-  selfDrawSpecificCard: {fileID: 11400000, guid: af89ff48f79a6dd4e88996f7325d33f6,
-    type: 2}
+  selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 0
-  targetName: 
-  targetDescription: 
+  targetName: Chains of Rot
+  targetDescription: 'Imbue your targets with a debilitating plague, dealing a high
+    amount of septic damage and spreads to nearby target with a lesser effect
+
+
+    Also
+    has a chance to poison targets'
   HitFX: {fileID: 0}
   targetCastSounds: []
   targetHitSounds: []
   targetEndTurn: 0
   targetUsesAction: 1
-  targetCost: 0
-  targetCostType: 
-  damageType: 0
+  targetCost: 60
+  targetCostType: AP
+  damageType: 4
   targetCanBeCountered: 1
-  targetDmg: {x: 0, y: 0}
-  hits: 0
+  targetDmg: {x: 24, y: 36}
+  hits: 1
   hitInterval: 0
   finalHitInterval: 0
   targetFinalDmg: {x: 0, y: 0}
   targetEndTurnDelay: 0.2
   targetCleave: 0
-  targetChain: 0
-  extraDmg: {x: 0, y: 0}
+  targetChain: 1
+  extraDmg: {x: 18, y: 30}
   randomTargets: 0
   lifeLeach: {x: 0, y: 0}
   healOnKill: {x: 0, y: 0}
   executeThreshold: 0
-  targetStatus: []
-  targetStatusDuration: 
-  targetStatusChance: []
+  targetStatus:
+  - {fileID: 11400000, guid: fac4e7676c5c0b44fb5d0d8c67c6ed80, type: 2}
+  targetStatusDuration: 04000000
+  targetStatusChance:
+  - 0.5
   targetDrawCards: 0
   targetDrawSpecificCard: {fileID: 0}
-  spawnPosition: 0
+  spawnPosition: 1
   summonAlly: {fileID: 0}
   summonCount: 0
   summonFX: {fileID: 0}

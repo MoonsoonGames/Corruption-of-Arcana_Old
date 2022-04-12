@@ -10,41 +10,36 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d042955bf60bea84b9273684d78676b5, type: 3}
-  m_Name: 9Hermit
+  m_Name: SWordOfTreason
   m_EditorClassIdentifier: 
-  cardName: The Hermit
-  cardNumber: 9
-  flavourDescription: "The Lamp of Truth guides the unknowing, the patriarch\u2019s
-    staff helps him navigate narrow paths and his cloak is a form of discretion"
-  cardImage: {fileID: -8855467159889313431, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
-    type: 3}
+  cardName: Word of Treason
+  cardNumber: 0
+  flavourDescription: 
+  cardImage: {fileID: 0}
   enemySpell: 0
-  countsCombo: 1
-  comboCard: {fileID: 11400000, guid: 502b0408ae5f43e4ea0c074316b6744e, type: 2}
-  selfInterpretationUnlocked: 1
-  selfName: Cloak of Discretion
-  selfDescription: Disguise your form, hiding from your opponents and causing them
-    to be unable to target you with their abilities
-  selfCastSounds:
-  - {fileID: 8300000, guid: 0bc8ef1efa6f0264095b18e9a39d87de, type: 3}
+  countsCombo: 0
+  comboCard: {fileID: 0}
+  selfInterpretationUnlocked: 0
+  selfName: 
+  selfDescription: 
+  selfCastSounds: []
   selfEndTurn: 0
   selfUsesAction: 1
-  selfCost: 20
+  selfCost: 0
   selfPotionCost: 0
-  selfCostType: AP
+  selfCostType: 
   selfHeal: {x: 0, y: 0}
   selfAP: {x: 0, y: 0}
   restoreType: 0
   selfEndTurnDelay: 0.2
-  selfStatus:
-  - {fileID: 11400000, guid: d8d4bb0d002a04c49a5b898acd885737, type: 2}
-  selfStatusDuration: 01000000
+  selfStatus: []
+  selfStatusDuration: 
   selfDrawCards: 0
-  selfDrawSpecificCard: {fileID: 11400000, guid: af89ff48f79a6dd4e88996f7325d33f6,
-    type: 2}
-  targetInterpretationUnlocked: 0
-  targetName: 
-  targetDescription: 
+  selfDrawSpecificCard: {fileID: 0}
+  targetInterpretationUnlocked: 1
+  targetName: Word of Treason
+  targetDescription: "With a word of enlightenment, your opponent has a chance to
+    submit to treason\r, and will attack its allies"
   HitFX: {fileID: 0}
   targetCastSounds: []
   targetHitSounds: []
@@ -67,9 +62,11 @@ MonoBehaviour:
   lifeLeach: {x: 0, y: 0}
   healOnKill: {x: 0, y: 0}
   executeThreshold: 0
-  targetStatus: []
-  targetStatusDuration: 
-  targetStatusChance: []
+  targetStatus:
+  - {fileID: 11400000, guid: 365466a2c7ace8e41a43c965cdb95e3d, type: 2}
+  targetStatusDuration: 03000000
+  targetStatusChance:
+  - 0.7
   targetDrawCards: 0
   targetDrawSpecificCard: {fileID: 0}
   spawnPosition: 0
