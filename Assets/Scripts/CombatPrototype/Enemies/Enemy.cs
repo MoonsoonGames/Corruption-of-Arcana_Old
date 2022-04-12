@@ -95,7 +95,39 @@ public class Enemy : MonoBehaviour
         {
             if (enemyStats.charm)
             {
-                //charm code here
+                if (basicAttacks.Count > 0)
+                {
+                    Enemy[] enemies = GameObject.FindObjectsOfType<Enemy>();
+
+                    int randTarget = Random.Range(0, enemies.Length);
+
+                    int thisTarget = 99;
+
+                    int i = 0;
+
+                    foreach (var item in enemies)
+                    {
+                        if (item == GetComponent<EnemyStats>())
+                        {
+                            thisTarget = i;
+                        }
+                    }
+
+                    if (enemies.Length != 1)
+                    {
+                        while (thisTarget == randTarget)
+                        {
+                            randTarget = Random.Range(0, enemies.Length);
+                        }
+                    }
+
+                    basicAttacks[currentAttack].CastSpell(enemies[randTarget].gameObject, this.gameObject, abilityManager, out bool nullify);
+                    currentAttack++;
+                    if (currentAttack >= basicAttacks.Count)
+                    {
+                        currentAttack = 0;
+                    }
+                }
             }
             else if (enemyStats.skipTurn || enemyStats.sleepTurn)
             {
@@ -113,7 +145,6 @@ public class Enemy : MonoBehaviour
             }
             else if (enemyStats.silence && basicAttacks.Count > 0)
             {
-
                 basicAttacks[currentAttack].CastSpell(player, this.gameObject, abilityManager, out bool nullify);
                 currentAttack++;
                 if (currentAttack >= basicAttacks.Count)
@@ -163,7 +194,7 @@ public class Enemy : MonoBehaviour
         {
             if (enemyStats.charm)
             {
-                return 0;
+                return basicAttacks[currentAttack].targetEndTurnDelay;
             }
             else if (enemyStats.skipTurn || enemyStats.sleepTurn)
             {
@@ -213,7 +244,7 @@ public class Enemy : MonoBehaviour
         {
             if (enemyStats.charm)
             {
-                attackName = "Skipping turn";
+                attackName = "Charmed, attacking allies";
             }
             else if (enemyStats.skipTurn)
             {

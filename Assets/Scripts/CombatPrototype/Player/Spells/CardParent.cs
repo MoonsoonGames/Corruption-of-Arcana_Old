@@ -464,12 +464,12 @@ public class CardParent : ScriptableObject
 
     public bool QuerySelf(GameObject target, GameObject caster, AbilityManager abilityManager)
     {
-        return (caster == GameObject.Find("Player") || caster != GameObject.Find("Player")) && (target == caster && selfInterpretationUnlocked && target.GetComponent<CharacterStats>() != null);
+        return (target == caster && selfInterpretationUnlocked && target.GetComponent<CharacterStats>() != null);
     }
 
     public bool QueryTarget(GameObject target, GameObject caster, AbilityManager abilityManager)
     {
-        return (caster == GameObject.Find("Player") || caster != GameObject.Find("Player")) && (target != caster && targetInterpretationUnlocked && target.GetComponent<CharacterStats>() != null);
+        return (target != caster && targetInterpretationUnlocked && target.GetComponent<CharacterStats>() != null);
     }
 
     void SpawnFX(Object FX, Transform transform)
