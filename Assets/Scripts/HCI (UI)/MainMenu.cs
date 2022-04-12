@@ -16,14 +16,25 @@ public class MainMenu : MonoBehaviour
     public SceneLoader sceneLoader;
     public Object dialogue;
 
+    LoadSettings loadSettings;
+
     // Start is called before the first frame update
     void Start()
     {
+        loadSettings = LoadSettings.instance;
         sceneString = sceneToLoad.ToString();
     }
 
-    public void playGame()
+    public void playGame(bool load)
     {
+        if (load)
+        {
+            loadSettings.LoadData();
+        }
+        else
+        {
+            loadSettings.SaveData();
+        }
         sceneLoader.LoadSpecifiedScene(sceneString, LoadSceneMode.Single, dialogue);
     }
     public void credits()
