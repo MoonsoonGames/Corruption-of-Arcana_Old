@@ -322,10 +322,6 @@ public class MenuManager : MonoBehaviour
         }
         #endregion
 
-        #region SpreadCard next/last on/off
-
-        #endregion
-
         while (PauseMenuUI.activeSelf == false
             && QuestMenuUI.activeSelf == false
             && CardsMenu == false)
@@ -349,6 +345,19 @@ public class MenuManager : MonoBehaviour
             CompassIconPage.SetActive(false);
             EnemyCategory.SetActive(false);
             SpreadCardsHelp.SetActive(false);
+            
+            ConstructsPage.SetActive(false);
+            UndeadPage.SetActive(false);
+            BeastsPage.SetActive(false);
+            HumanoidPage.SetActive(false);
+            SecretsPage.SetActive(false);
+
+            MainSpreadPage.SetActive(false);
+            SpreadPage2.SetActive(false);
+            SpreadPage3.SetActive(false);
+            SpreadPage4.SetActive(false);
+            SpreadPage5.SetActive(false);
+            SpreadPage6.SetActive(false);
         }
     }
 
@@ -576,29 +585,29 @@ public class MenuManager : MonoBehaviour
         //turn on deck builder UI
         CardsMenu.SetActive(true);
 
-        //MiArcCards on
+        //BaAtk on
         BaAtk.SetActive(true);
         //MjArcCards off
         MjArcCardsPage.SetActive(false);
         //CorArcCards off
 
-        //CardTypeName = Minor Arcana Cards
-        CardTypeTitle.text = "Minor Arcana Cards";
+        //CardTypeName = basic atk Cards
+        CardTypeTitle.text = "Basic Attack Cards";
         //Current Page = 1(x)
         PageX.text = "1";
         //Total Pages = 1(y)
         PageY.text = "1";
 
-        //nextMiArc off
+        //nextMjArc off
         NextMjArcBtn.SetActive(false);
-        //lastMiArc off
+        //lastMjArc off
         LastMjArcBtn.SetActive(false);
     }
 
     #region Submenu for cards
-    public void MiArcCards()
+    public void BaAtkCards()
     {
-        //MiArcCards on
+        //BaAtkCards on
         BaAtk.SetActive(true);
         //MjArcCards off
         MjArcCardsPage.SetActive(false);
@@ -612,14 +621,14 @@ public class MenuManager : MonoBehaviour
         //Total Pages = 1(y)
         PageY.text = "1";
 
-        //nextMiArc off
+        //nextMjArc off
         NextMjArcBtn.SetActive(false);
-        //lastMiArc off
+        //lastMjArc off
         LastMjArcBtn.SetActive(false);
     }
     public void MjArcCards()
     {
-        //MiArcCards off
+        //BaAtkCards off
         BaAtk.SetActive(false);
         //MjArcCards on
         MjArcCardsPage.SetActive(true);
@@ -638,9 +647,9 @@ public class MenuManager : MonoBehaviour
         //Total Pages = 3(y)
         PageY.text = "3";
 
-        //nextMiArc on
+        //nextMjArc on
         NextMjArcBtn.SetActive(true);
-        //lastMiArc off
+        //lastMjArc off
         LastMjArcBtn.SetActive(false);
     }
 
@@ -691,7 +700,7 @@ public class MenuManager : MonoBehaviour
 
     public void CorArcCards()
     {
-        //MiArcCards off
+        //BaAtkCards off
         //MjArcCards off
         //CorArcCards on
 
@@ -749,7 +758,7 @@ public class MenuManager : MonoBehaviour
         else if (SpreadPage2.activeSelf == true || SpreadPage3.activeSelf == true || SpreadPage4.activeSelf == true ||
             SpreadPage5.activeSelf == true || SpreadPage6.activeSelf == true)
         {
-            HelpMainPage.SetActive(true);
+            MainSpreadPage.SetActive(true);
 
             SpreadPage2.SetActive(false);
             SpreadPage3.SetActive(false);
@@ -757,7 +766,7 @@ public class MenuManager : MonoBehaviour
             SpreadPage5.SetActive(false);
             SpreadPage6.SetActive(false);
             spreadLastBtn.SetActive(false);
-            spreadNextBtn.SetActive(false);
+            spreadNextBtn.SetActive(true);
         }
         else
         {
@@ -766,6 +775,8 @@ public class MenuManager : MonoBehaviour
             CompassIconPage.SetActive(false);
             EnemyMainPage.SetActive(false);
             SpreadCardsHelp.SetActive(false);
+            spreadLastBtn.SetActive(false);
+            spreadNextBtn.SetActive(false);
             activeSubPage = false;
         }
     }
