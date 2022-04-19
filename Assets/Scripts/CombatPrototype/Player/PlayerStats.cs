@@ -38,7 +38,7 @@ public class PlayerStats : CharacterStats
         {
             healthSliderValue.slider.maxValue = maxHealth;
             healthSliderValue.slider.value = health;
-
+            healthSliderValue.Setup();
             healthSliderValue.HealthFlash(HealthPercentage());
         }
 

@@ -10,16 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d042955bf60bea84b9273684d78676b5, type: 3}
-  m_Name: 13Death
+  m_Name: SWordOfTreason
   m_EditorClassIdentifier: 
-  cardName: Death
-  cardNumber: 13
-  flavourDescription: The Card with no name
-  cardImage: {fileID: -4448962368760175236, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
-    type: 3}
+  cardName: Word of Treason
+  cardNumber: 0
+  flavourDescription: 
+  cardImage: {fileID: 0}
   enemySpell: 0
-  countsCombo: 1
-  comboCard: {fileID: 11400000, guid: bb5931b293d73c445bead3714901c908, type: 2}
+  countsCombo: 0
+  comboCard: {fileID: 0}
   selfInterpretationUnlocked: 0
   selfName: 
   selfDescription: 
@@ -38,24 +37,20 @@ MonoBehaviour:
   selfDrawCards: 0
   selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 1
-  targetName: Death's Toll
-  targetDescription: You mark your target with a grim curse, making them more vulnerable
-    to all damage and healing from their life force
-  HitFX: {fileID: 6727453174112786923, guid: 420809e2f798084488e3873f43ce61a8, type: 3}
-  targetCastSounds:
-  - {fileID: 8300000, guid: 22b6ec8f3ce0cd14c9e833b0f6126e05, type: 3}
-  - {fileID: 8300000, guid: 15605f103ff58e1479fb0d9a1f0d4156, type: 3}
-  targetHitSounds:
-  - {fileID: 8300000, guid: 2c9b2d869742d85449e20d606fddff38, type: 3}
-  - {fileID: 8300000, guid: 9936d9bea49c36e479a6be4e3cee6402, type: 3}
+  targetName: Word of Treason
+  targetDescription: "With a word of enlightenment, your opponent has a chance to
+    submit to treason\r, and will attack its allies"
+  HitFX: {fileID: 0}
+  targetCastSounds: []
+  targetHitSounds: []
   targetEndTurn: 0
   targetUsesAction: 1
-  targetCost: 10
-  targetCostType: AP
-  damageType: 6
+  targetCost: 0
+  targetCostType: 
+  damageType: 0
   targetCanBeCountered: 1
   targetDmg: {x: 0, y: 0}
-  hits: 1
+  hits: 0
   hitInterval: 0
   finalHitInterval: 0
   targetFinalDmg: {x: 0, y: 0}
@@ -64,14 +59,14 @@ MonoBehaviour:
   targetChain: 0
   extraDmg: {x: 0, y: 0}
   randomTargets: 0
-  lifeLeach: {x: 8, y: 12}
+  lifeLeach: {x: 0, y: 0}
   healOnKill: {x: 0, y: 0}
   executeThreshold: 0
   targetStatus:
-  - {fileID: 11400000, guid: ffa9ef34f1c121746a687853e6d06232, type: 2}
-  targetStatusDuration: 05000000
+  - {fileID: 11400000, guid: 365466a2c7ace8e41a43c965cdb95e3d, type: 2}
+  targetStatusDuration: 03000000
   targetStatusChance:
-  - 1
+  - 0.7
   targetDrawCards: 0
   targetDrawSpecificCard: {fileID: 0}
   spawnPosition: 0

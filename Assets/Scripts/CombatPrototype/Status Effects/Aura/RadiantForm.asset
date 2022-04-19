@@ -10,30 +10,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 75704bd692ffc4d4ba9ac1f041adfd7f, type: 3}
-  m_Name: IronGuard
+  m_Name: RadiantForm
   m_EditorClassIdentifier: 
-  effectName: Iron Guard
-  effectDescription: Target has 60% increased Physical resistance and reflects 5-8
-    Physical damage when hit
-  applySounds: []
-  turnSounds: []
+  effectName: Radiant Form
+  effectDescription: Target has a blinding aura that deals 7-12 Static damage to
+    all oppponents and increases their Ember and Static resistance by 30%
+  applySounds:
+  - {fileID: 8300000, guid: ce909c5302981e347ade506002b069ce, type: 3}
+  turnSounds:
+  - {fileID: 8300000, guid: 9f957d738d6589341988e75e9eb2a0df, type: 3}
+  - {fileID: 8300000, guid: db09891f2cc74fd47a393d2efc50cb78, type: 3}
   endSounds: []
-  effectIcon: {fileID: -6944740359877340004, guid: b3bf2ce67e22fce42b8eb1d70204ad3e,
+  effectIcon: {fileID: 1545184125862773577, guid: d3fbbd00df91514448343072bb05074b,
     type: 3}
   alsoApply: []
   alsoApplyOthers: []
   alsoApplyOthersOnHit: []
-  healFX: {fileID: 0}
-  damageFX: {fileID: 6727453174112786923, guid: 420809e2f798084488e3873f43ce61a8,
+  healFX: {fileID: 6727453174112786923, guid: 5117cb09524d9f6479bf5f9776bb954d, type: 3}
+  damageFX: {fileID: 6727453174112786923, guid: d4521daa311ea5142a733f284dd24744,
     type: 3}
   applyDamage: {x: 0, y: 0}
   applyDamageType: 0
   turnDamage: {x: 0, y: 0}
   turnDamageType: 0
-  applyDamageOpponents: {x: 0, y: 0}
-  applyDamageTypeOpponents: 0
-  turnDamageOpponents: {x: 0, y: 0}
-  turnDamageTypeOpponents: 0
+  applyDamageOpponents: {x: 12, y: 15}
+  applyDamageTypeOpponents: 2
+  turnDamageOpponents: {x: 7, y: 12}
+  turnDamageTypeOpponents: 2
   applyDamageOther: {x: 0, y: 0}
   applyDamageTypeOther: 0
   turnDamageOther: {x: 0, y: 0}
@@ -50,12 +53,12 @@ MonoBehaviour:
   applyArcanaOpponents: {x: 0, y: 0}
   turnHealingOpponents: {x: 0, y: 0}
   turnArcanaOpponents: {x: 0, y: 0}
-  adjustPhysMultiplier: -0.6
-  adjustEmberMultiplier: 0
-  adjustStaticMultiplier: 0
+  adjustPhysMultiplier: 0
+  adjustEmberMultiplier: -0.3
+  adjustStaticMultiplier: -0.3
   adjustBleakMultiplier: 0
   adjustSepticMultiplier: 0
-  reflectDamage: {x: 5, y: 8}
+  reflectDamage: {x: 0, y: 0}
   reflectDamageType: 0
   reflectDamageSpawner: 0
   charm: 0

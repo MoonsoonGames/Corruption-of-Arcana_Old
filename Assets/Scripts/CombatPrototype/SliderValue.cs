@@ -14,6 +14,11 @@ public class SliderValue : MonoBehaviour
 
     private void Start()
     {
+        Setup();
+    }
+
+    public void Setup()
+    {
         if (slider != null)
         {
             sliderImage = slider.fillRect.GetComponent<Image>();

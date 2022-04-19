@@ -10,26 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 75704bd692ffc4d4ba9ac1f041adfd7f, type: 3}
-  m_Name: IronGuard
+  m_Name: DeathsToll
   m_EditorClassIdentifier: 
-  effectName: Iron Guard
-  effectDescription: Target has 60% increased Physical resistance and reflects 5-8
-    Physical damage when hit
+  effectName: Death's Toll
+  effectDescription: Reduces all resistances by 25% and target takes 2-4 perforation
+    damage each turn
   applySounds: []
   turnSounds: []
   endSounds: []
-  effectIcon: {fileID: -6944740359877340004, guid: b3bf2ce67e22fce42b8eb1d70204ad3e,
+  effectIcon: {fileID: -4486899739739380857, guid: df20acf3f76d8c744a467922e153cc83,
     type: 3}
   alsoApply: []
   alsoApplyOthers: []
   alsoApplyOthersOnHit: []
   healFX: {fileID: 0}
-  damageFX: {fileID: 6727453174112786923, guid: 420809e2f798084488e3873f43ce61a8,
+  damageFX: {fileID: 6727453174112786923, guid: 556929575e076a24791a4c2a8e90fac1,
     type: 3}
-  applyDamage: {x: 0, y: 0}
-  applyDamageType: 0
-  turnDamage: {x: 0, y: 0}
-  turnDamageType: 0
+  applyDamage: {x: 2, y: 4}
+  applyDamageType: 6
+  turnDamage: {x: 2, y: 4}
+  turnDamageType: 6
   applyDamageOpponents: {x: 0, y: 0}
   applyDamageTypeOpponents: 0
   turnDamageOpponents: {x: 0, y: 0}
@@ -50,12 +50,12 @@ MonoBehaviour:
   applyArcanaOpponents: {x: 0, y: 0}
   turnHealingOpponents: {x: 0, y: 0}
   turnArcanaOpponents: {x: 0, y: 0}
-  adjustPhysMultiplier: -0.6
-  adjustEmberMultiplier: 0
-  adjustStaticMultiplier: 0
-  adjustBleakMultiplier: 0
-  adjustSepticMultiplier: 0
-  reflectDamage: {x: 5, y: 8}
+  adjustPhysMultiplier: 0.25
+  adjustEmberMultiplier: 0.25
+  adjustStaticMultiplier: 0.25
+  adjustBleakMultiplier: 0.25
+  adjustSepticMultiplier: 0.25
+  reflectDamage: {x: 0, y: 0}
   reflectDamageType: 0
   reflectDamageSpawner: 0
   charm: 0
