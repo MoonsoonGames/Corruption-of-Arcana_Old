@@ -61,6 +61,9 @@ public class BGMManager : MonoBehaviour
 
     public void PlaySoundEffect(AudioClip soundEffect, float volume)
     {
-        audioSource.PlayOneShot(soundEffect, volume);
+        if (audioSource != null && soundEffect != null)
+        {
+            audioSource.PlayOneShot(soundEffect, volume);
+        }
     }
 }
