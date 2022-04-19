@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d042955bf60bea84b9273684d78676b5, type: 3}
   m_Name: S_Expunge
   m_EditorClassIdentifier: 
-  cardName: Domination
+  cardName: Expunge
   cardNumber: 0
   flavourDescription: 
-  cardImage: {fileID: 0}
+  cardImage: {fileID: -5726090553143854400, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
+    type: 3}
   enemySpell: 0
   countsCombo: 0
   comboCard: {fileID: 0}
@@ -37,9 +38,9 @@ MonoBehaviour:
   selfDrawCards: 0
   selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 1
-  targetName: Domination
-  targetDescription: You make their will your own, and they will yield to your power,
-    having a chance to be charmed, forcing the target to attack its allies
+  targetName: Expunge
+  targetDescription: Remove all status effects from the target and deal Septic damage
+    for each status cleansed
   HitFX: {fileID: 0}
   targetCastSounds: []
   targetHitSounds: []
@@ -63,10 +64,10 @@ MonoBehaviour:
   healOnKill: {x: 0, y: 0}
   executeThreshold: 0
   targetStatus:
-  - {fileID: 11400000, guid: e2208f3b820be1343a5185b48a4f1589, type: 2}
-  targetStatusDuration: 03000000
+  - {fileID: 11400000, guid: 14fd5a84fecc22c4ea4469f4abe4bf11, type: 2}
+  targetStatusDuration: 01000000
   targetStatusChance:
-  - 0.7
+  - 1
   targetDrawCards: 0
   targetDrawSpecificCard: {fileID: 0}
   spawnPosition: 0

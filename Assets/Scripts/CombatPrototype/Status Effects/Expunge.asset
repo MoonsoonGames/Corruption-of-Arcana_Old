@@ -12,17 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75704bd692ffc4d4ba9ac1f041adfd7f, type: 3}
   m_Name: Expunge
   m_EditorClassIdentifier: 
-  effectName: 
-  effectDescription: 
-  applySounds: []
+  effectName: Expunge
+  effectDescription: Removes
+  applySounds:
+  - {fileID: 8300000, guid: add3024e19106c740a56a4b9c5d2336e, type: 3}
   turnSounds: []
   endSounds: []
-  effectIcon: {fileID: 0}
+  effectIcon: {fileID: 4815525640069369876, guid: df20acf3f76d8c744a467922e153cc83,
+    type: 3}
   alsoApply: []
   alsoApplyOthers: []
   alsoApplyOthersOnHit: []
   healFX: {fileID: 0}
-  damageFX: {fileID: 0}
+  damageFX: {fileID: 6727453174112786923, guid: 9b68bdcf8d233e3418504dae117ce7ee,
+    type: 3}
   applyDamage: {x: 0, y: 0}
   applyDamageType: 0
   turnDamage: {x: 0, y: 0}
@@ -73,3 +76,7 @@ MonoBehaviour:
   sleepTurnOpponents: 0
   silenceOpponents: 0
   slowOpponents: 0
+  clearAllStatuses: 1
+  damagePerRemovedStatus: {x: 5, y: 5}
+  cleanseDamageType: 4
+  healingPerRemovedStatus: {x: 0, y: 0}
