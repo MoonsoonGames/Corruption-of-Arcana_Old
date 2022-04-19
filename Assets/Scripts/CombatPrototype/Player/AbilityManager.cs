@@ -26,7 +26,6 @@ public class AbilityManager : MonoBehaviour
 
     public SliderVariation sliderVarScript;
 
-    [HideInInspector]
     public EndTurn endTurn;
 
     BGMManager audioManager;
@@ -65,7 +64,6 @@ public class AbilityManager : MonoBehaviour
     {
         activeCard = GameObject.FindObjectOfType<ActiveCard>();
         targetter = GetComponentInChildren<Targetter>();
-        endTurn = GameObject.FindObjectOfType<EndTurn>();
         audioManager = GameObject.FindObjectOfType<BGMManager>();
 
         spreadScript.Setup(combatDeckManager);
