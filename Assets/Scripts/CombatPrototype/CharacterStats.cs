@@ -21,7 +21,7 @@ public class CharacterStats : MonoBehaviour
     public Object killFX;
     public Object healFX;
 
-    Dictionary<StatusParent, int> statuses = new Dictionary<StatusParent, int>();
+    public Dictionary<StatusParent, int> statuses = new Dictionary<StatusParent, int>();
 
     protected virtual void Start()
     {
@@ -260,7 +260,7 @@ public class CharacterStats : MonoBehaviour
 
             health = Mathf.Clamp(health - damageTaken, 0, maxHealth);
 
-            if (canBeCountered)
+            if (canBeCountered && attacker != null)
             {
                 OnTakeDamageStatus(attacker);
             }

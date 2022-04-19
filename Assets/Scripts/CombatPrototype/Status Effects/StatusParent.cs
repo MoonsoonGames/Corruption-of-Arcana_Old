@@ -123,6 +123,22 @@ public class StatusParent : ScriptableObject
 
     #endregion
 
+    #region Cleanse Status
+
+    [Header("Cleanse Status")]
+    public bool clearAllStatuses = false;
+
+    int removedStatuses = 0;
+
+    //public StatusParent[] removeStatuses;
+
+    public Vector2Int damagePerRemovedStatus;
+    public E_DamageTypes cleanseDamageType;
+
+    public Vector2Int healingPerRemovedStatus;
+
+    #endregion
+
     #endregion
 
     #region Effects
@@ -145,6 +161,9 @@ public class StatusParent : ScriptableObject
         {
             ExposeEnemy(abilityManager, stats);
         }
+
+        if (clearAllStatuses == true)
+            CleanseStatuses(target);
     }
 
     public void OnRemove(GameObject target)
@@ -159,6 +178,9 @@ public class StatusParent : ScriptableObject
         {
             abilityManager.SoundEffect(soundEffect, 1f);
         }
+
+        if (clearAllStatuses == true)
+            CleanseDamageHealing(target, abilityManager);
     }
 
     #endregion
@@ -304,7 +326,7 @@ public class StatusParent : ScriptableObject
         if (applyHealing.y > 0f)
         {
             int heal = Random.Range(applyHealing.x, applyHealing.y);
-            stats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int healing, null, false, damageFX);
+            stats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int healing, null, false, healFX);
         }
 
         if (target.GetComponent<EnemyStats>())
@@ -318,7 +340,7 @@ public class StatusParent : ScriptableObject
                     if (applyHealingOther.y > 0f)
                     {
                         int heal = Random.Range(applyHealingOther.x, applyHealingOther.y);
-                        testStats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int healing, null, false, damageFX);
+                        testStats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int healing, null, false, healFX);
                         Debug.Log("Healed " + testStats.name);
                     }
                 }
@@ -327,7 +349,7 @@ public class StatusParent : ScriptableObject
             if (applyHealingOpponents.y > 0f)
             {
                 int heal = Random.Range(applyHealingOpponents.x, applyHealingOpponents.y);
-                abilityManager.combatManager.playerStats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int healing, null, false, damageFX);
+                abilityManager.combatManager.playerStats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int healing, null, false, healFX);
             }
         }
         else if (target.GetComponent<PlayerStats>())
@@ -341,7 +363,7 @@ public class StatusParent : ScriptableObject
                     if (applyHealingOpponents.y > 0f)
                     {
                         int heal = Random.Range(applyHealingOpponents.x, applyHealingOpponents.y);
-                        testStats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int healing, null, false, damageFX);
+                        testStats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int healing, null, false, healFX);
                     }
                 }
             }
@@ -357,7 +379,7 @@ public class StatusParent : ScriptableObject
         if (turnHealing.y > 0f)
         {
             int heal = Random.Range(turnHealing.x, turnHealing.y);
-            stats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int healing, null, false, damageFX);
+            stats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int healing, null, false, healFX);
         }
 
         if (target.GetComponent<EnemyStats>())
@@ -371,7 +393,7 @@ public class StatusParent : ScriptableObject
                     if (turnHealingOther.y > 0f)
                     {
                         int heal = Random.Range(turnHealingOther.x, turnHealingOther.y);
-                        testStats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int healing, null, false, damageFX);
+                        testStats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int healing, null, false, healFX);
                     }
                 }
             }
@@ -379,7 +401,7 @@ public class StatusParent : ScriptableObject
             if (turnHealingOpponents.y > 0f)
             {
                 int heal = Random.Range(turnHealingOpponents.x, turnHealingOpponents.y);
-                abilityManager.combatManager.playerStats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int healing, null, false, damageFX);
+                abilityManager.combatManager.playerStats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int healing, null, false, healFX);
             }
         }
         else if (target.GetComponent<PlayerStats>())
@@ -395,44 +417,13 @@ public class StatusParent : ScriptableObject
                         if (turnHealingOpponents.y > 0f)
                         {
                             int heal = Random.Range(turnHealingOpponents.x, turnHealingOpponents.y);
-                            testStats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int healing, null, false, damageFX);
+                            testStats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int healing, null, false, healFX);
                         }
                     }
                 }
             }
         }
     }
-
-    /*
-
-    void ApplyHealing(GameObject target)
-    {
-        CharacterStats stats = target.GetComponent<CharacterStats>();
-
-        int heal = Random.Range(applyHealing.x, applyHealing.y);
-
-        if (applyHealing.y > 0f)
-        {
-            stats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int healing, null);
-
-            SpawnFX(healFX, target.transform);
-        }
-    }
-
-    void TurnStartHealing(GameObject target)
-    {
-        CharacterStats stats = target.GetComponent<CharacterStats>();
-
-        int heal = Random.Range(turnHealing.x, turnHealing.y);
-
-        if (turnHealing.y > 0f)
-        {
-            stats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int healing, null);
-
-            SpawnFX(healFX, target.transform);
-        }
-    }
-    */
 
     #endregion
 
@@ -450,6 +441,49 @@ public class StatusParent : ScriptableObject
         CharacterStats stats = target.GetComponent<CharacterStats>();
 
         stats.AdjustDamageMultipliers(-adjustPhysMultiplier, -adjustEmberMultiplier, -adjustStaticMultiplier, -adjustBleakMultiplier, -adjustSepticMultiplier);
+    }
+
+    #endregion
+
+    #region Cleanse Statuses
+
+    public void CleanseStatuses (GameObject target)
+    {
+        CharacterStats stats = target.GetComponent<CharacterStats>();
+
+        if (clearAllStatuses == true)
+        {
+            //loop through all statuses affecting target and remove them if it is not this status
+            foreach (var item in stats.statuses)
+            {
+                if (item.Key != this)
+                {
+                    removedStatuses++;
+                    item.Key.OnRemove(target);
+                }
+            }
+
+            removedStatuses++;
+            OnRemove(target);
+        }
+    }
+
+    public void CleanseDamageHealing(GameObject target, AbilityManager abilityManager)
+    {
+        CharacterStats stats = target.GetComponent<CharacterStats>();
+
+        if (clearAllStatuses == true)
+        {
+            if (applyHealing.y > 0f)
+            {
+                int heal = Random.Range(healingPerRemovedStatus.x, healingPerRemovedStatus.y);
+                stats.ChangeHealth(heal, false, E_DamageTypes.Physical, out int healing, null, false, healFX);
+            }
+
+            abilityManager.DelayDamage(damagePerRemovedStatus * removedStatuses, cleanseDamageType, 0.2f, null, stats.gameObject, null, stats, 0f, new Vector2Int(0, 0), false, damageFX, null, GetSoundEffect(applySounds));
+        }
+
+        removedStatuses = 0;
     }
 
     #endregion
