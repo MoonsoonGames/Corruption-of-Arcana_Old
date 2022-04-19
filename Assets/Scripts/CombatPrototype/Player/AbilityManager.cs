@@ -28,8 +28,6 @@ public class AbilityManager : MonoBehaviour
 
     public EndTurn endTurn;
 
-    BGMManager audioManager;
-
 
     #region Ability Values
 
@@ -64,7 +62,6 @@ public class AbilityManager : MonoBehaviour
     {
         activeCard = GameObject.FindObjectOfType<ActiveCard>();
         targetter = GetComponentInChildren<Targetter>();
-        audioManager = GameObject.FindObjectOfType<BGMManager>();
 
         spreadScript.Setup(combatDeckManager);
     }
@@ -407,9 +404,9 @@ public class AbilityManager : MonoBehaviour
 
     public void SoundEffect(AudioClip soundEffect, float volume)
     {
-        if (audioManager != null && soundEffect != null)
+        if (BGMManager.instance != null && soundEffect != null)
         {
-            audioManager.PlaySoundEffect(soundEffect, volume * 4);
+            BGMManager.instance.PlaySoundEffect(soundEffect, volume * 4);
         }
     }
 

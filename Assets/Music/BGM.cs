@@ -14,14 +14,6 @@ public class BGM : MonoBehaviour
 
     void PlayMusic()
     {
-        BGMManager[] managers = GameObject.FindObjectsOfType<BGMManager>();
-
-        foreach (var item in managers)
-        {
-            if (item.CheckMain())
-            {
-                item.PlayMusic(audioClip, volume);
-            }
-        }
+        BGMManager.instance.PlayMusic(audioClip, volume);
     }
 }

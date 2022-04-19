@@ -1873,7 +1873,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 1632682094784890243}
+  selectedFlowchart: {fileID: 1570171991}
 --- !u!4 &336365333
 Transform:
   m_ObjectHideFlags: 1
@@ -2297,13 +2297,53 @@ MonoBehaviour:
   m_GameObject: {fileID: 570620673}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 000864f8e9e1748a39807861d0e60e29, type: 3}
+  m_Script: {fileID: 11500000, guid: 95d9ff288f3904c05ada7ac9c9a075bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentBlock: {fileID: 1570171992}
-  suppressBlockAutoSelect: 0
-  keyPressType: 0
-  keyCode: 27
+  itemId: 81
+  indentLevel: 0
+  description: 
+  delay: 0
+  invokeType: 0
+  staticEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 570620701}
+        m_TargetAssemblyTypeName: EnemyController, Assembly-CSharp
+        m_MethodName: LoadCombat
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  booleanParameter:
+    booleanRef: {fileID: 0}
+    booleanVal: 0
+  booleanEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  integerParameter:
+    integerRef: {fileID: 0}
+    integerVal: 0
+  integerEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  floatParameter:
+    floatRef: {fileID: 0}
+    floatVal: 0
+  floatEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  stringParameter:
+    stringRef: {fileID: 0}
+    stringVal: 
+  stringEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &570620675 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 570620682, guid: 5e44c1da357e9554e9892f17692c2d11,
@@ -2330,14 +2370,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: -35.205963
-    y: 25.899994
-    width: 111
+    x: 38.65767
+    y: 96.35451
+    width: 101
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
   itemId: 72
-  blockName: New Block
+  blockName: Wake Up
   description: 
   eventHandler: {fileID: 0}
   commandList:
@@ -2380,7 +2420,7 @@ MonoBehaviour:
   itemId: 73
   indentLevel: 0
   targetFlowchart: {fileID: 0}
-  targetBlock: {fileID: 1570171992}
+  targetBlock: {fileID: 570620712}
   startLabel:
     stringRef: {fileID: 0}
     stringVal: 
@@ -2430,7 +2470,7 @@ MonoBehaviour:
   itemId: 75
   indentLevel: 0
   targetFlowchart: {fileID: 0}
-  targetBlock: {fileID: 1570171993}
+  targetBlock: {fileID: 570620711}
   startLabel:
     stringRef: {fileID: 0}
     stringVal: 
@@ -2551,7 +2591,7 @@ MonoBehaviour:
   tweenType: 1
   waitUntilFinished:
     booleanRef: {fileID: 0}
-    booleanVal: 1
+    booleanVal: 0
   duration:
     floatRef: {fileID: 0}
     floatVal: 3
@@ -2694,6 +2734,113 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbd8c931f22994b9d90e2037fffaa770, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &570620701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570620673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c8a244e344d8e846b1a664b311a0a07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss: 0
+  enemies:
+  - {fileID: 0}
+  - {fileID: 6783367526062023706, guid: bfd8fbdc2883a164bab83536d08d9d52, type: 3}
+  - {fileID: 0}
+  objectives: []
+  goldReward: {x: 0, y: 0}
+  weaponReward: {fileID: 0}
+  combatScene: 8
+  enemyName: Tutorial Fight
+  background: {fileID: 21300000, guid: dcf7cd4364d73824ab81722799c158ad, type: 3}
+  destroy: 0
+--- !u!114 &570620702
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570620673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodeRect:
+    serializedVersion: 2
+    x: -126.696045
+    y: 201.15955
+    width: 124
+    height: 40
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  useCustomTint: 0
+  itemId: 3
+  blockName: Load Tutorial
+  description: 
+  eventHandler: {fileID: 0}
+  commandList:
+  - {fileID: 570620674}
+  suppressAllAutoSelections: 0
+--- !u!114 &570620703
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570620673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95d9ff288f3904c05ada7ac9c9a075bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 82
+  indentLevel: 0
+  description: Quest
+  delay: 0
+  invokeType: 0
+  staticEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1570171994}
+        m_TargetAssemblyTypeName: QuestGiver, Assembly-CSharp
+        m_MethodName: AcceptQuest
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  booleanParameter:
+    booleanRef: {fileID: 0}
+    booleanVal: 0
+  booleanEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  integerParameter:
+    integerRef: {fileID: 0}
+    integerVal: 0
+  integerEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  floatParameter:
+    floatRef: {fileID: 0}
+    floatVal: 0
+  floatEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  stringParameter:
+    stringRef: {fileID: 0}
+    stringVal: 
+  stringEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &570620704
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -2721,7 +2868,7 @@ MonoBehaviour:
   tweenType: 1
   waitUntilFinished:
     booleanRef: {fileID: 0}
-    booleanVal: 1
+    booleanVal: 0
   duration:
     floatRef: {fileID: 0}
     floatVal: 3
@@ -2813,7 +2960,7 @@ MonoBehaviour:
   tweenType: 1
   waitUntilFinished:
     booleanRef: {fileID: 0}
-    booleanVal: 1
+    booleanVal: 0
   duration:
     floatRef: {fileID: 0}
     floatVal: 3
@@ -2824,6 +2971,168 @@ MonoBehaviour:
   targetAlpha:
     floatRef: {fileID: 0}
     floatVal: 255
+--- !u!114 &570620708
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570620673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95d9ff288f3904c05ada7ac9c9a075bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 84
+  indentLevel: 0
+  description: LoadScene
+  delay: 0
+  invokeType: 0
+  staticEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1570171992}
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+        m_MethodName: LoadDefaultScene
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  booleanParameter:
+    booleanRef: {fileID: 0}
+    booleanVal: 0
+  booleanEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  integerParameter:
+    integerRef: {fileID: 0}
+    integerVal: 0
+  integerEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  floatParameter:
+    floatRef: {fileID: 0}
+    floatVal: 0
+  floatEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  stringParameter:
+    stringRef: {fileID: 0}
+    stringVal: 
+  stringEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &570620709
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570620673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 841589fc622bc494aa5405f416fa1301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 78
+  indentLevel: 0
+  text: Wake Up (Jump into the Story)
+  description: 
+  targetBlock: {fileID: 570620676}
+  hideIfVisited: 0
+  interactable:
+    booleanRef: {fileID: 0}
+    booleanVal: 1
+  setMenuDialog: {fileID: 0}
+  hideThisOption:
+    booleanRef: {fileID: 0}
+    booleanVal: 0
+--- !u!114 &570620710
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570620673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 841589fc622bc494aa5405f416fa1301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 77
+  indentLevel: 0
+  text: Keep Dreaming (Play Combat Tutorial)
+  description: 
+  targetBlock: {fileID: 1570171993}
+  hideIfVisited: 0
+  interactable:
+    booleanRef: {fileID: 0}
+    booleanVal: 1
+  setMenuDialog: {fileID: 0}
+  hideThisOption:
+    booleanRef: {fileID: 0}
+    booleanVal: 0
+--- !u!114 &570620711
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570620673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodeRect:
+    serializedVersion: 2
+    x: -44.04894
+    y: 6.5844917
+    width: 127
+    height: 40
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  useCustomTint: 0
+  itemId: 76
+  blockName: Play Tutorial?
+  description: 
+  eventHandler: {fileID: 0}
+  commandList:
+  - {fileID: 570620703}
+  - {fileID: 570620710}
+  - {fileID: 570620709}
+  suppressAllAutoSelections: 0
+--- !u!114 &570620712
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570620673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodeRect:
+    serializedVersion: 2
+    x: 30.485687
+    y: 209.43227
+    width: 117
+    height: 40
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  useCustomTint: 0
+  itemId: 3
+  blockName: Load Scene
+  description: 
+  eventHandler: {fileID: 0}
+  commandList:
+  - {fileID: 570620708}
+  suppressAllAutoSelections: 0
 --- !u!1 &581645340
 GameObject:
   m_ObjectHideFlags: 0
@@ -10614,7 +10923,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 5788963369338986569, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
     - {fileID: 570620677, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
-    - {fileID: 570620679, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
+    - {fileID: 0}
     - {fileID: 570620682, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
     - {fileID: 570620683, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
     - {fileID: 570620689, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
@@ -12641,10 +12950,30 @@ PrefabInstance:
       propertyPath: _targetGameObject.gameObjectVal
       value: 
       objectReference: {fileID: 1794723763}
+    - target: {fileID: 570620676, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
+      propertyPath: blockName
+      value: Keep Dreaming
+      objectReference: {fileID: 0}
+    - target: {fileID: 570620676, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
+      propertyPath: nodeRect.x
+      value: -127.251396
+      objectReference: {fileID: 0}
+    - target: {fileID: 570620676, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
+      propertyPath: nodeRect.y
+      value: 96.35451
+      objectReference: {fileID: 0}
+    - target: {fileID: 570620676, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
+      propertyPath: nodeRect.width
+      value: 136
+      objectReference: {fileID: 0}
     - target: {fileID: 570620677, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
       propertyPath: character
       value: 
       objectReference: {fileID: 1672618227}
+    - target: {fileID: 570620678, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
+      propertyPath: targetBlock
+      value: 
+      objectReference: {fileID: 570620702}
     - target: {fileID: 570620680, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
       propertyPath: questGiverName
       value: Mama Reinfeld
@@ -12682,6 +13011,10 @@ PrefabInstance:
       propertyPath: targetObjects.Array.data[2]
       value: 
       objectReference: {fileID: 1446951908}
+    - target: {fileID: 570620682, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
+      propertyPath: waitUntilFinished.booleanVal
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 570620683, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
       propertyPath: character
       value: 
@@ -12746,6 +13079,10 @@ PrefabInstance:
       propertyPath: targetObjects.Array.data[7]
       value: 
       objectReference: {fileID: 1086452972}
+    - target: {fileID: 570620694, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
+      propertyPath: waitUntilFinished.booleanVal
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 570620695, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
       propertyPath: _targetGameObject.gameObjectVal
       value: 
@@ -12782,6 +13119,10 @@ PrefabInstance:
       propertyPath: targetObjects.Array.data[1]
       value: 
       objectReference: {fileID: 1022638271}
+    - target: {fileID: 570620702, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
+      propertyPath: waitUntilFinished.booleanVal
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 570620703, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
       propertyPath: _targetGameObject.gameObjectVal
       value: 
@@ -12790,6 +13131,18 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1672618227}
+    - target: {fileID: 475470485489517501, guid: 5e44c1da357e9554e9892f17692c2d11,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1876431071}
+    - target: {fileID: 475470485489517501, guid: 5e44c1da357e9554e9892f17692c2d11,
+        type: 3}
+      propertyPath: storyText
+      value: Elements of the past bleed into your mind, you awake on a great battleground
+        as the only one standing between the hordes of the corruption and the welbeing
+        of the natural world around you.
+      objectReference: {fileID: 0}
     - target: {fileID: 713512334506304524, guid: 5e44c1da357e9554e9892f17692c2d11,
         type: 3}
       propertyPath: _targetGameObject.gameObjectVal
@@ -12828,8 +13181,13 @@ PrefabInstance:
     - target: {fileID: 5788963369338986568, guid: 5e44c1da357e9554e9892f17692c2d11,
         type: 3}
       propertyPath: selectedCommands.Array.size
-      value: 27
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5788963369338986568, guid: 5e44c1da357e9554e9892f17692c2d11,
+        type: 3}
+      propertyPath: selectedBlocks.Array.data[0]
+      value: 
+      objectReference: {fileID: 570620711}
     - target: {fileID: 5788963369338986568, guid: 5e44c1da357e9554e9892f17692c2d11,
         type: 3}
       propertyPath: selectedCommands.Array.data[0]
@@ -12993,18 +13351,28 @@ PrefabInstance:
     - target: {fileID: 5788963369338986581, guid: 5e44c1da357e9554e9892f17692c2d11,
         type: 3}
       propertyPath: nodeRect.x
-      value: -39.377945
+      value: 58.485683
       objectReference: {fileID: 0}
     - target: {fileID: 5788963369338986581, guid: 5e44c1da357e9554e9892f17692c2d11,
         type: 3}
       propertyPath: nodeRect.y
-      value: 119.88678
+      value: 242.43227
       objectReference: {fileID: 0}
     - target: {fileID: 5788963369338986581, guid: 5e44c1da357e9554e9892f17692c2d11,
         type: 3}
       propertyPath: eventHandler
       value: 
-      objectReference: {fileID: 570620674}
+      objectReference: {fileID: 0}
+    - target: {fileID: 5788963369338986581, guid: 5e44c1da357e9554e9892f17692c2d11,
+        type: 3}
+      propertyPath: nodeRect.width
+      value: 117
+      objectReference: {fileID: 0}
+    - target: {fileID: 5788963369338986581, guid: 5e44c1da357e9554e9892f17692c2d11,
+        type: 3}
+      propertyPath: commandList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5788963369338986584, guid: 5e44c1da357e9554e9892f17692c2d11,
         type: 3}
       propertyPath: m_RootOrder
@@ -13084,6 +13452,8 @@ PrefabInstance:
     - {fileID: 570620674, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
     - {fileID: 570620697, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
     - {fileID: 2946910017167607743, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
+    - {fileID: 0}
+    - {fileID: 5788963369338986581, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
 --- !u!4 &1570171990 stripped
 Transform:
@@ -13091,16 +13461,28 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1570171989}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1570171992 stripped
+--- !u!114 &1570171991 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5788963369338986581, guid: 5e44c1da357e9554e9892f17692c2d11,
+  m_CorrespondingSourceObject: {fileID: 5788963369338986568, guid: 5e44c1da357e9554e9892f17692c2d11,
     type: 3}
   m_PrefabInstance: {fileID: 1570171989}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 570620673}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
+  m_Script: {fileID: 11500000, guid: 7a334fe2ffb574b3583ff3b18b4792d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1570171992 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3312672492783559086, guid: 5e44c1da357e9554e9892f17692c2d11,
+    type: 3}
+  m_PrefabInstance: {fileID: 1570171989}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02efb632ea380cd4bb2bdc15d8f4e029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1570171993 stripped
@@ -13113,6 +13495,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1570171994 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 570620680, guid: 5e44c1da357e9554e9892f17692c2d11,
+    type: 3}
+  m_PrefabInstance: {fileID: 1570171989}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570620673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3effd9254a3dd34e88a1135820ce4bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1623734991
@@ -17517,18 +17911,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 95d9ff288f3904c05ada7ac9c9a075bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1632682094784890243 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8175904926727330436, guid: ada5490476b00cb44baca6a1e4b3af78,
-    type: 3}
-  m_PrefabInstance: {fileID: 3250640193147086463}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1632682094784890244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a334fe2ffb574b3583ff3b18b4792d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1632682094784890244 stripped

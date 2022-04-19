@@ -32,7 +32,10 @@ public enum E_Levels
     Tiertarock,
 
     [InspectorName("Eastern Cave")]
-    EasternCave
+    EasternCave,
+
+    [InspectorName("Combat Tutorial")]
+    CombatTutorial,
 }
 
 public enum E_Suits
