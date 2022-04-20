@@ -6,7 +6,9 @@ public class TutorialManager : MonoBehaviour
 {
     int currentSpellIndex;
     public CardParent[] spells;
+    [TextArea(3, 10)]
     public string[] messages;
+    [TextArea(3, 10)]
     public string[] afterCastMessages;
     public TutorialMessages tutorialMessages;
 

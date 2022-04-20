@@ -9,6 +9,7 @@ public class TutorialCombatDeckManager : CombatDeckManager
 
     public TutorialMessages tutorialMessages;
     public string[] tutorialTitlesStrings;
+    [TextArea(3, 10)]
     public string[] tutorialMessagesStrings;
 
     protected override CardParent DetermineCard()
