@@ -10,17 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d042955bf60bea84b9273684d78676b5, type: 3}
-  m_Name: 18Moon
+  m_Name: SGraveLord
   m_EditorClassIdentifier: 
-  cardName: The Moon
-  cardNumber: 18
-  flavourDescription: There shall come a calm upon the animal nature, while the abyss
-    beneath shall cease from giving up a form
-  cardImage: {fileID: -8855467159889313431, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
+  cardName: Grave Lord
+  cardNumber: 10
+  flavourDescription: Fortune Favours the Bold
+  cardImage: {fileID: -2613411450045547498, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
     type: 3}
   enemySpell: 0
-  countsCombo: 1
-  comboCard: {fileID: 11400000, guid: f6c0e8c20d0617f4884c660fb64052f2, type: 2}
+  countsCombo: 0
+  comboCard: {fileID: 0}
   selfInterpretationUnlocked: 0
   selfName: 
   selfDescription: 
@@ -39,42 +38,40 @@ MonoBehaviour:
   selfDrawCards: 0
   selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 1
-  targetName: Revelation
-  targetDescription: The moon's light reveals your opponents, reducing their resistances
-    and revealing their log entry in the journal
+  targetName: Grave Lord
+  targetDescription: "Conjure 16 undead spirits to hail your targets, attacking them
+    each turn with Bleak damage\r"
   HitFX: {fileID: 6727453174112786923, guid: 556929575e076a24791a4c2a8e90fac1, type: 3}
   targetCastSounds:
-  - {fileID: 8300000, guid: b948b74b0d50f3c4a8e6af19b0f1c556, type: 3}
+  - {fileID: 8300000, guid: 2c9b2d869742d85449e20d606fddff38, type: 3}
+  - {fileID: 8300000, guid: 9936d9bea49c36e479a6be4e3cee6402, type: 3}
   targetHitSounds:
-  - {fileID: 8300000, guid: dced2fa0e14868c4fab11e9cdae5b6e9, type: 3}
-  - {fileID: 8300000, guid: 8f81b31c970bd274db76acfca1fd2dcf, type: 3}
+  - {fileID: 8300000, guid: 2c9b2d869742d85449e20d606fddff38, type: 3}
+  - {fileID: 8300000, guid: 9936d9bea49c36e479a6be4e3cee6402, type: 3}
   targetEndTurn: 0
   targetUsesAction: 1
-  targetCost: 5
+  targetCost: 20
   targetCostType: AP
   damageType: 3
-  targetCanBeCountered: 0
-  targetDmg: {x: 6, y: 10}
-  hits: 1
-  hitInterval: 0
-  finalHitInterval: 0
-  targetFinalDmg: {x: 0, y: 0}
-  targetEndTurnDelay: 0.2
+  targetCanBeCountered: 1
+  targetDmg: {x: 2, y: 4}
+  hits: 16
+  hitInterval: 0.1
+  finalHitInterval: 0.1
+  targetFinalDmg: {x: 2, y: 4}
+  targetEndTurnDelay: 3
   targetCleave: 0
   targetChain: 0
   extraDmg: {x: 0, y: 0}
-  randomTargets: 0
+  randomTargets: 1
   lifeLeach: {x: 0, y: 0}
   healOnKill: {x: 0, y: 0}
   executeThreshold: 0
-  targetStatus:
-  - {fileID: 11400000, guid: a71ba48d9e31518499d97057b673a672, type: 2}
-  targetStatusDuration: 05000000
-  targetStatusChance:
-  - 1
+  targetStatus: []
+  targetStatusDuration: 
+  targetStatusChance: []
   targetDrawCards: 0
-  targetDrawSpecificCard: {fileID: 11400000, guid: 4cbc96349b965e648b06c674bd00522a,
-    type: 2}
+  targetDrawSpecificCard: {fileID: 0}
   spawnPosition: 2
   summonAlly: {fileID: 0}
   summonCount: 0

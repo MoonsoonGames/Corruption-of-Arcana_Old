@@ -10,17 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d042955bf60bea84b9273684d78676b5, type: 3}
-  m_Name: 12HangedMan
+  m_Name: SStarfall
   m_EditorClassIdentifier: 
-  cardName: The Hanged Man
-  cardNumber: 12
-  flavourDescription: The solemn expression on his face suggests that he is there
-    by his own accord
-  cardImage: {fileID: 6220208007999549204, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
+  cardName: Starfall
+  cardNumber: 8
+  flavourDescription: 
+  cardImage: {fileID: -6555575649291838755, guid: 92f835bbb35b24845b0ac90cf1a6ea30,
     type: 3}
   enemySpell: 0
-  countsCombo: 1
-  comboCard: {fileID: 11400000, guid: ee73484f2eff0ca408fe8c879030347f, type: 2}
+  countsCombo: 0
+  comboCard: {fileID: 0}
   selfInterpretationUnlocked: 0
   selfName: 
   selfDescription: 
@@ -39,41 +38,45 @@ MonoBehaviour:
   selfDrawCards: 0
   selfDrawSpecificCard: {fileID: 0}
   targetInterpretationUnlocked: 1
-  targetName: Trickery
-  targetDescription: Cause your opponent to fumble, having a chance to skip their
-    next 2 turns
-  HitFX: {fileID: 6727453174112786923, guid: e2dc8a0ecf90a864da6a8006e686425d, type: 3}
+  targetName: Starfall
+  targetDescription: 3 stars fall down upon each of your targets, dealing a high
+    amount of Static damage
+  HitFX: {fileID: 6727453174112786923, guid: d4521daa311ea5142a733f284dd24744, type: 3}
   targetCastSounds:
-  - {fileID: 8300000, guid: 0bc8ef1efa6f0264095b18e9a39d87de, type: 3}
-  targetHitSounds: []
+  - {fileID: 8300000, guid: 141aa0a641375ae4a874c00c5e4be746, type: 3}
+  - {fileID: 8300000, guid: 7284b21b0c67cc24e829f92df971885b, type: 3}
+  - {fileID: 8300000, guid: 6bc35f50815663146aad26a15b4e006f, type: 3}
+  targetHitSounds:
+  - {fileID: 8300000, guid: 844feb0ce60dab34aa4cc30365748322, type: 3}
+  - {fileID: 8300000, guid: 6cf6dd8b840323e4ea14759f083f8e23, type: 3}
   targetEndTurn: 0
   targetUsesAction: 1
   targetCost: 15
   targetCostType: AP
-  damageType: 0
-  targetCanBeCountered: 0
-  targetDmg: {x: 5, y: 10}
+  damageType: 1
+  targetCanBeCountered: 1
+  targetDmg: {x: 22, y: 38}
   hits: 1
   hitInterval: 0
   finalHitInterval: 0
   targetFinalDmg: {x: 0, y: 0}
   targetEndTurnDelay: 0.2
-  targetCleave: 0
+  targetCleave: 1
   targetChain: 0
-  extraDmg: {x: 0, y: 0}
+  extraDmg: {x: 22, y: 38}
   randomTargets: 0
   lifeLeach: {x: 0, y: 0}
   healOnKill: {x: 0, y: 0}
   executeThreshold: 0
   targetStatus:
-  - {fileID: 11400000, guid: 326b8fbe32a699f4eb82dea3a36bff81, type: 2}
-  targetStatusDuration: 02000000
+  - {fileID: 11400000, guid: 857605ed69fe8ae4e994947dd3d52f69, type: 2}
+  targetStatusDuration: 03000000
   targetStatusChance:
-  - 0.7
+  - 0.3
   targetDrawCards: 0
-  targetDrawSpecificCard: {fileID: 11400000, guid: af89ff48f79a6dd4e88996f7325d33f6,
+  targetDrawSpecificCard: {fileID: 11400000, guid: af5c877470ceed643b823ef70e66e43f,
     type: 2}
-  spawnPosition: 0
+  spawnPosition: 2
   summonAlly: {fileID: 0}
   summonCount: 0
   summonFX: {fileID: 0}

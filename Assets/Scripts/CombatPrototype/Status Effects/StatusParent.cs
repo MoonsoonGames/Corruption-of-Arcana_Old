@@ -453,18 +453,25 @@ public class StatusParent : ScriptableObject
 
         if (clearAllStatuses == true)
         {
-            //loop through all statuses affecting target and remove them if it is not this status
+            List<StatusParent> statusCopy = new List<StatusParent>();
+
             foreach (var item in stats.statuses)
             {
                 if (item.Key != this)
                 {
-                    removedStatuses++;
-                    item.Key.OnRemove(target);
+                    statusCopy.Add(item.Key);
                 }
             }
 
+            //loop through all statuses affecting target and remove them if it is not this status
+            foreach (var item in statusCopy)
+            {
+                removedStatuses++;
+                stats.RemoveStatus(item);
+            }
+
             removedStatuses++;
-            OnRemove(target);
+            stats.RemoveStatus(this);
         }
     }
 

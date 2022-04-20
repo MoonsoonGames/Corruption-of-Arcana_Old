@@ -10,21 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 75704bd692ffc4d4ba9ac1f041adfd7f, type: 3}
-  m_Name: Expunge
+  m_Name: Displacement
   m_EditorClassIdentifier: 
-  effectName: Expunge
-  effectDescription: Removes
-  applySounds:
-  - {fileID: 8300000, guid: add3024e19106c740a56a4b9c5d2336e, type: 3}
+  effectName: Reversal of Fortune
+  effectDescription: Target reflects 12-16 Static damage when hit
+  applySounds: []
   turnSounds: []
   endSounds: []
-  effectIcon: {fileID: 4815525640069369876, guid: df20acf3f76d8c744a467922e153cc83,
+  effectIcon: {fileID: -7595291569644891804, guid: d3fbbd00df91514448343072bb05074b,
     type: 3}
   alsoApply: []
   alsoApplyOthers: []
   alsoApplyOthersOnHit: []
   healFX: {fileID: 0}
-  damageFX: {fileID: 6727453174112786923, guid: 9b68bdcf8d233e3418504dae117ce7ee,
+  damageFX: {fileID: 6727453174112786923, guid: d4521daa311ea5142a733f284dd24744,
     type: 3}
   applyDamage: {x: 0, y: 0}
   applyDamageType: 0
@@ -55,8 +54,8 @@ MonoBehaviour:
   adjustStaticMultiplier: 0
   adjustBleakMultiplier: 0
   adjustSepticMultiplier: 0
-  reflectDamage: {x: 0, y: 0}
-  reflectDamageType: 0
+  reflectDamage: {x: 12, y: 16}
+  reflectDamageType: 4
   reflectDamageSpawner: 0
   charm: 0
   revealEntry: 0
@@ -76,7 +75,7 @@ MonoBehaviour:
   sleepTurnOpponents: 0
   silenceOpponents: 0
   slowOpponents: 0
-  clearAllStatuses: 1
-  damagePerRemovedStatus: {x: 10, y: 10}
-  cleanseDamageType: 4
+  clearAllStatuses: 0
+  damagePerRemovedStatus: {x: 0, y: 0}
+  cleanseDamageType: 0
   healingPerRemovedStatus: {x: 0, y: 0}

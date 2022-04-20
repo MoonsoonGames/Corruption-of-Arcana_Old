@@ -608,6 +608,29 @@ public class CharacterStats : MonoBehaviour
         SetupStatusIcons();
     }
 
+    public void RemoveStatus(StatusParent status)
+    {
+        Dictionary<StatusParent, int> statusesCopy = new Dictionary<StatusParent, int>();
+
+        foreach (var item in statuses)
+        {
+            if (item.Key != status)
+            {
+                statusesCopy.Add(item.Key, item.Value);
+            }
+        }
+
+        statuses.Clear();
+
+        foreach (var item in statusesCopy)
+        {
+            statuses.Add(item.Key, item.Value);
+        }
+
+        status.OnRemove(this.gameObject);
+        SetupStatusIcons();
+    }
+
     void SetupStatusIcons()
     {
         if (iconSpawner != null)
