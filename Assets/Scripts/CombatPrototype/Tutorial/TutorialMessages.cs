@@ -16,7 +16,10 @@ public class TutorialMessages : MonoBehaviour
         titleText.gameObject.SetActive(true);
         descriptionText.gameObject.SetActive(true);
 
-        titleText.text = title;
+        if (title != null)
+        {
+            titleText.text = title;
+        }
         descriptionText.text = description;
     }
 }

@@ -7,6 +7,8 @@ public class TutorialManager : MonoBehaviour
     int currentSpellIndex;
     public CardParent[] spells;
     public string[] messages;
+    public string[] afterCastMessages;
+    public TutorialMessages tutorialMessages;
 
     public bool CanCastSpell(CardParent spell)
     {
@@ -14,11 +16,11 @@ public class TutorialManager : MonoBehaviour
         {
             if (spells[currentSpellIndex] != spell)
             {
-                Debug.Log("Select the " + spells[currentSpellIndex].cardName + " card.");
+                tutorialMessages.ShowMessage(null, "Select the " + spells[currentSpellIndex].cardName + " card.");
                 return false;
             }
 
-            Debug.Log(messages[currentSpellIndex]);
+            tutorialMessages.ShowMessage(null, messages[currentSpellIndex]);
         }
 
         return true;
@@ -26,7 +28,7 @@ public class TutorialManager : MonoBehaviour
 
     public void CastSpell()
     {
-        //remove messages
+        tutorialMessages.ShowMessage(null, afterCastMessages[currentSpellIndex]);
         currentSpellIndex++;
     }
 }

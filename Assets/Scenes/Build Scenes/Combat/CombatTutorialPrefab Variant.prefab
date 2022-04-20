@@ -28,7 +28,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 96f8dfd7b9ab6fd4cb8141216e38c863, type: 2}
   - {fileID: 11400000, guid: e5d16d008b75db24bae5ccdfa6250f41, type: 2}
   - {fileID: 11400000, guid: bde3b204b35776647bf26cf143f91944, type: 2}
-  - {fileID: 11400000, guid: 7ee1880e172b65942ba00f4d2ab0029d, type: 2}
+  - {fileID: 11400000, guid: 8f961b064484e214d9d25849b3d6c993, type: 2}
   - {fileID: 11400000, guid: bde3b204b35776647bf26cf143f91944, type: 2}
   - {fileID: 11400000, guid: 6bd1335480a7f754cb51f229a108c6cc, type: 2}
   - {fileID: 11400000, guid: 19e9c965a890aea41a3ce37f0af217fc, type: 2}
@@ -43,19 +43,16 @@ MonoBehaviour:
   - Multihit + Stunning
   - Killing
   tutorialMessagesStrings:
-  - Let's deal some damage, click on a card to view it's info and then click on a
-    target to cast that spell on that target.
+  - Let's deal some damage, click on a the Aftershock card to view it's info and
+    then click on a target to cast that spell on that target.
   - You've taken some damage. Click on the High Priestess card and then click on
-    your character to cast it on him. Notice the spread card? Some cards can draw
-    a spread card when you finish a combo. Cast 2 more cards to draw your spread
-    card.
+    your character to cast it on him.
   - Click on the book icon above the enemy to view what it's next turn is. It looks
     like this is going to be a strong attack, let's prepare some defensive spells.
-  - Let's deal some more damage and use Temperance to give us remove this poison
-    condition
-  - Uh oh, they've summoned some allies, let's use the cleave card and the empress
-    to kill them before putting him to sleep
-  - Perfect, we can use the Death card to finish this
+    Select the Riposte Stance card.
+  - Let's deal some more damage. Select the Empress card.
+  - Uh oh, he's summoned some allies. Select the Empress card.
+  - Perfect, we can use the Death card to prepare a powerful spread card.
 --- !u!1 &4110635429953592677
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,7 +197,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 19c4bfb41b5c65742a7dc2e9b68922d1, type: 2}
   - {fileID: 11400000, guid: bde3b204b35776647bf26cf143f91944, type: 2}
   - {fileID: 11400000, guid: 6bd1335480a7f754cb51f229a108c6cc, type: 2}
-  - {fileID: 11400000, guid: 7ee1880e172b65942ba00f4d2ab0029d, type: 2}
+  - {fileID: 11400000, guid: 8f961b064484e214d9d25849b3d6c993, type: 2}
   - {fileID: 11400000, guid: 19c4bfb41b5c65742a7dc2e9b68922d1, type: 2}
   - {fileID: 11400000, guid: 19e9c965a890aea41a3ce37f0af217fc, type: 2}
   - {fileID: 11400000, guid: f18bda0d13077f547a9e680ad0b0d78d, type: 2}
@@ -209,31 +206,68 @@ MonoBehaviour:
   messages:
   - Now click on the enemy to cast Aftershock on them. Notice that this will drain
     your arcana this turn.
-  - Now click on the enemy to cast Firebolt on them
-  - Now click on the enemy to cast Lacerate on them
-  - Now click on your character to heal them. Notice the spread card?
+  - Now click on the enemy to cast Firebolt on them.
+  - Now click on the enemy to cast Lacerate on them.
+  - Now click on your character to heal them.
   - Use the moon card to reveal the target in the guide book and reduce all of their
-    resistances
-  - Use flurry to deal a high amount of damage
+    resistances.
+  - Use flurry to deal a high amount of damage.
   - Notice that Storm Barrage has no Arcana cost? Spread cards have no cost and can
-    be cast for free
-  - Click on your character to prepare a defensive spell
-  - Click on your character to prepare a defensive spell
-  - Now click on the enemy to cast Critical Strike on them
-  - Now click on the enemy to cast The Empress on them
-  - Now click on the enemy to cast The Sun on them
-  - Now click on the enemy to cast Temperance on them
+    be cast for free.
+  - Click on your character to prepare a defensive spell.
+  - Click on your character to prepare a defensive spell.
+  - Now click on the enemy to cast Critical Strike on them.
+  - Now click on the enemy to cast The Empress on them.
+  - Now click on the enemy to cast The Sun on them.
+  - Now click on the enemy to cast Temperance on them.
   - You've drawn another spread card.
-  - Now click on the enemy to cast The Empress on them
-  - Cleave will hit all targets, so click on any of them
-  - Now click on the enemy to cast Judgement on them
+  - Now click on the enemy to cast The Empress on them.
+  - Cleave will hit all targets, so click on any of them.
+  - Now click on the enemy to cast the World on them.
   - You've drawn another spread card.
   - Let's prepare a combo, the Death card will prepare a spread card that will kill
-    low health targets
+    low health targets.
   - The Hierophant is really powerful against a single target, and has a chance to
-    apply a status effect that damages all enemies
-  - Strike is a cheap card that deals a small amount of damage
+    apply a status effect that damages all enemies.
+  - Strike is a cheap card that deals a small amount of damage.
   - Finish this! Use the Harvest on the Dark Priest!
+  afterCastMessages:
+  - Now select the Firebolt card.
+  - Now select the Lacerate card.
+  - You have no more cards to play, click on the blue hourclass button in the bottom
+    left corner to end your turn.
+  - Notice the spread card above your health? Some cards have special spread cards,
+    which will be drawn after playing 2 more cards. Select the Moon card.
+  - Now that you have reduced his resistances with the Moon card, select the Flurry
+    card.
+  - Now that you have played enough cards, you have drawn a spread card. Select the
+    Storm Barrage card.
+  - You have no more cards to play, click on the blue hourclass button in the bottom
+    left corner to end your turn.
+  - Now select the Defensive Stance card.
+  - You have prepared some defensive spells. Notice the icons below your health bar?
+    Hover the mouse on them to see what they do. Now select the Critical Strike card.
+  - You have no more cards to play, click on the blue hourclass button in the bottom
+    left corner to end your turn.
+  - Now that we've set up a spread card, let's deal some damage with the Sun card.
+  - Now select the Temperance card.
+  - You've drawn another spread card. Select the Cycle of Life card.
+  - You have no more cards to play, click on the blue hourclass button in the bottom
+    left corner to end your turn.
+  - Now that we've set up a spread card, let's deal with the Wisps. Select the Cleave
+    card.
+  - Let's try to stun the Priest with the World card.
+  - You've applied a status effect to the enemy and drawn another spread card. Hover
+    the mouse over the icons below it's health to see what they do. Select the Cycle
+    of Life card.
+  - You have no more cards to play, click on the blue hourclass button in the bottom
+    left corner to end your turn.
+  - Now that we have set up a spread card, we need to cast a few more spells to draw
+    it. Select the Hierophante card.
+  - One more card, select the Strike card.
+  - Finally, we can use the Harvest card to kill him!
+  - Uhh, it looks like he's still alive. Use what I have taught you to kill him off!
+  tutorialMessages: {fileID: 62867441718409280}
 --- !u!1 &4391581915556004541
 GameObject:
   m_ObjectHideFlags: 0
