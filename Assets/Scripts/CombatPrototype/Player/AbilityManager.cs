@@ -28,6 +28,8 @@ public class AbilityManager : MonoBehaviour
 
     public EndTurn endTurn;
 
+    public TutorialManager tutorialManager;
+
 
     #region Ability Values
 
@@ -126,6 +128,8 @@ public class AbilityManager : MonoBehaviour
 
                 if (canCast)
                 {
+                    if (tutorialManager != null)
+                        tutorialManager.CastSpell();
                     DiscardCard();
                 }
             }
@@ -182,31 +186,34 @@ public class AbilityManager : MonoBehaviour
 
     public void SetAbility(CardParent ability, CardSetter card)
     {
-        EnemyInfo(null);
-        endTurn.OpenMenu(false);
-        combatManager.PotionBar(false);
-        readyAbility = ability;
-        readiedCard = card;
-
-        if (activeCard != null)
+        if (tutorialManager == null || tutorialManager.CanCastSpell(ability))
         {
-            if (ability.selfInterpretationUnlocked && ability.targetInterpretationUnlocked)
+            EnemyInfo(null);
+            endTurn.OpenMenu(false);
+            combatManager.PotionBar(false);
+            readyAbility = ability;
+            readiedCard = card;
+
+            if (activeCard != null)
             {
-                combatManager.TargetEnemies(true, ability);
-                targetter.SetVisibility(true, null);
-                activeCard.ReadyCard(ability.cardName, ability.comboCard != null ? ability.comboCard.cardName : "None", ability.selfHeal, "Unknown", ability.selfCost, "Two interpretations active, UI issue", ability.selfCostType);
-            }
-            else if (ability.selfInterpretationUnlocked)
-            {
-                combatManager.TargetEnemies(false, ability);
-                targetter.SetVisibility(true, null);
-                activeCard.ReadyCard(ability.cardName, ability.comboCard != null ? ability.comboCard.cardName : "None", ability.RestoreValue(), ability.RestoreType(), ability.selfCost, ability.selfDescription, ability.selfCostType);
-            }
-            else if (ability.targetInterpretationUnlocked)
-            {
-                combatManager.TargetEnemies(true, ability);
-                targetter.SetVisibility(false, null);
-                activeCard.ReadyCard(ability.cardName, ability.comboCard != null ? ability.comboCard.cardName : "None", ability.TotalDmgRange(), ability.damageType.ToString(), ability.targetCost, ability.targetDescription, ability.targetCostType);
+                if (ability.selfInterpretationUnlocked && ability.targetInterpretationUnlocked)
+                {
+                    combatManager.TargetEnemies(true, ability);
+                    targetter.SetVisibility(true, null);
+                    activeCard.ReadyCard(ability.cardName, ability.comboCard != null ? ability.comboCard.cardName : "None", ability.selfHeal, "Unknown", ability.selfCost, "Two interpretations active, UI issue", ability.selfCostType);
+                }
+                else if (ability.selfInterpretationUnlocked)
+                {
+                    combatManager.TargetEnemies(false, ability);
+                    targetter.SetVisibility(true, null);
+                    activeCard.ReadyCard(ability.cardName, ability.comboCard != null ? ability.comboCard.cardName : "None", ability.RestoreValue(), ability.RestoreType(), ability.selfCost, ability.selfDescription, ability.selfCostType);
+                }
+                else if (ability.targetInterpretationUnlocked)
+                {
+                    combatManager.TargetEnemies(true, ability);
+                    targetter.SetVisibility(false, null);
+                    activeCard.ReadyCard(ability.cardName, ability.comboCard != null ? ability.comboCard.cardName : "None", ability.TotalDmgRange(), ability.damageType.ToString(), ability.targetCost, ability.targetDescription, ability.targetCostType);
+                }
             }
         }
     }
@@ -293,11 +300,11 @@ public class AbilityManager : MonoBehaviour
             if (targetHealth.HealthPercentage() < executeThreshold)
             {
                 //execute anim and delay
-                targetHealth.ChangeHealth(999999999, true, damageType, out int nullDamageTaken, caster, canBeCountered, hitFX);
+                targetHealth.ChangeHealth(999999999, true, E_DamageTypes.Perforation, out int nullDamageTaken, caster, false, hitFX);
                 //Debug.Log("Executed");
             }
 
-            if (targetHealth == null || targetHealth.GetHealth() == 0)
+            if (targetHealth == null || targetHealth.GetHealth() <= 0)
             {
                 //killed enemy
                 playerStats.ChangeHealth(Random.Range(healOnKill.x, healOnKill.y), false, E_DamageTypes.Physical, out int damageTakenNull, caster, canBeCountered, hitFX);

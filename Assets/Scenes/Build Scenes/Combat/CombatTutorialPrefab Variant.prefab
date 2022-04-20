@@ -16,22 +16,24 @@ MonoBehaviour:
   cardsCount: {x: 3, y: 3, z: 3}
   offsetInterval: 1
   tutorialCards:
-  - {fileID: 11400000, guid: 2853cec8cdf527e4d915848db33ef28e, type: 2}
   - {fileID: 11400000, guid: 76ee96ca4a1df5a40ba614f27e1c1fed, type: 2}
+  - {fileID: 11400000, guid: 2853cec8cdf527e4d915848db33ef28e, type: 2}
   - {fileID: 11400000, guid: f3934efb9c3923449b48ef2a853cbb55, type: 2}
-  - {fileID: 11400000, guid: 7cc4db331eb08374d81db6261e960368, type: 2}
-  - {fileID: 11400000, guid: 0eb6637484302864d9480d5f4c57c9f3, type: 2}
   - {fileID: 11400000, guid: eaa0fa9c7224ad741bf189b989628694, type: 2}
-  - {fileID: 11400000, guid: 9da7b0d1cbfc49e418894ecf7d7f585e, type: 2}
-  - {fileID: 11400000, guid: eb06ac51649befb4b91f6d16e15bd79e, type: 2}
+  - {fileID: 11400000, guid: 0eb6637484302864d9480d5f4c57c9f3, type: 2}
+  - {fileID: 11400000, guid: 7cc4db331eb08374d81db6261e960368, type: 2}
+  - {fileID: 11400000, guid: 1a5ddb68ee91d174ba0ba346936106ca, type: 2}
   - {fileID: 11400000, guid: 418dd24db35e0614882f380ad6210dfd, type: 2}
-  - {fileID: 11400000, guid: bde3b204b35776647bf26cf143f91944, type: 2}
+  - {fileID: 11400000, guid: eb06ac51649befb4b91f6d16e15bd79e, type: 2}
   - {fileID: 11400000, guid: 96f8dfd7b9ab6fd4cb8141216e38c863, type: 2}
   - {fileID: 11400000, guid: e5d16d008b75db24bae5ccdfa6250f41, type: 2}
   - {fileID: 11400000, guid: bde3b204b35776647bf26cf143f91944, type: 2}
-  - {fileID: 11400000, guid: 6bd1335480a7f754cb51f229a108c6cc, type: 2}
   - {fileID: 11400000, guid: 7ee1880e172b65942ba00f4d2ab0029d, type: 2}
+  - {fileID: 11400000, guid: bde3b204b35776647bf26cf143f91944, type: 2}
+  - {fileID: 11400000, guid: 6bd1335480a7f754cb51f229a108c6cc, type: 2}
   - {fileID: 11400000, guid: 19e9c965a890aea41a3ce37f0af217fc, type: 2}
+  - {fileID: 11400000, guid: a48dc9199156577478bae5f018251083, type: 2}
+  - {fileID: 11400000, guid: f18bda0d13077f547a9e680ad0b0d78d, type: 2}
   tutorialMessages: {fileID: 62867441718409280}
   tutorialTitlesStrings:
   - Damage
@@ -133,6 +135,105 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Tutorial Text
+--- !u!1 &4128161560256967087
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4688260791678229434}
+  - component: {fileID: 7938476327063229486}
+  m_Layer: 5
+  m_Name: Tutorial Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4688260791678229434
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4128161560256967087}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4091250169364019194}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &7938476327063229486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4128161560256967087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6325589dabf422b4e8405ffb0f7b5cd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spells:
+  - {fileID: 11400000, guid: 2853cec8cdf527e4d915848db33ef28e, type: 2}
+  - {fileID: 11400000, guid: 76ee96ca4a1df5a40ba614f27e1c1fed, type: 2}
+  - {fileID: 11400000, guid: f3934efb9c3923449b48ef2a853cbb55, type: 2}
+  - {fileID: 11400000, guid: 7cc4db331eb08374d81db6261e960368, type: 2}
+  - {fileID: 11400000, guid: 0eb6637484302864d9480d5f4c57c9f3, type: 2}
+  - {fileID: 11400000, guid: eaa0fa9c7224ad741bf189b989628694, type: 2}
+  - {fileID: 11400000, guid: 337dcc628f2e85a47b7e956e45c00513, type: 2}
+  - {fileID: 11400000, guid: 1a5ddb68ee91d174ba0ba346936106ca, type: 2}
+  - {fileID: 11400000, guid: eb06ac51649befb4b91f6d16e15bd79e, type: 2}
+  - {fileID: 11400000, guid: 418dd24db35e0614882f380ad6210dfd, type: 2}
+  - {fileID: 11400000, guid: bde3b204b35776647bf26cf143f91944, type: 2}
+  - {fileID: 11400000, guid: 96f8dfd7b9ab6fd4cb8141216e38c863, type: 2}
+  - {fileID: 11400000, guid: e5d16d008b75db24bae5ccdfa6250f41, type: 2}
+  - {fileID: 11400000, guid: 19c4bfb41b5c65742a7dc2e9b68922d1, type: 2}
+  - {fileID: 11400000, guid: bde3b204b35776647bf26cf143f91944, type: 2}
+  - {fileID: 11400000, guid: 6bd1335480a7f754cb51f229a108c6cc, type: 2}
+  - {fileID: 11400000, guid: 7ee1880e172b65942ba00f4d2ab0029d, type: 2}
+  - {fileID: 11400000, guid: 19c4bfb41b5c65742a7dc2e9b68922d1, type: 2}
+  - {fileID: 11400000, guid: 19e9c965a890aea41a3ce37f0af217fc, type: 2}
+  - {fileID: 11400000, guid: f18bda0d13077f547a9e680ad0b0d78d, type: 2}
+  - {fileID: 11400000, guid: a48dc9199156577478bae5f018251083, type: 2}
+  - {fileID: 11400000, guid: bb5931b293d73c445bead3714901c908, type: 2}
+  messages:
+  - Now click on the enemy to cast Aftershock on them. Notice that this will drain
+    your arcana this turn.
+  - Now click on the enemy to cast Firebolt on them
+  - Now click on the enemy to cast Lacerate on them
+  - Now click on your character to heal them. Notice the spread card?
+  - Use the moon card to reveal the target in the guide book and reduce all of their
+    resistances
+  - Use flurry to deal a high amount of damage
+  - Notice that Storm Barrage has no Arcana cost? Spread cards have no cost and can
+    be cast for free
+  - Click on your character to prepare a defensive spell
+  - Click on your character to prepare a defensive spell
+  - Now click on the enemy to cast Critical Strike on them
+  - Now click on the enemy to cast The Empress on them
+  - Now click on the enemy to cast The Sun on them
+  - Now click on the enemy to cast Temperance on them
+  - You've drawn another spread card.
+  - Now click on the enemy to cast The Empress on them
+  - Cleave will hit all targets, so click on any of them
+  - Now click on the enemy to cast Judgement on them
+  - You've drawn another spread card.
+  - Let's prepare a combo, the Death card will prepare a spread card that will kill
+    low health targets
+  - The Hierophant is really powerful against a single target, and has a chance to
+    apply a status effect that damages all enemies
+  - Strike is a cheap card that deals a small amount of damage
+  - Finish this! Use the Harvest on the Dark Priest!
 --- !u!1 &4391581915556004541
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,6 +519,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CombatTutorialPrefab Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 7287964857142021166, guid: c2eef741a1cd0a840bf809dab2ab3fcc,
+        type: 3}
+      propertyPath: tutorialManager
+      value: 
+      objectReference: {fileID: 7938476327063229486}
     - target: {fileID: 7287964857142021166, guid: c2eef741a1cd0a840bf809dab2ab3fcc,
         type: 3}
       propertyPath: combatDeckManager
