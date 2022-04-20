@@ -89,8 +89,6 @@ public class LoadSettings : MonoBehaviour
         transitionAnimScript = GetComponent<SceneTransitionAnim>();
 
         questSaver.Setup();
-
-        DontDestroyOnLoad(this);
     }
 
     #endregion
@@ -104,6 +102,8 @@ public class LoadSettings : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+
+            DontDestroyOnLoad(this);
         }
         else if (instance != this)
         {

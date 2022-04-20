@@ -1,0 +1,601 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &7733351470121953233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4091250168214515894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f6b9d414e8abd542a81b1a5e259b8cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  card: {fileID: 7978782399096148075, guid: 8245547df31a2ef49813019490905eff, type: 3}
+  cardsCount: {x: 3, y: 3, z: 3}
+  offsetInterval: 1
+  tutorialCards:
+  - {fileID: 11400000, guid: 76ee96ca4a1df5a40ba614f27e1c1fed, type: 2}
+  - {fileID: 11400000, guid: 2853cec8cdf527e4d915848db33ef28e, type: 2}
+  - {fileID: 11400000, guid: f3934efb9c3923449b48ef2a853cbb55, type: 2}
+  - {fileID: 11400000, guid: eaa0fa9c7224ad741bf189b989628694, type: 2}
+  - {fileID: 11400000, guid: 0eb6637484302864d9480d5f4c57c9f3, type: 2}
+  - {fileID: 11400000, guid: 7cc4db331eb08374d81db6261e960368, type: 2}
+  - {fileID: 11400000, guid: 1a5ddb68ee91d174ba0ba346936106ca, type: 2}
+  - {fileID: 11400000, guid: 418dd24db35e0614882f380ad6210dfd, type: 2}
+  - {fileID: 11400000, guid: eb06ac51649befb4b91f6d16e15bd79e, type: 2}
+  - {fileID: 11400000, guid: 96f8dfd7b9ab6fd4cb8141216e38c863, type: 2}
+  - {fileID: 11400000, guid: e5d16d008b75db24bae5ccdfa6250f41, type: 2}
+  - {fileID: 11400000, guid: bde3b204b35776647bf26cf143f91944, type: 2}
+  - {fileID: 11400000, guid: 8f961b064484e214d9d25849b3d6c993, type: 2}
+  - {fileID: 11400000, guid: bde3b204b35776647bf26cf143f91944, type: 2}
+  - {fileID: 11400000, guid: 6bd1335480a7f754cb51f229a108c6cc, type: 2}
+  - {fileID: 11400000, guid: 19e9c965a890aea41a3ce37f0af217fc, type: 2}
+  - {fileID: 11400000, guid: a48dc9199156577478bae5f018251083, type: 2}
+  - {fileID: 11400000, guid: f18bda0d13077f547a9e680ad0b0d78d, type: 2}
+  tutorialMessages: {fileID: 62867441718409280}
+  tutorialTitlesStrings:
+  - Damage
+  - Healing and Spread Cards
+  - Defense
+  - Immunity
+  - Multihit + Stunning
+  - Killing
+  tutorialMessagesStrings:
+  - Let's deal some damage, click on a the Aftershock card to view it's info and
+    then click on a target to cast that spell on that target.
+  - You've taken some damage. Click on the High Priestess card and then click on
+    your character to cast it on him.
+  - Click on the book icon above the enemy to view what it's next turn is. It looks
+    like this is going to be a strong attack, let's prepare some defensive spells.
+    Select the Riposte Stance card.
+  - Let's deal some more damage. Select the Empress card.
+  - Uh oh, he's summoned some allies. Select the Empress card.
+  - Perfect, we can use the Death card to prepare a powerful spread card.
+--- !u!1 &4110635429953592677
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7570954769917009605}
+  - component: {fileID: 4708321848916820860}
+  - component: {fileID: 9145918930010814497}
+  m_Layer: 5
+  m_Name: Title
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &7570954769917009605
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4110635429953592677}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6776799154140623759}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -226, y: 60}
+  m_SizeDelta: {x: 394.4, y: 37.25}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &4708321848916820860
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4110635429953592677}
+  m_CullTransparentMesh: 1
+--- !u!114 &9145918930010814497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4110635429953592677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: a302d1839bb259945a7def5ca9d1ec4d, type: 3}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: a302d1839bb259945a7def5ca9d1ec4d, type: 3}
+    m_FontSize: 31
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 42
+    m_Alignment: 1
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Tutorial Text
+--- !u!1 &4128161560256967087
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4688260791678229434}
+  - component: {fileID: 7938476327063229486}
+  m_Layer: 5
+  m_Name: Tutorial Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4688260791678229434
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4128161560256967087}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4091250169364019194}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &7938476327063229486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4128161560256967087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6325589dabf422b4e8405ffb0f7b5cd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spells:
+  - {fileID: 11400000, guid: 2853cec8cdf527e4d915848db33ef28e, type: 2}
+  - {fileID: 11400000, guid: 76ee96ca4a1df5a40ba614f27e1c1fed, type: 2}
+  - {fileID: 11400000, guid: f3934efb9c3923449b48ef2a853cbb55, type: 2}
+  - {fileID: 11400000, guid: 7cc4db331eb08374d81db6261e960368, type: 2}
+  - {fileID: 11400000, guid: 0eb6637484302864d9480d5f4c57c9f3, type: 2}
+  - {fileID: 11400000, guid: eaa0fa9c7224ad741bf189b989628694, type: 2}
+  - {fileID: 11400000, guid: 337dcc628f2e85a47b7e956e45c00513, type: 2}
+  - {fileID: 11400000, guid: 1a5ddb68ee91d174ba0ba346936106ca, type: 2}
+  - {fileID: 11400000, guid: eb06ac51649befb4b91f6d16e15bd79e, type: 2}
+  - {fileID: 11400000, guid: 418dd24db35e0614882f380ad6210dfd, type: 2}
+  - {fileID: 11400000, guid: bde3b204b35776647bf26cf143f91944, type: 2}
+  - {fileID: 11400000, guid: 96f8dfd7b9ab6fd4cb8141216e38c863, type: 2}
+  - {fileID: 11400000, guid: e5d16d008b75db24bae5ccdfa6250f41, type: 2}
+  - {fileID: 11400000, guid: 19c4bfb41b5c65742a7dc2e9b68922d1, type: 2}
+  - {fileID: 11400000, guid: bde3b204b35776647bf26cf143f91944, type: 2}
+  - {fileID: 11400000, guid: 6bd1335480a7f754cb51f229a108c6cc, type: 2}
+  - {fileID: 11400000, guid: 8f961b064484e214d9d25849b3d6c993, type: 2}
+  - {fileID: 11400000, guid: 19c4bfb41b5c65742a7dc2e9b68922d1, type: 2}
+  - {fileID: 11400000, guid: 19e9c965a890aea41a3ce37f0af217fc, type: 2}
+  - {fileID: 11400000, guid: f18bda0d13077f547a9e680ad0b0d78d, type: 2}
+  - {fileID: 11400000, guid: a48dc9199156577478bae5f018251083, type: 2}
+  - {fileID: 11400000, guid: bb5931b293d73c445bead3714901c908, type: 2}
+  messages:
+  - Now click on the enemy to cast Aftershock on them. Notice that this will drain
+    your arcana this turn.
+  - Now click on the enemy to cast Firebolt on them.
+  - Now click on the enemy to cast Lacerate on them.
+  - Now click on your character to heal them.
+  - Use the moon card to reveal the target in the guide book and reduce all of their
+    resistances.
+  - Use flurry to deal a high amount of damage.
+  - Notice that Storm Barrage has no Arcana cost? Spread cards have no cost and can
+    be cast for free.
+  - Click on your character to prepare a defensive spell.
+  - Click on your character to prepare a defensive spell.
+  - Now click on the enemy to cast Critical Strike on them.
+  - Now click on the enemy to cast The Empress on them.
+  - Now click on the enemy to cast The Sun on them.
+  - Now click on the enemy to cast Temperance on them.
+  - You've drawn another spread card.
+  - Now click on the enemy to cast The Empress on them.
+  - Cleave will hit all targets, so click on any of them.
+  - Now click on the enemy to cast the World on them.
+  - You've drawn another spread card.
+  - Let's prepare a combo, the Death card will prepare a spread card that will kill
+    low health targets.
+  - The Hierophant is really powerful against a single target, and has a chance to
+    apply a status effect that damages all enemies.
+  - Strike is a cheap card that deals a small amount of damage.
+  - Finish this! Use the Harvest on the Dark Priest!
+  afterCastMessages:
+  - Now select the Firebolt card.
+  - Now select the Lacerate card.
+  - You have no more cards to play, click on the blue hourclass button in the bottom
+    left corner to end your turn.
+  - Notice the spread card above your health? Some cards have special spread cards,
+    which will be drawn after playing 2 more cards. Select the Moon card.
+  - Now that you have reduced his resistances with the Moon card, select the Flurry
+    card.
+  - Now that you have played enough cards, you have drawn a spread card. Select the
+    Storm Barrage card.
+  - You have no more cards to play, click on the blue hourclass button in the bottom
+    left corner to end your turn.
+  - Now select the Defensive Stance card.
+  - You have prepared some defensive spells. Notice the icons below your health bar?
+    Hover the mouse on them to see what they do. Now select the Critical Strike card.
+  - You have no more cards to play, click on the blue hourclass button in the bottom
+    left corner to end your turn.
+  - Now that we've set up a spread card, let's deal some damage with the Sun card.
+  - Now select the Temperance card.
+  - You've drawn another spread card. Select the Cycle of Life card.
+  - You have no more cards to play, click on the blue hourclass button in the bottom
+    left corner to end your turn.
+  - Now that we've set up a spread card, let's deal with the Wisps. Select the Cleave
+    card.
+  - Let's try to stun the Priest with the World card.
+  - You've applied a status effect to the enemy and drawn another spread card. Hover
+    the mouse over the icons below it's health to see what they do. Select the Cycle
+    of Life card.
+  - You have no more cards to play, click on the blue hourclass button in the bottom
+    left corner to end your turn.
+  - Now that we have set up a spread card, we need to cast a few more spells to draw
+    it. Select the Hierophante card.
+  - One more card, select the Strike card.
+  - Finally, we can use the Harvest card to kill him!
+  - Uhh, it looks like he's still alive. Use what I have taught you to kill him off!
+  tutorialMessages: {fileID: 62867441718409280}
+--- !u!1 &4391581915556004541
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1615707088325940821}
+  - component: {fileID: 8656698409072282565}
+  - component: {fileID: 8629585935688224572}
+  m_Layer: 5
+  m_Name: Description
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1615707088325940821
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4391581915556004541}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.90586, y: 0.90586, z: 0.90586}
+  m_Children: []
+  m_Father: {fileID: 6776799154140623759}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -225.99696, y: -20}
+  m_SizeDelta: {x: 432.4, y: 123.7}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &8656698409072282565
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4391581915556004541}
+  m_CullTransparentMesh: 1
+--- !u!114 &8629585935688224572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4391581915556004541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: a302d1839bb259945a7def5ca9d1ec4d, type: 3}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: a302d1839bb259945a7def5ca9d1ec4d, type: 3}
+    m_FontSize: 23
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 42
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Tutorial Text
+--- !u!1 &4451996147422913796
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6776799154140623759}
+  - component: {fileID: 62867441718409280}
+  m_Layer: 5
+  m_Name: Tutorial Messages
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6776799154140623759
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4451996147422913796}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.0021660388}
+  m_LocalScale: {x: 0.73152065, y: 0.73152065, z: 0.73152065}
+  m_Children:
+  - {fileID: 1648751001858601704}
+  - {fileID: 7570954769917009605}
+  - {fileID: 1615707088325940821}
+  m_Father: {fileID: 4091250169364019194}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 540.00006, y: -80.00037}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &62867441718409280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4451996147422913796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96d7991da818cee4fbf538884004c4f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  titleText: {fileID: 9145918930010814497}
+  descriptionText: {fileID: 8629585935688224572}
+  image: {fileID: 3752855834680965287}
+--- !u!1 &6130939201216585182
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1648751001858601704}
+  - component: {fileID: 213786237066907166}
+  - component: {fileID: 3752855834680965287}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1648751001858601704
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6130939201216585182}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 4.6800184, y: 2.2691, z: 2.2691}
+  m_Children: []
+  m_Father: {fileID: 6776799154140623759}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -225.99696, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &213786237066907166
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6130939201216585182}
+  m_CullTransparentMesh: 1
+--- !u!114 &3752855834680965287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6130939201216585182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 90a2dde0942123c4ebb9c4af580c5818, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!1001 &2215586511959109652
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 608221166569871884, guid: c2eef741a1cd0a840bf809dab2ab3fcc,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 608221166569871884, guid: c2eef741a1cd0a840bf809dab2ab3fcc,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3702184235909194332, guid: c2eef741a1cd0a840bf809dab2ab3fcc,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3702184235909194332, guid: c2eef741a1cd0a840bf809dab2ab3fcc,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -47.934013
+      objectReference: {fileID: 0}
+    - target: {fileID: 3702184235909194332, guid: c2eef741a1cd0a840bf809dab2ab3fcc,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.258329
+      objectReference: {fileID: 0}
+    - target: {fileID: 3702184235909194332, guid: c2eef741a1cd0a840bf809dab2ab3fcc,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 237.761
+      objectReference: {fileID: 0}
+    - target: {fileID: 3702184235909194332, guid: c2eef741a1cd0a840bf809dab2ab3fcc,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3702184235909194332, guid: c2eef741a1cd0a840bf809dab2ab3fcc,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3702184235909194332, guid: c2eef741a1cd0a840bf809dab2ab3fcc,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3702184235909194332, guid: c2eef741a1cd0a840bf809dab2ab3fcc,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3702184235909194332, guid: c2eef741a1cd0a840bf809dab2ab3fcc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3702184235909194332, guid: c2eef741a1cd0a840bf809dab2ab3fcc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3702184235909194332, guid: c2eef741a1cd0a840bf809dab2ab3fcc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4177192802009486826, guid: c2eef741a1cd0a840bf809dab2ab3fcc,
+        type: 3}
+      propertyPath: m_Name
+      value: CombatTutorialPrefab Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7287964857142021166, guid: c2eef741a1cd0a840bf809dab2ab3fcc,
+        type: 3}
+      propertyPath: tutorialManager
+      value: 
+      objectReference: {fileID: 7938476327063229486}
+    - target: {fileID: 7287964857142021166, guid: c2eef741a1cd0a840bf809dab2ab3fcc,
+        type: 3}
+      propertyPath: combatDeckManager
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7287964857521068127, guid: c2eef741a1cd0a840bf809dab2ab3fcc,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 21cadd51e46f6e7459aa6e2e6e582b09,
+        type: 3}
+    - target: {fileID: 7287964858394484338, guid: c2eef741a1cd0a840bf809dab2ab3fcc,
+        type: 3}
+      propertyPath: combatDeckManager
+      value: 
+      objectReference: {fileID: 7733351470121953233}
+    - target: {fileID: 7516073633005900399, guid: c2eef741a1cd0a840bf809dab2ab3fcc,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7516073633005900399, guid: c2eef741a1cd0a840bf809dab2ab3fcc,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2772056192943833252, guid: c2eef741a1cd0a840bf809dab2ab3fcc, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: c2eef741a1cd0a840bf809dab2ab3fcc, type: 3}
+--- !u!224 &4091250169364019194 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2772056194159396846, guid: c2eef741a1cd0a840bf809dab2ab3fcc,
+    type: 3}
+  m_PrefabInstance: {fileID: 2215586511959109652}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4091250168214515894 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2772056192943833250, guid: c2eef741a1cd0a840bf809dab2ab3fcc,
+    type: 3}
+  m_PrefabInstance: {fileID: 2215586511959109652}
+  m_PrefabAsset: {fileID: 0}
