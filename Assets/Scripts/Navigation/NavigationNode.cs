@@ -119,12 +119,16 @@ public class NavigationNode : MonoBehaviour
 
     void StartEvent(Object navEvent)
     {
-        LoadSettings loadSettings = LoadSettings.instance;
-
-        if (sceneLoader != null && loadSettings != null)
+        if (navEvent == navManager.ignoreEvent && Random.Range(0, 1) < navManager.ignoreChance)
         {
-            loadSettings.background = (backgrounds.Length > 0 ? ChooseBackgrounds() : null);
-            loadSettings.dialogueFlowChart = navEvent;
+            navManager.ResetTravel();
+            return;
+        }
+
+        if (sceneLoader != null && LoadSettings.instance != null)
+        {
+            LoadSettings.instance.background = (backgrounds.Length > 0 ? ChooseBackgrounds() : null);
+            LoadSettings.instance.dialogueFlowChart = navEvent;
             sceneLoader.LoadSpecifiedScene(dialogueScene.ToString(), LoadSceneMode.Single, null);
         }
     }

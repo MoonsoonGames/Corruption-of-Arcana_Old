@@ -1873,7 +1873,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 8639634791654871468}
+  selectedFlowchart: {fileID: 3977429636136658225}
 --- !u!4 &336365333
 Transform:
   m_ObjectHideFlags: 1
@@ -7386,6 +7386,62 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3977429636136658224}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1043920702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043920701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95d9ff288f3904c05ada7ac9c9a075bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 201
+  indentLevel: 0
+  description: 
+  delay: 0
+  invokeType: 0
+  staticEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3977429636136658227}
+        m_TargetAssemblyTypeName: DialogueBackdrop, Assembly-CSharp
+        m_MethodName: ResetLoadSettingsBG
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  booleanParameter:
+    booleanRef: {fileID: 0}
+    booleanVal: 0
+  booleanEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  integerParameter:
+    integerRef: {fileID: 0}
+    integerVal: 0
+  integerEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  floatParameter:
+    floatRef: {fileID: 0}
+    floatVal: 0
+  floatEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  stringParameter:
+    stringRef: {fileID: 0}
+    stringVal: 
+  stringEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1052269145
 GameObject:
   m_ObjectHideFlags: 0
@@ -20062,6 +20118,47 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 340297886}
     m_Modifications:
+    - target: {fileID: 1043920704, guid: 9c29427689f522249bdf7397bb810702, type: 3}
+      propertyPath: blockName
+      value: Load Tiertarock
+      objectReference: {fileID: 0}
+    - target: {fileID: 1043920704, guid: 9c29427689f522249bdf7397bb810702, type: 3}
+      propertyPath: nodeRect.x
+      value: 39.163742
+      objectReference: {fileID: 0}
+    - target: {fileID: 1043920704, guid: 9c29427689f522249bdf7397bb810702, type: 3}
+      propertyPath: nodeRect.y
+      value: -41.278156
+      objectReference: {fileID: 0}
+    - target: {fileID: 1043920704, guid: 9c29427689f522249bdf7397bb810702, type: 3}
+      propertyPath: commandList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1043920704, guid: 9c29427689f522249bdf7397bb810702, type: 3}
+      propertyPath: commandList.Array.data[0]
+      value: 
+      objectReference: {fileID: 1043920702}
+    - target: {fileID: 1043920704, guid: 9c29427689f522249bdf7397bb810702, type: 3}
+      propertyPath: commandList.Array.data[1]
+      value: 
+      objectReference: {fileID: 3977429636136658226}
+    - target: {fileID: 1043920705, guid: 9c29427689f522249bdf7397bb810702, type: 3}
+      propertyPath: staticEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1043920705, guid: 9c29427689f522249bdf7397bb810702, type: 3}
+      propertyPath: staticEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadDefaultScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 1043920707, guid: 9c29427689f522249bdf7397bb810702, type: 3}
+      propertyPath: text
+      value: Enter Tiertarock (In Progress Area)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1218965620185283162, guid: 9c29427689f522249bdf7397bb810702,
+        type: 3}
+      propertyPath: sceneToLoad
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4929942059251359894, guid: 9c29427689f522249bdf7397bb810702,
         type: 3}
       propertyPath: character
@@ -20142,6 +20239,42 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c29427689f522249bdf7397bb810702, type: 3}
+--- !u!114 &3977429636136658225 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7873663592270019516, guid: 9c29427689f522249bdf7397bb810702,
+    type: 3}
+  m_PrefabInstance: {fileID: 3977429636136658224}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043920701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a334fe2ffb574b3583ff3b18b4792d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3977429636136658226 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1043920705, guid: 9c29427689f522249bdf7397bb810702,
+    type: 3}
+  m_PrefabInstance: {fileID: 3977429636136658224}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043920701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95d9ff288f3904c05ada7ac9c9a075bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3977429636136658227 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1818021345350460303, guid: 9c29427689f522249bdf7397bb810702,
+    type: 3}
+  m_PrefabInstance: {fileID: 3977429636136658224}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043920701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 692900648f2ecb44486380e10e7378be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4157904644285437536
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22689,18 +22822,6 @@ PrefabInstance:
       objectReference: {fileID: 665607800}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c796d6b651f5ea4aa0c634d24e6feff, type: 3}
---- !u!114 &8639634791654871468 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 566362923781943981, guid: 6c796d6b651f5ea4aa0c634d24e6feff,
-    type: 3}
-  m_PrefabInstance: {fileID: 8639634791654871467}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8639634791654871469}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a334fe2ffb574b3583ff3b18b4792d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8639634791654871469 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 566362923781943978, guid: 6c796d6b651f5ea4aa0c634d24e6feff,
