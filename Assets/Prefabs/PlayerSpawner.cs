@@ -49,6 +49,7 @@ public class PlayerSpawner : MonoBehaviour
         controller.arcanaBar = arcanaBar;
         controller.interactImage = interactImage;
         menuManager.Player = playerRef;
+        menuManager.playerController = controller;
         menuManager.PlayerCamera = cam.gameObject;
         menuManager.compass.player = controller.gameObject.transform;
         menuManager.compass2.player = controller.gameObject.transform;
@@ -60,5 +61,6 @@ public class PlayerSpawner : MonoBehaviour
         controller.Location = location;
 
         controller.Setup();
+        menuManager.Setup();
     }
 }

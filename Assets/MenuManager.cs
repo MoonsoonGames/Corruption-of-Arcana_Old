@@ -17,8 +17,8 @@ public class MenuManager : MonoBehaviour
 
     #region GameObjects
 
-    PlayerController playerController;
-    LoadSettings loadSettings;
+    [HideInInspector]
+    public PlayerController playerController;
 
     [Header("Main UI")]
     public GameObject ExplorationUI;
@@ -99,8 +99,7 @@ public class MenuManager : MonoBehaviour
 
     #endregion
 
-    // Start is called before the first frame update
-    void Start()
+    public void Setup()
     {
         //Pausemenu UI OFF
         PauseMenuUI.SetActive(false);
@@ -109,23 +108,34 @@ public class MenuManager : MonoBehaviour
         //hide/lock mouse
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+    }
 
-        loadSettings = LoadSettings.instance;
-
-        playerController = GameObject.FindObjectOfType<PlayerController>();
+    // Start is called before the first frame update
+    void Start()
+    {
+        Setup();
     }
 
     // Update is called once per frame
     public void Update()
     {
-        //update the main HP Bars
-        MainHPBar.value = playerController.health;
-        MainHPBar.maxValue = playerController.maxHealth;
-        HPTextCount.text = playerController.health.ToString();
-        //update the inventory HP bars
-        PauseHealthBar.value = playerController.health;
-        PauseHealthBar.maxValue = playerController.maxHealth;
-        PauseHPTextCount.text = playerController.health.ToString();
+        if (playerController != null)
+        {
+            //update the main HP Bars
+            MainHPBar.value = playerController.health;
+            MainHPBar.maxValue = playerController.maxHealth;
+            HPTextCount.text = playerController.health.ToString();
+            //update the inventory HP bars
+            PauseHealthBar.value = playerController.health;
+            PauseHealthBar.maxValue = playerController.maxHealth;
+            PauseHPTextCount.text = playerController.health.ToString();
+        }
+        else
+        {
+            Debug.LogError("No player controller");
+
+            playerController = GameObject.FindObjectOfType<PlayerController>();
+        }
 
         if (playerController.canMove == true)
         {
@@ -286,13 +296,13 @@ public class MenuManager : MonoBehaviour
         }
 
         #region Stats Update
-        Debug.Log(PauseHealthBar.value + "||" + loadSettings.health);
+        Debug.Log(PauseHealthBar.value + "||" + LoadSettings.instance.health);
 
         //update gold counter
-        goldCount.text = loadSettings.currentGold.ToString();
+        goldCount.text = LoadSettings.instance.currentGold.ToString();
 
         //update the number of all the potions
-        HPPotionCount.text = loadSettings.healingPotionCount.ToString();
+        HPPotionCount.text = LoadSettings.instance.healingPotionCount.ToString();
         //APPotionCount.text = loadSettings.arcanaPotionCount.ToString();
         //RPotionCount.text = loadSettings.potionCount.ToString();
         //SPotionCount.text = loadSettings.potionCount.ToString();
