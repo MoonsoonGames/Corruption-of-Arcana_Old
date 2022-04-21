@@ -14,7 +14,6 @@ public class NavigationManager : MonoBehaviour
 
     bool alreadyTravelling = false;
     public Object ignoreEvent;
-    public float ignoreChance = 1;
 
     private void Start()
     {

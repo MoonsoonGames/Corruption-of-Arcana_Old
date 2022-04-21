@@ -13,6 +13,7 @@ public class NavigationNode : MonoBehaviour
     
     public NavigationNode[] possibleNodes;
     public Object[] possibleEvents;
+    public float ignoreChance = 0.8f;
 
     public Button button;
     public GameObject marker;
@@ -119,7 +120,7 @@ public class NavigationNode : MonoBehaviour
 
     void StartEvent(Object navEvent)
     {
-        if (navEvent == navManager.ignoreEvent && Random.Range(0, 1) < navManager.ignoreChance)
+        if (navEvent == navManager.ignoreEvent && Random.Range(0, 1) < ignoreChance)
         {
             navManager.ResetTravel();
             return;
