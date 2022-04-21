@@ -1,18 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &6067587185896943188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8776561783554067702}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f9ac746f2ba32c42ae93197853879a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  visible: 1
 --- !u!1 &8175904926727330435
 GameObject:
   m_ObjectHideFlags: 0
@@ -31,7 +18,6 @@ GameObject:
   - component: {fileID: 4320349048395924784}
   - component: {fileID: 4485456573901327425}
   - component: {fileID: 2213016477547051059}
-  - component: {fileID: 2213016477547051056}
   - component: {fileID: 2213016477547051057}
   - component: {fileID: 2213016477547051214}
   - component: {fileID: 2213016477547051215}
@@ -84,7 +70,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 4320349048395924784}
   selectedCommands:
-  - {fileID: 2213016477547051215}
+  - {fileID: 0}
   variables: []
   description: 
   stepPause: 0
@@ -272,7 +258,7 @@ MonoBehaviour:
   description: 
   eventHandler: {fileID: 4320349048395924789}
   commandList:
-  - {fileID: 2213016477547051056}
+  - {fileID: 0}
   - {fileID: 4320349048395924788}
   - {fileID: 2213016477547051215}
   - {fileID: 2213016477547051057}
@@ -305,74 +291,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneToLoad: 0
   navScenes: 
---- !u!114 &2213016477547051056
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8175904926727330435}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95d9ff288f3904c05ada7ac9c9a075bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 28
-  indentLevel: 0
-  description: 
-  delay: 0
-  invokeType: 0
-  staticEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: QuestGiver, Assembly-CSharp
-        m_MethodName: AcceptQuest
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CompleteObjective, Assembly-CSharp
-        m_MethodName: CompleteGoal
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  booleanParameter:
-    booleanRef: {fileID: 0}
-    booleanVal: 0
-  booleanEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  integerParameter:
-    integerRef: {fileID: 0}
-    integerVal: 0
-  integerEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  floatParameter:
-    floatRef: {fileID: 0}
-    floatVal: 0
-  floatEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  stringParameter:
-    stringRef: {fileID: 0}
-    stringVal: 
-  stringEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &2213016477547051057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -463,6 +381,19 @@ MonoBehaviour:
   stringEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6067587185896943188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8776561783554067702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f9ac746f2ba32c42ae93197853879a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visible: 1
 --- !u!1001 &6067587185896943190
 PrefabInstance:
   m_ObjectHideFlags: 0
