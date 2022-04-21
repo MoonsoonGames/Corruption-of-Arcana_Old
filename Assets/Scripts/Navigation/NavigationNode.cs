@@ -12,6 +12,8 @@ public class NavigationNode : MonoBehaviour
     public E_Levels dialogueScene;
     
     public NavigationNode[] possibleNodes;
+    public Object path;
+
     public Object[] possibleEvents;
     public float ignoreChance = 0.8f;
 
@@ -44,6 +46,22 @@ public class NavigationNode : MonoBehaviour
             }
 
             SetCurrent();
+        }
+    }
+
+    public void DrawPaths()
+    {
+        foreach (var item in possibleNodes)
+        {
+            GameObject pathRef = Instantiate(path, this.gameObject.transform) as GameObject;
+            LineRenderer pathRenderer = pathRef.GetComponent<LineRenderer>();
+
+            Vector3 startPos = this.gameObject.transform.position;
+            startPos.z -= 200;
+            pathRenderer.SetPosition(0, startPos);
+            Vector3 endPos = item.gameObject.transform.position;
+            endPos.z -= 200;
+            pathRenderer.SetPosition(1, endPos);
         }
     }
 

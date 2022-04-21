@@ -23,6 +23,11 @@ public class NavigationManager : MonoBehaviour
 
         ResetNodes();
         SetNodes();
+
+        foreach (var item in nodes)
+        {
+            item.DrawPaths();
+        }
     }
 
     public void ResetNodes()
