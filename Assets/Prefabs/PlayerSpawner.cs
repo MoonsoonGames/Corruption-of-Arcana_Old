@@ -20,6 +20,9 @@ public class PlayerSpawner : MonoBehaviour
 
     public Text location;
 
+    public Vector3[] spawnPositions;
+    public Quaternion[] spawnRotations;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +40,15 @@ public class PlayerSpawner : MonoBehaviour
     {
         Vector3 spawnPos = loadSettings.RequestPosition(SceneManager.GetActiveScene().name);
         Quaternion spawnRot = loadSettings.RequestRotation(SceneManager.GetActiveScene().name);
+
+        if (spawnPositions.Length >= loadSettings.spawnPlacement)
+        {
+            Debug.Log("Spawning at placement " + loadSettings.spawnPlacement);
+            spawnPos = spawnPositions[loadSettings.spawnPlacement];
+            spawnRot = spawnRotations[loadSettings.spawnPlacement];
+        }
+
+        loadSettings.spawnPlacement = 99;
 
         GameObject playerRef = Instantiate(player, spawnPos, spawnRot) as GameObject;
 

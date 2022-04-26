@@ -10,6 +10,7 @@ public class NavigationNode : MonoBehaviour
     SceneLoader sceneLoader;
     E_Levels navScene;
     public E_Levels dialogueScene;
+    public int entranceCount = 0;
     
     public NavigationNode[] possibleNodes;
     public Object path;
@@ -115,6 +116,8 @@ public class NavigationNode : MonoBehaviour
             Object navEvent = possibleEvents[Random.Range(0, possibleEvents.Length)];
 
             generateEvent = navEvent.name;
+
+            LoadSettings.instance.spawnPlacement = entranceCount;
 
             if (!stopEvents)
             {
