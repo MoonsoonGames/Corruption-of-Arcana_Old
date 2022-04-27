@@ -28,7 +28,6 @@ GameObject:
   - component: {fileID: 5788963369338986581}
   - component: {fileID: 5788963369338986571}
   - component: {fileID: 570620677}
-  - component: {fileID: 570620679}
   - component: {fileID: 570620680}
   - component: {fileID: 570620682}
   - component: {fileID: 570620683}
@@ -109,7 +108,8 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 5788963369338986570}
-  selectedCommands: []
+  selectedCommands:
+  - {fileID: 0}
   variables: []
   description: 
   stepPause: 0
@@ -214,7 +214,7 @@ MonoBehaviour:
   description: 
   eventHandler: {fileID: 570620674}
   commandList:
-  - {fileID: 570620679}
+  - {fileID: 0}
   - {fileID: 5788963369338986571}
   suppressAllAutoSelections: 0
 --- !u!114 &5788963369338986571
@@ -300,62 +300,6 @@ MonoBehaviour:
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
---- !u!114 &570620679
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5788963369338986575}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95d9ff288f3904c05ada7ac9c9a075bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 23
-  indentLevel: 0
-  description: Quest
-  delay: 0
-  invokeType: 0
-  staticEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 570620680}
-        m_TargetAssemblyTypeName: QuestGiver, Assembly-CSharp
-        m_MethodName: AcceptQuest
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  booleanParameter:
-    booleanRef: {fileID: 0}
-    booleanVal: 0
-  booleanEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  integerParameter:
-    integerRef: {fileID: 0}
-    integerVal: 0
-  integerEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  floatParameter:
-    floatRef: {fileID: 0}
-    floatVal: 0
-  floatEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  stringParameter:
-    stringRef: {fileID: 0}
-    stringVal: 
-  stringEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &570620680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -370,6 +314,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   quest: {fileID: 11400000, guid: 71c46a20a32941d4d93df721b09f798c, type: 2}
   questWindow: {fileID: 0}
+  questGiverName: 
 --- !u!114 &570620682
 MonoBehaviour:
   m_ObjectHideFlags: 0

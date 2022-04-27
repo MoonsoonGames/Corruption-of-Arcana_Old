@@ -107,7 +107,7 @@ public class CombatDeckManager : MonoBehaviour
         cards.Add(cardSetter);
     }
 
-    CardParent DetermineCard()
+    protected virtual CardParent DetermineCard()
     {
         int rInt = Random.Range(0, deck.Count);
         //Debug.Log(rInt);

@@ -89,8 +89,6 @@ public class LoadSettings : MonoBehaviour
         transitionAnimScript = GetComponent<SceneTransitionAnim>();
 
         questSaver.Setup();
-
-        DontDestroyOnLoad(this);
     }
 
     #endregion
@@ -104,6 +102,8 @@ public class LoadSettings : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+
+            DontDestroyOnLoad(this);
         }
         else if (instance != this)
         {
@@ -116,6 +116,8 @@ public class LoadSettings : MonoBehaviour
     #region Player
 
     #region Player Position and Rotation
+
+    public int spawnPlacement;
 
     public Vector3 RequestPosition(string scene)
     {
@@ -180,7 +182,7 @@ public class LoadSettings : MonoBehaviour
             //Debug.Log("Loading spawn position | " + playerPosInThoth + " || " + targetPos);
 
         }
-
+        
         return targetPos;
     }
 

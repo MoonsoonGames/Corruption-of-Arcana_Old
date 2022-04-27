@@ -21,7 +21,7 @@ public class CharacterStats : MonoBehaviour
     public Object killFX;
     public Object healFX;
 
-    Dictionary<StatusParent, int> statuses = new Dictionary<StatusParent, int>();
+    public Dictionary<StatusParent, int> statuses = new Dictionary<StatusParent, int>();
 
     protected virtual void Start()
     {
@@ -260,7 +260,7 @@ public class CharacterStats : MonoBehaviour
 
             health = Mathf.Clamp(health - damageTaken, 0, maxHealth);
 
-            if (canBeCountered)
+            if (canBeCountered && attacker != null)
             {
                 OnTakeDamageStatus(attacker);
             }
@@ -332,7 +332,12 @@ public class CharacterStats : MonoBehaviour
             case E_DamageTypes.Septic:
                 return damageValue * septicMultiplier;
             case E_DamageTypes.Perforation:
-                return damageValue;
+                float lowestResistance = 1;
+                if (lowestResistance < LowestResistanceFloat())
+                {
+                    lowestResistance = LowestResistanceFloat();
+                }
+                return damageValue * lowestResistance;
             default:
                 return damageValue;
         }
@@ -375,70 +380,72 @@ public class CharacterStats : MonoBehaviour
                 return septicMultiplier;
             case E_DamageTypes.Perforation:
                 float lowestResistance = 1;
-                if (lowestResistance < lowestResistanceFloat())
+                if (lowestResistance < LowestResistanceFloat())
                 {
-                    lowestResistance = lowestResistanceFloat();
+                    lowestResistance = LowestResistanceFloat();
                 }
+                Debug.Log("Highest Multiplier: " + lowestResistance);
                 return lowestResistance;
             default:
                 return 1;
         }
     }
 
-    public E_DamageTypes lowestResistanceType()
+    public E_DamageTypes LowestResistanceType()
     {
-        float lowestResistance = 9999f;
+        float lowestResistance = 0f;
+        E_DamageTypes lowestResistanceType = E_DamageTypes.Physical;
 
         if (lowestResistance < physicalMultiplier)
         {
             lowestResistance = physicalMultiplier;
-            return E_DamageTypes.Physical;
+            lowestResistanceType = E_DamageTypes.Physical;
         }
-        else if (lowestResistance < emberMultiplier)
+        if (lowestResistance < emberMultiplier)
         {
             lowestResistance = emberMultiplier;
-            return E_DamageTypes.Ember;
+            lowestResistanceType = E_DamageTypes.Ember;
         }
-        else if (lowestResistance < staticMultiplier)
+        if (lowestResistance < staticMultiplier)
         {
             lowestResistance = staticMultiplier;
-            return E_DamageTypes.Static;
+            lowestResistanceType = E_DamageTypes.Static;
         }
-        else if (lowestResistance < bleakMultiplier)
+        if (lowestResistance < bleakMultiplier)
         {
             lowestResistance = bleakMultiplier;
-            return E_DamageTypes.Bleak;
+            lowestResistanceType = E_DamageTypes.Bleak;
         }
-        else if (lowestResistance < septicMultiplier)
+        if (lowestResistance < septicMultiplier)
         {
             lowestResistance = septicMultiplier;
-            return E_DamageTypes.Septic;
+            lowestResistanceType = E_DamageTypes.Septic;
         }
 
-        return E_DamageTypes.Perforation;
+        return lowestResistanceType;
     }
 
-    public float lowestResistanceFloat()
+    public float LowestResistanceFloat()
     {
-        float lowestResistance = 9999f;
+        float lowestResistance = 0;
 
         if (lowestResistance < physicalMultiplier)
         {
             lowestResistance = physicalMultiplier;
         }
-        else if (lowestResistance < emberMultiplier)
+        if (lowestResistance < emberMultiplier)
         {
             lowestResistance = emberMultiplier;
         }
-        else if (lowestResistance < staticMultiplier)
+        if (lowestResistance < staticMultiplier)
         {
             lowestResistance = staticMultiplier;
         }
-        else if (lowestResistance < bleakMultiplier)
+        if (lowestResistance < bleakMultiplier)
         {
             lowestResistance = bleakMultiplier;
         }
-        else if (lowestResistance < septicMultiplier)
+        if (lowestResistance < septicMultiplier)
         {
             lowestResistance = septicMultiplier;
         }
@@ -598,6 +605,29 @@ public class CharacterStats : MonoBehaviour
             statuses.Add(item.Key, item.Value);
         }
 
+        SetupStatusIcons();
+    }
+
+    public void RemoveStatus(StatusParent status)
+    {
+        Dictionary<StatusParent, int> statusesCopy = new Dictionary<StatusParent, int>();
+
+        foreach (var item in statuses)
+        {
+            if (item.Key != status)
+            {
+                statusesCopy.Add(item.Key, item.Value);
+            }
+        }
+
+        statuses.Clear();
+
+        foreach (var item in statusesCopy)
+        {
+            statuses.Add(item.Key, item.Value);
+        }
+
+        status.OnRemove(this.gameObject);
         SetupStatusIcons();
     }
 

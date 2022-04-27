@@ -137,7 +137,7 @@ public class PlayerController : MonoBehaviour
 
                 modelAnimator.SetBool("Moving", moveDirection != new Vector3(0, 0, 0));
 
-                Debug.Log(inputDirection);
+                //Debug.Log(inputDirection);
 
                 //up 001, right 100, down 00-1, left -100
                 if (inputDirection.x > 0)
