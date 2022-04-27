@@ -117,6 +117,8 @@ public class LoadSettings : MonoBehaviour
 
     #region Player Position and Rotation
 
+    public int spawnPlacement;
+
     public Vector3 RequestPosition(string scene)
     {
         Vector3 targetPos;
@@ -180,7 +182,7 @@ public class LoadSettings : MonoBehaviour
             //Debug.Log("Loading spawn position | " + playerPosInThoth + " || " + targetPos);
 
         }
-
+        
         return targetPos;
     }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SetupCardRewards : MonoBehaviour
 {
@@ -10,9 +11,14 @@ public class SetupCardRewards : MonoBehaviour
 
     public ActiveCard activeCard;
 
+    CardParent cardChoice;
+
     SceneLoader sceneLoader;
 
     bool canChoose = true;
+
+    public GameObject confirmationMenu;
+    public Text confirmText;
 
     // Start is called before the first frame update
     void Start()
@@ -33,18 +39,40 @@ public class SetupCardRewards : MonoBehaviour
         return cards[rInt];
     }
 
-    public void ConfirmCardChoice(CardSetter cardSetter)
+    public void SelectCardChoice(CardSetter cardSetter)
     {
         if (canChoose)
         {
+            cardChoice = cardSetter.GetCard();
+            SetConfirmationMenu(true);
+        }
+    }
+
+    public void ConfirmCardChoice()
+    {
+        if (canChoose && cardChoice != null)
+        {
             canChoose = false;
 
-            CardParent card = cardSetter.GetCard();
-
             //Add card to load settings
-            LoadSettings loadSettings = LoadSettings.instance;
+            LoadSettings.instance.majourArcana.Add(cardChoice);
+            SetConfirmationMenu(false);
+        }
+    }
 
-            loadSettings.majourArcana.Add(card);
+    public void SetConfirmationMenu(bool active)
+    {
+        if (confirmationMenu != null)
+        {
+            confirmationMenu.SetActive(active);
+        }
+
+        if (confirmText != null)
+        {
+            if (cardChoice != null)
+                confirmText.text = "Are you sure you want to select the " + cardChoice.cardName + " card?";
+            else
+                confirmText.text = "Are you sure you want to select this card?";
         }
     }
 

@@ -35,6 +35,7 @@ RectTransform:
   - {fileID: 7685603805605471841}
   - {fileID: 7150099919734138377}
   - {fileID: 1951275859927520670}
+  - {fileID: 581086084187090425}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -78,6 +79,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7ee1880e172b65942ba00f4d2ab0029d, type: 2}
   - {fileID: 11400000, guid: 8f961b064484e214d9d25849b3d6c993, type: 2}
   activeCard: {fileID: 1951275859927520669}
+  confirmationMenu: {fileID: 581086084187090426}
+  confirmText: {fileID: 581086083068564127}
 --- !u!114 &8247035949919831857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,7 +135,7 @@ PrefabInstance:
     - target: {fileID: 6107053408947135923, guid: 1a6d13f2cc9dfc743b1c58de7ee6437d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6107053408947135923, guid: 1a6d13f2cc9dfc743b1c58de7ee6437d,
         type: 3}
@@ -156,6 +159,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6107053408947135923, guid: 1a6d13f2cc9dfc743b1c58de7ee6437d,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SelectCardChoice
+      objectReference: {fileID: 0}
+    - target: {fileID: 6107053408947135923, guid: 1a6d13f2cc9dfc743b1c58de7ee6437d,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: LoadScene
       objectReference: {fileID: 0}
@@ -164,6 +172,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: SetupCardRewards, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 6107053408947135923, guid: 1a6d13f2cc9dfc743b1c58de7ee6437d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 9054999069339907911}
     - target: {fileID: 6107053408947135923, guid: 1a6d13f2cc9dfc743b1c58de7ee6437d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
@@ -344,7 +357,7 @@ PrefabInstance:
     - target: {fileID: 6107053408947135923, guid: 1a6d13f2cc9dfc743b1c58de7ee6437d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6107053408947135923, guid: 1a6d13f2cc9dfc743b1c58de7ee6437d,
         type: 3}
@@ -368,6 +381,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6107053408947135923, guid: 1a6d13f2cc9dfc743b1c58de7ee6437d,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SelectCardChoice
+      objectReference: {fileID: 0}
+    - target: {fileID: 6107053408947135923, guid: 1a6d13f2cc9dfc743b1c58de7ee6437d,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: LoadScene
       objectReference: {fileID: 0}
@@ -376,6 +394,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: SetupCardRewards, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 6107053408947135923, guid: 1a6d13f2cc9dfc743b1c58de7ee6437d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 8959511134327735135}
     - target: {fileID: 6107053408947135923, guid: 1a6d13f2cc9dfc743b1c58de7ee6437d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
@@ -556,12 +579,12 @@ PrefabInstance:
     - target: {fileID: 6107053408947135923, guid: 1a6d13f2cc9dfc743b1c58de7ee6437d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6107053408947135923, guid: 1a6d13f2cc9dfc743b1c58de7ee6437d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6107053408947135923, guid: 1a6d13f2cc9dfc743b1c58de7ee6437d,
         type: 3}
@@ -572,7 +595,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 4213396606585055442}
+      objectReference: {fileID: 0}
     - target: {fileID: 6107053408947135923, guid: 1a6d13f2cc9dfc743b1c58de7ee6437d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
@@ -580,8 +603,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6107053408947135923, guid: 1a6d13f2cc9dfc743b1c58de7ee6437d,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SelectCardChoice
+      objectReference: {fileID: 0}
+    - target: {fileID: 6107053408947135923, guid: 1a6d13f2cc9dfc743b1c58de7ee6437d,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: LoadScene
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6107053408947135923, guid: 1a6d13f2cc9dfc743b1c58de7ee6437d,
         type: 3}
@@ -596,7 +624,7 @@ PrefabInstance:
     - target: {fileID: 6107053408947135923, guid: 1a6d13f2cc9dfc743b1c58de7ee6437d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6904554647885748130, guid: 1a6d13f2cc9dfc743b1c58de7ee6437d,
         type: 3}
@@ -768,7 +796,7 @@ PrefabInstance:
     - target: {fileID: 6107053408947135923, guid: 1a6d13f2cc9dfc743b1c58de7ee6437d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6107053408947135923, guid: 1a6d13f2cc9dfc743b1c58de7ee6437d,
         type: 3}
@@ -792,6 +820,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6107053408947135923, guid: 1a6d13f2cc9dfc743b1c58de7ee6437d,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SelectCardChoice
+      objectReference: {fileID: 0}
+    - target: {fileID: 6107053408947135923, guid: 1a6d13f2cc9dfc743b1c58de7ee6437d,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: LoadScene
       objectReference: {fileID: 0}
@@ -800,6 +833,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: SetupCardRewards, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 6107053408947135923, guid: 1a6d13f2cc9dfc743b1c58de7ee6437d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 7871687023169904720}
     - target: {fileID: 6107053408947135923, guid: 1a6d13f2cc9dfc743b1c58de7ee6437d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
@@ -1077,7 +1115,7 @@ PrefabInstance:
     - target: {fileID: 6107053408947135923, guid: 1a6d13f2cc9dfc743b1c58de7ee6437d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6107053408947135923, guid: 1a6d13f2cc9dfc743b1c58de7ee6437d,
         type: 3}
@@ -1098,6 +1136,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6107053408947135923, guid: 1a6d13f2cc9dfc743b1c58de7ee6437d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SelectCardChoice
       objectReference: {fileID: 0}
     - target: {fileID: 6107053408947135923, guid: 1a6d13f2cc9dfc743b1c58de7ee6437d,
         type: 3}
@@ -1247,5 +1290,218 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f94c122215b60c14e8a8a0152e0021d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &7713915421449104984
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2080685254571056468}
+    m_Modifications:
+    - target: {fileID: 7141930013633737900, guid: a7f4b3eaf014c0a4dad0f3699ee7657d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141930013633737900, guid: a7f4b3eaf014c0a4dad0f3699ee7657d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141930013633737900, guid: a7f4b3eaf014c0a4dad0f3699ee7657d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4213396606585055442}
+    - target: {fileID: 7141930013633737900, guid: a7f4b3eaf014c0a4dad0f3699ee7657d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 4213396606585055442}
+    - target: {fileID: 7141930013633737900, guid: a7f4b3eaf014c0a4dad0f3699ee7657d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141930013633737900, guid: a7f4b3eaf014c0a4dad0f3699ee7657d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ConfirmCardChoice
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141930013633737900, guid: a7f4b3eaf014c0a4dad0f3699ee7657d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: LoadScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141930013633737900, guid: a7f4b3eaf014c0a4dad0f3699ee7657d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SetupCardRewards, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141930013633737900, guid: a7f4b3eaf014c0a4dad0f3699ee7657d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: SetupCardRewards, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141930013633737900, guid: a7f4b3eaf014c0a4dad0f3699ee7657d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141930015037670305, guid: a7f4b3eaf014c0a4dad0f3699ee7657d,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141930015037670305, guid: a7f4b3eaf014c0a4dad0f3699ee7657d,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141930015037670305, guid: a7f4b3eaf014c0a4dad0f3699ee7657d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141930015037670305, guid: a7f4b3eaf014c0a4dad0f3699ee7657d,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141930015037670305, guid: a7f4b3eaf014c0a4dad0f3699ee7657d,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141930015037670305, guid: a7f4b3eaf014c0a4dad0f3699ee7657d,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141930015037670305, guid: a7f4b3eaf014c0a4dad0f3699ee7657d,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141930015037670305, guid: a7f4b3eaf014c0a4dad0f3699ee7657d,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141930015037670305, guid: a7f4b3eaf014c0a4dad0f3699ee7657d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141930015037670305, guid: a7f4b3eaf014c0a4dad0f3699ee7657d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141930015037670305, guid: a7f4b3eaf014c0a4dad0f3699ee7657d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141930015037670305, guid: a7f4b3eaf014c0a4dad0f3699ee7657d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141930015037670305, guid: a7f4b3eaf014c0a4dad0f3699ee7657d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141930015037670305, guid: a7f4b3eaf014c0a4dad0f3699ee7657d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141930015037670305, guid: a7f4b3eaf014c0a4dad0f3699ee7657d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141930015037670305, guid: a7f4b3eaf014c0a4dad0f3699ee7657d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141930015037670305, guid: a7f4b3eaf014c0a4dad0f3699ee7657d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 126
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141930015037670305, guid: a7f4b3eaf014c0a4dad0f3699ee7657d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -31
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141930015037670305, guid: a7f4b3eaf014c0a4dad0f3699ee7657d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141930015037670305, guid: a7f4b3eaf014c0a4dad0f3699ee7657d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141930015037670305, guid: a7f4b3eaf014c0a4dad0f3699ee7657d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141930015037670306, guid: a7f4b3eaf014c0a4dad0f3699ee7657d,
+        type: 3}
+      propertyPath: m_Name
+      value: Card Confimation Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141930015037670306, guid: a7f4b3eaf014c0a4dad0f3699ee7657d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141930015516180816, guid: a7f4b3eaf014c0a4dad0f3699ee7657d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4213396606585055442}
+    - target: {fileID: 7141930015516180816, guid: a7f4b3eaf014c0a4dad0f3699ee7657d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetConfirmationMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141930015516180816, guid: a7f4b3eaf014c0a4dad0f3699ee7657d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SetupCardRewards, Assembly-CSharp
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a7f4b3eaf014c0a4dad0f3699ee7657d, type: 3}
+--- !u!1 &581086084187090426 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7141930015037670306, guid: a7f4b3eaf014c0a4dad0f3699ee7657d,
+    type: 3}
+  m_PrefabInstance: {fileID: 7713915421449104984}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &581086084187090425 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7141930015037670305, guid: a7f4b3eaf014c0a4dad0f3699ee7657d,
+    type: 3}
+  m_PrefabInstance: {fileID: 7713915421449104984}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &581086083068564127 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7141930014011309255, guid: a7f4b3eaf014c0a4dad0f3699ee7657d,
+    type: 3}
+  m_PrefabInstance: {fileID: 7713915421449104984}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
