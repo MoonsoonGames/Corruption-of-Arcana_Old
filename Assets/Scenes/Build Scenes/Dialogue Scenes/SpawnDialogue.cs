@@ -20,12 +20,19 @@ public class SpawnDialogue : MonoBehaviour
         {
             loadSettings = LoadSettings.instance;
         }
+
         /*
         Flowchart[] flowChartRefs = GetComponentsInChildren<Flowchart>();
+        flowCharts = new GameObject[flowChartRefs.Length];
 
-        foreach(var item in flowChartRefs)
+        for (int i = 0; i < flowCharts.Length; i++)
         {
-            Debug.Log(item.gameObject.name);
+            flowCharts[i] = flowChartRefs[i].gameObject;
+            
+            if (flowCharts[i] != null)
+            {
+                flowCharts[i].SetActive(false);
+            }
         }
         */
 
