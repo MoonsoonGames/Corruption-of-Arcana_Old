@@ -20,6 +20,14 @@ public class SpawnDialogue : MonoBehaviour
         {
             loadSettings = LoadSettings.instance;
         }
+        /*
+        Flowchart[] flowChartRefs = GetComponentsInChildren<Flowchart>();
+
+        foreach(var item in flowChartRefs)
+        {
+            Debug.Log(item.gameObject.name);
+        }
+        */
 
         Object flowChart = loadSettings.dialogueFlowChart;
 
