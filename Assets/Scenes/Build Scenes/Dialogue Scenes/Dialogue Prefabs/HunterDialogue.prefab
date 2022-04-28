@@ -37,9 +37,7 @@ GameObject:
   - component: {fileID: 7227871642490131986}
   - component: {fileID: 3195902321202737735}
   - component: {fileID: 1156199748558094174}
-  - component: {fileID: 6599392290868883949}
   - component: {fileID: 241560837363234039}
-  - component: {fileID: 5461938499818752813}
   - component: {fileID: 5809794621053879874}
   - component: {fileID: 3686086802891213376}
   m_Layer: 0
@@ -90,7 +88,8 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 4962308174973051157}
-  selectedCommands: []
+  selectedCommands:
+  - {fileID: 0}
   variables:
   - {fileID: 5941137748790857264}
   description: 
@@ -282,7 +281,7 @@ MonoBehaviour:
   eventHandler: {fileID: 0}
   commandList:
   - {fileID: 4962308174973051160}
-  - {fileID: 6599392290868883949}
+  - {fileID: 0}
   - {fileID: 4962308174973051162}
   suppressAllAutoSelections: 0
 --- !u!114 &4962308174973051162
@@ -917,7 +916,7 @@ MonoBehaviour:
   eventHandler: {fileID: 0}
   commandList:
   - {fileID: 5744083710324855994}
-  - {fileID: 5461938499818752813}
+  - {fileID: 0}
   - {fileID: 3686086802891213376}
   - {fileID: 8398097274619488764}
   suppressAllAutoSelections: 0
@@ -1652,34 +1651,6 @@ MonoBehaviour:
     stringVal: 
   startIndex: 0
   callMode: 0
---- !u!114 &6599392290868883949
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7051090446208021481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 51
-  indentLevel: 0
-  storyText: You best prepare for the fight, head to a tavern for some food and drink.
-    That way, you're prepared for the fight ahead.
-  description: 
-  character: {fileID: 0}
-  portrait: {fileID: 0}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 0}
 --- !u!114 &241560837363234039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1696,34 +1667,6 @@ MonoBehaviour:
   indentLevel: 0
   storyText: You best prepare for the fight, head to a tavern for some food and drink.
     That way, you're prepared for the fight ahead.
-  description: 
-  character: {fileID: 0}
-  portrait: {fileID: 0}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 0}
---- !u!114 &5461938499818752813
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7051090446208021481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 53
-  indentLevel: 0
-  storyText: We didn't prepare right, I mean, I don't know how we could have prepared
-    better.
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}

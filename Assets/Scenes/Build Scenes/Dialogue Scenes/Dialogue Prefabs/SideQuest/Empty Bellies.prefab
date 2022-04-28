@@ -28,7 +28,6 @@ GameObject:
   - component: {fileID: 882015037451324183}
   - component: {fileID: 882015037451324180}
   - component: {fileID: 882015037451324170}
-  - component: {fileID: 2990192600880226821}
   - component: {fileID: 2990192600880226818}
   - component: {fileID: 2990192600880226816}
   - component: {fileID: 2990192600880226817}
@@ -89,7 +88,8 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 882015037451324171}
-  selectedCommands: []
+  selectedCommands:
+  - {fileID: 0}
   variables: []
   description: 
   stepPause: 0
@@ -258,27 +258,6 @@ MonoBehaviour:
   stringEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &2990192600880226821
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 882015037451324174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 050fb9e6e72f442b3b883da8a965bdeb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 18
-  indentLevel: 0
-  targetFlowchart: {fileID: 0}
-  targetBlock: {fileID: 882015037451324180}
-  startLabel:
-    stringRef: {fileID: 0}
-    stringVal: 
-  startIndex: 0
-  callMode: 0
 --- !u!114 &2990192600880226818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,7 +333,7 @@ MonoBehaviour:
   eventHandler: {fileID: 0}
   commandList:
   - {fileID: 2990192600880226816}
-  - {fileID: 2990192600880226821}
+  - {fileID: 0}
   suppressAllAutoSelections: 0
 --- !u!114 &2990192600880226831
 MonoBehaviour:
@@ -506,6 +485,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   quest: {fileID: 11400000, guid: 2f0c4794bfa6aa24e9549147fd0d1dc5, type: 2}
   questWindow: {fileID: 0}
+  questGiverName: 
 --- !u!114 &2990192600880226825
 MonoBehaviour:
   m_ObjectHideFlags: 0

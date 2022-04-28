@@ -41,4 +41,22 @@ public class QuestGiver : MonoBehaviour
             }
         }
     }
+
+    public void AcceptQuestHidden()
+    {
+        //Add to guidebook
+        //Set window to false
+        //Check Objectives
+        if (quest != null)
+        {
+            quest.AcceptQuestHidden(questGiverName);
+
+            LoadSettings loadSettings = LoadSettings.instance;
+
+            if (loadSettings.quests.Contains(quest) == false)
+            {
+                loadSettings.quests.Add(quest);
+            }
+        }
+    }
 }

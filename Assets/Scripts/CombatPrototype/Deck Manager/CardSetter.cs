@@ -10,6 +10,7 @@ public class CardSetter : MonoBehaviour
     private CardParent currentCard;
 
     public Text cardText;
+    public Text costText;
 
     public AbilityManager abilityManager;
 
@@ -43,6 +44,22 @@ public class CardSetter : MonoBehaviour
         if (cardText != null)
         {
             cardText.text = currentCard.cardName;
+        }
+
+        if (costText != null)
+        {
+            if (currentCard.selfInterpretationUnlocked && currentCard.targetInterpretationUnlocked)
+            {
+                costText.text = currentCard.targetCost.ToString();
+            }
+            else if (currentCard.selfInterpretationUnlocked)
+            {
+                costText.text = currentCard.selfCost.ToString();
+            }
+            else if (currentCard.targetInterpretationUnlocked)
+            {
+                costText.text = currentCard.targetCost.ToString();
+            }
         }
 
         if (button != null && currentCard.cardImage != null)

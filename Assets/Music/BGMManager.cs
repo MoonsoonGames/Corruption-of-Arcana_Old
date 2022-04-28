@@ -6,43 +6,35 @@ public class BGMManager : MonoBehaviour
 {
     public AudioSource audioSource;
     AudioClip currentClip;
-    bool main = false;
 
     float baseVolume;
     float currentVolume;
     public float volumeMultiplier = 0.3f;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        BGMManager[] BGMManagers = GameObject.FindObjectsOfType<BGMManager>();
+        Singleton();
+    }
 
-        //Debug.Log(loadSettings.Length);
+    #region Singleton
 
-        if (BGMManagers.Length > 1)
+    public static BGMManager instance = null;
+
+    void Singleton()
+    {
+        if (instance == null)
         {
-            //Debug.Log("destroying");
-            Destroy(this); //There is already one in the scene, delete this one
+            instance = this;
+
+            DontDestroyOnLoad(this);
         }
-        else
+        else if (instance != this)
         {
-            main = true;
-            DontDestroyOnLoad(this.gameObject);
+            Destroy(gameObject);
         }
     }
 
-    public bool CheckMain()
-    {
-        if (main)
-        {
-            return true;
-        }
-        else
-        {
-            //Debug.Log("destroying");
-            return false;
-        }
-    }
+    #endregion
 
     public void PlayMusic(AudioClip music, float volume)
     {
@@ -69,6 +61,9 @@ public class BGMManager : MonoBehaviour
 
     public void PlaySoundEffect(AudioClip soundEffect, float volume)
     {
-        audioSource.PlayOneShot(soundEffect, volume);
+        if (audioSource != null && soundEffect != null)
+        {
+            audioSource.PlayOneShot(soundEffect, volume);
+        }
     }
 }

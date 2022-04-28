@@ -60,6 +60,19 @@ public class LoadSettings : MonoBehaviour
     public float potionReward;
     public string itemReward;
 
+    void LoadEnemies(SaveData data)
+    {
+        if (data != null)
+        {
+            enemiesKilled = data.enemiesKilled;
+            bossesKilled = data.bossesKilled;
+        }
+        else
+        {
+            Debug.LogError("No load data");
+        }
+    }
+
     #endregion
 
     SceneTransitionAnim transitionAnimScript;
@@ -75,7 +88,7 @@ public class LoadSettings : MonoBehaviour
         questSaver = GetComponent<SaveLoadQuestData>();
         transitionAnimScript = GetComponent<SceneTransitionAnim>();
 
-        DontDestroyOnLoad(this);
+        questSaver.Setup();
     }
 
     #endregion
@@ -89,6 +102,8 @@ public class LoadSettings : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+
+            DontDestroyOnLoad(this);
         }
         else if (instance != this)
         {
@@ -101,6 +116,8 @@ public class LoadSettings : MonoBehaviour
     #region Player
 
     #region Player Position and Rotation
+
+    public int spawnPlacement;
 
     public Vector3 RequestPosition(string scene)
     {
@@ -165,7 +182,7 @@ public class LoadSettings : MonoBehaviour
             //Debug.Log("Loading spawn position | " + playerPosInThoth + " || " + targetPos);
 
         }
-
+        
         return targetPos;
     }
 
@@ -263,6 +280,60 @@ public class LoadSettings : MonoBehaviour
         lastLevel = (E_Levels)System.Enum.Parse(typeof(E_Levels), scene);
     }
 
+    void LoadSceneData(SaveData data)
+    {
+        if (data != null)
+        {
+            lastLevel = data.lastLevel;
+            checkPointScene = data.checkPointScene;
+            checkPointString = data.checkPointString;
+
+            playerPosInThoth.x = data.playerPosInThoth[0];
+            playerPosInThoth.y = data.playerPosInThoth[1];
+            playerPosInThoth.z = data.playerPosInThoth[2];
+            playerRotInThoth.x = data.playerRotInThoth[0];
+            playerRotInThoth.y = data.playerRotInThoth[1];
+            playerRotInThoth.z = data.playerRotInThoth[2];
+            playerRotInThoth.w = data.playerRotInThoth[3];
+
+            playerPosInClearing[0] = data.playerPosInClearing[0];
+            playerPosInClearing[1] = data.playerPosInClearing[1];
+            playerPosInClearing[2] = data.playerPosInClearing[2];
+            playerRotInClearing[0] = data.playerRotInClearing[0];
+            playerRotInClearing[1] = data.playerRotInClearing[1];
+            playerRotInClearing[2] = data.playerRotInClearing[2];
+            playerRotInClearing[3] = data.playerRotInClearing[3];
+
+            playerPosInCave[0] = data.playerPosInCave[0];
+            playerPosInCave[1] = data.playerPosInCave[1];
+            playerPosInCave[2] = data.playerPosInCave[2];
+            playerRotInCave[0] = data.playerRotInCave[0];
+            playerRotInCave[1] = data.playerRotInCave[1];
+            playerRotInCave[2] = data.playerRotInCave[2];
+            playerRotInCave[3] = data.playerRotInCave[3];
+
+            playerPosInTiertarock[0] = data.playerPosInTiertarock[0];
+            playerPosInTiertarock[1] = data.playerPosInTiertarock[1];
+            playerPosInTiertarock[2] = data.playerPosInTiertarock[2];
+            playerRotInTiertarock[0] = data.playerRotInTiertarock[0];
+            playerRotInTiertarock[1] = data.playerRotInTiertarock[1];
+            playerRotInTiertarock[2] = data.playerRotInTiertarock[2];
+            playerRotInTiertarock[3] = data.playerRotInTiertarock[3];
+
+            checkpointPos[0] = data.checkpointPos[0];
+            checkpointPos[1] = data.checkpointPos[1];
+            checkpointPos[2] = data.checkpointPos[2];
+            checkPointRot[0] = data.checkPointRot[0];
+            checkPointRot[1] = data.checkPointRot[1];
+            checkPointRot[2] = data.checkPointRot[2];
+            checkPointRot[3] = data.checkPointRot[3];
+        }
+        else
+        {
+            Debug.LogError("No load data");
+        }
+    }
+
     #endregion
 
     #region Checkpoints
@@ -316,6 +387,8 @@ public class LoadSettings : MonoBehaviour
         #endregion
 
         ResetEnemies();
+
+        SaveData();
     }
 
     public void SaveCheckpoint(Scene newCheckPoint, PlayerController controller)
@@ -341,6 +414,8 @@ public class LoadSettings : MonoBehaviour
         //questSaver.SaveQuestData();
 
         checkPoint = false;
+
+        SaveData();
     }
 
     #endregion
@@ -378,6 +453,19 @@ public class LoadSettings : MonoBehaviour
         return revealedEntries.Contains(name);
     }
 
+    void LoadGuidebookData(SaveData data)
+    {
+        if (data != null)
+        {
+            revealedEntries.Clear();
+            revealedEntries = data.revealedEntries;
+        }
+        else
+        {
+            Debug.LogError("No load data");
+        }
+    }
+
     #endregion
 
     #region Travelling
@@ -390,13 +478,27 @@ public class LoadSettings : MonoBehaviour
         currentNodeID = newNode.name;
     }
 
+    void LoadTravelData(SaveData data)
+    {
+        if (data != null)
+        {
+            currentNodeID = data.currentNodeID;
+            checkpointNodeID = data.checkpointNodeID;
+        }
+        else
+        {
+            Debug.LogError("No load data");
+        }
+    }
+
     #endregion
 
     #region Quests
 
     public List<Quest> quests;
     public List<QuestObjective> currentFightObjectives;
-    SaveLoadQuestData questSaver;
+    [HideInInspector]
+    public SaveLoadQuestData questSaver;
 
     #endregion
 
@@ -447,6 +549,45 @@ public class LoadSettings : MonoBehaviour
         return majourArcana.Count * goldPerCard;
     }
 
+    void LoadDecks(SaveData data)
+    {
+        if (data != null)
+        {
+            Weapon[] weapons = Resources.FindObjectsOfTypeAll<Weapon>();
+            CardParent[] cards = Resources.FindObjectsOfTypeAll<CardParent>();
+
+            foreach(var item in weapons)
+            {
+                if (item.weaponName == data.equippedWeapon)
+                {
+                    equippedWeapon = item;
+                }
+                if (data.earnedWeapons.Contains(item.weaponName))
+                {
+                    earnedWeapons.Add(item);
+                }
+            }
+
+            foreach (var item in cards)
+            {
+                if (data.majourArcana.Contains(item.cardName))
+                {
+                    majourArcana.Add(item);
+                }
+                if (data.corruptedArcana.Contains(item.cardName))
+                {
+                    corruptedArcana.Add(item);
+                }
+            }
+
+            currentGold = data.currentGold;
+        }
+        else
+        {
+            Debug.LogError("No load data");
+        }
+    }
+
     #endregion
 
     #region Upgrades
@@ -479,6 +620,24 @@ public class LoadSettings : MonoBehaviour
         return maxHealingPotionCount * 25;
     }
 
+    void LoadUpgrades(SaveData data)
+    {
+        if (data != null)
+        {
+            health = data.health;
+            maxHealth = data.maxHealth;
+
+            maxHealingPotionCount = data.maxHealingPotionCount;
+            healingPotionCount = data.healingPotionCount;
+            checkpointArcanaPotionCount = data.checkpointArcanaPotionCount;
+            arcanaPotionCount = data.arcanaPotionCount;
+        }
+        else
+        {
+            Debug.LogError("No load data");
+        }
+    }
+
     #endregion
 
     #region Scene Transition Anim
@@ -489,4 +648,33 @@ public class LoadSettings : MonoBehaviour
     }
 
     #endregion
+
+    public void LoadData()
+    {
+        /*
+        SaveData data = SaveSystem.LoadSaveData();
+
+        if (data != null)
+        {
+            LoadEnemies(data);
+            LoadSceneData(data);
+            LoadGuidebookData(data);
+            LoadTravelData(data);
+            questSaver.Load();
+            LoadDecks(data);
+            LoadUpgrades(data);
+        }
+        else
+        {
+            Debug.LogError("No load data");
+
+            questSaver.ResetQuestData();
+        }
+        */
+    }
+
+    public void SaveData()
+    {
+        //SaveSystem.SaveInformation(this);
+    }
 }

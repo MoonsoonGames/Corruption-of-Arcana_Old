@@ -137,7 +137,7 @@ public class PlayerController : MonoBehaviour
 
                 modelAnimator.SetBool("Moving", moveDirection != new Vector3(0, 0, 0));
 
-                Debug.Log(inputDirection);
+                //Debug.Log(inputDirection);
 
                 //up 001, right 100, down 00-1, left -100
                 if (inputDirection.x > 0)
@@ -196,6 +196,16 @@ public class PlayerController : MonoBehaviour
             healthBar.value = health;
         if (arcanaBar != null)
             arcanaBar.value = arcana;
+    }
+
+    public void DealDamage(int damage)
+    {
+        health -= damage;
+
+        if (health <= 0)
+        {
+            Debug.Log("Die");
+        }
     }
 
     public void OnTriggerEnter(Collider other)

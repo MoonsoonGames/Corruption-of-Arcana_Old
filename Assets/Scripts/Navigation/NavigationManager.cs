@@ -13,6 +13,7 @@ public class NavigationManager : MonoBehaviour
     public bool stopLevels = false;
 
     bool alreadyTravelling = false;
+    public Object ignoreEvent;
 
     private void Start()
     {
@@ -22,6 +23,11 @@ public class NavigationManager : MonoBehaviour
 
         ResetNodes();
         SetNodes();
+
+        foreach (var item in nodes)
+        {
+            item.DrawPaths();
+        }
     }
 
     public void ResetNodes()
@@ -52,6 +58,9 @@ public class NavigationManager : MonoBehaviour
     {
         if (alreadyTravelling == false)
         {
+            if (stopEvents == false && stopLevels == false)
+                alreadyTravelling = true;
+
             loadSettings.TravelStart(newNode);
 
             //Debug.Log(newNode.GenerateNavigationEvent());
@@ -60,10 +69,13 @@ public class NavigationManager : MonoBehaviour
 
             ResetNodes();
             SetNodes();
-
-            if (stopEvents == false && stopLevels == false)
-                alreadyTravelling = true;
         }
+    }
+
+    public void ResetTravel()
+    {
+        Debug.Log("Reset");
+        alreadyTravelling = false;
     }
 
     public List<string> GenerateEvents(List<string> possibleEvents, int eventsCount)

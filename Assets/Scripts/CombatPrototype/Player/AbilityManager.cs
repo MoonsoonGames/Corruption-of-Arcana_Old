@@ -26,10 +26,9 @@ public class AbilityManager : MonoBehaviour
 
     public SliderVariation sliderVarScript;
 
-    [HideInInspector]
     public EndTurn endTurn;
 
-    BGMManager audioManager;
+    public TutorialManager tutorialManager;
 
 
     #region Ability Values
@@ -65,8 +64,6 @@ public class AbilityManager : MonoBehaviour
     {
         activeCard = GameObject.FindObjectOfType<ActiveCard>();
         targetter = GetComponentInChildren<Targetter>();
-        endTurn = GameObject.FindObjectOfType<EndTurn>();
-        audioManager = GameObject.FindObjectOfType<BGMManager>();
 
         spreadScript.Setup(combatDeckManager);
     }
@@ -131,6 +128,8 @@ public class AbilityManager : MonoBehaviour
 
                 if (canCast)
                 {
+                    if (tutorialManager != null)
+                        tutorialManager.CastSpell();
                     DiscardCard();
                 }
             }
@@ -161,6 +160,7 @@ public class AbilityManager : MonoBehaviour
             {
                 if (ability.comboCard != null)
                 {
+                    spreadScript.SpawnFX();
                     spreadScript.drawCard = ability.comboCard;
                     spreadScript.CardCast();
                 }
@@ -186,31 +186,34 @@ public class AbilityManager : MonoBehaviour
 
     public void SetAbility(CardParent ability, CardSetter card)
     {
-        EnemyInfo(null);
-        endTurn.OpenMenu(false);
-        combatManager.PotionBar(false);
-        readyAbility = ability;
-        readiedCard = card;
-
-        if (activeCard != null)
+        if (tutorialManager == null || tutorialManager.CanCastSpell(ability))
         {
-            if (ability.selfInterpretationUnlocked && ability.targetInterpretationUnlocked)
+            EnemyInfo(null);
+            endTurn.OpenMenu(false);
+            combatManager.PotionBar(false);
+            readyAbility = ability;
+            readiedCard = card;
+
+            if (activeCard != null)
             {
-                combatManager.TargetEnemies(true, ability);
-                targetter.SetVisibility(true, null);
-                activeCard.ReadyCard(ability.cardName, ability.comboCard != null ? ability.comboCard.cardName : "None", ability.selfHeal, "Unknown", ability.selfCost, "Two interpretations active, UI issue", ability.selfCostType);
-            }
-            else if (ability.selfInterpretationUnlocked)
-            {
-                combatManager.TargetEnemies(false, ability);
-                targetter.SetVisibility(true, null);
-                activeCard.ReadyCard(ability.cardName, ability.comboCard != null ? ability.comboCard.cardName : "None", ability.RestoreValue(), ability.RestoreType(), ability.selfCost, ability.selfDescription, ability.selfCostType);
-            }
-            else if (ability.targetInterpretationUnlocked)
-            {
-                combatManager.TargetEnemies(true, ability);
-                targetter.SetVisibility(false, null);
-                activeCard.ReadyCard(ability.cardName, ability.comboCard != null ? ability.comboCard.cardName : "None", ability.TotalDmgRange(), ability.damageType.ToString(), ability.targetCost, ability.targetDescription, ability.targetCostType);
+                if (ability.selfInterpretationUnlocked && ability.targetInterpretationUnlocked)
+                {
+                    combatManager.TargetEnemies(true, ability);
+                    targetter.SetVisibility(true, null);
+                    activeCard.ReadyCard(ability.cardName, ability.comboCard != null ? ability.comboCard.cardName : "None", ability.selfHeal, "Unknown", ability.selfCost, "Two interpretations active, UI issue", ability.selfCostType);
+                }
+                else if (ability.selfInterpretationUnlocked)
+                {
+                    combatManager.TargetEnemies(false, ability);
+                    targetter.SetVisibility(true, null);
+                    activeCard.ReadyCard(ability.cardName, ability.comboCard != null ? ability.comboCard.cardName : "None", ability.RestoreValue(), ability.RestoreType(), ability.selfCost, ability.selfDescription, ability.selfCostType);
+                }
+                else if (ability.targetInterpretationUnlocked)
+                {
+                    combatManager.TargetEnemies(true, ability);
+                    targetter.SetVisibility(false, null);
+                    activeCard.ReadyCard(ability.cardName, ability.comboCard != null ? ability.comboCard.cardName : "None", ability.TotalDmgRange(), ability.damageType.ToString(), ability.targetCost, ability.targetDescription, ability.targetCostType);
+                }
             }
         }
     }
@@ -297,11 +300,11 @@ public class AbilityManager : MonoBehaviour
             if (targetHealth.HealthPercentage() < executeThreshold)
             {
                 //execute anim and delay
-                targetHealth.ChangeHealth(999999999, true, damageType, out int nullDamageTaken, caster, canBeCountered, hitFX);
+                targetHealth.ChangeHealth(999999999, true, E_DamageTypes.Perforation, out int nullDamageTaken, caster, false, hitFX);
                 //Debug.Log("Executed");
             }
 
-            if (targetHealth == null || targetHealth.GetHealth() == 0)
+            if (targetHealth == null || targetHealth.GetHealth() <= 0)
             {
                 //killed enemy
                 playerStats.ChangeHealth(Random.Range(healOnKill.x, healOnKill.y), false, E_DamageTypes.Physical, out int damageTakenNull, caster, canBeCountered, hitFX);
@@ -408,9 +411,9 @@ public class AbilityManager : MonoBehaviour
 
     public void SoundEffect(AudioClip soundEffect, float volume)
     {
-        if (audioManager != null && soundEffect != null)
+        if (BGMManager.instance != null && soundEffect != null)
         {
-            audioManager.PlaySoundEffect(soundEffect, volume * 4);
+            BGMManager.instance.PlaySoundEffect(soundEffect, volume * 4);
         }
     }
 

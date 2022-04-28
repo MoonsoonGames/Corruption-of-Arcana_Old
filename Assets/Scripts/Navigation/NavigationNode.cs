@@ -10,9 +10,13 @@ public class NavigationNode : MonoBehaviour
     SceneLoader sceneLoader;
     E_Levels navScene;
     public E_Levels dialogueScene;
+    public int entranceCount = 0;
     
     public NavigationNode[] possibleNodes;
+    public Object path;
+
     public Object[] possibleEvents;
+    public float ignoreChance = 0.8f;
 
     public Button button;
     public GameObject marker;
@@ -43,6 +47,28 @@ public class NavigationNode : MonoBehaviour
             }
 
             SetCurrent();
+        }
+    }
+
+    public void DrawPaths()
+    {
+        if (marker.activeSelf)
+        {
+            foreach (var item in possibleNodes)
+            {
+                if (item.marker.activeSelf)
+                {
+                    GameObject pathRef = Instantiate(path, this.gameObject.transform) as GameObject;
+                    LineRenderer pathRenderer = pathRef.GetComponent<LineRenderer>();
+
+                    Vector3 startPos = this.gameObject.transform.position;
+                    startPos.z -= 200;
+                    pathRenderer.SetPosition(0, startPos);
+                    Vector3 endPos = item.gameObject.transform.position;
+                    endPos.z -= 200;
+                    pathRenderer.SetPosition(1, endPos);
+                }
+            }
         }
     }
 
@@ -97,6 +123,8 @@ public class NavigationNode : MonoBehaviour
 
             generateEvent = navEvent.name;
 
+            LoadSettings.instance.spawnPlacement = entranceCount;
+
             if (!stopEvents)
             {
                 StartEvent(navEvent);
@@ -119,12 +147,16 @@ public class NavigationNode : MonoBehaviour
 
     void StartEvent(Object navEvent)
     {
-        LoadSettings loadSettings = LoadSettings.instance;
-
-        if (sceneLoader != null && loadSettings != null)
+        if (navEvent == navManager.ignoreEvent && Random.Range(0, 1) < ignoreChance)
         {
-            loadSettings.background = (backgrounds.Length > 0 ? ChooseBackgrounds() : null);
-            loadSettings.dialogueFlowChart = navEvent;
+            navManager.ResetTravel();
+            return;
+        }
+
+        if (sceneLoader != null && LoadSettings.instance != null)
+        {
+            LoadSettings.instance.background = (backgrounds.Length > 0 ? ChooseBackgrounds() : null);
+            LoadSettings.instance.dialogueFlowChart = navEvent;
             sceneLoader.LoadSpecifiedScene(dialogueScene.ToString(), LoadSceneMode.Single, null);
         }
     }

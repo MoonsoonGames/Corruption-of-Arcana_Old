@@ -20,6 +20,9 @@ public class PlayerSpawner : MonoBehaviour
 
     public Text location;
 
+    public Vector3[] spawnPositions;
+    public Quaternion[] spawnRotations;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +41,15 @@ public class PlayerSpawner : MonoBehaviour
         Vector3 spawnPos = loadSettings.RequestPosition(SceneManager.GetActiveScene().name);
         Quaternion spawnRot = loadSettings.RequestRotation(SceneManager.GetActiveScene().name);
 
+        if (spawnPositions.Length >= loadSettings.spawnPlacement)
+        {
+            Debug.Log("Spawning at placement " + loadSettings.spawnPlacement);
+            spawnPos = spawnPositions[loadSettings.spawnPlacement];
+            spawnRot = spawnRotations[loadSettings.spawnPlacement];
+        }
+
+        loadSettings.spawnPlacement = 99;
+
         GameObject playerRef = Instantiate(player, spawnPos, spawnRot) as GameObject;
 
         playerRef.name = "Player";
@@ -49,6 +61,7 @@ public class PlayerSpawner : MonoBehaviour
         controller.arcanaBar = arcanaBar;
         controller.interactImage = interactImage;
         menuManager.Player = playerRef;
+        menuManager.playerController = controller;
         menuManager.PlayerCamera = cam.gameObject;
         menuManager.compass.player = controller.gameObject.transform;
         menuManager.compass2.player = controller.gameObject.transform;
@@ -60,5 +73,6 @@ public class PlayerSpawner : MonoBehaviour
         controller.Location = location;
 
         controller.Setup();
+        menuManager.Setup();
     }
 }

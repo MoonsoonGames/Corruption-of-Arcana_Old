@@ -21,6 +21,21 @@ public class SpawnDialogue : MonoBehaviour
             loadSettings = LoadSettings.instance;
         }
 
+        /*
+        Flowchart[] flowChartRefs = GetComponentsInChildren<Flowchart>();
+        flowCharts = new GameObject[flowChartRefs.Length];
+
+        for (int i = 0; i < flowCharts.Length; i++)
+        {
+            flowCharts[i] = flowChartRefs[i].gameObject;
+            
+            if (flowCharts[i] != null)
+            {
+                flowCharts[i].SetActive(false);
+            }
+        }
+        */
+
         Object flowChart = loadSettings.dialogueFlowChart;
 
         SetBGColour();
