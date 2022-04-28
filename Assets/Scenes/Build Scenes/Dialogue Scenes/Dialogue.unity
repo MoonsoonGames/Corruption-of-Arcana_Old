@@ -19095,6 +19095,26 @@ PrefabInstance:
         emanates from the toy. Is it possible that this toy was truly blessed by
         a Fortune Teller?
       objectReference: {fileID: 0}
+    - target: {fileID: 5320776679912974475, guid: 689f064d53e0dbe4aa9ed450525d9359,
+        type: 3}
+      propertyPath: staticEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5320776679912974475, guid: 689f064d53e0dbe4aa9ed450525d9359,
+        type: 3}
+      propertyPath: staticEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2263063911358345144}
+    - target: {fileID: 5320776679912974475, guid: 689f064d53e0dbe4aa9ed450525d9359,
+        type: 3}
+      propertyPath: staticEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadCombat
+      objectReference: {fileID: 0}
+    - target: {fileID: 5320776679912974475, guid: 689f064d53e0dbe4aa9ed450525d9359,
+        type: 3}
+      propertyPath: staticEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: EnemyController, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 5320776679912974477, guid: 689f064d53e0dbe4aa9ed450525d9359,
         type: 3}
       propertyPath: character
@@ -19111,6 +19131,21 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1876431071}
+    - target: {fileID: 5771315735998431234, guid: 689f064d53e0dbe4aa9ed450525d9359,
+        type: 3}
+      propertyPath: blockName
+      value: Load Combat
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787755403563924447, guid: 689f064d53e0dbe4aa9ed450525d9359,
+        type: 3}
+      propertyPath: nodeRect.x
+      value: -83.03666
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787755403563924447, guid: 689f064d53e0dbe4aa9ed450525d9359,
+        type: 3}
+      propertyPath: nodeRect.y
+      value: 93.41703
+      objectReference: {fileID: 0}
     - target: {fileID: 5787755403563924447, guid: 689f064d53e0dbe4aa9ed450525d9359,
         type: 3}
       propertyPath: commandList.Array.size
@@ -19263,6 +19298,31 @@ MonoBehaviour:
     stringVal: 
   startIndex: 0
   callMode: 0
+--- !u!114 &2263063911358345144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2263063911358345139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c8a244e344d8e846b1a664b311a0a07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss: 0
+  enemies:
+  - {fileID: 0}
+  - {fileID: 6783367526062023706, guid: 40eb226577f4f7d4bae22abf628b34fd, type: 3}
+  - {fileID: 0}
+  objectives:
+  - {fileID: 11400000, guid: 940dced409aefc74a9946060aea6cbc4, type: 2}
+  goldReward: {x: 0, y: 0}
+  weaponReward: {fileID: 0}
+  combatScene: 2
+  enemyName: Toy_Fight
+  background: {fileID: 21300000, guid: 4ede5171e1737a74d82716b99f0489f9, type: 3}
+  destroy: 0
 --- !u!4 &2668147042145703619 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6673876278959578844, guid: 0c390cd16ec0dd8449b5a35913c42eee,
