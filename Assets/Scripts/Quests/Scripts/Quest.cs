@@ -104,6 +104,46 @@ public class Quest : ScriptableObject
         //SaveProgress();
     }
 
+    public void AcceptQuestHidden(string questName)
+    {
+        if (isComplete == false)
+        {
+            if (isActive == false)
+            {
+                if (showAllObjectives)
+                {
+                    for (int i = 0; i < objectives.Length; i++)
+                    {
+                        if (i == objectives.Length - 1)
+                        {
+                            if (showFinalObjective)
+                                objectives[i].SetCanComplete();
+                        }
+                        else
+                        {
+                            objectives[i].SetCanComplete();
+                        }
+                    }
+                }
+                else
+                {
+                    objectives[0].SetCanComplete();
+                }
+            }
+
+            //Debug.Log("Accepted Quest: " + title);
+            isActive = true;
+
+            questGiverName = questName;
+
+            currentObjective = objectives[0];
+
+            CheckCompletedObjectives();
+        }
+
+        //SaveProgress();
+    }
+
     public void CheckObjectives()
     {
         bool allComplete = true;
