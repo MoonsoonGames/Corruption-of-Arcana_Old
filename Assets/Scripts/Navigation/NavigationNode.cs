@@ -52,17 +52,23 @@ public class NavigationNode : MonoBehaviour
 
     public void DrawPaths()
     {
-        foreach (var item in possibleNodes)
+        if (marker.activeSelf)
         {
-            GameObject pathRef = Instantiate(path, this.gameObject.transform) as GameObject;
-            LineRenderer pathRenderer = pathRef.GetComponent<LineRenderer>();
+            foreach (var item in possibleNodes)
+            {
+                if (item.marker.activeSelf)
+                {
+                    GameObject pathRef = Instantiate(path, this.gameObject.transform) as GameObject;
+                    LineRenderer pathRenderer = pathRef.GetComponent<LineRenderer>();
 
-            Vector3 startPos = this.gameObject.transform.position;
-            startPos.z -= 200;
-            pathRenderer.SetPosition(0, startPos);
-            Vector3 endPos = item.gameObject.transform.position;
-            endPos.z -= 200;
-            pathRenderer.SetPosition(1, endPos);
+                    Vector3 startPos = this.gameObject.transform.position;
+                    startPos.z -= 200;
+                    pathRenderer.SetPosition(0, startPos);
+                    Vector3 endPos = item.gameObject.transform.position;
+                    endPos.z -= 200;
+                    pathRenderer.SetPosition(1, endPos);
+                }
+            }
         }
     }
 

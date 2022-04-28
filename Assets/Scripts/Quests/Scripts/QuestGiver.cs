@@ -49,7 +49,7 @@ public class QuestGiver : MonoBehaviour
         //Check Objectives
         if (quest != null)
         {
-            quest.isActive = true;
+            quest.AcceptQuestHidden(questGiverName);
 
             LoadSettings loadSettings = LoadSettings.instance;
 

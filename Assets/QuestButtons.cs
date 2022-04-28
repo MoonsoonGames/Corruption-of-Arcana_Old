@@ -24,6 +24,7 @@ public class QuestButtons : MonoBehaviour
     public Image questStatus;
     public Image objPerson;
     public Image objLocation;
+    public Text questNumber;
 
     public void Start()
     {
@@ -45,6 +46,11 @@ public class QuestButtons : MonoBehaviour
         }
 
         objPerson.enabled = false;
+
+        if (questNumber != null && quest != null)
+        {
+            questNumber.text = "#0" + quest.questNumber;
+        }
     }
 
     public void ButtonPressed()

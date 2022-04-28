@@ -198,6 +198,16 @@ public class PlayerController : MonoBehaviour
             arcanaBar.value = arcana;
     }
 
+    public void DealDamage(int damage)
+    {
+        health -= damage;
+
+        if (health <= 0)
+        {
+            Debug.Log("Die");
+        }
+    }
+
     public void OnTriggerEnter(Collider other)
     {
         //Save current position
