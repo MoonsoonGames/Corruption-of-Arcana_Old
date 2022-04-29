@@ -51,6 +51,8 @@ public class MenuManager : MonoBehaviour
     //public Text RPotionCount;
     //public Text SPotionCount;
 
+    public GenerateQuestInfo generateQuestInfo;
+
     #region DeckBuilder GameObjects
     [Header("DeckBuilder Menu")]
     public GameObject BaAtk;
@@ -167,6 +169,11 @@ public class MenuManager : MonoBehaviour
             {
                 //open quest
                 QuestMenuUI.SetActive(true);
+                if (generateQuestInfo != null)
+                {
+                    Debug.Log("Generated quest info");
+                    generateQuestInfo.UpdateQuestInfo();
+                }
                 //close explore
                 ExplorationUI.SetActive(false);
 

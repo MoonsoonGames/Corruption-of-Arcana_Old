@@ -28,7 +28,13 @@ public class QuestButtons : MonoBehaviour
 
     public void Start()
     {
+        GenerateQuestInfo();
+    }
+
+    public void GenerateQuestInfo()
+    {
         questName.text = quest.title;
+        GetComponent<Button>().interactable = true;
 
         if (quest.isComplete == true)
         {
@@ -55,6 +61,8 @@ public class QuestButtons : MonoBehaviour
 
     public void ButtonPressed()
     {
+        GenerateQuestInfo();
+
         if (nameText != null)
             nameText.text = quest.title;
 
