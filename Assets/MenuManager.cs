@@ -52,6 +52,7 @@ public class MenuManager : MonoBehaviour
     //public Text SPotionCount;
 
     public GenerateQuestInfo generateQuestInfo;
+    public WeaponSpawner weaponSpawner;
 
     #region DeckBuilder GameObjects
     [Header("DeckBuilder Menu")]
@@ -626,6 +627,7 @@ public class MenuManager : MonoBehaviour
     {
         //BaAtkCards on
         BaAtk.SetActive(true);
+        weaponSpawner.WeaponsMenuOpened();
         //MjArcCards off
         MjArcCardsPage.SetActive(false);
         //CorArcCards off
