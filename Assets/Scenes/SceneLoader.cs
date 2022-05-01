@@ -8,7 +8,6 @@ public class SceneLoader : MonoBehaviour
     public E_Levels sceneToLoad;
     string sceneString;
     Scene currentScene;
-    LoadSettings loadSettings;
 
     public E_Levels[] navScenes;
 
@@ -18,8 +17,11 @@ public class SceneLoader : MonoBehaviour
         sceneString = sceneToLoad.ToString();
 
         currentScene = SceneManager.GetActiveScene();
+    }
 
-        loadSettings = LoadSettings.instance;
+    public void SetSpawnPlacement(int spawn)
+    {
+        LoadSettings.instance.spawnPlacement = spawn;
     }
 
     void LoadScene(string scene)
@@ -33,7 +35,7 @@ public class SceneLoader : MonoBehaviour
             if (scene == SceneManager.GetSceneAt(i).name)
             {
                 Debug.Log(scene + " || " + SceneManager.GetSceneAt(i).name);
-                loadSettings.SetPlayerInput(true);
+                LoadSettings.instance.SetPlayerInput(true);
                 contains = true;
                 index = i;
             }
@@ -83,17 +85,18 @@ public class SceneLoader : MonoBehaviour
     {
         //Set load settings level to new level
         LoadDialogue(dialogueFlowChart);
-        LoadScene(loadSettings.lastLevel.ToString());
+        LoadScene(LoadSettings.instance.lastLevel.ToString());
     }
     
     public void LoadCheckpointScene(Object dialogueFlowChart)
     {
         //Set load settings level to new level
-        loadSettings.died = true;
-        loadSettings.LoadCheckpointData();
+        LoadSettings.instance.died = true;
+        LoadSettings.instance.spawnPlacement = 99;
+        LoadSettings.instance.LoadCheckpointData();
 
         LoadDialogue(dialogueFlowChart);
-        LoadScene(loadSettings.checkPointString);
+        LoadScene(LoadSettings.instance.checkPointString);
     }
 
     public void LoadSpecifiedScene(string scene, LoadSceneMode sceneMode, Object dialogueFlowChart)
@@ -117,7 +120,7 @@ public class SceneLoader : MonoBehaviour
         //Debug.Log(dialogueFlowChart);
         if (dialogueFlowChart != null)
         {
-            loadSettings.dialogueFlowChart = dialogueFlowChart;
+            LoadSettings.instance.dialogueFlowChart = dialogueFlowChart;
             //Debug.Log(loadSettings.dialogueFlowChart);
         }
     }
@@ -132,7 +135,7 @@ public class SceneLoader : MonoBehaviour
         else
         {
             //Debug.Log(GetCurrentSceneEnum().ToString() + " Scene is not: " + E_Levels.CombatPrototype + " or " + E_Levels.Dialogue);
-            loadSettings.lastLevel = (E_Levels)System.Enum.Parse(typeof(E_Levels), newScene);
+            LoadSettings.instance.lastLevel = (E_Levels)System.Enum.Parse(typeof(E_Levels), newScene);
         }
     }
 
@@ -155,7 +158,7 @@ public class SceneLoader : MonoBehaviour
 
     IEnumerator ILoadDelay(string scene, LoadSceneMode sceneMode, float delay)
     {
-        loadSettings.SceneTransitionAnim();
+        LoadSettings.instance.SceneTransitionAnim();
         yield return new WaitForSeconds(delay);
         SceneManager.LoadScene(scene, sceneMode);
     }

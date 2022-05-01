@@ -51,6 +51,9 @@ public class MenuManager : MonoBehaviour
     //public Text RPotionCount;
     //public Text SPotionCount;
 
+    public GenerateQuestInfo generateQuestInfo;
+    public WeaponSpawner weaponSpawner;
+
     #region DeckBuilder GameObjects
     [Header("DeckBuilder Menu")]
     public GameObject BaAtk;
@@ -167,6 +170,11 @@ public class MenuManager : MonoBehaviour
             {
                 //open quest
                 QuestMenuUI.SetActive(true);
+                if (generateQuestInfo != null)
+                {
+                    Debug.Log("Generated quest info");
+                    generateQuestInfo.UpdateQuestInfo();
+                }
                 //close explore
                 ExplorationUI.SetActive(false);
 
@@ -619,6 +627,7 @@ public class MenuManager : MonoBehaviour
     {
         //BaAtkCards on
         BaAtk.SetActive(true);
+        weaponSpawner.WeaponsMenuOpened();
         //MjArcCards off
         MjArcCardsPage.SetActive(false);
         //CorArcCards off

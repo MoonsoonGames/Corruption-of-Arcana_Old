@@ -7,7 +7,7 @@ public class CombatDeckManager : MonoBehaviour
     List<CardSetter> cards = new List<CardSetter>();
 
     public Object card;
-    List<CardParent> deck = new List<CardParent>();
+    protected List<CardParent> deck = new List<CardParent>();
 
     public Vector3Int cardsCount;
 

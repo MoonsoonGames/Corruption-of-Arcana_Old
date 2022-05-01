@@ -30,7 +30,10 @@ public class TutorialManager : MonoBehaviour
 
     public void CastSpell()
     {
-        tutorialMessages.ShowMessage(null, afterCastMessages[currentSpellIndex]);
-        currentSpellIndex++;
+        if (currentSpellIndex < afterCastMessages.Length)
+        {
+            tutorialMessages.ShowMessage(null, afterCastMessages[currentSpellIndex]);
+            currentSpellIndex++;
+        }
     }
 }

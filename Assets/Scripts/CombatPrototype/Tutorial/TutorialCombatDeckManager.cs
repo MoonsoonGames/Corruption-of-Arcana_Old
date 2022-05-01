@@ -17,12 +17,16 @@ public class TutorialCombatDeckManager : CombatDeckManager
         ShowTutorialMessages();
         CardParent determineCard;
 
+        Debug.Log(cardIndex + " | " + tutorialCards.Length);
+
         if (cardIndex >= tutorialCards.Length)
         {
+            Debug.Log("Draw from base");
             determineCard = base.DetermineCard();
         }
         else
         {
+            Debug.Log("Draw from tutorial");
             determineCard = tutorialCards[cardIndex];
         }
         cardIndex++;
@@ -32,8 +36,11 @@ public class TutorialCombatDeckManager : CombatDeckManager
     void ShowTutorialMessages()
     {
         int turn = cardIndex / 3;
-        Debug.Log("Turn " + turn + "Tutorial Message: " + tutorialMessagesStrings[turn]);
+        if (turn < tutorialMessagesStrings.Length)
+        {
+            Debug.Log("Turn " + turn + "Tutorial Message: " + tutorialMessagesStrings[turn]);
 
-        tutorialMessages.ShowMessage(tutorialTitlesStrings[turn], tutorialMessagesStrings[turn]);
+            tutorialMessages.ShowMessage(tutorialTitlesStrings[turn], tutorialMessagesStrings[turn]);
+        }
     }
 }

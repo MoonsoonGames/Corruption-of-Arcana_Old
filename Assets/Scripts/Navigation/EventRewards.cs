@@ -19,4 +19,9 @@ public class EventRewards : MonoBehaviour
             rewards.SetActive(true);
         }
     }
+
+    public void GiveGoldReward(int gold)
+    {
+        LoadSettings.instance.currentGold += gold;
+    }
 }
