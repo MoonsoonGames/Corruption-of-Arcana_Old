@@ -20,11 +20,10 @@ public class ApplesQuest : MonoBehaviour
         {
             Apples.SetActive(false);
         }
-        else if (quest.completed == false)
+        else
         {
             Apples.SetActive(true);
         }
-
 
         if (quest.completed == true)
         {
