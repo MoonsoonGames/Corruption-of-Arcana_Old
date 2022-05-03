@@ -11,6 +11,8 @@ public class SpawnExplosion : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.name);
+        //Debug.Break();
         GameObject explosionRef = Instantiate(explosion, this.transform.position, this.transform.rotation) as GameObject;
         DamageNearby damageScript = explosionRef.GetComponent<DamageNearby>();
         damageScript.DealDamage(damage, range);

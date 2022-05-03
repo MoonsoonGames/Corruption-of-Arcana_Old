@@ -12,7 +12,7 @@ public class DamageNearby : MonoBehaviour
         if (controller != null)
         {
             float distance = Vector3.Distance(transform.position, controller.gameObject.transform.position);
-            Debug.Log("Distance: " + distance);
+            //Debug.Log("Distance: " + distance);
             if (distance < range)
             {
                 Debug.Log("Deal damage");
