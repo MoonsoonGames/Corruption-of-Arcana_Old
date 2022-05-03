@@ -34,8 +34,11 @@ public enum E_Levels
     [InspectorName("Eastern Cave")]
     EasternCave,
 
-    [InspectorName("Combat Tutorial")]
+    [InspectorName("Combat Tutorial - Past")]
     CombatTutorial,
+
+    [InspectorName("Combat Tutorial - Present")]
+    CombatTutorialPresent,
 }
 
 public enum E_Suits
