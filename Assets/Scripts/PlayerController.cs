@@ -23,6 +23,9 @@ public class PlayerController : MonoBehaviour
 
     public Animator modelAnimator;
 
+    public SceneLoader sceneLoader;
+    public Object respawnDialogue;
+
     #endregion
 
     #region Stats
@@ -190,6 +193,10 @@ public class PlayerController : MonoBehaviour
             // Move the controller
             characterController.Move(moveDirection * Time.deltaTime);
         }
+        else
+        {
+            modelAnimator.SetBool("Moving", false);
+        }
 
         //Sets the values of the healthbars to their specific values
         if (healthBar != null)
@@ -205,6 +212,9 @@ public class PlayerController : MonoBehaviour
         if (health <= 0)
         {
             Debug.Log("Die");
+            canMove = false;
+
+            sceneLoader.LoadDefaultScene(respawnDialogue);
         }
     }
 
