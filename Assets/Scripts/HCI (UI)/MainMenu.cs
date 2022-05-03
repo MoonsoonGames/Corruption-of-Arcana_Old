@@ -44,7 +44,7 @@ public class MainMenu : MonoBehaviour
     }
     public void Thanks()
     {
-        mainMenu.SetActive(false);
+        creditsScreen.SetActive(false);
         thanksScreen.SetActive(true);
     }
     public void Menu()
