@@ -42,7 +42,7 @@ public class StalagtiteSpawner : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Vector3 size = new Vector3(radius * 2, 1, radius * 2);
+        Vector3 size = new Vector3(radius * 2, yVariation * 2, radius * 2);
 
         Gizmos.DrawWireCube(transform.position, size);
     }
