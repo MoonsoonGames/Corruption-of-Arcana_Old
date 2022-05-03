@@ -16,7 +16,7 @@ public class ApplesQuest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (quest.canComplete == false)
+        if (quest.canComplete == false || quest.completed)
         {
             Apples.SetActive(false);
         }
@@ -27,7 +27,7 @@ public class ApplesQuest : MonoBehaviour
 
         if (quest.completed == true)
         {
-            Destroy(Apples);
+            Destroy(this.gameObject);
         }
     }
 }
