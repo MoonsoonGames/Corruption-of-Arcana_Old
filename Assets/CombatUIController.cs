@@ -179,7 +179,7 @@ public class CombatUIController : MonoBehaviour
             SpreadPage6.SetActive(false);
         }
         #endregion
-    }
+}
 
     public void PauseButton()
     {
@@ -341,7 +341,45 @@ public class CombatUIController : MonoBehaviour
         spreadLastBtn.SetActive(false);
         spreadNextBtn.SetActive(false);
     }
+    public void HelpReturn()
+    {
+        if (ConstructsPage.activeSelf == true || UndeadPage.activeSelf == true || BeastsPage.activeSelf == true ||
+    HumanoidPage.activeSelf == true || SecretsPage.activeSelf == true)
+        {
+            EnemyMainPage.SetActive(true);
 
+            ConstructsPage.SetActive(false);
+            UndeadPage.SetActive(false);
+            BeastsPage.SetActive(false);
+            HumanoidPage.SetActive(false);
+            SecretsPage.SetActive(false);
+            activeSubPage = true;
+        }
+        else if (SpreadPage2.activeSelf == true || SpreadPage3.activeSelf == true || SpreadPage4.activeSelf == true ||
+            SpreadPage5.activeSelf == true || SpreadPage6.activeSelf == true)
+        {
+            MainSpreadPage.SetActive(true);
+
+            SpreadPage2.SetActive(false);
+            SpreadPage3.SetActive(false);
+            SpreadPage4.SetActive(false);
+            SpreadPage5.SetActive(false);
+            SpreadPage6.SetActive(false);
+            spreadLastBtn.SetActive(false);
+            spreadNextBtn.SetActive(true);
+        }
+        else
+        {
+            HelpMainPage.SetActive(true);
+
+            CompassIconPage.SetActive(false);
+            EnemyMainPage.SetActive(false);
+            SpreadCardsHelp.SetActive(false);
+            spreadLastBtn.SetActive(false);
+            spreadNextBtn.SetActive(false);
+            activeSubPage = false;
+        }
+    }
     public void CompassIcons()
     {
         CompassIconPage.SetActive(true);
