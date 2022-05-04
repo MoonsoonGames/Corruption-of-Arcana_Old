@@ -32,14 +32,14 @@ public class EndTurn : MonoBehaviour
 
     public void OpenMenu(bool open)
     {
-        confirmMenu.SetActive(open);
-        menuOpen = open;
-
         if (open)
         {
             abilityManager.ResetAbility();
             abilityManager.EnemyInfo(null);
         }
+
+        confirmMenu.SetActive(open);
+        menuOpen = open;
     }
 
     public void ConfirmEndTurn()

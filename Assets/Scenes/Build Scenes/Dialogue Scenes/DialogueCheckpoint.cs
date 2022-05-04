@@ -39,6 +39,7 @@ public class DialogueCheckpoint : MonoBehaviour
             Debug.LogError("No load settings");
         }
 
+        Debug.Log("Gold gained from cards should be " + gold);
         flowchart.SetIntegerVariable("Gold", gold);
     }
 }
