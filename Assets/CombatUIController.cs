@@ -9,7 +9,7 @@ public class CombatUIController : MonoBehaviour
     AbilityManager abilityManager;
     public GameObject MainCombatUI;
     public GameObject PauseMenu;
-    public GameObject HelpMenu;
+    public GameObject GuideBook;
     public GameObject CardsMenu;
     public GameObject SettingsMenu;
     public GameObject QuitConfirm;
@@ -36,13 +36,33 @@ public class CombatUIController : MonoBehaviour
     #endregion
 
     #region HelpGuide
-    public GameObject ConstructsList;
-    public GameObject UndeadList;
-    public GameObject BeastsList;
-    public GameObject HumanoidList;
-    public GameObject SecretsList;
+    [Header("Help Guide Menu")]
+    public bool activeSubPage;
+    public bool firstSpreadPage;
+    public bool lastSpreadPage;
 
-    public Text SpeciesText;
+    public GameObject ConstructsPage;
+    public GameObject UndeadPage;
+    public GameObject BeastsPage;
+    public GameObject HumanoidPage;
+    public GameObject SecretsPage;
+
+    public GameObject HelpMainPage;
+    public GameObject CompassIconPage;
+    public GameObject EnemyCategory;
+    public GameObject EnemyMainPage;
+    public GameObject SpreadCardsHelp;
+    public GameObject ReturnButton;
+
+    [Header("Spread Cards")]
+    public GameObject MainSpreadPage;
+    public GameObject SpreadPage2;
+    public GameObject SpreadPage3;
+    public GameObject SpreadPage4;
+    public GameObject SpreadPage5;
+    public GameObject SpreadPage6;
+    public GameObject spreadLastBtn;
+    public GameObject spreadNextBtn;
     #endregion
 
     public Slider HPBar;
@@ -76,7 +96,7 @@ public class CombatUIController : MonoBehaviour
                 MainCombatUI.SetActive(false);
                 PauseMenu.SetActive(true);
                 CardsMenu.SetActive(false);
-                HelpMenu.SetActive(false);
+                GuideBook.SetActive(false);
                 SettingsMenu.SetActive(false);
                 QuitConfirm.SetActive(false);
 
@@ -95,7 +115,7 @@ public class CombatUIController : MonoBehaviour
                     MainCombatUI.SetActive(true);
                     PauseMenu.SetActive(false);
                     CardsMenu.SetActive(false);
-                    HelpMenu.SetActive(false);
+                    GuideBook.SetActive(false);
                     SettingsMenu.SetActive(false);
                     QuitConfirm.SetActive(false);
 
@@ -126,6 +146,37 @@ public class CombatUIController : MonoBehaviour
         {
             NextMjArcBtn.SetActive(false);
             LastMjArcBtn.SetActive(true);
+        }
+        #endregion
+
+        #region Guide Book
+        if (activeSubPage == true)
+        {
+            ReturnButton.SetActive(true);
+        }
+        else
+        {
+            ReturnButton.SetActive(false);
+        }
+
+        if (HelpMainPage.activeSelf == true)
+        {
+            CompassIconPage.SetActive(false);
+            EnemyCategory.SetActive(false);
+            SpreadCardsHelp.SetActive(false);
+
+            ConstructsPage.SetActive(false);
+            UndeadPage.SetActive(false);
+            BeastsPage.SetActive(false);
+            HumanoidPage.SetActive(false);
+            SecretsPage.SetActive(false);
+
+            MainSpreadPage.SetActive(false);
+            SpreadPage2.SetActive(false);
+            SpreadPage3.SetActive(false);
+            SpreadPage4.SetActive(false);
+            SpreadPage5.SetActive(false);
+            SpreadPage6.SetActive(false);
         }
         #endregion
     }
@@ -277,72 +328,153 @@ public class CombatUIController : MonoBehaviour
     }
     #endregion
 
+
+    #region Help Button
     public void Help()
     {
+        //turn off pause menu UI
         PauseMenu.SetActive(false);
-        HelpMenu.SetActive(true);
+        //turn on GuideBook UI
+        GuideBook.SetActive(true);
+        HelpMainPage.SetActive(true);
+        activeSubPage = false;
+        spreadLastBtn.SetActive(false);
+        spreadNextBtn.SetActive(false);
     }
 
-    #region HelpGuide Buttons
+    public void CompassIcons()
+    {
+        CompassIconPage.SetActive(true);
+        HelpMainPage.SetActive(false);
+        activeSubPage = true;
+    }
+
+    public void Enemies()
+    {
+        EnemyCategory.SetActive(true);
+        EnemyMainPage.SetActive(true);
+        HelpMainPage.SetActive(false);
+        activeSubPage = true;
+    }
+
+    public void SpreadCards()
+    {
+        SpreadCardsHelp.SetActive(true);
+        MainSpreadPage.SetActive(true);
+        HelpMainPage.SetActive(false);
+        activeSubPage = true;
+        spreadLastBtn.SetActive(false);
+        spreadNextBtn.SetActive(true);
+    }
+
+    #region Enemy Buttons
     public void Constructs()
     {
         //1 list on all others off
-        ConstructsList.SetActive(true);
-        UndeadList.SetActive(false);
-        BeastsList.SetActive(false);
-        HumanoidList.SetActive(false);
-        SecretsList.SetActive(false);
-
-        SpeciesText.text = "Constructs";
+        ConstructsPage.SetActive(true);
+        EnemyMainPage.SetActive(false);
+        activeSubPage = true;
     }
 
     public void Undead()
     {
         //1 list on all others off
-        ConstructsList.SetActive(false);
-        UndeadList.SetActive(true);
-        BeastsList.SetActive(false);
-        HumanoidList.SetActive(false);
-        SecretsList.SetActive(false);
-
-        SpeciesText.text = "Undead";
+        UndeadPage.SetActive(true);
+        EnemyMainPage.SetActive(false);
+        activeSubPage = true;
     }
 
     public void Beasts()
     {
         //1 list on all others off
-        ConstructsList.SetActive(false);
-        UndeadList.SetActive(false);
-        BeastsList.SetActive(true);
-        HumanoidList.SetActive(false);
-        SecretsList.SetActive(false);
-
-        SpeciesText.text = "Beasts";
+        BeastsPage.SetActive(true);
+        EnemyMainPage.SetActive(false);
+        activeSubPage = true;
     }
 
     public void Humanoid()
     {
         //1 list on all others off
-        ConstructsList.SetActive(false);
-        UndeadList.SetActive(false);
-        BeastsList.SetActive(false);
-        HumanoidList.SetActive(true);
-        SecretsList.SetActive(false);
-
-        SpeciesText.text = "Humanoids";
+        HumanoidPage.SetActive(true);
+        EnemyMainPage.SetActive(false);
+        activeSubPage = true;
     }
 
     public void Secrets()
     {
         //1 list on all others off
-        ConstructsList.SetActive(false);
-        UndeadList.SetActive(false);
-        BeastsList.SetActive(false);
-        HumanoidList.SetActive(false);
-        SecretsList.SetActive(true);
-
-        SpeciesText.text = "Secrets";
+        SecretsPage.SetActive(true);
+        EnemyMainPage.SetActive(false);
+        activeSubPage = true;
     }
+    #endregion
+
+    public void SpreadNext()
+    {
+        if (MainSpreadPage.activeSelf == true)
+        {
+            MainSpreadPage.SetActive(false);
+            SpreadPage2.SetActive(true);
+            spreadLastBtn.SetActive(true);
+        }
+        else if (SpreadPage2.activeSelf == true)
+        {
+            SpreadPage2.SetActive(false);
+            SpreadPage3.SetActive(true);
+            spreadLastBtn.SetActive(true);
+        }
+        else if (SpreadPage3.activeSelf == true)
+        {
+            SpreadPage3.SetActive(false);
+            SpreadPage4.SetActive(true);
+            spreadLastBtn.SetActive(true);
+        }
+        else if (SpreadPage4.activeSelf == true)
+        {
+            SpreadPage4.SetActive(false);
+            SpreadPage5.SetActive(true);
+            spreadLastBtn.SetActive(true);
+        }
+        else if (SpreadPage5.activeSelf == true)
+        {
+            SpreadPage5.SetActive(false);
+            SpreadPage6.SetActive(true);
+            spreadNextBtn.SetActive(false);
+            spreadLastBtn.SetActive(true);
+        }
+    }
+
+    public void SpreadLast()
+    {
+        if (SpreadPage6.activeSelf == true)
+        {
+            SpreadPage6.SetActive(false);
+            SpreadPage5.SetActive(true);
+            spreadNextBtn.SetActive(true);
+        }
+        else if (SpreadPage5.activeSelf == true)
+        {
+            SpreadPage5.SetActive(false);
+            SpreadPage4.SetActive(true);
+        }
+        else if (SpreadPage4.activeSelf == true)
+        {
+            SpreadPage4.SetActive(false);
+            SpreadPage3.SetActive(true);
+        }
+        else if (SpreadPage3.activeSelf == true)
+        {
+            SpreadPage3.SetActive(false);
+            SpreadPage2.SetActive(true);
+        }
+        else if (SpreadPage2.activeSelf == true)
+        {
+            SpreadPage2.SetActive(false);
+            MainSpreadPage.SetActive(true);
+            spreadLastBtn.SetActive(false);
+        }
+    }
+
     #endregion
 
     public void Settings()
@@ -377,7 +509,7 @@ public class CombatUIController : MonoBehaviour
     {
         //close settings/guidebook menus
         SettingsMenu.SetActive(false);
-        HelpMenu.SetActive(false);
+        GuideBook.SetActive(false);
         CardsMenu.SetActive(false);
 
         //open pausemenu UI
