@@ -18,4 +18,17 @@ public class Discard : MonoBehaviour
             abilityManager.DiscardCard();
         }
     }
+
+    public void CancelCard()
+    {
+        if (abilityManager == null)
+        {
+            abilityManager = GameObject.FindObjectOfType<AbilityManager>();
+        }
+
+        if (abilityManager != null)
+        {
+            abilityManager.ResetAbility();
+        }
+    }
 }
