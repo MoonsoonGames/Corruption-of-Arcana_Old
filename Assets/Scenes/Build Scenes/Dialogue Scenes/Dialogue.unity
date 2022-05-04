@@ -608,6 +608,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6443451559020364504, guid: 496bd68d664bb0949b141127f451ba03,
+        type: 3}
+      propertyPath: storyText
+      value: During your exploration, you find a set of old ruins. Within, a giant
+        {color=red}Treasure Chest{/color}, the treasures within are yours for the
+        taking.
+      objectReference: {fileID: 0}
     - target: {fileID: 7824299009922783846, guid: 496bd68d664bb0949b141127f451ba03,
         type: 3}
       propertyPath: staticEvent.m_PersistentCalls.m_Calls.Array.size
@@ -804,59 +811,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 108499093}
   m_CullTransparentMesh: 1
---- !u!1001 &112142953
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1967593267}
-    m_Modifications:
-    - target: {fileID: 3312672493111288481, guid: 6cd9afb76eeded444bfcbe0b0afee9f7,
-        type: 3}
-      propertyPath: sceneToLoad
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3312672493111288482, guid: 6cd9afb76eeded444bfcbe0b0afee9f7,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3312672493111288482, guid: 6cd9afb76eeded444bfcbe0b0afee9f7,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3312672493111288482, guid: 6cd9afb76eeded444bfcbe0b0afee9f7,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3312672493111288482, guid: 6cd9afb76eeded444bfcbe0b0afee9f7,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6cd9afb76eeded444bfcbe0b0afee9f7, type: 3}
---- !u!1 &112142954 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3312672493111288480, guid: 6cd9afb76eeded444bfcbe0b0afee9f7,
-    type: 3}
-  m_PrefabInstance: {fileID: 112142953}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &112142955
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 112142954}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f9ac746f2ba32c42ae93197853879a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  visible: 1
 --- !u!1 &115331367
 GameObject:
   m_ObjectHideFlags: 0
@@ -887,7 +841,7 @@ Transform:
   - {fileID: 728357797}
   - {fileID: 5457298888865767471}
   m_Father: {fileID: 2009544676}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &168492766
 GameObject:
@@ -1078,7 +1032,7 @@ MonoBehaviour:
   itemId: 186
   indentLevel: 0
   storyText: You try desperately to flee, but before you get a chance to prepare,
-    constructs block your path.
+    {color=red}Constructs{/color} block your path.
   description: 
   character: {fileID: 1876431071}
   portrait: {fileID: 0}
@@ -1189,7 +1143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 83
   indentLevel: 0
-  storyText: You manage to flee from the still forming constructs.
+  storyText: You manage to flee from the still forming {color=red}Constructs{/color}.
   description: 
   character: {fileID: 1876431071}
   portrait: {fileID: 0}
@@ -1573,7 +1527,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 197
   indentLevel: 0
-  storyText: As you take the time to prepare, constructs block your path.
+  storyText: As you take the time to prepare, {color=red}Constructs{/color} block
+    your path.
   description: 
   character: {fileID: 1876431071}
   portrait: {fileID: 0}
@@ -2035,7 +1990,7 @@ Transform:
   - {fileID: 555844577192045181}
   - {fileID: 7672154850139979099}
   m_Father: {fileID: 2009544676}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &336365331
 GameObject:
@@ -2066,7 +2021,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 1570171991}
+  selectedFlowchart: {fileID: 1967593270}
 --- !u!4 &336365333
 Transform:
   m_ObjectHideFlags: 1
@@ -2190,9 +2145,8 @@ Transform:
   m_Children:
   - {fileID: 2118633816}
   - {fileID: 1419785084595874492}
-  - {fileID: 1967593267}
   m_Father: {fileID: 2009544676}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &429087822
 GameObject:
@@ -2680,9 +2634,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 74
   indentLevel: 0
-  storyText: What a strange dream, I think I should talk to {color=red}Mamma Rheinfeld{/color},
+  storyText: What a strange dream. I should speak {color=red}Mamma Rheinfeld{/color},
     I'm sure she'll know what it means. {wc} I think she parked her trailer just
-    past the bridge to the {color=red}north{/color}.
+    past the bridge to the {color=red}North{/color}.
   description: 
   character: {fileID: 1165060491}
   portrait: {fileID: 0}
@@ -3150,7 +3104,7 @@ MonoBehaviour:
     face card that signified their affinity. {wc}These special few would come to
     be known as {color=red}The Arcana Knights{/color}.
   description: 
-  character: {fileID: 1672618227}
+  character: {fileID: 1876431071}
   portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
@@ -3175,10 +3129,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 63
   indentLevel: 0
-  storyText: That was until a group of valiant and noble Arcana users and knights
+  storyText: That was until a group of valiant and noble {color=red}Arcana Knights{/color}
     banded together to help put a stop to their tyranny.
   description: 
-  character: {fileID: 1672618227}
+  character: {fileID: 1876431071}
   portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
@@ -3703,14 +3657,34 @@ PrefabInstance:
       objectReference: {fileID: 728357799}
     - target: {fileID: 5457298887973350160, guid: 91b46a3d7e09bef4bb81d318755898da,
         type: 3}
+      propertyPath: portrait
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5457298887973350160, guid: 91b46a3d7e09bef4bb81d318755898da,
+        type: 3}
       propertyPath: character
       value: 
       objectReference: {fileID: 830277214}
+    - target: {fileID: 5457298887973350160, guid: 91b46a3d7e09bef4bb81d318755898da,
+        type: 3}
+      propertyPath: storyText
+      value: Eager aren't you? {wc}They ran into the {color=red}Forest east of town{/color}.
+        Head back {color=red}across the bridge{/color} and towards the {color=red}Town
+        Gate{/color}. {wc}I'd chase them myself but someone needs to defend the town
+        in case those monsters come back. {wc}I can't tell you to go after my fellow
+        knights but if you do, be safe.
+      objectReference: {fileID: 0}
     - target: {fileID: 5457298887973350161, guid: 91b46a3d7e09bef4bb81d318755898da,
         type: 3}
       propertyPath: character
       value: 
       objectReference: {fileID: 1165060491}
+    - target: {fileID: 5457298887973350161, guid: 91b46a3d7e09bef4bb81d318755898da,
+        type: 3}
+      propertyPath: storyText
+      value: Which way did he go? I'll find and help him. I'd do anything to become
+        an {color=red}Arcana Knight{/color}.
+      objectReference: {fileID: 0}
     - target: {fileID: 5457298887973350162, guid: 91b46a3d7e09bef4bb81d318755898da,
         type: 3}
       propertyPath: m_Name
@@ -3721,6 +3695,17 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1165060491}
+    - target: {fileID: 5457298887973350163, guid: 91b46a3d7e09bef4bb81d318755898da,
+        type: 3}
+      propertyPath: storyText
+      value: Like {color=red}Mamma Rheinfeld{/color} always says. {wc}{color=red}Fortune
+        favours the bold{/color}.
+      objectReference: {fileID: 0}
+    - target: {fileID: 5457298887973350164, guid: 91b46a3d7e09bef4bb81d318755898da,
+        type: 3}
+      propertyPath: portrait
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5457298887973350164, guid: 91b46a3d7e09bef4bb81d318755898da,
         type: 3}
       propertyPath: character
@@ -3728,23 +3713,54 @@ PrefabInstance:
       objectReference: {fileID: 830277214}
     - target: {fileID: 5457298887973350166, guid: 91b46a3d7e09bef4bb81d318755898da,
         type: 3}
+      propertyPath: portrait
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5457298887973350166, guid: 91b46a3d7e09bef4bb81d318755898da,
+        type: 3}
       propertyPath: character
       value: 
       objectReference: {fileID: 830277214}
     - target: {fileID: 5457298887973350169, guid: 91b46a3d7e09bef4bb81d318755898da,
+        type: 3}
+      propertyPath: portrait
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5457298887973350169, guid: 91b46a3d7e09bef4bb81d318755898da,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 830277214}
+    - target: {fileID: 5457298887973350169, guid: 91b46a3d7e09bef4bb81d318755898da,
+        type: 3}
+      propertyPath: storyText
+      value: Phew, I'm glad you got here. {wc}You killed that {color=red}Death Knight{/color}
+        like it was nothing. {wc}Who even are you?
+      objectReference: {fileID: 0}
+    - target: {fileID: 5457298887973350170, guid: 91b46a3d7e09bef4bb81d318755898da,
+        type: 3}
+      propertyPath: portrait
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5457298887973350170, guid: 91b46a3d7e09bef4bb81d318755898da,
         type: 3}
       propertyPath: character
       value: 
       objectReference: {fileID: 830277214}
     - target: {fileID: 5457298887973350170, guid: 91b46a3d7e09bef4bb81d318755898da,
         type: 3}
-      propertyPath: character
-      value: 
-      objectReference: {fileID: 830277214}
+      propertyPath: storyText
+      value: Well {color=red}Mr Nobody{/color}, you just saved my axe.
+      objectReference: {fileID: 0}
     - target: {fileID: 5457298887973350173, guid: 91b46a3d7e09bef4bb81d318755898da,
         type: 3}
       propertyPath: nodeRect.y
       value: 67.727264
+      objectReference: {fileID: 0}
+    - target: {fileID: 5828279372227087078, guid: 91b46a3d7e09bef4bb81d318755898da,
+        type: 3}
+      propertyPath: portrait
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5828279372227087078, guid: 91b46a3d7e09bef4bb81d318755898da,
         type: 3}
@@ -3756,6 +3772,11 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1165060491}
+    - target: {fileID: 7871005674256078442, guid: 91b46a3d7e09bef4bb81d318755898da,
+        type: 3}
+      propertyPath: storyText
+      value: Im here to join the {color=red}Arcana Knights{/color}.
+      objectReference: {fileID: 0}
     - target: {fileID: 7979636873279047163, guid: 91b46a3d7e09bef4bb81d318755898da,
         type: 3}
       propertyPath: rewards
@@ -4104,11 +4125,23 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1876431071}
+    - target: {fileID: 1157555517144398452, guid: d4fd99f7573345b459d31bcd905f2297,
+        type: 3}
+      propertyPath: storyText
+      value: As you approach the small fishing village, you notice that it has been
+        overrun with {color=red}Outlaws{/color}. They have taken over the harbour,
+        and are preventing travel to {color=red}Thoth{/color} via the {color=red}Sea{/color}.
+      objectReference: {fileID: 0}
     - target: {fileID: 1938025150396886978, guid: d4fd99f7573345b459d31bcd905f2297,
         type: 3}
       propertyPath: character
       value: 
       objectReference: {fileID: 1876431071}
+    - target: {fileID: 1938025150396886978, guid: d4fd99f7573345b459d31bcd905f2297,
+        type: 3}
+      propertyPath: storyText
+      value: You approach the {color=red}Outlaws{/color}, and prepare for a battle.
+      objectReference: {fileID: 0}
     - target: {fileID: 2666703191118912118, guid: d4fd99f7573345b459d31bcd905f2297,
         type: 3}
       propertyPath: nodeRect.x
@@ -4179,6 +4212,12 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1876431071}
+    - target: {fileID: 4910620417203525528, guid: d4fd99f7573345b459d31bcd905f2297,
+        type: 3}
+      propertyPath: storyText
+      value: You turn back, leaving the {color=red}Outlaws{/color} to their grim
+        business.
+      objectReference: {fileID: 0}
     - target: {fileID: 5840469385753039425, guid: d4fd99f7573345b459d31bcd905f2297,
         type: 3}
       propertyPath: selectedBlocks.Array.size
@@ -4537,9 +4576,10 @@ PrefabInstance:
     - target: {fileID: 3129275416178547647, guid: 5e328e5cc1cdea445a80c064cf3ced47,
         type: 3}
       propertyPath: storyText
-      value: Hmm, it says you are destined to find and defeat a sentient stone golem
-        somewhere in this forest? {wc}This is a dangerous task Taro, and you best
-        be prepared. I'll help you by reading your fortune.
+      value: Hmm, it says you are destined to find and defeat a {color=red}Sentient
+        Stone Golem{/color} somewhere in this forest? {wc}This is a dangerous task
+        {color=red}Taro{/color}, and you best be prepared. I'll help you by reading
+        your {color=red}Fortune{/color}.
       objectReference: {fileID: 0}
     - target: {fileID: 5381773202922672055, guid: 5e328e5cc1cdea445a80c064cf3ced47,
         type: 3}
@@ -4722,7 +4762,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &858023856
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -4852,8 +4892,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 33
   indentLevel: 0
-  storyText: Now that you have conquered my final challenge, I can bestow you with
-    the Kingmaker sword. Wield this sword and smite your foes with ease.
+  storyText: Now that you have conquered my {color=red}Final Trial{/color}, I can
+    bestow you with the {color=red}Kingmaker{/color} sword. Wield this sword and
+    smite your foes with ease.
   description: 
   character: {fileID: 1115000471}
   portrait: {fileID: 0}
@@ -5186,7 +5227,7 @@ Transform:
   - {fileID: 852061632}
   - {fileID: 2672426770250981094}
   m_Father: {fileID: 2009544676}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &924988310
 PrefabInstance:
@@ -5210,6 +5251,12 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1876431071}
+    - target: {fileID: 4929942059618899887, guid: 949325ceb93f7b149b1e842214655bee,
+        type: 3}
+      propertyPath: storyText
+      value: As you travel along a dark forest path, you hear the shifting of rock,
+        and the {color=red}Corruption's{/color} sweet whispers enters your mind.
+      objectReference: {fileID: 0}
     - target: {fileID: 6358082790210948416, guid: 949325ceb93f7b149b1e842214655bee,
         type: 3}
       propertyPath: nodeRect.x
@@ -5363,12 +5410,12 @@ PrefabInstance:
     - target: {fileID: 6551277014878300065, guid: 949325ceb93f7b149b1e842214655bee,
         type: 3}
       propertyPath: nodeRect.x
-      value: -229.15567
+      value: -230.4215
       objectReference: {fileID: 0}
     - target: {fileID: 6551277014878300065, guid: 949325ceb93f7b149b1e842214655bee,
         type: 3}
       propertyPath: nodeRect.y
-      value: 88.217224
+      value: 102.14128
       objectReference: {fileID: 0}
     - target: {fileID: 6745952681168160689, guid: 949325ceb93f7b149b1e842214655bee,
         type: 3}
@@ -5828,9 +5875,9 @@ PrefabInstance:
     - target: {fileID: 2684919790725851442, guid: 0f26e8e0f64fcda46901c0f705428219,
         type: 3}
       propertyPath: storyText
-      value: Morning Taro, I think {color=red}Mamma Rheinfeld{/color} was lookin
-        for you. {wc}I think she's over by her trailer just {color=red}under the
-        arch here{/color}.
+      value: Morning {color=red}Taro{/color}, I think {color=red}Mamma Rheinfeld{/color}
+        was lookin for you. {wc}I think she's over by her trailer just {color=red}under
+        the arch here{/color}.
       objectReference: {fileID: 0}
     - target: {fileID: 2684919790725851443, guid: 0f26e8e0f64fcda46901c0f705428219,
         type: 3}
@@ -5913,8 +5960,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 52
   indentLevel: 0
-  storyText: You should probaby prepare for the fight. You can rest at a tavern to
-    increase your health.
+  storyText: You should probaby prepare for the fight. You can rest at a {color=red}Tavern{/color}
+    to increase your health.
   description: 
   character: {fileID: 273937819}
   portrait: {fileID: 21300000, guid: 933a273d6f9d21a4084b7174ca87a59f, type: 3}
@@ -5941,8 +5988,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: -21.5484
-    y: 95.55689
+    x: -31.3045
+    y: 96.776405
     width: 108.536575
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
@@ -6018,8 +6065,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 55
   indentLevel: 0
-  storyText: The scout party stopped by the tavern to rest and recover, that helped
-    and they managed to get past the creatures, I hope it was enough.
+  storyText: The scout party stopped by the {color=red}Tavern{/color} to rest and
+    recover, that helped and they managed to get past the creatures, I hope it was
+    enough.
   description: 
   character: {fileID: 273937819}
   portrait: {fileID: 21300000, guid: 933a273d6f9d21a4084b7174ca87a59f, type: 3}
@@ -6047,7 +6095,7 @@ MonoBehaviour:
   itemId: 54
   indentLevel: 0
   storyText: One team made it through, but they haven't returned. You'd do well to
-    prepare for the fight. Head to a tavern to raise your health.
+    prepare for the fight. Head to a {color=red}Tavern{/color} to raise your health.
   description: 
   character: {fileID: 273937819}
   portrait: {fileID: 21300000, guid: 933a273d6f9d21a4084b7174ca87a59f, type: 3}
@@ -6102,8 +6150,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 51
   indentLevel: 0
-  storyText: You best prepare for the fight, head to a tavern to increase your max
-    health.
+  storyText: You best prepare for the fight, head to a {color=red}Tavern{/color}
+    to increase your max health.
   description: 
   character: {fileID: 273937819}
   portrait: {fileID: 21300000, guid: 933a273d6f9d21a4084b7174ca87a59f, type: 3}
@@ -6415,8 +6463,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 47
   indentLevel: 0
-  storyText: These corrupted creatures are blocking our path. We can't even get close
-    to the source of the corruption.
+  storyText: These {color=red}Corrupted Creatures{/color} are blocking our path.
+    We can't even get close to the {color=red}Source{/color} of the {color=red}Corruptioncolor}.
   description: 
   character: {fileID: 273937819}
   portrait: {fileID: 21300000, guid: 933a273d6f9d21a4084b7174ca87a59f, type: 3}
@@ -10786,6 +10834,13 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1876431071}
+    - target: {fileID: 6443451559020364504, guid: dc8d1eb2f744ec6438fa91d9f93c8c68,
+        type: 3}
+      propertyPath: storyText
+      value: During your exploration, you find a set of old ruins. Within, a giant
+        {color=red}Treasure Chest{/color}, the treasures within are yours for the
+        taking.
+      objectReference: {fileID: 0}
     - target: {fileID: 8686220897880544139, guid: dc8d1eb2f744ec6438fa91d9f93c8c68,
         type: 3}
       propertyPath: character
@@ -11115,8 +11170,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 205.45837
-    y: -57.44026
+    x: 207.09772
+    y: -55.80092
     width: 141.80325
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
@@ -11165,7 +11220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 57
   indentLevel: 0
-  storyText: Progress Saved
+  storyText: '{color=red}Progress Saved{/color}'
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -11409,6 +11464,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2009544676}
     m_Modifications:
+    - target: {fileID: 570620676, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
+      propertyPath: nodeRect.x
+      value: -112.20596
+      objectReference: {fileID: 0}
+    - target: {fileID: 570620676, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
+      propertyPath: nodeRect.y
+      value: 16.899994
+      objectReference: {fileID: 0}
     - target: {fileID: 3312672492783559085, guid: 5e44c1da357e9554e9892f17692c2d11,
         type: 3}
       propertyPath: m_RootOrder
@@ -11422,6 +11485,11 @@ PrefabInstance:
     - target: {fileID: 5788963369338986568, guid: 5e44c1da357e9554e9892f17692c2d11,
         type: 3}
       propertyPath: selectedBlocks.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5788963369338986568, guid: 5e44c1da357e9554e9892f17692c2d11,
+        type: 3}
+      propertyPath: selectedCommands.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5788963369338986569, guid: 5e44c1da357e9554e9892f17692c2d11,
@@ -11621,6 +11689,9 @@ PrefabInstance:
     - {fileID: 8772702896357605692, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
     - {fileID: 1445309647007539673, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
     - {fileID: 570620674, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
+    - {fileID: 475470485489517501, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
+    - {fileID: 570620678, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
+    - {fileID: 570620676, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
 --- !u!114 &1462667898 stripped
 MonoBehaviour:
@@ -11741,7 +11812,7 @@ MonoBehaviour:
   value: 4
 --- !u!114 &1468403756
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -11820,7 +11891,7 @@ MonoBehaviour:
   callMode: 0
 --- !u!114 &1468403759
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -11849,7 +11920,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &1468403760
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -11904,7 +11975,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &1468403762
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -11932,7 +12003,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &1468403763
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -11959,7 +12030,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &1468403764
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -11980,7 +12051,7 @@ MonoBehaviour:
   callMode: 0
 --- !u!114 &1468403765
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -12007,7 +12078,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &1468403766
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -12028,7 +12099,7 @@ MonoBehaviour:
   callMode: 0
 --- !u!114 &1468403767
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -12056,7 +12127,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &1468403768
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -12081,7 +12152,7 @@ MonoBehaviour:
     booleanVal: 0
 --- !u!114 &1468403769
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -12120,7 +12191,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 294.46237
     y: -70.20743
-    width: 183.67085
+    width: 186.70883
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -12148,7 +12219,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 288.13324
     y: -115.777054
-    width: 138.10124
+    width: 139.8734
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -12224,7 +12295,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 44.67386
     y: -45.004204
-    width: 233.29109
+    width: 236.0759
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -12281,8 +12352,8 @@ MonoBehaviour:
   nodeRect:
     serializedVersion: 2
     x: 68.97799
-    y: -98.16867
-    width: 191.77211
+    y: -101.96614
+    width: 194.30376
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -13413,8 +13484,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 64
   indentLevel: 0
-  storyText: Are you an Arcana Knight? Mum says that you're here to protect us from
-    the corruption.
+  storyText: Are you an {color=red}Arcana Knight{/color}? Mum says that you're here
+    to protect us from the {color=red}Corruption{/color}.
   description: 
   character: {fileID: 735937825}
   portrait: {fileID: 0}
@@ -13585,79 +13656,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1967593266}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1547186649 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5713057263882540958, guid: d9953154406f06b4395095760e117c44,
-    type: 3}
-  m_PrefabInstance: {fileID: 1967593266}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1547186648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 050fb9e6e72f442b3b883da8a965bdeb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1547186650
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1547186648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 6
-  indentLevel: 0
-  storyText: Aha! Maybe this would help?
-  description: 
-  character: {fileID: 1672618227}
-  portrait: {fileID: 21300000, guid: cc6d6ce2fd1c5cd40a6de8f42b7a9920, type: 3}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 0}
---- !u!114 &1547186651
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1547186648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 050fb9e6e72f442b3b883da8a965bdeb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 59
-  indentLevel: 0
-  targetFlowchart: {fileID: 0}
-  targetBlock: {fileID: 1967593269}
-  startLabel:
-    stringRef: {fileID: 0}
-    stringVal: 
-  startIndex: 0
-  callMode: 0
---- !u!114 &1547186653 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5713057263882540931, guid: d9953154406f06b4395095760e117c44,
-    type: 3}
-  m_PrefabInstance: {fileID: 1967593266}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1547186648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1547186656
+--- !u!114 &1547186649
 MonoBehaviour:
   m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13669,37 +13668,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afb91b566ceda411bad1e9d3c3243ecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scope: 0
+  scope: 2
   key: Gold
   value: 0
---- !u!114 &1547186657
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1547186648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 55
-  indentLevel: 0
-  storyText: You have earned {$Gold} gold for caching in your cards.
-  description: 
-  character: {fileID: 0}
-  portrait: {fileID: 0}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 0}
---- !u!114 &1547186658
+--- !u!114 &1547186650
 MonoBehaviour:
   m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13711,7 +13683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95d9ff288f3904c05ada7ac9c9a075bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 54
+  itemId: 61
   indentLevel: 0
   description: 
   delay: 0
@@ -13755,7 +13727,7 @@ MonoBehaviour:
   stringEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1547186660
+--- !u!114 &1547186651
 MonoBehaviour:
   m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13769,8 +13741,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: -50.205963
-    y: -91.600006
+    x: -49.205963
+    y: -96.600006
     width: 99
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
@@ -13780,10 +13752,85 @@ MonoBehaviour:
   description: 
   eventHandler: {fileID: 0}
   commandList:
-  - {fileID: 1547186658}
-  - {fileID: 1547186657}
-  - {fileID: 1547186651}
+  - {fileID: 1547186654}
+  - {fileID: 1547186653}
+  - {fileID: 1547186652}
   suppressAllAutoSelections: 0
+--- !u!114 &1547186652
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547186648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 050fb9e6e72f442b3b883da8a965bdeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 66
+  indentLevel: 0
+  targetFlowchart: {fileID: 0}
+  targetBlock: {fileID: 1967593272}
+  startLabel:
+    stringRef: {fileID: 0}
+    stringVal: 
+  startIndex: 0
+  callMode: 0
+--- !u!114 &1547186653
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547186648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 65
+  indentLevel: 0
+  storyText: I can also give you a card to help you on your journey.
+  description: 
+  character: {fileID: 1876431071}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &1547186654
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547186648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 64
+  indentLevel: 0
+  storyText: You have earned {$Gold} gold for caching in your cards.
+  description: 
+  character: {fileID: 1876431071}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
 --- !u!1001 &1570171989
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13805,7 +13852,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 570620676, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
       propertyPath: nodeRect.y
-      value: 96.35451
+      value: 97.35451
       objectReference: {fileID: 0}
     - target: {fileID: 570620676, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
       propertyPath: nodeRect.width
@@ -13814,7 +13861,7 @@ PrefabInstance:
     - target: {fileID: 570620677, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
       propertyPath: character
       value: 
-      objectReference: {fileID: 1672618227}
+      objectReference: {fileID: 1876431071}
     - target: {fileID: 570620678, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
       propertyPath: targetBlock
       value: 
@@ -13863,7 +13910,7 @@ PrefabInstance:
     - target: {fileID: 570620683, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
       propertyPath: character
       value: 
-      objectReference: {fileID: 1672618227}
+      objectReference: {fileID: 1876431071}
     - target: {fileID: 570620685, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
       propertyPath: _targetGameObject.gameObjectVal
       value: 
@@ -13875,7 +13922,12 @@ PrefabInstance:
     - target: {fileID: 570620693, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
       propertyPath: character
       value: 
-      objectReference: {fileID: 1672618227}
+      objectReference: {fileID: 1876431071}
+    - target: {fileID: 570620693, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
+      propertyPath: storyText
+      value: So, they harnessed the {color=red}Arcana{/color} into decks of cards
+        to bolster their numbers and give the common folk a chance to fight back.
+      objectReference: {fileID: 0}
     - target: {fileID: 570620694, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
       propertyPath: fadeMode
       value: 1
@@ -13935,7 +13987,12 @@ PrefabInstance:
     - target: {fileID: 570620696, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
       propertyPath: character
       value: 
-      objectReference: {fileID: 1672618227}
+      objectReference: {fileID: 1876431071}
+    - target: {fileID: 570620696, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
+      propertyPath: storyText
+      value: However, their numbers were few, and not everyone could wield {color=red}Arcana{/color}
+        in its purest form.
+      objectReference: {fileID: 0}
     - target: {fileID: 570620697, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
       propertyPath: targetObjects.Array.data[0]
       value: 
@@ -13947,7 +14004,13 @@ PrefabInstance:
     - target: {fileID: 570620701, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
       propertyPath: character
       value: 
-      objectReference: {fileID: 1672618227}
+      objectReference: {fileID: 1876431071}
+    - target: {fileID: 570620701, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
+      propertyPath: storyText
+      value: This would lead to their hand in {color=red}Corrupting{/color} the very
+        nature of {color=red}Arcana{/color} and in turn, the world began to reflect
+        this.
+      objectReference: {fileID: 0}
     - target: {fileID: 570620702, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
       propertyPath: fadeMode
       value: 1
@@ -13975,7 +14038,7 @@ PrefabInstance:
     - target: {fileID: 570620704, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
       propertyPath: character
       value: 
-      objectReference: {fileID: 1672618227}
+      objectReference: {fileID: 1876431071}
     - target: {fileID: 475470485489517501, guid: 5e44c1da357e9554e9892f17692c2d11,
         type: 3}
       propertyPath: character
@@ -13985,8 +14048,8 @@ PrefabInstance:
         type: 3}
       propertyPath: storyText
       value: Elements of the past bleed into your mind, you awake on a great battleground
-        as the only one standing between the hordes of the corruption and the welbeing
-        of the natural world around you.
+        as the only one standing between the hordes of the {color=red}Corruption{/color}
+        and the welbeing of the natural world around you.
       objectReference: {fileID: 0}
     - target: {fileID: 713512334506304524, guid: 5e44c1da357e9554e9892f17692c2d11,
         type: 3}
@@ -14002,7 +14065,16 @@ PrefabInstance:
         type: 3}
       propertyPath: character
       value: 
-      objectReference: {fileID: 1672618227}
+      objectReference: {fileID: 1876431071}
+    - target: {fileID: 2727907486465936332, guid: 5e44c1da357e9554e9892f17692c2d11,
+        type: 3}
+      propertyPath: storyText
+      value: Fierce battles would occur across the lands. Slowly quelling the tyrannical
+        rule of those who sought to subjugate the masses. {wc}With time, the ones
+        who corrupted the {color=red}Arcana{/color} dissipated, and the land began
+        to return to its natural state and {color=red}The Order of the Arcana Knights{/color}
+        was established to keep the people safe.
+      objectReference: {fileID: 0}
     - target: {fileID: 5410255482640988632, guid: 5e44c1da357e9554e9892f17692c2d11,
         type: 3}
       propertyPath: targetObjects.Array.data[0]
@@ -14196,12 +14268,12 @@ PrefabInstance:
     - target: {fileID: 5788963369338986581, guid: 5e44c1da357e9554e9892f17692c2d11,
         type: 3}
       propertyPath: nodeRect.x
-      value: 58.485683
+      value: 30.650627
       objectReference: {fileID: 0}
     - target: {fileID: 5788963369338986581, guid: 5e44c1da357e9554e9892f17692c2d11,
         type: 3}
       propertyPath: nodeRect.y
-      value: 242.43227
+      value: 247.58691
       objectReference: {fileID: 0}
     - target: {fileID: 5788963369338986581, guid: 5e44c1da357e9554e9892f17692c2d11,
         type: 3}
@@ -14287,7 +14359,14 @@ PrefabInstance:
         type: 3}
       propertyPath: character
       value: 
-      objectReference: {fileID: 1672618227}
+      objectReference: {fileID: 1876431071}
+    - target: {fileID: 8772702896357605692, guid: 5e44c1da357e9554e9892f17692c2d11,
+        type: 3}
+      propertyPath: storyText
+      value: However, rumour has it that one day, the {color=red}Corrupted Arcana{/color}
+        will return stronger than ever, and the {color=red}Arcana Knights{/color}
+        will be truly put to the test...
+      objectReference: {fileID: 0}
     - target: {fileID: 9085622012017106156, guid: 5e44c1da357e9554e9892f17692c2d11,
         type: 3}
       propertyPath: _targetGameObject.gameObjectVal
@@ -14297,6 +14376,7 @@ PrefabInstance:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
+    - {fileID: 5788963369338986581, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5e44c1da357e9554e9892f17692c2d11, type: 3}
 --- !u!4 &1570171990 stripped
 Transform:
@@ -14304,18 +14384,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1570171989}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1570171991 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5788963369338986568, guid: 5e44c1da357e9554e9892f17692c2d11,
-    type: 3}
-  m_PrefabInstance: {fileID: 1570171989}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 570620673}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a334fe2ffb574b3583ff3b18b4792d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1570171992 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3312672492783559086, guid: 5e44c1da357e9554e9892f17692c2d11,
@@ -14560,7 +14628,7 @@ Transform:
   - {fileID: 3473793466903108209}
   - {fileID: 818493619062822494}
   m_Father: {fileID: 2009544676}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1667815226
 GameObject:
@@ -15081,8 +15149,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 260.88434
-    y: 48.694374
+    x: 255.62112
+    y: 50.010162
     width: 149.99997
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
@@ -15610,18 +15678,6 @@ MonoBehaviour:
   stringEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1767726101 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6333189798414483483, guid: 09ad4ff9bfed78f44a9c4e23020e5e5f,
-    type: 3}
-  m_PrefabInstance: {fileID: 2118633815}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1767726074}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1767726103
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -16289,8 +16345,36 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 378727008}
+    m_TransformParent: {fileID: 2009544676}
     m_Modifications:
+    - target: {fileID: 1547186650, guid: d9953154406f06b4395095760e117c44, type: 3}
+      propertyPath: portrait
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1547186650, guid: d9953154406f06b4395095760e117c44, type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1876431071}
+    - target: {fileID: 1547186650, guid: d9953154406f06b4395095760e117c44, type: 3}
+      propertyPath: storyText
+      value: Maybe this would help you in your journey?
+      objectReference: {fileID: 0}
+    - target: {fileID: 1547186652, guid: d9953154406f06b4395095760e117c44, type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1672618227}
+    - target: {fileID: 1547186657, guid: d9953154406f06b4395095760e117c44, type: 3}
+      propertyPath: storyText
+      value: You have earned {$Gold} gold for caching in your cards.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1547186660, guid: d9953154406f06b4395095760e117c44, type: 3}
+      propertyPath: nodeRect.x
+      value: -48.205963
+      objectReference: {fileID: 0}
+    - target: {fileID: 1547186660, guid: d9953154406f06b4395095760e117c44, type: 3}
+      propertyPath: commandList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 491262378773531310, guid: d9953154406f06b4395095760e117c44,
         type: 3}
       propertyPath: rewards
@@ -16303,89 +16387,39 @@ PrefabInstance:
       objectReference: {fileID: 1345346661}
     - target: {fileID: 5713057263882540928, guid: d9953154406f06b4395095760e117c44,
         type: 3}
-      propertyPath: blockName
-      value: Start
-      objectReference: {fileID: 0}
-    - target: {fileID: 5713057263882540928, guid: d9953154406f06b4395095760e117c44,
-        type: 3}
       propertyPath: nodeRect.x
-      value: -37.6
+      value: -38.6
       objectReference: {fileID: 0}
     - target: {fileID: 5713057263882540928, guid: d9953154406f06b4395095760e117c44,
         type: 3}
       propertyPath: nodeRect.y
-      value: -195.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5713057263882540928, guid: d9953154406f06b4395095760e117c44,
-        type: 3}
-      propertyPath: nodeRect.width
-      value: 77
+      value: -192.1
       objectReference: {fileID: 0}
     - target: {fileID: 5713057263882540928, guid: d9953154406f06b4395095760e117c44,
         type: 3}
       propertyPath: commandList.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5713057263882540928, guid: d9953154406f06b4395095760e117c44,
         type: 3}
       propertyPath: commandList.Array.data[0]
       value: 
-      objectReference: {fileID: 1547186653}
+      objectReference: {fileID: 1967593271}
     - target: {fileID: 5713057263882540928, guid: d9953154406f06b4395095760e117c44,
         type: 3}
       propertyPath: commandList.Array.data[1]
       value: 
-      objectReference: {fileID: 1547186650}
+      objectReference: {fileID: 1967593268}
     - target: {fileID: 5713057263882540928, guid: d9953154406f06b4395095760e117c44,
         type: 3}
       propertyPath: commandList.Array.data[2]
       value: 
-      objectReference: {fileID: 1547186649}
+      objectReference: {fileID: 1547186650}
     - target: {fileID: 5713057263882540928, guid: d9953154406f06b4395095760e117c44,
         type: 3}
       propertyPath: commandList.Array.data[3]
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5713057263882540928, guid: d9953154406f06b4395095760e117c44,
-        type: 3}
-      propertyPath: commandList.Array.data[4]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5713057263882540928, guid: d9953154406f06b4395095760e117c44,
-        type: 3}
-      propertyPath: commandList.Array.data[5]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5713057263882540929, guid: d9953154406f06b4395095760e117c44,
-        type: 3}
-      propertyPath: staticEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5713057263882540929, guid: d9953154406f06b4395095760e117c44,
-        type: 3}
-      propertyPath: staticEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1967593268}
-    - target: {fileID: 5713057263882540929, guid: d9953154406f06b4395095760e117c44,
-        type: 3}
-      propertyPath: staticEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ShowRewards
-      objectReference: {fileID: 0}
-    - target: {fileID: 5713057263882540929, guid: d9953154406f06b4395095760e117c44,
-        type: 3}
-      propertyPath: staticEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: CheckpointCardSelection, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 5713057263882540930, guid: d9953154406f06b4395095760e117c44,
-        type: 3}
-      propertyPath: scrollPos.x
-      value: 218.20596
-      objectReference: {fileID: 0}
-    - target: {fileID: 5713057263882540930, guid: d9953154406f06b4395095760e117c44,
-        type: 3}
-      propertyPath: scrollPos.y
-      value: 224.6
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1967593269}
     - target: {fileID: 5713057263882540930, guid: d9953154406f06b4395095760e117c44,
         type: 3}
       propertyPath: variables.Array.size
@@ -16395,7 +16429,12 @@ PrefabInstance:
         type: 3}
       propertyPath: variables.Array.data[0]
       value: 
-      objectReference: {fileID: 1547186656}
+      objectReference: {fileID: 1547186649}
+    - target: {fileID: 5713057263882540930, guid: d9953154406f06b4395095760e117c44,
+        type: 3}
+      propertyPath: variables.Array.data[1]
+      value: 
+      objectReference: {fileID: 1547186649}
     - target: {fileID: 5713057263882540930, guid: d9953154406f06b4395095760e117c44,
         type: 3}
       propertyPath: selectedBlocks.Array.size
@@ -16410,7 +16449,7 @@ PrefabInstance:
         type: 3}
       propertyPath: selectedBlocks.Array.data[0]
       value: 
-      objectReference: {fileID: 1547186660}
+      objectReference: {fileID: 0}
     - target: {fileID: 5713057263882540930, guid: d9953154406f06b4395095760e117c44,
         type: 3}
       propertyPath: selectedCommands.Array.data[0]
@@ -16420,28 +16459,23 @@ PrefabInstance:
         type: 3}
       propertyPath: portrait
       value: 
-      objectReference: {fileID: 21300000, guid: cc6d6ce2fd1c5cd40a6de8f42b7a9920,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 5713057263882540931, guid: d9953154406f06b4395095760e117c44,
         type: 3}
       propertyPath: character
       value: 
-      objectReference: {fileID: 1672618227}
+      objectReference: {fileID: 1876431071}
     - target: {fileID: 5713057263882540931, guid: d9953154406f06b4395095760e117c44,
         type: 3}
       propertyPath: storyText
-      value: Well, that's what would've happened if you chose to do things that way.
-        Let's see...
+      value: Well that didn't go as planned, but is not your {color=red}Destiny{/color}.
+        Let me rethread the weaves of {color=red}Fortune{/color} to give you another
+        chance.
       objectReference: {fileID: 0}
     - target: {fileID: 5713057263882540933, guid: d9953154406f06b4395095760e117c44,
         type: 3}
       propertyPath: m_Name
-      value: Respawn Dialogue (M. Reinfeld)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5713057263882540933, guid: d9953154406f06b4395095760e117c44,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      value: Respawn Dialogue
       objectReference: {fileID: 0}
     - target: {fileID: 5713057263882540946, guid: d9953154406f06b4395095760e117c44,
         type: 3}
@@ -16502,28 +16536,13 @@ PrefabInstance:
         type: 3}
       propertyPath: targetBlock
       value: 
-      objectReference: {fileID: 1547186660}
-    - target: {fileID: 5713057263882540959, guid: d9953154406f06b4395095760e117c44,
-        type: 3}
-      propertyPath: blockName
-      value: Select Card
-      objectReference: {fileID: 0}
-    - target: {fileID: 5713057263882540959, guid: d9953154406f06b4395095760e117c44,
-        type: 3}
-      propertyPath: nodeRect.x
-      value: -57.279045
-      objectReference: {fileID: 0}
-    - target: {fileID: 5713057263882540959, guid: d9953154406f06b4395095760e117c44,
-        type: 3}
-      propertyPath: nodeRect.y
-      value: 7.886776
-      objectReference: {fileID: 0}
-    - target: {fileID: 5713057263882540959, guid: d9953154406f06b4395095760e117c44,
-        type: 3}
-      propertyPath: nodeRect.width
-      value: 116
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+      objectReference: {fileID: 1547186651}
+    m_RemovedComponents:
+    - {fileID: 1547186656, guid: d9953154406f06b4395095760e117c44, type: 3}
+    - {fileID: 0}
+    - {fileID: 1547186657, guid: d9953154406f06b4395095760e117c44, type: 3}
+    - {fileID: 1547186652, guid: d9953154406f06b4395095760e117c44, type: 3}
+    - {fileID: 1547186660, guid: d9953154406f06b4395095760e117c44, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d9953154406f06b4395095760e117c44, type: 3}
 --- !u!4 &1967593267 stripped
 Transform:
@@ -16533,17 +16552,53 @@ Transform:
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1967593268 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 491262378773531310, guid: d9953154406f06b4395095760e117c44,
+  m_CorrespondingSourceObject: {fileID: 1547186650, guid: d9953154406f06b4395095760e117c44,
     type: 3}
   m_PrefabInstance: {fileID: 1967593266}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1547186648}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61646c41915427c4a800633a5605964f, type: 3}
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1967593269 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5713057263882540958, guid: d9953154406f06b4395095760e117c44,
+    type: 3}
+  m_PrefabInstance: {fileID: 1967593266}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547186648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 050fb9e6e72f442b3b883da8a965bdeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1967593270 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5713057263882540930, guid: d9953154406f06b4395095760e117c44,
+    type: 3}
+  m_PrefabInstance: {fileID: 1967593266}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547186648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a334fe2ffb574b3583ff3b18b4792d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1967593271 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5713057263882540931, guid: d9953154406f06b4395095760e117c44,
+    type: 3}
+  m_PrefabInstance: {fileID: 1967593266}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547186648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1967593272 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5713057263882540959, guid: d9953154406f06b4395095760e117c44,
     type: 3}
@@ -16687,7 +16742,7 @@ PrefabInstance:
     - target: {fileID: 6673876278959578844, guid: 46b107524f0086847849ab47d8d5acf7,
         type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 6673876278959578844, guid: 46b107524f0086847849ab47d8d5acf7,
         type: 3}
@@ -16748,6 +16803,13 @@ PrefabInstance:
         type: 3}
       propertyPath: nodeRect.y
       value: 94.12832
+      objectReference: {fileID: 0}
+    - target: {fileID: 8762164863031217210, guid: 46b107524f0086847849ab47d8d5acf7,
+        type: 3}
+      propertyPath: storyText
+      value: Sorry young one, can't let anyone through unless {color=red}The Fortune
+        Teller{/color} says so. {wc}They can see the {color=red}Future{/color} you
+        know.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46b107524f0086847849ab47d8d5acf7, type: 3}
@@ -16826,6 +16888,7 @@ Transform:
   m_Children:
   - {fileID: 1462667900}
   - {fileID: 1570171990}
+  - {fileID: 1967593267}
   - {fileID: 378727008}
   - {fileID: 2133907400}
   - {fileID: 2029385973}
@@ -16972,7 +17035,7 @@ Transform:
   - {fileID: 8052595511879172901}
   - {fileID: 1632682094784890259}
   m_Father: {fileID: 2009544676}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2074078089 stripped
 GameObject:
@@ -16982,7 +17045,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &2074078090
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -17372,7 +17435,7 @@ PrefabInstance:
     - target: {fileID: 6333189798414483477, guid: 09ad4ff9bfed78f44a9c4e23020e5e5f,
         type: 3}
       propertyPath: nodeRect.x
-      value: 448.502
+      value: 443.23883
       objectReference: {fileID: 0}
     - target: {fileID: 6333189798414483477, guid: 09ad4ff9bfed78f44a9c4e23020e5e5f,
         type: 3}
@@ -17382,12 +17445,12 @@ PrefabInstance:
     - target: {fileID: 6333189798414483478, guid: 09ad4ff9bfed78f44a9c4e23020e5e5f,
         type: 3}
       propertyPath: nodeRect.x
-      value: 491.25372
+      value: 493.8853
       objectReference: {fileID: 0}
     - target: {fileID: 6333189798414483478, guid: 09ad4ff9bfed78f44a9c4e23020e5e5f,
         type: 3}
       propertyPath: nodeRect.y
-      value: 51.753647
+      value: 50.43786
       objectReference: {fileID: 0}
     - target: {fileID: 6333189798414483481, guid: 09ad4ff9bfed78f44a9c4e23020e5e5f,
         type: 3}
@@ -17408,12 +17471,12 @@ PrefabInstance:
     - target: {fileID: 6333189798414483483, guid: 09ad4ff9bfed78f44a9c4e23020e5e5f,
         type: 3}
       propertyPath: nodeRect.x
-      value: 89.880844
+      value: 93.82821
       objectReference: {fileID: 0}
     - target: {fileID: 6333189798414483483, guid: 09ad4ff9bfed78f44a9c4e23020e5e5f,
         type: 3}
       propertyPath: nodeRect.y
-      value: 147.45003
+      value: 144.81844
       objectReference: {fileID: 0}
     - target: {fileID: 6333189798414483485, guid: 09ad4ff9bfed78f44a9c4e23020e5e5f,
         type: 3}
@@ -17522,6 +17585,12 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1672618227}
+    - target: {fileID: 6333189798414483490, guid: 09ad4ff9bfed78f44a9c4e23020e5e5f,
+        type: 3}
+      propertyPath: storyText
+      value: Really {color=red}Taro{/color}? {wc}Lets go over the basics again because
+        it seems you cant remember anything.
+      objectReference: {fileID: 0}
     - target: {fileID: 6333189798414483491, guid: 09ad4ff9bfed78f44a9c4e23020e5e5f,
         type: 3}
       propertyPath: facing
@@ -17535,12 +17604,12 @@ PrefabInstance:
     - target: {fileID: 6333189798414483492, guid: 09ad4ff9bfed78f44a9c4e23020e5e5f,
         type: 3}
       propertyPath: nodeRect.x
-      value: 446.81082
+      value: 444.17923
       objectReference: {fileID: 0}
     - target: {fileID: 6333189798414483492, guid: 09ad4ff9bfed78f44a9c4e23020e5e5f,
         type: 3}
       propertyPath: nodeRect.y
-      value: 142.36548
+      value: 141.04968
       objectReference: {fileID: 0}
     - target: {fileID: 6333189798414483493, guid: 09ad4ff9bfed78f44a9c4e23020e5e5f,
         type: 3}
@@ -17574,6 +17643,15 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1672618227}
+    - target: {fileID: 6333189798414483494, guid: 09ad4ff9bfed78f44a9c4e23020e5e5f,
+        type: 3}
+      propertyPath: storyText
+      value: Oh good! In that case, head through the gate thats open next to me.
+        {wc}Go over the bridge and into the west side of town, {color=red}Lieutenant
+        Hierophante{/color} should be there, he'll be the one to speak to about recruitment.
+        {wc}Oh and {color=red}Taro{/color}? {wc}Do be careful, I've heard the {color=red}Corruption{/color}
+        has come pretty close to town.
+      objectReference: {fileID: 0}
     - target: {fileID: 6333189798414483495, guid: 09ad4ff9bfed78f44a9c4e23020e5e5f,
         type: 3}
       propertyPath: facing
@@ -17605,6 +17683,15 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1672618227}
+    - target: {fileID: 6333189798414483496, guid: 09ad4ff9bfed78f44a9c4e23020e5e5f,
+        type: 3}
+      propertyPath: storyText
+      value: "Good! Now go over into {color=red}Thoth{/color}, the town we are camped
+        in the middle of. In town, you will need to find a man called {color=red}Lieutenant
+        Hi\xE9rophante{/color}. He will recruit you, if you surpass his expectations.
+        {wc}Go over the bridge and into town but be careful. I've heard the {color=red}Corruption{/color}
+        has come dangerously close to town."
+      objectReference: {fileID: 0}
     - target: {fileID: 6333189798414483497, guid: 09ad4ff9bfed78f44a9c4e23020e5e5f,
         type: 3}
       propertyPath: nodeRect.x
@@ -17654,12 +17741,12 @@ PrefabInstance:
     - target: {fileID: 6333189798414483503, guid: 09ad4ff9bfed78f44a9c4e23020e5e5f,
         type: 3}
       propertyPath: nodeRect.x
-      value: 308.94232
+      value: 301.04767
       objectReference: {fileID: 0}
     - target: {fileID: 6333189798414483503, guid: 09ad4ff9bfed78f44a9c4e23020e5e5f,
         type: 3}
       propertyPath: nodeRect.y
-      value: 239.26816
+      value: 214.26811
       objectReference: {fileID: 0}
     - target: {fileID: 6333189798414483505, guid: 09ad4ff9bfed78f44a9c4e23020e5e5f,
         type: 3}
@@ -17676,7 +17763,7 @@ PrefabInstance:
         type: 3}
       propertyPath: targetBlock
       value: 
-      objectReference: {fileID: 1767726101}
+      objectReference: {fileID: 2118633819}
     - target: {fileID: 6333189798414483511, guid: 09ad4ff9bfed78f44a9c4e23020e5e5f,
         type: 3}
       propertyPath: targetBlock
@@ -17717,6 +17804,18 @@ MonoBehaviour:
 --- !u!114 &2118633818 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6333189798414483474, guid: 09ad4ff9bfed78f44a9c4e23020e5e5f,
+    type: 3}
+  m_PrefabInstance: {fileID: 2118633815}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1767726074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2118633819 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6333189798414483503, guid: 09ad4ff9bfed78f44a9c4e23020e5e5f,
     type: 3}
   m_PrefabInstance: {fileID: 2118633815}
   m_PrefabAsset: {fileID: 0}
@@ -17833,7 +17932,7 @@ Transform:
   - {fileID: 2684919792726900095}
   - {fileID: 2684919792074093825}
   m_Father: {fileID: 2009544676}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &154012848825895167
 PrefabInstance:
@@ -17858,6 +17957,14 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 581645342}
+    - target: {fileID: 154012849182252178, guid: 8b405f4c8d1e82c46a5a25604c6f449d,
+        type: 3}
+      propertyPath: storyText
+      value: They report that the fishing port near {color=red}Tiertarock{/color}
+        has been overrun with {color=red}Outlaws{/color}, and without trade to {color=red}Tiertarock{/color},
+        we won't be able to get supplies to keep our people warm and fed. Can you
+        help us?
+      objectReference: {fileID: 0}
     - target: {fileID: 154012849182252181, guid: 8b405f4c8d1e82c46a5a25604c6f449d,
         type: 3}
       propertyPath: eventHandler
@@ -17871,8 +17978,14 @@ PrefabInstance:
     - target: {fileID: 154012849182252182, guid: 8b405f4c8d1e82c46a5a25604c6f449d,
         type: 3}
       propertyPath: storyText
-      value: Thank you Taro. Head to Tiertarock and clear these thieves from the
-        port. Best of luck out there and please, come back safe, lad.
+      value: Thank you {color=red}Taro{/color}. Head to {color=red}Tiertarock{/color}
+        and clear these thieves from the port. Best of luck out there and please,
+        come back safe, lad.
+      objectReference: {fileID: 0}
+    - target: {fileID: 154012849182252184, guid: 8b405f4c8d1e82c46a5a25604c6f449d,
+        type: 3}
+      propertyPath: nodeRect.x
+      value: 99.53633
       objectReference: {fileID: 0}
     - target: {fileID: 154012849182252184, guid: 8b405f4c8d1e82c46a5a25604c6f449d,
         type: 3}
@@ -17955,6 +18068,13 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 581645342}
+    - target: {fileID: 2837806035358184849, guid: 8b405f4c8d1e82c46a5a25604c6f449d,
+        type: 3}
+      propertyPath: storyText
+      value: '{color=red}Taro{/color}, we''re in dire need of aid. Most of our fishers
+        heading to {color=red}Tiertarock{/color} aren''t returning and those that
+        do come back having lost their supplies and with grave injuries.'
+      objectReference: {fileID: 0}
     - target: {fileID: 2837806035358184855, guid: 8b405f4c8d1e82c46a5a25604c6f449d,
         type: 3}
       propertyPath: m_Name
@@ -18172,12 +18292,12 @@ PrefabInstance:
     - target: {fileID: 5724065343650484083, guid: 873cc27365370b443ac78e1b63cd8d6f,
         type: 3}
       propertyPath: nodeRect.x
-      value: 69.31279
+      value: 71.66573
       objectReference: {fileID: 0}
     - target: {fileID: 5724065343650484083, guid: 873cc27365370b443ac78e1b63cd8d6f,
         type: 3}
       propertyPath: nodeRect.y
-      value: 234.77295
+      value: 233.59648
       objectReference: {fileID: 0}
     - target: {fileID: 5724065343650484083, guid: 873cc27365370b443ac78e1b63cd8d6f,
         type: 3}
@@ -18217,12 +18337,13 @@ PrefabInstance:
     - target: {fileID: 5724065343650484087, guid: 873cc27365370b443ac78e1b63cd8d6f,
         type: 3}
       propertyPath: storyText
-      value: "There you are Taro! {wc} I had no idea they were pinned down by a Golem!
-        And then my Knights tell me you took it down singlehandedly?! {wc} Phenomenal
-        work lad! Truly inspirational! {wc} I sent a message straight away to Grand
-        Wizard Marduk as soon as my Knights came back. He\u2019s going to be expecting
-        you soon. {wc} You should start making your way to him now. He\u2019s at
-        the Arcana Knights headquarters in Tiertarock."
+      value: "There you are {color=red}Taro{/color}! {wc} I had no idea they were
+        pinned down by a {color=red}Golem{/color}! And then my Knights tell me you
+        took it down singlehandedly?! {wc} Phenomenal work lad! Truly inspirational!
+        {wc} I sent a message straight away to {color=red}Grand Wizard Marduk{/color}
+        as soon as my Knights came back. He\u2019s going to be expecting you soon.
+        {wc} You should start making your way to him now. He\u2019s at the [color=red}Arcana
+        Knights{/color} headquarters in {color=red}Tiertarock{/color}."
       objectReference: {fileID: 0}
     - target: {fileID: 5724065343650484088, guid: 873cc27365370b443ac78e1b63cd8d6f,
         type: 3}
@@ -18399,11 +18520,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Empty Bellies Complete
       objectReference: {fileID: 0}
+    - target: {fileID: 555844576803088180, guid: 3b6e94c0954850a428b276454ef9f316,
+        type: 3}
+      propertyPath: selectedCommands.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 555844576803088181, guid: 3b6e94c0954850a428b276454ef9f316,
         type: 3}
       propertyPath: character
       value: 
       objectReference: {fileID: 581645342}
+    - target: {fileID: 555844576803088181, guid: 3b6e94c0954850a428b276454ef9f316,
+        type: 3}
+      propertyPath: storyText
+      value: Thank you {color=red}Taro{/color}, we'll get that food to the people
+        who need it. I don't know what we'd have done without you.
+      objectReference: {fileID: 0}
     - target: {fileID: 2518640160137907724, guid: 3b6e94c0954850a428b276454ef9f316,
         type: 3}
       propertyPath: _targetGameObject.gameObjectVal
@@ -18477,6 +18609,12 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1876431071}
+    - target: {fileID: 1855737199382374650, guid: 4c47b2766349e9842a03f2754cb76c1b,
+        type: 3}
+      propertyPath: storyText
+      value: Looking closer, it is a ripe piece of {color=red}Fruit{/color}, untainted
+        by the {color=red}Corruption{/color}, this is suitable food for the {color=red}Knights{/color}.
+      objectReference: {fileID: 0}
     - target: {fileID: 2738095959881804198, guid: 4c47b2766349e9842a03f2754cb76c1b,
         type: 3}
       propertyPath: character
@@ -18749,8 +18887,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 67
   indentLevel: 0
-  storyText: You find a small piece of food on the ground. This could be suitable
-    food for the knights.
+  storyText: You find a small piece of {color=red}Food{/color} on the ground. This
+    could be suitable food for the {color=red}Arcana Knights{/color}.
   description: 
   character: {fileID: 1876431071}
   portrait: {fileID: 0}
@@ -18952,7 +19090,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 34
   indentLevel: 0
-  storyText: That must be the Knights. I better get in there, fast!
+  storyText: That must be the {color=red}Arcana Knights{/color}. I better get in
+    there, fast!
   description: 
   character: {fileID: 1165060491}
   portrait: {fileID: 21300000, guid: 846a6d4a97b657e44a04ff51ddae73c9, type: 3}
@@ -19225,7 +19364,7 @@ MonoBehaviour:
       m_Calls: []
 --- !u!114 &1212633825084253100
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -19573,7 +19712,8 @@ PrefabInstance:
     - target: {fileID: 3687597253407275090, guid: 2c0b2227930638042824499d913e6e32,
         type: 3}
       propertyPath: storyText
-      value: Prove your valour by conquering the hidden creatures in Arcana.
+      value: Prove your valour by conquering the {color=red}Hidden Creatures{/color}
+        in {color=red}Arcana{/color}.
       objectReference: {fileID: 0}
     - target: {fileID: 3687597253407275091, guid: 2c0b2227930638042824499d913e6e32,
         type: 3}
@@ -19665,7 +19805,7 @@ MonoBehaviour:
   suppressAllAutoSelections: 0
 --- !u!114 &1632682094784890246
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -20106,9 +20246,9 @@ PrefabInstance:
     - target: {fileID: 5315650235702026366, guid: 689f064d53e0dbe4aa9ed450525d9359,
         type: 3}
       propertyPath: storyText
-      value: You find Jax's lost toy among the crates in the camp. A strange aura
-        emanates from the toy. Is it possible that this toy was truly blessed by
-        a Fortune Teller?
+      value: You find {color=red}Jax's Lost Toy{/color} amongst the brush. A strange
+        aura emanates from the {color=red}Toy{/color}. Is it possible that it was
+        truly blessed by a {color=red}Fortune Teller{/color}?
       objectReference: {fileID: 0}
     - target: {fileID: 5320776679912974475, guid: 689f064d53e0dbe4aa9ed450525d9359,
         type: 3}
@@ -20138,8 +20278,8 @@ PrefabInstance:
     - target: {fileID: 5320776679912974477, guid: 689f064d53e0dbe4aa9ed450525d9359,
         type: 3}
       propertyPath: storyText
-      value: Before you can pick up the toy, a dark shroud emerges from it. It's
-        eyes glow with purple light as the shadow forms into a dark creature.
+      value: Before you can pick it up, a dark shroud emerges from it. It's eyes
+        glow with purple light as the shadow forms into a dark creature.
       objectReference: {fileID: 0}
     - target: {fileID: 5771315735998431234, guid: 689f064d53e0dbe4aa9ed450525d9359,
         type: 3}
@@ -20492,9 +20632,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 13
   indentLevel: 0
-  storyText: 'One hidden beneath Thoth,
+  storyText: 'One hidden beneath {color=red}Thoth{/color},
 
-    One resides beneath the Sea'
+    One resides beneath
+    the {color=red}Sea{/color}'
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -20974,6 +21115,27 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3124483899500217512}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2837806034334355367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2837806034334355366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 050fb9e6e72f442b3b883da8a965bdeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 25
+  indentLevel: 0
+  targetFlowchart: {fileID: 0}
+  targetBlock: {fileID: 3124483899500217513}
+  startLabel:
+    stringRef: {fileID: 0}
+    stringVal: 
+  startIndex: 0
+  callMode: 0
 --- !u!4 &2837806034334355377 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 882015037451324185, guid: 203a65e0adfb09342aba86c1e206749d,
@@ -20998,10 +21160,32 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1200363909}
+    - target: {fileID: 882015037451324168, guid: 203a65e0adfb09342aba86c1e206749d,
+        type: 3}
+      propertyPath: storyText
+      value: '{color=red}Taro{/color}, we''re in dire need of aid. We''re supposed
+        to be camped out here until the {color=red}Scouts{/color} return, but we''ve
+        run out of food. The wolf meat I''ve hunted has been tainted with the {color=red}Corruption{/color}.'
+      objectReference: {fileID: 0}
     - target: {fileID: 882015037451324169, guid: 203a65e0adfb09342aba86c1e206749d,
         type: 3}
       propertyPath: selectedBlocks.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 882015037451324169, guid: 203a65e0adfb09342aba86c1e206749d,
+        type: 3}
+      propertyPath: selectedCommands.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 882015037451324171, guid: 203a65e0adfb09342aba86c1e206749d,
+        type: 3}
+      propertyPath: nodeRect.x
+      value: -20.736362
+      objectReference: {fileID: 0}
+    - target: {fileID: 882015037451324171, guid: 203a65e0adfb09342aba86c1e206749d,
+        type: 3}
+      propertyPath: nodeRect.y
+      value: -173.23633
       objectReference: {fileID: 0}
     - target: {fileID: 882015037451324174, guid: 203a65e0adfb09342aba86c1e206749d,
         type: 3}
@@ -21063,16 +21247,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1225775025182636301, guid: 203a65e0adfb09342aba86c1e206749d,
-        type: 3}
-      propertyPath: character
-      value: 
-      objectReference: {fileID: 1200363909}
     - target: {fileID: 2990192600880226816, guid: 203a65e0adfb09342aba86c1e206749d,
         type: 3}
       propertyPath: character
       value: 
       objectReference: {fileID: 1200363909}
+    - target: {fileID: 2990192600880226817, guid: 203a65e0adfb09342aba86c1e206749d,
+        type: 3}
+      propertyPath: commandList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2990192600880226817, guid: 203a65e0adfb09342aba86c1e206749d,
+        type: 3}
+      propertyPath: commandList.Array.data[1]
+      value: 
+      objectReference: {fileID: 2837806034334355367}
     - target: {fileID: 2990192600880226824, guid: 203a65e0adfb09342aba86c1e206749d,
         type: 3}
       propertyPath: questGiverName
@@ -21086,14 +21275,21 @@ PrefabInstance:
     - target: {fileID: 2990192600880226827, guid: 203a65e0adfb09342aba86c1e206749d,
         type: 3}
       propertyPath: storyText
-      value: I'd get it myself, but I've broken my leg in a scrap with the constructs.
-        Can you get us some food?
+      value: I'd get it myself, but I've broken my leg in a scrap with the {color=red}Constructs{/color}.
+        Can you get us some {color=red}Food{/color}?
       objectReference: {fileID: 0}
     - target: {fileID: 2990192600880226831, guid: 203a65e0adfb09342aba86c1e206749d,
         type: 3}
       propertyPath: character
       value: 
       objectReference: {fileID: 1200363909}
+    - target: {fileID: 2990192600880226831, guid: 203a65e0adfb09342aba86c1e206749d,
+        type: 3}
+      propertyPath: storyText
+      value: Thank you {color=red}Taro{/color}. You could probably buy some from
+        a {color=red}Tavern{/color} or {color=red}Trader{/color}, there's one in
+        {color=red}Thoth{/color}.
+      objectReference: {fileID: 0}
     - target: {fileID: 4655863670208240277, guid: 203a65e0adfb09342aba86c1e206749d,
         type: 3}
       propertyPath: rewards
@@ -21106,6 +21302,18 @@ PrefabInstance:
       objectReference: {fileID: 1345346661}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 203a65e0adfb09342aba86c1e206749d, type: 3}
+--- !u!114 &3124483899500217513 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 882015037451324180, guid: 203a65e0adfb09342aba86c1e206749d,
+    type: 3}
+  m_PrefabInstance: {fileID: 3124483899500217512}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2837806034334355366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3130861715286920138
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21407,6 +21615,17 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 581645342}
+    - target: {fileID: 818493618446578329, guid: 7ba9d9549e9058749b2e32bca4b69c19,
+        type: 3}
+      propertyPath: storyText
+      value: Thank you {color=red}Taro{/color}, the ports are safe and supply lines
+        have been opened up again. We have gathered some coin between us as thanks.
+      objectReference: {fileID: 0}
+    - target: {fileID: 818493618446578330, guid: 7ba9d9549e9058749b2e32bca4b69c19,
+        type: 3}
+      propertyPath: nodeRect.x
+      value: -16.599998
+      objectReference: {fileID: 0}
     - target: {fileID: 818493618446578335, guid: 7ba9d9549e9058749b2e32bca4b69c19,
         type: 3}
       propertyPath: m_Name
@@ -21471,7 +21690,7 @@ PrefabInstance:
     - target: {fileID: 1460692079197017885, guid: 2904db79b83baeb4387bfde480cc37db,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1460692079197017885, guid: 2904db79b83baeb4387bfde480cc37db,
         type: 3}
@@ -22222,7 +22441,7 @@ PrefabInstance:
     - target: {fileID: 19678828905987050, guid: 28518259d4710024c87cb928db07ebf8,
         type: 3}
       propertyPath: storyText
-      value: "{color=red}Lt Heirophante{/color} told me the other {color=red}Arcana
+      value: "{color=red}Lieutenant Heirophante{/color} told me the other {color=red}Arcana
         Knights{/color} should be\r\naround here somewhere. I should look around
         a bit.\r"
       objectReference: {fileID: 0}
@@ -22239,7 +22458,7 @@ PrefabInstance:
     - target: {fileID: 19678828905987051, guid: 28518259d4710024c87cb928db07ebf8,
         type: 3}
       propertyPath: nodeRect.y
-      value: 11.054291
+      value: 9.87782
       objectReference: {fileID: 0}
     - target: {fileID: 19678828905987051, guid: 28518259d4710024c87cb928db07ebf8,
         type: 3}
@@ -22429,7 +22648,7 @@ PrefabInstance:
     - target: {fileID: 2668147043195163357, guid: 28518259d4710024c87cb928db07ebf8,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2668147043195163357, guid: 28518259d4710024c87cb928db07ebf8,
         type: 3}
@@ -22632,16 +22851,34 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1876431071}
+    - target: {fileID: 729851416649118440, guid: 1f6fdd8835b60794bb05028c3874fe2e,
+        type: 3}
+      propertyPath: storyText
+      value: You manage to flee from the pack of hungry {color=red}Wolves{/color}.
+      objectReference: {fileID: 0}
     - target: {fileID: 729851416649118454, guid: 1f6fdd8835b60794bb05028c3874fe2e,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1876431071}
+    - target: {fileID: 729851416649118454, guid: 1f6fdd8835b60794bb05028c3874fe2e,
+        type: 3}
+      propertyPath: storyText
+      value: You try desperately to flee, but the {color=red}Wolves{/color} are coordinated
+        and surround you. You come face to face with a giant {color=red}Wolf{/color}
+        as it pouces towards you with a primal fury.
+      objectReference: {fileID: 0}
+    - target: {fileID: 729851416649118456, guid: 1f6fdd8835b60794bb05028c3874fe2e,
         type: 3}
       propertyPath: character
       value: 
       objectReference: {fileID: 1876431071}
     - target: {fileID: 729851416649118456, guid: 1f6fdd8835b60794bb05028c3874fe2e,
         type: 3}
-      propertyPath: character
-      value: 
-      objectReference: {fileID: 1876431071}
+      propertyPath: storyText
+      value: As you take the time to prepare, you come face to face with a {color=red}Wolf{/color}
+        as it pouces towards you with a primal fury.
+      objectReference: {fileID: 0}
     - target: {fileID: 1167092303850023638, guid: 1f6fdd8835b60794bb05028c3874fe2e,
         type: 3}
       propertyPath: text
@@ -22943,7 +23180,8 @@ PrefabInstance:
     - target: {fileID: 3028617137681382607, guid: d846add05c037224fad3196322b6bde9,
         type: 3}
       propertyPath: storyText
-      value: Hello Taro. I can save your progress by reading you your fortune.
+      value: Hello {color=red}Taro{/color}. I can save your progress by reading your
+        {color=red}Fortune{/color}.
       objectReference: {fileID: 0}
     - target: {fileID: 3028617137681382608, guid: d846add05c037224fad3196322b6bde9,
         type: 3}
@@ -23353,6 +23591,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1871557957045672676, guid: 859cc17615d79ea4c878a87d4a07a93f,
         type: 3}
+      propertyPath: selectedBlocks.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1871557957045672676, guid: 859cc17615d79ea4c878a87d4a07a93f,
+        type: 3}
       propertyPath: selectedCommands.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -23369,7 +23612,8 @@ PrefabInstance:
     - target: {fileID: 1871557957045672679, guid: 859cc17615d79ea4c878a87d4a07a93f,
         type: 3}
       propertyPath: storyText
-      value: Hello Taro. I can save your progress by reading you your fortune.
+      value: Hello {color=red}Taro{/color}. I can save your progress by reading you
+        your {color=red}Fortune{/color}.
       objectReference: {fileID: 0}
     - target: {fileID: 1871557957045672692, guid: 859cc17615d79ea4c878a87d4a07a93f,
         type: 3}
@@ -23844,11 +24088,24 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1876431071}
+    - target: {fileID: 4705963980977522968, guid: 810b9d9cc714f4348913402775c1720a,
+        type: 3}
+      propertyPath: storyText
+      value: Pulling open some of the stitching, you uncover a small purple crystal;
+        a shard of {color=red}Corruption{/color}.
+      objectReference: {fileID: 0}
     - target: {fileID: 4705963980977522971, guid: 810b9d9cc714f4348913402775c1720a,
         type: 3}
       propertyPath: character
       value: 
       objectReference: {fileID: 1876431071}
+    - target: {fileID: 4705963980977522971, guid: 810b9d9cc714f4348913402775c1720a,
+        type: 3}
+      propertyPath: storyText
+      value: This toy was not blessed by a {color=red}Fortune Teller{/color}, but
+        it has been cursed with {color=red}Corruption{/color}. It is likely the source
+        of the {color=red}Sickness{/color}.
+      objectReference: {fileID: 0}
     - target: {fileID: 4709983201872462315, guid: 810b9d9cc714f4348913402775c1720a,
         type: 3}
       propertyPath: character
@@ -23857,8 +24114,9 @@ PrefabInstance:
     - target: {fileID: 4709983201872462315, guid: 810b9d9cc714f4348913402775c1720a,
         type: 3}
       propertyPath: storyText
-      value: Now that the spirit has been killed, the toy appears as a normal toy
-        once again. Picking up the toy, you still sense the lingering corruption.
+      value: Now that the {color=red}Spirit{/color} has been killed, the {color=red}Toy{/color}
+        appears as a normal {color=red}Toy{/color} once again. Picking it up, you
+        still sense the lingering {color=red}Corruption{/color}.
       objectReference: {fileID: 0}
     - target: {fileID: 6398488767947184714, guid: 810b9d9cc714f4348913402775c1720a,
         type: 3}
@@ -23874,6 +24132,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Toy
+      objectReference: {fileID: 0}
+    - target: {fileID: 9045831632085381996, guid: 810b9d9cc714f4348913402775c1720a,
+        type: 3}
+      propertyPath: selectedBlocks.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9045831632085382012, guid: 810b9d9cc714f4348913402775c1720a,
         type: 3}
@@ -23976,6 +24239,13 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1115000471}
+    - target: {fileID: 2684919792142466546, guid: 231f1225157f1ee46a86abdfa3c06ca0,
+        type: 3}
+      propertyPath: storyText
+      value: Now that you have bested these {color=red}Unnatural Invaders{/color},
+        you have one more {color=red}Challenge{/color} to conquer. Do you accept
+        my {color=red}Challenge{/color}?
+      objectReference: {fileID: 0}
     - target: {fileID: 2684919792142466550, guid: 231f1225157f1ee46a86abdfa3c06ca0,
         type: 3}
       propertyPath: nodeRect.x
@@ -24016,6 +24286,11 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1115000471}
+    - target: {fileID: 2684919792142466552, guid: 231f1225157f1ee46a86abdfa3c06ca0,
+        type: 3}
+      propertyPath: storyText
+      value: Then come back when you are ready to face the {color=red}Final Trial{/color}.
+      objectReference: {fileID: 0}
     - target: {fileID: 8052595513141617217, guid: 231f1225157f1ee46a86abdfa3c06ca0,
         type: 3}
       propertyPath: staticEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -24106,6 +24381,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8052595513141617247, guid: 231f1225157f1ee46a86abdfa3c06ca0,
+        type: 3}
+      propertyPath: nodeRect.x
+      value: -163.96614
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 231f1225157f1ee46a86abdfa3c06ca0, type: 3}
 --- !u!114 &5368942384868810671 stripped
@@ -24180,6 +24460,11 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 735937825}
+    - target: {fileID: 1014549742324661516, guid: 9a90a2ea0f1b0f44a98a025960c87fbe,
+        type: 3}
+      propertyPath: nodeRect.y
+      value: -2.3230429
+      objectReference: {fileID: 0}
     - target: {fileID: 1014549742324661516, guid: 9a90a2ea0f1b0f44a98a025960c87fbe,
         type: 3}
       propertyPath: nodeRect.width
@@ -24423,7 +24708,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 37.80909
+    x: 34.279675
     y: 305.93945
     width: 142.94122
     height: 40
@@ -24876,7 +25161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 412.00247
+    x: 410.826
     y: 304.59198
     width: 118.23532
     height: 40
@@ -24904,7 +25189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 --- !u!114 &5457298888865767503
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -24925,7 +25210,7 @@ MonoBehaviour:
   callMode: 0
 --- !u!114 &5457298888865767504
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -24991,8 +25276,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 65.15738
-    y: 432.18567
+    x: 66.33385
+    y: 431.0092
     width: 98.23531
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
@@ -25032,7 +25317,7 @@ MonoBehaviour:
     booleanVal: 0
 --- !u!114 &5457298888865767508
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -25053,7 +25338,7 @@ MonoBehaviour:
   callMode: 0
 --- !u!114 &5457298888865767509
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -25175,7 +25460,7 @@ MonoBehaviour:
       m_Calls: []
 --- !u!114 &5457298888865767510
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -25216,7 +25501,8 @@ MonoBehaviour:
   itemId: 140
   indentLevel: 0
   storyText: Before you head off, I'll need to make sure you're well armed. I can't
-    have you running thoughout Arcana without a proper weapon. Take one of these.
+    have you running thoughout {color=red}Arcana{/color} without a proper weapon.
+    Take one of these.
   description: 
   character: {fileID: 830277214}
   portrait: {fileID: 21300000, guid: 2be27f356da85b44280b8462acfc5d75, type: 3}
@@ -25293,25 +25579,58 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1876431071}
+    - target: {fileID: 729851416649118437, guid: dc279755e2c406d4dbc8f7ed615e8769,
+        type: 3}
+      propertyPath: storyText
+      value: As you take the time to prepare, {color=red}Constructs{/color} block
+        your path.
+      objectReference: {fileID: 0}
     - target: {fileID: 729851416649118440, guid: dc279755e2c406d4dbc8f7ed615e8769,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1876431071}
+    - target: {fileID: 729851416649118440, guid: dc279755e2c406d4dbc8f7ed615e8769,
+        type: 3}
+      propertyPath: storyText
+      value: You try desperately to flee, but before you get a chance to prepare,
+        {color=red}Constructs{/color} block your path.
+      objectReference: {fileID: 0}
+    - target: {fileID: 729851416649118454, guid: dc279755e2c406d4dbc8f7ed615e8769,
         type: 3}
       propertyPath: character
       value: 
       objectReference: {fileID: 1876431071}
     - target: {fileID: 729851416649118454, guid: dc279755e2c406d4dbc8f7ed615e8769,
         type: 3}
-      propertyPath: character
-      value: 
-      objectReference: {fileID: 1876431071}
+      propertyPath: storyText
+      value: You manage to flee from the still forming {color=red}Constructs{/color}.
+      objectReference: {fileID: 0}
     - target: {fileID: 729851416649118456, guid: dc279755e2c406d4dbc8f7ed615e8769,
         type: 3}
       propertyPath: character
       value: 
       objectReference: {fileID: 1876431071}
+    - target: {fileID: 729851416649118456, guid: dc279755e2c406d4dbc8f7ed615e8769,
+        type: 3}
+      propertyPath: storyText
+      value: As you travel along a dark forest path, you hear the shifting of rock,
+        and the {color=red}Corruption's{/color} sweet whispers enters your mind.
+      objectReference: {fileID: 0}
     - target: {fileID: 932370013037707195, guid: dc279755e2c406d4dbc8f7ed615e8769,
         type: 3}
       propertyPath: conditions.Array.data[0].anyVar.data.floatData.floatVal
       value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1924414952893460968, guid: dc279755e2c406d4dbc8f7ed615e8769,
+        type: 3}
+      propertyPath: nodeRect.x
+      value: 173.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 4073440499104519940, guid: dc279755e2c406d4dbc8f7ed615e8769,
+        type: 3}
+      propertyPath: nodeRect.y
+      value: -30.748838
       objectReference: {fileID: 0}
     - target: {fileID: 4706865437737425967, guid: dc279755e2c406d4dbc8f7ed615e8769,
         type: 3}
@@ -25477,6 +25796,47 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1200363909}
+    - target: {fileID: 241560837363234039, guid: 48ee3b5ac66f8a84dadb9900a89e0dfb,
+        type: 3}
+      propertyPath: storyText
+      value: You best prepare for the fight, head to a {color=red}Tavern{/color}
+        for some food and drink. That way, you're prepared for the fight ahead.
+      objectReference: {fileID: 0}
+    - target: {fileID: 423739510926449591, guid: 48ee3b5ac66f8a84dadb9900a89e0dfb,
+        type: 3}
+      propertyPath: nodeRect.x
+      value: -165.6948
+      objectReference: {fileID: 0}
+    - target: {fileID: 423739510926449591, guid: 48ee3b5ac66f8a84dadb9900a89e0dfb,
+        type: 3}
+      propertyPath: nodeRect.y
+      value: 91.68929
+      objectReference: {fileID: 0}
+    - target: {fileID: 423739510926449591, guid: 48ee3b5ac66f8a84dadb9900a89e0dfb,
+        type: 3}
+      propertyPath: nodeRect.width
+      value: 107.31706
+      objectReference: {fileID: 0}
+    - target: {fileID: 423739510926449591, guid: 48ee3b5ac66f8a84dadb9900a89e0dfb,
+        type: 3}
+      propertyPath: commandList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 423739510926449591, guid: 48ee3b5ac66f8a84dadb9900a89e0dfb,
+        type: 3}
+      propertyPath: commandList.Array.data[1]
+      value: 
+      objectReference: {fileID: 6337390200109904734}
+    - target: {fileID: 423739510926449591, guid: 48ee3b5ac66f8a84dadb9900a89e0dfb,
+        type: 3}
+      propertyPath: commandList.Array.data[2]
+      value: 
+      objectReference: {fileID: 6337390200109904736}
+    - target: {fileID: 2104134960997942273, guid: 48ee3b5ac66f8a84dadb9900a89e0dfb,
+        type: 3}
+      propertyPath: nodeRect.y
+      value: 97.99592
+      objectReference: {fileID: 0}
     - target: {fileID: 3554231792650089467, guid: 48ee3b5ac66f8a84dadb9900a89e0dfb,
         type: 3}
       propertyPath: rewards
@@ -25492,11 +25852,34 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1200363909}
+    - target: {fileID: 3686086802891213376, guid: 48ee3b5ac66f8a84dadb9900a89e0dfb,
+        type: 3}
+      propertyPath: storyText
+      value: The scout party stopped by the {color=red}Tavern{/color} to rest and
+        recover, that helped and they managed to get past the creatures, I hope it
+        was enough.
+      objectReference: {fileID: 0}
     - target: {fileID: 4348941075789507509, guid: 48ee3b5ac66f8a84dadb9900a89e0dfb,
         type: 3}
       propertyPath: character
       value: 
       objectReference: {fileID: 1200363909}
+    - target: {fileID: 4348941075789507509, guid: 48ee3b5ac66f8a84dadb9900a89e0dfb,
+        type: 3}
+      propertyPath: storyText
+      value: These {color=red}Corrupted Creatures{/color} are blocking our path.
+        We can't even get close to the {color=red}Source{/color} of the {color=red}Corruptioncolor}.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4942772282729716424, guid: 48ee3b5ac66f8a84dadb9900a89e0dfb,
+        type: 3}
+      propertyPath: nodeRect.x
+      value: -84.55687
+      objectReference: {fileID: 0}
+    - target: {fileID: 4942772282729716424, guid: 48ee3b5ac66f8a84dadb9900a89e0dfb,
+        type: 3}
+      propertyPath: nodeRect.y
+      value: -2.3230429
+      objectReference: {fileID: 0}
     - target: {fileID: 4962308174973051157, guid: 48ee3b5ac66f8a84dadb9900a89e0dfb,
         type: 3}
       propertyPath: nodeRect.x
@@ -25517,6 +25900,26 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1200363909}
+    - target: {fileID: 4962308174973051163, guid: 48ee3b5ac66f8a84dadb9900a89e0dfb,
+        type: 3}
+      propertyPath: nodeRect.x
+      value: -344.26624
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962308174973051163, guid: 48ee3b5ac66f8a84dadb9900a89e0dfb,
+        type: 3}
+      propertyPath: nodeRect.width
+      value: 106.09755
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962308174973051163, guid: 48ee3b5ac66f8a84dadb9900a89e0dfb,
+        type: 3}
+      propertyPath: commandList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4962308174973051163, guid: 48ee3b5ac66f8a84dadb9900a89e0dfb,
+        type: 3}
+      propertyPath: commandList.Array.data[1]
+      value: 
+      objectReference: {fileID: 6337390200109904737}
     - target: {fileID: 5744083710324855994, guid: 48ee3b5ac66f8a84dadb9900a89e0dfb,
         type: 3}
       propertyPath: character
@@ -25527,6 +25930,13 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1200363909}
+    - target: {fileID: 5809794621053879874, guid: 48ee3b5ac66f8a84dadb9900a89e0dfb,
+        type: 3}
+      propertyPath: storyText
+      value: One team made it through, but they haven't returned. You'd do well to
+        prepare for the fight. Head to a {color=red}Tavern{/color} to raise your
+        health.
+      objectReference: {fileID: 0}
     - target: {fileID: 6421084685443585366, guid: 48ee3b5ac66f8a84dadb9900a89e0dfb,
         type: 3}
       propertyPath: character
@@ -25536,6 +25946,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HunterDialogue
+      objectReference: {fileID: 0}
+    - target: {fileID: 7051090446208021486, guid: 48ee3b5ac66f8a84dadb9900a89e0dfb,
+        type: 3}
+      propertyPath: selectedBlocks.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7051090446208021486, guid: 48ee3b5ac66f8a84dadb9900a89e0dfb,
+        type: 3}
+      propertyPath: selectedCommands.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7051090446208021502, guid: 48ee3b5ac66f8a84dadb9900a89e0dfb,
         type: 3}
@@ -25594,6 +26014,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48ee3b5ac66f8a84dadb9900a89e0dfb, type: 3}
+--- !u!114 &6337390200109904734 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3686086802891213376, guid: 48ee3b5ac66f8a84dadb9900a89e0dfb,
+    type: 3}
+  m_PrefabInstance: {fileID: 6337390200109904733}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3902491846306594996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6337390200109904735 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7593274720420162154, guid: 48ee3b5ac66f8a84dadb9900a89e0dfb,
@@ -25604,6 +26036,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02efb632ea380cd4bb2bdc15d8f4e029, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6337390200109904736 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8398097274619488764, guid: 48ee3b5ac66f8a84dadb9900a89e0dfb,
+    type: 3}
+  m_PrefabInstance: {fileID: 6337390200109904733}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3902491846306594996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 050fb9e6e72f442b3b883da8a965bdeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6337390200109904737 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4962308174973051162, guid: 48ee3b5ac66f8a84dadb9900a89e0dfb,
+    type: 3}
+  m_PrefabInstance: {fileID: 6337390200109904733}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3902491846306594996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 050fb9e6e72f442b3b883da8a965bdeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &6515912913565149100
@@ -25798,7 +26254,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &6515912913565149107
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -26620,6 +27076,11 @@ PrefabInstance:
       propertyPath: disablerewards
       value: 
       objectReference: {fileID: 1345346661}
+    - target: {fileID: 5594086922263756721, guid: 3b987bba21ee7e34a8aad947330979f8,
+        type: 3}
+      propertyPath: nodeRect.x
+      value: -147.64545
+      objectReference: {fileID: 0}
     - target: {fileID: 5594086922263756722, guid: 3b987bba21ee7e34a8aad947330979f8,
         type: 3}
       propertyPath: character
@@ -26640,11 +27101,23 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 735937825}
+    - target: {fileID: 5594086922263756733, guid: 3b987bba21ee7e34a8aad947330979f8,
+        type: 3}
+      propertyPath: storyText
+      value: '{color=red}Please?{/color}'
+      objectReference: {fileID: 0}
     - target: {fileID: 7268101958660513199, guid: 3b987bba21ee7e34a8aad947330979f8,
         type: 3}
       propertyPath: character
       value: 
       objectReference: {fileID: 735937825}
+    - target: {fileID: 7268101958660513199, guid: 3b987bba21ee7e34a8aad947330979f8,
+        type: 3}
+      propertyPath: storyText
+      value: I lost it on the journey from {color=red}Tiertarock{/color}. I think
+        I last had it when we were camping with the {color=red}Knights{/color} in
+        the {color=red}East Forest Clearing{/color}.
+      objectReference: {fileID: 0}
     - target: {fileID: 7268101958660513201, guid: 3b987bba21ee7e34a8aad947330979f8,
         type: 3}
       propertyPath: character
@@ -26715,6 +27188,12 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 735937825}
+    - target: {fileID: 7557304305763554997, guid: 3b987bba21ee7e34a8aad947330979f8,
+        type: 3}
+      propertyPath: storyText
+      value: Hey stranger, can you help me find my {color=red}Lost Toy{/color}? Mum
+        says it's the reason for my {color=red}Sickness{/color}.
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b987bba21ee7e34a8aad947330979f8, type: 3}
 --- !u!1 &7268101959700567967 stripped
@@ -26827,6 +27306,11 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 735937825}
+    - target: {fileID: 8211066186973996510, guid: 1a0f713c4068998418504d5dbb049ae1,
+        type: 3}
+      propertyPath: storyText
+      value: Hi {color=red}Taro{/color}. Have you found my {color=red}Lost Toy{/color}?
+      objectReference: {fileID: 0}
     - target: {fileID: 8211066186973996511, guid: 1a0f713c4068998418504d5dbb049ae1,
         type: 3}
       propertyPath: scrollPos.x
@@ -26862,11 +27346,32 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1876431071}
+    - target: {fileID: 8522306397522789077, guid: 1a0f713c4068998418504d5dbb049ae1,
+        type: 3}
+      propertyPath: storyText
+      value: The {color=red}Toy{/color} is cursed, are you sure you want to return
+        it?
+      objectReference: {fileID: 0}
     - target: {fileID: 8522306397522789078, guid: 1a0f713c4068998418504d5dbb049ae1,
         type: 3}
       propertyPath: character
       value: 
       objectReference: {fileID: 735937825}
+    - target: {fileID: 8522306397522789078, guid: 1a0f713c4068998418504d5dbb049ae1,
+        type: 3}
+      propertyPath: storyText
+      value: I got it from {color=red}Mamma Roccare{/color} in {color=red}Tiertarock{/color}.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8522306397522789080, guid: 1a0f713c4068998418504d5dbb049ae1,
+        type: 3}
+      propertyPath: text
+      value: Not yet. You got the toy from a Fortune Teller? What is her name?
+      objectReference: {fileID: 0}
+    - target: {fileID: 8522306397522789083, guid: 1a0f713c4068998418504d5dbb049ae1,
+        type: 3}
+      propertyPath: nodeRect.x
+      value: 32.794037
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a0f713c4068998418504d5dbb049ae1, type: 3}
 --- !u!1 &8522306396796325812 stripped
@@ -26972,6 +27477,13 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1876431071}
+    - target: {fileID: 566362923781943980, guid: 6c796d6b651f5ea4aa0c634d24e6feff,
+        type: 3}
+      propertyPath: storyText
+      value: As you travel along the beaten path, you see a distraught {color=red}Traveller{/color}
+        emerge from a forest clearing. You see she is wearing the tricorn of a {color=red}Seafaring
+        Traveller{/color}.
+      objectReference: {fileID: 0}
     - target: {fileID: 566362923781943981, guid: 6c796d6b651f5ea4aa0c634d24e6feff,
         type: 3}
       propertyPath: selectedBlocks.Array.size
@@ -27067,6 +27579,13 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 665607800}
+    - target: {fileID: 1078097853656820631, guid: 6c796d6b651f5ea4aa0c634d24e6feff,
+        type: 3}
+      propertyPath: storyText
+      value: If you defeat the {color=red}Skeletons{/color}, I'll be able to search
+        for survivors and cargo. Do this, and I'll offer you my ship. I can ferry
+        you to nearby islands. What do you say?
+      objectReference: {fileID: 0}
     - target: {fileID: 1429114419916565124, guid: 6c796d6b651f5ea4aa0c634d24e6feff,
         type: 3}
       propertyPath: character
@@ -27077,16 +27596,21 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 665607800}
+    - target: {fileID: 2494677839649446820, guid: 6c796d6b651f5ea4aa0c634d24e6feff,
+        type: 3}
+      propertyPath: storyText
+      value: Alright then, I guess I'll need to look for other help in {color=red}Tiertarock{/color}.
+      objectReference: {fileID: 0}
     - target: {fileID: 2494677839649446821, guid: 6c796d6b651f5ea4aa0c634d24e6feff,
         type: 3}
       propertyPath: commandList.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2494677839649446821, guid: 6c796d6b651f5ea4aa0c634d24e6feff,
         type: 3}
       propertyPath: commandList.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8639634791654871472}
     - target: {fileID: 2494677839649446821, guid: 6c796d6b651f5ea4aa0c634d24e6feff,
         type: 3}
       propertyPath: commandList.Array.data[2]
@@ -27097,21 +27621,53 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 665607800}
+    - target: {fileID: 2494677839649446827, guid: 6c796d6b651f5ea4aa0c634d24e6feff,
+        type: 3}
+      propertyPath: storyText
+      value: Thank you stranger. I'll remember this kindness. I'll be at {color=red}Tiertarok{/color}
+        awaiting your triumph.
+      objectReference: {fileID: 0}
     - target: {fileID: 3058024888851363726, guid: 6c796d6b651f5ea4aa0c634d24e6feff,
         type: 3}
       propertyPath: character
       value: 
       objectReference: {fileID: 665607800}
+    - target: {fileID: 3058024888851363726, guid: 6c796d6b651f5ea4aa0c634d24e6feff,
+        type: 3}
+      propertyPath: storyText
+      value: If you defeat the {color=red}Skeletons{/color}, I'll be able to search
+        for survivors and cargo. Do this, and I'll offer you my {color=red}Ship{/color}.
+        I can ferry you to nearby islands. What do you say?
+      objectReference: {fileID: 0}
+    - target: {fileID: 3195341041551770532, guid: 6c796d6b651f5ea4aa0c634d24e6feff,
+        type: 3}
+      propertyPath: nodeRect.x
+      value: -61.813263
+      objectReference: {fileID: 0}
     - target: {fileID: 3772461468838406334, guid: 6c796d6b651f5ea4aa0c634d24e6feff,
         type: 3}
       propertyPath: character
       value: 
       objectReference: {fileID: 1876431071}
+    - target: {fileID: 3772461468838406334, guid: 6c796d6b651f5ea4aa0c634d24e6feff,
+        type: 3}
+      propertyPath: storyText
+      value: She notices you as you approach, drawing a short saber. She pauses,
+        a look of recognition on her face as she eyes your {color=red}Arcana Knight{/color}
+        seal.
+      objectReference: {fileID: 0}
     - target: {fileID: 4344956436298992923, guid: 6c796d6b651f5ea4aa0c634d24e6feff,
         type: 3}
       propertyPath: character
       value: 
       objectReference: {fileID: 665607800}
+    - target: {fileID: 4344956436298992923, guid: 6c796d6b651f5ea4aa0c634d24e6feff,
+        type: 3}
+      propertyPath: storyText
+      value: I was searching for any survivors and for anything that could be salvaged,
+        but I was ambushed by {color=red}Skeletons{/color} that rose up out of the
+        shore. I can't defeat them, but maybe you can.
+      objectReference: {fileID: 0}
     - target: {fileID: 5439608670281737009, guid: 6c796d6b651f5ea4aa0c634d24e6feff,
         type: 3}
       propertyPath: rewards
@@ -27127,26 +27683,60 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 665607800}
+    - target: {fileID: 5680931373286945119, guid: 6c796d6b651f5ea4aa0c634d24e6feff,
+        type: 3}
+      propertyPath: storyText
+      value: Are you one of them {color=red}Arcana Knights{/color} I've heard so
+        much about?
+      objectReference: {fileID: 0}
     - target: {fileID: 5948411775413267195, guid: 6c796d6b651f5ea4aa0c634d24e6feff,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 665607800}
+    - target: {fileID: 5948411775413267195, guid: 6c796d6b651f5ea4aa0c634d24e6feff,
+        type: 3}
+      propertyPath: storyText
+      value: Then why do you bear their seal? Perhaps it doesn't matter, if you killed
+        an {color=red}Arcana Knight{/color} and took his armour, you might still
+        be of use to me.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6002542961319601963, guid: 6c796d6b651f5ea4aa0c634d24e6feff,
         type: 3}
       propertyPath: character
       value: 
       objectReference: {fileID: 665607800}
     - target: {fileID: 6002542961319601963, guid: 6c796d6b651f5ea4aa0c634d24e6feff,
         type: 3}
+      propertyPath: storyText
+      value: I was searching for any survivors and for anything that could be salvaged,
+        but I was ambushed by {color=red}Skeletons{/color} that rose up out of the
+        shore. I can't defeat them, but maybe you can.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6922488375192348300, guid: 6c796d6b651f5ea4aa0c634d24e6feff,
+        type: 3}
       propertyPath: character
       value: 
       objectReference: {fileID: 665607800}
     - target: {fileID: 6922488375192348300, guid: 6c796d6b651f5ea4aa0c634d24e6feff,
+        type: 3}
+      propertyPath: storyText
+      value: Thank the divines, I need some help. I'm the captain of the {color=red}Crow's
+        Call{/color}, or at least I was. On our last journey, we ran into a storm
+        and were shipwrecked along a nearby shore, most of my crew didn't make it.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7351249840628539517, guid: 6c796d6b651f5ea4aa0c634d24e6feff,
         type: 3}
       propertyPath: character
       value: 
       objectReference: {fileID: 665607800}
     - target: {fileID: 7351249840628539517, guid: 6c796d6b651f5ea4aa0c634d24e6feff,
         type: 3}
-      propertyPath: character
-      value: 
-      objectReference: {fileID: 665607800}
+      propertyPath: storyText
+      value: I'm the captain of the {color=red}Crow's Call{color}, or at least I
+        was. On our last journey, we ran into a storm and were shipwrecked along
+        a nearby shore, most of my crew didn't make it.
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c796d6b651f5ea4aa0c634d24e6feff, type: 3}
 --- !u!1 &8639634791654871469 stripped
@@ -27199,7 +27789,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 --- !u!114 &8639634791654871474
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -27268,6 +27858,14 @@ PrefabInstance:
       propertyPath: conditions.Array.data[0].anyVar.variable
       value: 
       objectReference: {fileID: 869774526}
+    - target: {fileID: 1729483687, guid: 04f769a0e0ddaed4bb2229af3cc522c3, type: 3}
+      propertyPath: nodeRect.x
+      value: -124.632034
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729483687, guid: 04f769a0e0ddaed4bb2229af3cc522c3, type: 3}
+      propertyPath: nodeRect.y
+      value: 206.25563
+      objectReference: {fileID: 0}
     - target: {fileID: 1729483691, guid: 04f769a0e0ddaed4bb2229af3cc522c3, type: 3}
       propertyPath: character
       value: 
@@ -27276,6 +27874,12 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1876431071}
+    - target: {fileID: 1729483702, guid: 04f769a0e0ddaed4bb2229af3cc522c3, type: 3}
+      propertyPath: storyText
+      value: Peering at the shape as it approaches, it appears to be a ship. You
+        catch the glimses of weaponry and cannons. You are about to be boarded by
+        {color=red}Pirates{/color}.
+      objectReference: {fileID: 0}
     - target: {fileID: 1729483724, guid: 04f769a0e0ddaed4bb2229af3cc522c3, type: 3}
       propertyPath: character
       value: 
@@ -27329,10 +27933,20 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1876431071}
+    - target: {fileID: 1729483752, guid: 04f769a0e0ddaed4bb2229af3cc522c3, type: 3}
+      propertyPath: storyText
+      value: The brigands board your ship. One of the {color=red}Pirates{/color}
+        approach you.
+      objectReference: {fileID: 0}
     - target: {fileID: 1729483756, guid: 04f769a0e0ddaed4bb2229af3cc522c3, type: 3}
       propertyPath: character
       value: 
       objectReference: {fileID: 1876431071}
+    - target: {fileID: 1729483756, guid: 04f769a0e0ddaed4bb2229af3cc522c3, type: 3}
+      propertyPath: storyText
+      value: The ship sails too close, and the {color=red}Pirates{/color} board your
+        ship
+      objectReference: {fileID: 0}
     - target: {fileID: 1157555518163417652, guid: 04f769a0e0ddaed4bb2229af3cc522c3,
         type: 3}
       propertyPath: character
@@ -27343,6 +27957,12 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1876431071}
+    - target: {fileID: 1938025151416168322, guid: 04f769a0e0ddaed4bb2229af3cc522c3,
+        type: 3}
+      propertyPath: storyText
+      value: As the ship looms closer, you catch the glimses of weaponry and cannons.
+        You are about to be boarded by {color=red}Pirates{/color}.
+      objectReference: {fileID: 0}
     - target: {fileID: 2892920138249984041, guid: 04f769a0e0ddaed4bb2229af3cc522c3,
         type: 3}
       propertyPath: m_RootOrder
@@ -27464,7 +28084,7 @@ PrefabInstance:
     - target: {fileID: 3892004233865471734, guid: a040063585b71984db08de147a933634,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3892004233865471734, guid: a040063585b71984db08de147a933634,
         type: 3}
@@ -27521,11 +28141,25 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1876431071}
+    - target: {fileID: 5707464111031927987, guid: a040063585b71984db08de147a933634,
+        type: 3}
+      propertyPath: storyText
+      value: Before you can destroy the {color=red}Crystal{/color}, a giant rat drops
+        down from the ceiling in front of you. Purple blood spews from {color=red}Corrupted
+        Crystals{/color} jutting out from it's shoulder.
+      objectReference: {fileID: 0}
     - target: {fileID: 5707464111031927988, guid: a040063585b71984db08de147a933634,
         type: 3}
       propertyPath: character
       value: 
       objectReference: {fileID: 1876431071}
+    - target: {fileID: 5707464111031927988, guid: a040063585b71984db08de147a933634,
+        type: 3}
+      propertyPath: storyText
+      value: As you get closer, you can determine that the source of light is a shard
+        of {color=red}Corruption{/color}. It must be why the rats here are larger
+        than normal.
+      objectReference: {fileID: 0}
     - target: {fileID: 5707464111031927990, guid: a040063585b71984db08de147a933634,
         type: 3}
       propertyPath: character
@@ -27541,6 +28175,11 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1876431071}
+    - target: {fileID: 5707464111031927998, guid: a040063585b71984db08de147a933634,
+        type: 3}
+      propertyPath: storyText
+      value: Could this be the a seed of {color=red}Corruption{/color}?
+      objectReference: {fileID: 0}
     - target: {fileID: 5707464111031927999, guid: a040063585b71984db08de147a933634,
         type: 3}
       propertyPath: character
@@ -27551,6 +28190,13 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1876431071}
+    - target: {fileID: 5707464111031928000, guid: a040063585b71984db08de147a933634,
+        type: 3}
+      propertyPath: storyText
+      value: Feeling along the wall, you make your way along a dark stone corridor.
+        You see rats scurrying away, but they are larger than they usually would
+        be.
+      objectReference: {fileID: 0}
     - target: {fileID: 5707464111031928002, guid: a040063585b71984db08de147a933634,
         type: 3}
       propertyPath: character
@@ -27581,6 +28227,16 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1876431071}
+    - target: {fileID: 6661890380508246382, guid: a040063585b71984db08de147a933634,
+        type: 3}
+      propertyPath: nodeRect.x
+      value: 27.371853
+      objectReference: {fileID: 0}
+    - target: {fileID: 6661890380508246382, guid: a040063585b71984db08de147a933634,
+        type: 3}
+      propertyPath: nodeRect.y
+      value: 89.13619
+      objectReference: {fileID: 0}
     - target: {fileID: 7388866186864355059, guid: a040063585b71984db08de147a933634,
         type: 3}
       propertyPath: rewards
@@ -27660,7 +28316,7 @@ PrefabInstance:
     - target: {fileID: 6673876278959578844, guid: 0c390cd16ec0dd8449b5a35913c42eee,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6673876278959578844, guid: 0c390cd16ec0dd8449b5a35913c42eee,
         type: 3}
@@ -27921,6 +28577,11 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1876431071}
+    - target: {fileID: 67217854, guid: 8ccc2ff4a0c0c9547b83fb593615bb74, type: 3}
+      propertyPath: storyText
+      value: The {color=red}Kraken{/color} laches onto your ship with it's rubbery
+        tentacles and clamps down onto the side with it giant maw.
+      objectReference: {fileID: 0}
     - target: {fileID: 67217855, guid: 8ccc2ff4a0c0c9547b83fb593615bb74, type: 3}
       propertyPath: commandList.Array.size
       value: 3
@@ -27957,6 +28618,11 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1876431071}
+    - target: {fileID: 586113611, guid: 8ccc2ff4a0c0c9547b83fb593615bb74, type: 3}
+      propertyPath: storyText
+      value: Are you mad? It's a {color=red}Kraken{/color}. It'll tear your ship
+        asunder.
+      objectReference: {fileID: 0}
     - target: {fileID: 296367882533618299, guid: 8ccc2ff4a0c0c9547b83fb593615bb74,
         type: 3}
       propertyPath: quest
@@ -28186,6 +28852,13 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1195535085}
+    - target: {fileID: 6271812322149909291, guid: 9a0faf43fdf77f54fa232a40fed7067e,
+        type: 3}
+      propertyPath: storyText
+      value: He's been {color=red}Sick{/color} ever since he lost his {color=red}Favorite
+        Toy{/color}, it was a gift from a {color=red}Fortune Teller{/color} and I
+        know it will bring good {color=red}Fortune{/color}. Will you find it?
+      objectReference: {fileID: 0}
     - target: {fileID: 6271812322149909292, guid: 9a0faf43fdf77f54fa232a40fed7067e,
         type: 3}
       propertyPath: commandList.Array.size
@@ -28195,7 +28868,12 @@ PrefabInstance:
         type: 3}
       propertyPath: commandList.Array.data[3]
       value: 
-      objectReference: {fileID: 9112673482755482599}
+      objectReference: {fileID: 0}
+    - target: {fileID: 6271812322149909293, guid: 9a0faf43fdf77f54fa232a40fed7067e,
+        type: 3}
+      propertyPath: targetBlock
+      value: 
+      objectReference: {fileID: 9112673482755482603}
     - target: {fileID: 6271812322149909295, guid: 9a0faf43fdf77f54fa232a40fed7067e,
         type: 3}
       propertyPath: character
@@ -28206,6 +28884,12 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1195535085}
+    - target: {fileID: 8235733796801522216, guid: 9a0faf43fdf77f54fa232a40fed7067e,
+        type: 3}
+      propertyPath: storyText
+      value: 'Sir, are you an {color=red}Arcana Knight{/color}. My son {color=red}Jax{/color}
+        is in dire need of help. He''s gotten really {color=red}Sick{/color} recently. '
+      objectReference: {fileID: 0}
     - target: {fileID: 8235733796801522217, guid: 9a0faf43fdf77f54fa232a40fed7067e,
         type: 3}
       propertyPath: selectedBlocks.Array.size
@@ -28214,7 +28898,7 @@ PrefabInstance:
     - target: {fileID: 8235733796801522217, guid: 9a0faf43fdf77f54fa232a40fed7067e,
         type: 3}
       propertyPath: selectedCommands.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8235733796801522217, guid: 9a0faf43fdf77f54fa232a40fed7067e,
         type: 3}
@@ -28225,7 +28909,17 @@ PrefabInstance:
         type: 3}
       propertyPath: selectedCommands.Array.data[0]
       value: 
-      objectReference: {fileID: 9112673482755482599}
+      objectReference: {fileID: 0}
+    - target: {fileID: 8235733796801522219, guid: 9a0faf43fdf77f54fa232a40fed7067e,
+        type: 3}
+      propertyPath: nodeRect.x
+      value: -16.736362
+      objectReference: {fileID: 0}
+    - target: {fileID: 8235733796801522219, guid: 9a0faf43fdf77f54fa232a40fed7067e,
+        type: 3}
+      propertyPath: nodeRect.y
+      value: -173.23633
+      objectReference: {fileID: 0}
     - target: {fileID: 8235733796801522222, guid: 9a0faf43fdf77f54fa232a40fed7067e,
         type: 3}
       propertyPath: m_Name
@@ -28315,6 +29009,9 @@ PrefabInstance:
     - {fileID: 6271812322149909280, guid: 9a0faf43fdf77f54fa232a40fed7067e, type: 3}
     - {fileID: 9112673482102956250, guid: 9a0faf43fdf77f54fa232a40fed7067e, type: 3}
     - {fileID: 6271812322149909281, guid: 9a0faf43fdf77f54fa232a40fed7067e, type: 3}
+    - {fileID: 6271812322149909295, guid: 9a0faf43fdf77f54fa232a40fed7067e, type: 3}
+    - {fileID: 6271812322149909289, guid: 9a0faf43fdf77f54fa232a40fed7067e, type: 3}
+    - {fileID: 6271812322149909292, guid: 9a0faf43fdf77f54fa232a40fed7067e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9a0faf43fdf77f54fa232a40fed7067e, type: 3}
 --- !u!1 &9112673482755482591 stripped
 GameObject:
@@ -28336,14 +29033,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 --- !u!114 &9112673482755482593 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6271812322149909292, guid: 9a0faf43fdf77f54fa232a40fed7067e,
+  m_CorrespondingSourceObject: {fileID: 6271812322149909288, guid: 9a0faf43fdf77f54fa232a40fed7067e,
     type: 3}
   m_PrefabInstance: {fileID: 9112673482755482590}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9112673482755482591}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
+  m_Script: {fileID: 11500000, guid: a3effd9254a3dd34e88a1135820ce4bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &9112673482755482594 stripped
@@ -28399,7 +29096,7 @@ MonoBehaviour:
   indentLevel: 0
   text: Accept
   description: 
-  targetBlock: {fileID: 9112673482755482593}
+  targetBlock: {fileID: 9112673482755482603}
   hideIfVisited: 0
   interactable:
     booleanRef: {fileID: 0}
@@ -28422,7 +29119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 60
   indentLevel: 0
-  storyText: Please sir, I'm worried for his health.
+  storyText: Please sir, I'm worried for his {color=red}Health{/color}.
   description: 
   character: {fileID: 1195535085}
   portrait: {fileID: 0}
@@ -28476,7 +29173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050fb9e6e72f442b3b883da8a965bdeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 58
+  itemId: 68
   indentLevel: 0
   targetFlowchart: {fileID: 0}
   targetBlock: {fileID: 9112673482755482594}
@@ -28485,6 +29182,146 @@ MonoBehaviour:
     stringVal: 
   startIndex: 0
   callMode: 0
+--- !u!114 &9112673482755482600
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9112673482755482591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95d9ff288f3904c05ada7ac9c9a075bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 67
+  indentLevel: 0
+  description: 
+  delay: 0
+  invokeType: 0
+  staticEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9112673482755482593}
+        m_TargetAssemblyTypeName: QuestGiver, Assembly-CSharp
+        m_MethodName: AcceptQuest
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  booleanParameter:
+    booleanRef: {fileID: 0}
+    booleanVal: 0
+  booleanEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  integerParameter:
+    integerRef: {fileID: 0}
+    integerVal: 0
+  integerEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  floatParameter:
+    floatRef: {fileID: 0}
+    floatVal: 0
+  floatEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  stringParameter:
+    stringRef: {fileID: 0}
+    stringVal: 
+  stringEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &9112673482755482601
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9112673482755482591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 66
+  indentLevel: 0
+  storyText: You could probably ask him to find out where he lost it.
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &9112673482755482602
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9112673482755482591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 65
+  indentLevel: 0
+  storyText: Thank you Sir.
+  description: 
+  character: {fileID: 1195535085}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &9112673482755482603
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9112673482755482591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodeRect:
+    serializedVersion: 2
+    x: -93.64545
+    y: -74.87273
+    width: 90
+    height: 40
+  tint: {r: 0.008939505, g: 1, b: 0, a: 1}
+  useCustomTint: 1
+  itemId: 22
+  blockName: Accept
+  description: 
+  eventHandler: {fileID: 0}
+  commandList:
+  - {fileID: 9112673482755482602}
+  - {fileID: 9112673482755482601}
+  - {fileID: 9112673482755482600}
+  - {fileID: 9112673482755482599}
+  suppressAllAutoSelections: 0
 --- !u!1001 &9218685394999254700
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28582,16 +29419,36 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1876431071}
+    - target: {fileID: 3407250571803321611, guid: 727211e586fe5db41b3a547d1cae7745,
+        type: 3}
+      propertyPath: storyText
+      value: You manage to flee from the risen {color=red}Undead{/color} in the swamplands.
+      objectReference: {fileID: 0}
     - target: {fileID: 3407250571803321621, guid: 727211e586fe5db41b3a547d1cae7745,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1876431071}
+    - target: {fileID: 3407250571803321621, guid: 727211e586fe5db41b3a547d1cae7745,
+        type: 3}
+      propertyPath: storyText
+      value: You try desperately to flee, but a skeletal hand clutches your ankle.
+        You see {color=red}Skeletal Figures{/color} slowly rise out of the waters,
+        their bog-stained bones slick with mud and grim, and rusted weapons at the
+        ready.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3407250571803321627, guid: 727211e586fe5db41b3a547d1cae7745,
         type: 3}
       propertyPath: character
       value: 
       objectReference: {fileID: 1876431071}
     - target: {fileID: 3407250571803321627, guid: 727211e586fe5db41b3a547d1cae7745,
         type: 3}
-      propertyPath: character
-      value: 
-      objectReference: {fileID: 1876431071}
+      propertyPath: storyText
+      value: As you take the time to prepare, you see {color=red}Skeletal Figures{/color}
+        slowly rise out of the waters, their bog-stained bones slick with mud and
+        grim, and rusted weapons at the ready.
+      objectReference: {fileID: 0}
     - target: {fileID: 5709534516057184741, guid: 727211e586fe5db41b3a547d1cae7745,
         type: 3}
       propertyPath: background

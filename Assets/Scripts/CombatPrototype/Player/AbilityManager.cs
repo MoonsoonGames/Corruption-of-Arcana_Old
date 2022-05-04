@@ -174,6 +174,8 @@ public class AbilityManager : MonoBehaviour
 
     public void EnemyInfo(Enemy target)
     {
+        ResetAbility();
+
         if (target != null)
         {
             combatManager.PotionBar(false);
@@ -221,6 +223,8 @@ public class AbilityManager : MonoBehaviour
     public void ResetAbility()
     {
         readyAbility = null;
+
+        endTurn.OpenMenu(false);
 
         if (activeCard != null)
             activeCard.CastCard();

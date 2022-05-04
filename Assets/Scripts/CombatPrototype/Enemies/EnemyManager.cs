@@ -116,6 +116,8 @@ public class EnemyManager : MonoBehaviour
 
     public void EnemyInfo(Enemy controller)
     {
+        combatManager.abilityManager.ResetAbility();
+
         if (controller != null)
         {
             //show enemy description
