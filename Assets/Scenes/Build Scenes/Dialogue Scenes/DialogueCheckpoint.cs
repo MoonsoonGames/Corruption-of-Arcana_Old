@@ -30,7 +30,7 @@ public class DialogueCheckpoint : MonoBehaviour
 
         if (loadSettings != null)
         {
-             gold = loadSettings.DetermineGoldFromCards();
+            gold = loadSettings.DetermineGoldFromCards();
 
             loadSettings.ResetCards(true);
         }
@@ -40,6 +40,14 @@ public class DialogueCheckpoint : MonoBehaviour
         }
 
         Debug.Log("Gold gained from cards should be " + gold);
+
+        if (flowchart == null)
+        {
+            Debug.Log("no flow chart");
+        }
+
+        Debug.Log(flowchart.GetIntegerVariable("Gold"));
         flowchart.SetIntegerVariable("Gold", gold);
+        Debug.Log(flowchart.GetIntegerVariable("Gold"));
     }
 }
