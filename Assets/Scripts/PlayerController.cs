@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
 
     CharacterController characterController;
     Rigidbody rb;
+    MenuManager menuManager;
 
     public GameObject Player;
     public Text Location;
@@ -301,8 +302,6 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Thoth Open Sea"))
         {
             Player.transform.position = new Vector3(-267.317505f, 31.0455322f, 358.720032f);
-            //rescued == true;
-            //Run rescuer dialogue
             Debug.Log("Player in the water");
         }
 
@@ -336,6 +335,11 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Eastern Cave"))
         {
             Location.text = "Eastern Cave".ToString();
+        }
+        if (other.gameObject.CompareTag("Cave River"))
+        {
+            Player.transform.position = new Vector3(101.964149f, 1.21939147f, 264.567352f);
+            Debug.Log("Player in the water");
         }
         #endregion
     }
