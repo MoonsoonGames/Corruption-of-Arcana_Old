@@ -62,7 +62,7 @@ public class EnemyController : MonoBehaviour
             loadSettings.enemies[1] = enemies[1];
             loadSettings.enemies[2] = enemies[2];
 
-            if (loadSettings.background == null && background != null)
+            if (background != null)
             {
                 loadSettings.background = background;
             }

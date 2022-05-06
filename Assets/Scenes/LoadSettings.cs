@@ -274,6 +274,8 @@ public class LoadSettings : MonoBehaviour
 
     #region Last Level
 
+    public bool alreadyLoading = false;
+
     public void SetScene(string scene)
     {
         //https://answers.unity.com/questions/52162/converting-a-string-to-an-enum.html

@@ -148,10 +148,12 @@ public class SceneLoader : MonoBehaviour
     {
         if (sceneMode == LoadSceneMode.Single)
         {
+            LoadSettings.instance.alreadyLoading = true;
             StartCoroutine(ILoadDelay(scene, sceneMode, delay));
         }
         else if (sceneMode == LoadSceneMode.Additive)
         {
+            LoadSettings.instance.alreadyLoading = false;
             SceneManager.LoadScene(scene, sceneMode);
         }
     }
@@ -160,6 +162,7 @@ public class SceneLoader : MonoBehaviour
     {
         LoadSettings.instance.SceneTransitionAnim();
         yield return new WaitForSeconds(delay);
+        LoadSettings.instance.alreadyLoading = false;
         SceneManager.LoadScene(scene, sceneMode);
     }
 }
