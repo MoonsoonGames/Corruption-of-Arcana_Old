@@ -219,61 +219,57 @@ public class PlayerController : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (LoadSettings.instance.alreadyLoading == false)
+        //Save current position
+        SavePlayerPos();
+
+        if (other.gameObject.CompareTag("commonEnemy") || other.gameObject.CompareTag("bossEnemy"))
         {
-            //Save current position
-            SavePlayerPos();
+            EnemyController enemyController = other.GetComponent<EnemyController>();
 
-            if (other.gameObject.CompareTag("commonEnemy") || other.gameObject.CompareTag("bossEnemy"))
+            if (enemyController != null && LoadSettings.instance.alreadyLoading == false)
             {
-                EnemyController enemyController = other.GetComponent<EnemyController>();
-
-                if (enemyController != null)
-                {
-                    LoadSettings.instance.alreadyLoading = true;
-                    enemyController.LoadCombat();
-                }
+                LoadSettings.instance.alreadyLoading = true;
+                enemyController.LoadCombat();
             }
+        }
 
-            else if (other.gameObject.CompareTag("NPC"))
+        else if (other.gameObject.CompareTag("NPC"))
+        {
+            //Debug.Log("Can Interact");
+            interact = true;
+
+            Dialogue[] dialogueArray = other.gameObject.GetComponents<Dialogue>();
+
+            foreach (var item in dialogueArray)
             {
-                //Debug.Log("Can Interact");
-                interact = true;
-
-                Dialogue[] dialogueArray = other.gameObject.GetComponents<Dialogue>();
-
-                foreach (var item in dialogueArray)
+                if (item.CanSpeak())
                 {
-                    if (item.CanSpeak())
-                    {
-                        //Debug.Log(item.dialogue.ToString() + " can speak");
-                        dialogue = item;
+                    //Debug.Log(item.dialogue.ToString() + " can speak");
+                    dialogue = item;
 
-                        if (item.forceDialogue)
-                        {
-                            LoadSettings.instance.alreadyLoading = true;
-                            canMove = !dialogue.LoadDialogueScene(this);
-                        }
-                    }
-                    else
+                    if (item.forceDialogue)
                     {
-                        //Debug.Log(item.dialogue.ToString() + " can't speak");
+                        canMove = !dialogue.LoadDialogueScene(this);
                     }
                 }
-
-                /*if (dialogue != null && dialogue.dialogue != null && loadSettings != null)
-                    loadSettings.dialogueFlowChart = dialogue.dialogue;*/
-
-                if (interactImage != null && dialogue != null)
+                else
                 {
-                    interactImage.SetActive(true);
+                    //Debug.Log(item.dialogue.ToString() + " can't speak");
                 }
             }
 
-            if (Location != null)
+            /*if (dialogue != null && dialogue.dialogue != null && loadSettings != null)
+                loadSettings.dialogueFlowChart = dialogue.dialogue;*/
+
+            if (interactImage != null && dialogue != null)
             {
-                LocationTrigger(other);
+                interactImage.SetActive(true);
             }
+        }
+
+        if (Location != null)
+        {
+            LocationTrigger(other);
         }
     }
 
