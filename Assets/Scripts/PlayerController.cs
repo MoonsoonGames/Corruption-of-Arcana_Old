@@ -16,7 +16,6 @@ public class PlayerController : MonoBehaviour
     public GameObject Player;
     public Text Location;
     public static PlayerController instance;
-    private LoadSettings loadSettings;
 
     public GameObject interactImage;
     bool interact = false;
@@ -96,17 +95,15 @@ public class PlayerController : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         rb = GetComponent<Rigidbody>();
 
-        loadSettings = LoadSettings.instance;
-
-        if (loadSettings.checkPoint)
+        if (LoadSettings.instance.checkPoint)
         {
-            loadSettings.SaveCheckpoint(SceneManager.GetActiveScene(), this);
+            LoadSettings.instance.SaveCheckpoint(SceneManager.GetActiveScene(), this);
         }
 
-        loadSettings.died = false;
+        LoadSettings.instance.died = false;
 
-        health = loadSettings.health;
-        maxHealth = loadSettings.maxHealth;
+        health = LoadSettings.instance.health;
+        maxHealth = LoadSettings.instance.maxHealth;
         //arcana = loadSettings.arcana;
 
         StartCoroutine(IDelayMovement(2f));
@@ -164,7 +161,7 @@ public class PlayerController : MonoBehaviour
 
                 if (Input.GetButton("Jump"))
                 {
-                    moveDirection.y = jumpSpeed;
+                    //moveDirection.y = jumpSpeed;
                 }
 
                 isRunning = Input.GetButton("Sprint");
@@ -182,6 +179,7 @@ public class PlayerController : MonoBehaviour
 
                 if (Input.GetButton("Interact") && interact && dialogue != null)
                 {
+                    LoadSettings.instance.alreadyLoading = true;
                     canMove = !dialogue.LoadDialogueScene(this);
                 }
             }
@@ -221,56 +219,61 @@ public class PlayerController : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        //Save current position
-        SavePlayerPos();
-
-        if (other.gameObject.CompareTag("commonEnemy") || other.gameObject.CompareTag("bossEnemy"))
+        if (LoadSettings.instance.alreadyLoading == false)
         {
-            EnemyController enemyController = other.GetComponent<EnemyController>();
+            //Save current position
+            SavePlayerPos();
 
-            if (enemyController != null)
+            if (other.gameObject.CompareTag("commonEnemy") || other.gameObject.CompareTag("bossEnemy"))
             {
-                enemyController.LoadCombat();
-            }
-        }
+                EnemyController enemyController = other.GetComponent<EnemyController>();
 
-        else if (other.gameObject.CompareTag("NPC"))
-        {
-            //Debug.Log("Can Interact");
-            interact = true;
-
-            Dialogue[] dialogueArray = other.gameObject.GetComponents<Dialogue>();
-
-            foreach (var item in dialogueArray)
-            {
-                if (item.CanSpeak())
+                if (enemyController != null)
                 {
-                    //Debug.Log(item.dialogue.ToString() + " can speak");
-                    dialogue = item;
+                    LoadSettings.instance.alreadyLoading = true;
+                    enemyController.LoadCombat();
+                }
+            }
 
-                    if (item.forceDialogue)
+            else if (other.gameObject.CompareTag("NPC"))
+            {
+                //Debug.Log("Can Interact");
+                interact = true;
+
+                Dialogue[] dialogueArray = other.gameObject.GetComponents<Dialogue>();
+
+                foreach (var item in dialogueArray)
+                {
+                    if (item.CanSpeak())
                     {
-                        canMove = !dialogue.LoadDialogueScene(this);
+                        //Debug.Log(item.dialogue.ToString() + " can speak");
+                        dialogue = item;
+
+                        if (item.forceDialogue)
+                        {
+                            LoadSettings.instance.alreadyLoading = true;
+                            canMove = !dialogue.LoadDialogueScene(this);
+                        }
+                    }
+                    else
+                    {
+                        //Debug.Log(item.dialogue.ToString() + " can't speak");
                     }
                 }
-                else
+
+                /*if (dialogue != null && dialogue.dialogue != null && loadSettings != null)
+                    loadSettings.dialogueFlowChart = dialogue.dialogue;*/
+
+                if (interactImage != null && dialogue != null)
                 {
-                    //Debug.Log(item.dialogue.ToString() + " can't speak");
+                    interactImage.SetActive(true);
                 }
             }
 
-            /*if (dialogue != null && dialogue.dialogue != null && loadSettings != null)
-                loadSettings.dialogueFlowChart = dialogue.dialogue;*/
-
-            if (interactImage != null && dialogue != null)
+            if (Location != null)
             {
-                interactImage.SetActive(true);
+                LocationTrigger(other);
             }
-        }
-
-        if (Location != null)
-        {
-            LocationTrigger(other);
         }
     }
 
@@ -347,27 +350,27 @@ public class PlayerController : MonoBehaviour
     public void SavePlayerPos()
     {
         string scene = SceneManager.GetActiveScene().name;
-        if (loadSettings != null)
+        if (LoadSettings.instance != null)
         {
             if (scene == E_Levels.Thoth.ToString())
             {
-                loadSettings.playerPosInThoth = transform.position;
-                loadSettings.playerRotInThoth = transform.rotation;
+                LoadSettings.instance.playerPosInThoth = transform.position;
+                LoadSettings.instance.playerRotInThoth = transform.rotation;
             }
             else if (scene == E_Levels.EastForestClearing.ToString())
             {
-                loadSettings.playerPosInClearing = transform.position;
-                loadSettings.playerRotInClearing = transform.rotation;
+                LoadSettings.instance.playerPosInClearing = transform.position;
+                LoadSettings.instance.playerRotInClearing = transform.rotation;
             }
             else if (scene == E_Levels.EasternCave.ToString())
             {
-                loadSettings.playerPosInCave = transform.position;
-                loadSettings.playerRotInCave = transform.rotation;
+                LoadSettings.instance.playerPosInCave = transform.position;
+                LoadSettings.instance.playerRotInCave = transform.rotation;
             }
             else if (scene == E_Levels.Tiertarock.ToString())
             {
-                loadSettings.playerPosInTiertarock = transform.position;
-                loadSettings.playerRotInTiertarock = transform.rotation;
+                LoadSettings.instance.playerPosInTiertarock = transform.position;
+                LoadSettings.instance.playerRotInTiertarock = transform.rotation;
             }
         }
 
@@ -381,7 +384,7 @@ public class PlayerController : MonoBehaviour
             interact = false;
             dialogue = null;
 
-            loadSettings.dialogueFlowChart = null;
+            LoadSettings.instance.dialogueFlowChart = null;
 
             if (interactImage != null)
             {
@@ -418,9 +421,9 @@ public class PlayerController : MonoBehaviour
 
         //combatManager.HealingLeft.text = potionCount.ToString();
 
-        if (loadSettings != null)
+        if (LoadSettings.instance != null)
         {
-            loadSettings.healingPotionCount = potionCount;
+            LoadSettings.instance.healingPotionCount = potionCount;
         }
     }
     private bool isGrounded;
