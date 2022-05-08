@@ -21,7 +21,7 @@ public class CombatUIController : MonoBehaviour
     public bool Fighting;
 
     #region DeckBuilder GameObjects
-    public GameObject MiArc;
+    public GameObject BaAtk;
     public GameObject MjArcCardsPage;
     public GameObject MjArc1;
     public GameObject MjArc2;
@@ -126,7 +126,7 @@ public class CombatUIController : MonoBehaviour
         }
 
         #region CardsMenu Subpage button on/off
-        if (CardsMenu.activeSelf == true && MiArc.activeSelf == true)
+        if (CardsMenu.activeSelf == true && BaAtk.activeSelf == true)
         {
             NextMjArcBtn.SetActive(false);
             LastMjArcBtn.SetActive(false);
@@ -201,13 +201,13 @@ public class CombatUIController : MonoBehaviour
         CardsMenu.SetActive(true);
 
         //MiArcCards on
-        MiArc.SetActive(true);
+        BaAtk.SetActive(true);
         //MjArcCards off
         MjArcCardsPage.SetActive(false);
         //CorArcCards off
 
         //CardTypeName = Minor Arcana Cards
-        CardTypeTitle.text = "Minor Arcana Cards";
+        CardTypeTitle.text = "Basic Attack Cards";
         //Current Page = 1(x)
         PageX.text = "1";
         //Total Pages = 1(y)
@@ -223,13 +223,13 @@ public class CombatUIController : MonoBehaviour
     public void MiArcCards()
     {
         //MiArcCards on
-        MiArc.SetActive(true);
+        BaAtk.SetActive(true);
         //MjArcCards off
         MjArcCardsPage.SetActive(false);
         //CorArcCards off
 
         //CardTypeName = Minor Arcana Cards
-        CardTypeTitle.text = "Minor Arcana Cards";
+        CardTypeTitle.text = "Basic Attack Cards";
 
         //Current Page = 1(x)
         PageX.text = "1";
@@ -244,7 +244,7 @@ public class CombatUIController : MonoBehaviour
     public void MjArcCards()
     {
         //MiArcCards off
-        MiArc.SetActive(false);
+        BaAtk.SetActive(false);
         //MjArcCards on
         MjArcCardsPage.SetActive(true);
         //CorArcCards off

@@ -627,13 +627,12 @@ public class MenuManager : MonoBehaviour
     {
         //BaAtkCards on
         BaAtk.SetActive(true);
-        weaponSpawner.WeaponsMenuOpened();
         //MjArcCards off
         MjArcCardsPage.SetActive(false);
         //CorArcCards off
 
         //CardTypeName = Minor Arcana Cards
-        CardTypeTitle.text = "Minor Arcana Cards";
+        CardTypeTitle.text = "Basic Attack Cards";
 
         //Current Page = 1(x)
         PageX.text = "1";
@@ -734,6 +733,7 @@ public class MenuManager : MonoBehaviour
     public void Weapons()
     {
         WeaponsMenu.SetActive(true);
+        weaponSpawner.WeaponsMenuOpened();
         CardsMenu.SetActive(false);
     }
 
