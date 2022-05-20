@@ -9,3 +9,4 @@ This is the development repo for Corruption of Arcana by team 2:10
    - BLKCHCRY
    - JazzCreateBubble
 - BGM for forest (Cameron Barnard and Daniel Slade)
+- Sound Effects (Freesound.org)
